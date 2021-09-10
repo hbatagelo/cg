@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap');
+
+.book .book-summary {
+	background: #eeeff0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre {
+	background: #eeeff0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal code {
+	background-color: #eeeff0;
+}
+
+body {
+  font-weight: 400;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal code {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+pre {
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.35em;
+  border-radius: 5px;
+  margin-left: 2em;
+}
+code {
+  border-radius: 5px;
+}
+pre code {
+  white-space: inherit;
+}
+
+p {
+  line-height: 1.55em;
+}
+
+p.flushright {
+  text-align: right;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal table {
+ width:40%;
+}
+
+/******************************************************************************
+Resizable iframe
+*/
+iframe {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  transform-origin: center top;
+  transition: transform .05s linear;
+  backface-visibility: hidden;
+}
+
+/******************************************************************************
+Code chunks
+*/
+.sourceCode pre {
+  margin: 0 !important; /* makes space above and below symmetrical*/
+}
+
+.sourceCode {
+  margin-bottom: 0.85em; /* adds same amount of margin as a <p> would */
+}
+/* Source code line numbers */
+pre.numberSource code > span > a:first-child::before {
+  font-family: 'Inconsolata', monospace;
+  left: -1.2em;
+  padding-left: 2em;
+}
+
+div.sourceCode {
+	background-color: transparent;
+}
+
+/******************************************************************************
+summary
+*/
+
+.book .book-header, .book .book-summary {
+	font-family: "Inter", sans-serif;
+}
+
+/* The next two rules make the horizontal line go straight across in top navbar */
+.summary > li:first-child {
+  height: 42px;
+  font-size: 1.45em;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.book .book-summary ul.summary li.divider {
+  height: 1px;
+}
+
+.book .book-summary ul.summary {
+  scrollbar-width: thin;
+}
+
+.book .book-body, .book .book-body .body-inner {
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(150, 150, 150, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
+
+.toctitle {
+  padding-top: 10px;
+}
+
+ul.summary {
+  /*font-weight: 400;*/
+  font-size: 0.95em;
+  line-height: 0.65em;
+}
+
+.book .book-summary ul.summary li a, .book .book-summary ul.summary li span {
+  padding: 10px 15px;
+  white-space: nowrap;
+  /*
+  padding: 5px 0px;
+  white-space: normal;
+  text-indent: -25px;
+  padding-left: 38px;
+  line-height: 20px;
+  */
+}
+
+/******************************************************************************
+Headers
+*/
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: .5em;
+}
+
+/* Line below h1 headers */
+.level1 h1 {
+	border-bottom: 1px solid #ccc;
+	line-height: 1.7em;
+}
+
+/* Thick line below h1 header number */
+.level1 h1 .header-section-number {
+	display: inline-block;
+	border-bottom: 0px /*1px*/ solid #ccc;
+}
+
+/* Decrease right padding in header number */
+.header-section-number {
+	padding-right: 0;
+	margin-right: .2em;
+}
+
+/* Extra margin in headers */
+.book .book-body .page-wrapper .page-inner section.normal h1, .book .book-body .page-wrapper .page-inner section.normal h2, .book .book-body .page-wrapper .page-inner section.normal h3, .book .book-body .page-wrapper .page-inner section.normal h4, .book .book-body .page-wrapper .page-inner section.normal h5, .book .book-body .page-wrapper .page-inner section.normal h6 {
+	margin-top: 1.275em;
+	margin-bottom: .85em;
+}
+
+/******************************************************************************
+Maximum book width
+*/
+.book .book-body .page-wrapper .page-inner {
+  max-width: 720px;
+}
+
+/******************************************************************************
+Change summary width
+*/
+.book .book-summary {
+  width: 250px;
+  position:absolute;
+  left:-250px;
+}
+.book.with-summary .book-header.fixed {
+  left: 250px;
+}
+.book.with-summary .book-body {
+  left: 250px;
+}
+
+/******************************************************************************
+Code copy button
+*/
+button:nth-child(1) {
+ border-top-width: 1px;
+ border-top-style: solid;
+ border-bottom-width: 1px;
+ border-bottom-style: solid;
+ border-left-width: 1px;
+ border-left-style: solid;
+ border-right-width: 1px;
+ border-right-style: solid;
+ padding-left: 6px;
+ padding-right: 6px;
+ padding-top: 4px;
+ padding-bottom: 4px;
+ border-radius: 5px;
+}
+
+/******************************************************************************
+Boxes
+*/
+
+.blackbox {
+  padding: 1em;
+  background: gray;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.notebox, .infobox, .warningbox, .questionbox, .tipbox {
+  padding: 1em 1em 0.2em 1em;
+  margin-bottom: 10px;
+  color: #333;
+  border-radius: 5px;
+}
+
+.notebox {
+  background-color: #d7e4f6;
+  color: #1f5386;
+}
+
+.infobox, .questionbox {
+  background-color: #e7e8ea;
+}
+
+.warningbox {
+  background-color: #f6d7d7;
+  color: #861f1f;
+}
+
+.tipbox {
+  background-color: #f7f0dd;
+  color: #7e4d1d;
+}
+
+.noteboxtitle, .infoboxtitle, .warningboxtitle, .questionboxtitle, .tipboxtitle {
+  font-weight: bold;
+  margin-top: -1.8em;
+  margin-bottom: 0.5em;
+  margin-left: 2em;
+}
+
+.noteboxtitle {
+  color: #1f5386;
+}
+
+.infoboxtitle, .questionboxtitle {
+  color: #555;
+}
+
+.warningboxtitle {
+  color: #861f1f;
+}
+
+.tipboxtitle {
+  color: #7e4d1d;
+}
+
+.notebox pre, .infobox pre, .warningbox pre, .questionbox pre, .tipbox pre  {
+	background: #ffffff !important;
+}
+
+.notebox code, .infobox code, .warningbox code, .questionbox code, .tipbox code  {
+	background: #ffffff !important;
+}
+

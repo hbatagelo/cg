@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.2 macOS | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.2 macOS | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.2 macOS | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="linux.html"/>
+<link rel="next" href="windows.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#habilitando-o-opengl"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#habilitando-o-opengl-1"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-em-linha-de-comando"><i class="fa fa-check"></i>Compilando em linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-visual-studio-code"><i class="fa fa-check"></i>Compilando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-visual-studio-code"><i class="fa fa-check"></i>Depurando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li>
+<a href="mailto:harlen.batagelo@ufabc.edu.br" target="blank">Harlen Batagelo</a>
+<a href="mailto:bruno.marques@ufabc.edu.br" target="blank">Bruno Marques</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="macos" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> macOS</h2>
+<p>Em um terminal, execute os passos a seguir:</p>
+<ol style="list-style-type: decimal">
+<li><p>Execute o comando <code>gcc</code>. Se o GCC não estiver instalado, aparecerá uma caixa de diálogo solicitando a instalação das ferramentas de desenvolvimento de linha de comando. Clique em “Install.”</p>
+<p><img src="images/00_cmdtools.png" style="display: block; margin: auto;" /></p>
+<p>Esse procedimento também instalará outras ferramentas, como o Make e Git.</p>
+<p>Para verificar se o GCC foi instalado, execute <code>gcc --version</code>. A saída deverá ser parecida com a seguinte (note que o GCC é apenas um atalho para o Apple Clang):</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="macos.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Configured</span> with: <span class="at">--prefix</span><span class="op">=</span>/Library/Developer/CommandLineTools/usr <span class="at">--with-gxx-include-dir</span><span class="op">=</span>/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/c++/4.2.1</span>
+<span id="cb25-2"><a href="macos.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Apple</span> clang version 12.0.0 <span class="er">(</span><span class="ex">clang-1200.0.32.28</span><span class="kw">)</span></span>
+<span id="cb25-3"><a href="macos.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Target:</span> x86_64-apple-darwin19.6.0</span>
+<span id="cb25-4"><a href="macos.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Thread</span> model: posix</span>
+<span id="cb25-5"><a href="macos.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">InstalledDir:</span> /Library/Developer/CommandLineTools/usr/bin</span></code></pre></div>
+<p>Se o procedimento acima não funcionar (as instruções acima foram testadas no <a href="https://en.wikipedia.org/wiki/MacOS_Catalina">macOS Catalina</a>), baixe o <a href="https://developer.apple.com/download/more/?=command%20line%20tools">Command Line Tools for Xcode</a> usando sua conta de desenvolvedor do <a href="https://developer.apple.com/">Apple Developer</a>, ou execute <code>xcode-select --version</code> no terminal. Em versões mais antigas do macOS pode ser necessário instalar o <a href="http://developer.apple.com/xcode/">Xcode</a>.</p></li>
+<li><p>Para instalar os demais pacotes de bibliotecas e ferramentas, instale o <a href="https://brew.sh/">Homebrew</a> com o seguinte comando:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb26-1"><a href="macos.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">&quot;</span></span></code></pre></div></li>
+<li><p>Instale o CMake:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb27-1"><a href="macos.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install cmake</span></code></pre></div></li>
+<li><p>Instale o GLEW, SDL 2.0 e SDL_image 2.0:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb28-1"><a href="macos.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install glew</span>
+<span id="cb28-2"><a href="macos.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sdl2</span>
+<span id="cb28-3"><a href="macos.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sdl2_image</span></code></pre></div></li>
+</ol>
+<p>Está pronto!</p>
+<div class="tipbox">
+<svg aria-hidden="true" role="img" viewBox="0 0 352 512" style="height:1.4em;width:0.96em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#7e4d1d;overflow:visible;position:relative;"><path d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
+<div class="tipboxtitle">
+Dica
+</div>
+<p>Opcionalmente, instale o <a href="https://ccache.dev/">Ccache</a> para acelerar a recompilação das atividades:</p>
+<ol style="list-style-type: decimal">
+<li><p>Instale o Ccache usando o Homebrew:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb29-1"><a href="macos.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install ccache</span></code></pre></div></li>
+<li><p>Anote a saída de <code>echo $(brew --prefix)</code> (por exemplo, <code>/usr/local</code>).</p></li>
+<li><p>Abra o modo de edição do <code>PATH</code>:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb30-1"><a href="macos.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/paths</span></code></pre></div></li>
+<li><p>Insira como primeira linha o caminho <code>$(brew --prefix)/opt/ccache/libexec</code>, onde <code>$(brew --prefix)</code> é a saída do passo 2. Por exemplo, <code>/usr/local/opt/ccache/libexec</code>.</p>
+<p><img src="images/00_nano.png" style="display: block; margin: auto;" /></p></li>
+<li><p>Salve (<code>Ctrl+X</code> e <code>Y</code>) e reinicie o terminal. Para testar, digite <code>which gcc</code>. A saída deverá ser um caminho que inclui o Ccache, como a seguir:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb31-1"><a href="macos.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/opt/ccache/libexec/gc</span></span></code></pre></div></li>
+</ol>
+</div>
+<div id="instalando-o-emscripten-1" class="section level3 unnumbered">
+<h3>Instalando o Emscripten</h3>
+<ol style="list-style-type: decimal">
+<li><p>Vá para o seu diretório <em>home</em>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb32-1"><a href="macos.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code></pre></div></li>
+<li><p>Faça uma cópia do SDK do Emscripten:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb33-1"><a href="macos.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/emscripten-core/emsdk.git</span></code></pre></div></li>
+<li><p>Entre no diretório recém-criado:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb34-1"><a href="macos.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> emsdk</span></code></pre></div></li>
+<li><p>Baixe e instale o SDK atualizado (<em>latest</em>):</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb35-1"><a href="macos.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> install latest</span></code></pre></div></li>
+<li><p>Ative o SDK <em>latest</em> para o usuário atual. Um arquivo <code>.emscripten</code> será gerado:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb36-1"><a href="macos.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> activate latest</span></code></pre></div></li>
+<li><p>Configure as variáveis de ambiente e <code>PATH</code> do compilador para o terminal atual:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb37-1"><a href="macos.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk_env.sh</span></code></pre></div></li>
+</ol>
+<p>Execute o comando <code>emcc --version</code>. A saída deverá ser parecida com o seguinte:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb38-1"><a href="macos.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emcc</span> <span class="er">(</span><span class="ex">Emscripten</span> gcc/clang-like replacement<span class="kw">)</span> <span class="ex">2.0.11</span> <span class="er">(</span><span class="ex">6e28e4fa4fa1bc50d58b9ddbbb9603a3cf21ea9e</span><span class="kw">)</span></span>
+<span id="cb38-2"><a href="macos.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2014</span> the Emscripten authors <span class="er">(</span><span class="ex">see</span> AUTHORS.txt<span class="kw">)</span></span>
+<span id="cb38-3"><a href="macos.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> is free and open source software under the MIT license.</span>
+<span id="cb38-4"><a href="macos.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="ex">There</span> is NO warranty<span class="kw">;</span> <span class="ex">not</span> even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></code></pre></div>
+<div class="notebox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
+<div class="noteboxtitle">
+Importante
+</div>
+<p>Refaça o passo 6 sempre que abrir um terminal. Como alternativa, insira o comando a seguir na última linha do arquivo <code>~/.zshrc</code> (shell <a href="https://www.zsh.org/">Zsh</a> no macOS Catalina) ou <code>~/.bashrc</code> (shell <a href="https://www.gnu.org/software/bash/">Bash</a> em versões anteriores) para que o script seja executado automaticamente toda vez que um terminal for aberto:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb39-1"><a href="macos.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk/emsdk_env.sh <span class="op">&gt;</span> /dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div>
+<p>O trecho <code>&gt; /dev/null 2&gt;&amp;1</code> serve para omitir a saída padrão (<em>stdout</em>) e erro padrão (<em>stderr</em>).</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="linux.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="windows.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>

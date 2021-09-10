@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.1 Linux | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.1 Linux | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.1 Linux | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="config.html"/>
+<link rel="next" href="macos.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#habilitando-o-opengl"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#habilitando-o-opengl-1"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-em-linha-de-comando"><i class="fa fa-check"></i>Compilando em linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-visual-studio-code"><i class="fa fa-check"></i>Compilando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-visual-studio-code"><i class="fa fa-check"></i>Depurando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li>
+<a href="mailto:harlen.batagelo@ufabc.edu.br" target="blank">Harlen Batagelo</a>
+<a href="mailto:bruno.marques@ufabc.edu.br" target="blank">Bruno Marques</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linux" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Linux</h2>
+<p>As ferramentas e bibliotecas necessárias estão disponíveis nos repositórios de pacotes das principais distribuições Linux.</p>
+<p><strong>A seguir veremos como instalar os pacotes no Ubuntu.</strong> Entretanto, em outras distribuições há pacotes equivalentes e o procedimento é semelhante.</p>
+<p>Em um terminal, execute os passos a seguir.</p>
+<ol style="list-style-type: decimal">
+<li><p>Atualize o sistema:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="linux.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div></li>
+<li><p>Instale o pacote <code>build-essential</code> (GCC, GDB, Make, etc):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="linux.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install build-essential</span></code></pre></div></li>
+<li><p>Instale o CMake e Git:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="linux.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install cmake git</span></code></pre></div></li>
+<li><p>Instale as bibliotecas GLEW, SDL 2.0 e SDL_image 2.0:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="linux.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libglew-dev libsdl2-dev libsdl2-image-dev</span></code></pre></div></li>
+</ol>
+<div id="habilitando-o-opengl" class="section level3 unnumbered">
+<h3>Habilitando o OpenGL</h3>
+<p>O suporte ao OpenGL já vem integrado no kernel do Linux através dos drivers de código aberto da biblioteca <a href="https://www.mesa3d.org/">Mesa</a> (drivers Intel/AMD/Nouveau).</p>
+<p>Para as placas da NVIDIA e AMD há a possibilidade de instalar os drivers proprietários do repositório <em>nonfree</em> (repositório <em>restricted</em> no Ubuntu), ou diretamente dos sites dos fabricantes: <a href="https://www.amd.com/pt/support">AMD</a> ou <a href="https://www.nvidia.com/en-us/drivers/unix/">NVIDIA</a>. Os drivers proprietários, especialmente os da NVIDIA, geralmente têm desempenho superior aos de código aberto.</p>
+<p>Para verificar a versão do OpenGL suportada pelos drivers instalados, instale o pacote <code>mesa-utils</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="linux.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mesa-utils</span></code></pre></div>
+<p>Execute o comando:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="linux.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">glxinfo</span> <span class="kw">|</span> <span class="fu">grep</span> version</span></code></pre></div>
+<p>O resultado deverá ser parecido com o seguinte:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="linux.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">server</span> glx version string: 1.4</span>
+<span id="cb7-2"><a href="linux.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">client</span> glx version string: 1.4</span>
+<span id="cb7-3"><a href="linux.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">GLX</span> version: 1.4</span>
+<span id="cb7-4"><a href="linux.html#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> core profile version: 4.1</span>
+<span id="cb7-5"><a href="linux.html#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> compat profile version: 4.1</span>
+<span id="cb7-6"><a href="linux.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> GLES1 profile version: 1.1</span>
+<span id="cb7-7"><a href="linux.html#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> GLES[23] profile version: 2.0</span>
+<span id="cb7-8"><a href="linux.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> core profile version string: 4.1 <span class="er">(</span><span class="ex">Core</span> Profile<span class="kw">)</span> <span class="ex">Mesa</span> 20.2.1</span>
+<span id="cb7-9"><a href="linux.html#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> core profile shading language version string: 4.10</span>
+<span id="cb7-10"><a href="linux.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> version string: 4.1 <span class="er">(</span><span class="ex">Compatibility</span> Profile<span class="kw">)</span> <span class="ex">Mesa</span> 20.2.1</span>
+<span id="cb7-11"><a href="linux.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> shading language version string: 4.10</span>
+<span id="cb7-12"><a href="linux.html#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> ES profile version string: OpenGL ES 2.0 Mesa 20.2.1</span>
+<span id="cb7-13"><a href="linux.html#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> ES profile shading language version string: OpenGL ES GLSL ES 1.0.16</span></code></pre></div>
+<div class="notebox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
+<div class="noteboxtitle">
+Importante
+</div>
+<p>A versão em <code>OpenGL version string</code> ou <code>OpenGL core profile version string</code> deve ser <strong>4.1 ou superior</strong>. Caso não seja, instale os drivers proprietários e certifique-se de que sua placa de vídeo suporta OpenGL 4.1.</p>
+</div>
+</div>
+<div id="atualizando-o-gcc" class="section level3 unnumbered">
+<h3>Atualizando o GCC</h3>
+<p>As atividades farão uso de um <em>framework</em> de desenvolvimento que exige um compilador com suporte a C++17 e suporte parcial a C++20. Esse requisito é atendido se instalarmos a versão mais recente do GCC. No momento da escrita deste texto, a versão mais recente do GCC é a 10.2.</p>
+<p>Nas versões mais recentes do <a href="https://getfedora.org/">Fedora</a> e <a href="https://manjaro.org/">Manjaro</a>, o GCC 10 já é a versão padrão instalada. No Ubuntu, apenas o Ubuntu 20.10 (<a href="https://releases.ubuntu.com/20.10/">Groovy Gorilla</a>) em diante vem com a versão mais recente do GCC. Siga os passos a seguir caso sua distribuição Ubuntu seja de uma versão anterior, ou caso a saída de <code>gcc --version</code> mostre um número de versão menor que 10.2. <!--No Ubuntu 20.04, a versão padrão do GCC é a 9.3. No Ubuntu 19.04 é a 8.3 e, no Ubuntu 18.04, a versão padrão do GCC é a 7.4.--></p>
+<p>Em um terminal, adicione o PPA <code>ubuntu-toolchain-r/test</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="linux.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install software-properties-common</span>
+<span id="cb8-2"><a href="linux.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository ppa:ubuntu-toolchain-r/test</span></code></pre></div>
+<p>Instale o GCC 10:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="linux.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install gcc-10 g++-10</span></code></pre></div>
+<p>A instalação do GCC 10 não substituirá a versão mais antiga já instalada. Entretanto, é necessário criar links simbólicos do <code>gcc</code> e <code>g++</code> para a versão mais recente. Uma forma simples de fazer isso é usando o <code>update-alternatives</code>. Primeiro, execute o comando a seguir para definir um valor de prioridade (por exemplo, 100) para o GCC 10:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="linux.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/bin/gcc gcc /usr/bin/gcc-10 100 <span class="at">--slave</span> /usr/bin/g++ g++ /usr/bin/g++-10 <span class="at">--slave</span> /usr/bin/gcov gcov /usr/bin/gcov-10</span></code></pre></div>
+<p>Execute o comando a seguir para escolher qual a versão do GCC instalada no sistema será utilizada:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="linux.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--config</span> gcc</span></code></pre></div>
+<p>Na lista de versões instaladas, selecione o GCC 10. Isso criará os links simbólicos.</p>
+<p>Para testar se a versão correta do GCC está sendo utilizada, execute o comando <code>g++ --version</code>. A saída deverá ser parecida com a seguinte:</p>
+<pre><code>g++ 10.2.0
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</code></pre>
+<div class="tipbox">
+<svg aria-hidden="true" role="img" viewBox="0 0 352 512" style="height:1.4em;width:0.96em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#7e4d1d;overflow:visible;position:relative;"><path d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
+<div class="tipboxtitle">
+Dica
+</div>
+<p>Opcionalmente, instale o <a href="https://ccache.dev/">Ccache</a> para acelerar a recompilação das atividades:</p>
+<ol style="list-style-type: decimal">
+<li><p>Instale o pacote ccache:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="linux.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install ccache</span></code></pre></div></li>
+<li><p>Atualize os links simbólicos dos compiladores instalados:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="linux.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> /usr/sbin/update-ccache-symlinks</span></code></pre></div></li>
+<li><p>Insira a seguinte linha no final do arquivo <code>~/.bashrc</code> de modo a prefixar o caminho do Ccache no <code>PATH</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="linux.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH=</span><span class="st">&quot;/usr/lib/ccache:</span><span class="va">$PATH</span><span class="st">&quot;</span></span></code></pre></div></li>
+<li><p>Reabra o terminal ou execute <code>source ~/.bashrc</code>. Para testar se o Ccache está ativado, execute o comando <code>which g++</code>. A saída deverá incluir o caminho como Ccache, como a seguir:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="linux.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/lib/ccache/g++</span><span class="kw">`</span><span class="bu">.</span></span></code></pre></div></li>
+</ol>
+</div>
+</div>
+<div id="instalando-o-emscripten" class="section level3 unnumbered">
+<h3>Instalando o Emscripten</h3>
+<ol style="list-style-type: decimal">
+<li><p>Vá para o seu diretório <em>home</em>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="linux.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code></pre></div></li>
+<li><p>Faça uma cópia do SDK do Emscripten:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="linux.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/emscripten-core/emsdk.git</span></code></pre></div></li>
+<li><p>Entre no diretório recém-criado:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="linux.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> emsdk</span></code></pre></div></li>
+<li><p>Baixe e instale o SDK atualizado (<em>latest</em>):</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="linux.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> install latest</span></code></pre></div></li>
+<li><p>Ative o SDK <em>latest</em> para o usuário atual. Um arquivo <code>.emscripten</code> será gerado:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="linux.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> activate latest</span></code></pre></div></li>
+<li><p>Configure as variáveis de ambiente e <code>PATH</code> do compilador para o terminal atual:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="linux.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk_env.sh</span></code></pre></div></li>
+</ol>
+<p>Execute o comando <code>emcc --version</code>. A saída deverá ser parecida com a seguinte:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb23-1"><a href="linux.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emcc</span> <span class="er">(</span><span class="ex">Emscripten</span> gcc/clang-like replacement<span class="kw">)</span> <span class="ex">2.0.11</span> <span class="er">(</span><span class="ex">6e28e4fa4fa1bc50d58b9ddbbb9603a3cf21ea9e</span><span class="kw">)</span></span>
+<span id="cb23-2"><a href="linux.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2014</span> the Emscripten authors <span class="er">(</span><span class="ex">see</span> AUTHORS.txt<span class="kw">)</span></span>
+<span id="cb23-3"><a href="linux.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> is free and open source software under the MIT license.</span>
+<span id="cb23-4"><a href="linux.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">There</span> is NO warranty<span class="kw">;</span> <span class="ex">not</span> even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></code></pre></div>
+<div class="notebox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
+<div class="noteboxtitle">
+Importante
+</div>
+<p>Refaça o passo 6 sempre que abrir um terminal. Como alternativa, insira o comando a seguir na última linha do arquivo <code>~/.bashrc</code> para que o script seja executado automaticamente toda vez que um terminal for aberto:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb24-1"><a href="linux.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk/emsdk_env.sh <span class="op">&gt;</span> /dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div>
+<p>O trecho <code>&gt; /dev/null 2&gt;&amp;1</code> serve para omitir a saída padrão (<em>stdout</em>) e erro padrão (<em>stderr</em>).</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="config.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="macos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>
