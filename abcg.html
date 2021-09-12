@@ -179,23 +179,31 @@ code span.wa { font-style: italic; } /* Warning */
 <div id="abcg" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> ABCg</h2>
 <p>Para facilitar o desenvolvimento das atividades práticas utilizaremos a biblioteca <a href="https://github.com/hbatagelo/abcg">ABCg</a> desenvolvida especialmente para esta disciplina.</p>
-<p>ABCg permite a prototipagem rápida de aplicações gráficas interativas 3D em C++ capazes de rodar tanto no desktop quanto no navegador, sem alteração do código-fonte.</p>
-<p>Internamente a ABCg utiliza a biblioteca <a href="https://www.libsdl.org/">SDL</a> para gerenciar o acesso a dispositivos de entrada (mouse/teclado/<em>gamepad</em>) e saída (vídeo e áudio) de forma independente de plataforma, e a biblioteca <a href="http://glew.sourceforge.net/">GLEW</a> para acesso às funções da API gráfica OpenGL. Além disso, a API do <a href="https://emscripten.org/">Emscripten</a> é utilizada sempre que a aplicação é compilada para gerar binários WebAssembly. Desse modo, a ABCg é mais propriamente um framework do que uma biblioteca, pois assume o controle da aplicação. Por outro lado, a camada de abstração para essas APIs é mínima e é possível acessar as funções da SDL e OpenGL diretamente (e faremos isso sempre que possível). Outras bibliotecas também utilizadas pela ABCg e que podem ser acessadas diretamente são:</p>
+<p>A ABCg permite a prototipagem rápida de aplicações gráficas interativas 3D em C++ capazes de rodar tanto no desktop (binário nativo) quanto no navegador (binário <a href="https://webassembly.org">WebAssembly</a>).</p>
+<p>Internamente a ABCg utiliza a biblioteca <a href="https://www.libsdl.org">SDL</a> para gerenciar o acesso a dispositivos de entrada (mouse/teclado/<em>gamepad</em>) e saída (vídeo e áudio) de forma independente de plataforma, e a biblioteca <a href="http://glew.sourceforge.net">GLEW</a> para acesso às funções da API gráfica OpenGL. Além disso, a API do <a href="https://emscripten.org">Emscripten</a> é utilizada sempre que a aplicação é compilada para gerar binário WebAssembly.</p>
+<p>A ABCg é mais propriamente um <em>framework</em> do que uma biblioteca de funções, pois assume o controle da aplicação. Por outro lado, a camada de abstração para as APIs utilizadas é mínima e é possível acessar as funções da SDL e OpenGL diretamente (e faremos isso sempre que possível). Outras bibliotecas também utilizadas e que podem ser acessadas diretamente são:</p>
 <ul>
 <li><a href="https://github.com/ryanhaining/cppitertools">CPPIterTools</a>: para o suporte a laços <em>range-based</em> em C++ usando funções do tipo <code>range</code>, <code>enumerate</code> e <code>zip</code> similares às do Python;</li>
 <li><a href="https://github.com/ocornut/imgui">Dear ImGui</a>: para gerenciamento de <em>widgets</em> de interface gráfica do usuário, tais como janelas, botões e caixas de edição;</li>
-<li><a href="https://fmt.dev/latest/index.html">{fmt}</a>: como alternativa mais eficiente ao <em>stdio</em> da linguagem C (<code>printf</code>, <code>scanf</code>, etc) e <em>iostreams</em> do C++ (<code>std::cout</code>, <code>std::cin</code>, etc) e para formatação de strings com uma sintaxe similar ao <a href="https://docs.python.org/3/library/stdtypes.html#str.format">str-format</a> do Python;</li>
+<li><a href="https://fmt.dev/latest/index.html">{fmt}</a>: como alternativa mais eficiente ao <em>stdio</em> da linguagem C (<code>printf</code>, <code>scanf</code>, etc) e <em>iostreams</em> do C++ (<code>std::cout</code>, <code>std::cin</code>, etc), e para formatação de strings com uma sintaxe similar ao <a href="https://docs.python.org/3/library/stdtypes.html#str.format">str-format</a> do Python;</li>
 <li><a href="https://github.com/microsoft/GSL">Guidelines Support Library</a> (GSL): para uso de funções e tipos de dados recomendados pelo <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">C++ Core Guidelines</a>;</li>
-<li><a href="https://github.com/g-truc/glm">OpenGL Mathematics</a> (GLM): para suporte a operações de transformação geométrica com vetores, matrizes e quatérnios;</li>
+<li><a href="https://github.com/g-truc/glm">OpenGL Mathematics</a> (GLM): para suporte a operações de transformação geométrica com vetores e matrizes;</li>
 <li><a href="https://github.com/tinyobjloader/tinyobjloader">tinyobjloader</a>: para a leitura de modelos 3D no formato <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">Wavefront OBJ</a>.</li>
 </ul>
 <p>A seguir veremos como instalar e compilar a ABCg junto com um exemplo de uso.</p>
 <div id="instalação" class="section level3 unnumbered">
 <h3>Instalação</h3>
-<p>Em um terminal, clone o repositório abcg do GitHub:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb50-1"><a href="abcg.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/hbatagelo/abcg.git</span></code></pre></div>
-<p>O repositório tem a estrutura mostrada a seguir (para simplificar, os arquivos e subdiretórios <code>.git*</code> foram omitidos).</p>
-<pre><code>abcg/
+<p>Em um terminal, clone o repositório do GitHub:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb58-1"><a href="abcg.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/hbatagelo/abcg.git</span></code></pre></div>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>A versão mais recente da ABCg (atualmente v2.0.0) também pode ser baixada como um arquivo compactado de <a href="https://github.com/hbatagelo/abcg/releases/latest">https://github.com/hbatagelo/abcg/releases/latest</a>.</p>
+</div>
+<p>O repositório tem a estrutura mostrada a seguir. Para simplificar, os arquivos e subdiretórios <code>.git*</code> foram omitidos:</p>
+<pre><code>abcg
 │   .clang-format
 │   .clang-tidy
 │   build.bat
@@ -207,20 +215,21 @@ code span.wa { font-style: italic; } /* Warning */
 │   README.md
 │   runweb.bat
 │   runweb.sh
+│   VERSION.md
 │
-└───abcg/
+└───abcg
 │   │   ...
 │
-└───cmake/
+└───cmake
 │   │   ...
 │   
-└───examples/
+└───examples
 │   │   ...
 │
-└───public/
+└───public
     │   ...</code></pre>
-<p>Os arquivos <code>.clang-format</code> e <code>.clang-tidy</code> são arquivos de configuração das ferramentas ClangFormat e Clang-Tidy.</p>
-<p>Os arquivos <code>.sh</code> são scripts de compilação e execução em linha de comando (note que há scripts correspondentes com extensão <code>.bat</code> para usar no Prompt de Comando do Windows):</p>
+<p>Os arquivos <code>.clang-format</code> e <code>.clang-tidy</code> são arquivos de configuração utilizados pelas ferramentas <a href="https://clang.llvm.org/docs/ClangFormat.html">ClangFormat</a> (formatação) e <a href="https://clang.llvm.org/extra/clang-tidy/">Clang-Tidy</a> (<em>linter</em>) caso estejam instaladas.</p>
+<p>Os arquivos <code>.sh</code> são shell scripts de compilação e execução em linha de comando. Note que há scripts correspondentes com extensão <code>.bat</code> para usar no Prompt de Comando do Windows (<strong>o PowerShell não é suportado</strong>):</p>
 <ul>
 <li><code>build.sh</code>: para compilar a biblioteca e os exemplos em binários nativos;</li>
 <li><code>build-wasm.sh</code>: similar ao <code>build.sh</code>, mas para gerar binário em WebAssembly dentro do subdiretório <code>public</code>;</li>
@@ -231,67 +240,80 @@ code span.wa { font-style: italic; } /* Warning */
 <ul>
 <li><code>abcg</code> contém o código-fonte da biblioteca e suas dependências;</li>
 <li><code>cmake</code> contém scripts auxiliares de configuração do CMake;</li>
-<li><code>examples</code> contém um exemplo de uso da ABCg: o clássico “Hello, World!”;</li>
+<li><code>examples</code> contém um exemplo de uso da ABCg: um “Hello, World!” que usa OpenGL e interface da ImGui;</li>
 <li><code>public</code> contém páginas web para exibir o exemplo “Hello, World!” no navegador.</li>
 </ul>
 </div>
 <div id="compilando-em-linha-de-comando" class="section level3 unnumbered">
 <h3>Compilando em linha de comando</h3>
 <p>Execute o script <code>build.sh</code> (Linux/macOS) ou <code>build.bat</code> (Windows) para iniciar o processo de configuração e construção. A saída será similar a esta (o exemplo a seguir é do Windows):</p>
-<pre><code>-- The C compiler identification is GNU 10.2.0
--- The CXX compiler identification is GNU 10.2.0
+<pre><code>-- The C compiler identification is GNU 10.3.0
+-- The CXX compiler identification is GNU 10.3.0
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/msys64/mingw64/bin/cc.exe - skipped
+-- Check for working C compiler: C:/msys64/mingw64/bin/gcc.exe - skipped
 -- Detecting C compile features
 -- Detecting C compile features - done
 -- Detecting CXX compiler ABI info
 -- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/msys64/mingw64/bin/c++.exe - skipped
+-- Check for working CXX compiler: C:/msys64/mingw64/bin/g++.exe - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 Using ccache
 -- Found OpenGL: opengl32
 -- Found GLEW: C:/msys64/mingw64/lib/cmake/glew/glew-config.cmake
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Found SDL2: mingw32;-mwindows;C:/msys64/mingw64/lib/libSDL2main.a;C:/msys64/mingw64/lib/libSDL2.dll.a
 -- Found SDL2_image: C:/msys64/mingw64/lib/libSDL2_image.dll.a
 -- Configuring done
 -- Generating done
 -- Build files have been written to: C:/abcg/build
 ...
-[21/21] Linking CXX executable bin\helloworld.exe</code></pre>
+[22/22] Linking CXX executable bin\helloworld.exe</code></pre>
 <p>Ao final, os binários estarão disponíveis no subdiretório <code>build</code>. A biblioteca estática estará em <code>build/abcg/libabcg.a</code> e o executável do exemplo “Hello, World!” estará em <code>build/bin/helloworld</code>.</p>
 <p>Para testar, execute o <code>helloworld</code>. No Linux/macOS:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb53-1"><a href="abcg.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./build/bin/helloworld/helloworld</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb61-1"><a href="abcg.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./build/bin/helloworld/helloworld</span></span></code></pre></div>
 <p>No Windows:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb54-1"><a href="abcg.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span><span class="dt">\b</span>uild<span class="dt">\b</span>in<span class="dt">\h</span>elloworld<span class="dt">\h</span>elloworld.exe</span></code></pre></div>
+<pre class="cmd"><code>.\build\bin\helloworld\helloworld.exe | cat</code></pre>
 <div class="notebox">
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
 <div class="noteboxtitle">
 Importante
 </div>
+<p>No Windows, a saída deve sempre ser redirecionada para <code>cat</code> ou <code>tee</code>. Se isso não for feito, nenhuma saída de texto será exibida no terminal. Isso se deve a um bug do MSYS2.</p>
+</div>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
 <p>Observe o conteúdo de <code>build.sh</code> (<code>build.bat</code> contém instruções equivalentes):</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb55-1"><a href="abcg.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb55-2"><a href="abcg.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
-<span id="cb55-3"><a href="abcg.html#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="abcg.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="va">BUILD_TYPE=</span>Debug</span>
-<span id="cb55-5"><a href="abcg.html#cb55-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-6"><a href="abcg.html#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset build directory</span></span>
-<span id="cb55-7"><a href="abcg.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> build</span>
-<span id="cb55-8"><a href="abcg.html#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> build <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build</span>
-<span id="cb55-9"><a href="abcg.html#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-10"><a href="abcg.html#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure</span></span>
-<span id="cb55-11"><a href="abcg.html#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span><span class="va">$BUILD_TYPE</span> ..</span>
-<span id="cb55-12"><a href="abcg.html#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-13"><a href="abcg.html#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Build</span></span>
-<span id="cb55-14"><a href="abcg.html#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$OSTYPE</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;darwin&quot;</span><span class="pp">*</span> <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb55-15"><a href="abcg.html#cb55-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># macOS</span></span>
-<span id="cb55-16"><a href="abcg.html#cb55-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">NUM_PROCESSORS=$(</span><span class="ex">sysctl</span> <span class="at">-n</span> hw.ncpu<span class="va">)</span></span>
-<span id="cb55-17"><a href="abcg.html#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb55-18"><a href="abcg.html#cb55-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">NUM_PROCESSORS=$(</span><span class="ex">nproc</span><span class="va">)</span></span>
-<span id="cb55-19"><a href="abcg.html#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb55-20"><a href="abcg.html#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">--build</span> . <span class="at">--config</span> <span class="va">$BUILD_TYPE</span> <span class="at">--</span> <span class="at">-j</span> <span class="va">$NUM_PROCESSORS</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb63-1"><a href="abcg.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb63-2"><a href="abcg.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb63-3"><a href="abcg.html#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="abcg.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="va">BUILD_TYPE=</span>Debug</span>
+<span id="cb63-5"><a href="abcg.html#cb63-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-6"><a href="abcg.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset build directory</span></span>
+<span id="cb63-7"><a href="abcg.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> build</span>
+<span id="cb63-8"><a href="abcg.html#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> build <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build</span>
+<span id="cb63-9"><a href="abcg.html#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="abcg.html#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure</span></span>
+<span id="cb63-11"><a href="abcg.html#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span><span class="va">$BUILD_TYPE</span> ..</span>
+<span id="cb63-12"><a href="abcg.html#cb63-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-13"><a href="abcg.html#cb63-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Build</span></span>
+<span id="cb63-14"><a href="abcg.html#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$OSTYPE</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;darwin&quot;</span><span class="pp">*</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb63-15"><a href="abcg.html#cb63-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># macOS</span></span>
+<span id="cb63-16"><a href="abcg.html#cb63-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">NUM_PROCESSORS=$(</span><span class="ex">sysctl</span> <span class="at">-n</span> hw.ncpu<span class="va">)</span></span>
+<span id="cb63-17"><a href="abcg.html#cb63-17" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb63-18"><a href="abcg.html#cb63-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">NUM_PROCESSORS=$(</span><span class="ex">nproc</span><span class="va">)</span></span>
+<span id="cb63-19"><a href="abcg.html#cb63-19" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb63-20"><a href="abcg.html#cb63-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">--build</span> . <span class="at">--config</span> <span class="va">$BUILD_TYPE</span> <span class="at">--</span> <span class="at">-j</span> <span class="va">$NUM_PROCESSORS</span></span></code></pre></div>
 <ul>
-<li><p>A variável <code>BUILD_TYPE</code> está como <code>Debug</code>, mas pode ser modificada para <code>Release</code>, <code>MinSizeRel</code> ou <code>RelWithDebInfo</code>. Use a opção <code>Debug</code> (padrão) ou <code>RelWithDebInfo</code> enquanto estiver depurando o código. Para gerar um binário otimizado e sem arquivos de símbolos de depuração, use <code>Release</code> (otimiza para gerar código mais rápido) ou <code>MinSizeRel</code> (otimiza para gerar binário de menor tamanho).</p></li>
+<li><p>A variável <code>BUILD_TYPE</code> está como <code>Debug</code>, mas pode ser modificada para <code>Release</code>, <code>MinSizeRel</code> ou <code>RelWithDebInfo</code>. Use a opção <code>Debug</code> (padrão) ou <code>RelWithDebInfo</code> enquanto estiver depurando o código. Use <code>Release</code> para gerar um binário otimizado e sem arquivos de símbolos de depuração (otimiza para gerar código mais rápido) ou <code>MinSizeRel</code> (otimiza para gerar binário de menor tamanho).</p></li>
 <li><p>Observe que o script apaga o subdiretório <code>build</code> antes de criá-lo novamente. Portanto, <strong>não salve arquivos dentro de <code>build</code> pois eles serão apagados na próxima compilação!</strong></p></li>
 <li><p>A geração dos binários usando o CMake é composta de duas etapas: <strong>configuração</strong> (<code>cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE ..</code>) e <strong>construção</strong> (<code>cmake --build . --config $BUILD_TYPE</code>). A configuração gera os scripts do sistema de compilação nativo (por exemplo, arquivos Makefile ou Ninja). A construção dispara a compilação e ligação usando tais scripts. Todos os arquivos gerados na configuração e construção ficam armazenados no subdiretório <code>build</code>.</p></li>
 </ul>
@@ -299,17 +321,13 @@ Importante
 </div>
 <div id="compilando-no-visual-studio-code" class="section level3 unnumbered">
 <h3>Compilando no Visual Studio Code</h3>
-<p>Primeiramente, clone o repositório abcg do GitHub:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb56-1"><a href="abcg.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/hbatagelo/abcg.git</span></code></pre></div>
-<p>Apague o subdiretório <code>build</code> caso você já tenha clonado anteriormente e tenha seguido os passos de compilação via linha de comando da seção anterior.</p>
+<p>Primeiramente, clone o repositório abcg do GitHub como mostrado na seção anterior. Apague o subdiretório <code>build</code> caso você já tenha compilado via linha de comando.</p>
 <p>No Visual Studio Code, selecione o menu “File &gt; Open Folder…” e abra a pasta <code>abcg</code>. No canto inferior direito da janela aparecerá uma notificação solicitando se você quer configurar o projeto. Selecione “Yes.”</p>
 <p><img src="images/00_cmake_configure.png" style="display: block; margin: auto;" /></p>
 <p>Ao fazer isso, será feita uma varredura no sistema para identificar os compiladores e <em>toolchains</em> visíveis no <code>PATH</code>. Uma lista de “kits” encontrados aparecerá na janela “Output” do CMake/Build, como a seguir:</p>
 <pre><code>[kit] Found Kit: Clang 11.0.0
-[kit] Found Kit: GCC 10.2.0
-[kit] Found Kit: GCC for x86_64-w64-mingw32 10.2.0
 [kit] Found Kit: GCC for x86_64-w64-mingw32 10.2.0</code></pre>
-<p>Ao final da varredura, <strong>selecione o kit GCC 10.2.0</strong>. Ao fazer isso, será iniciado o processo de configuração do CMake. Esse processo gera os arquivos que serão utilizados pelo sistema de construção nativo dentro de um subdiretório <code>build</code> do projeto.</p>
+<p>Ao final da varredura, <strong>selecione o kit “GCC for x86_64-w64-mingw32” versão 10 ou posterior</strong>. Ao fazer isso, será iniciado o processo de configuração do CMake. Esse processo gera os arquivos que serão utilizados pelo sistema de construção nativo dentro de um subdiretório <code>build</code> do projeto.</p>
 <p>Se aparecer uma notificação pedindo para configurar o projeto sempre que ele for aberto, Responda “Yes”:</p>
 <p><img src="images/00_cmake_configure2.png" style="display: block; margin: auto;" /></p>
 <p>Após o término da configuração do CMake, aparecerá uma outra notificação solicitando permissão para configurar o Intellisense. Responda “Allow.”</p>
@@ -380,37 +398,37 @@ Observação
 </div>
 <p><code>${workspaceFolder}</code> é uma variável pré-definida do Visual Studio Code que contém o caminho da pasta do projeto. Consulte a <a href="https://code.visualstudio.com/docs/editor/variables-reference">documentação</a> para informações sobre outras variáveis disponíveis.</p>
 </div>
-<p>Modifique o valor da chave <code>miDebuggerPath</code> para o caminho do executável do GDB ou LLDB, ou deixe vazio para usar o padrão do sistema.</p>
+<p>Modifique o valor da chave <code>miDebuggerPath</code> para o caminho do executável do GDB ou LLDB, ou deixe vazio para usar o padrão do sistema. No Windows, a chave <code>miDebuggerPath</code> deve conter explicitamente o caminho completo para o GDB, que é <code>C:\msys64\mingw64\bin\gdb.exe</code> caso o MSYS2 tenha sido instalado em <code>C:\msys64</code>. No Windows também é necessário configurar o terminal padrão do VS Code para “Command Prompt” no lugar de “PowerShell.”</p>
 <p>O exemplo abaixo mostra o conteúdo completo de <code>launch.json</code> para depurar o “Hello, World!” no Windows.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb59-1"><a href="abcg.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb59-2"><a href="abcg.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">//</span> <span class="er">Use</span> <span class="er">IntelliSense</span> <span class="er">to</span> <span class="er">learn</span> <span class="er">about</span> <span class="er">possible</span> <span class="er">attributes.</span></span>
-<span id="cb59-3"><a href="abcg.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="er">//</span> <span class="er">Hover</span> <span class="er">to</span> <span class="er">view</span> <span class="er">descriptions</span> <span class="er">of</span> <span class="er">existing</span> <span class="er">attributes.</span></span>
-<span id="cb59-4"><a href="abcg.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="er">//</span> <span class="er">For</span> <span class="er">more</span> <span class="er">information</span><span class="fu">,</span> <span class="er">visit</span><span class="fu">:</span> <span class="er">https://go.microsoft.com/fwlink/?linkid=</span><span class="dv">830387</span></span>
-<span id="cb59-5"><a href="abcg.html#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;0.2.0&quot;</span><span class="fu">,</span></span>
-<span id="cb59-6"><a href="abcg.html#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;configurations&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb59-7"><a href="abcg.html#cb59-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb59-8"><a href="abcg.html#cb59-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;(gdb) Launch&quot;</span><span class="fu">,</span></span>
-<span id="cb59-9"><a href="abcg.html#cb59-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;cppdbg&quot;</span><span class="fu">,</span></span>
-<span id="cb59-10"><a href="abcg.html#cb59-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;request&quot;</span><span class="fu">:</span> <span class="st">&quot;launch&quot;</span><span class="fu">,</span></span>
-<span id="cb59-11"><a href="abcg.html#cb59-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;program&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceFolder}/build/bin/helloworld/helloworld.exe&quot;</span><span class="fu">,</span></span>
-<span id="cb59-12"><a href="abcg.html#cb59-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
-<span id="cb59-13"><a href="abcg.html#cb59-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;stopAtEntry&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
-<span id="cb59-14"><a href="abcg.html#cb59-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;cwd&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceFolder}&quot;</span><span class="fu">,</span></span>
-<span id="cb59-15"><a href="abcg.html#cb59-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;environment&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
-<span id="cb59-16"><a href="abcg.html#cb59-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;externalConsole&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb59-17"><a href="abcg.html#cb59-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;MIMode&quot;</span><span class="fu">:</span> <span class="st">&quot;gdb&quot;</span><span class="fu">,</span></span>
-<span id="cb59-18"><a href="abcg.html#cb59-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;miDebuggerPath&quot;</span><span class="fu">:</span> <span class="st">&quot;&quot;</span><span class="fu">,</span></span>
-<span id="cb59-19"><a href="abcg.html#cb59-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;setupCommands&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb59-20"><a href="abcg.html#cb59-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
-<span id="cb59-21"><a href="abcg.html#cb59-21" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Enable pretty-printing for gdb&quot;</span><span class="fu">,</span></span>
-<span id="cb59-22"><a href="abcg.html#cb59-22" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;text&quot;</span><span class="fu">:</span> <span class="st">&quot;-enable-pretty-printing&quot;</span><span class="fu">,</span></span>
-<span id="cb59-23"><a href="abcg.html#cb59-23" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;ignoreFailures&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb59-24"><a href="abcg.html#cb59-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
-<span id="cb59-25"><a href="abcg.html#cb59-25" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
-<span id="cb59-26"><a href="abcg.html#cb59-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb59-27"><a href="abcg.html#cb59-27" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb59-28"><a href="abcg.html#cb59-28" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
-<p>Observe que o valor da chave <code>externalConsole</code> foi modificado para <code>true</code> para que um terminal de saída seja aberto durante a depuração. Observe também que o valor de <code>miDebuggerPath</code> foi deixado vazio porque o padrão no Windows com MSYS2 é o GDB encontrado no <code>PATH</code>. Consulte a <a href="https://code.visualstudio.com/docs/editor/debugging">documentação sobre depuração</a> para informações sobre outras opções e informações gerais sobre como depurar código no editor.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb66-1"><a href="abcg.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb66-2"><a href="abcg.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">//</span> <span class="er">Use</span> <span class="er">IntelliSense</span> <span class="er">to</span> <span class="er">learn</span> <span class="er">about</span> <span class="er">possible</span> <span class="er">attributes.</span></span>
+<span id="cb66-3"><a href="abcg.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="er">//</span> <span class="er">Hover</span> <span class="er">to</span> <span class="er">view</span> <span class="er">descriptions</span> <span class="er">of</span> <span class="er">existing</span> <span class="er">attributes.</span></span>
+<span id="cb66-4"><a href="abcg.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="er">//</span> <span class="er">For</span> <span class="er">more</span> <span class="er">information</span><span class="fu">,</span> <span class="er">visit</span><span class="fu">:</span> <span class="er">https://go.microsoft.com/fwlink/?linkid=</span><span class="dv">830387</span></span>
+<span id="cb66-5"><a href="abcg.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;0.2.0&quot;</span><span class="fu">,</span></span>
+<span id="cb66-6"><a href="abcg.html#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;configurations&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb66-7"><a href="abcg.html#cb66-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb66-8"><a href="abcg.html#cb66-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;(gdb) Launch&quot;</span><span class="fu">,</span></span>
+<span id="cb66-9"><a href="abcg.html#cb66-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;cppdbg&quot;</span><span class="fu">,</span></span>
+<span id="cb66-10"><a href="abcg.html#cb66-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;request&quot;</span><span class="fu">:</span> <span class="st">&quot;launch&quot;</span><span class="fu">,</span></span>
+<span id="cb66-11"><a href="abcg.html#cb66-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;program&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceFolder}/build/bin/helloworld/helloworld.exe&quot;</span><span class="fu">,</span></span>
+<span id="cb66-12"><a href="abcg.html#cb66-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
+<span id="cb66-13"><a href="abcg.html#cb66-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;stopAtEntry&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb66-14"><a href="abcg.html#cb66-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;cwd&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceFolder}&quot;</span><span class="fu">,</span></span>
+<span id="cb66-15"><a href="abcg.html#cb66-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;environment&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
+<span id="cb66-16"><a href="abcg.html#cb66-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;externalConsole&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb66-17"><a href="abcg.html#cb66-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;MIMode&quot;</span><span class="fu">:</span> <span class="st">&quot;gdb&quot;</span><span class="fu">,</span></span>
+<span id="cb66-18"><a href="abcg.html#cb66-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;miDebuggerPath&quot;</span><span class="fu">:</span> <span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">msys64</span><span class="ch">\\</span><span class="st">mingw64</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">gdb.exe&quot;</span><span class="fu">,</span></span>
+<span id="cb66-19"><a href="abcg.html#cb66-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;setupCommands&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb66-20"><a href="abcg.html#cb66-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb66-21"><a href="abcg.html#cb66-21" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Enable pretty-printing for gdb&quot;</span><span class="fu">,</span></span>
+<span id="cb66-22"><a href="abcg.html#cb66-22" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;text&quot;</span><span class="fu">:</span> <span class="st">&quot;-enable-pretty-printing&quot;</span><span class="fu">,</span></span>
+<span id="cb66-23"><a href="abcg.html#cb66-23" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;ignoreFailures&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb66-24"><a href="abcg.html#cb66-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb66-25"><a href="abcg.html#cb66-25" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb66-26"><a href="abcg.html#cb66-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb66-27"><a href="abcg.html#cb66-27" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb66-28"><a href="abcg.html#cb66-28" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Observe que o valor da chave <code>externalConsole</code> foi modificado para <code>true</code> para que um terminal de saída seja aberto durante a depuração. Consulte a <a href="https://code.visualstudio.com/docs/editor/debugging">documentação sobre depuração</a> para informações sobre outras opções e informações gerais sobre como depurar código no editor.</p>
 <p>Após modificar o arquivo <code>launch.json</code>, selecione novamente a opção “Run” na barra de atividades ou tecle <code>F5</code> para iniciar o programa no modo de depuração.</p>
 <p>Reedite o arquivo <code>launch.json</code> sempre que mudar o nome do executável que se queira depurar.</p>
 </div>

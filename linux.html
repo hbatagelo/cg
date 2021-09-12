@@ -183,36 +183,38 @@ code span.wa { font-style: italic; } /* Warning */
 <p>Em um terminal, execute os passos a seguir.</p>
 <ol style="list-style-type: decimal">
 <li><p>Atualize o sistema:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="linux.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="linux.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade</span></code></pre></div></li>
 <li><p>Instale o pacote <code>build-essential</code> (GCC, GDB, Make, etc):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="linux.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install build-essential</span></code></pre></div></li>
 <li><p>Instale o CMake e Git:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="linux.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install cmake git</span></code></pre></div></li>
 <li><p>Instale as bibliotecas GLEW, SDL 2.0 e SDL_image 2.0:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="linux.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libglew-dev libsdl2-dev libsdl2-image-dev</span></code></pre></div></li>
+<li><p>Opcionalmente, instale as ferramentas de <em>linting</em> do GLSL. Essas ferramentas poderão ser utilizadas no Visual Studio Code para fazer a análise estática do código da linguagem de shaders GLSL (<a href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language">OpenGL Shading Language</a>) que será abordada na disciplina:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="linux.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install glslang-tools</span></code></pre></div></li>
 </ol>
 <div id="habilitando-o-opengl" class="section level3 unnumbered">
 <h3>Habilitando o OpenGL</h3>
 <p>O suporte ao OpenGL já vem integrado no kernel do Linux através dos drivers de código aberto da biblioteca <a href="https://www.mesa3d.org/">Mesa</a> (drivers Intel/AMD/Nouveau).</p>
 <p>Para as placas da NVIDIA e AMD há a possibilidade de instalar os drivers proprietários do repositório <em>nonfree</em> (repositório <em>restricted</em> no Ubuntu), ou diretamente dos sites dos fabricantes: <a href="https://www.amd.com/pt/support">AMD</a> ou <a href="https://www.nvidia.com/en-us/drivers/unix/">NVIDIA</a>. Os drivers proprietários, especialmente os da NVIDIA, geralmente têm desempenho superior aos de código aberto.</p>
-<p>Para verificar a versão do OpenGL suportada pelos drivers instalados, instale o pacote <code>mesa-utils</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="linux.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mesa-utils</span></code></pre></div>
+<p>Para verificar a versão do OpenGL suportada pelos drivers instalados, instale primeiro o pacote <code>mesa-utils</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="linux.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mesa-utils</span></code></pre></div>
 <p>Execute o comando:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="linux.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">glxinfo</span> <span class="kw">|</span> <span class="fu">grep</span> version</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="linux.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">glxinfo</span> <span class="kw">|</span> <span class="fu">grep</span> version</span></code></pre></div>
 <p>O resultado deverá ser parecido com o seguinte:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="linux.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">server</span> glx version string: 1.4</span>
-<span id="cb7-2"><a href="linux.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">client</span> glx version string: 1.4</span>
-<span id="cb7-3"><a href="linux.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">GLX</span> version: 1.4</span>
-<span id="cb7-4"><a href="linux.html#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> core profile version: 4.1</span>
-<span id="cb7-5"><a href="linux.html#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> compat profile version: 4.1</span>
-<span id="cb7-6"><a href="linux.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> GLES1 profile version: 1.1</span>
-<span id="cb7-7"><a href="linux.html#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> GLES[23] profile version: 2.0</span>
-<span id="cb7-8"><a href="linux.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> core profile version string: 4.1 <span class="er">(</span><span class="ex">Core</span> Profile<span class="kw">)</span> <span class="ex">Mesa</span> 20.2.1</span>
-<span id="cb7-9"><a href="linux.html#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> core profile shading language version string: 4.10</span>
-<span id="cb7-10"><a href="linux.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> version string: 4.1 <span class="er">(</span><span class="ex">Compatibility</span> Profile<span class="kw">)</span> <span class="ex">Mesa</span> 20.2.1</span>
-<span id="cb7-11"><a href="linux.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> shading language version string: 4.10</span>
-<span id="cb7-12"><a href="linux.html#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> ES profile version string: OpenGL ES 2.0 Mesa 20.2.1</span>
-<span id="cb7-13"><a href="linux.html#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> ES profile shading language version string: OpenGL ES GLSL ES 1.0.16</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="linux.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">server</span> glx version string: 1.4</span>
+<span id="cb8-2"><a href="linux.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">client</span> glx version string: 1.4</span>
+<span id="cb8-3"><a href="linux.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">GLX</span> version: 1.4</span>
+<span id="cb8-4"><a href="linux.html#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> core profile version: 4.1</span>
+<span id="cb8-5"><a href="linux.html#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> compat profile version: 4.1</span>
+<span id="cb8-6"><a href="linux.html#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> GLES1 profile version: 1.1</span>
+<span id="cb8-7"><a href="linux.html#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Max</span> GLES[23] profile version: 2.0</span>
+<span id="cb8-8"><a href="linux.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> core profile version string: 4.1 <span class="er">(</span><span class="ex">Core</span> Profile<span class="kw">)</span> <span class="ex">Mesa</span> 21.0.3</span>
+<span id="cb8-9"><a href="linux.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> core profile shading language version string: 4.10</span>
+<span id="cb8-10"><a href="linux.html#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> version string: 4.1 <span class="er">(</span><span class="ex">Compatibility</span> Profile<span class="kw">)</span> <span class="ex">Mesa</span> 21.0.3</span>
+<span id="cb8-11"><a href="linux.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> shading language version string: 4.10</span>
+<span id="cb8-12"><a href="linux.html#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> ES profile version string: OpenGL ES 2.0 Mesa 21.0.3</span>
+<span id="cb8-13"><a href="linux.html#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenGL</span> ES profile shading language version string: OpenGL ES GLSL ES 1.0.16</span></code></pre></div>
 <div class="notebox">
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
 <div class="noteboxtitle">
@@ -223,20 +225,28 @@ Importante
 </div>
 <div id="atualizando-o-gcc" class="section level3 unnumbered">
 <h3>Atualizando o GCC</h3>
-<p>As atividades farão uso de um <em>framework</em> de desenvolvimento que exige um compilador com suporte a C++17 e suporte parcial a C++20. Esse requisito é atendido se instalarmos a versão mais recente do GCC. No momento da escrita deste texto, a versão mais recente do GCC é a 10.2.</p>
-<p>Nas versões mais recentes do <a href="https://getfedora.org/">Fedora</a> e <a href="https://manjaro.org/">Manjaro</a>, o GCC 10 já é a versão padrão instalada. No Ubuntu, apenas o Ubuntu 20.10 (<a href="https://releases.ubuntu.com/20.10/">Groovy Gorilla</a>) em diante vem com a versão mais recente do GCC. Siga os passos a seguir caso sua distribuição Ubuntu seja de uma versão anterior, ou caso a saída de <code>gcc --version</code> mostre um número de versão menor que 10.2. <!--No Ubuntu 20.04, a versão padrão do GCC é a 9.3. No Ubuntu 19.04 é a 8.3 e, no Ubuntu 18.04, a versão padrão do GCC é a 7.4.--></p>
+<p>As atividades farão uso de uma biblioteca de desenvolvimento que exige um compilador com suporte a C++17 e suporte parcial a C++20. Esse requisito é atendido se instalarmos uma versão recente do GCC, como o GCC 10.</p>
+<p>Nas últimas versões do <a href="https://getfedora.org">Fedora</a> e <a href="https://manjaro.org">Manjaro</a>, o GCC instalado por padrão já é a versão 10 ou superior. No Ubuntu, apenas o Ubuntu 20.10 (<a href="https://releases.ubuntu.com/20.10/">Groovy Gorilla</a>) em diante vem com GCC 10 ou mais recente. Siga os passos a seguir caso sua distribuição seja de uma versão anterior, ou caso a saída de <code>g++ --version</code> mostre um número de versão menor que 10. <!--No Ubuntu 20.04, a versão padrão do GCC é a 9.3. No Ubuntu 19.04 é a 8.3 e, no Ubuntu 18.04, a versão padrão do GCC é a 7.4.--></p>
+<p>Por exemplo, no Ubuntu 20.04 a saída de <code>g++ --version</code> é:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="linux.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="er">(</span><span class="ex">Ubuntu</span> 9.3.0-17ubuntu1~20.04<span class="kw">)</span> <span class="ex">9.3.0</span></span>
+<span id="cb9-2"><a href="linux.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2019</span> Free Software Foundation, Inc.</span>
+<span id="cb9-3"><a href="linux.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> is free software<span class="kw">;</span> <span class="ex">see</span> the source for copying conditions.  There is NO</span>
+<span id="cb9-4"><a href="linux.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">warranty</span><span class="kw">;</span> <span class="ex">not</span> even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></code></pre></div>
+<p>O padrão no Ubuntu 20.04 é o GCC 9.3. Logo, precisamos instalar uma versão mais recente.</p>
 <p>Em um terminal, adicione o PPA <code>ubuntu-toolchain-r/test</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="linux.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install software-properties-common</span>
-<span id="cb8-2"><a href="linux.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository ppa:ubuntu-toolchain-r/test</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="linux.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install software-properties-common</span>
+<span id="cb10-2"><a href="linux.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository ppa:ubuntu-toolchain-r/test</span></code></pre></div>
 <p>Instale o GCC 10:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="linux.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install gcc-10 g++-10</span></code></pre></div>
-<p>A instalação do GCC 10 não substituirá a versão mais antiga já instalada. Entretanto, é necessário criar links simbólicos do <code>gcc</code> e <code>g++</code> para a versão mais recente. Uma forma simples de fazer isso é usando o <code>update-alternatives</code>. Primeiro, execute o comando a seguir para definir um valor de prioridade (por exemplo, 100) para o GCC 10:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="linux.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/bin/gcc gcc /usr/bin/gcc-10 100 <span class="at">--slave</span> /usr/bin/g++ g++ /usr/bin/g++-10 <span class="at">--slave</span> /usr/bin/gcov gcov /usr/bin/gcov-10</span></code></pre></div>
-<p>Execute o comando a seguir para escolher qual a versão do GCC instalada no sistema será utilizada:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="linux.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--config</span> gcc</span></code></pre></div>
-<p>Na lista de versões instaladas, selecione o GCC 10. Isso criará os links simbólicos.</p>
-<p>Para testar se a versão correta do GCC está sendo utilizada, execute o comando <code>g++ --version</code>. A saída deverá ser parecida com a seguinte:</p>
-<pre><code>g++ 10.2.0
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="linux.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install gcc-10 g++-10</span></code></pre></div>
+<p>A instalação do GCC 10 não substituirá a versão mais antiga já instalada. Entretanto, é necessário criar links simbólicos de <code>gcc</code> e <code>g++</code> para a versão mais recente. Uma forma simples de fazer isso é através do <code>update-alternatives</code>. Primeiro, execute o comando a seguir para definir um valor de prioridade (neste caso, 100) para o GCC 10:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="linux.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/bin/gcc gcc /usr/bin/gcc-10 100 <span class="at">--slave</span> /usr/bin/g++ g++ /usr/bin/g++-10 <span class="at">--slave</span> /usr/bin/gcov gcov /usr/bin/gcov-10</span></code></pre></div>
+<p>Use o comando a seguir para definir um valor de prioridade mais baixo (por exemplo, 90) para a versão anterior do GCC, que neste exemplo é a versão 9:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="linux.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/bin/gcc gcc /usr/bin/gcc-9 90 <span class="at">--slave</span> /usr/bin/g++ g++ /usr/bin/g++-9 <span class="at">--slave</span> /usr/bin/gcov gcov /usr/bin/gcov-9</span></code></pre></div>
+<p>Agora execute o comando a seguir para escolher qual a versão do GCC instalada no sistema será utilizada:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="linux.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--config</span> gcc</span></code></pre></div>
+<p>Na lista de versões instaladas, selecione o GCC 10 caso ainda não esteja selecionado. Isso criará os links simbólicos.
+Para testar se a versão correta do GCC está sendo utilizada, execute <code>g++ --version</code>. A saída deverá ser parecida com a seguinte:</p>
+<pre><code>g++ (Ubuntu 10.3.0-1ubuntu1~20.04) 10.3.0
 Copyright (C) 2020 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</code></pre>
@@ -248,13 +258,13 @@ Dica
 <p>Opcionalmente, instale o <a href="https://ccache.dev/">Ccache</a> para acelerar a recompilação das atividades:</p>
 <ol style="list-style-type: decimal">
 <li><p>Instale o pacote ccache:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="linux.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install ccache</span></code></pre></div></li>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="linux.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install ccache</span></code></pre></div></li>
 <li><p>Atualize os links simbólicos dos compiladores instalados:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="linux.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> /usr/sbin/update-ccache-symlinks</span></code></pre></div></li>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="linux.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> /usr/sbin/update-ccache-symlinks</span></code></pre></div></li>
 <li><p>Insira a seguinte linha no final do arquivo <code>~/.bashrc</code> de modo a prefixar o caminho do Ccache no <code>PATH</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="linux.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH=</span><span class="st">&quot;/usr/lib/ccache:</span><span class="va">$PATH</span><span class="st">&quot;</span></span></code></pre></div></li>
-<li><p>Reabra o terminal ou execute <code>source ~/.bashrc</code>. Para testar se o Ccache está ativado, execute o comando <code>which g++</code>. A saída deverá incluir o caminho como Ccache, como a seguir:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="linux.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/lib/ccache/g++</span><span class="kw">`</span><span class="bu">.</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="linux.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH=</span><span class="st">&quot;/usr/lib/ccache:</span><span class="va">$PATH</span><span class="st">&quot;</span></span></code></pre></div></li>
+<li><p>Reabra o terminal ou execute <code>source ~/.bashrc</code>. Para testar se o Ccache está ativado, execute o comando <code>which g++</code>. A saída deverá incluir o caminho <code>/usr/lib/ccache/</code>, como a seguir:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="linux.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/lib/ccache/g++</span><span class="kw">`</span><span class="bu">.</span></span></code></pre></div></li>
 </ol>
 </div>
 </div>
@@ -262,30 +272,30 @@ Dica
 <h3>Instalando o Emscripten</h3>
 <ol style="list-style-type: decimal">
 <li><p>Vá para o seu diretório <em>home</em>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="linux.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code></pre></div></li>
-<li><p>Faça uma cópia do SDK do Emscripten:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="linux.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/emscripten-core/emsdk.git</span></code></pre></div></li>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="linux.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code></pre></div></li>
+<li><p>Clone o repositório do SDK do Emscripten:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="linux.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/emscripten-core/emsdk.git</span></code></pre></div></li>
 <li><p>Entre no diretório recém-criado:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="linux.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> emsdk</span></code></pre></div></li>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="linux.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> emsdk</span></code></pre></div></li>
 <li><p>Baixe e instale o SDK atualizado (<em>latest</em>):</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="linux.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> install latest</span></code></pre></div></li>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb23-1"><a href="linux.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> install latest</span></code></pre></div></li>
 <li><p>Ative o SDK <em>latest</em> para o usuário atual. Um arquivo <code>.emscripten</code> será gerado:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="linux.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> activate latest</span></code></pre></div></li>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb24-1"><a href="linux.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> activate latest</span></code></pre></div></li>
 <li><p>Configure as variáveis de ambiente e <code>PATH</code> do compilador para o terminal atual:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="linux.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk_env.sh</span></code></pre></div></li>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="linux.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk_env.sh</span></code></pre></div></li>
 </ol>
 <p>Execute o comando <code>emcc --version</code>. A saída deverá ser parecida com a seguinte:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb23-1"><a href="linux.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emcc</span> <span class="er">(</span><span class="ex">Emscripten</span> gcc/clang-like replacement<span class="kw">)</span> <span class="ex">2.0.11</span> <span class="er">(</span><span class="ex">6e28e4fa4fa1bc50d58b9ddbbb9603a3cf21ea9e</span><span class="kw">)</span></span>
-<span id="cb23-2"><a href="linux.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2014</span> the Emscripten authors <span class="er">(</span><span class="ex">see</span> AUTHORS.txt<span class="kw">)</span></span>
-<span id="cb23-3"><a href="linux.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> is free and open source software under the MIT license.</span>
-<span id="cb23-4"><a href="linux.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">There</span> is NO warranty<span class="kw">;</span> <span class="ex">not</span> even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb26-1"><a href="linux.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emcc</span> <span class="er">(</span><span class="ex">Emscripten</span> gcc/clang-like replacement + linker emulating GNU ld<span class="kw">)</span> <span class="ex">2.0.29</span> <span class="er">(</span><span class="ex">28ca7fb7ce895b21013212e4644a5794a15a76f9</span><span class="kw">)</span></span>
+<span id="cb26-2"><a href="linux.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2014</span> the Emscripten authors <span class="er">(</span><span class="ex">see</span> AUTHORS.txt<span class="kw">)</span></span>
+<span id="cb26-3"><a href="linux.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> is free and open source software under the MIT license.</span>
+<span id="cb26-4"><a href="linux.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ex">There</span> is NO warranty<span class="kw">;</span> <span class="ex">not</span> even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></code></pre></div>
 <div class="notebox">
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
 <div class="noteboxtitle">
 Importante
 </div>
-<p>Refaça o passo 6 sempre que abrir um terminal. Como alternativa, insira o comando a seguir na última linha do arquivo <code>~/.bashrc</code> para que o script seja executado automaticamente toda vez que um terminal for aberto:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb24-1"><a href="linux.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk/emsdk_env.sh <span class="op">&gt;</span> /dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div>
+<p>Refaça o passo 6 sempre que abrir um terminal. Como alternativa, insira o comando a seguir na última linha de <code>~/.bashrc</code>. Isso fará com que o script seja executado automaticamente toda vez que um terminal for aberto:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb27-1"><a href="linux.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk/emsdk_env.sh <span class="op">&gt;</span> /dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div>
 <p>O trecho <code>&gt; /dev/null 2&gt;&amp;1</code> serve para omitir a saída padrão (<em>stdout</em>) e erro padrão (<em>stderr</em>).</p>
 </div>
 </div>

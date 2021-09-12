@@ -184,20 +184,20 @@ code span.wa { font-style: italic; } /* Warning */
 <p><img src="images/00_cmdtools.png" style="display: block; margin: auto;" /></p>
 <p>Esse procedimento também instalará outras ferramentas, como o Make e Git.</p>
 <p>Para verificar se o GCC foi instalado, execute <code>gcc --version</code>. A saída deverá ser parecida com a seguinte (note que o GCC é apenas um atalho para o Apple Clang):</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="macos.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Configured</span> with: <span class="at">--prefix</span><span class="op">=</span>/Library/Developer/CommandLineTools/usr <span class="at">--with-gxx-include-dir</span><span class="op">=</span>/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/c++/4.2.1</span>
-<span id="cb25-2"><a href="macos.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Apple</span> clang version 12.0.0 <span class="er">(</span><span class="ex">clang-1200.0.32.28</span><span class="kw">)</span></span>
-<span id="cb25-3"><a href="macos.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Target:</span> x86_64-apple-darwin19.6.0</span>
-<span id="cb25-4"><a href="macos.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Thread</span> model: posix</span>
-<span id="cb25-5"><a href="macos.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">InstalledDir:</span> /Library/Developer/CommandLineTools/usr/bin</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb28-1"><a href="macos.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Configured</span> with: <span class="at">--prefix</span><span class="op">=</span>/Library/Developer/CommandLineTools/usr <span class="at">--with-gxx-include-dir</span><span class="op">=</span>/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/c++/4.2.1</span>
+<span id="cb28-2"><a href="macos.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Apple</span> clang version 12.0.0 <span class="er">(</span><span class="ex">clang-1200.0.32.28</span><span class="kw">)</span></span>
+<span id="cb28-3"><a href="macos.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Target:</span> x86_64-apple-darwin19.6.0</span>
+<span id="cb28-4"><a href="macos.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Thread</span> model: posix</span>
+<span id="cb28-5"><a href="macos.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="ex">InstalledDir:</span> /Library/Developer/CommandLineTools/usr/bin</span></code></pre></div>
 <p>Se o procedimento acima não funcionar (as instruções acima foram testadas no <a href="https://en.wikipedia.org/wiki/MacOS_Catalina">macOS Catalina</a>), baixe o <a href="https://developer.apple.com/download/more/?=command%20line%20tools">Command Line Tools for Xcode</a> usando sua conta de desenvolvedor do <a href="https://developer.apple.com/">Apple Developer</a>, ou execute <code>xcode-select --version</code> no terminal. Em versões mais antigas do macOS pode ser necessário instalar o <a href="http://developer.apple.com/xcode/">Xcode</a>.</p></li>
 <li><p>Para instalar os demais pacotes de bibliotecas e ferramentas, instale o <a href="https://brew.sh/">Homebrew</a> com o seguinte comando:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb26-1"><a href="macos.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">&quot;</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb29-1"><a href="macos.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">&quot;</span></span></code></pre></div></li>
 <li><p>Instale o CMake:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb27-1"><a href="macos.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install cmake</span></code></pre></div></li>
+<div class="sourceCode" id="cb30"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb30-1"><a href="macos.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install cmake</span></code></pre></div></li>
 <li><p>Instale o GLEW, SDL 2.0 e SDL_image 2.0:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb28-1"><a href="macos.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install glew</span>
-<span id="cb28-2"><a href="macos.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sdl2</span>
-<span id="cb28-3"><a href="macos.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sdl2_image</span></code></pre></div></li>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb31-1"><a href="macos.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install glew</span>
+<span id="cb31-2"><a href="macos.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sdl2</span>
+<span id="cb31-3"><a href="macos.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sdl2_image</span></code></pre></div></li>
 </ol>
 <p>Está pronto!</p>
 <div class="tipbox">
@@ -208,44 +208,44 @@ Dica
 <p>Opcionalmente, instale o <a href="https://ccache.dev/">Ccache</a> para acelerar a recompilação das atividades:</p>
 <ol style="list-style-type: decimal">
 <li><p>Instale o Ccache usando o Homebrew:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb29-1"><a href="macos.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install ccache</span></code></pre></div></li>
+<div class="sourceCode" id="cb32"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb32-1"><a href="macos.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install ccache</span></code></pre></div></li>
 <li><p>Anote a saída de <code>echo $(brew --prefix)</code> (por exemplo, <code>/usr/local</code>).</p></li>
 <li><p>Abra o modo de edição do <code>PATH</code>:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb30-1"><a href="macos.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/paths</span></code></pre></div></li>
+<div class="sourceCode" id="cb33"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb33-1"><a href="macos.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/paths</span></code></pre></div></li>
 <li><p>Insira como primeira linha o caminho <code>$(brew --prefix)/opt/ccache/libexec</code>, onde <code>$(brew --prefix)</code> é a saída do passo 2. Por exemplo, <code>/usr/local/opt/ccache/libexec</code>.</p>
 <p><img src="images/00_nano.png" style="display: block; margin: auto;" /></p></li>
 <li><p>Salve (<code>Ctrl+X</code> e <code>Y</code>) e reinicie o terminal. Para testar, digite <code>which gcc</code>. A saída deverá ser um caminho que inclui o Ccache, como a seguir:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb31-1"><a href="macos.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/opt/ccache/libexec/gc</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb34"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb34-1"><a href="macos.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/opt/ccache/libexec/gc</span></span></code></pre></div></li>
 </ol>
 </div>
 <div id="instalando-o-emscripten-1" class="section level3 unnumbered">
 <h3>Instalando o Emscripten</h3>
 <ol style="list-style-type: decimal">
 <li><p>Vá para o seu diretório <em>home</em>:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb32-1"><a href="macos.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code></pre></div></li>
-<li><p>Faça uma cópia do SDK do Emscripten:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb33-1"><a href="macos.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/emscripten-core/emsdk.git</span></code></pre></div></li>
+<div class="sourceCode" id="cb35"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb35-1"><a href="macos.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code></pre></div></li>
+<li><p>Clone o repositório do SDK do Emscripten:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb36-1"><a href="macos.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/emscripten-core/emsdk.git</span></code></pre></div></li>
 <li><p>Entre no diretório recém-criado:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb34-1"><a href="macos.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> emsdk</span></code></pre></div></li>
+<div class="sourceCode" id="cb37"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb37-1"><a href="macos.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> emsdk</span></code></pre></div></li>
 <li><p>Baixe e instale o SDK atualizado (<em>latest</em>):</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb35-1"><a href="macos.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> install latest</span></code></pre></div></li>
+<div class="sourceCode" id="cb38"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb38-1"><a href="macos.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> install latest</span></code></pre></div></li>
 <li><p>Ative o SDK <em>latest</em> para o usuário atual. Um arquivo <code>.emscripten</code> será gerado:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb36-1"><a href="macos.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> activate latest</span></code></pre></div></li>
+<div class="sourceCode" id="cb39"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb39-1"><a href="macos.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./emsdk</span> activate latest</span></code></pre></div></li>
 <li><p>Configure as variáveis de ambiente e <code>PATH</code> do compilador para o terminal atual:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb37-1"><a href="macos.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk_env.sh</span></code></pre></div></li>
+<div class="sourceCode" id="cb40"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb40-1"><a href="macos.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk_env.sh</span></code></pre></div></li>
 </ol>
-<p>Execute o comando <code>emcc --version</code>. A saída deverá ser parecida com o seguinte:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb38-1"><a href="macos.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emcc</span> <span class="er">(</span><span class="ex">Emscripten</span> gcc/clang-like replacement<span class="kw">)</span> <span class="ex">2.0.11</span> <span class="er">(</span><span class="ex">6e28e4fa4fa1bc50d58b9ddbbb9603a3cf21ea9e</span><span class="kw">)</span></span>
-<span id="cb38-2"><a href="macos.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2014</span> the Emscripten authors <span class="er">(</span><span class="ex">see</span> AUTHORS.txt<span class="kw">)</span></span>
-<span id="cb38-3"><a href="macos.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> is free and open source software under the MIT license.</span>
-<span id="cb38-4"><a href="macos.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="ex">There</span> is NO warranty<span class="kw">;</span> <span class="ex">not</span> even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></code></pre></div>
+<p>Execute o comando <code>emcc --version</code>. A saída deverá ser parecida com a seguinte:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb41-1"><a href="macos.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emcc</span> <span class="er">(</span><span class="ex">Emscripten</span> gcc/clang-like replacement + linker emulating GNU ld<span class="kw">)</span> <span class="ex">2.0.29</span> <span class="er">(</span><span class="ex">28ca7fb7ce895b21013212e4644a5794a15a76f9</span><span class="kw">)</span></span>
+<span id="cb41-2"><a href="macos.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2014</span> the Emscripten authors <span class="er">(</span><span class="ex">see</span> AUTHORS.txt<span class="kw">)</span></span>
+<span id="cb41-3"><a href="macos.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> is free and open source software under the MIT license.</span>
+<span id="cb41-4"><a href="macos.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="ex">There</span> is NO warranty<span class="kw">;</span> <span class="ex">not</span> even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></code></pre></div>
 <div class="notebox">
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
 <div class="noteboxtitle">
 Importante
 </div>
-<p>Refaça o passo 6 sempre que abrir um terminal. Como alternativa, insira o comando a seguir na última linha do arquivo <code>~/.zshrc</code> (shell <a href="https://www.zsh.org/">Zsh</a> no macOS Catalina) ou <code>~/.bashrc</code> (shell <a href="https://www.gnu.org/software/bash/">Bash</a> em versões anteriores) para que o script seja executado automaticamente toda vez que um terminal for aberto:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb39-1"><a href="macos.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk/emsdk_env.sh <span class="op">&gt;</span> /dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div>
+<p>Refaça o passo 6 sempre que abrir um terminal. Como alternativa, insira o comando a seguir na última linha do arquivo <code>~/.zshrc</code> (shell <a href="https://www.zsh.org/">Zsh</a> no macOS Catalina ou posterior) ou <code>~/.bashrc</code> (shell <a href="https://www.gnu.org/software/bash/">Bash</a> em versões anteriores) para que o script seja executado automaticamente toda vez que um terminal for aberto:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb42-1"><a href="macos.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ./emsdk/emsdk_env.sh <span class="op">&gt;</span> /dev/null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div>
 <p>O trecho <code>&gt; /dev/null 2&gt;&amp;1</code> serve para omitir a saída padrão (<em>stdout</em>) e erro padrão (<em>stderr</em>).</p>
 </div>
 </div>

@@ -180,16 +180,16 @@ code span.wa { font-style: italic; } /* Warning */
 <h2>Pré-requisitos</h2>
 <p>Para acompanhar o curso de forma satisfatória é recomendável ter conhecimento prévio do conteúdo abordado nas disciplinas de Algoritmos e Estruturas de Dados I e Geometria Analítica.</p>
 <p>As atividades práticas avaliativas serão desenvolvidas na linguagem C++. Embora não seja necessário ter fluência em C++, é recomendável ter proficiência em programação em C e familiaridade com conceitos básicos de programação orientada a objetos.</p>
-<p>Também é recomendável ter familiaridade com o <a href="https://git-scm.com/">Git</a> e ser capaz de gerenciar seus próprios repositórios.</p>
+<p>Também é recomendável ter familiaridade com o <a href="https://git-scm.com">Git</a> e ser capaz de gerenciar seus próprios repositórios.</p>
 <div id="atividades-práticas" class="section level3 unnumbered">
 <h3>Atividades práticas</h3>
-<p>Para realizar as atividades práticas é necessário ter um computador com sistema operacional 64 bits (Windows, Linux ou macOS) e placa de vídeo compatível com <a href="https://www.opengl.org//">OpenGL</a> 4.1 ou superior.</p>
-<p>O OpenGL 4.1 é suportado em placas gráficas da família <a href="https://en.wikipedia.org/wiki/GeForce_400_series">Nvidia GeForce 400</a> (2010) ou mais recentes, <a href="https://en.wikipedia.org/wiki/Radeon_HD_5000_series">AMD Radeon HD 5000</a> (2009) em diante e <a href="https://en.wikipedia.org/wiki/Intel_Graphics_Technology">Intel HD Graphics</a> a partir dos processadores Intel da 7ª geração (2012).</p>
-<p>Se a placa de vídeo de seu computador é de uma geração a partir de 2012, provavelmente seu sistema possui suporte a esses requisitos mínimos. Se não tiver, há a possibilidade de simular o processamento gráfico em software através do driver <a href="https://docs.mesa3d.org/drivers/llvmpipe.html">Gallium llvmpipe</a> da biblioteca <a href="https://www.mesa3d.org/">Mesa</a>.</p>
+<p>Para realizar as atividades práticas é necessário ter um computador com sistema operacional 64 bits (Windows, Linux ou macOS) e placa de vídeo compatível com <a href="https://www.opengl.org">OpenGL</a> 4.1 ou superior.</p>
+<p>O OpenGL 4.1 é suportado em placas gráficas da família <a href="https://en.wikipedia.org/wiki/GeForce_400_series">Nvidia GeForce 400</a> (2010) ou mais recentes, <a href="https://en.wikipedia.org/wiki/Radeon_HD_5000_series">AMD Radeon HD 5000</a> (2009) em diante e <a href="https://en.wikipedia.org/wiki/Intel_Graphics_Technology">Intel HD Graphics</a> a partir dos processadores Intel de 7ª geração (2012).</p>
+<p>Caso a sua placa de vídeo seja de uma geração a partir de 2012, provavelmente ela deve suportar OpenGL 4.1. Se não suportar, há a possibilidade de simular o processamento gráfico em software através do driver <a href="https://docs.mesa3d.org/drivers/llvmpipe.html">Gallium llvmpipe</a> da biblioteca <a href="https://www.mesa3d.org">Mesa</a>.</p>
 </div>
 <div id="visualizando-este-site" class="section level3 unnumbered">
 <h3>Visualizando este site</h3>
-<p>Parte do conteúdo deste site requer um navegador com suporte a <a href="https://www.khronos.org/webgl/">WebGL</a> 2.0.</p>
+<p>Parte do conteúdo deste site requer um navegador com suporte a <a href="https://www.khronos.org/webgl">WebGL</a> 2.0.</p>
 <div id="webglstatus">
 
 </div>
@@ -274,8 +274,8 @@ code span.wa { font-style: italic; } /* Warning */
 <div class="tipboxtitle">
 Dica
 </div>
-<p>Para garantir a visualização correta do conteúdo WebGL 2.0, utilize a versão mais recente do <a href="https://www.mozilla.org/">Mozilla FireFox</a> ou <a href="https://www.google.com/chrome/">Google Chrome</a>. Além disso, use o navegador em um computador. Embora o site funcione em tablets e smartphones, é mais difícil interagir com o conteúdo WebGL nesses dispositivos.</p>
-<p>Dependendo das configurações de DPI utilizadas no sistema de janelas, podem ocorrer problemas de redimensionamento dos elementos de interface no Chrome e em navegadores baseados no <a href="https://www.chromium.org/">Chromium</a>, como o <a href="https://www.microsoft.com/en-us/edge">Microsoft Edge</a>. Por exemplo, o cubo do exemplo acima pode ser redimensionado e as arestas podem apresentar distorções, parecendo mais serrilhadas que o normal:</p>
+<p>Para garantir a visualização correta do conteúdo WebGL 2.0, utilize a versão mais recente do <a href="https://www.mozilla.org">Mozilla FireFox</a> ou <a href="https://www.google.com/chrome">Google Chrome</a>. Além disso, use o navegador em um computador desktop ou laptop. Embora o site funcione em tablets e smartphones, pode ser difícil interagir com o conteúdo WebGL nesses dispositivos.</p>
+<p>Dependendo das configurações de DPI utilizadas no sistema de janelas, podem ocorrer problemas de redimensionamento dos elementos de interface no Chrome e em navegadores baseados no <a href="https://www.chromium.org">Chromium</a>, como o <a href="https://www.microsoft.com/en-us/edge">Microsoft Edge</a>. Por exemplo, o cubo exibido acima pode ser redimensionado e as arestas podem apresentar distorções, parecendo mais serrilhadas que o normal:</p>
 <p><img src="images/00_wiredcube.png" style="display: block; margin: auto;" /></p>
 <p>No Chrome, isso geralmente é resolvido iniciando o navegador com a opção <code>/high-dpi-support=1 /force-device-scale-factor=1</code> na linha de comando (ou incluindo essas opções no atalho), ou ajustando o <em>zoom</em> .</p>
 </div>
@@ -284,7 +284,8 @@ Dica
 <div class="noteboxtitle">
 Importante
 </div>
-<p>No momento da escrita deste texto, o <a href="https://www.apple.com/safari/">Apple Safari</a> <strong>não possui suporte a WebGL 2.0</strong>. Entretanto, o <a href="https://webkit.org/blog/11300/release-notes-for-safari-technology-preview-114/">Safari Technology Preview 114</a> tem o WebGL 2.0 habilitado por padrão e está disponível no macOS Catalina e Big Sur.</p>
+<p>No momento da escrita deste texto, o <a href="https://www.apple.com/safari/">Apple Safari</a> <strong>não possui suporte a WebGL 2.0</strong>. Entretanto, o <a href="https://webkit.org/downloads">Safari Technology Preview</a> tem o WebGL 2.0 habilitado por padrão e está disponível a partir do macOS Catalina.</p>
+<p>Consulte em <a href="https://caniuse.com/webgl2">https://caniuse.com/webgl2</a> o suporte a WebGL 2.0 em diferentes navegadores.</p>
 </div>
 
 </div>
