@@ -190,8 +190,8 @@ code span.wa { font-style: italic; } /* Warning */
 <pre><code>pacman -S mingw-w64-x86_64-glslang</code></pre>
 <p>Ao terminar a instalação, feche o shell do MSYS2.</p></li>
 <li><p>Instale o <a href="https://www.python.org/downloads">Python 3.9+ para Windows</a>. Durante a instalação, <strong>certifique-se de ativar a opção “Add Python 3.9 to PATH”</strong>.</p>
-<p>Após a instalação, abra o Prompt de Comando (<code>cmd.exe</code>) e execute o comando <code>which python</code>:</p>
-<pre><code>C:\&gt;which python
+<p>Após a instalação, abra o Prompt de Comando (<code>cmd.exe</code>) e execute o comando <code>where python</code>:</p>
+<pre><code>C:\&gt;where python
 /c/Users/ufabc/AppData/Local/Programs/Python/Python39/python</code></pre>
 <p>O caminho exibido deve ser o caminho do executável do Python que acabou de ser instalado. No exemplo acima, o Python foi instalado no local padrão (<code>%LocalAppData%\Programs\Python\Python39</code>) e o nome do usuário é <code>ufabc</code>.</p></li>
 <li><p>No “Painel de Controle” do Windows, abra a opção “Editar as Variáveis de Ambiente do Sistema.” Edite a variável de ambiente <code>PATH</code> e inclua os caminhos para <code>mingw64\bin</code> e <code>usr\bin</code> do MSYS2. Por exemplo, se o MSYS2 foi instalado em <code>C:\msys64</code>, inclua os seguintes caminhos no <code>PATH</code>:</p>
