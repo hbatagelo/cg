@@ -202,6 +202,13 @@ Observação
 </div>
 <p>A versão mais recente da ABCg (atualmente v2.0.0) também pode ser baixada como um arquivo compactado de <a href="https://github.com/hbatagelo/abcg/releases/latest">https://github.com/hbatagelo/abcg/releases/latest</a>.</p>
 </div>
+<div class="warningbox">
+<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1.4em;width:1.22em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#861f1f;overflow:visible;position:relative;"><path d="M323.56 51.2c-20.8 19.3-39.58 39.59-56.22 59.97C240.08 73.62 206.28 35.53 168 0 69.74 91.17 0 209.96 0 281.6 0 408.85 100.29 512 224 512s224-103.15 224-230.4c0-53.27-51.98-163.14-124.44-230.4zm-19.47 340.65C282.43 407.01 255.72 416 226.86 416 154.71 416 96 368.26 96 290.75c0-38.61 24.31-72.63 72.79-130.75 6.93 7.98 98.83 125.34 98.83 125.34l58.63-66.88c4.14 6.85 7.91 13.55 11.27 19.97 27.35 52.19 15.81 118.97-33.43 153.42z"/></svg>
+<div class="warningboxtitle">
+Atenção
+</div>
+<p>No Windows, certifique-se de clonar o repositório em um diretório cujo nome não contenha espaços ou caracteres especiais. Por exemplo, clone em <code>C:\cg</code> em vez de <code>C:\computação gráfica</code>.</p>
+</div>
 <p>O repositório tem a estrutura mostrada a seguir. Para simplificar, os arquivos e subdiretórios <code>.git*</code> foram omitidos:</p>
 <pre><code>abcg
 │   .clang-format
@@ -436,7 +443,7 @@ Observação
 <h3>Compilando para WebAssembly</h3>
 <p>Podemos compilar as aplicações ABCg para WebAssembly de modo a rodá-las diretamente no navegador. A construção é feita via linha de comando usando o <em>toolchain</em> <a href="https://emscripten.org/">Emscripten</a>. Acompanhe a seguir como construir o exemplo “Hello, World!” para WebAssembly e abri-lo no navegador:</p>
 <ol style="list-style-type: decimal">
-<li>Em um terminal (shell ou Prompt de Comando), ative as variáveis de ambiente do Emscripten (script <code>emsdk-env.sh</code>/<code>emsdk-env.bat</code> do SDK). Após isso, o compilador <code>emcc</code> deverá estar visível no <code>PATH</code>;</li>
+<li>Em um terminal (shell ou Prompt de Comando), ative as variáveis de ambiente do Emscripten (script <code>emsdk_env.sh</code>/<code>emsdk_env.bat</code> do SDK). Após isso, o compilador <code>emcc</code> deverá estar visível no <code>PATH</code>;</li>
 <li>No diretório <code>abcg</code>, execute <code>build-wasm.sh</code> (Linux/macOS) ou <code>build-wasm.bat</code> (Windows). Isso iniciará a configuração do CMake e a construção dos binários. Os arquivos resultantes serão gerados no subdiretório <code>public</code>: nesse caso, <code>helloworld.data</code> (arquivo de dados/assets), <code>helloworld.js</code> (arquivo JavaScript) e <code>helloworld.wasm</code> (binário WebAssembly);</li>
 <li>Execute o script <code>runweb.sh</code> (Linux/macOS) ou <code>runweb.bat</code> (Windows) para rodar um servidor web local. O conteúdo de <code>public</code> estará disponível em <a href="http://localhost:8080/">http://localhost:8080/</a>;</li>
 <li>Abra a página <a href="http://localhost:8080/helloworld.html">http://localhost:8080/helloworld.html</a> que chama o script <code>helloworld.js</code> recém-criado. A página HTML não faz parte do processo de construção e foi criada previamente.</li>

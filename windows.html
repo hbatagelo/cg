@@ -178,8 +178,8 @@ code span.wa { font-style: italic; } /* Warning */
             <section class="normal" id="section-">
 <div id="windows" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Windows</h2>
-<p>Para a instalação das ferramentas e bibliotecas de desenvolvimento no Windows utilizaremos o MSYS2.</p>
-<p><a href="https://www.msys2.org">MSYS2</a> é um ambiente de terminal tipo Unix com acesso a um repositório de ferramentas e bibliotecas de desenvolvimento de aplicações nativas em Windows através do gerenciador de pacotes <a href="https://wiki.archlinux.org/index.php/pacman">pacman</a>. Essas ferramentas e bibliotecas incluem o CMake, Git, GLEW, SDL 2.0 e SDL_image 2.0, entre outras que vamos utilizar na disciplina. O MSYS2 também permite instalar o <a href="http://mingw-w64.org">MinGW-W64</a>. Com isso podemos usar o GCC (compilador) e o GDB (depurador) no Windows e gerar binário nativo para 64-bit e 32-bit.</p>
+<p>Para a instalação das ferramentas e bibliotecas de desenvolvimento no Windows utilizaremos o <a href="https://www.msys2.org">MSYS2</a>.</p>
+<p>MSYS2 é um ambiente de terminal tipo Unix com acesso a um repositório de ferramentas e bibliotecas de desenvolvimento de aplicações nativas em Windows através do gerenciador de pacotes <a href="https://wiki.archlinux.org/index.php/pacman">pacman</a>. Essas ferramentas e bibliotecas incluem o CMake, Git, GLEW, SDL 2.0 e SDL_image 2.0, entre outras que vamos utilizar na disciplina. O MSYS2 também permite instalar o <a href="http://mingw-w64.org">MinGW-W64</a>. Com isso podemos usar o GCC (compilador) e o GDB (depurador) no Windows e gerar binário nativo para 64-bit e 32-bit.</p>
 <p>Siga os passos a seguir para instalar o MSYS2 e as ferramentas/bibliotecas de desenvolvimento:</p>
 <ol style="list-style-type: decimal">
 <li><p>Baixe o instalador de <a href="https://www.msys2.org">https://www.msys2.org</a> e siga os passos descritos na página.</p></li>
@@ -190,11 +190,12 @@ code span.wa { font-style: italic; } /* Warning */
 <pre><code>pacman -S mingw-w64-x86_64-glslang</code></pre>
 <p>Ao terminar a instalação, feche o shell do MSYS2.</p></li>
 <li><p>Instale o <a href="https://www.python.org/downloads">Python 3.9+ para Windows</a>. Durante a instalação, <strong>certifique-se de ativar a opção “Add Python 3.9 to PATH”</strong>.</p>
-<p>Após a instalação, abra o Prompt de Comando (<code>cmd.exe</code>) e execute o comando <code>where python</code>:</p>
+<p>Após a instalação, abra o Prompt de Comando (<code>cmd.exe</code>) e execute o comando <code>where python</code> para mostrar os diferentes caminhos em que o <code>python</code> está sendo alcançado pela variável de ambiente <code>PATH</code>:</p>
 <pre><code>C:\&gt;where python
-/c/Users/ufabc/AppData/Local/Programs/Python/Python39/python</code></pre>
-<p>O caminho exibido deve ser o caminho do executável do Python que acabou de ser instalado. No exemplo acima, o Python foi instalado no local padrão (<code>%LocalAppData%\Programs\Python\Python39</code>) e o nome do usuário é <code>ufabc</code>.</p></li>
-<li><p>No “Painel de Controle” do Windows, abra a opção “Editar as Variáveis de Ambiente do Sistema.” Edite a variável de ambiente <code>PATH</code> e inclua os caminhos para <code>mingw64\bin</code> e <code>usr\bin</code> do MSYS2. Por exemplo, se o MSYS2 foi instalado em <code>C:\msys64</code>, inclua os seguintes caminhos no <code>PATH</code>:</p>
+C:\Users\ufabc\AppData\Local\Programs\Python\Python39\python.exe
+C:\Users\ufabc\AppData\Local\Microsoft\WindowsApps\python.exe</code></pre>
+<p><strong>O primeiro caminho exibido deve ser o caminho do executável do Python que acabou de ser instalado.</strong> Neste caso está correto, pois o Python foi instalado no local padrão do instalador que é <code>%LocalAppData%\Programs\Python\Python39</code> (neste exemplo, o nome do usuário é <code>ufabc</code>).</p></li>
+<li><p>No “Painel de Controle” do Windows, abra a opção “Editar as Variáveis de Ambiente do Sistema.” Edite a variável <code>PATH</code> e inclua os caminhos para <code>mingw64\bin</code> e <code>usr\bin</code> do MSYS2. Por exemplo, se o MSYS2 foi instalado em <code>C:\msys64</code>, inclua os seguintes caminhos no <code>PATH</code>:</p>
 <pre><code>C:\msys64\usr\bin
 C:\msys64\mingw64\bin</code></pre>
 <p>Edite a ordem dos caminhos de tal forma que o caminho do Python apareça <strong>antes</strong> do caminho do MSYS2, como mostra a figura a seguir:</p>
