@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.2 Linha do tempo | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.2 Linha do tempo | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.2 Linha do tempo | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="áreas-correlatas.html"/>
+<link rel="next" href="firstapp.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#habilitando-o-opengl"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#habilitando-o-opengl-1"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-em-linha-de-comando"><i class="fa fa-check"></i>Compilando em linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-visual-studio-code"><i class="fa fa-check"></i>Compilando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-visual-studio-code"><i class="fa fa-check"></i>Depurando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="mailto:harlen.batagelo@ufabc.edu.br" target="blank">Harlen Batagelo</a>
+<a href="mailto:bruno.marques@ufabc.edu.br" target="blank">Bruno Marques</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linha-do-tempo" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Linha do tempo</h2>
+<p>Nesta seção acompanharemos um resumo da evolução histórica da computação gráfica. Iniciaremos na década de 1950, com os primeiros computadores eletrônicos de uso geral e o surgimento das primeiras aplicações de computação gráfica, e seguiremos até a década atual com os desenvolvimentos mais recentes das atuais GPUs (<em>Graphics Processing Units</em>).</p>
+<p>Embora a computação gráfica seja recente, assim como a própria ciência da computação, o desenvolvimento de seus fundamentos é anterior ao século XX e só foi possível devido às contribuições artísticas e matemáticas de diversos pioneiros. Para citar apenas alguns:</p>
+<ul>
+<li>Euclides de Alexandria (300 a.C.), com sua contribuição para o desenvolvimento da geometria;</li>
+<li>Filippo Brunelleschi (1377–1446), com seus estudos sobre o uso da perspectiva;</li>
+<li>René Descartes (1596–1650), com o desenvolvimento da geometria analítica e a noção de sistema de coordenadas;</li>
+<li>Christiaan Huygens (1629–1695) e Isaac Newton (1643–1727) por suas investigações sobre os fenômenos da luz;</li>
+<li>Leonhard Euler (1707–1783), por sua contribuição na trigonometria e em topologia;</li>
+<li>James Joseph Sylvester (1814–1897), pela invenção da notação matricial.</li>
+</ul>
+<p>O uso de gráficos no computador também não teria sido possível sem os esforços que contribuíram para o surgimento dos primeiros dispositivos de exibição, como o tubo de raios catódicos no final do século XIX.</p>
+<div id="section" class="section level3 unnumbered">
+<h3>1950</h3>
+<p>Os primeiros computadores eletrônicos com dispositivos de exibição surgem neste período. O computador Whirlwind I, do MIT, originalmente projetado para ser parte de um simulador de vôo, foi um dos primeiros computadores digitais de uso geral com processamento em tempo real. O Whirlwind I era equipado com um CRT vetorial capaz de desenhar linhas e pontos.</p>
+<p>Charles W. Adams e John T. Gilmore, programadores da equipe de desenvolvimento do Whirlwind, implementaram um programa de avaliação de equações diferenciais para produzir a animação da trajetória de uma bola quicando. Essa simulação pode ser considerada a primeira aplicação de computação gráfica interativa e o primeiro jogo de computador, pois o operador podia controlar, através de um botão, a frequência do quicar na tentativa de fazer a bola acertar uma lacuna na tela que simulava um buraco no chão.</p>
+<p>O sistema de defesa aérea SAGE evoluiu a partir do Whirlwind ao longo da década de 1950. As estações do SAGE contavam com telas CRT que exibiam dados de diferentes radares combinados com informações de referência geográfica. Cada estação era também equipada com uma caneta óptica. Através da caneta óptica, o operador podia apontar e selecionar elementos gráficos diretamente na tela (figura <a href="linha-do-tempo.html#fig:sage">2.7</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sage"></span>
+<img src="https://history-computer.com/ModernComputer/Electronic/Images/Sage_terminal.jpg" alt="Operador do SAGE usando uma [caneta óptica](https://en.wikipedia.org/wiki/Light_pen) em um CRT vetorial ([fonte](https://history-computer.com/sage-complete-history-of-the-sage-computer-system/))." width="60%" />
+<p class="caption">
+Figura 2.7: Operador do SAGE usando uma <a href="https://en.wikipedia.org/wiki/Light_pen">caneta óptica</a> em um CRT vetorial (<a href="https://history-computer.com/sage-complete-history-of-the-sage-computer-system/">fonte</a>).
+</p>
+</div>
+</div>
+<div id="section-1" class="section level3 unnumbered">
+<h3>1960</h3>
+<p>Nesse período a computação gráfica se desenvolve nos laboratórios de pesquisa de universidades e surgem as primeiras aplicações de <a href="https://en.wikipedia.org/wiki/Computer-aided_design">CAD</a> (<em>Computer-Aided Design</em>) nas indústrias automotiva e aeroespacial. Na década de 1960 ocorrem importantes desenvolvimentos na área de modelagem geométrica, como o uso de <em>curvas de Bézier</em> e NURBS (<em>Non-Uniform Rational Basis Spline</em>).</p>
+<p>Em 1960, a Digital Equipment Corporation (DEC) começa a produzir em escala comercial o computador PDP-1, equipado com CRT e caneta óptica. Em 1961, o cientista da computação Steve Russell (MIT) cria o “Spacewar!” (figura <a href="linha-do-tempo.html#fig:spacewar">2.8</a>). O jogo ganha popularidade dentro e fora da universidade e vira referência no desenvolvimento de jogos digitais<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:spacewar"></span>
+<img src="http://mstatic.mit.edu/mit150/025p.jpg" alt="Steve Russell e seu jogo Spacewar! no DEC PDP-1 ([fonte](http://museum.mit.edu/150/25))." width="60%" />
+<p class="caption">
+Figura 2.8: Steve Russell e seu jogo Spacewar! no DEC PDP-1 (<a href="http://museum.mit.edu/150/25">fonte</a>).
+</p>
+</div>
+<p>Em 1963, Ivan Sutherland desenvolve o SketchPad, um sistema de projeto gráfico interativo que permite ao usuário manipular primitivas gráficas vetoriais através de uma caneta óptica e um CRT <span class="citation">(<a href="#ref-sutherland1963" role="doc-biblioref">Sutherland 1963</a>)</span>. A figura <a href="linha-do-tempo.html#fig:sketchpad">2.9</a> mostra Sutherland operando o SketchPad no computador <a href="https://en.wikipedia.org/wiki/TX-2">TX-2</a> do MIT. O SketchPad é um marco no uso da interface gráfica do usuário (GUI, acrônimo de <em>Graphical User Interface</em>) e um precursor das aplicações de projeto assistido por computador (CAD).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sketchpad"></span>
+<img src="https://www.mprove.de/visionreality/_media/fig3.1_Sketchpad.jpg" alt="Ivan Sutherland operando o SketchPad em 1962 ([fonte](https://www.mprove.de/visionreality/text/3.1.2_sketchpad.html))." width="60%" />
+<p class="caption">
+Figura 2.9: Ivan Sutherland operando o SketchPad em 1962 (<a href="https://www.mprove.de/visionreality/text/3.1.2_sketchpad.html">fonte</a>).
+</p>
+</div>
+<p>Na década de 1960 surgem também os primeiros seminários e grupos de interesse em pesquisa sobre gráficos em computador. Na <a href="https://www.acm.org/">ACM</a> (<em>Association for Computing Machinery</em>), tradicional sociedade científica e educacional dedicada à computação, é fundado o grupo SICGRAPH (<em>Special Interest Committe on Computer Graphics</em>) para promover seminários de computação gráfica. No final da década, o SICGRAPH muda de nome para <a href="https://www.siggraph.org/">SIGGRAPH</a> (<em>Special Interest Group on Computer Graphics and Interactive Techniques</em>). A conferência SIGGRAPH é realizada anualmente e é hoje uma das principais conferências de computação gráfica no mundo.</p>
+</div>
+<div id="section-2" class="section level3 unnumbered">
+<h3>1970</h3>
+<p>Durante a década de 1970 são desenvolvidas muitas das técnicas de síntese de imagens em tempo real utilizadas atualmente.</p>
+<p>Em 1971, o então aluno de doutorado Henri Gouraud, trabalhando com Dave Evans e Ivan Sutherland na <a href="https://www.utah.edu/">Universidade de Utah</a>, desenvolve uma técnica eficiente de melhoramento da percepção visual do sombreamento (<em>shading</em>) de superfícies suaves aproximadas por malhas poligonais <span class="citation">(<a href="#ref-gouraud1971" role="doc-biblioref">Gouraud 1971</a>)</span>. Tal técnica, conhecida como <em>Gouraud shading</em>, consiste em interpolar linearmente os valores de intensidade de luz refletida dos vértices da malha poligonal. O resultado é a suavização da variação da reflexão de luz sem a necessidade de aumentar a resolução da malha geométrica (Figura <a href="linha-do-tempo.html#fig:gouraud">2.10</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gouraud"></span>
+<img src="images/02_gouraud.jpg" alt="Visualização de uma esfera aproximada por polígonos, exibindo o aspecto facetado (esquerda) e suavizado com Gouraud shading (direita)."  />
+<p class="caption">
+Figura 2.10: Visualização de uma esfera aproximada por polígonos, exibindo o aspecto facetado (esquerda) e suavizado com Gouraud shading (direita).
+</p>
+</div>
+<p>Em 1973, Bui Phong, também na Universidade de Utah, desenvolve o <em>Phong shading</em> como um melhoramento de Gouraud shading para reproduzir com mais fidelidade as reflexões especulares em aproximações de superfícies curvas <span class="citation">(<a href="#ref-phong1973" role="doc-biblioref">Phong 1973</a>)</span>. Na figura <a href="linha-do-tempo.html#fig:phong">2.11</a> é possível comparar Gouraud shading e Phong shading lado a lado. Phong shading reproduz de forma mais acurada o brilho especular da esfera sem precisar usar uma malha poligonal mais refinada.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:phong"></span>
+<img src="images/02_phong.jpg" alt="Visualização de uma esfera com _Gouraud shading_ (esquerda) e _Phong shading_ (direita)."  />
+<p class="caption">
+Figura 2.11: Visualização de uma esfera com <em>Gouraud shading</em> (esquerda) e <em>Phong shading</em> (direita).
+</p>
+</div>
+<p>Phong também propôs um modelo empírico de iluminação local de pontos sobre superfícies conhecido como <em>modelo de reflexão de Phong</em>. Em 1977, Jim Blinn, aluno da mesma universidade, propôs uma alteração do modelo de reflexão de Phong – o <em>modelo de Blinn–Phong</em> – mais acurado fisicamente e mais eficiente sob certas condições de visualização e iluminação <span class="citation">(<a href="#ref-blinn1977" role="doc-biblioref">Blinn 1977</a>)</span>. Nas décadas seguintes, o modelo de Blinn–Phong tornaria-se o padrão de indústria para síntese de imagens em tempo real, e ainda é muito utilizado atualmente.</p>
+<p>Em 1974, Wolfgang Straßer, na <a href="https://www.tu.berlin/en/">Universidade Técnica de Berlim</a>, e Ed Catmull, na Universidade de Utah, desenvolvem ao mesmo tempo, mas de forma independente, uma técnica que viria a ser conhecida como <em>Z-buffering</em>. Tal técnica permite identificar, de forma conceituamente simples e favorável à implementação em hardware, quais partes da geometria 3D estão visíveis de um determinado ponto de vista. Atualmente, essa técnica é largamente utilizada em síntese de imagens e é suportada em todo hardware gráfico.</p>
+<p>Além de ter contribuído com a técnica de Z-buffering, Catmull também trouxe diversos avanços na área de modelagem geométrica, especialmente em subdivisão de superfícies e representação paramétrica de superfícies bicúbicas <span class="citation">(<a href="#ref-catmull1974" role="doc-biblioref">Catmull 1974</a>)</span>. Outra importante contribuição de Catmull foi o desenvolvimento da técnica de <em>mapeamento de textura</em>, ubíqua nas aplicações gráficas atuais e que permite aumentar a percepção de detalhes de superfícies sem aumentar a complexidade da geometria (figura <a href="linha-do-tempo.html#fig:texmapping">2.12</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texmapping"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Texture_mapping_demonstration_animation.gif" alt="Animação do mapeamento de uma textura 2D sobre um modelo poligonal 3D ([fonte](https://en.wikipedia.org/wiki/File:Texture_mapping_demonstration_animation.gif))."  />
+<p class="caption">
+Figura 2.12: Animação do mapeamento de uma textura 2D sobre um modelo poligonal 3D (<a href="https://en.wikipedia.org/wiki/File:Texture_mapping_demonstration_animation.gif">fonte</a>).
+</p>
+</div>
+<p>Em 1975, o matemático Benoît Mandelbrot, na IBM, desenvolve o conceito de geometria de dimensão fracionária e cria o termo <em>fractal</em> <span class="citation">(<a href="#ref-albers2008" role="doc-biblioref">Albers and Alexanderson 2008</a>)</span>. Desde então, fractais começam a ser explorados em síntese de imagens e modelagem geométrica para representar os mais diversos padrões e fenômenos naturais tais como contornos de mapas, relevo de terrenos, nuvens, texturas e plantas.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Vol Libre
+</div>
+<p>“Vol Libre,” de Loren Carpenter, foi o primeiro filme criado com fractais.</p>
+<p>O vídeo, de apenas dois minutos, foi apresentado pela primeira vez na conferência SIGGRAPH ’80 após uma palestra técnica de Carpenter sobre a renderização de curvas e superfícies fractais:</p>
+<iframe src="https://player.vimeo.com/video/5810737" width="640" height="480" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<p></p>
+<p>De acordo com o livro “Droidmaker: George Lucas And the Digital Revolution” <span class="citation">(<a href="#ref-rubin2005" role="doc-biblioref">Rubin 2005</a>)</span>, ao final da exibição do vídeo, Ed Catmull e Alvy Smith, da <a href="https://www.lucasfilm.com/">Lucasfilm</a>, abordaram Carpenter e ofereceram a ele um emprego na divisão de computação da empresa. Carpenter aceitou imediatamente.</p>
+<p>Após a carreira na Lucasfilm, Carpenter ainda seria co-fundador da <a href="https://www.pixar.com/">Pixar</a> (junto com Catmull, Smith e outros) e cientista-chefe do estúdio de animação.</p>
+</div>
+<p>Em 1976, Steve Jobs, Steve Wozniak e Ronald Wayne fundam a Apple Computer (atualmente <a href="https://www.apple.com/">Apple Inc.</a>). Em 1979, Steve Jobs entra em contato com as pesquisas de desenvolvimento de interface gráfica na Xerox PARC (atualmente <a href="https://www.parc.com/">PARC</a>), divisão de pesquisa da <a href="https://www.xerox.com/">Xerox</a> em Palo Alto, Califórnia. Na PARC, Jobs conhece o <a href="https://en.wikipedia.org/wiki/Xerox_Alto">Xerox Alto</a>, o primeiro computador com uma interface gráfica baseada na metáfora do <em>desktop</em> e no uso do mouse (figura <a href="linha-do-tempo.html#fig:xeroxalto">2.13</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:xeroxalto"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Xerox_Alto_mit_Rechner.JPG" alt="Xerox Alto ([fonte](https://en.wikipedia.org/wiki/Xerox_Alto#/media/File:Xerox_Alto_mit_Rechner.JPG))." width="50%" />
+<p class="caption">
+Figura 2.13: Xerox Alto (<a href="https://en.wikipedia.org/wiki/Xerox_Alto#/media/File:Xerox_Alto_mit_Rechner.JPG">fonte</a>).
+</p>
+</div>
+<p>O Xerox Alto foi o resultado de desenvolvimentos iniciados por Douglas Engelbart e Dustin Lindberg no <em>Standard Research Institute</em>, atual <a href="https://www.sri.com/">SRI International</a>, por sua vez inspirados no SketchPad de Sutherland. Alguns anos depois, a Apple implementaria os conceitos do Xerox Alto nos computadores Apple Lisa e Macintosh, iniciando uma revolução no uso da interface gráfica nos computadores pessoais (PCs).</p>
+<p>Em 1977, surge a primeira tentativa de padronização de especificação de comandos em sistemas gráficos: o <em>Core Graphics System</em> (ou simplesmente <em>Core</em>), proposto pelo <em>Graphic Standards Planning Committee</em> (GSPC) da ACM SIGGRAPH <span class="citation">(<a href="#ref-chappell1978" role="doc-biblioref">Chappell and Bono 1978</a>)</span>.</p>
+<p>Em 1978, Jim Blinn desenvolve uma técnica de mapeamento de textura para simulação de vincos e rugosidades em superfícies: o <em>bump mapping</em> <span class="citation">(<a href="#ref-blinn1978" role="doc-biblioref">Blinn 1978</a>)</span>. Uma forma de bump mapping muito utilizada atualmente é o <em>normal mapping</em>. A técnica pode ser muito efetiva para manter a ilusão de uma superfície detalhada, mesmo quando a geometria utilizada é muito simples. A figura <a href="linha-do-tempo.html#fig:normalmapping">2.14</a> mostra um exemplo dessa simplificação. Ao longo do quadrimestre implementaremos esta e outras técnicas de texturização.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalmapping"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Normal_map_example_updated.png" alt="Uso de _normal mapping_ para simular a renderização, com apenas dois triângulos, de um modelo de quatro milhões de triângulos ([fonte](https://commons.wikimedia.org/wiki/File:Normal_map_example_updated.png))."  />
+<p class="caption">
+Figura 2.14: Uso de <em>normal mapping</em> para simular a renderização, com apenas dois triângulos, de um modelo de quatro milhões de triângulos (<a href="https://commons.wikimedia.org/wiki/File:Normal_map_example_updated.png">fonte</a>).
+</p>
+</div>
+<p>No final da década, J. Turner Whitted desenvolve a técnica de <em>traçado de raios</em> <span class="citation">(<a href="#ref-whitted1979" role="doc-biblioref">Whitted 1979</a>)</span>. O traçado de raios consegue simular com mais precisão, e de forma conceitualmente simples, efeitos ópticos de reflexão, refração, espalhamento e dispersão da luz. Como resultado, consegue gerar imagens mais fotorrealistas, ainda que sob um custo computacional muito elevado quando comparado com a renderização baseada na <em>rasterização</em>, que consiste na varredura e preenchimento de primitivas geométricas projetadas.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:whitted"></span>
+<img src="images/02_raytracing.jpg" alt="Esferas e tabuleiro de xadrez: uma das primeiras imagens geradas com traçado de raios, por Turner Whitted." width="60%" />
+<p class="caption">
+Figura 2.15: Esferas e tabuleiro de xadrez: uma das primeiras imagens geradas com traçado de raios, por Turner Whitted.
+</p>
+</div>
+</div>
+<div id="section-3" class="section level3 unnumbered">
+<h3>1980</h3>
+<p>Essa é a década em que a computação gráfica marca sua presença definitiva na indústria de cinema. O uso de cenas de computação gráfica é popularizado a partir de filmes como “Star Trek II: The Wrath of Khan” (1982), “Tron” (1982) e "Young Sherlock Holmes (1985), como resultado dos avanços das técnicas de síntese de imagem e modelagem geométrica da década anterior, combinado com o avanço da capacidade de processamento dos computadores. Durante essa década ocorrem também importantes avanços nas técnicas de síntese de imagens.</p>
+<p>Em 1984, Robert Cook, Thomas Porter e Loren Carpenter desenvolvem o <em>traçado de raios distribuído</em> (<em>distributed ray tracing</em>), o qual permite reproduzir efeitos de sombras suaves, entre outros efeitos não contemplados pelo método original de Whitted <span class="citation">(<a href="#ref-cook1984" role="doc-biblioref">Cook, Porter, and Carpenter 1984</a>)</span>. A figura <a href="linha-do-tempo.html#fig:distraytracing">2.16</a> mostra um exemplo de renderização da cena de teste “<a href="http://www.graphics.cornell.edu/online/box/history.html">Cornell box</a>” usando essa técnica. A imagem tende a ser granulada como resultado da natureza estocástica do algoritmo.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:distraytracing"></span>
+<img src="images/02_distraytracing.jpg" alt="Imagem gerada com traçado de raios distribuído/estocástico." width="60%" />
+<p class="caption">
+Figura 2.16: Imagem gerada com traçado de raios distribuído/estocástico.
+</p>
+</div>
+<p>Ainda em 1984, Donald Greenberg, Michael Cohen e Kenneth Torrance propõem a técnica de <em>radiosidade</em> <span class="citation">(<a href="#ref-greenberg1986" role="doc-biblioref">Greenberg, Cohen, and Torrance 1986</a>)</span> baseada no uso do método de elementos finitos para simular interreflexões de luz entre superfícies idealmente difusas. A solução da radiosidade de uma cena pode ser pré-processada e não depende da posição da câmera. Isso permite a visualização da cena em tempo real, desde que a posição dos objetos e fontes de luz mantenha-se estática. A figura <a href="linha-do-tempo.html#fig:radiosity">2.17</a> mostra um exemplo de cena renderizada com radiosidade usando o software <a href="http://dudka.cz/rrv">RRV</a> (<em>Radiosity Renderer and Visualizer</em>). O método de radiosidade pode ser combinado com traçado de raios para gerar imagens com melhor fidelidade de simulação de reflexão difusa e especular.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:radiosity"></span>
+<img src="http://dudka.cz/rrv/files/screenshot/room4-step079-snapshot000.png?action=thumbnail640" alt="Imagem gerada com radiosidade ([fonte](http://dudka.cz/rrv/files/screenshot/room4-step079-snapshot000.png))." width="70%" />
+<p class="caption">
+Figura 2.17: Imagem gerada com radiosidade (<a href="http://dudka.cz/rrv/files/screenshot/room4-step079-snapshot000.png">fonte</a>).
+</p>
+</div>
+<p>Em 1985, o GKS (<em>Graphical Kernel System</em>), desenvolvido como um melhoramento da API Core, torna-se a API padrão ISO para gráficos independentes do dispositivo <span class="citation">(<a href="#ref-iso1985" role="doc-biblioref">ISO 1985</a>)</span>. Através do GKS, o código de descrição de comandos para manipulação de gráficos 2D permite a portabilidade entre diferentes linguagens de programação, sistemas operacionais e hardware gráfico compatível. Entretanto, gráficos 3D ainda não são contemplados nesta API.</p>
+<p>Em 1986, Steve Jobs adquire a divisão de computação gráfica da Lucasfilm e funda a Pixar junto com Ed Catmull, Alvy Smith e outros. Nessa época, Catmull, Loren Carpenter e Robert Cook desenvolvem o sistema de renderização <a href="https://renderman.pixar.com/">RenderMan</a>, muito utilizado na produção de efeitos visuais em filmes e animações. Após 14 anos, Catmull, Carpenter e Cook receberiam da <a href="https://www.oscars.org">Academia de Artes e Ciências Cinematográficas</a> a estatueta do Oscar na categoria “Academy Scientific and Technical Awards” pelas contribuições à indústria do cinema representadas pelo desenvolvimento do RenderMan.</p>
+<p>O sucesso do RenderMan deve-se em parte à sua elegante API – a <em>RenderMan Interface</em> (RISpec) – inspirada na linguagem PostScript. A API permite a descrição completa de cenas 3D com todos os componentes necessários à renderização. Isso garante resultados consistentes, independentes do software de modelagem utilizado.</p>
+<p>O conceito de <em>shaders</em>, amplamente utilizado em hardware gráfico atual, surge do <em>RenderMan shading language</em>, desenvolvido na década de 1990 e incorporado no RISpec em 2005 como uma linguagem – dessa vez inspirada na linguagem C – de especificação de propriedades de superfícies, fontes de luz e efeitos atmosféricos de cena.</p>
+<p>Em 1988 é organizado o <a href="http://sibgrapi.sid.inpe.br/col/sid.inpe.br/sibgrapi/2012/06.29.22.52/doc/@sumario.htm">1º Simpósio Brasileiro de Computação Gráfica e Processamento de Imagens</a> (SIBGRAPI), em Petrópolis, RJ. O evento, organizado anualmente pela <a href="https://www.sbc.org.br/14-comissoes/383-computacao-grafica-e-processamento-de-imagens">CEGRAPI</a>/<a href="https://www.sbc.org.br/">SBC</a>, internacionalizou-se e atualmente é chamado de <em>Conference on Graphics, Patterns and Images</em>. Neste ano, o <a href="https://www.inf.ufrgs.br/sibgrapi2021/">SIBGRAPI</a>, que estava planejado para ser realizado em Gramado (RS), será inteiramente virtual por causa da pandemia de COVID-19.</p>
+<!-- https://spectrum.ieee.org/at-work/tech-careers/and-the-oscar-goes-to -->
+</div>
+<div id="section-4" class="section level3 unnumbered">
+<h3>1990</h3>
+<p>1990 é a década das APIs gráficas 3D e da popularização do hardware gráfico nos PCs. Empresas como a Sun Microsystems (adquirida pela <a href="https://www.oracle.com/">Oracle</a> em 2010), <a href="https://www.ibm.com/">IBM</a>, <a href="https://www.hp.com/">HP</a> (Hewlett-Packard), e as agora extintas NeXT, SGI (Silicon Graphics, Inc.) e DEC, desenvolvem estações gráficas de alto desempenho equipadas com hardware capaz de acelerar operações de renderização baseadas em rasterização com suporte a <em>Z-buffer</em>, mapeamento de texturas, iluminação e sombreamento de superfícies (figura <a href="linha-do-tempo.html#fig:indigo">2.18</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:indigo"></span>
+<img src="images/02_indigo.jpg" alt="Workstation SGI IRIS Indigo ([fonte](http://www.sgistuff.net/hardware/systems/indigo.html))."  />
+<p class="caption">
+Figura 2.18: Workstation SGI IRIS Indigo (<a href="http://www.sgistuff.net/hardware/systems/indigo.html">fonte</a>).
+</p>
+</div>
+<p>Neste período surgem as primeiras APIs para gráficos 3D como tentativa de padronizar a interface de programação entre as diferentes arquiteturas de hardware. Uma dessas APIs, desenvolvida ao longo da década de 1980 e que se estabelece como padrão da indústria na década de 1990, é o PHIGS (<em>Programmer’s Hierarchical Interactive Graphics System</em>) <span class="citation">(<a href="#ref-shuey1987" role="doc-biblioref">Shuey 1987</a>)</span>.</p>
+<p>PHIGS utiliza o conceito de <em>grafo de cena</em>: uma estrutura de dados hierárquica que representa as relações entre os modelos geométricos e outras entidades de uma cena. A API trabalha com malhas poligonais e síntese de imagens baseada na rasterização (em oposição ao traçado de raios), prevê o suporte a Gouraud e Phong shading, mas não oferece suporte a mapeamento de texturas. Em oposição ao PHIGS, a SGI utiliza em suas estações gráficas IRIS a API proprietária IRIS GL (<em>Integrated Raster Imaging System Graphics Library</em>) com características semelhantes ao PHIGS, porém com suporte a mapeamento de texturas <span class="citation">(<a href="#ref-mcLendon1992" role="doc-biblioref">McLendon 1992</a>)</span>.</p>
+<p>Diferentemente do PHIGS, o IRIS GL não adota o conceito de grafo de cena. As primitivas gráficas são enviadas imediatamente ao hardware gráfico em um pipeline de transformação geométrica e visualização. Esse modo de enviar os dados, conhecido como <em>immediate mode</em>, acaba por revelar-se mais apropriado para implemetação em hardware do que o <em>retained mode</em> do PHIGS com seu grafo de cena.</p>
+<p>Em 1991, Mark Segal e Kurt Akeley, da SGI, iniciam o desenvolvimento de uma versão aberta do IRIS GL como tentativa de criar um novo padrão de indústria. Para isso, removem o código proprietário e modificam a API de modo a torná-la independente do sistema de
+janelas e de dispositivos de entrada. Deste desenvolvimento surge, em 1992, o <a href="https://www.opengl.org/">OpenGL</a> (<em>Open Graphics Library</em>) <span class="citation">(<a href="#ref-woo1999" role="doc-biblioref">Woo et al. 1999</a>)</span>, que rapidamente ocupa o lugar do PHIGS como API padrão para gráficos 3D. Desde então, revisões periódicas do OpenGL são feitas de modo a suportar os aprimoramentos mais recentes do hardware gráfico.</p>
+<p>O aspecto minimalista e de facilidade de uso do IRIS GL continuam presentes no OpenGL. Essas características fizeram – e ainda fazem – do OpenGL uma das APIs gráficas 3D mais populares em aplicações multiplataforma.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+InfiniteReality
+</div>
+<p>No início da década de 1990, as estações gráficas de alto desempenho suportavam apenas um número reduzido de características do OpenGL, sendo o restante simulado em software.</p>
+<p>O sistema <em>RealityEngine</em> <span class="citation">(<a href="#ref-akeley1993" role="doc-biblioref">Akeley 1993</a>)</span>, lançado em 1992 pela SGI, foi o primeiro hardware gráfico capaz de oferecer suporte para todas as etapas de transformação e iluminação da versão 1.0 do OpenGL, incluindo o mapeamento de texturas 2D com <em>mipmapping</em> (uma técnica de pré-filtragem de texturas) e <em>antialiasing</em> (suavização de serrilhado). A arquitetura foi sucedida em 1996 pelo <em>InfiniteReality</em> <span class="citation">(<a href="#ref-montrym1997" role="doc-biblioref">Montrym et al. 1997</a>)</span>, desenvolvido especificamente para o OpenGL. Dependendo da configuração final, o custo de uma estação gráfica baseada no InfiniteReality poderia ser superior a 1 milhão de dólares.</p>
+<p>Uma demonstração da SGI sobre as capacidades de renderização em tempo real do InfiniteReality em 1996 pode ser vista no vídeo de YouTube <a href="https://youtu.be/kY1mi0809BQ">“Silicon Graphics - Onyx Infinite Reallity 50FPS”</a>.</p>
+</div>
+<p>A partir de 1995, surgem nos PCs as primeiras placas de vídeo com aceleração de processamento gráfico 3D, também chamadas de <em>aceleradoras gráficas 3D</em>.</p>
+<p>As primeiras aceleradoras gráficas eram capazes de realizar apenas a varredura de linhas não texturizadas e, em alguns casos, tinham desempenho similar ao código de máquina otimizado na CPU. Por outro lado, logo essas limitações foram vencidas e surgiram placas eficientes e com suporte a mapeamento de textura, impulsionadas pelo emergente mercado de jogos de computador.</p>
+<p>Enquanto as primeiras estações gráficas da SGI implementavam um pipeline completo de transformação de vértices, ainda que sem suporte à texturização, as aceleradoras gráficas para PCs, produzidas por empresas como <a href="https://www.diamondmm.com">Diamond Multimedia</a>, S3 Graphics (extinta em 2003), Trident Microsystems (extinta em 2012), <a href="https://www.matrox.com/">Matrox Graphics</a> e <a href="https://www.nvidia.com/">NVIDIA</a>, ofereciam suporte ao mapeamento de texturas, porém sem transformação de geometria ou processamento de iluminação.</p>
+<p>A 3Dfx Interactive (adquirida em 2000 pela NVIDIA), com a sua série de aceleradoras <em>Voodoo Graphics</em> lançadas a partir de 1996, ampliou enormemente o uso do hardware gráfico em jogos de computador. As placas Voodoo eram capazes de exibir triângulos texturizados com mipmapping e filtragem bilinear (figura <a href="linha-do-tempo.html#fig:carmageddon">2.19</a>). Entretanto, o hardware ainda dependia da CPU para preparar os triângulos para a rasterização. Os triângulos só poderiam ser processados pelo hardware gráfico se fossem previamente convertidos em trapézios degenerados, alinhados em coordenadas da tela.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:carmageddon"></span>
+<img src="https://static.techspot.com/articles-info/672/images/2016-12-15-image-4.jpg" alt="Jogo &quot;Carmageddon II: Carpocalypse Now&quot; ([Stainless Games](https://www.stainlessgames.com/)) em uma placa gráfica 3Dfx Voodoo, de 1998 ([fonte](https://www.techspot.com/article/672-best-3dfx-glide-games/))." width="70%" />
+<p class="caption">
+Figura 2.19: Jogo “Carmageddon II: Carpocalypse Now” (<a href="https://www.stainlessgames.com/">Stainless Games</a>) em uma placa gráfica 3Dfx Voodoo, de 1998 (<a href="https://www.techspot.com/article/672-best-3dfx-glide-games/">fonte</a>).
+</p>
+</div>
+<p>Outra limitação das aceleradoras gráficas nesse período era a falta de suporte adequado a uma API padrão de indústria. A arquitetura de tais placas era incompatível com aquela especificada no OpenGL e fazia com que os desenvolvedores precisassem recorrer a APIs proprietárias, como a API <a href="http://glide.sourceforge.net/">Glide</a> da 3Dfx <span class="citation">(<a href="#ref-glide1997" role="doc-biblioref">3Dfx 1997</a>)</span>.</p>
+<p>As placas da 3Dfx foram populares até o final da década quando então o OpenGL e a API <a href="https://docs.microsoft.com/en-us/windows/win32/direct3d">Direct3D</a>, da <a href="https://www.microsoft.com/">Microsoft</a>, começaram a ser suportados de maneira eficiente pelas placas de concorrentes como a ATI Technologies (adquirida em 2006 pela <a href="https://www.amd.com/">AMD</a>), Matrox e NVIDIA.</p>
+<p>Na segunda metade da década, o desenvolvimento das placas gráficas para PCs acompanhou a evolução da API Direct3D. Em 1995, a Microsoft lança o <em>Windows 95 Games SDK</em>, um conjunto de APIs de baixo nível para o desenvolvimento de jogos e aplicações multimídia de alto desempenho no Windows. Em 1996, o Windows 95 Games SDK muda de nome para <em>DirectX</em> e sua segunda e terceira versões são disponibilizadas em junho e setembro desse mesmo ano. Entre as APIs contidas no DirectX, o Direct3D é concebido como uma API para hardware gráfico compatível com o pipeline de processamento do OpenGL.</p>
+<p>Embora no início o Direct3D fosse criticado por sua arquitetura demasiadamente confusa em comparação com o OpenGL (como relatado por John Carmack, da <a href="https://www.idsoftware.com/">id Software</a>, em sua <a href="https://rmitz.org/carmack.on.opengl.html">carta sobre o OpenGL</a>), eventualmente torna-se a API mais utilizada em jogos uma vez que novas versões começam a ser distribuídas em intervalos menores que aqueles do OpenGL. A revisão do OpenGL dependia do <a href="https://www.opengl.org/archives/about/arb/">ARB</a> (<em>Architecture Review Board</em>): um consórcio formado por representantes de diversas empresas de hardware e software que se reuniam periodicamente para propor e aprovar mudanças na API. O Direct3D, por ser proprietário, respondia melhor ao rápido desenvolvimento das placas gráficas naquele momento e passou a ditar a especificação das futuras aceleradoras gráficas voltadas ao mercado de jogos.</p>
+<p>Em 1997 é anunciado o DirectX 5 (o DirectX 4 nunca chegou a ser lançado), acompanhando as primeiras placas capazes de renderizar triângulos, tais como a <em>ATI Rage Pro</em> e <em>NVIDIA Riva 128</em> (figura <a href="linha-do-tempo.html#fig:riva128">2.20</a>). A Riva 128 não alcançava a mesma qualidade de imagem produzida pelas placas da 3Dfx, mas ultrapassava as placas Voodoo em várias medições de desempenho. Ainda assim, a aceleração de processamento de geometria era inexistente e a CPU era responsável por calcular as transformações geométricas e interpolações de atributos de vértices ao longo das arestas para cada triângulo transformado.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:riva128"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/NVidia_Riva_128.jpg/640px-NVidia_Riva_128.jpg" alt="Placa gráfica Diamond com o chip NVIDIA Riva 128, de 1997 ([fonte](https://commons.wikimedia.org/wiki/File:NVidia_Riva_128.jpg))." width="70%" />
+<p class="caption">
+Figura 2.20: Placa gráfica Diamond com o chip NVIDIA Riva 128, de 1997 (<a href="https://commons.wikimedia.org/wiki/File:NVidia_Riva_128.jpg">fonte</a>).
+</p>
+</div>
+<p>Em 1998 é lançado o DirectX 6 e surgem as primeiras aceleradoras gráficas capazes de interpolar atributos ao longo de arestas. Nessa geração de hardware gráfico, a CPU ainda era responsável pela transformação e iluminação de cada vértice, mas agora bastava enviar à placa gráfica os atributos de cada vértice em vez de atributos interpolados para cada aresta de cada triângulo. Um ano depois, o DirectX 7 é lançado com suporte para aceleração em hardware de transformação e iluminação (figura <a href="linha-do-tempo.html#fig:3dmark2000">2.21</a>). As primeiras placas compatíveis com DirectX 7 surgiriam no ano seguinte.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:3dmark2000"></span>
+<img src="images/02_3dmark2000.jpg" alt="Demonstração do benchmark [3DMark2000](https://benchmarks.ul.com/legacy-benchmarks) ([UL](https://www.ul.com/)) usando DirectX 7 com transformação de geometria e cálculo de iluminação em hardware." width="70%" />
+<p class="caption">
+Figura 2.21: Demonstração do benchmark <a href="https://benchmarks.ul.com/legacy-benchmarks">3DMark2000</a> (<a href="https://www.ul.com/">UL</a>) usando DirectX 7 com transformação de geometria e cálculo de iluminação em hardware.
+</p>
+</div>
+</div>
+<div id="section-5" class="section level3 unnumbered">
+<h3>2000</h3>
+<!-- https://en.wikipedia.org/wiki/Direct3D#Direct3D_9 -->
+<p>A década de 2000 presencia o que pode ser considerado uma revolução no uso do hardware gráfico: surgem os primeiros processadores gráficos programáveis (<em>programmable GPUs</em>) capazes de alterar o comportamento do pipeline de renderização sem depender da CPU. Isso torna possível a implementação de diversos novos modelos de reflexão para além do tradicional modelo de Blinn–Phong disponível no pipeline de função fixa (pipeline não programável). Além disso, a capacidade de programar processadores gráficos possibilita a implementação de um incontável número de novos efeitos visuais. As GPUs programáveis tornam-se muito populares em PCs, impulsionadas pelas exigentes demandas do mercado de jogos. Ao mesmo tempo, tornam-se muito flexíveis e poderosas não só para jogos, mas também para processamento de propósito geral.</p>
+<p>O hardware gráfico programável surge no início de 2001 com o lançamento da GPU NVIDIA GeForce 3 (figura <a href="linha-do-tempo.html#fig:geforce3">2.22</a>), inicialmente para o computador Apple Macintosh <span class="citation">(<a href="#ref-lindholm2001" role="doc-biblioref">Lindholm, Kilgard, and Moreton 2001</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:geforce3"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Geforce3gpu.jpg" alt="GPU NVIDIA GeForce ([fonte](https://en.wikipedia.org/wiki/File:Geforce3gpu.jpg))." width="65%" />
+<p class="caption">
+Figura 2.22: GPU NVIDIA GeForce (<a href="https://en.wikipedia.org/wiki/File:Geforce3gpu.jpg">fonte</a>).
+</p>
+</div>
+<p>No início de 2001, durante o evento MacWorld Expo Tokyo, é exibido o curta metragem “<a href="https://www.pixar.com/luxo-jr#luxo-jr-1">Luxo Jr.</a>” produzido pela Pixar em 1986. Entretanto, desta vez o filme é renderizado em tempo real em um computador equipado com uma GeForce 3. Steve Jobs, então CEO da Apple, observou:</p>
+<blockquote>
+<p>“Há 15 anos, o que levava 75 horas para produzir cada segundo de vídeo, está agora sendo renderizado em tempo real na GeForce 3.”</p>
+<p>— Steve Jobs <span class="citation">(<a href="#ref-morris2001" role="doc-biblioref">Morris 2001</a>)</span></p>
+</blockquote>
+<p>Mais tarde, as potencialidades de uma GPU similar seriam exibidas durante uma demonstração de tecnologia na conferência SIGGRAPH 2001: uma versão interativa do filme “Final Fantasy: The Spirits Within,” de Hironobu Sakaguchi, renderizada em tempo real em uma GPU NVIDIA Quadro DCC <span class="citation">(<a href="#ref-sakaguchi2001" role="doc-biblioref">Sakaguchi and Aida 2001</a>)</span>. Neste evento, a NVIDIA destacou que o desempenho em operações em ponto flutuante utilizadas para desenhar apenas um quadro do filme era superior ao poder computacional total de um supercomputador Cray (tradicional fabricante de supercomputadores, adquirida em 2019 pela <a href="https://www.hpe.com/">Hewlett Packard Enterprise</a>) naquele momento.</p>
+<p>Ao longo da década, as GPUs de baixo custo (na faixa de 100 a 250 dólares), produzidas por empresas como NVIDIA e ATI, desbancam as estações gráficas de alto desempenho ainda baseadas em tecnologias da década anterior. As placas gráficas para computadores pessoais ultrapassam rapidamente as capacidades computacionais de sistemas como o RealityEngine da SGI, mas ao mesmo tempo com uma redução de custo superior a 90% em comparação com esses sistemas. De acordo com a <a href="https://www.intel.com/content/www/us/en/silicon-innovations/moores-law-technology.html">Lei de Moore</a>, e observando a diminuição do custo das CPUs nesse período, tais placas deveriam custar muito mais, em torno de 15 mil dólares. Esse avanço expressivo das GPUs é implacável com as fabricantes de estações gráficas. Em 2009, a SGI decreta falência.</p>
+<p>As APIs Direct3D (em 2006) e OpenGL (em 2009) anunciam a descontinuidade do suporte ao pipeline de função fixa. Com isso, as aplicações migram definitivamente ao uso dos <em>shaders</em>: programas que modificam o comportamento das etapas programáveis do pipeline, como o processamento de geometria e fragmentos (amostras de primitivas rasterizadas).</p>
+<p>Com o aumento do conjunto de instruções suportadas nas GPUs, percebe-se que é possível usar o hardware gráfico para processamento de propósito geral em tarefas como simulação de dinâmica de fluidos, operações em bancos de dados, modelagem de dinâmica molecular, criptoanálise, entre muitas outras tarefas capazes de se beneficiar de processamento paralelo. O termo GPGPU (<em>General-Purpose Computation on GPUs</em>) é utilizado para se referir a esse uso. A figura <a href="linha-do-tempo.html#fig:abalone">2.23</a> mostra um exemplo atual de aplicação de GPGPU para a modelagem de DNA.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:abalone"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/DNA-ligand-by-Abalone.png" alt="Ligante de sulco menor do DNA, modelado através de GPGPU com o software [Abalone](http://www.biomolecular-modeling.com/Abalone/). ([fonte](https://en.wikipedia.org/wiki/Abalone_(molecular_mechanics)#/media/File:DNA-ligand-by-Abalone.png))." width="70%" />
+<p class="caption">
+Figura 2.23: Ligante de sulco menor do DNA, modelado através de GPGPU com o software <a href="http://www.biomolecular-modeling.com/Abalone/">Abalone</a>. (<a href="https://en.wikipedia.org/wiki/Abalone_(molecular_mechanics)#/media/File:DNA-ligand-by-Abalone.png">fonte</a>).
+</p>
+</div>
+<p>Em 2007, a NVIDIA lança a plataforma <a href="https://developer.nvidia.com/cuda-zone">CUDA</a> (<em>Compute Unified Device Architecture</em>), composta por um conjunto de ferramentas/bibliotecas e API de GPGPU para placas da NVIDIA. A plataforma é muito popular atualmente, impulsionada pelo crescimento das aplicações em ciência de dados e aprendizado de máquina. Influenciada pelo CUDA, surgem em 2009 outras plataformas como o DirectCompute, da Microsoft (como parte do Direct3D 11), e a especificação aberta <a href="https://www.khronos.org/opencl/">OpenCL</a> do <a href="https://www.khronos.org/">Khronos Group</a>, mesmo consórcio de indústrias que mantém o OpenGL.</p>
+<p>As primeiras oficinas e conferências sobre GPGPU, como a <a href="https://dl.acm.org/conference/gpgpu">ACM GPGPU</a> e a <a href="https://www.nvidia.com/en-us/gtc/"><em>GPU Technology Conference</em></a> (GTC), da NVIDIA, surgem neste período.</p>
+</div>
+<div id="section-6" class="section level3 unnumbered">
+<h3>2010</h3>
+<p>A partir da década de 2010, a aceleração de gráficos 3D se expande e se populariza nos dispositivos móveis. O uso de multitexturização (uso de vários estágios de texturização) e de técnicas como normal mapping, <em>cube mapping</em> (para simulação de superfícies reflexivas) e <em>shadow mapping</em> (para simulação de sombras) torna-se comum em aplicações gráficas interativas.</p>
+<p>Em 2011, o Khronos Group anuncia o padrão <a href="https://www.khronos.org/webgl/">WebGL</a>, ampliando a possibilidade de uso de aceleração de gráficos 3D nos navegadores.</p>
+<p>Na segunda metade da década, a renderização baseada em física, do inglês <em>physically based rendering</em> (PBR), começa a ser empregada em jogos de computador e em consoles. O jogo “Alien: Isolation” (<a href="https://www.creative-assembly.com/">Creative Assembly</a>), de 2014, é um dos primeiros a explorar esta tecnologia.</p>
+<div class="notebox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
+<div class="noteboxtitle">
+Renderização baseada em física
+</div>
+<p>A renderização baseada em física, ou PBR, procura simular de forma fisicamente correta a interação da luz com os diferentes materiais de uma cena <span class="citation">(<a href="#ref-pharr2016" role="doc-biblioref">Pharr, Jakob, and Humphreys 2016</a>)</span>.</p>
+<p>Em PBR, os materiais são descritos por informações de detalhes de microsuperfície, frequentemente obtidas por fotogrametria e armazenadas em mapas de textura.</p>
+<p>O vídeo a seguir (em inglês) apresenta uma breve introdução ao conceito de PBR e sua implementação usando o <em>Unity Standard Shader</em> do motor de jogo <a href="https://unity.com/">Unity</a>:</p>
+<iframe width="100%" height="400"
+  src="https://www.youtube.com/embed/_LaVvGlkBDs?rel=0"
+  frameborder="0" allow="autoplay; encrypted-media"
+  allowfullscreen></iframe>
+<p></p>
+</div>
+<p>Em 2016 são lançadas novas gerações de <em>headsets</em> de realidade virtual como o <a href="https://www.oculus.com/">Oculus Rift</a> e <a href="https://www.vive.com/">HTC Vive</a>, que elevam as exigências de hardware gráfico para jogos que utilizam essa tecnologia. Também em 2016, o Khronos Group lança a API <a href="https://www.khronos.org/vulkan/">Vulkan</a> como uma API de baixo nível com maior capacidade de explorar os recursos gráficos e de computação das novas gerações de GPUs.</p>
+<p>Em 2018 é incorporado ao Direct3D 12 o <em>DirectX Raytracing</em> (DXR), que introduz um novo pipeline gráfico destinado ao traçado de raios em tempo real. Ainda em 2018, as GPUs <a href="https://www.nvidia.com/en-us/geforce/20-series/">NVIDIA RTX série 20</a> são as primeiras a suportar essa tecnologia.</p>
+</div>
+<div id="section-7" class="section level3 unnumbered">
+<h3>2020</h3>
+<p>Em 2020, as GPUs NVIDIA RTX série 20 são sucedidas pela <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/">série 30</a>, ampliando ainda mais a possibilidade de uso de traçado de raios em tempo real. A AMD lança as GPUs da série <a href="https://www.amd.com/en/graphics/amd-radeon-rx-6000-series">Radeon RX 6000</a>, também com suporte a traçado de raios. Além disso, uma API de traçado de raios é incorporada ao Vulkan como o conjunto de extensões <a href="https://www.khronos.org/blog/vulkan-ray-tracing-final-specification-release">Vulkan Ray Tracing</a>.</p>
+<p>Ainda estamos no início da década, mas o aumento da capacidade de processamento e largura de banda de memória do hardware gráfico deve continuar a empurrar os limites do que é possível renderizar em tempo real. Efeitos atmosféricos, texturas de altíssima resolução e simulações de <em>iluminação global</em><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> em tempo real devem se popularizar nos próximos anos.</p>
+<p>O vídeo de demonstração a seguir (em inglês) exibe algumas das capacidades de processamento de iluminação global em tempo real do motor de jogo <a href="https://www.unrealengine.com/en-US/blog/a-first-look-at-unreal-engine-5">Unreal Engine 5</a> no console <a href="https://www.playstation.com/">PlayStation 5</a>. O lançamento do Unreal Engine 5 está previsto para o final de 2021:</p>
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/417882964" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-glide1997" class="csl-entry">
+3Dfx. 1997. <em>Glide 2.2 Reference Manual</em>. San Jose, CA, USA: <span>3Dfx Interactive</span>.
+</div>
+<div id="ref-akeley1993" class="csl-entry">
+Akeley, Kurt. 1993. <span>“Reality Engine Graphics.”</span> In <em>Proceedings of the 20th Annual Conference on Computer Graphics and Interactive Techniques</em>, 109–16. SIGGRAPH ’93. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/166117.166131">https://doi.org/10.1145/166117.166131</a>.
+</div>
+<div id="ref-albers2008" class="csl-entry">
+Albers, Donald J., and Gerald L. Alexanderson. 2008. <span>“<span class="nocase">Benoît Mandelbrot: In his own words</span>.”</span> In <em>Mathematical People: Profiles and Interviews</em>, 213–32. A K Peters, Ltd.
+</div>
+<div id="ref-blinn1977" class="csl-entry">
+Blinn, James F. 1977. <span>“Models of Light Reflection for Computer Synthesized Pictures.”</span> <em>SIGGRAPH Comput. Graph.</em> 11 (2): 192–98. <a href="https://doi.org/10.1145/965141.563893">https://doi.org/10.1145/965141.563893</a>.
+</div>
+<div id="ref-blinn1978" class="csl-entry">
+———. 1978. <span>“Simulation of Wrinkled Surfaces.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (3): 286–92.
+</div>
+<div id="ref-catmull1974" class="csl-entry">
+Catmull, Edwin Earl. 1974. <span>“A Subdivision Algorithm for Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
+</div>
+<div id="ref-chappell1978" class="csl-entry">
+Chappell, Gary, and Peter Bono. 1978. <span>“Core System Implementations: A Status Report.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (4): 53–66. <a href="https://doi.org/10.1145/988451.988454">https://doi.org/10.1145/988451.988454</a>.
+</div>
+<div id="ref-cook1984" class="csl-entry">
+Cook, Robert L., Thomas Porter, and Loren Carpenter. 1984. <span>“Distributed Ray Tracing.”</span> In <em>Proceedings of the 11th Annual Conference on Computer Graphics and Interactive Techniques</em>, 137–45. SIGGRAPH ’84. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/800031.808590">https://doi.org/10.1145/800031.808590</a>.
+</div>
+<div id="ref-gouraud1971" class="csl-entry">
+Gouraud, Henri. 1971. <span>“Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
+</div>
+<div id="ref-greenberg1986" class="csl-entry">
+Greenberg, Donald P., Michael F. Cohen, and Kenneth E. Torrance. 1986. <span>“Radiosity: A Method for Computing Global Illumination.”</span> <em>The Visual Computer</em> 2 (5): 291–97. <a href="https://doi.org/10.1007/BF02020429">https://doi.org/10.1007/BF02020429</a>.
+</div>
+<div id="ref-iso1985" class="csl-entry">
+ISO. 1985. <span>“<span class="nocase">Information technology – Computer graphics – Graphical Kernel System (GKS) – Part 1: Functional description, Part 2: NDC metafile, Part 3: Audit, and Part 4: Archive</span>.”</span> Standard ISO/IEC 7942:1985. International Organization for Standardization.
+</div>
+<div id="ref-lindholm2001" class="csl-entry">
+Lindholm, Erik, Mark J. Kilgard, and Henry Moreton. 2001. <span>“A User-Programmable Vertex Engine.”</span> In <em>Proceedings of the 28th Annual Conference on Computer Graphics and Interactive Techniques</em>, 149–58. SIGGRAPH ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/383259.383274">https://doi.org/10.1145/383259.383274</a>.
+</div>
+<div id="ref-mcLendon1992" class="csl-entry">
+McLendon, Patricia. 1992. <em>Graphics Library Programming Guide</em>. Mountain View, CA, USA: Silicon Graphics.
+</div>
+<div id="ref-montrym1997" class="csl-entry">
+Montrym, John S., Daniel R. Baum, David L. Dignam, and Christopher J. Migdal. 1997. <span>“InfiniteReality: A Real-Time Graphics System.”</span> In, 293–302. SIGGRAPH ’97. USA: ACM Press/Addison-Wesley Publishing Co. <a href="https://doi.org/10.1145/258734.258871">https://doi.org/10.1145/258734.258871</a>.
+</div>
+<div id="ref-morris2001" class="csl-entry">
+Morris, Chris. 2001. <span>“<span class="nocase">X-Box on your PC?</span>”</span> In <em>CNN Money</em>. <a href="http://money.cnn.com/2001/02/22/technology/nvidia/">http://money.cnn.com/2001/02/22/technology/nvidia/</a>.
+</div>
+<div id="ref-pharr2016" class="csl-entry">
+Pharr, Matt, Wenzel Jakob, and Greg Humphreys. 2016. <em>Physically Based Rendering: From Theory to Implementation</em>. 3rd ed. Morgan Kaufmann.
+</div>
+<div id="ref-phong1973" class="csl-entry">
+Phong, Bui Tuong. 1973. <span>“Illumination of Computer-Generated Images.”</span> Technical Report UTEC-CSs-73-129. University of Utah.
+</div>
+<div id="ref-rubin2005" class="csl-entry">
+Rubin, Michael. 2005. <em>Droidmaker: George Lucas and the Digital Revolution</em>. Triad Pub Co.
+</div>
+<div id="ref-sakaguchi2001" class="csl-entry">
+Sakaguchi, Hironobu, and Jun Aida. 2001. <span>“Final Fantasy - the Spirits Within.”</span> In <em>ACM SIGGRAPH 2001 Video Review on Electronic Theater Program</em>, 15. SVR ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/945314.945329">https://doi.org/10.1145/945314.945329</a>.
+</div>
+<div id="ref-shuey1987" class="csl-entry">
+Shuey, David. 1987. <span>“PHIGS: A Graphics Platform for CAD Application Development.”</span> <em>Comput. Aided Des.</em> 19 (8): 410–17. <a href="https://doi.org/10.1016/S0010-4485(87)80003-9">https://doi.org/10.1016/S0010-4485(87)80003-9</a>.
+</div>
+<div id="ref-sutherland1963" class="csl-entry">
+Sutherland, Ivan Edward. 1963. <span>“<span>S</span>ketchpad: <span>A</span> <span>M</span>an-<span>M</span>achine <span>G</span>raphical <span>C</span>ommunication <span>S</span>ystem.”</span> In <em>Proceedings of the 1963 Spring Joint Computer Conference</em>, 23:329–46. AFIPS Conference Proceedings. Baltimore, MD.
+</div>
+<div id="ref-whitted1979" class="csl-entry">
+Whitted, Turner. 1979. <span>“An Improved Illumination Model for Shaded Display.”</span> In <em>6th Annual Conference on Computer Graphics and Interactive Techniques</em>.
+</div>
+<div id="ref-woo1999" class="csl-entry">
+Woo, Mason, Jackie Neider, Tom Davis, and Dave Shreiner. 1999. <em>OpenGL Programming Guide: The Official Guide to Learning OpenGL, Version 1.2</em>. 3rd ed. Boston, MA, USA: Addison-Wesley Longman Publishing Co., Inc.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>O Spacewar! original rodando em um emulador de PDP-1 de JavaScript está disponível em <a href="https://spacewar.oversigma.com/">https://spacewar.oversigma.com/</a>.<a href="linha-do-tempo.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Métodos de iluminação global são aqueles capazes de simular as interreflexões de luz de um ambiente para a composição da cor final de cada pixel, como o método de traçado de raios e radiosidade.<a href="linha-do-tempo.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="áreas-correlatas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="firstapp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
