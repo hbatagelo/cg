@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Referências | MCTA008-17 Computação Gráfica</title>
+  <title>3.3 Framebuffer | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Referências | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="3.3 Framebuffer | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Referências | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="3.3 Framebuffer | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sierpinski.html"/>
-
+<link rel="prev" href="es.html"/>
+<link rel="next" href="sierpinski.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -248,117 +248,67 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências" class="section level1 unnumbered">
-<h1>Referências</h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-3Dfx. 1997. <em>Glide 2.2 Reference Manual</em>. San Jose, CA, USA: <span>3Dfx Interactive</span>.
+<div id="framebuffer" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Framebuffer</h2>
+<p>O framebuffer é uma área contígua da memória utilizada para armazenar a imagem que será mostrada no dispositivo de exibição. O controlador gráfico lê continuamente o conteúdo do framebuffer e atualiza o dispositivo de exibição, tipicamente a uma taxa de 60 Hz nos monitores de LCD.</p>
+<p>Nos primeiros PCs e em sistemas gráficos mais antigos, o framebuffer fazia parte da memória padrão que poderia ser acessada diretamente pela CPU. Nos PCs do início da década de 1990, o framebuffer podia ser acessado com um simples ponteiro para o endereço <code>0xA000</code> no chamado <a href="https://en.wikipedia.org/wiki/Mode_13h">“modo 13h”</a> do controlador VGA (um modo gráfico de cores indexadas de 8 bits com resolução de 320x200). Atualmente, o framebuffer é acessado através da GPU e está localizado na mesma placa de circuito da GPU (figura <a href="framebuffer.html#fig:framebuffer2">3.27</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:framebuffer2"></span>
+<img src="images/03_framebuffer2.svg" alt="Configuração do framebuffer em sistema gráfico com GPU dedicada." width="100%" />
+<p class="caption">
+Figura 3.27: Configuração do framebuffer em sistema gráfico com GPU dedicada.
+</p>
 </div>
-<div class="csl-entry">
-Akeley, Kurt. 1993. <span>“Reality Engine Graphics.”</span> In <em>Proceedings of the 20th Annual Conference on Computer Graphics and Interactive Techniques</em>, 109–16. SIGGRAPH ’93. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/166117.166131">https://doi.org/10.1145/166117.166131</a>.
+<p><br />
+</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
 </div>
-<div class="csl-entry">
-Albers, Donald J., and Gerald L. Alexanderson. 2008. <span>“<span class="nocase">Benoît Mandelbrot: In his own words</span>.”</span> In <em>Mathematical People: Profiles and Interviews</em>, 213–32. A K Peters, Ltd.
+<p>Em hardware compatível com OpenGL (o que inclui todas as GPUs atuais), o framebuffer pode ser composto por vários buffers. Pelo menos um deles é um <em>color buffer</em> (buffer de cor) no qual cada pixel contém uma informação de cor, geralmente no formato RGB (24 bits) ou RGBA (32 bits).</p>
+<p>Um framebuffer pode ter vários buffers de cor associados. Por exemplo, em implementações que suportam visão estereoscópica, dois buffers de cor podem ser utilizados: um para a tela da visão esquerda e outro para a tela da visão direita. Na técnica de <em>backbuffering</em> (descrita no fim da seção), também dois buffers de cor são utilizados: o <em>backbuffer</em>, que é um buffer <em>off-screen</em> (invisível) onde a imagem é renderizada antes de ser exibida na tela, e o <em>frontbuffer</em>, que recebe o conteúdo do backbuffer ao fim da renderização, para exibição na tela. Em renderização estéreo, cada lado esquerdo e direito tem o seu backbuffer e frontbuffer. Além dos buffers de cor, o framebuffer também pode incluir:</p>
+<ul>
+<li>Um <em>depth buffer</em> (buffer de profundidade), no qual cada pixel contém uma informação de profundidade utilizada no <a href="https://www.khronos.org/opengl/wiki/Depth_Test"><em>teste de profundidade</em></a>. O teste de profundidade faz parte da implementação da técnica de Z-buffering de determinação de superfícies visíveis. A informação de profundidade pode ser um inteiro ou ponto flutuante de 16, 24 ou 32 bits (geralmente 24 bits).</li>
+<li>Um <em>stencil buffer</em> (buffer de estêncil), utilizado no <a href="https://www.khronos.org/opengl/wiki/Stencil_Test"><em>teste de estêncil</em></a> para operações de mascaramento e composição de imagens. No buffer estêncil, cada pixel contém um inteiro sem sinal, de 1, 4, 8 ou 16 bits (geralmente 8 bits).</li>
+</ul>
 </div>
-<div class="csl-entry">
-Blinn, James F. 1977. <span>“Models of Light Reflection for Computer Synthesized Pictures.”</span> <em>SIGGRAPH Comput. Graph.</em> 11 (2): 192–98. <a href="https://doi.org/10.1145/965141.563893">https://doi.org/10.1145/965141.563893</a>.
+<div id="screen-tearing" class="section level3 unnumbered">
+<h3>Screen tearing</h3>
+<p>A taxa de atualização do dispositivo de exibição (chamada de <em>vertical refresh rate</em>) é controlada pelo controlador gráfico. Entretanto, a taxa em que o framebuffer é atualizado pode ser bem maior. Essa taxa é o número de quadros por segundo (FPS) que o processador gráfico consegue renderizar. Se o framebuffer for atualizado muito rapidamente, o controlador pode começar a atualizar o dispositivo de exibição com o conteúdo de um quadro e terminar com o conteúdo de outro, mais recente. Essa quebra entre os quadros de exibição gera um defeito na imagem conhecido como <em>screen tearing</em> ou simplesmente <em>tearing</em> (figura <a href="framebuffer.html#fig:screentearing">3.28</a>).</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:screentearing"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Tearing_%28simulated%29.jpg/797px-Tearing_%28simulated%29.jpg" alt="Screen tearing. ([fonte](https://commons.wikimedia.org/wiki/File:Tearing_(simulated).jpg))." width="100%" />
+<p class="caption">
+Figura 3.28: Screen tearing. (<a href="https://commons.wikimedia.org/wiki/File:Tearing_(simulated).jpg">fonte</a>).
+</p>
 </div>
-<div class="csl-entry">
-———. 1978. <span>“Simulation of Wrinkled Surfaces.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (3): 286–92.
 </div>
-<div class="csl-entry">
-Catmull, Edwin Earl. 1974. <span>“A Subdivision Algorithm for Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
+<div id="vsync" class="section level3 unnumbered">
+<h3>Vsync</h3>
+<p>Para contornar o problema de screen tearing, a GPU pode sincronizar a atualização do framebuffer com a atualização do controlador gráfico, efetivamente limitando o número de FPS à frequência do monitor em Hz. Esse processo de sincronização é chamado de <em>vertical synchronization</em>, ou <em>vsync</em>. Em monitores mais recentes, compatíveis com as tecnologias <a href="https://www.nvidia.com/en-us/geforce/products/g-sync-monitors/">G-SYNC</a> da NVIDIA, e <a href="https://www.amd.com/en/technologies/free-sync">FreeSync</a> da AMD, é possível fazer a sincronização na direção contrária: a frequência do monitor é ajustada pela GPU de acordo com a taxa de FPS.</p>
 </div>
-<div class="csl-entry">
-Chappell, Gary, and Peter Bono. 1978. <span>“Core System Implementations: A Status Report.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (4): 53–66. <a href="https://doi.org/10.1145/988451.988454">https://doi.org/10.1145/988451.988454</a>.
-</div>
-<div class="csl-entry">
-Cook, Robert L., Thomas Porter, and Loren Carpenter. 1984. <span>“Distributed Ray Tracing.”</span> In <em>Proceedings of the 11th Annual Conference on Computer Graphics and Interactive Techniques</em>, 137–45. SIGGRAPH ’84. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/800031.808590">https://doi.org/10.1145/800031.808590</a>.
-</div>
-<div class="csl-entry">
-Floyd, Robert W., and Louis Steinberg. 1976. <span>“<span>A</span>n <span>A</span>daptive <span>A</span>lgorithm for <span>S</span>patial <span>G</span>reyscale.”</span> <em>Proceedings of the Society of Information Display</em> 17 (2): 75–77.
-</div>
-<div class="csl-entry">
-Gouraud, Henri. 1971. <span>“Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
-</div>
-<div class="csl-entry">
-Greenberg, Donald P., Michael F. Cohen, and Kenneth E. Torrance. 1986. <span>“Radiosity: A Method for Computing Global Illumination.”</span> <em>The Visual Computer</em> 2 (5): 291–97. <a href="https://doi.org/10.1007/BF02020429">https://doi.org/10.1007/BF02020429</a>.
-</div>
-<div class="csl-entry">
-ISO. 1985. <span>“<span class="nocase">Information technology – Computer graphics – Graphical Kernel System (GKS) – Part 1: Functional description, Part 2: NDC metafile, Part 3: Audit, and Part 4: Archive</span>.”</span> Standard ISO/IEC 7942:1985. International Organization for Standardization.
-</div>
-<div class="csl-entry">
-———. 2015. <span>“<span class="nocase">Information technology – Vocabulary</span>.”</span> Standard ISO/IEC 2382:2015. International Organization for Standardization. <a href="https://www.iso.org/standard/63598.html">https://www.iso.org/standard/63598.html</a>.
-</div>
-<div class="csl-entry">
-Lindholm, Erik, Mark J. Kilgard, and Henry Moreton. 2001. <span>“A User-Programmable Vertex Engine.”</span> In <em>Proceedings of the 28th Annual Conference on Computer Graphics and Interactive Techniques</em>, 149–58. SIGGRAPH ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/383259.383274">https://doi.org/10.1145/383259.383274</a>.
-</div>
-<div class="csl-entry">
-McLendon, Patricia. 1992. <em>Graphics Library Programming Guide</em>. Mountain View, CA, USA: Silicon Graphics.
-</div>
-<div class="csl-entry">
-Montrym, John S., Daniel R. Baum, David L. Dignam, and Christopher J. Migdal. 1997. <span>“InfiniteReality: A Real-Time Graphics System.”</span> In, 293–302. SIGGRAPH ’97. USA: ACM Press/Addison-Wesley Publishing Co. <a href="https://doi.org/10.1145/258734.258871">https://doi.org/10.1145/258734.258871</a>.
-</div>
-<div class="csl-entry">
-Morris, Chris. 2001. <span>“<span class="nocase">X-Box on your PC?</span>”</span> In <em>CNN Money</em>. <a href="http://money.cnn.com/2001/02/22/technology/nvidia/">http://money.cnn.com/2001/02/22/technology/nvidia/</a>.
-</div>
-<div class="csl-entry">
-Noll, A. Michael. 1971. <span>“Scanned-Display Computer Graphics.”</span> <em>Commun. ACM</em> 14 (3): 143–50. <a href="https://doi.org/10.1145/362566.362567">https://doi.org/10.1145/362566.362567</a>.
-</div>
-<div class="csl-entry">
-Pharr, Matt, Wenzel Jakob, and Greg Humphreys. 2016. <em>Physically Based Rendering: From Theory to Implementation</em>. 3rd ed. Morgan Kaufmann.
-</div>
-<div class="csl-entry">
-Phong, Bui Tuong. 1973. <span>“Illumination of Computer-Generated Images.”</span> Technical Report UTEC-CSs-73-129. University of Utah.
-</div>
-<div class="csl-entry">
-Rubin, Michael. 2005. <em>Droidmaker: George Lucas and the Digital Revolution</em>. Triad Pub Co.
-</div>
-<div class="csl-entry">
-Sakaguchi, Hironobu, and Jun Aida. 2001. <span>“Final Fantasy - the Spirits Within.”</span> In <em>ACM SIGGRAPH 2001 Video Review on Electronic Theater Program</em>, 15. SVR ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/945314.945329">https://doi.org/10.1145/945314.945329</a>.
-</div>
-<div class="csl-entry">
-Shuey, David. 1987. <span>“PHIGS: A Graphics Platform for CAD Application Development.”</span> <em>Comput. Aided Des.</em> 19 (8): 410–17. <a href="https://doi.org/10.1016/S0010-4485(87)80003-9">https://doi.org/10.1016/S0010-4485(87)80003-9</a>.
-</div>
-<div class="csl-entry">
-Sutherland, Ivan Edward. 1963. <span>“<span>S</span>ketchpad: <span>A</span> <span>M</span>an-<span>M</span>achine <span>G</span>raphical <span>C</span>ommunication <span>S</span>ystem.”</span> In <em>Proceedings of the 1963 Spring Joint Computer Conference</em>, 23:329–46. AFIPS Conference Proceedings. Baltimore, MD.
-</div>
-<div class="csl-entry">
-Whitted, Turner. 1979. <span>“An Improved Illumination Model for Shaded Display.”</span> In <em>6th Annual Conference on Computer Graphics and Interactive Techniques</em>.
-</div>
-<div class="csl-entry">
-Woo, Mason, Jackie Neider, Tom Davis, and Dave Shreiner. 1999. <em>OpenGL Programming Guide: The Official Guide to Learning OpenGL, Version 1.2</em>. 3rd ed. Boston, MA, USA: Addison-Wesley Longman Publishing Co., Inc.
+<div id="backbuffering" class="section level3 unnumbered">
+<h3>Backbuffering</h3>
+<p>Defeitos de screen tearing também podem ocorrer quando a taxa de renderização é menor que a taxa de atualização do dispositivo de exibição. Nesse caso, o dispositivo de exibição pode mostrar o quadro de exibição antes da renderização ter sido finalizada. O resultado pode ser uma mistura de elementos do quadro atual com elementos do quadro anterior, ou a percepção de que o quadro está sendo desenhado.</p>
+<p>Uma forma de reduzir o efeito de screen tearing é o uso de dois buffers de cor: o backbuffer e o frontbuffer. O processador renderiza os gráficos apenas no backbuffer. Após o fim da renderização, o conteúdo é transferido para o frontbuffer, que é então utilizado pelo controlador gráfico para atualizar o dispositivo de exibição. Dessa forma, o controlador sempre utiliza um buffer que já contém um quadro completo. Atualmente, essa técnica de backbuffering é implementada em hardware. O backbuffer e frontbuffer podem ser páginas de memória do framebuffer que são trocadas continuamente em um processo de <em>page flipping</em>, sem precisar realizar transferência de dados (figura <a href="framebuffer.html#fig:framebuffer3">3.29</a>).</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:framebuffer3"></span>
+<img src="images/03_framebuffer3.svg" alt="Configuração do framebuffer com suporte a backbuffering." width="100%" />
+<p class="caption">
+Figura 3.29: Configuração do framebuffer com suporte a backbuffering.
+</p>
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="sierpinski.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="es.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sierpinski.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

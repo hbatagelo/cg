@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.2 Dispositivos de E/S | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.2 Dispositivos de E/S | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.2 Dispositivos de E/S | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="vectorxraster.html"/>
+<link rel="next" href="framebuffer.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#habilitando-o-opengl"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#habilitando-o-opengl-1"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-em-linha-de-comando"><i class="fa fa-check"></i>Compilando em linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-visual-studio-code"><i class="fa fa-check"></i>Compilando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-visual-studio-code"><i class="fa fa-check"></i>Depurando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="mailto:harlen.batagelo@ufabc.edu.br" target="blank">Harlen Batagelo</a>
+<a href="mailto:bruno.marques@ufabc.edu.br" target="blank">Bruno Marques</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="es" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Dispositivos de E/S</h2>
+<p>A seguir apresentamos uma visão geral de conceitos e tecnologias relacionadas a dispositivos de entrada e saída utilizados em sistemas gráficos.</p>
+<div id="dispositivos-de-entrada" class="section level3 unnumbered">
+<h3>Dispositivos de entrada</h3>
+<p>Um sistema gráfico possui um ou mais dispositivos de entrada que permitem ao usuário interagir com os modelos de dados gráficos.</p>
+<p>O <strong>dispositivo de teclado</strong> inclui o tradicional teclado físico dos computadores de mesa e <em>laptops</em> (figura <a href="es.html#fig:keyboard1">3.12</a>). O teclado produz um código (<em>scancode</em>) composto por um byte ou sequência de bytes que identifica cada tecla pressionada e liberada.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:keyboard1"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/2018_Bay_Area_Mechanical_Keyboard_Meetup_%2844130528080%29.jpg/1280px-2018_Bay_Area_Mechanical_Keyboard_Meetup_%2844130528080%29.jpg" alt="Teclado de teclas mecânicas ([fonte](https://en.wikipedia.org/wiki/Computer_keyboard#/media/File:2018_Bay_Area_Mechanical_Keyboard_Meetup_(44130528080).jpg))." width="90%" />
+<p class="caption">
+Figura 3.12: Teclado de teclas mecânicas (<a href="https://en.wikipedia.org/wiki/Computer_keyboard#/media/File:2018_Bay_Area_Mechanical_Keyboard_Meetup_(44130528080).jpg">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>O teclado virtual de um smartphone ou tablet é também um dispositivo de teclado. Embora não possua teclas físicas, o resultado dos toques na tela e o resultado da conversão de uma anotação manuscrita em texto é um conjunto de scancodes que corresponde aos mesmos caracteres de teclas de um teclado físico (figura <a href="es.html#fig:keyboard2">3.13</a>).</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:keyboard2"></span>
+<img src="https://androidwikihow.com/wp-content/uploads/2014/07/Disable-Touch-screen-Keyboard-Vibration-On-Your-Android-Smartphone.jpg" alt="Teclado virtual de um smartphone ([fonte](https://androidwikihow.com/2014/07/how-to-disable-touch-screen-keyboard-html))." width="90%" />
+<p class="caption">
+Figura 3.13: Teclado virtual de um smartphone (<a href="https://androidwikihow.com/2014/07/how-to-disable-touch-screen-keyboard-html">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>Os códigos de um dispositivo de teclado podem ser interpretados como direções de movimentação de um cursor de desenho para permitir a interação com dados gráficos. Uma forma de utilizar o teclado para a interação com cenas virtuais 3D é mapear as setas (esquerda, direita, para cima, para baixo) ou as teclas <code>WASD</code> a transformações de translação de uma câmera em primeira pessoa, e usar outro conjunto de teclas para alterar a orientação da câmera.</p>
+<p>Além do teclado, é comum que um sistema gráfico tenha também pelo menos um <strong>dispositivo apontador</strong>, como o mouse (figura <a href="es.html#fig:mouse">3.14</a>), capaz de fornecer dados de movimentação ou posicionamento sobre uma superfície, geralmente mapeados para uma posição na tela.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:mouse"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/22/3-Tasten-Maus_Microsoft.jpg" alt="Mouse com dois botões e botão de rolagem. ([fonte](https://pt.wikipedia.org/wiki/Rato_(inform%C3%A1tica)#/media/Ficheiro:3-Tasten-Maus_Microsoft.jpg))." width="60%" />
+<p class="caption">
+Figura 3.14: Mouse com dois botões e botão de rolagem. (<a href="https://pt.wikipedia.org/wiki/Rato_(inform%C3%A1tica)#/media/Ficheiro:3-Tasten-Maus_Microsoft.jpg">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>O mouse produz dados de deslocamento em duas direções ortogonais que correspondem ao movimento horizontal (<span class="math inline">\(x\)</span>) e vertical (<span class="math inline">\(y\)</span>) do dispositivo<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>. Como os dados produzidos são apenas deslocamentos, e não posições, o mouse é considerado um dispositivo de <strong>posicionamento relativo</strong>. Entretanto, os deslocamentos em <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> podem ser interpretados como velocidades e acumulados ao longo do tempo para determinar a posição de um cursor na tela. Outros dispositivos populares de <strong>posicionamento relativo</strong> são os touch pads, trackballs, joysticks e gamepads (figura <a href="es.html#fig:reldevices">3.15</a>). Tais dispositivos também possuem botões que podem ser configurados da mesma forma que as teclas de um teclado.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:reldevices"></span>
+<img src="images/03_reldevices.jpg" alt="Dispositivos apontadores de posicionamento relativo. Da esquerda para a direita: trackball ([fonte](https://commons.wikimedia.org/wiki/File:Kensington_Expert_Mouse_Wired_Trackball_64325.jpg)), joystick ([fonte](https://commons.wikimedia.org/wiki/File:Atari-2600-Joystick.jpg)), gamepad ([fonte](https://commons.wikimedia.org/wiki/File:Logitech_F310_Gamepad.jpg))."  />
+<p class="caption">
+Figura 3.15: Dispositivos apontadores de posicionamento relativo. Da esquerda para a direita: trackball (<a href="https://commons.wikimedia.org/wiki/File:Kensington_Expert_Mouse_Wired_Trackball_64325.jpg">fonte</a>), joystick (<a href="https://commons.wikimedia.org/wiki/File:Atari-2600-Joystick.jpg">fonte</a>), gamepad (<a href="https://commons.wikimedia.org/wiki/File:Logitech_F310_Gamepad.jpg">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>Dispositivos apontadores como a tela sensível ao toque (touch screen) e a mesa digitalizadora (graphics tablet) são capazes de fornecer dados de <strong>posicionamento absoluto</strong> (figura <a href="es.html#fig:absdevice">3.16</a>). Os toques produzidos com o dedo ou com uma caneta de toque (<em>stylus pen</em>) produzem dados que correspondem a um par de coordenadas sobre a superfície de desenho, além de um valor que corresponde à pressão aplicada. Esses dispositivos também podem ser configurados para gerar dados de posicionamento relativo e detecção de gestos de arrasto (<em>swipe</em> e <em>drag and drop</em>) através do rastreamento dos pontos de pressão. Telas sensíveis ao toque frequentemente também são capazes de detectar múltiplos toques simultâneos, permitindo a detecção de gestos mais complexos como pinça (<em>pinch</em>) e rotação (<em>rotate</em>).</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:absdevice"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Wacom_graphics_tablet_and_pen.png/800px-Wacom_graphics_tablet_and_pen.png" alt="Mesa digitalizadora com caneta ([fonte](https://commons.wikimedia.org/wiki/File:Wacom_graphics_tablet_and_pen.png))." width="70%" />
+<p class="caption">
+Figura 3.16: Mesa digitalizadora com caneta (<a href="https://commons.wikimedia.org/wiki/File:Wacom_graphics_tablet_and_pen.png">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="dispositivos-de-saída" class="section level3 unnumbered">
+<h3>Dispositivos de saída</h3>
+<p>Um sistema gráfico possui pelo menos um dispositivo de saída para exibição de gráficos. Esses dispositivos podem ser do tipo vetorial ou matricial.</p>
+<div id="dispositivos-vetoriais" class="section level4 unnumbered">
+<h4>Dispositivos vetoriais</h4>
+<p>O primeiro dispositivo de exibição utilizado em computador foi o CRT vetorial, que é o mesmo tipo de tecnologia utilizada nos osciloscópios analógicos (figura <a href="es.html#fig:oscilloscope">3.17</a>).</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:oscilloscope"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Oscilloscope_sine_square.jpg/800px-Oscilloscope_sine_square.jpg" alt="Osciloscópio analógico com CRT vetorial ([fonte](https://commons.wikimedia.org/wiki/File:Oscilloscope_sine_square.jpg))." width="80%" />
+<p class="caption">
+Figura 3.17: Osciloscópio analógico com CRT vetorial (<a href="https://commons.wikimedia.org/wiki/File:Oscilloscope_sine_square.jpg">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>No CRT vetorial, um canhão de elétrons emite um feixe de elétrons que incide sobre uma tela revestida por um material fotoluminescente (fósforo). Um conjunto de placas defletoras permite alterar a posição horizontal (<span class="math inline">\(x\)</span>) e vertical (<span class="math inline">\(y\)</span>) de incidência do feixe, de modo que gráficos de linhas e curvas podem ser traçados na tela. Em um sistema gráfico, a posição de incidência do feixe pode ser descrita por comandos do tipo <strong>MoveTo</strong> e <strong>LineTo</strong> (figuras <a href="es.html#fig:vectorcrt">3.18</a> e <a href="es.html#fig:spacerocks">3.19</a>). Como o brilho do fósforo tem persistência baixa, na ordem de milissegundos, é preciso redesenhar o traço continuamente.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vectorcrt"></span>
+<img src="images/03_vectorcrt.svg" alt="Desenhando um triângulo em um CRT vetorial. A sequência de passos de 1 a 4 precisa ser repetida continuamente para manter a imagem na tela." width="80%" />
+<p class="caption">
+Figura 3.18: Desenhando um triângulo em um CRT vetorial. A sequência de passos de 1 a 4 precisa ser repetida continuamente para manter a imagem na tela.
+</p>
+</div>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:spacerocks"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Space_Rocks_%28game%29.jpg/1280px-Space_Rocks_%28game%29.jpg" alt="Jogo estilo &quot;Asteroides&quot; ([&quot;Space Rocks&quot;](https://trmm.net/Space_Rocks/)) sendo exibido em um CRT vetorial de um antigo osciloscópio ([fonte](https://en.wikipedia.org/wiki/Vector_monitor#/media/File:Space_Rocks_(game).jpg))." width="70%" />
+<p class="caption">
+Figura 3.19: Jogo estilo “Asteroides” (<a href="https://trmm.net/Space_Rocks/">“Space Rocks”</a>) sendo exibido em um CRT vetorial de um antigo osciloscópio (<a href="https://en.wikipedia.org/wiki/Vector_monitor#/media/File:Space_Rocks_(game).jpg">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>Dispositivos de exibição vetorial não conseguem desenhar de forma adequada áreas preenchidas. Além disso, a velocidade de geração do desenho é proporcional à quantidade de primitivas e ao comprimento dos caminhos, impondo um limite à complexidade do desenho. Por essas desvantagens, CRTs vetoriais tornaram-se obsoletos e foram substituídos inteiramente pelos dispositivos matriciais.</p>
+</div>
+<div id="dispositivos-matriciais" class="section level4 unnumbered">
+<h4>Dispositivos matriciais</h4>
+<p>O primeiro dispositivo de exibição matricial utilizado em computadores também foi o CRT <span class="citation">(<a href="#ref-noll1971" role="doc-biblioref">Noll 1971</a>)</span>. No CRT matricial, o feixe de elétrons é direcionado por deflexão eletromagnética e varre continuamente a tela de cima para baixo, da esquerda para direita. A cada linha percorrida, o canhão de elétrons é desligado momentaneamente e religado no início da próxima linha (<em>retraço horizontal</em>). Ao completar a varredura no canto inferior direito, o canhão de elétrons é desligado e direcionado para o ponto inicial, no canto superior esquerdo (<em>retraço vertical</em>). O feixe de elétrons é então religado e uma nova varredura é feita, iniciando uma nova imagem ou quadro de exibição. Esse processo é feito continuamente, a uma taxa que, nos televisores antigos, era sincronizada com a frequência da rede elétrica: 50 Hz ou 60 Hz<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>. Durante a varredura, a intensidade do feixe é controlada por um sinal analógico de vídeo. Esse sinal pode ser produzido por um conversor digital-analógico a partir de uma imagem digital, reproduzindo na tela os pontos que formam a imagem (figura <a href="es.html#fig:rastercrt">3.20</a>).</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rastercrt"></span>
+<img src="images/03_rastercrt.svg" alt="Varredura de um quadro em um CRT matricial." width="80%" />
+<p class="caption">
+Figura 3.20: Varredura de um quadro em um CRT matricial.
+</p>
+</div>
+<p><br />
+</p>
+<p>CRTs coloridos utilizam três canhões de elétrons, um para cada componente de cor RGB. A tela é coberta por um padrão de fósforos nessas cores, em grupos de três. Uma máscara ou grelha metálica próxima da tela (<em>shadow mask</em>, <em>slot mask</em> ou <em>apperture grille</em>, dependendo da tecnologia utilizada) assegura que cada tipo de fósforo recebe elétrons apenas do canhão correspondente. A figura <a href="es.html#fig:crtpixelarray">3.21</a> mostra o detalhe ampliado da tela de um CRT de TV e um CRT de computador, mostrando o padrão das tríades RGB formadas pelo slot mask (no CRT de TV) e shadow mask (no CRT de computador). Uma vez que os padrões são muito pequenos e cobrem a tela por completo, o usuário percebe a combinação das cores primárias que resultam na cor da imagem. A figura <a href="es.html#fig:crtcloseup">3.22</a> mostra o detalhe ampliado de uma letra “e” exibida em um CRT de TV que usa a tecnologia de apperture grille (tecnologia Trinitron, da Sony), e o detalhe ampliado de um cursor em um CRT de computador.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:crtpixelarray"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/04/CRT_pixel_array.jpg" alt="Padrões de fósforos RGB em CRTs. Esquerda: slot mask em um CRT de TV. Direita: shadow mask em um CRT de PC. ([fonte](https://en.wikipedia.org/wiki/File:CRT_pixel_array.jpg))" width="100%" />
+<p class="caption">
+Figura 3.21: Padrões de fósforos RGB em CRTs. Esquerda: slot mask em um CRT de TV. Direita: shadow mask em um CRT de PC. (<a href="https://en.wikipedia.org/wiki/File:CRT_pixel_array.jpg">fonte</a>)
+</p>
+</div>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:crtcloseup"></span>
+<img src="images/03_crtcloseup.jpg" alt="Detalhes ampliados de telas de CRT. Esquerda: letra 'e' em um CRT de TV Sony Trinitron ([fonte](https://en.wikipedia.org/wiki/File:Aperture_grille_closeup_teletext.jpg)). Direita: cursor na tela de um CRT de computador ([fonte](https://en.wikipedia.org/wiki/Shadow_mask#/media/File:Shadow_mask_closeup_cursor.jpg))." width="80%" />
+<p class="caption">
+Figura 3.22: Detalhes ampliados de telas de CRT. Esquerda: letra ‘e’ em um CRT de TV Sony Trinitron (<a href="https://en.wikipedia.org/wiki/File:Aperture_grille_closeup_teletext.jpg">fonte</a>). Direita: cursor na tela de um CRT de computador (<a href="https://en.wikipedia.org/wiki/Shadow_mask#/media/File:Shadow_mask_closeup_cursor.jpg">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>Os CRTs não são mais utilizados desde meados de 2000 e foram substituídos pelos monitores LCD (<em>liquid-crystal display</em>). Até a metade de 2010 eram também comuns os monitores de tela de plasma. Nessa tecnologia, tensões aplicadas em eletrodos de endereçamento de linhas e colunas energizam um gás (geralmente néon e xenônio) contido em minúsculas células envoltas em painéis de vidro. O fundo das células é coberto por fósforo nas cores RGB, de modo que cada grupo de 3 cores forma um pixel. Como em uma lâmpada fluorescente, o gás ionizado se torna um plasma emissor de luz ultravioleta que faz com que os fósforos emitam a luz visível que forma as cores da imagem (figura <a href="es.html#fig:plasmastructure">3.23</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plasmastructure"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Plasma-display-composition.svg/1280px-Plasma-display-composition.svg.png" alt="Estrutura de uma tela de plasma ([fonte](https://en.wikipedia.org/wiki/Plasma_display#/media/File:Plasma-display-composition.svg))." width="100%" />
+<p class="caption">
+Figura 3.23: Estrutura de uma tela de plasma (<a href="https://en.wikipedia.org/wiki/Plasma_display#/media/File:Plasma-display-composition.svg">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>A tecnologia LCD é a mais utilizada nos dispositivos de exibição atuais. Uma tela de LCD é composta por um sanduíche de vários painéis (figura <a href="es.html#fig:lcdstructure">3.24</a>). Na parte de trás dos painéis, lâmpadas fluorescentes ou LEDs emitem uma luz branca que é espalhada uniformemente por um painel difusor. Essa luz incide sobre um filtro que só permite passar luz polarizada em uma direção. Na frente dos painéis há uma outra camada que só permite passar a luz polarizada na direção ortogonal ao primeiro filtro, de modo que o resultado é o bloqueio total da luz. Para controlar eletronicamente a passagem da luz, entre os dois filtros é colocado um substrato de vidro contendo uma camada de cristais líquidos e eletrodos e/ou transistores que alteram a orientação dos cristais – e com isso a polarização da luz – através de campos elétricos. Uma camada de filtros de cor divide a tela em pixels compostos de três subpixels, um para cada componente RGB, coincidentes com a camada de eletrodos. Desse modo, a passagem de luz em cada subpixel é controlada individualmente para formar a imagem final. O conteúdo da tela LCD é atualizado continuamente, geralmente a uma taxa de 60 Hz, mas em monitores mais recentes essa taxa pode chegar a 240 Hz.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lcdstructure"></span>
+<img src="https://assets.pid.samsungdisplay.com/s3fs-public/LCD_Function.gif" alt="Estrutura de uma tela de LCD ([fonte](https://pid.samsungdisplay.com/en/learning-center/blog/lcd-structure))." width="100%" />
+<p class="caption">
+Figura 3.24: Estrutura de uma tela de LCD (<a href="https://pid.samsungdisplay.com/en/learning-center/blog/lcd-structure">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>A tecnologia OLED (<em>organic light-emitting diodes</em>) tem se popularizado em telas de smart TVs e smartphones e tem a promessa de substituir a tecnologia de LCD. Telas OLED não utilizam luz de fundo, pois cada subpixel emite sua própria luz: cada subpixel é um LED no qual a camada eletroluminescente é um filme de compostos orgânicos. A figura <a href="es.html#fig:oleddetail">3.25</a> mostra o detalhe ampliado de uma tela com tecnologia AMOLED (<em>active-matrix organic light-emitting diode</em>) que utiliza transistores de filme fino para manter o fluxo de corrente em cada subpixel.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:oleddetail"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Nexus_one_screen_microscope.jpg" alt="Detalhe da tela AMOLED de um smartphone Google Nexus One. Foto por Matthew Rollings ([fonte](https://en.wikipedia.org/wiki/OLED#/media/File:Nexus_one_screen_microscope.jpg))." width="70%" />
+<p class="caption">
+Figura 3.25: Detalhe da tela AMOLED de um smartphone Google Nexus One. Foto por Matthew Rollings (<a href="https://en.wikipedia.org/wiki/OLED#/media/File:Nexus_one_screen_microscope.jpg">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+<p>Telas OLED conseguem obter níveis mais profundos de preto e melhor contraste em ambientes escuros quando comparadas com as telas de LCD. A tecnologia tem ainda outras vantagens, como a possibilidade de ser utilizada em telas mais finas, flexíveis e transparentes (figura <a href="es.html#fig:oledflexible">3.26</a>).</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:oledflexible"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Ecran_oled_flexible.jpg" alt="Demonstração de uma tela OLED flexível ([fonte](https://commons.wikimedia.org/wiki/File:Ecran_oled_flexible.jpg))."  />
+<p class="caption">
+Figura 3.26: Demonstração de uma tela OLED flexível (<a href="https://commons.wikimedia.org/wiki/File:Ecran_oled_flexible.jpg">fonte</a>).
+</p>
+</div>
+<p><br />
+</p>
+</div>
+</div>
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-noll1971" class="csl-entry">
+Noll, A. Michael. 1971. <span>“Scanned-Display Computer Graphics.”</span> <em>Commun. ACM</em> 14 (3): 143–50. <a href="https://doi.org/10.1145/362566.362567">https://doi.org/10.1145/362566.362567</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="10">
+<li id="fn10"><p>Os dados produzidos pelo botão de rolagem (<em>mouse wheel</em>) podem ser mapeados para uma terceira direção.<a href="es.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>Essa varredura era frequentemente feita de forma entrelaçada, varrendo alternadamente as linhas ímpares e pares, de modo que cada quadro era preenchido apenas 30 vezes por segundo.<a href="es.html#fnref11" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="vectorxraster.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="framebuffer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

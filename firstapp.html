@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="linha-do-tempo.html"/>
-<link rel="next" href="referências.html"/>
+<link rel="next" href="graphicssystem.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -197,6 +197,32 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -309,7 +335,7 @@ Observação
 <span id="cb70-20"><a href="firstapp.html#cb70-20"></a>  }</span>
 <span id="cb70-21"><a href="firstapp.html#cb70-21"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb70-22"><a href="firstapp.html#cb70-22"></a>}</span></code></pre></div>
-<p>O que mudou aqui é que o código anterior foi colocado dentro do escopo <code>try</code> de um bloco <code>try...catch</code>. No escopo <code>catch</code>, a função <code>fmt::print</code> imprime no erro padrão (<em>stderr</em>) a mensagem de erro associada com a exceção capturada. <code>fmt::print</code> faz parte da biblioteca <a href="https://fmt.dev/latest/index.html"><code>{fmt}</code></a>, incluída pelo cabeçalho <code>fmt/core.h</code>. Ela permite a formatação de strings usando uma sintaxe parecida com as <em>f-strings</em> da linguagem Python<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+<p>O que mudou aqui é que o código anterior foi colocado dentro do escopo <code>try</code> de um bloco <code>try...catch</code>. No escopo <code>catch</code>, a função <code>fmt::print</code> imprime no erro padrão (<em>stderr</em>) a mensagem de erro associada com a exceção capturada. <code>fmt::print</code> faz parte da biblioteca <a href="https://fmt.dev/latest/index.html"><code>{fmt}</code></a>, incluída pelo cabeçalho <code>fmt/core.h</code>. Ela permite a formatação de strings usando uma sintaxe parecida com as <em>f-strings</em> da linguagem Python<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.</p>
 </div>
 <div id="openglwindow.hpp" class="section level3 unnumbered">
 <h3>openglwindow.hpp</h3>
@@ -422,7 +448,7 @@ Observação
 <span id="cb75-9"><a href="firstapp.html#cb75-9"></a>  fmt::print(<span class="st">&quot;Initial window size: </span><span class="sc">{}</span><span class="st">x</span><span class="sc">{}\n</span><span class="st">&quot;</span>, windowSettings.width,</span>
 <span id="cb75-10"><a href="firstapp.html#cb75-10"></a>             windowSettings.height);</span>
 <span id="cb75-11"><a href="firstapp.html#cb75-11"></a>}</span></code></pre></div>
-<p>Na linha 8, <code>windowSettings</code> é uma estrutura <code>abcg::WindowSettings</code> retornada por <code>abcg::OpenGLWindow::getWindowSettings()</code> com as configurações da janela. Na linha 9, <code>fmt::print</code> imprime no console o tamanho da janela<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.</p>
+<p>Na linha 8, <code>windowSettings</code> é uma estrutura <code>abcg::WindowSettings</code> retornada por <code>abcg::OpenGLWindow::getWindowSettings()</code> com as configurações da janela. Na linha 9, <code>fmt::print</code> imprime no console o tamanho da janela<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</p>
 <p>Observe agora o trecho com a definição de <code>OpenGLWindow::paintGL</code>:</p>
 <div class="sourceCode" id="cb76" startFrom="13"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 12;"><span id="cb76-13"><a href="firstapp.html#cb76-13"></a><span class="dt">void</span> OpenGLWindow::paintGL() {</span>
 <span id="cb76-14"><a href="firstapp.html#cb76-14"></a>  <span class="co">// Set the clear color</span></span>
@@ -433,7 +459,7 @@ Observação
 <span id="cb76-19"><a href="firstapp.html#cb76-19"></a>}</span></code></pre></div>
 <p>Aqui são chamadas duas funções do OpenGL: <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glClearColor.xhtml"><code>glClearColor</code></a> e <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glClear.xhtml"><code>glClear</code></a>.</p>
 <ul>
-<li><code>glClearColor</code> é utilizada para determinar a cor que será usada para limpar a janela<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. A função recebe quatro parâmetros do tipo <code>float</code> (<code>red</code>, <code>green</code>, <code>blue</code>, <code>alpha</code>), que correspondem a componentes de cor RGB e um valor adicional de opacidade (<code>alpha</code>). Esse formato de cor é chamado de <a href="https://htmlcolors.com/rgba-color">RGBA</a>. Os valores são fixados (<em>clamped</em>) no intervalo <span class="math inline">\([0,1]\)</span> em ponto flutuante.</li>
+<li><code>glClearColor</code> é utilizada para determinar a cor que será usada para limpar a janela<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. A função recebe quatro parâmetros do tipo <code>float</code> (<code>red</code>, <code>green</code>, <code>blue</code>, <code>alpha</code>), que correspondem a componentes de cor RGB e um valor adicional de opacidade (<code>alpha</code>). Esse formato de cor é chamado de <a href="https://htmlcolors.com/rgba-color">RGBA</a>. Os valores são fixados (<em>clamped</em>) no intervalo <span class="math inline">\([0,1]\)</span> em ponto flutuante.</li>
 <li><code>glClear</code>, usando como argumento a constante <code>GL_COLOR_BUFFER_BIT</code>, limpa a janela com a cor especificada na última chamada de <code>glClearColor</code>.</li>
 </ul>
 <p>Em resumo, nosso <code>paintGL</code> limpa a tela com a cor RGBA especificada em <code>m_clearColor</code>.</p>
@@ -499,7 +525,7 @@ Observação
 <p>Esse código é praticamente o mesmo do “Hello, World!” Construa a aplicação para ver o resultado:</p>
 <iframe
   src="https://hbatagelo.github.io/abcgapps/firstapp/index.html"
-  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="735"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
   ></iframe>
 <p>A seguir temos alguns exemplos de uso de outros widgets da ImGui. Experimente incluir esses trechos de código no <code>paintUI</code>:</p>
 <ul>
@@ -636,10 +662,10 @@ Dica
 <!-- </div> -->
 <div class="footnotes">
 <hr />
-<ol start="4">
-<li id="fn4"><p>Um subconjunto da <code>{fmt}</code> foi incorporado à <a href="https://en.cppreference.com/w/cpp/utility/format">biblioteca de formatação de texto</a> no C++20, mas ainda não há suporte equivalente ao <code>fmt::print</code> (impressão formatada com saída padrão).<a href="firstapp.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>O tamanho padrão para uma aplicação desktop é 800x600. Na versão para web, a janela pode ser redimensionada de acordo com a regra CSS do elemento canvas do HTML5.<a href="firstapp.html#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p>Mais precisamente, <code>glClearColor</code> define a cor que será utilizada para limpar os <em>buffers</em> de cor do <em>framebuffer</em>. Veremos mais sobre o conceito de framebuffer nos próximos capítulos.<a href="firstapp.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<ol start="5">
+<li id="fn5"><p>Um subconjunto da <code>{fmt}</code> foi incorporado à <a href="https://en.cppreference.com/w/cpp/utility/format">biblioteca de formatação de texto</a> no C++20, mas ainda não há suporte equivalente ao <code>fmt::print</code> (impressão formatada com saída padrão).<a href="firstapp.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>O tamanho padrão para uma aplicação desktop é 800x600. Na versão para web, a janela pode ser redimensionada de acordo com a regra CSS do elemento canvas do HTML5.<a href="firstapp.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Mais precisamente, <code>glClearColor</code> define a cor que será utilizada para limpar os <em>buffers</em> de cor do <em>framebuffer</em>. Veremos mais sobre o conceito de framebuffer nos próximos capítulos.<a href="firstapp.html#fnref7" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -648,7 +674,7 @@ Dica
         </div>
       </div>
 <a href="linha-do-tempo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="graphicssystem.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

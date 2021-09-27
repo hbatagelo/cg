@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Referências | MCTA008-17 Computação Gráfica</title>
+  <title>3 Sistemas gráficos | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Referências | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="3 Sistemas gráficos | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Referências | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="3 Sistemas gráficos | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sierpinski.html"/>
-
+<link rel="prev" href="firstapp.html"/>
+<link rel="next" href="vectorxraster.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -248,117 +248,45 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências" class="section level1 unnumbered">
-<h1>Referências</h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-3Dfx. 1997. <em>Glide 2.2 Reference Manual</em>. San Jose, CA, USA: <span>3Dfx Interactive</span>.
+<div id="graphicssystem" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Sistemas gráficos</h1>
+<p>Um sistema gráfico é um sistema computacional com capacidade de processar dados para gerar imagens em um dispositivo de exibição. Em sistemas interativos, a interação com os modelos de dados gráficos se dá através de um ou mais dispositivos de entrada. Assim, de maneira geral, um sistema gráfico é composto pelos seguintes componentes:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Dispositivos de entrada</strong>: teclado e dispositivos apontadores como <em>mouse</em>, <em>touch pad</em>, <em>touch screen</em>, <em>graphics tablet</em>, <em>trackball</em>, <em>joystick</em>, <em>gamepad</em>, entre outros.</li>
+<li><strong>Processadores</strong>: CPU (<em>central processing unit</em>), GPU (<em>graphics processing unit</em>) e seus subsistemas (controladores, memórias e barramentos) necessários ao processamento dos modelos de dados e conversão em representações visuais;</li>
+<li><strong>Dispositivos de saída</strong>: monitores e telas de LCD (<em>liquid-crystal display</em>), OLED (<em>organic light-emitting diodes</em>), CRT (<em>cathode-ray tube</em>) ou plasma, entre outros dispositivos de exibição.</li>
+</ol>
+<p>A definição de um sistema gráfico com esses componentes é bastante geral e pode incluir tanto as estações gráficas de alto desempenho equipadas com várias GPUs, quanto os computadores pessoais sem GPU dedicada. Pode incluir também os consoles de videogames, <em>smartphones</em>, <em>smartwatches</em>, <em>smart TVs</em>, GPSs, entre outros dispositivos com poder computacional suficiente para produzir saída em um dispositivo de exibição (figura <a href="graphicssystem.html#fig:graphicssystems2">3.1</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:graphicssystems2"></span>
+<img src="images/03_graphics_systems.jpg" alt="Exemplos de sistemas gráficos." width="100%" />
+<p class="caption">
+Figura 3.1: Exemplos de sistemas gráficos.
+</p>
 </div>
-<div class="csl-entry">
-Akeley, Kurt. 1993. <span>“Reality Engine Graphics.”</span> In <em>Proceedings of the 20th Annual Conference on Computer Graphics and Interactive Techniques</em>, 109–16. SIGGRAPH ’93. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/166117.166131">https://doi.org/10.1145/166117.166131</a>.
+<p>Em sistemas gráficos atuais, o papel principal do processador gráfico é realizar a conversão de primitivas geométricas em uma imagem digital. Por exemplo, para visualizar na tela um segmento de reta definido por dois vértices, o processador deve gerar um conjunto de pixels que aproxime o aspecto do segmento visto pelo observador. Esse processo de determinar a cor dos pixels da imagem pode ser tão simples quanto avaliar a equação de uma reta <span class="math inline">\(y=mx+b\)</span> para um conjunto discreto de valores de <span class="math inline">\(x\)</span> em coordenadas na tela, ou tão complexo quanto gerar uma imagem fotorrealista de uma cena virtual composta de milhares de objetos.</p>
+<p>Nos sistemas gráficos mais simples, sem aceleração de gráficos em hardware, a CPU é responsável por todo o processamento gráfico e não há distinção entre a memória da CPU e a memória de processamento gráfico. Em sistemas com GPU, a GPU pode estar localizada na placa mãe do computador, integrada com o chip da CPU (como o <a href="https://www.intel.com/content/www/us/en/embedded/software/hd-gma/hd-graphics-drivers-and-graphics-media-accelerator-drivers-overview.html">Intel HD Graphics</a> comum nos computadores com processador Intel), ou situada em uma placa de vídeo com memória dedicada. Em sistemas de alto desempenho, várias GPUs dedicadas podem ser combinadas para dividir a carga de processamento usando tecnologias como a <a href="https://www.nvidia.com/en-gb/geforce/technologies/sli/">SLI</a> da NVIDIA e <a href="https://www.amd.com/en/technologies/crossfire">CrossFire</a> da AMD. Também é comum sistemas que combinam GPUs dedicadas e GPUs integradas, em diferentes configurações.</p>
+<p>Em todos os sistemas gráficos, a saída é uma imagem digital armazenada em uma área de memória chamada de <em>framebuffer</em>. Essa área de memória é utilizada pelo controlador gráfico para atualizar o dispositivo de exibição (figura <a href="graphicssystem.html#fig:framebuffer1">3.2</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:framebuffer1"></span>
+<img src="images/03_framebuffer1.svg" alt="Sistema gráfico com framebuffer." width="90%" />
+<p class="caption">
+Figura 3.2: Sistema gráfico com framebuffer.
+</p>
 </div>
-<div class="csl-entry">
-Albers, Donald J., and Gerald L. Alexanderson. 2008. <span>“<span class="nocase">Benoît Mandelbrot: In his own words</span>.”</span> In <em>Mathematical People: Profiles and Interviews</em>, 213–32. A K Peters, Ltd.
+<p>O restante do capítulo está organizado como a seguir:</p>
+<ul>
+<li>A seção <a href="vectorxraster.html#vectorxraster">3.1</a> descreve as duas principais formas de representação de gráficos utilizadas em CG: a representação vetorial e a representação matricial;</li>
+<li>A seção <a href="es.html#es">3.2</a> apresenta conceitos e tecnologias relacionadas aos dispositivos de entrada e saída dos sistemas gráficos;</li>
+<li>A seção <a href="framebuffer.html#framebuffer">3.3</a> descreve conceitos fundamentais do uso de framebuffers.</li>
+<li>A seção <a href="sierpinski.html#sierpinski">3.4</a> apresenta uma atividade prática de um primeiro programa que renderiza primitivas com o OpenGL.</li>
+</ul>
 </div>
-<div class="csl-entry">
-Blinn, James F. 1977. <span>“Models of Light Reflection for Computer Synthesized Pictures.”</span> <em>SIGGRAPH Comput. Graph.</em> 11 (2): 192–98. <a href="https://doi.org/10.1145/965141.563893">https://doi.org/10.1145/965141.563893</a>.
-</div>
-<div class="csl-entry">
-———. 1978. <span>“Simulation of Wrinkled Surfaces.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (3): 286–92.
-</div>
-<div class="csl-entry">
-Catmull, Edwin Earl. 1974. <span>“A Subdivision Algorithm for Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
-</div>
-<div class="csl-entry">
-Chappell, Gary, and Peter Bono. 1978. <span>“Core System Implementations: A Status Report.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (4): 53–66. <a href="https://doi.org/10.1145/988451.988454">https://doi.org/10.1145/988451.988454</a>.
-</div>
-<div class="csl-entry">
-Cook, Robert L., Thomas Porter, and Loren Carpenter. 1984. <span>“Distributed Ray Tracing.”</span> In <em>Proceedings of the 11th Annual Conference on Computer Graphics and Interactive Techniques</em>, 137–45. SIGGRAPH ’84. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/800031.808590">https://doi.org/10.1145/800031.808590</a>.
-</div>
-<div class="csl-entry">
-Floyd, Robert W., and Louis Steinberg. 1976. <span>“<span>A</span>n <span>A</span>daptive <span>A</span>lgorithm for <span>S</span>patial <span>G</span>reyscale.”</span> <em>Proceedings of the Society of Information Display</em> 17 (2): 75–77.
-</div>
-<div class="csl-entry">
-Gouraud, Henri. 1971. <span>“Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
-</div>
-<div class="csl-entry">
-Greenberg, Donald P., Michael F. Cohen, and Kenneth E. Torrance. 1986. <span>“Radiosity: A Method for Computing Global Illumination.”</span> <em>The Visual Computer</em> 2 (5): 291–97. <a href="https://doi.org/10.1007/BF02020429">https://doi.org/10.1007/BF02020429</a>.
-</div>
-<div class="csl-entry">
-ISO. 1985. <span>“<span class="nocase">Information technology – Computer graphics – Graphical Kernel System (GKS) – Part 1: Functional description, Part 2: NDC metafile, Part 3: Audit, and Part 4: Archive</span>.”</span> Standard ISO/IEC 7942:1985. International Organization for Standardization.
-</div>
-<div class="csl-entry">
-———. 2015. <span>“<span class="nocase">Information technology – Vocabulary</span>.”</span> Standard ISO/IEC 2382:2015. International Organization for Standardization. <a href="https://www.iso.org/standard/63598.html">https://www.iso.org/standard/63598.html</a>.
-</div>
-<div class="csl-entry">
-Lindholm, Erik, Mark J. Kilgard, and Henry Moreton. 2001. <span>“A User-Programmable Vertex Engine.”</span> In <em>Proceedings of the 28th Annual Conference on Computer Graphics and Interactive Techniques</em>, 149–58. SIGGRAPH ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/383259.383274">https://doi.org/10.1145/383259.383274</a>.
-</div>
-<div class="csl-entry">
-McLendon, Patricia. 1992. <em>Graphics Library Programming Guide</em>. Mountain View, CA, USA: Silicon Graphics.
-</div>
-<div class="csl-entry">
-Montrym, John S., Daniel R. Baum, David L. Dignam, and Christopher J. Migdal. 1997. <span>“InfiniteReality: A Real-Time Graphics System.”</span> In, 293–302. SIGGRAPH ’97. USA: ACM Press/Addison-Wesley Publishing Co. <a href="https://doi.org/10.1145/258734.258871">https://doi.org/10.1145/258734.258871</a>.
-</div>
-<div class="csl-entry">
-Morris, Chris. 2001. <span>“<span class="nocase">X-Box on your PC?</span>”</span> In <em>CNN Money</em>. <a href="http://money.cnn.com/2001/02/22/technology/nvidia/">http://money.cnn.com/2001/02/22/technology/nvidia/</a>.
-</div>
-<div class="csl-entry">
-Noll, A. Michael. 1971. <span>“Scanned-Display Computer Graphics.”</span> <em>Commun. ACM</em> 14 (3): 143–50. <a href="https://doi.org/10.1145/362566.362567">https://doi.org/10.1145/362566.362567</a>.
-</div>
-<div class="csl-entry">
-Pharr, Matt, Wenzel Jakob, and Greg Humphreys. 2016. <em>Physically Based Rendering: From Theory to Implementation</em>. 3rd ed. Morgan Kaufmann.
-</div>
-<div class="csl-entry">
-Phong, Bui Tuong. 1973. <span>“Illumination of Computer-Generated Images.”</span> Technical Report UTEC-CSs-73-129. University of Utah.
-</div>
-<div class="csl-entry">
-Rubin, Michael. 2005. <em>Droidmaker: George Lucas and the Digital Revolution</em>. Triad Pub Co.
-</div>
-<div class="csl-entry">
-Sakaguchi, Hironobu, and Jun Aida. 2001. <span>“Final Fantasy - the Spirits Within.”</span> In <em>ACM SIGGRAPH 2001 Video Review on Electronic Theater Program</em>, 15. SVR ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/945314.945329">https://doi.org/10.1145/945314.945329</a>.
-</div>
-<div class="csl-entry">
-Shuey, David. 1987. <span>“PHIGS: A Graphics Platform for CAD Application Development.”</span> <em>Comput. Aided Des.</em> 19 (8): 410–17. <a href="https://doi.org/10.1016/S0010-4485(87)80003-9">https://doi.org/10.1016/S0010-4485(87)80003-9</a>.
-</div>
-<div class="csl-entry">
-Sutherland, Ivan Edward. 1963. <span>“<span>S</span>ketchpad: <span>A</span> <span>M</span>an-<span>M</span>achine <span>G</span>raphical <span>C</span>ommunication <span>S</span>ystem.”</span> In <em>Proceedings of the 1963 Spring Joint Computer Conference</em>, 23:329–46. AFIPS Conference Proceedings. Baltimore, MD.
-</div>
-<div class="csl-entry">
-Whitted, Turner. 1979. <span>“An Improved Illumination Model for Shaded Display.”</span> In <em>6th Annual Conference on Computer Graphics and Interactive Techniques</em>.
-</div>
-<div class="csl-entry">
-Woo, Mason, Jackie Neider, Tom Davis, and Dave Shreiner. 1999. <em>OpenGL Programming Guide: The Official Guide to Learning OpenGL, Version 1.2</em>. 3rd ed. Boston, MA, USA: Addison-Wesley Longman Publishing Co., Inc.
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="sierpinski.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="firstapp.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vectorxraster.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

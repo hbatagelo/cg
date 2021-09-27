@@ -197,6 +197,32 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -241,10 +267,10 @@ div.csl-indent {
 C:\Users\ufabc\AppData\Local\Programs\Python\Python39\python.exe
 C:\Users\ufabc\AppData\Local\Microsoft\WindowsApps\python.exe</code></pre>
 <p><strong>O primeiro caminho exibido deve ser o caminho do executável do Python que acabou de ser instalado.</strong> Neste caso está correto, pois o Python foi instalado no local padrão do instalador que é <code>%LocalAppData%\Programs\Python\Python39</code> (neste exemplo, o nome do usuário é <code>ufabc</code>).</p></li>
-<li><p>No “Painel de Controle” do Windows, abra a opção “Editar as Variáveis de Ambiente do Sistema.” Edite a variável <code>PATH</code> e inclua os caminhos para <code>mingw64\bin</code> e <code>usr\bin</code> do MSYS2. Por exemplo, se o MSYS2 foi instalado em <code>C:\msys64</code>, inclua os seguintes caminhos no <code>PATH</code>:</p>
+<li><p>No “Painel de Controle” do Windows, abra a opção “Editar as Variáveis de Ambiente do Sistema.” Edite a variável <code>Path</code> do sistema<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> e inclua os caminhos para <code>mingw64\bin</code> e <code>usr\bin</code> do MSYS2. Por exemplo, se o MSYS2 foi instalado em <code>C:\msys64</code>, inclua os seguintes caminhos no <code>Path</code>:</p>
 <pre><code>C:\msys64\usr\bin
 C:\msys64\mingw64\bin</code></pre>
-<p>Edite a ordem dos caminhos de tal forma que o caminho do Python apareça <strong>antes</strong> do caminho do MSYS2, como mostra a figura a seguir:</p>
+<p>Edite a ordem dos caminhos de tal forma que o caminho do Python apareça no início da lista, seguido pelos caminhos do MSYS2, como mostra a figura a seguir:</p>
 <p><img src="images/00_path.png" style="display: block; margin: auto;" /></p>
 <p>Para testar se o MSYS2 foi instalado corretamente, abra o Prompt de Comando e execute o comando <code>g++ --version</code>. A saída deverá ser parecida com a seguinte:</p>
 <pre><code>g++ (Rev5, Built by MSYS2 project) 10.3.0
@@ -288,6 +314,12 @@ Importante
 <p>Mude esse caminho de acordo com o local onde <code>emsdk_env.bat</code> foi instalado.</p>
 </div>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>A variável <code>Path</code> existe tanto nas variáveis do <strong>usuário</strong> quanto nas variáveis do <strong>sistema</strong>. É recomendável alterar a variável do sistema.<a href="windows.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

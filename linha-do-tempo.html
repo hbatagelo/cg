@@ -197,6 +197,32 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -250,7 +276,7 @@ Figura 2.7: Operador do SAGE usando uma <a href="https://en.wikipedia.org/wiki/L
 <div id="section-1" class="section level3 unnumbered">
 <h3>1960</h3>
 <p>Nesse período a computação gráfica se desenvolve nos laboratórios de pesquisa de universidades e surgem as primeiras aplicações de <a href="https://en.wikipedia.org/wiki/Computer-aided_design">CAD</a> (<em>Computer-Aided Design</em>) nas indústrias automotiva e aeroespacial. Na década de 1960 ocorrem importantes desenvolvimentos na área de modelagem geométrica, como o uso de <em>curvas de Bézier</em> e NURBS (<em>Non-Uniform Rational Basis Spline</em>).</p>
-<p>Em 1960, a Digital Equipment Corporation (DEC) começa a produzir em escala comercial o computador PDP-1, equipado com CRT e caneta óptica. Em 1961, o cientista da computação Steve Russell (MIT) cria o “Spacewar!” (figura <a href="linha-do-tempo.html#fig:spacewar">2.8</a>). O jogo ganha popularidade dentro e fora da universidade e vira referência no desenvolvimento de jogos digitais<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>Em 1960, a Digital Equipment Corporation (DEC) começa a produzir em escala comercial o computador PDP-1, equipado com CRT e caneta óptica. Em 1961, o cientista da computação Steve Russell (MIT) cria o “Spacewar!” (figura <a href="linha-do-tempo.html#fig:spacewar">2.8</a>). O jogo ganha popularidade dentro e fora da universidade e vira referência no desenvolvimento de jogos digitais<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:spacewar"></span>
 <img src="http://mstatic.mit.edu/mit150/025p.jpg" alt="Steve Russell e seu jogo Spacewar! no DEC PDP-1 ([fonte](http://museum.mit.edu/150/25))." width="60%" />
 <p class="caption">
@@ -460,7 +486,7 @@ Renderização baseada em física
 <div id="section-7" class="section level3 unnumbered">
 <h3>2020</h3>
 <p>Em 2020, as GPUs NVIDIA RTX série 20 são sucedidas pela <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/">série 30</a>, ampliando ainda mais a possibilidade de uso de traçado de raios em tempo real. A AMD lança as GPUs da série <a href="https://www.amd.com/en/graphics/amd-radeon-rx-6000-series">Radeon RX 6000</a>, também com suporte a traçado de raios. Além disso, uma API de traçado de raios é incorporada ao Vulkan como o conjunto de extensões <a href="https://www.khronos.org/blog/vulkan-ray-tracing-final-specification-release">Vulkan Ray Tracing</a>.</p>
-<p>Ainda estamos no início da década, mas o aumento da capacidade de processamento e largura de banda de memória do hardware gráfico deve continuar a empurrar os limites do que é possível renderizar em tempo real. Efeitos atmosféricos, texturas de altíssima resolução e simulações de <em>iluminação global</em><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> em tempo real devem se popularizar nos próximos anos.</p>
+<p>Ainda estamos no início da década, mas o aumento da capacidade de processamento e largura de banda de memória do hardware gráfico deve continuar a empurrar os limites do que é possível renderizar em tempo real. Efeitos atmosféricos, texturas de altíssima resolução e simulações de <em>iluminação global</em><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> em tempo real devem se popularizar nos próximos anos.</p>
 <p>O vídeo de demonstração a seguir (em inglês) exibe algumas das capacidades de processamento de iluminação global em tempo real do motor de jogo <a href="https://www.unrealengine.com/en-US/blog/a-first-look-at-unreal-engine-5">Unreal Engine 5</a> no console <a href="https://www.playstation.com/">PlayStation 5</a>. O lançamento do Unreal Engine 5 está previsto para o final de 2021:</p>
 <iframe title="vimeo-player" src="https://player.vimeo.com/video/417882964" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 </div>
@@ -539,9 +565,9 @@ Woo, Mason, Jackie Neider, Tom Davis, and Dave Shreiner. 1999. <em>OpenGL Progra
 </div>
 <div class="footnotes">
 <hr />
-<ol start="2">
-<li id="fn2"><p>O Spacewar! original rodando em um emulador de PDP-1 de JavaScript está disponível em <a href="https://spacewar.oversigma.com/">https://spacewar.oversigma.com/</a>.<a href="linha-do-tempo.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Métodos de iluminação global são aqueles capazes de simular as interreflexões de luz de um ambiente para a composição da cor final de cada pixel, como o método de traçado de raios e radiosidade.<a href="linha-do-tempo.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<ol start="3">
+<li id="fn3"><p>O Spacewar! original rodando em um emulador de PDP-1 de JavaScript está disponível em <a href="https://spacewar.oversigma.com/">https://spacewar.oversigma.com/</a>.<a href="linha-do-tempo.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Métodos de iluminação global são aqueles capazes de simular as interreflexões de luz de um ambiente para a composição da cor final de cada pixel, como o método de traçado de raios e radiosidade.<a href="linha-do-tempo.html#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -197,6 +197,32 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -246,7 +272,7 @@ Figura 2.2: <em>Scandinavian Interior</em>, por <a href="https://www.artstation.
 <p>— John Peddie</p>
 </blockquote>
 <p>De fato, mesmo com toda a evolução do hardware gráfico e das técnicas de CG, ainda não é possível gerar em tempo real imagens com o nível de qualidade obtido por renderizadores como o Cycles. Eventualmente, esse dia chegará. Porém, quando isso acontecer, o nível de exigência de todos nós – usuários, pesquisadores e desenvolvedores – será maior do que é atualmente. Desejaremos imagens ainda mais detalhadas, com maior resolução, mais realistas, mais cinemáticas, mais interativas, etc. Demais nunca é o suficiente.</p>
-<p>Em computação gráfica, é necessário um cuidadoso compromisso entre a qualidade das imagens geradas e a eficiência com que essas imagens podem ser sintetizadas em um dado sistema computacional. Isso é particularmente importante quando as imagens precisam ser geradas em tempo real. Em jogos digitais, é comum que imagens de alta resolução tenham de ser geradas a uma taxa de, no mínimo, 30 quadros por segundo<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Mesmo os jogos que não visam o fotorrealismo exigem imagens em um nível de qualidade que só pode ser alcançado com o uso de técnicas avançadas de sombreamento e iluminação. Essas técnicas visam produzir resultados que, ainda que não sejam necessariamente acurados do ponto de vista físico, precisam ser suficientemente convincentes para um público cada vez mais exigente.</p>
+<p>Em computação gráfica, é necessário um cuidadoso compromisso entre a qualidade das imagens geradas e a eficiência com que essas imagens podem ser sintetizadas em um dado sistema computacional. Isso é particularmente importante quando as imagens precisam ser geradas em tempo real. Em jogos digitais, é comum que imagens de alta resolução tenham de ser geradas a uma taxa de, no mínimo, 30 quadros por segundo<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Mesmo os jogos que não visam o fotorrealismo exigem imagens em um nível de qualidade que só pode ser alcançado com o uso de técnicas avançadas de sombreamento e iluminação. Essas técnicas visam produzir resultados que, ainda que não sejam necessariamente acurados do ponto de vista físico, precisam ser suficientemente convincentes para um público cada vez mais exigente.</p>
 <p>No decorrer do quadrimestre veremos que a evolução das técnicas e ferramentas de computação gráfica em tempo real é impulsionada pela busca da melhor qualidade de imagem que pode ser obtida de forma eficiente no hardware gráfico disponível no momento. Como resultado, é comum que os métodos adotem simplificações inusitadas, mas ao mesmo tempo muito espertas, e explorem diferentes aspectos da percepção visual humana para criar uma ilusão de realismo que seja suficiente para chegar ao resultado desejado.</p>
 </div>
 <h3>Referências</h3>
@@ -257,8 +283,8 @@ Figura 2.2: <em>Scandinavian Interior</em>, por <a href="https://www.artstation.
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>Em aplicações de realidade virtual, a taxa mínima recomendável é de 90 quadros por segundo.<a href="intro.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<ol start="2">
+<li id="fn2"><p>Em aplicações de realidade virtual, a taxa mínima recomendável é de 90 quadros por segundo.<a href="intro.html#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
