@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Referências | MCTA008-17 Computação Gráfica</title>
+  <title>4.2 Ray casting x rasterização | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Referências | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="4.2 Ray casting x rasterização | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Referências | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="4.2 Ray casting x rasterização | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="coloredtriangles.html"/>
-
+<link rel="prev" href="dados-gráficos.html"/>
+<link rel="next" href="glpipeline.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -274,131 +274,101 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências" class="section level1 unnumbered">
-<h1>Referências</h1>
-
+<div id="ray-casting-x-rasterização" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Ray casting <em>x</em> rasterização</h2>
+<p>Ray casting e rasterização são duas abordagens distintas de se renderizar uma cena, e resultam em pipelines também distintos. Ray casting consiste em lançar raios que saem do centro de projeção, atravessam os pixels da tela e intersectam os objetos da cena. A rasterização faz o caminho inverso: os objetos da cena são projetados na tela na direção do centro de projeção, e são então convertidos em pixels.</p>
+<p>Neste curso usaremos apenas a rasterização, que é a forma de renderização utilizada na maioria das aplicações gráficas interativas. É também a única abordagem de renderização suportada atualmente no pipeline gráfico do OpenGL. Entretanto, é importante observar que novos pipelines baseados em traçado de raios (uma forma de ray casting) têm sido incorporados às APIs gráficas e tendem a conquistar cada vez mais espaço em síntese de imagens em tempo real.</p>
+<div id="ray-casting" class="section level3 unnumbered">
+<h3>Ray casting</h3>
+<p>Na sua forma mais simples, o algoritmo de ray casting <span class="citation">(<a href="#ref-roth1982" role="doc-biblioref">Roth 1982</a>)</span> consiste nos seguintes passos (figura <a href="ray-casting-x-rasterização.html#fig:04raycasting">4.4</a>):</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:04raycasting"></span>
+<img src="images/04_raycasting.svg" alt="Ray casting." width="95%" />
+<p class="caption">
+Figura 4.4: Ray casting.
+</p>
+</div>
+<ul>
+<li>Para cada pixel do framebuffer:
+<ol style="list-style-type: decimal">
+<li>Calcule o raio <span class="math inline">\(R\)</span> que sai do centro de projeção e passa pelo pixel.</li>
+<li>Seja <span class="math inline">\(P\)</span> a interseção mais próxima (se houver) de <span class="math inline">\(R\)</span> com um objeto da cena.</li>
+<li>Faça com que a cor do pixel seja a cor calculada em <span class="math inline">\(P\)</span>.</li>
+</ol></li>
+</ul>
+<p>Em ray casting, cada pixel é visitado apenas uma vez. Entretanto, para cada pixel visitado, potencialmente todos os objetos da cena podem ser consultados para calcular a interseção mais próxima. Assim, o principal custo da geração de imagem usando ray casting está relacionado ao cálculo das interseções.</p>
+<p>Estruturas de dados de subdivisão espacial como <em>k-d tree</em> <span class="citation">(<a href="#ref-bentley1975" role="doc-biblioref">Bentley 1975</a>)</span> e <em>octree</em> <span class="citation">(<a href="#ref-meagher1980" role="doc-biblioref">Meagher 1980</a>)</span> podem ser utilizadas para que seja possível descartar rapidamente a geometria não intersectada pelo raio e com isso diminuir o número de testes de interseção.</p>
+<p>Embora o ray casting seja conceitualmente simples, é pouco adequado para implementação em hardware, pois cada iteração do laço principal exige a manutenção de toda a cena na memória do renderizador, além da estrutura de subdivisão espacial. Essa limitação tem sido cada vez menos significativa nas GPUs mais recentes, mas ray casting ainda é pouco utilizado em síntese de imagens em tempo real.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Para produzir imagens fotorrealistas, a cor em <span class="math inline">\(P\)</span> deve ser calculada através da integração da energia luminosa que incide sobre o ponto vindo de todas as direções da cena, e da determinação da quantidade dessa energia que é refletida na direção do pixel na tela. Isso pode ser feito de diferentes formas e em diferentes níveis de aproximação.</p>
+<p>Uma aproximação pouco acurada, mas muito eficiente, é avaliar a equação de um <em>modelo de iluminação local</em> como o modelo de reflexão de Phong <span class="citation">(<a href="#ref-phong1973" role="doc-biblioref">Phong 1973</a>)</span> ou Blinn-Phong <span class="citation">(<a href="#ref-blinn1977" role="doc-biblioref">Blinn 1977</a>)</span> que considera que a cor em uma superfície é determinada unicamente pela luz que incide diretamente sobre a superfície, e não pela luz indireta refletida por outros objetos.</p>
+<p>Outra aproximação, mais acurada porém bem menos eficiente, é a técnica de traçado de raios recursivo <span class="citation">(<a href="#ref-whitted1979" role="doc-biblioref">Whitted 1979</a>)</span> que consiste em lançar novos raios a partir de <span class="math inline">\(P\)</span> (figura <a href="ray-casting-x-rasterização.html#fig:04raytracing">4.5</a>). Esses raios são:</p>
+<ul>
+<li>Um <em>raio de sombra</em> (<em>shadow ray</em>) em direção a cada fonte de luz, para saber se <span class="math inline">\(P\)</span> encontra-se na sombra em relação à fonte de luz correspondente;</li>
+<li>Um <em>raio de reflexão</em> (<em>reflection ray</em>) na direção espelhada em relação ao vetor normal à superfície em <span class="math inline">\(P\)</span>;</li>
+<li>Um <em>raio de refração</em> (<em>refraction ray</em>) que atravessa a superfície do objeto, caso o objeto seja transparente.</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:04raytracing"></span>
+<img src="images/04_raytracing.svg" alt="Traçado de raios recursivo." width="100%" />
+<p class="caption">
+Figura 4.5: Traçado de raios recursivo.
+</p>
+</div>
+<p>Os raios de reflexão e refração podem intersectar outros objetos, e novos raios podem ser gerados a partir desses pontos de interseção, recursivamente, de tal modo que a cor final refletida em <span class="math inline">\(P\)</span> é formada por uma combinação da energia luminosa representada por todos os raios.</p>
+</div>
+</div>
+<div id="rasterização" class="section level3 unnumbered">
+<h3>Rasterização</h3>
+<p>Em oposição ao ray casting, a rasterização é centrada no processamento de primitivas em vez de pixels. Cada primitiva é projetada no plano de imagem e rasterizada em seguida (figura <a href="ray-casting-x-rasterização.html#fig:04rasterization">4.6</a>):</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:04rasterization"></span>
+<img src="images/04_rasterization.svg" alt="Rasterização." width="95%" />
+<p class="caption">
+Figura 4.6: Rasterização.
+</p>
+</div>
+<ul>
+<li>Para cada primitiva da cena:
+<ol style="list-style-type: decimal">
+<li>Projete a primitiva no plano de imagem.</li>
+<li>Rasterize a primitiva projetada.</li>
+<li>Modifique o framebuffer com a cor calculada em cada pixel da primitiva, exceto se o pixel do framebuffer já tiver sido preenchido anteriormente com uma primitiva mais próxima do plano de imagem.</li>
+</ol></li>
+</ul>
+<p>Na etapa 3, a cor do pixel é geralmente avaliada através de um modelo de iluminação local como o modelo de Blinn-Phong. Outras técnicas podem ser utilizadas para melhorar a aproximação da luz refletida no ponto amostrado, mas não há lançamento de raios ou testes de interseção como no ray casting.</p>
+<p>A rasterização é mais adequada para implementação em hardware, pois cada iteração do laço principal só precisa armazenar a primitiva que está sendo processada, juntamente com o conteúdo do framebuffer. Como resultado, o processamento de transformação geométrica de vértices e a conversão matricial podem ser paralelizados de forma massiva, como de fato ocorre nas GPUs.</p>
+</div>
+</div>
+<h3>Referências</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-3Dfx. 1997. <em>Glide 2.2 Reference Manual</em>. San Jose, CA, USA: <span>3Dfx Interactive</span>.
-</div>
-<div class="csl-entry">
-Akeley, Kurt. 1993. <span>“Reality Engine Graphics.”</span> In <em>Proceedings of the 20th Annual Conference on Computer Graphics and Interactive Techniques</em>, 109–16. SIGGRAPH ’93. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/166117.166131">https://doi.org/10.1145/166117.166131</a>.
-</div>
-<div class="csl-entry">
-Albers, Donald J., and Gerald L. Alexanderson. 2008. <span>“<span class="nocase">Benoît Mandelbrot: In his own words</span>.”</span> In <em>Mathematical People: Profiles and Interviews</em>, 213–32. A K Peters, Ltd.
-</div>
-<div class="csl-entry">
+<div id="ref-bentley1975" class="csl-entry">
 Bentley, Jon Louis. 1975. <span>“Multidimensional Binary Search Trees Used for Associative Searching.”</span> <em>Commun. ACM</em> 18 (9): 509–17. <a href="https://doi.org/10.1145/361002.361007">https://doi.org/10.1145/361002.361007</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-blinn1977" class="csl-entry">
 Blinn, James F. 1977. <span>“Models of Light Reflection for Computer Synthesized Pictures.”</span> <em>SIGGRAPH Comput. Graph.</em> 11 (2): 192–98. <a href="https://doi.org/10.1145/965141.563893">https://doi.org/10.1145/965141.563893</a>.
 </div>
-<div class="csl-entry">
-———. 1978. <span>“Simulation of Wrinkled Surfaces.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (3): 286–92.
-</div>
-<div class="csl-entry">
-Catmull, Edwin Earl. 1974. <span>“A Subdivision Algorithm for Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
-</div>
-<div class="csl-entry">
-Chappell, Gary, and Peter Bono. 1978. <span>“Core System Implementations: A Status Report.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (4): 53–66. <a href="https://doi.org/10.1145/988451.988454">https://doi.org/10.1145/988451.988454</a>.
-</div>
-<div class="csl-entry">
-Cook, Robert L., Thomas Porter, and Loren Carpenter. 1984. <span>“Distributed Ray Tracing.”</span> In <em>Proceedings of the 11th Annual Conference on Computer Graphics and Interactive Techniques</em>, 137–45. SIGGRAPH ’84. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/800031.808590">https://doi.org/10.1145/800031.808590</a>.
-</div>
-<div class="csl-entry">
-Floyd, Robert W., and Louis Steinberg. 1976. <span>“<span>A</span>n <span>A</span>daptive <span>A</span>lgorithm for <span>S</span>patial <span>G</span>reyscale.”</span> <em>Proceedings of the Society of Information Display</em> 17 (2): 75–77.
-</div>
-<div class="csl-entry">
-Gouraud, Henri. 1971. <span>“Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
-</div>
-<div class="csl-entry">
-Greenberg, Donald P., Michael F. Cohen, and Kenneth E. Torrance. 1986. <span>“Radiosity: A Method for Computing Global Illumination.”</span> <em>The Visual Computer</em> 2 (5): 291–97. <a href="https://doi.org/10.1007/BF02020429">https://doi.org/10.1007/BF02020429</a>.
-</div>
-<div class="csl-entry">
-ISO. 1985. <span>“<span class="nocase">Information technology – Computer graphics – Graphical Kernel System (GKS) – Part 1: Functional description, Part 2: NDC metafile, Part 3: Audit, and Part 4: Archive</span>.”</span> Standard ISO/IEC 7942:1985. International Organization for Standardization.
-</div>
-<div class="csl-entry">
-———. 2015. <span>“<span class="nocase">Information technology – Vocabulary</span>.”</span> Standard ISO/IEC 2382:2015. International Organization for Standardization. <a href="https://www.iso.org/standard/63598.html">https://www.iso.org/standard/63598.html</a>.
-</div>
-<div class="csl-entry">
-Lindholm, Erik, Mark J. Kilgard, and Henry Moreton. 2001. <span>“A User-Programmable Vertex Engine.”</span> In <em>Proceedings of the 28th Annual Conference on Computer Graphics and Interactive Techniques</em>, 149–58. SIGGRAPH ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/383259.383274">https://doi.org/10.1145/383259.383274</a>.
-</div>
-<div class="csl-entry">
-McLendon, Patricia. 1992. <em>Graphics Library Programming Guide</em>. Mountain View, CA, USA: Silicon Graphics.
-</div>
-<div class="csl-entry">
+<div id="ref-meagher1980" class="csl-entry">
 Meagher, Donald. 1980. <span>“<span class="nocase">Octree Encoding: A New Technique for the Representation, Manipulation and Display of Arbitrary 3-D Objects by Computer</span>.”</span> Technical Report IPL-TR-80-111. Rensselaer Polytechnic Institute.
 </div>
-<div class="csl-entry">
-Montrym, John S., Daniel R. Baum, David L. Dignam, and Christopher J. Migdal. 1997. <span>“InfiniteReality: A Real-Time Graphics System.”</span> In, 293–302. SIGGRAPH ’97. USA: ACM Press/Addison-Wesley Publishing Co. <a href="https://doi.org/10.1145/258734.258871">https://doi.org/10.1145/258734.258871</a>.
-</div>
-<div class="csl-entry">
-Morris, Chris. 2001. <span>“<span class="nocase">X-Box on your PC?</span>”</span> In <em>CNN Money</em>. <a href="http://money.cnn.com/2001/02/22/technology/nvidia/">http://money.cnn.com/2001/02/22/technology/nvidia/</a>.
-</div>
-<div class="csl-entry">
-Noll, A. Michael. 1971. <span>“Scanned-Display Computer Graphics.”</span> <em>Commun. ACM</em> 14 (3): 143–50. <a href="https://doi.org/10.1145/362566.362567">https://doi.org/10.1145/362566.362567</a>.
-</div>
-<div class="csl-entry">
-Pharr, Matt, Wenzel Jakob, and Greg Humphreys. 2016. <em>Physically Based Rendering: From Theory to Implementation</em>. 3rd ed. Morgan Kaufmann.
-</div>
-<div class="csl-entry">
+<div id="ref-phong1973" class="csl-entry">
 Phong, Bui Tuong. 1973. <span>“Illumination of Computer-Generated Images.”</span> Technical Report UTEC-CSs-73-129. University of Utah.
 </div>
-<div class="csl-entry">
+<div id="ref-roth1982" class="csl-entry">
 Roth, Scott D. 1982. <span>“Ray Casting for Modeling Solids.”</span> <em>Computer Graphics and Image Processing</em> 18 (2): 109–44. https://doi.org/<a href="https://doi.org/10.1016/0146-664X(82)90169-1">https://doi.org/10.1016/0146-664X(82)90169-1</a>.
 </div>
-<div class="csl-entry">
-Rubin, Michael. 2005. <em>Droidmaker: George Lucas and the Digital Revolution</em>. Triad Pub Co.
-</div>
-<div class="csl-entry">
-Sakaguchi, Hironobu, and Jun Aida. 2001. <span>“Final Fantasy - the Spirits Within.”</span> In <em>ACM SIGGRAPH 2001 Video Review on Electronic Theater Program</em>, 15. SVR ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/945314.945329">https://doi.org/10.1145/945314.945329</a>.
-</div>
-<div class="csl-entry">
-Shuey, David. 1987. <span>“PHIGS: A Graphics Platform for CAD Application Development.”</span> <em>Comput. Aided Des.</em> 19 (8): 410–17. <a href="https://doi.org/10.1016/S0010-4485(87)80003-9">https://doi.org/10.1016/S0010-4485(87)80003-9</a>.
-</div>
-<div class="csl-entry">
-Sutherland, Ivan Edward. 1963. <span>“<span>S</span>ketchpad: <span>A</span> <span>M</span>an-<span>M</span>achine <span>G</span>raphical <span>C</span>ommunication <span>S</span>ystem.”</span> In <em>Proceedings of the 1963 Spring Joint Computer Conference</em>, 23:329–46. AFIPS Conference Proceedings. Baltimore, MD.
-</div>
-<div class="csl-entry">
+<div id="ref-whitted1979" class="csl-entry">
 Whitted, Turner. 1979. <span>“An Improved Illumination Model for Shaded Display.”</span> In <em>6th Annual Conference on Computer Graphics and Interactive Techniques</em>.
 </div>
-<div class="csl-entry">
-Woo, Mason, Jackie Neider, Tom Davis, and Dave Shreiner. 1999. <em>OpenGL Programming Guide: The Official Guide to Learning OpenGL, Version 1.2</em>. 3rd ed. Boston, MA, USA: Addison-Wesley Longman Publishing Co., Inc.
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="coloredtriangles.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="dados-gráficos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="glpipeline.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

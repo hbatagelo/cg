@@ -223,6 +223,32 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.hpp-2"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.cpp-2"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -262,12 +288,12 @@ div.csl-indent {
 <pre><code>pacman -S mingw-w64-x86_64-glslang</code></pre>
 <p>Ao terminar a instalação, feche o shell do MSYS2.</p></li>
 <li><p>Instale o <a href="https://www.python.org/downloads">Python 3.9+ para Windows</a>. Durante a instalação, <strong>certifique-se de ativar a opção “Add Python 3.9 to PATH”</strong>.</p>
-<p>Após a instalação, abra o Prompt de Comando (<code>cmd.exe</code>) e execute o comando <code>where python</code> para mostrar os diferentes caminhos em que o <code>python</code> está sendo alcançado pela variável de ambiente <code>PATH</code>:</p>
+<p>Após a instalação, abra o Prompt de Comando (<code>cmd.exe</code>) e execute o comando <code>where python</code> para mostrar os diferentes caminhos em que o <code>python</code> está sendo alcançado pela variável de ambiente <code>Path</code>:</p>
 <pre><code>C:\&gt;where python
 C:\Users\ufabc\AppData\Local\Programs\Python\Python39\python.exe
 C:\Users\ufabc\AppData\Local\Microsoft\WindowsApps\python.exe</code></pre>
 <p><strong>O primeiro caminho exibido deve ser o caminho do executável do Python que acabou de ser instalado.</strong> Neste caso está correto, pois o Python foi instalado no local padrão do instalador que é <code>%LocalAppData%\Programs\Python\Python39</code> (neste exemplo, o nome do usuário é <code>ufabc</code>).</p></li>
-<li><p>No “Painel de Controle” do Windows, abra a opção “Editar as Variáveis de Ambiente do Sistema.” Edite a variável <code>Path</code> do sistema<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> e inclua os caminhos para <code>mingw64\bin</code> e <code>usr\bin</code> do MSYS2. Por exemplo, se o MSYS2 foi instalado em <code>C:\msys64</code>, inclua os seguintes caminhos no <code>Path</code>:</p>
+<li><p>No “Painel de Controle” do Windows, abra a opção “Editar as Variáveis de Ambiente do Sistema.” Edite a variável <code>Path</code> do usuário atual<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> e inclua os caminhos para <code>mingw64\bin</code> e <code>usr\bin</code> do MSYS2. Por exemplo, se o MSYS2 foi instalado em <code>C:\msys64</code>, inclua os seguintes caminhos no <code>Path</code>:</p>
 <pre><code>C:\msys64\usr\bin
 C:\msys64\mingw64\bin</code></pre>
 <p>Edite a ordem dos caminhos de tal forma que o caminho do Python apareça no início da lista, seguido pelos caminhos do MSYS2, como mostra a figura a seguir:</p>
@@ -318,7 +344,7 @@ Importante
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>A variável <code>Path</code> existe tanto nas variáveis do <strong>usuário</strong> quanto nas variáveis do <strong>sistema</strong>. É recomendável alterar a variável do sistema.<a href="windows.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>A variável <code>Path</code> existe tanto nas variáveis do <strong>usuário</strong> quanto nas variáveis do <strong>sistema</strong>. A modificação do <code>Path</code> do usuário geralmente é suficiente para uma instalação correta. Se ocorrer algum erro ao seguir as instruções de construção do “Hello, World!” na seção <a href="abcg.html#abcg">1.5</a> (erro de construção ou de DLL não encontrada), experimente alterar o <code>Path</code> do sistema ao invés do usuário.<a href="windows.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

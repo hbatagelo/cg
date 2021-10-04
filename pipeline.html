@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Referências | MCTA008-17 Computação Gráfica</title>
+  <title>4 Pipeline gráfico | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Referências | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="4 Pipeline gráfico | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Referências | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="4 Pipeline gráfico | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="coloredtriangles.html"/>
-
+<link rel="prev" href="sierpinski.html"/>
+<link rel="next" href="dados-gráficos.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -274,131 +274,30 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências" class="section level1 unnumbered">
-<h1>Referências</h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-3Dfx. 1997. <em>Glide 2.2 Reference Manual</em>. San Jose, CA, USA: <span>3Dfx Interactive</span>.
+<div id="pipeline" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Pipeline gráfico</h1>
+<p>O <strong>pipeline gráfico</strong> ou <strong>pipeline de renderização</strong> é um modelo conceitual de descrição da sequência de passos que um sistema gráfico utiliza para transformar um modelo matemático de dados gráficos em uma imagem digital. O termo “pipeline” é utilizado porque o processamento é realizado em uma sequência linear de etapas alimentadas por um fluxo de dados, de modo que cada etapa pode processar novos dados tão logo tenha enviado a saída à etapa seguinte.</p>
+<p>O pipeline é iniciado pela aplicação na CPU. A aplicação é responsável por alimentar o pipeline com os dados gráficos que serão renderizados. Em geral, esses dados descrevem objetos de uma cena 3D. A geometria de cada objeto é formada por malhas de triângulos, e uma câmera virtual define o ponto de vista da renderização.</p>
+<p>O pipeline típico implementado nas atuais GPUs envolve etapas que compreendem o <strong>processamento geométrico</strong>, a <strong>rasterização</strong> e o <strong>processamento de fragmentos</strong> (figura <a href="pipeline.html#fig:pipeline1">4.1</a>):</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pipeline1"></span>
+<img src="images/04_pipeline1.svg" alt="Etapas de um pipeline gráfico." width="85%" />
+<p class="caption">
+Figura 4.1: Etapas de um pipeline gráfico.
+</p>
 </div>
-<div class="csl-entry">
-Akeley, Kurt. 1993. <span>“Reality Engine Graphics.”</span> In <em>Proceedings of the 20th Annual Conference on Computer Graphics and Interactive Techniques</em>, 109–16. SIGGRAPH ’93. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/166117.166131">https://doi.org/10.1145/166117.166131</a>.
+<ol style="list-style-type: decimal">
+<li><p><strong>Processamento geométrico</strong>: envolve operações realizadas sobre vértices, como transformações afins e transformações projetivas que serão abordadas em capítulos futuros. O processamento geométrico pode envolver também a criação de geometria e o refinamento de malhas. Ao final desse processamento é feito o recorte ou descarte das primitivas geométricas que estão fora da janela de visualização.</p></li>
+<li><p><strong>Rasterização</strong>: compreende a conversão matricial das primitivas. O resultado é um conjunto de amostras de primitivas. Durante o processamento no pipeline, o termo <em>fragmento</em> é frequentemente utilizado para designar essas amostras no lugar de <em>pixel</em>. Cada fragmento é uma coleção de valores que inclui atributos interpolados a partir dos vértices e a posição <span class="math inline">\((x,y,z)\)</span> da amostra em coordenadas da janela (o valor <span class="math inline">\(z\)</span> é considerado a “profundidade” do fragmento). O pixel é o valor final da cor no buffer de cor, que pode ser uma combinação da cor de vários fragmentos.</p></li>
+<li><p><strong>Processamento de fragmentos</strong>: envolve operações realizadas sobre cada fragmento para determinar sua cor e outros atributos. A cor pode ser determinada através da avaliação de modelos de iluminação que levam em conta os atributos de iluminação fornecidos pela aplicação, tais como fontes de luz, texturas e descrição de materiais de superfícies. Após essas operações são realizados testes de descarte de fragmentos e combinação de cores entre os fragmentos processados e os pixels já existentes no framebuffer. O resultado é armazenado em diferentes buffers do framebuffer: buffers de cor, buffer de profundidade e buffer de estêncil.</p></li>
+</ol>
 </div>
-<div class="csl-entry">
-Albers, Donald J., and Gerald L. Alexanderson. 2008. <span>“<span class="nocase">Benoît Mandelbrot: In his own words</span>.”</span> In <em>Mathematical People: Profiles and Interviews</em>, 213–32. A K Peters, Ltd.
-</div>
-<div class="csl-entry">
-Bentley, Jon Louis. 1975. <span>“Multidimensional Binary Search Trees Used for Associative Searching.”</span> <em>Commun. ACM</em> 18 (9): 509–17. <a href="https://doi.org/10.1145/361002.361007">https://doi.org/10.1145/361002.361007</a>.
-</div>
-<div class="csl-entry">
-Blinn, James F. 1977. <span>“Models of Light Reflection for Computer Synthesized Pictures.”</span> <em>SIGGRAPH Comput. Graph.</em> 11 (2): 192–98. <a href="https://doi.org/10.1145/965141.563893">https://doi.org/10.1145/965141.563893</a>.
-</div>
-<div class="csl-entry">
-———. 1978. <span>“Simulation of Wrinkled Surfaces.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (3): 286–92.
-</div>
-<div class="csl-entry">
-Catmull, Edwin Earl. 1974. <span>“A Subdivision Algorithm for Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
-</div>
-<div class="csl-entry">
-Chappell, Gary, and Peter Bono. 1978. <span>“Core System Implementations: A Status Report.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (4): 53–66. <a href="https://doi.org/10.1145/988451.988454">https://doi.org/10.1145/988451.988454</a>.
-</div>
-<div class="csl-entry">
-Cook, Robert L., Thomas Porter, and Loren Carpenter. 1984. <span>“Distributed Ray Tracing.”</span> In <em>Proceedings of the 11th Annual Conference on Computer Graphics and Interactive Techniques</em>, 137–45. SIGGRAPH ’84. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/800031.808590">https://doi.org/10.1145/800031.808590</a>.
-</div>
-<div class="csl-entry">
-Floyd, Robert W., and Louis Steinberg. 1976. <span>“<span>A</span>n <span>A</span>daptive <span>A</span>lgorithm for <span>S</span>patial <span>G</span>reyscale.”</span> <em>Proceedings of the Society of Information Display</em> 17 (2): 75–77.
-</div>
-<div class="csl-entry">
-Gouraud, Henri. 1971. <span>“Computer Display of Curved Surfaces.”</span> PhD thesis, University of Utah.
-</div>
-<div class="csl-entry">
-Greenberg, Donald P., Michael F. Cohen, and Kenneth E. Torrance. 1986. <span>“Radiosity: A Method for Computing Global Illumination.”</span> <em>The Visual Computer</em> 2 (5): 291–97. <a href="https://doi.org/10.1007/BF02020429">https://doi.org/10.1007/BF02020429</a>.
-</div>
-<div class="csl-entry">
-ISO. 1985. <span>“<span class="nocase">Information technology – Computer graphics – Graphical Kernel System (GKS) – Part 1: Functional description, Part 2: NDC metafile, Part 3: Audit, and Part 4: Archive</span>.”</span> Standard ISO/IEC 7942:1985. International Organization for Standardization.
-</div>
-<div class="csl-entry">
-———. 2015. <span>“<span class="nocase">Information technology – Vocabulary</span>.”</span> Standard ISO/IEC 2382:2015. International Organization for Standardization. <a href="https://www.iso.org/standard/63598.html">https://www.iso.org/standard/63598.html</a>.
-</div>
-<div class="csl-entry">
-Lindholm, Erik, Mark J. Kilgard, and Henry Moreton. 2001. <span>“A User-Programmable Vertex Engine.”</span> In <em>Proceedings of the 28th Annual Conference on Computer Graphics and Interactive Techniques</em>, 149–58. SIGGRAPH ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/383259.383274">https://doi.org/10.1145/383259.383274</a>.
-</div>
-<div class="csl-entry">
-McLendon, Patricia. 1992. <em>Graphics Library Programming Guide</em>. Mountain View, CA, USA: Silicon Graphics.
-</div>
-<div class="csl-entry">
-Meagher, Donald. 1980. <span>“<span class="nocase">Octree Encoding: A New Technique for the Representation, Manipulation and Display of Arbitrary 3-D Objects by Computer</span>.”</span> Technical Report IPL-TR-80-111. Rensselaer Polytechnic Institute.
-</div>
-<div class="csl-entry">
-Montrym, John S., Daniel R. Baum, David L. Dignam, and Christopher J. Migdal. 1997. <span>“InfiniteReality: A Real-Time Graphics System.”</span> In, 293–302. SIGGRAPH ’97. USA: ACM Press/Addison-Wesley Publishing Co. <a href="https://doi.org/10.1145/258734.258871">https://doi.org/10.1145/258734.258871</a>.
-</div>
-<div class="csl-entry">
-Morris, Chris. 2001. <span>“<span class="nocase">X-Box on your PC?</span>”</span> In <em>CNN Money</em>. <a href="http://money.cnn.com/2001/02/22/technology/nvidia/">http://money.cnn.com/2001/02/22/technology/nvidia/</a>.
-</div>
-<div class="csl-entry">
-Noll, A. Michael. 1971. <span>“Scanned-Display Computer Graphics.”</span> <em>Commun. ACM</em> 14 (3): 143–50. <a href="https://doi.org/10.1145/362566.362567">https://doi.org/10.1145/362566.362567</a>.
-</div>
-<div class="csl-entry">
-Pharr, Matt, Wenzel Jakob, and Greg Humphreys. 2016. <em>Physically Based Rendering: From Theory to Implementation</em>. 3rd ed. Morgan Kaufmann.
-</div>
-<div class="csl-entry">
-Phong, Bui Tuong. 1973. <span>“Illumination of Computer-Generated Images.”</span> Technical Report UTEC-CSs-73-129. University of Utah.
-</div>
-<div class="csl-entry">
-Roth, Scott D. 1982. <span>“Ray Casting for Modeling Solids.”</span> <em>Computer Graphics and Image Processing</em> 18 (2): 109–44. https://doi.org/<a href="https://doi.org/10.1016/0146-664X(82)90169-1">https://doi.org/10.1016/0146-664X(82)90169-1</a>.
-</div>
-<div class="csl-entry">
-Rubin, Michael. 2005. <em>Droidmaker: George Lucas and the Digital Revolution</em>. Triad Pub Co.
-</div>
-<div class="csl-entry">
-Sakaguchi, Hironobu, and Jun Aida. 2001. <span>“Final Fantasy - the Spirits Within.”</span> In <em>ACM SIGGRAPH 2001 Video Review on Electronic Theater Program</em>, 15. SVR ’01. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/945314.945329">https://doi.org/10.1145/945314.945329</a>.
-</div>
-<div class="csl-entry">
-Shuey, David. 1987. <span>“PHIGS: A Graphics Platform for CAD Application Development.”</span> <em>Comput. Aided Des.</em> 19 (8): 410–17. <a href="https://doi.org/10.1016/S0010-4485(87)80003-9">https://doi.org/10.1016/S0010-4485(87)80003-9</a>.
-</div>
-<div class="csl-entry">
-Sutherland, Ivan Edward. 1963. <span>“<span>S</span>ketchpad: <span>A</span> <span>M</span>an-<span>M</span>achine <span>G</span>raphical <span>C</span>ommunication <span>S</span>ystem.”</span> In <em>Proceedings of the 1963 Spring Joint Computer Conference</em>, 23:329–46. AFIPS Conference Proceedings. Baltimore, MD.
-</div>
-<div class="csl-entry">
-Whitted, Turner. 1979. <span>“An Improved Illumination Model for Shaded Display.”</span> In <em>6th Annual Conference on Computer Graphics and Interactive Techniques</em>.
-</div>
-<div class="csl-entry">
-Woo, Mason, Jackie Neider, Tom Davis, and Dave Shreiner. 1999. <em>OpenGL Programming Guide: The Official Guide to Learning OpenGL, Version 1.2</em>. 3rd ed. Boston, MA, USA: Addison-Wesley Longman Publishing Co., Inc.
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="coloredtriangles.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="sierpinski.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dados-gráficos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
