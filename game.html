@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.1 Dados gráficos | MCTA008-17 Computação Gráfica</title>
+  <title>5 Desenvolvendo um jogo 2D | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.1 Dados gráficos | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="5 Desenvolvendo um jogo 2D | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.1 Dados gráficos | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="5 Desenvolvendo um jogo 2D | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pipeline.html"/>
-<link rel="next" href="ray-casting-x-rasterização.html"/>
+<link rel="prev" href="coloredtriangles.html"/>
+<link rel="next" href="regularpolygons.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -293,41 +293,47 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dados-gráficos" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Dados gráficos</h2>
-<p>O processamento de um pipeline gráfico começa com a definição dos dados gráficos pela aplicação. Esses dados são frequentemente representações de objetos – abstrações de objetos do mundo real – dispostos em uma <em>cena</em> virtual tridimensional. Uma cena é tipicamente composta por:</p>
+<div id="game" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Desenvolvendo um jogo 2D</h1>
+<p>Neste capítulo, usaremos o pipeline gráfico do OpenGL e funções das bibliotecas auxiliares da ABCg (GLM, ImGui, SDL) para desenvolver um jogo com gráficos 2D. Veremos como especificar a geometria de objetos de cena usando diferentes formatos de <em>Vertex Buffer Objects</em> (VBOs), como trabalhar com mais de um par de vertex/fragment shaders, e como usar <em>variáveis uniformes</em> (<em>uniform variables</em>) para modificar a cor, posição e orientação dos objetos sem precisar reconstruir os VBOs. Também trabalharemos com aspectos não relacionados ao pipeline, mas que são necessários para dar animação e interação ao jogo:</p>
 <ul>
-<li><strong>Objetos</strong> com geometria descrita através de <em>modelos geométricos</em>, geralmente no formato de malhas de triângulos. Em renderizadores <em>offline</em>, também é comum representar a geometria de objetos através de equações paramétricas ou implícitas.</li>
-<li><strong>Propriedades dos materiais</strong> dos objetos, tais como cor, textura, transparência e refletividade.</li>
-<li><strong>Fontes de luz</strong> descritas por informações como intensidade, direção de propagação da luz e fatores de atenuação.</li>
-<li><strong>Uma câmera virtual</strong> descrita por informações que permitem definir um ponto de vista na cena, tais como posição da câmera, orientação e campo de visão.</li>
+<li>Como responder a eventos do mouse e teclado;</li>
+<li>Como calcular a colisão entre os objetos do jogo;</li>
+<li>Como usar temporizadores para animar os objetos.</li>
 </ul>
-<p>A câmera virtual é uma abstração de uma câmera ou observador do mundo real. A síntese de imagens pode ser considerada como o processo de gerar a fotografia digital tirada pela câmera virtual.</p>
-<p>Em uma câmera de verdade, a imagem é formada a partir da energia luminosa que atravessa as lentes e é captada pelo sensor RGB durante um certo tempo de exposição.</p>
-<p>Poderíamos tentar simular de forma precisa o comportamento de uma câmera de verdade, mas seria muito custoso simular o comportamento dos fótons passando pelo sistema de lentes e então integrá-los sobre o hemisfério de todas as possíveis direções de luz que incidem em cada subpixel RGB do sensor da câmera. Felizmente, podemos simplificar de forma significativa este processo. Para aplicações de síntese de imagens em tempo real, a cor de cada pixel pode ser uma aproximação simples da energia luminosa refletida na direção do pixel. Essa aproximação pode ser fisicamente incorreta, desde que suficiente para dar a percepção de sombreamento (<em>shading</em>) dos objetos.</p>
-<p>É comum considerar que a câmera virtual é uma <strong>câmera <em>pinhole</em> ideal</strong> (figura <a href="dados-gráficos.html#fig:pinhole1">4.2</a>). A câmera pinhole é uma câmera que não possui lentes. A luz passa por um pequeno furo (chamado de <em>centro de projeção</em>) e incide sobre um filme ou sensor localizado no fundo da câmera (o <em>plano de imagem</em>). A abertura do campo de visão pode ser ajustada mudando a distância focal, que é a distância entre o centro de projeção e o plano de imagem. Na câmera pinhole ideal, a abertura do furo é infinitamente pequena e as imagens formadas são perfeitamente nítidas (isto é, em foco). Efeitos de difração são ignorados nesse modelo.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pinhole1"></span>
-<img src="images/04_pinhole1.svg" alt="Camera pinhole ideal." width="95%" />
-<p class="caption">
-Figura 4.2: Camera pinhole ideal.
-</p>
+<p>O resultado será um jogo estilo <a href="https://en.wikipedia.org/wiki/Asteroids_(video_game)">Asteroids</a>, como mostrado a seguir. Para simplificar, o jogo não terá efeitos sonoros<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>.</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/asteroids/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<p>A nave pode ser controlada pelo teclado ou mouse:</p>
+<ul>
+<li>A orientação é ajustada pela posição do mouse, setas para os lados ou teclas <code>A</code> e <code>D</code>;</li>
+<li>A aceleração é ativada com o botão direito do mouse, seta para cima ou tecla <code>W</code>;</li>
+<li>Os tiros são disparados com o botão esquerdo do mouse ou barra de espaço.</li>
+</ul>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
 </div>
-<p>Para evitar ter de lidar com a imagem invertida formada no plano de imagem da câmera pinhole, podemos considerar que o plano de imagem está localizado na frente do centro de projeção, o que seria impossível de fazer numa câmera real. Podemos também ajustar arbitrariamente a distância focal sem preocupação com limitações físicas. A distância focal pode até mesmo ser infinita, se desejarmos uma projeção paralela. Por fim, podemos considerar que o plano de imagem é o framebuffer. Nessa configuração, é comum considerar que o centro de projeção corresponde ao olho do observador, como mostra a figura (figura <a href="dados-gráficos.html#fig:pinhole2">4.3</a>).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pinhole2"></span>
-<img src="images/04_pinhole2.svg" alt="Câmera virtual com plano de imagem na frente do centro de projeção." width="95%" />
-<p class="caption">
-Figura 4.3: Câmera virtual com plano de imagem na frente do centro de projeção.
-</p>
+<p>Como a página do jogo está embutida neste livro online, só é possível controlar a nave pelo mouse. Para a aplicação ter o foco do teclado, abra o <a href="https://hbatagelo.github.io/abcgapps/asteroids/index.html">link original</a>.</p>
 </div>
-<p>Para determinar a cor de cada pixel do framebuffer para um determinado ponto de vista da câmera virtual, podemos considerar duas abordagens de renderização: <strong>ray casting</strong> e <strong>rasterização</strong>. Essas abordagens são apresentadas na seção a seguir.</p>
+<p>Antes de começar a desenvolver o jogo, acompanharemos na seção <a href="regularpolygons.html#regularpolygons">5.1</a> o passo a passo de desenvolvimento de um projeto mais simples, que desenha polígonos regulares coloridos em posições aleatórias da janela. O projeto explora conceitos que serão aplicados no jogo. Em particular, os polígonos regulares servirão de base para criarmos os asteroides e os tiros da espaçonave. Também usaremos temporizadores e variáveis uniformes de forma muito parecida com o que veremos nesse primeiro projeto.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="21">
+<li id="fn21"><p>É possível incluir sons usando as funções de áudio da SDL, mas neste curso não utilizaremos tais funcionalidades.<a href="game.html#fnref21" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="pipeline.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ray-casting-x-rasterização.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="coloredtriangles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regularpolygons.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

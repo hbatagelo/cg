@@ -249,6 +249,25 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.cpp-2"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.hpp-3"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.cpp-3"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -347,7 +366,7 @@ Figura 3.30: Triângulo de Sierpinski desenhado com 1.000, 10.000 e 100.000 iter
 <span id="cb91-17"><a href="sierpinski.html#cb91-17"></a>                               .showFullscreenButton = <span class="kw">false</span>,</span>
 <span id="cb91-18"><a href="sierpinski.html#cb91-18"></a>                               .title = <span class="st">&quot;Sierpinski Triangle&quot;</span>});</span></code></pre></div>
 <ul>
-<li><code>setOpenGLSettings</code> é um método de <code>abcg::OpenGLWindow</code> que recebe uma estrutura <code>abcg::OpenGLSettings</code> com as configurações de inicialização do OpenGL. Essas configurações são usadas pela SDL no momento da criação de um “contexto do OpenGL” que representa o framebuffer vinculado à janela:
+<li><code>setOpenGLSettings</code> é uma função membro de <code>abcg::OpenGLWindow</code> que recebe uma estrutura <code>abcg::OpenGLSettings</code> com as configurações de inicialização do OpenGL. Essas configurações são usadas pela SDL no momento da criação de um “contexto do OpenGL” que representa o framebuffer vinculado à janela:
 <ul>
 <li>O atributo <code>samples = 2</code> faz com que o framebuffer suporte suavização de serrilhado (<em>antialiasing</em>) das primitivas do OpenGL;</li>
 <li>O atributo <code>preserveWebGLDrawingBuffer = true</code> é utilizado apenas no binário em WebAssembly. No WebGL, <code>preserveDrawingBuffer</code> é uma configuração de criação do contexto do OpenGL que faz com que o framebuffer vinculado ao canvas da página Web não seja apagado entre os quadros de exibição.</li>
@@ -357,7 +376,7 @@ Figura 3.30: Triângulo de Sierpinski desenhado com 1.000, 10.000 e 100.000 iter
 </div>
 <div id="openglwindow.hpp-1" class="section level3 unnumbered">
 <h3>openglwindow.hpp</h3>
-<p>Na definição da classe <code>OpenGLWindow</code>, vamos substituir novos métodos virtuais de <code>abcg::OpenGLWindow</code> e vamos definir variáveis que serão utilizados para atualizar o jogo do caos e para desenhar o ponto na tela:</p>
+<p>Na definição da classe <code>OpenGLWindow</code>, vamos substituir novas funções virtuais de <code>abcg::OpenGLWindow</code> e vamos definir variáveis que serão utilizados para atualizar o jogo do caos e para desenhar o ponto na tela:</p>
 <div class="sourceCode" id="cb92" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb92-1"><a href="sierpinski.html#cb92-1"></a><span class="pp">#ifndef OPENGLWINDOW_HPP_</span></span>
 <span id="cb92-2"><a href="sierpinski.html#cb92-2"></a><span class="pp">#define OPENGLWINDOW_HPP_</span></span>
 <span id="cb92-3"><a href="sierpinski.html#cb92-3"></a></span>
@@ -393,10 +412,10 @@ Figura 3.30: Triângulo de Sierpinski desenhado com 1.000, 10.000 e 100.000 iter
 <span id="cb92-33"><a href="sierpinski.html#cb92-33"></a>  <span class="dt">void</span> setupModel();</span>
 <span id="cb92-34"><a href="sierpinski.html#cb92-34"></a>};</span>
 <span id="cb92-35"><a href="sierpinski.html#cb92-35"></a><span class="pp">#endif</span></span></code></pre></div>
-<p>Observe que, além de usarmos os métodos <code>initializeGL</code>, <code>paintGL</code> e <code>paintUI</code>, estamos agora substituindo mais dois métodos virtuais de <code>abcg::OpenGLWindow</code>:</p>
+<p>Observe que, além de usarmos as funções <code>initializeGL</code>, <code>paintGL</code> e <code>paintUI</code>, estamos agora substituindo mais duas funções virtuais de <code>abcg::OpenGLWindow</code>:</p>
 <ul>
-<li><p><code>resizeGL</code> <strong>é chamado pela ABCg sempre que o tamanho da janela é alterado</strong>. O novo tamanho é recebido pelos parâmetros <code>width</code> e <code>height</code>. Na nossa aplicação, vamos armazenar esses valores nas variáveis <code>m_viewportWidth</code> (linha 23) e <code>m_viewportHeight</code> (linha 24). Precisamos disso para fazer com que a janela de exibição (<em>viewport</em>) do OpenGL tenha o mesmo tamanho da janela da aplicação. O conceito de viewport será detalhado mais adiante.</p></li>
-<li><p><code>terminateGL</code> <strong>é chamado pela ABCg quando a janela é destruída</strong>, no fim da aplicação. Essa é a função complementar de <code>initializeGL</code>, usada para liberar os recursos do OpenGL que foram alocados no <code>initializeGL</code> ou durante a aplicação.</p></li>
+<li><p><code>resizeGL</code> <strong>é chamada pela ABCg sempre que o tamanho da janela é alterado</strong>. O novo tamanho é recebido pelos parâmetros <code>width</code> e <code>height</code>. Na nossa aplicação, vamos armazenar esses valores nas variáveis <code>m_viewportWidth</code> (linha 23) e <code>m_viewportHeight</code> (linha 24). Precisamos disso para fazer com que a janela de exibição (<em>viewport</em>) do OpenGL tenha o mesmo tamanho da janela da aplicação. O conceito de viewport será detalhado mais adiante.</p></li>
+<li><p><code>terminateGL</code> <strong>é chamada pela ABCg quando a janela é destruída</strong>, no fim da aplicação. Essa é a função complementar de <code>initializeGL</code>, usada para liberar os recursos do OpenGL que foram alocados no <code>initializeGL</code> ou durante a aplicação.</p></li>
 </ul>
 <p>Da linha 19 a 31 temos a definição das variáveis da classe:</p>
 <div class="sourceCode" id="cb93" startFrom="19"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 18;"><span id="cb93-19"><a href="sierpinski.html#cb93-19"></a>  GLuint <span class="va">m_vao</span>{};</span>
@@ -419,7 +438,7 @@ Figura 3.30: Triângulo de Sierpinski desenhado com 1.000, 10.000 e 100.000 iter
 <li><p><code>m_points</code> é um arranjo que contém a posição dos pontos <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> e <span class="math inline">\(C\)</span>. As coordenadas dos pontos são descritas por uma estrutura <code>glm::vec2</code>. O namespace <code>glm</code> contém definições da biblioteca <a href="https://github.com/g-truc/glm">OpenGL Mathematics</a> (GLM) que fornece estruturas e funções de operações matemáticas compatíveis com a especificação da linguagem de shaders do OpenGL. Observe que, para usar <code>glm::vec2</code>, incluímos o arquivo de cabeçalho <code>glm/vec2.hpp</code>.</p></li>
 <li><p><code>m_P</code> é a posição do ponto <span class="math inline">\(P\)</span>.</p></li>
 </ul>
-<p>Além da definição das variáveis, na linha 33 é definido o método <code>setupModel</code> que cria os recursos identificados por <code>m_vao</code> e <code>m_vboVertices</code>. O método é chamado sempre que um novo ponto <span class="math inline">\(P\)</span> precisa ser desenhado.</p>
+<p>Além da definição das variáveis, na linha 33 é definida a função membro <code>OpenGLWindow::setupModel</code> que cria os recursos identificados por <code>m_vao</code> e <code>m_vboVertices</code>. A função é chamada sempre que um novo ponto <span class="math inline">\(P\)</span> precisa ser desenhado.</p>
 </div>
 <div id="openglwindow.cpp-1" class="section level3 unnumbered">
 <h3>openglwindow.cpp</h3>
@@ -471,7 +490,7 @@ Figura 3.30: Triângulo de Sierpinski desenhado com 1.000, 10.000 e 100.000 iter
 <li><strong>Especificar como o buffer de vértices será lido pelo programa de shader.</strong> No nosso código, o estado dessa configuração é armazenado como um objeto do OpenGL chamado VAO (<em>Vertex Array Object</em>), identificado pela variável <code>m_vao</code>.</li>
 </ol>
 <p>Somente após alocar e ativar esses recursos é que podemos iniciar o pipeline de renderização, chamando uma função de desenho no <code>paintGL</code>. Não se preocupe se tudo isso está parecendo muito complexo nesse momento. Nos próximos capítulos revisitaremos cada etapa várias vezes até nos familiarizarmos com todo o processo. Por enquanto, utilizaremos o código já pronto.</p>
-<p>Primeiro, defina o método <code>setupModel</code> como a seguir:</p>
+<p>Primeiro, defina a função <code>setupModel</code> como a seguir:</p>
 <div class="sourceCode" id="cb98" startFrom="109"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 108;"><span id="cb98-109"><a href="sierpinski.html#cb98-109"></a><span class="dt">void</span> OpenGLWindow::setupModel() {</span>
 <span id="cb98-110"><a href="sierpinski.html#cb98-110"></a>  <span class="co">// Release previous VBO and VAO</span></span>
 <span id="cb98-111"><a href="sierpinski.html#cb98-111"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_vboVertices</span>);</span>
@@ -545,8 +564,8 @@ Figura 3.30: Triângulo de Sierpinski desenhado com 1.000, 10.000 e 100.000 iter
 <span id="cb99-44"><a href="sierpinski.html#cb99-44"></a>  <span class="va">m_P</span>.x = realDistribution(<span class="va">m_randomEngine</span>);</span>
 <span id="cb99-45"><a href="sierpinski.html#cb99-45"></a>  <span class="va">m_P</span>.y = realDistribution(<span class="va">m_randomEngine</span>);</span>
 <span id="cb99-46"><a href="sierpinski.html#cb99-46"></a>}</span></code></pre></div>
-<p>Neste método, <code>vertexShader</code> e <code>fragmentShader</code> são strings que contêm o código-fonte dos shaders. <code>vertexShader</code> é o código do chamado <em>vertex shader</em>, que programa o processamento de vértices na GPU. <code>fragmentShader</code> é o código do <em>fragment shader</em> que programa o processamento de pixels na GPU (ou, mais precisamente, o processamento de fragmentos, que são conjuntos de atributos que representam uma amostra de geometria rasterizada).</p>
-<p>A compilação e ligação dos shaders é feita pelo método <code>createProgramFromString</code> que faz parte da <code>abcg::OpenGLWindow</code>. Se acontecer algum erro de compilação, a mensagem de erro será exibida no console e uma exceção será lançada.</p>
+<p>Nesta função, <code>vertexShader</code> e <code>fragmentShader</code> são strings que contêm o código-fonte dos shaders. <code>vertexShader</code> é o código do chamado <em>vertex shader</em>, que programa o processamento de vértices na GPU. <code>fragmentShader</code> é o código do <em>fragment shader</em> que programa o processamento de pixels na GPU (ou, mais precisamente, o processamento de fragmentos, que são conjuntos de atributos que representam uma amostra de geometria rasterizada).</p>
+<p>A compilação e ligação dos shaders é feita pela função <code>createProgramFromString</code> que faz parte de <code>abcg::OpenGLWindow</code>. Se acontecer algum erro de compilação, a mensagem de erro será exibida no console e uma exceção será lançada.</p>
 <p>Note que limpamos o buffer de cor com a cor preta, usando <code>glClearColor</code> e <code>glClear</code> (linhas 28 e 29).</p>
 <p>Observe o trecho de código entre as diretivas de pré-processamento:</p>
 <div class="sourceCode" id="cb100" startFrom="31"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 30;"><span id="cb100-31"><a href="sierpinski.html#cb100-31"></a><span class="pp">#if !defined(__EMSCRIPTEN__)</span></span>
@@ -618,16 +637,16 @@ Figura 3.31: Mapeamento das coordenadas normalizadas no dispositivo (NDC) para c
 <p>Finalmente, na linha 61, <code>glDrawArrays</code> inicia o pipeline de renderização usando os shaders e o VBO ativo. O primeiro argumento (<code>GL_POINTS</code>) indica que os vértices do arranjo de vértices devem ser tratados como pontos. O segundo argumento (<code>0</code>) é o índice inicial dos vértices no VBO, e o terceiro argumento (<code>1</code>) informa quantos vértices devem ser processados.</p>
 <p>O processamento no pipeline de renderização é realizado de forma paralela (assíncrona) com a CPU. Isto é, <code>glDrawArrays</code> retorna imediatamente, enquanto a GPU trabalha em paralelo renderizando a geometria no framebuffer<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>.</p>
 <p>Após o comando de renderização, as linhas 64 e 66 desativam o VAO e os shaders. Essa desativação é opcional pois, de qualquer forma, o mesmo VAO e os mesmos shaders serão utilizados na próxima chamada de <code>paintGL</code>. Ainda assim, é uma boa prática de programação desativá-los logo após o uso.</p>
-<p>Vamos agora definir o método <code>resizeGL</code>, assim:</p>
+<p>Vamos agora definir a função membro <code>OpenGLWindow::resizeGL</code>, assim:</p>
 <div class="sourceCode" id="cb104" startFrom="95"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 94;"><span id="cb104-95"><a href="sierpinski.html#cb104-95"></a><span class="dt">void</span> OpenGLWindow::resizeGL(<span class="dt">int</span> width, <span class="dt">int</span> height) {</span>
 <span id="cb104-96"><a href="sierpinski.html#cb104-96"></a>  <span class="va">m_viewportWidth</span> = width;</span>
 <span id="cb104-97"><a href="sierpinski.html#cb104-97"></a>  <span class="va">m_viewportHeight</span> = height;</span>
 <span id="cb104-98"><a href="sierpinski.html#cb104-98"></a></span>
 <span id="cb104-99"><a href="sierpinski.html#cb104-99"></a>  abcg::glClear(GL_COLOR_BUFFER_BIT);</span>
 <span id="cb104-100"><a href="sierpinski.html#cb104-100"></a>}</span></code></pre></div>
-<p>Como vimos, <code>resizeGL</code> é chamado sempre que a janela da aplicação muda de tamanho. Observe que simplesmente armazenamos o tamanho da janela em <code>m_viewportWidth</code> e <code>m_viewportHeight</code>. Como essas variáveis são usadas em <code>glViewport</code>, garantimos que o viewport sempre ocupará toda a janela da aplicação.</p>
+<p>Como vimos, <code>resizeGL</code> é chamada sempre que a janela da aplicação muda de tamanho. Observe que simplesmente armazenamos o tamanho da janela em <code>m_viewportWidth</code> e <code>m_viewportHeight</code>. Como essas variáveis são usadas em <code>glViewport</code>, garantimos que o viewport sempre ocupará toda a janela da aplicação.</p>
 <p>Observe que também chamamos <code>glClear</code> para apagar o buffer de cor. Dessa forma, o triângulo de Sierpinski no novo tamanho não é desenhado sobre o triângulo do tamanho anterior, o que estragaria o fractal.</p>
-<p>O método <code>terminateGL</code> é definido da seguinte maneira:</p>
+<p>A função membro <code>OpenGLWindow::terminateGL</code> é definida da seguinte maneira:</p>
 <div class="sourceCode" id="cb105" startFrom="102"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 101;"><span id="cb105-102"><a href="sierpinski.html#cb105-102"></a><span class="dt">void</span> OpenGLWindow::terminateGL() {</span>
 <span id="cb105-103"><a href="sierpinski.html#cb105-103"></a>  <span class="co">// Release shader program, VBO and VAO</span></span>
 <span id="cb105-104"><a href="sierpinski.html#cb105-104"></a>  abcg::glDeleteProgram(<span class="va">m_program</span>);</span>

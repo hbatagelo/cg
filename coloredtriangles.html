@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="glpipeline.html"/>
-<link rel="next" href="referências.html"/>
+<link rel="next" href="game.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -249,6 +249,25 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.cpp-2"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.hpp-3"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.cpp-3"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -324,7 +343,7 @@ div.csl-indent {
 <span id="cb116-23"><a href="coloredtriangles.html#cb116-23"></a>  }</span>
 <span id="cb116-24"><a href="coloredtriangles.html#cb116-24"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb116-25"><a href="coloredtriangles.html#cb116-25"></a>}</span></code></pre></div>
-<p>Em <code>setOpenGLSettings</code>, <code>.vsync = true</code> habilita a sincronização vertical (vsync), que está desabilitada por padrão. Assim, <code>OpenGLWindow::paintGL</code> será chamado na mesma taxa de atualização do monitor (geralmente 60 Hz).</p>
+<p>Em <code>setOpenGLSettings</code>, <code>.vsync = true</code> habilita a sincronização vertical (vsync), que está desabilitada por padrão. Assim, <code>OpenGLWindow::paintGL</code> será chamada na mesma taxa de atualização do monitor (geralmente 60 Hz).</p>
 </div>
 <div id="openglwindow.hpp-2" class="section level3 unnumbered">
 <h3>openglwindow.hpp</h3>
@@ -379,7 +398,7 @@ div.csl-indent {
 <span id="cb118-6"><a href="coloredtriangles.html#cb118-6"></a><span class="pp">#include </span><span class="im">&lt;glm/vec3.hpp&gt;</span></span>
 <span id="cb118-7"><a href="coloredtriangles.html#cb118-7"></a></span>
 <span id="cb118-8"><a href="coloredtriangles.html#cb118-8"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span></code></pre></div>
-<p>Agora vamos à definição do método <code>OpenGLWindow::initializeGL</code>:</p>
+<p>Agora vamos à definição da função membro <code>OpenGLWindow::initializeGL</code>:</p>
 <div class="sourceCode" id="cb119" startFrom="10"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 9;"><span id="cb119-10"><a href="coloredtriangles.html#cb119-10"></a><span class="dt">void</span> OpenGLWindow::initializeGL() {</span>
 <span id="cb119-11"><a href="coloredtriangles.html#cb119-11"></a>  <span class="at">const</span> <span class="kw">auto</span> *vertexShader{<span class="st">R&quot;gl(</span></span>
 <span id="cb119-12"><a href="coloredtriangles.html#cb119-12"></a><span class="st">    #version 410</span></span>
@@ -439,7 +458,7 @@ div.csl-indent {
 <span id="cb121-7"><a href="coloredtriangles.html#cb121-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">main</span>() { outColor = fragColor; }</span></code></pre></div>
 <p>O fragment shader é ainda mais simples. O atributo de entrada (<code>fragColor</code>) é copiado sem modificações para o atributo de saída (<code>outColor</code>).</p>
 <p>A compilação e ligação dos shaders é feita pela chamada a <code>abcg::OpenGLWindow::createProgramFromString</code> na linha 36. Consulte a definição dessa função em <code>abcg/abcg/abcg_openglwindow.cpp</code> para ver quais funções do OpenGL são utilizadas. O resultado de <code>createProgramFromString</code> é <code>m_program</code>, um número inteiro que identifica o programa de shader composto pelo par de vertex/fragment shader. Para ativar o programa no pipeline, devemos chamar <code>glUseProgram(m_program)</code>. Para desativá-lo, podemos ativar outro programa (se existir) ou chamar <code>glUseProgram(0)</code>.</p>
-<p>O método <code>OpenGLWindow::paintGL()</code> é definido assim:</p>
+<p>A função <code>OpenGLWindow::paintGL()</code> é definida assim:</p>
 <div class="sourceCode" id="cb122" startFrom="47"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 46;"><span id="cb122-47"><a href="coloredtriangles.html#cb122-47"></a><span class="dt">void</span> OpenGLWindow::paintGL() {</span>
 <span id="cb122-48"><a href="coloredtriangles.html#cb122-48"></a>  setupModel();</span>
 <span id="cb122-49"><a href="coloredtriangles.html#cb122-49"></a></span>
@@ -486,7 +505,7 @@ div.csl-indent {
 <span id="cb124-95"><a href="coloredtriangles.html#cb124-95"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_vboColors</span>);</span>
 <span id="cb124-96"><a href="coloredtriangles.html#cb124-96"></a>  abcg::glDeleteVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_vao</span>);</span>
 <span id="cb124-97"><a href="coloredtriangles.html#cb124-97"></a>}</span></code></pre></div>
-<p>Vamos agora definir o método <code>OpenGLWindow::setupModel</code> e detalhar as funções do OpenGL que são utilizadas. A definição completa do método é dada abaixo, mas em seguida faremos uma análise mais detalhada de cada trecho:</p>
+<p>Vamos agora definir a função membro <code>OpenGLWindow::setupModel</code> e detalhar as funções do OpenGL que são utilizadas. A definição completa é dada abaixo, mas em seguida faremos uma análise mais detalhada de cada trecho:</p>
 <div class="sourceCode" id="cb125" startFrom="99"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 98;"><span id="cb125-99"><a href="coloredtriangles.html#cb125-99"></a><span class="dt">void</span> OpenGLWindow::setupModel() {</span>
 <span id="cb125-100"><a href="coloredtriangles.html#cb125-100"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_vboPositions</span>);</span>
 <span id="cb125-101"><a href="coloredtriangles.html#cb125-101"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_vboColors</span>);</span>
@@ -547,7 +566,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb126" startFrom="100"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 99;"><span id="cb126-100"><a href="coloredtriangles.html#cb126-100"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_vboPositions</span>);</span>
 <span id="cb126-101"><a href="coloredtriangles.html#cb126-101"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_vboColors</span>);</span>
 <span id="cb126-102"><a href="coloredtriangles.html#cb126-102"></a>  abcg::glDeleteVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_vao</span>);</span></code></pre></div>
-<p>É importante fazer isso, pois <code>setupModel</code> é chamado continuamente em <code>paintGL</code>. Se não liberarmos os recursos, em algum momento eles consumirão toda a memória da GPU e CPU<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>.</p>
+<p>É importante fazer isso, pois a função <code>setupModel</code> é chamada continuamente em <code>paintGL</code>. Se não liberarmos os recursos, em algum momento eles consumirão toda a memória da GPU e CPU<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>.</p>
 <p>As linhas 104 a 114 criam arranjos com os dados que serão copiados para os VBOs:</p>
 <div class="sourceCode" id="cb127" startFrom="104"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 103;"><span id="cb127-104"><a href="coloredtriangles.html#cb127-104"></a>  <span class="co">// Create vertex positions</span></span>
 <span id="cb127-105"><a href="coloredtriangles.html#cb127-105"></a>  <span class="bu">std::</span>uniform_real_distribution&lt;<span class="dt">float</span>&gt; rd(-<span class="fl">1.5</span><span class="bu">f</span>, <span class="fl">1.5</span><span class="bu">f</span>);</span>
@@ -812,7 +831,7 @@ Exercício
         </div>
       </div>
 <a href="glpipeline.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="game.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

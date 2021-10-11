@@ -249,6 +249,25 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.cpp-2"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.hpp-3"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.cpp-3"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -354,7 +373,7 @@ Observação
 <span id="cb86-7"><a href="vectorxraster.html#cb86-7" aria-hidden="true" tabindex="-1"></a>  glVertex2f(-<span class="fl">0.5</span><span class="bu">f</span>, -<span class="fl">0.5</span><span class="bu">f</span>);</span>
 <span id="cb86-8"><a href="vectorxraster.html#cb86-8" aria-hidden="true" tabindex="-1"></a>glEnd();</span></code></pre></div>
 <p>Observe que, antes da definição de cada vértice, é definida a sua cor. Quando o triângulo é processado na GPU, as cores em cada vértice são interpoladas bilinearmente (em <span class="math inline">\(x\)</span> e em <span class="math inline">\(y\)</span>) ao longo da superfície do triângulo, formando um gradiente de cores.</p>
-<p>Em nossos programas usando a ABCg, bastaria colocar esse código no método <code>paintGL</code> de nossa classe derivada de <code>abcg::OpenGLWindow</code>. Internamente o OpenGL utilizaria o pipeline de renderização de função fixa (pipeline não programável) para desenhar o triângulo. No entanto, se compararmos com o código atual do projeto no subdiretório <code>abcg\examples\helloworld</code>, perceberemos que não há nenhum comando <code>glBegin</code>, <code>glVertex*</code> ou <code>glColor*</code>. Isso acontece porque o código acima é obsoleto. As funções do modo imediato foram retiradas do OpenGL na versão 3.1 (de 2009). Ainda é possível habilitar um “perfil de compatibilidade” (<em>compatibility profile</em>) para usar funções obsoletas do OpenGL, mas esse perfil já não é suportado em vários drivers e plataformas. Por isso, não o utilizaremos neste curso.</p>
+<p>Em nossos programas usando a ABCg, bastaria colocar esse código na função membro <code>paintGL</code> de nossa classe derivada de <code>abcg::OpenGLWindow</code>. Internamente o OpenGL utilizaria o pipeline de renderização de função fixa (pipeline não programável) para desenhar o triângulo. No entanto, se compararmos com o código atual do projeto no subdiretório <code>abcg\examples\helloworld</code>, perceberemos que não há nenhum comando <code>glBegin</code>, <code>glVertex*</code> ou <code>glColor*</code>. Isso acontece porque o código acima é obsoleto. As funções do modo imediato foram retiradas do OpenGL na versão 3.1 (de 2009). Ainda é possível habilitar um “perfil de compatibilidade” (<em>compatibility profile</em>) para usar funções obsoletas do OpenGL, mas esse perfil já não é suportado em vários drivers e plataformas. Por isso, não o utilizaremos neste curso.</p>
 <p>Atualmente, para desenhar primitivas com o OpenGL, o arranjo ordenado de vértices precisa ser enviada previamente à GPU juntamente com programas chamados <em>shaders</em> que definem como os vértices serão processados e como os pixels serão preenchidos após a rasterização.</p>
 <p>Desenhar um simples triângulo preenchido no OpenGL não é tão simples como antigamente, mas essa dificuldade é compensada pela maior eficiência e flexibilidade obtida com a possibilidade de programar o comportamento da GPU.</p>
 </div>
