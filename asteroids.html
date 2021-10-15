@@ -1175,63 +1175,67 @@ Figura 5.9: Gradiente radial produzido por <code>stars.frag</code> no quadrado d
 <div id="starlayers.cpp" class="section level4 unnumbered">
 <h4>starlayers.cpp</h4>
 <p>O arquivo começa com a definição de <code>StarLayers::initializeGL</code>:</p>
-<div class="sourceCode" id="cb183" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb183-1"><a href="asteroids.html#cb183-1"></a><span class="dt">void</span> StarLayers::initializeGL(GLuint program, <span class="dt">int</span> quantity) {</span>
-<span id="cb183-2"><a href="asteroids.html#cb183-2"></a>  terminateGL();</span>
-<span id="cb183-3"><a href="asteroids.html#cb183-3"></a></span>
-<span id="cb183-4"><a href="asteroids.html#cb183-4"></a>  <span class="co">// Start pseudo-random number generator</span></span>
-<span id="cb183-5"><a href="asteroids.html#cb183-5"></a>  <span class="va">m_randomEngine</span>.seed(</span>
-<span id="cb183-6"><a href="asteroids.html#cb183-6"></a>      <span class="bu">std::</span>chrono<span class="bu">::</span>steady_clock<span class="bu">::</span>now().time_since_epoch().count());</span>
+<div class="sourceCode" id="cb183" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb183-1"><a href="asteroids.html#cb183-1"></a><span class="pp">#include </span><span class="im">&quot;starlayers.hpp&quot;</span></span>
+<span id="cb183-2"><a href="asteroids.html#cb183-2"></a></span>
+<span id="cb183-3"><a href="asteroids.html#cb183-3"></a><span class="pp">#include </span><span class="im">&lt;cppitertools/itertools.hpp&gt;</span></span>
+<span id="cb183-4"><a href="asteroids.html#cb183-4"></a></span>
+<span id="cb183-5"><a href="asteroids.html#cb183-5"></a><span class="dt">void</span> StarLayers::initializeGL(GLuint program, <span class="dt">int</span> quantity) {</span>
+<span id="cb183-6"><a href="asteroids.html#cb183-6"></a>  terminateGL();</span>
 <span id="cb183-7"><a href="asteroids.html#cb183-7"></a></span>
-<span id="cb183-8"><a href="asteroids.html#cb183-8"></a>  <span class="va">m_program</span> = program;</span>
-<span id="cb183-9"><a href="asteroids.html#cb183-9"></a>  <span class="va">m_pointSizeLoc</span> = abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;pointSize&quot;</span>);</span>
-<span id="cb183-10"><a href="asteroids.html#cb183-10"></a>  <span class="va">m_translationLoc</span> = abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;translation&quot;</span>);</span>
+<span id="cb183-8"><a href="asteroids.html#cb183-8"></a>  <span class="co">// Start pseudo-random number generator</span></span>
+<span id="cb183-9"><a href="asteroids.html#cb183-9"></a>  <span class="va">m_randomEngine</span>.seed(</span>
+<span id="cb183-10"><a href="asteroids.html#cb183-10"></a>      <span class="bu">std::</span>chrono<span class="bu">::</span>steady_clock<span class="bu">::</span>now().time_since_epoch().count());</span>
 <span id="cb183-11"><a href="asteroids.html#cb183-11"></a></span>
-<span id="cb183-12"><a href="asteroids.html#cb183-12"></a>  <span class="kw">auto</span> &amp;re{<span class="va">m_randomEngine</span>};</span>
-<span id="cb183-13"><a href="asteroids.html#cb183-13"></a>  <span class="bu">std::</span>uniform_real_distribution&lt;<span class="dt">float</span>&gt; distPos(-<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
-<span id="cb183-14"><a href="asteroids.html#cb183-14"></a>  <span class="bu">std::</span>uniform_real_distribution&lt;<span class="dt">float</span>&gt; distIntensity(<span class="fl">0.5</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb183-12"><a href="asteroids.html#cb183-12"></a>  <span class="va">m_program</span> = program;</span>
+<span id="cb183-13"><a href="asteroids.html#cb183-13"></a>  <span class="va">m_pointSizeLoc</span> = abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;pointSize&quot;</span>);</span>
+<span id="cb183-14"><a href="asteroids.html#cb183-14"></a>  <span class="va">m_translationLoc</span> = abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;translation&quot;</span>);</span>
 <span id="cb183-15"><a href="asteroids.html#cb183-15"></a></span>
-<span id="cb183-16"><a href="asteroids.html#cb183-16"></a>  <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;[index, layer] : iter::enumerate(<span class="va">m_starLayers</span>)) {</span>
-<span id="cb183-17"><a href="asteroids.html#cb183-17"></a>    layer.<span class="va">m_pointSize</span> = <span class="fl">10.0</span><span class="bu">f</span> / (<span class="fl">1.0</span><span class="bu">f</span> + index);</span>
-<span id="cb183-18"><a href="asteroids.html#cb183-18"></a>    layer.<span class="va">m_quantity</span> = quantity * (<span class="kw">static_cast</span>&lt;<span class="dt">int</span>&gt;(index) + <span class="dv">1</span>);</span>
-<span id="cb183-19"><a href="asteroids.html#cb183-19"></a>    layer.<span class="va">m_translation</span> = glm::vec2(<span class="dv">0</span>);</span>
-<span id="cb183-20"><a href="asteroids.html#cb183-20"></a></span>
-<span id="cb183-21"><a href="asteroids.html#cb183-21"></a>    <span class="bu">std::</span>vector&lt;glm::vec3&gt; data(<span class="dv">0</span>);</span>
-<span id="cb183-22"><a href="asteroids.html#cb183-22"></a>    <span class="cf">for</span> ([[<span class="at">maybe_unused</span>]] <span class="kw">auto</span> i : iter::range(<span class="dv">0</span>, layer.<span class="va">m_quantity</span>)) {</span>
-<span id="cb183-23"><a href="asteroids.html#cb183-23"></a>      data.emplace_back(distPos(re), distPos(re), <span class="dv">0</span>);</span>
-<span id="cb183-24"><a href="asteroids.html#cb183-24"></a>      data.push_back(glm::vec3(<span class="dv">1</span>) * distIntensity(re));</span>
-<span id="cb183-25"><a href="asteroids.html#cb183-25"></a>    }</span>
-<span id="cb183-26"><a href="asteroids.html#cb183-26"></a></span>
-<span id="cb183-27"><a href="asteroids.html#cb183-27"></a>    <span class="co">// Generate VBO</span></span>
-<span id="cb183-28"><a href="asteroids.html#cb183-28"></a>    abcg::glGenBuffers(<span class="dv">1</span>, &amp;layer.<span class="va">m_vbo</span>);</span>
-<span id="cb183-29"><a href="asteroids.html#cb183-29"></a>    abcg::glBindBuffer(GL_ARRAY_BUFFER, layer.<span class="va">m_vbo</span>);</span>
-<span id="cb183-30"><a href="asteroids.html#cb183-30"></a>    abcg::glBufferData(GL_ARRAY_BUFFER, data.size() * <span class="kw">sizeof</span>(glm::vec3),</span>
-<span id="cb183-31"><a href="asteroids.html#cb183-31"></a>                       data.data(), GL_STATIC_DRAW);</span>
-<span id="cb183-32"><a href="asteroids.html#cb183-32"></a>    abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
-<span id="cb183-33"><a href="asteroids.html#cb183-33"></a></span>
-<span id="cb183-34"><a href="asteroids.html#cb183-34"></a>    <span class="co">// Get location of attributes in the program</span></span>
-<span id="cb183-35"><a href="asteroids.html#cb183-35"></a>    GLint positionAttribute{abcg::glGetAttribLocation(<span class="va">m_program</span>, <span class="st">&quot;inPosition&quot;</span>)};</span>
-<span id="cb183-36"><a href="asteroids.html#cb183-36"></a>    GLint colorAttribute{abcg::glGetAttribLocation(<span class="va">m_program</span>, <span class="st">&quot;inColor&quot;</span>)};</span>
+<span id="cb183-16"><a href="asteroids.html#cb183-16"></a>  <span class="kw">auto</span> &amp;re{<span class="va">m_randomEngine</span>};</span>
+<span id="cb183-17"><a href="asteroids.html#cb183-17"></a>  <span class="bu">std::</span>uniform_real_distribution&lt;<span class="dt">float</span>&gt; distPos(-<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb183-18"><a href="asteroids.html#cb183-18"></a>  <span class="bu">std::</span>uniform_real_distribution&lt;<span class="dt">float</span>&gt; distIntensity(<span class="fl">0.5</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb183-19"><a href="asteroids.html#cb183-19"></a></span>
+<span id="cb183-20"><a href="asteroids.html#cb183-20"></a>  <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;[index, layer] : iter::enumerate(<span class="va">m_starLayers</span>)) {</span>
+<span id="cb183-21"><a href="asteroids.html#cb183-21"></a>    layer.<span class="va">m_pointSize</span> = <span class="fl">10.0</span><span class="bu">f</span> / (<span class="fl">1.0</span><span class="bu">f</span> + index);</span>
+<span id="cb183-22"><a href="asteroids.html#cb183-22"></a>    layer.<span class="va">m_quantity</span> = quantity * (<span class="kw">static_cast</span>&lt;<span class="dt">int</span>&gt;(index) + <span class="dv">1</span>);</span>
+<span id="cb183-23"><a href="asteroids.html#cb183-23"></a>    layer.<span class="va">m_translation</span> = glm::vec2(<span class="dv">0</span>);</span>
+<span id="cb183-24"><a href="asteroids.html#cb183-24"></a></span>
+<span id="cb183-25"><a href="asteroids.html#cb183-25"></a>    <span class="bu">std::</span>vector&lt;glm::vec3&gt; data(<span class="dv">0</span>);</span>
+<span id="cb183-26"><a href="asteroids.html#cb183-26"></a>    <span class="cf">for</span> ([[<span class="at">maybe_unused</span>]] <span class="kw">auto</span> i : iter::range(<span class="dv">0</span>, layer.<span class="va">m_quantity</span>)) {</span>
+<span id="cb183-27"><a href="asteroids.html#cb183-27"></a>      data.emplace_back(distPos(re), distPos(re), <span class="dv">0</span>);</span>
+<span id="cb183-28"><a href="asteroids.html#cb183-28"></a>      data.push_back(glm::vec3(<span class="dv">1</span>) * distIntensity(re));</span>
+<span id="cb183-29"><a href="asteroids.html#cb183-29"></a>    }</span>
+<span id="cb183-30"><a href="asteroids.html#cb183-30"></a></span>
+<span id="cb183-31"><a href="asteroids.html#cb183-31"></a>    <span class="co">// Generate VBO</span></span>
+<span id="cb183-32"><a href="asteroids.html#cb183-32"></a>    abcg::glGenBuffers(<span class="dv">1</span>, &amp;layer.<span class="va">m_vbo</span>);</span>
+<span id="cb183-33"><a href="asteroids.html#cb183-33"></a>    abcg::glBindBuffer(GL_ARRAY_BUFFER, layer.<span class="va">m_vbo</span>);</span>
+<span id="cb183-34"><a href="asteroids.html#cb183-34"></a>    abcg::glBufferData(GL_ARRAY_BUFFER, data.size() * <span class="kw">sizeof</span>(glm::vec3),</span>
+<span id="cb183-35"><a href="asteroids.html#cb183-35"></a>                       data.data(), GL_STATIC_DRAW);</span>
+<span id="cb183-36"><a href="asteroids.html#cb183-36"></a>    abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
 <span id="cb183-37"><a href="asteroids.html#cb183-37"></a></span>
-<span id="cb183-38"><a href="asteroids.html#cb183-38"></a>    <span class="co">// Create VAO</span></span>
-<span id="cb183-39"><a href="asteroids.html#cb183-39"></a>    abcg::glGenVertexArrays(<span class="dv">1</span>, &amp;layer.<span class="va">m_vao</span>);</span>
-<span id="cb183-40"><a href="asteroids.html#cb183-40"></a></span>
-<span id="cb183-41"><a href="asteroids.html#cb183-41"></a>    <span class="co">// Bind vertex attributes to current VAO</span></span>
-<span id="cb183-42"><a href="asteroids.html#cb183-42"></a>    abcg::glBindVertexArray(layer.<span class="va">m_vao</span>);</span>
-<span id="cb183-43"><a href="asteroids.html#cb183-43"></a></span>
-<span id="cb183-44"><a href="asteroids.html#cb183-44"></a>    abcg::glBindBuffer(GL_ARRAY_BUFFER, layer.<span class="va">m_vbo</span>);</span>
-<span id="cb183-45"><a href="asteroids.html#cb183-45"></a>    abcg::glEnableVertexAttribArray(positionAttribute);</span>
-<span id="cb183-46"><a href="asteroids.html#cb183-46"></a>    abcg::glVertexAttribPointer(positionAttribute, <span class="dv">2</span>, GL_FLOAT, GL_FALSE,</span>
-<span id="cb183-47"><a href="asteroids.html#cb183-47"></a>                                <span class="kw">sizeof</span>(glm::vec3) * <span class="dv">2</span>, <span class="kw">nullptr</span>);</span>
-<span id="cb183-48"><a href="asteroids.html#cb183-48"></a>    abcg::glEnableVertexAttribArray(colorAttribute);</span>
-<span id="cb183-49"><a href="asteroids.html#cb183-49"></a>    abcg::glVertexAttribPointer(colorAttribute, <span class="dv">3</span>, GL_FLOAT, GL_FALSE,</span>
-<span id="cb183-50"><a href="asteroids.html#cb183-50"></a>                                <span class="kw">sizeof</span>(glm::vec3) * <span class="dv">2</span>,</span>
-<span id="cb183-51"><a href="asteroids.html#cb183-51"></a>                                <span class="kw">reinterpret_cast</span>&lt;<span class="dt">void</span> *&gt;(<span class="kw">sizeof</span>(glm::vec3)));</span>
-<span id="cb183-52"><a href="asteroids.html#cb183-52"></a>    abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
-<span id="cb183-53"><a href="asteroids.html#cb183-53"></a></span>
-<span id="cb183-54"><a href="asteroids.html#cb183-54"></a>    <span class="co">// End of binding to current VAO</span></span>
-<span id="cb183-55"><a href="asteroids.html#cb183-55"></a>    abcg::glBindVertexArray(<span class="dv">0</span>);</span>
-<span id="cb183-56"><a href="asteroids.html#cb183-56"></a>  }</span>
-<span id="cb183-57"><a href="asteroids.html#cb183-57"></a>}</span></code></pre></div>
+<span id="cb183-38"><a href="asteroids.html#cb183-38"></a>    <span class="co">// Get location of attributes in the program</span></span>
+<span id="cb183-39"><a href="asteroids.html#cb183-39"></a>    GLint positionAttribute{abcg::glGetAttribLocation(<span class="va">m_program</span>, <span class="st">&quot;inPosition&quot;</span>)};</span>
+<span id="cb183-40"><a href="asteroids.html#cb183-40"></a>    GLint colorAttribute{abcg::glGetAttribLocation(<span class="va">m_program</span>, <span class="st">&quot;inColor&quot;</span>)};</span>
+<span id="cb183-41"><a href="asteroids.html#cb183-41"></a></span>
+<span id="cb183-42"><a href="asteroids.html#cb183-42"></a>    <span class="co">// Create VAO</span></span>
+<span id="cb183-43"><a href="asteroids.html#cb183-43"></a>    abcg::glGenVertexArrays(<span class="dv">1</span>, &amp;layer.<span class="va">m_vao</span>);</span>
+<span id="cb183-44"><a href="asteroids.html#cb183-44"></a></span>
+<span id="cb183-45"><a href="asteroids.html#cb183-45"></a>    <span class="co">// Bind vertex attributes to current VAO</span></span>
+<span id="cb183-46"><a href="asteroids.html#cb183-46"></a>    abcg::glBindVertexArray(layer.<span class="va">m_vao</span>);</span>
+<span id="cb183-47"><a href="asteroids.html#cb183-47"></a></span>
+<span id="cb183-48"><a href="asteroids.html#cb183-48"></a>    abcg::glBindBuffer(GL_ARRAY_BUFFER, layer.<span class="va">m_vbo</span>);</span>
+<span id="cb183-49"><a href="asteroids.html#cb183-49"></a>    abcg::glEnableVertexAttribArray(positionAttribute);</span>
+<span id="cb183-50"><a href="asteroids.html#cb183-50"></a>    abcg::glVertexAttribPointer(positionAttribute, <span class="dv">2</span>, GL_FLOAT, GL_FALSE,</span>
+<span id="cb183-51"><a href="asteroids.html#cb183-51"></a>                                <span class="kw">sizeof</span>(glm::vec3) * <span class="dv">2</span>, <span class="kw">nullptr</span>);</span>
+<span id="cb183-52"><a href="asteroids.html#cb183-52"></a>    abcg::glEnableVertexAttribArray(colorAttribute);</span>
+<span id="cb183-53"><a href="asteroids.html#cb183-53"></a>    abcg::glVertexAttribPointer(colorAttribute, <span class="dv">3</span>, GL_FLOAT, GL_FALSE,</span>
+<span id="cb183-54"><a href="asteroids.html#cb183-54"></a>                                <span class="kw">sizeof</span>(glm::vec3) * <span class="dv">2</span>,</span>
+<span id="cb183-55"><a href="asteroids.html#cb183-55"></a>                                <span class="kw">reinterpret_cast</span>&lt;<span class="dt">void</span> *&gt;(<span class="kw">sizeof</span>(glm::vec3)));</span>
+<span id="cb183-56"><a href="asteroids.html#cb183-56"></a>    abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
+<span id="cb183-57"><a href="asteroids.html#cb183-57"></a></span>
+<span id="cb183-58"><a href="asteroids.html#cb183-58"></a>    <span class="co">// End of binding to current VAO</span></span>
+<span id="cb183-59"><a href="asteroids.html#cb183-59"></a>    abcg::glBindVertexArray(<span class="dv">0</span>);</span>
+<span id="cb183-60"><a href="asteroids.html#cb183-60"></a>  }</span>
+<span id="cb183-61"><a href="asteroids.html#cb183-61"></a>}</span></code></pre></div>
 <p>O laço da linha 20 itera sobre cada elemento de <code>m_starLayers</code>. A expressão na linha 21 faz com que os pontos tenham tamanho <code>10</code> na 1ª camada, <code>5</code> na 2ª camada, <code>2.5</code> na 3ª camada, e assim sucessivamente. Na linha 22, a quantidade de pontos é dobrada a cada camada.</p>
 <p>Na linha 25 é criado um arranjo <code>data</code> com dados dos pontos da camada. Os dados ficarão intercalados no formato <span class="math inline">\(\{x,y,0,r,g,b,x,y,0,r,g,b,\dots\}\)</span>, onde <span class="math inline">\((x,y,0)\)</span> é a posição do ponto, e <span class="math inline">\((r,g,b)\)</span> é a cor do ponto. Dentro do laço, as coordenadas <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> de cada ponto são escolhidas de forma aleatória dentro do intervalo <span class="math inline">\([-1,1]\)</span>. A cor de cada ponto é um tom de cinza escolhido aleatoriamente do intervalo <span class="math inline">\([0.5,1]\)</span>.</p>
 <p>Os dados de <code>data</code> são copiados para o VBO através de <code>glBufferData</code> na linha 34.</p>
