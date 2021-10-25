@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.7 LookAt na prática | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.7 LookAt na prática | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.7 LookAt na prática | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lookat.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#habilitando-o-opengl"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#habilitando-o-opengl-1"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-em-linha-de-comando"><i class="fa fa-check"></i>Compilando em linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-visual-studio-code"><i class="fa fa-check"></i>Compilando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-visual-studio-code"><i class="fa fa-check"></i>Depurando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.hpp-2"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.cpp-2"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.hpp-3"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.cpp-3"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#frames"><i class="fa fa-check"></i>Frames</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-5"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.hpp-5"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.cpp-5"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação"><i class="fa fa-check"></i>Transformação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.hpp-6"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.cpp-6"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="mailto:harlen.batagelo@ufabc.edu.br" target="blank">Harlen Batagelo</a>
+<a href="mailto:bruno.marques@ufabc.edu.br" target="blank">Bruno Marques</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lookatproject" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> LookAt na prática</h2>
+<p>Nesta seção, seguiremos o passo a passo de desenvolvimento de uma aplicação que renderiza uma cena 3D do ponto de vista de uma câmera LookAt.</p>
+<p>A cena 3D será composta por quatro instâncias do modelo “Stanford Bunny” dispostos sobre o plano <span class="math inline">\(xz\)</span> do espaço do mundo. A câmera LookAt simulará um observador em primeira pessoa. A figura <a href="lookatproject.html#fig:lookatproj1">7.32</a> mostra o posicionamento dos objetos e a localização inicial da câmera.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lookatproj1"></span>
+<img src="images/07_lookatproj1.png" alt="Objetos e elementos de cena dispostos no espaço do mundo."  />
+<p class="caption">
+Figura 7.32: Objetos e elementos de cena dispostos no espaço do mundo.
+</p>
+</div>
+<p>Na figura acima, os vetores <span class="math inline">\(\hat{\mathbf{i}}\)</span>,<span class="math inline">\(\hat{\mathbf{j}}\)</span>,<span class="math inline">\(\hat{\mathbf{k}}\)</span> correspondem às direções dos eixos <span class="math inline">\(x\)</span>,<span class="math inline">\(y\)</span>,<span class="math inline">\(z\)</span> do espaço euclidiano, e <span class="math inline">\(\hat{\mathbf{u}}\)</span>,<span class="math inline">\(\hat{\mathbf{v}}\)</span>,<span class="math inline">\(\hat{\mathbf{n}}\)</span> são os vetores do frame da câmera. A câmera está localizada em <span class="math inline">\((0, 0.5, 2.5)\)</span> e está olhando na direção do eixo <span class="math inline">\(z\)</span> negativo.</p>
+<ul>
+<li>O <strong>coelho vermelho</strong> está na posição <span class="math inline">\((0,0,0)\)</span> e tem escala de <span class="math inline">\(10\%\)</span> do tamanho original.</li>
+<li>O <strong>coelho cinza</strong> está na posição <span class="math inline">\((-1,0,0)\)</span> e está rodado em <span class="math inline">\(90^{\circ}\)</span> em torno de seu eixo <span class="math inline">\(y\)</span> local.</li>
+<li>O <strong>coelho azul</strong> está na posição <span class="math inline">\((1,0,0)\)</span> e está rodado em <span class="math inline">\(-90^{\circ}\)</span> em torno de seu eixo <span class="math inline">\(y\)</span> local.</li>
+<li>O <strong>coelho amarelo</strong> está na posição <span class="math inline">\((0,0,-1)\)</span> e está com sua orientação original.</li>
+</ul>
+<p>A posição e orientação da câmera pode ser modificada através do teclado:</p>
+<ul>
+<li>As setas para cima/baixo (ou <code>W</code>/<code>S</code>) fazem a câmera ir para a frente e para trás ao longo da direção de visão (direção de <span class="math inline">\(\pm\hat{\mathbf{n}}\)</span>). Esse movimento de câmera é conhecido como <strong>dolly</strong> no jargão da cinematografia.</li>
+<li>As setas para os lados (ou <code>A</code>/<code>D</code>) fazem a câmera girar em torno de seu eixo <span class="math inline">\(y\)</span> (vetor <span class="math inline">\(\hat{\mathbf{v}}\)</span>). Esse movimento é chamado de <strong>pan</strong>.</li>
+<li>As teclas <code>Q</code>/<code>E</code> fazem a câmera deslizar para os lados (direção de <span class="math inline">\(\pm\hat{\mathbf{u}}\)</span>). Esse movimento é chamado de <strong>truck</strong> ou <strong>dolly lateral</strong>.</li>
+</ul>
+<p>Neste exemplo, a altura da câmera permanecerá sempre em <span class="math inline">\(y=0.5\)</span>.</p>
+<p>O resultado ficará como a seguir:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/lookat/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Para controlar a câmera usando o teclado é necessário abrir o <a href="https://hbatagelo.github.io/abcgapps/lookat/index.html">link original</a> e clicar na área de desenho. Desse modo a aplicação terá o foco do teclado.</p>
+</div>
+<div id="configuração-inicial-6" class="section level3 unnumbered">
+<h3>Configuração inicial</h3>
+<ul>
+<li><p>No arquivo <code>abcg/examples/CMakeLists.txt</code>, inclua a linha:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb237-1"><a href="lookatproject.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(lookat)</span></code></pre></div></li>
+<li><p>Crie o subdiretório <code>abcg/examples/lookat</code> e o arquivo <code>abcg/examples/lookat/CMakeLists.txt</code> com o seguinte conteúdo:</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb238-1"><a href="lookatproject.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(lookat)</span>
+<span id="cb238-2"><a href="lookatproject.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJECT_NAME}</span> camera.cpp ground.cpp main.cpp openglwindow.cpp)</span>
+<span id="cb238-3"><a href="lookatproject.html#cb238-3" aria-hidden="true" tabindex="-1"></a><span class="fu">enable_abcg</span>(<span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div></li>
+<li><p>Crie os arquivos <code>camera.cpp</code>, <code>camera.hpp</code>, <code>ground.cpp</code>, <code>ground.hpp</code>, <code>main.cpp</code>, <code>openglwindow.cpp</code> e <code>openglwindow.hpp</code>.</p></li>
+<li><p>Crie o subdiretório <code>abcg/examples/lookat/assets</code>. Dentro dele, crie os arquivos <code>lookat.frag</code> e <code>lookat.vert</code>. Além disso, baixe o arquivo <a href="https://hbatagelo.github.io/abcgapps/data/bunny.zip"><code>bunny.zip</code></a> e descompacte-o em <code>assets</code>.</p></li>
+</ul>
+<p>A estrutura de <code>abcg/examples/lookat</code> ficará assim:</p>
+<pre><code>lookat/
+│   CMakeLists.txt
+│   camera.hpp
+│   camera.cpp
+│   ground.hpp
+│   ground.cpp
+│   main.cpp
+│   openglwindow.hpp
+│   openglwindow.cpp
+│
+└───assets/
+    │   bunny.obj
+    │   lookat.frag    
+    └   lookat.vert</code></pre>
+</div>
+<div id="main.cpp-6" class="section level3 unnumbered">
+<h3>main.cpp</h3>
+<p>Exceto pelo título da janela, o conteúdo de <code>main.cpp</code> é o mesmo do projeto anterior:</p>
+<div class="sourceCode" id="cb240" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb240-1"><a href="lookatproject.html#cb240-1"></a><span class="pp">#include </span><span class="im">&lt;fmt/core.h&gt;</span></span>
+<span id="cb240-2"><a href="lookatproject.html#cb240-2"></a></span>
+<span id="cb240-3"><a href="lookatproject.html#cb240-3"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
+<span id="cb240-4"><a href="lookatproject.html#cb240-4"></a><span class="pp">#include </span><span class="im">&quot;openglwindow.hpp&quot;</span></span>
+<span id="cb240-5"><a href="lookatproject.html#cb240-5"></a></span>
+<span id="cb240-6"><a href="lookatproject.html#cb240-6"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {</span>
+<span id="cb240-7"><a href="lookatproject.html#cb240-7"></a>  <span class="cf">try</span> {</span>
+<span id="cb240-8"><a href="lookatproject.html#cb240-8"></a>    abcg::Application app(argc, argv);</span>
+<span id="cb240-9"><a href="lookatproject.html#cb240-9"></a></span>
+<span id="cb240-10"><a href="lookatproject.html#cb240-10"></a>    <span class="kw">auto</span> window{<span class="bu">std::</span>make_unique&lt;OpenGLWindow&gt;()};</span>
+<span id="cb240-11"><a href="lookatproject.html#cb240-11"></a>    window-&gt;setOpenGLSettings({.samples = <span class="dv">4</span>});</span>
+<span id="cb240-12"><a href="lookatproject.html#cb240-12"></a>    window-&gt;setWindowSettings(</span>
+<span id="cb240-13"><a href="lookatproject.html#cb240-13"></a>        {.width = <span class="dv">600</span>, .height = <span class="dv">600</span>, .title = <span class="st">&quot;LookAt Camera&quot;</span>});</span>
+<span id="cb240-14"><a href="lookatproject.html#cb240-14"></a></span>
+<span id="cb240-15"><a href="lookatproject.html#cb240-15"></a>    app.run(<span class="bu">std::</span>move(window));</span>
+<span id="cb240-16"><a href="lookatproject.html#cb240-16"></a>  } <span class="cf">catch</span> (<span class="at">const</span> abcg::Exception &amp;exception) {</span>
+<span id="cb240-17"><a href="lookatproject.html#cb240-17"></a>    fmt::print(stderr, <span class="st">&quot;</span><span class="sc">{}\n</span><span class="st">&quot;</span>, exception.what());</span>
+<span id="cb240-18"><a href="lookatproject.html#cb240-18"></a>    <span class="cf">return</span> -<span class="dv">1</span>;</span>
+<span id="cb240-19"><a href="lookatproject.html#cb240-19"></a>  }</span>
+<span id="cb240-20"><a href="lookatproject.html#cb240-20"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb240-21"><a href="lookatproject.html#cb240-21"></a>}</span></code></pre></div>
+</div>
+<div id="lookat.vert" class="section level3 unnumbered">
+<h3>lookat.vert</h3>
+<p>O vertex shader ficará como a seguir:</p>
+<div class="sourceCode" id="cb241" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb241-1"><a href="lookatproject.html#cb241-1"></a><span class="pp">#version 410</span></span>
+<span id="cb241-2"><a href="lookatproject.html#cb241-2"></a></span>
+<span id="cb241-3"><a href="lookatproject.html#cb241-3"></a><span class="kw">layout</span>(<span class="dt">location</span> = <span class="dv">0</span>) <span class="dt">in</span> <span class="dt">vec3</span> inPosition;</span>
+<span id="cb241-4"><a href="lookatproject.html#cb241-4"></a></span>
+<span id="cb241-5"><a href="lookatproject.html#cb241-5"></a><span class="kw">uniform</span> <span class="dt">vec4</span> color;</span>
+<span id="cb241-6"><a href="lookatproject.html#cb241-6"></a><span class="kw">uniform</span> <span class="dt">mat4</span> modelMatrix;</span>
+<span id="cb241-7"><a href="lookatproject.html#cb241-7"></a><span class="kw">uniform</span> <span class="dt">mat4</span> viewMatrix;</span>
+<span id="cb241-8"><a href="lookatproject.html#cb241-8"></a><span class="kw">uniform</span> <span class="dt">mat4</span> projMatrix;</span>
+<span id="cb241-9"><a href="lookatproject.html#cb241-9"></a></span>
+<span id="cb241-10"><a href="lookatproject.html#cb241-10"></a><span class="dt">out</span> <span class="dt">vec4</span> fragColor;</span>
+<span id="cb241-11"><a href="lookatproject.html#cb241-11"></a></span>
+<span id="cb241-12"><a href="lookatproject.html#cb241-12"></a><span class="dt">void</span> <span class="fu">main</span>() {</span>
+<span id="cb241-13"><a href="lookatproject.html#cb241-13"></a>  <span class="dt">vec4</span> posEyeSpace = viewMatrix * modelMatrix * <span class="dt">vec4</span>(inPosition, <span class="dv">1</span>);</span>
+<span id="cb241-14"><a href="lookatproject.html#cb241-14"></a></span>
+<span id="cb241-15"><a href="lookatproject.html#cb241-15"></a>  <span class="dt">float</span> i = <span class="fl">1.0</span> - (-posEyeSpace.<span class="fu">z</span> / <span class="fl">5.0</span>);</span>
+<span id="cb241-16"><a href="lookatproject.html#cb241-16"></a>  fragColor = <span class="dt">vec4</span>(i, i, i, <span class="dv">1</span>) * color;</span>
+<span id="cb241-17"><a href="lookatproject.html#cb241-17"></a></span>
+<span id="cb241-18"><a href="lookatproject.html#cb241-18"></a>  <span class="bu">gl_Position</span> = projMatrix * posEyeSpace;</span>
+<span id="cb241-19"><a href="lookatproject.html#cb241-19"></a>}</span></code></pre></div>
+<p>O atributo de entrada, <code>inPosition</code>, é a posição <span class="math inline">\((x,y,z)\)</span> do vértice. Vamos considerar que estas coordenadas estão no <strong>espaço do objeto</strong>.</p>
+<p>O atributo de saída, <code>fragColor</code>, é uma cor RGBA.</p>
+<p>As variáveis uniformes são utilizadas para determinar a cor do objeto (<code>color</code>, na linha 5) e as matrizes <span class="math inline">\(4 \times 4\)</span> de transformação geométrica (linhas 6 a 8):</p>
+<ul>
+<li>Matriz de modelo: <code>modelMatrix</code>;</li>
+<li>Matriz de visão: <code>viewMatrix</code>;</li>
+<li>Matriz de projeção: <code>projMatrix</code>.</li>
+</ul>
+<p>Embora ainda não tenhamos visto o conteúdo teórico sobre a construção de uma matriz de projeção, vamos utilizar essa matriz desde já. Ela será necessária para obter o efeito de perspectiva e assim manter a ilusão de que a câmera LookAt é um observador dentro de um cenário 3D.</p>
+<p>No código de <code>main</code>, a linha 13 transforma a posição de entrada usando as matrizes de modelo e visão. Para entendermos a ordem das transformações, temos de ler os operandos da linha 13 da direita para a esquerda:</p>
+<div class="sourceCode" id="cb242" startFrom="13"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl" style="counter-reset: source-line 12;"><span id="cb242-13"><a href="lookatproject.html#cb242-13"></a>  <span class="dt">vec4</span> posEyeSpace = viewMatrix * modelMatrix * <span class="dt">vec4</span>(inPosition, <span class="dv">1</span>);</span></code></pre></div>
+<p>Primeiro, <code>vec4(inPosition, 1)</code> produz a posição <span class="math inline">\((x,y,z,1)\)</span>, isto é, o ponto/vértice em coordenadas homogêneas que corresponde à posição <span class="math inline">\((x,y,z)\)</span> no espaço do objeto. Esse vértice é transformado, através do produto matricial, pela matriz de modelo <code>modelMatrix</code>. A transformação pela matriz de modelo converte coordenadas do espaço do objeto para o <strong>espaço do mundo</strong>. Em seguida há uma transformação pela matriz de visão <code>viewMatrix</code>. A matriz de visão converte coordenadas do espaço do mundo para coordenadas do <strong>espaço da câmera</strong>. Assim, o resultado armazenado em <code>posEyeSpace</code> é a posição do vértice no espaço da câmera.</p>
+<p>Na linha 15, calculamos um valor <code>i</code> de intensidade de cor a partir da coordenada <span class="math inline">\(z\)</span> do vértice no espaço da câmera:</p>
+<div class="sourceCode" id="cb243" startFrom="15"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl" style="counter-reset: source-line 14;"><span id="cb243-15"><a href="lookatproject.html#cb243-15"></a>  <span class="dt">float</span> i = <span class="fl">1.0</span> - (-posEyeSpace.<span class="fu">z</span> / <span class="fl">5.0</span>);</span></code></pre></div>
+<p>Lembre-se que, no espaço da câmera, a câmera está olhando na direção de seu eixo <span class="math inline">\(z\)</span> negativo. Logo, do ponto de vista da câmera, todos os objetos à sua frente têm valor <span class="math inline">\(z\)</span> negativo. Ao fazermos <code>-PosEyeSpace.z</code>, tornamos esse valor positivo, correspondendo à distância entre o vértice e a câmera ao longo do eixo <span class="math inline">\(z\)</span>. A ideia aqui é transformar essa distância em um valor de intensidade de cor. A intensidade será máxima (1) se o objeto estiver o mais próximo possível da câmera (isto é, se estiver na mesma posição da câmera), e mínima (0) se estiver a 5 ou mais unidades de distância na direção de visão. Na linha 16, esse valor de intensidade é utilizado para multiplicar as componentes RGB da cor <code>color</code>.</p>
+<div class="sourceCode" id="cb244" startFrom="16"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl" style="counter-reset: source-line 15;"><span id="cb244-16"><a href="lookatproject.html#cb244-16"></a>  fragColor = <span class="dt">vec4</span>(i, i, i, <span class="dv">1</span>) * color;</span></code></pre></div>
+<p>Assim, quanto mais longe o objeto estiver da câmera, mais escuro ele ficará. A partir da distância 5, a intensidade fica negativa, mas nesse caso o OpenGL fixa automaticamente o valor de cor para zero (não existe intensidade negativa de cor).</p>
+<p>Na linha 18, <code>projMatrix * posEyeSpace</code> faz com que as coordenadas no espaço da câmera sejam convertidas para o <strong>espaço de recorte</strong>. É esse o resultado final em <code>gl_Position</code>:</p>
+<div class="sourceCode" id="cb245" startFrom="18"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl" style="counter-reset: source-line 17;"><span id="cb245-18"><a href="lookatproject.html#cb245-18"></a>  <span class="bu">gl_Position</span> = projMatrix * posEyeSpace;</span></code></pre></div>
+</div>
+<div id="lookat.frag" class="section level3 unnumbered">
+<h3>lookat.frag</h3>
+<p>O conteúdo do fragment shader ficará assim:</p>
+<div class="sourceCode" id="cb246" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb246-1"><a href="lookatproject.html#cb246-1"></a><span class="pp">#version 410</span></span>
+<span id="cb246-2"><a href="lookatproject.html#cb246-2"></a></span>
+<span id="cb246-3"><a href="lookatproject.html#cb246-3"></a><span class="dt">in</span> <span class="dt">vec4</span> fragColor;</span>
+<span id="cb246-4"><a href="lookatproject.html#cb246-4"></a><span class="dt">out</span> <span class="dt">vec4</span> outColor;</span>
+<span id="cb246-5"><a href="lookatproject.html#cb246-5"></a></span>
+<span id="cb246-6"><a href="lookatproject.html#cb246-6"></a><span class="dt">void</span> <span class="fu">main</span>() {</span>
+<span id="cb246-7"><a href="lookatproject.html#cb246-7"></a>  <span class="kw">if</span> (<span class="bu">gl_FrontFacing</span>) {</span>
+<span id="cb246-8"><a href="lookatproject.html#cb246-8"></a>    outColor = fragColor;</span>
+<span id="cb246-9"><a href="lookatproject.html#cb246-9"></a>  } <span class="kw">else</span> {</span>
+<span id="cb246-10"><a href="lookatproject.html#cb246-10"></a>    outColor = fragColor * <span class="fl">0.5</span>;</span>
+<span id="cb246-11"><a href="lookatproject.html#cb246-11"></a>  }</span>
+<span id="cb246-12"><a href="lookatproject.html#cb246-12"></a>}</span></code></pre></div>
+<p>Se o triângulo estiver orientado de frente para a câmera, a cor final do fragmento será a cor de entrada (<code>fragColor</code>). Caso contrário, a cor terá metade da intensidade original (a cor RGB é multiplicada por 0.5). Assim, se a câmera estiver dentro de um objeto, os triângulos serão desenhados com uma cor mais escura, pois estaremos vendo o lado de trás da malha triangular.</p>
+</div>
+<div id="camera.hpp" class="section level3 unnumbered">
+<h3>camera.hpp</h3>
+<p>Neste arquivo definiremos a classe <code>Camera</code> que gerenciará a câmera LookAt. O conteúdo ficará como a seguir:</p>
+<div class="sourceCode" id="cb247" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb247-1"><a href="lookatproject.html#cb247-1"></a><span class="pp">#ifndef CAMERA_HPP_</span></span>
+<span id="cb247-2"><a href="lookatproject.html#cb247-2"></a><span class="pp">#define CAMERA_HPP_</span></span>
+<span id="cb247-3"><a href="lookatproject.html#cb247-3"></a></span>
+<span id="cb247-4"><a href="lookatproject.html#cb247-4"></a><span class="pp">#include </span><span class="im">&lt;glm/mat4x4.hpp&gt;</span></span>
+<span id="cb247-5"><a href="lookatproject.html#cb247-5"></a><span class="pp">#include </span><span class="im">&lt;glm/vec3.hpp&gt;</span></span>
+<span id="cb247-6"><a href="lookatproject.html#cb247-6"></a></span>
+<span id="cb247-7"><a href="lookatproject.html#cb247-7"></a><span class="kw">class</span> OpenGLWindow;</span>
+<span id="cb247-8"><a href="lookatproject.html#cb247-8"></a></span>
+<span id="cb247-9"><a href="lookatproject.html#cb247-9"></a><span class="kw">class</span> Camera {</span>
+<span id="cb247-10"><a href="lookatproject.html#cb247-10"></a> <span class="kw">public</span>:</span>
+<span id="cb247-11"><a href="lookatproject.html#cb247-11"></a>  <span class="dt">void</span> computeViewMatrix();</span>
+<span id="cb247-12"><a href="lookatproject.html#cb247-12"></a>  <span class="dt">void</span> computeProjectionMatrix(<span class="dt">int</span> width, <span class="dt">int</span> height);</span>
+<span id="cb247-13"><a href="lookatproject.html#cb247-13"></a></span>
+<span id="cb247-14"><a href="lookatproject.html#cb247-14"></a>  <span class="dt">void</span> dolly(<span class="dt">float</span> speed);</span>
+<span id="cb247-15"><a href="lookatproject.html#cb247-15"></a>  <span class="dt">void</span> truck(<span class="dt">float</span> speed);</span>
+<span id="cb247-16"><a href="lookatproject.html#cb247-16"></a>  <span class="dt">void</span> pan(<span class="dt">float</span> speed);</span>
+<span id="cb247-17"><a href="lookatproject.html#cb247-17"></a></span>
+<span id="cb247-18"><a href="lookatproject.html#cb247-18"></a> <span class="kw">private</span>:</span>
+<span id="cb247-19"><a href="lookatproject.html#cb247-19"></a>  <span class="kw">friend</span> OpenGLWindow;</span>
+<span id="cb247-20"><a href="lookatproject.html#cb247-20"></a></span>
+<span id="cb247-21"><a href="lookatproject.html#cb247-21"></a>  glm::vec3 <span class="va">m_eye</span>{glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.5</span><span class="bu">f</span>, <span class="fl">2.5</span><span class="bu">f</span>)};  <span class="co">// Camera position</span></span>
+<span id="cb247-22"><a href="lookatproject.html#cb247-22"></a>  glm::vec3 <span class="va">m_at</span>{glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.5</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>)};   <span class="co">// Look-at point</span></span>
+<span id="cb247-23"><a href="lookatproject.html#cb247-23"></a>  glm::vec3 <span class="va">m_up</span>{glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>)};   <span class="co">// &quot;up&quot; direction</span></span>
+<span id="cb247-24"><a href="lookatproject.html#cb247-24"></a></span>
+<span id="cb247-25"><a href="lookatproject.html#cb247-25"></a>  <span class="co">// Matrix to change from world space to camera soace</span></span>
+<span id="cb247-26"><a href="lookatproject.html#cb247-26"></a>  glm::mat4 <span class="va">m_viewMatrix</span>;</span>
+<span id="cb247-27"><a href="lookatproject.html#cb247-27"></a></span>
+<span id="cb247-28"><a href="lookatproject.html#cb247-28"></a>  <span class="co">// Matrix to change from camera space to clip space</span></span>
+<span id="cb247-29"><a href="lookatproject.html#cb247-29"></a>  glm::mat4 <span class="va">m_projMatrix</span>;</span>
+<span id="cb247-30"><a href="lookatproject.html#cb247-30"></a>};</span>
+<span id="cb247-31"><a href="lookatproject.html#cb247-31"></a></span>
+<span id="cb247-32"><a href="lookatproject.html#cb247-32"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>Observe, nas linhas 21 a 23, que a classe tem todos os atributos necessários para criar o frame de uma câmera LookAt:</p>
+<ul>
+<li><code>m_eye</code>: posição da câmera <span class="math inline">\((0, 0.5, 2.5)\)</span>.</li>
+<li><code>m_at</code>: posição para onde a câmera está olhando <span class="math inline">\((0, 0.5, 0)\)</span>.</li>
+<li><code>m_up</code>: vetor de direção para cima <span class="math inline">\((0, 1, 0)\)</span>.</li>
+</ul>
+<p>Na linha 26 temos a matriz de visão (<code>m_viewMatrix</code>) que será calculada pela função <code>Camera::computeViewMatrix</code> declarada na linha 11.</p>
+<p>Na linha 29 temos a matriz de projeção (<code>m_projMatrix</code>) que será calculada pela função <code>Camera::computeProjectionMatrix</code> declarada na linha 12.</p>
+<p>As funções <code>Camera::dolly</code>, <code>Camera::truck</code> e <code>Camera::pan</code> serão chamadas a partir de <code>OpenGLWindow</code> em resposta à entrada do teclado. Internamente, essas funções modificarão as variáveis <code>m_eye</code> e <code>m_at</code>, fazendo a câmera mudar de posição e orientação.</p>
+</div>
+<div id="camera.cpp" class="section level3 unnumbered">
+<h3>camera.cpp</h3>
+<p>A definição das funções membro de <code>Camera</code> ficará como a seguir:</p>
+<div class="sourceCode" id="cb248" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb248-1"><a href="lookatproject.html#cb248-1"></a><span class="pp">#include </span><span class="im">&quot;camera.hpp&quot;</span></span>
+<span id="cb248-2"><a href="lookatproject.html#cb248-2"></a></span>
+<span id="cb248-3"><a href="lookatproject.html#cb248-3"></a><span class="pp">#include </span><span class="im">&lt;glm/gtc/matrix_transform.hpp&gt;</span></span>
+<span id="cb248-4"><a href="lookatproject.html#cb248-4"></a></span>
+<span id="cb248-5"><a href="lookatproject.html#cb248-5"></a><span class="dt">void</span> Camera::computeProjectionMatrix(<span class="dt">int</span> width, <span class="dt">int</span> height) {</span>
+<span id="cb248-6"><a href="lookatproject.html#cb248-6"></a>  <span class="va">m_projMatrix</span> = glm::mat4(<span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb248-7"><a href="lookatproject.html#cb248-7"></a>  <span class="at">const</span> <span class="kw">auto</span> aspect{<span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(width) / <span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(height)};</span>
+<span id="cb248-8"><a href="lookatproject.html#cb248-8"></a>  <span class="va">m_projMatrix</span> = glm::perspective(glm::radians(<span class="fl">70.0</span><span class="bu">f</span>), aspect, <span class="fl">0.1</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>);</span>
+<span id="cb248-9"><a href="lookatproject.html#cb248-9"></a>}</span>
+<span id="cb248-10"><a href="lookatproject.html#cb248-10"></a></span>
+<span id="cb248-11"><a href="lookatproject.html#cb248-11"></a><span class="dt">void</span> Camera::computeViewMatrix() {</span>
+<span id="cb248-12"><a href="lookatproject.html#cb248-12"></a>  <span class="va">m_viewMatrix</span> = glm::lookAt(<span class="va">m_eye</span>, <span class="va">m_at</span>, <span class="va">m_up</span>);</span>
+<span id="cb248-13"><a href="lookatproject.html#cb248-13"></a>}</span>
+<span id="cb248-14"><a href="lookatproject.html#cb248-14"></a></span>
+<span id="cb248-15"><a href="lookatproject.html#cb248-15"></a><span class="dt">void</span> Camera::dolly(<span class="dt">float</span> speed) {</span>
+<span id="cb248-16"><a href="lookatproject.html#cb248-16"></a>  <span class="co">// Compute forward vector (view direction)</span></span>
+<span id="cb248-17"><a href="lookatproject.html#cb248-17"></a>  <span class="at">const</span> glm::vec3 forward{glm::normalize(<span class="va">m_at</span> - <span class="va">m_eye</span>)};</span>
+<span id="cb248-18"><a href="lookatproject.html#cb248-18"></a></span>
+<span id="cb248-19"><a href="lookatproject.html#cb248-19"></a>  <span class="co">// Move eye and center forward (speed &gt; 0) or backward (speed &lt; 0)</span></span>
+<span id="cb248-20"><a href="lookatproject.html#cb248-20"></a>  <span class="va">m_eye</span> += forward * speed;</span>
+<span id="cb248-21"><a href="lookatproject.html#cb248-21"></a>  <span class="va">m_at</span> += forward * speed;</span>
+<span id="cb248-22"><a href="lookatproject.html#cb248-22"></a></span>
+<span id="cb248-23"><a href="lookatproject.html#cb248-23"></a>  computeViewMatrix();</span>
+<span id="cb248-24"><a href="lookatproject.html#cb248-24"></a>}</span>
+<span id="cb248-25"><a href="lookatproject.html#cb248-25"></a></span>
+<span id="cb248-26"><a href="lookatproject.html#cb248-26"></a><span class="dt">void</span> Camera::truck(<span class="dt">float</span> speed) {</span>
+<span id="cb248-27"><a href="lookatproject.html#cb248-27"></a>  <span class="co">// Compute forward vector (view direction)</span></span>
+<span id="cb248-28"><a href="lookatproject.html#cb248-28"></a>  <span class="at">const</span> glm::vec3 forward{glm::normalize(<span class="va">m_at</span> - <span class="va">m_eye</span>)};</span>
+<span id="cb248-29"><a href="lookatproject.html#cb248-29"></a>  <span class="co">// Compute vector to the left</span></span>
+<span id="cb248-30"><a href="lookatproject.html#cb248-30"></a>  <span class="at">const</span> glm::vec3 left{glm::cross(<span class="va">m_up</span>, forward)};</span>
+<span id="cb248-31"><a href="lookatproject.html#cb248-31"></a></span>
+<span id="cb248-32"><a href="lookatproject.html#cb248-32"></a>  <span class="co">// Move eye and center to the left (speed &lt; 0) or to the right (speed &gt; 0)</span></span>
+<span id="cb248-33"><a href="lookatproject.html#cb248-33"></a>  <span class="va">m_at</span> -= left * speed;</span>
+<span id="cb248-34"><a href="lookatproject.html#cb248-34"></a>  <span class="va">m_eye</span> -= left * speed;</span>
+<span id="cb248-35"><a href="lookatproject.html#cb248-35"></a></span>
+<span id="cb248-36"><a href="lookatproject.html#cb248-36"></a>  computeViewMatrix();</span>
+<span id="cb248-37"><a href="lookatproject.html#cb248-37"></a>}</span>
+<span id="cb248-38"><a href="lookatproject.html#cb248-38"></a></span>
+<span id="cb248-39"><a href="lookatproject.html#cb248-39"></a><span class="dt">void</span> Camera::pan(<span class="dt">float</span> speed) {</span>
+<span id="cb248-40"><a href="lookatproject.html#cb248-40"></a>  glm::mat4 transform{glm::mat4(<span class="fl">1.0</span><span class="bu">f</span>)};</span>
+<span id="cb248-41"><a href="lookatproject.html#cb248-41"></a></span>
+<span id="cb248-42"><a href="lookatproject.html#cb248-42"></a>  <span class="co">// Rotate camera around its local y axis</span></span>
+<span id="cb248-43"><a href="lookatproject.html#cb248-43"></a>  transform = glm::translate(transform, <span class="va">m_eye</span>);</span>
+<span id="cb248-44"><a href="lookatproject.html#cb248-44"></a>  transform = glm::rotate(transform, -speed, <span class="va">m_up</span>);</span>
+<span id="cb248-45"><a href="lookatproject.html#cb248-45"></a>  transform = glm::translate(transform, -<span class="va">m_eye</span>);</span>
+<span id="cb248-46"><a href="lookatproject.html#cb248-46"></a></span>
+<span id="cb248-47"><a href="lookatproject.html#cb248-47"></a>  <span class="va">m_at</span> = transform * glm::vec4(<span class="va">m_at</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb248-48"><a href="lookatproject.html#cb248-48"></a></span>
+<span id="cb248-49"><a href="lookatproject.html#cb248-49"></a>  computeViewMatrix();</span>
+<span id="cb248-50"><a href="lookatproject.html#cb248-50"></a>}</span></code></pre></div>
+<p>No próximo capítulo, quando tivermos visto o conteúdo teórico sobre matrizes de projeção, descreveremos o funcionamento da função <code>Camera::computeProjectionMatrix</code>. Por enquanto, basta sabermos que ela calcula uma matriz de projeção perspectiva.</p>
+<p>Em <code>Camera::computeViewMatrix</code>, chamamos a função <code>lookAt</code> da GLM usando os atributos da câmera:</p>
+<div class="sourceCode" id="cb249" startFrom="11"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 10;"><span id="cb249-11"><a href="lookatproject.html#cb249-11"></a><span class="dt">void</span> Camera::computeViewMatrix() {</span>
+<span id="cb249-12"><a href="lookatproject.html#cb249-12"></a>  <span class="va">m_viewMatrix</span> = glm::lookAt(<span class="va">m_eye</span>, <span class="va">m_at</span>, <span class="va">m_up</span>);</span>
+<span id="cb249-13"><a href="lookatproject.html#cb249-13"></a>}</span></code></pre></div>
+<p><code>Camera::computeViewMatrix</code> será chamada sempre que houver alguma alteração em <code>m_eye</code> ou <code>m_at</code>.</p>
+<p>Em <code>Camera::dolly</code>, os pontos <code>m_eye</code> e <code>m_at</code> são deslocados para a frente ou para trás ao longo da direção de visão (vetor <code>forward</code>):</p>
+<div class="sourceCode" id="cb250" startFrom="15"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 14;"><span id="cb250-15"><a href="lookatproject.html#cb250-15"></a><span class="dt">void</span> Camera::dolly(<span class="dt">float</span> speed) {</span>
+<span id="cb250-16"><a href="lookatproject.html#cb250-16"></a>  <span class="co">// Compute forward vector (view direction)</span></span>
+<span id="cb250-17"><a href="lookatproject.html#cb250-17"></a>  <span class="at">const</span> glm::vec3 forward{glm::normalize(<span class="va">m_at</span> - <span class="va">m_eye</span>)};</span>
+<span id="cb250-18"><a href="lookatproject.html#cb250-18"></a></span>
+<span id="cb250-19"><a href="lookatproject.html#cb250-19"></a>  <span class="co">// Move eye and center forward (speed &gt; 0) or backward (speed &lt; 0)</span></span>
+<span id="cb250-20"><a href="lookatproject.html#cb250-20"></a>  <span class="va">m_eye</span> += forward * speed;</span>
+<span id="cb250-21"><a href="lookatproject.html#cb250-21"></a>  <span class="va">m_at</span> += forward * speed;</span>
+<span id="cb250-22"><a href="lookatproject.html#cb250-22"></a></span>
+<span id="cb250-23"><a href="lookatproject.html#cb250-23"></a>  computeViewMatrix();</span>
+<span id="cb250-24"><a href="lookatproject.html#cb250-24"></a>}</span></code></pre></div>
+<p>Veja que, ao final, <code>Camera::computeViewMatrix</code> é chamada para reconstruir a matriz de visão.</p>
+<p><code>Camera::truck</code> funciona de forma parecida com <code>Camera::dolly</code>. Os pontos <code>m_eye</code> e <code>m_at</code> são deslocados nas laterais de acordo com a direção do vetor <code>left</code>. O vetor <code>left</code> é o produto vetorial entre o vetor <code>up</code> e o vetor <code>forward</code>.</p>
+<div class="sourceCode" id="cb251" startFrom="26"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 25;"><span id="cb251-26"><a href="lookatproject.html#cb251-26"></a><span class="dt">void</span> Camera::truck(<span class="dt">float</span> speed) {</span>
+<span id="cb251-27"><a href="lookatproject.html#cb251-27"></a>  <span class="co">// Compute forward vector (view direction)</span></span>
+<span id="cb251-28"><a href="lookatproject.html#cb251-28"></a>  <span class="at">const</span> glm::vec3 forward{glm::normalize(<span class="va">m_at</span> - <span class="va">m_eye</span>)};</span>
+<span id="cb251-29"><a href="lookatproject.html#cb251-29"></a>  <span class="co">// Compute vector to the left</span></span>
+<span id="cb251-30"><a href="lookatproject.html#cb251-30"></a>  <span class="at">const</span> glm::vec3 left{glm::cross(<span class="va">m_up</span>, forward)};</span>
+<span id="cb251-31"><a href="lookatproject.html#cb251-31"></a></span>
+<span id="cb251-32"><a href="lookatproject.html#cb251-32"></a>  <span class="co">// Move eye and center to the left (speed &lt; 0) or to the right (speed &gt; 0)</span></span>
+<span id="cb251-33"><a href="lookatproject.html#cb251-33"></a>  <span class="va">m_at</span> -= left * speed;</span>
+<span id="cb251-34"><a href="lookatproject.html#cb251-34"></a>  <span class="va">m_eye</span> -= left * speed;</span>
+<span id="cb251-35"><a href="lookatproject.html#cb251-35"></a></span>
+<span id="cb251-36"><a href="lookatproject.html#cb251-36"></a>  computeViewMatrix();</span>
+<span id="cb251-37"><a href="lookatproject.html#cb251-37"></a>}</span></code></pre></div>
+<p><code>Camera::pan</code> faz o movimento de girar a câmera em torno de seu eixo <span class="math inline">\(y\)</span>. Isso é feito alterando apenas o ponto <code>m_at</code>:</p>
+<div class="sourceCode" id="cb252" startFrom="39"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 38;"><span id="cb252-39"><a href="lookatproject.html#cb252-39"></a><span class="dt">void</span> Camera::pan(<span class="dt">float</span> speed) {</span>
+<span id="cb252-40"><a href="lookatproject.html#cb252-40"></a>  glm::mat4 transform{glm::mat4(<span class="fl">1.0</span><span class="bu">f</span>)};</span>
+<span id="cb252-41"><a href="lookatproject.html#cb252-41"></a></span>
+<span id="cb252-42"><a href="lookatproject.html#cb252-42"></a>  <span class="co">// Rotate camera around its local y axis</span></span>
+<span id="cb252-43"><a href="lookatproject.html#cb252-43"></a>  transform = glm::translate(transform, <span class="va">m_eye</span>);</span>
+<span id="cb252-44"><a href="lookatproject.html#cb252-44"></a>  transform = glm::rotate(transform, -speed, <span class="va">m_up</span>);</span>
+<span id="cb252-45"><a href="lookatproject.html#cb252-45"></a>  transform = glm::translate(transform, -<span class="va">m_eye</span>);</span>
+<span id="cb252-46"><a href="lookatproject.html#cb252-46"></a></span>
+<span id="cb252-47"><a href="lookatproject.html#cb252-47"></a>  <span class="va">m_at</span> = transform * glm::vec4(<span class="va">m_at</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb252-48"><a href="lookatproject.html#cb252-48"></a></span>
+<span id="cb252-49"><a href="lookatproject.html#cb252-49"></a>  computeViewMatrix();</span>
+<span id="cb252-50"><a href="lookatproject.html#cb252-50"></a>}</span></code></pre></div>
+<p>Após a linha 45, a matriz <code>transform</code> representa uma concatenação de transformações na forma:</p>
+<p><span class="math display">\[
+\mathbf{M}=\mathbf{I}.\mathbf{T}(\mathbf{p}_{\textrm{eye}}).\mathbf{R}_y(\theta).\mathbf{T}(-\mathbf{p}_{\textrm{eye}}).
+\]</span></p>
+<p>A ordem de aplicação das transformações é obtida lendo a expressão acima da direita para a esquerda (no código, lemos de baixo para cima, da linha 45 à linha 40):</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mathbf{T}(-\mathbf{p}_{\textrm{eye}})\)</span> (linha 45) tem o efeito de transladar a câmera para a origem do mundo, isto é, faz o ponto <span class="math inline">\(\mathbf{p}_{\textrm{eye}}\)</span> virar a origem <span class="math inline">\(O\)</span>.</li>
+<li><span class="math inline">\(\mathbf{R}_y(\theta)\)</span> (linha 44) roda a câmera em torno do eixo <span class="math inline">\(y\)</span> do mundo. Como a câmera agora está na origem, é como se a câmera fosse girada em torno de seu próprio eixo <span class="math inline">\(y\)</span>.</li>
+<li><span class="math inline">\(\mathbf{T}(\mathbf{p}_{\textrm{eye}})\)</span> (linha 43) é a transformação inversa da primeira, isto é, faz a câmera voltar à sua posição original (mas note que, por causa do passo anterior, a orientação da câmera não é mais a orientação original).</li>
+<li><span class="math inline">\(\mathbf{I}\)</span> é a matriz identidade (criada na linha 40).</li>
+</ol>
+<p>A linha 47 transforma <code>m_at</code> por <code>transform</code>. O resultado é rodar <code>m_at</code> em torno do eixo <span class="math inline">\(y\)</span> local da câmera.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>As operações da linha 40 até a linha 45 em <code>Camera::pan</code> são equivalentes ao pseudocódigo:</p>
+<pre><code>transform = I;
+transform = transform * T(m_eye);
+transform = transform * Ry(-speed);
+transform = transform * T(-m_eye);</code></pre>
+<p>que é o mesmo que</p>
+<pre><code>transform = I * T(m_eye) * Ry(-speed) * T(-m_eye);</code></pre>
+<p>onde <code>I</code>, <code>Ry</code> e <code>T</code> são as matrizes de transformação identidade, rotação em <span class="math inline">\(y\)</span>, e translação.</p>
+</div>
+</div>
+<div id="openglwindow.hpp-6" class="section level3 unnumbered">
+<h3>openglwindow.hpp</h3>
+<p>Deixaremos a definição da classe <code>OpenGLWindow</code> como a seguir:</p>
+<div class="sourceCode" id="cb255" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb255-1"><a href="lookatproject.html#cb255-1"></a><span class="pp">#ifndef OPENGLWINDOW_HPP_</span></span>
+<span id="cb255-2"><a href="lookatproject.html#cb255-2"></a><span class="pp">#define OPENGLWINDOW_HPP_</span></span>
+<span id="cb255-3"><a href="lookatproject.html#cb255-3"></a></span>
+<span id="cb255-4"><a href="lookatproject.html#cb255-4"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb255-5"><a href="lookatproject.html#cb255-5"></a></span>
+<span id="cb255-6"><a href="lookatproject.html#cb255-6"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
+<span id="cb255-7"><a href="lookatproject.html#cb255-7"></a><span class="pp">#include </span><span class="im">&quot;camera.hpp&quot;</span></span>
+<span id="cb255-8"><a href="lookatproject.html#cb255-8"></a><span class="pp">#include </span><span class="im">&quot;ground.hpp&quot;</span></span>
+<span id="cb255-9"><a href="lookatproject.html#cb255-9"></a></span>
+<span id="cb255-10"><a href="lookatproject.html#cb255-10"></a><span class="kw">struct</span> Vertex {</span>
+<span id="cb255-11"><a href="lookatproject.html#cb255-11"></a>  glm::vec3 position;</span>
+<span id="cb255-12"><a href="lookatproject.html#cb255-12"></a></span>
+<span id="cb255-13"><a href="lookatproject.html#cb255-13"></a>  <span class="dt">bool</span> <span class="kw">operator</span>==(<span class="at">const</span> Vertex&amp; other) <span class="at">const</span> {</span>
+<span id="cb255-14"><a href="lookatproject.html#cb255-14"></a>    <span class="cf">return</span> position == other.position;</span>
+<span id="cb255-15"><a href="lookatproject.html#cb255-15"></a>  }</span>
+<span id="cb255-16"><a href="lookatproject.html#cb255-16"></a>};</span>
+<span id="cb255-17"><a href="lookatproject.html#cb255-17"></a></span>
+<span id="cb255-18"><a href="lookatproject.html#cb255-18"></a><span class="kw">class</span> OpenGLWindow : <span class="kw">public</span> abcg::OpenGLWindow {</span>
+<span id="cb255-19"><a href="lookatproject.html#cb255-19"></a> <span class="kw">protected</span>:</span>
+<span id="cb255-20"><a href="lookatproject.html#cb255-20"></a>  <span class="dt">void</span> handleEvent(SDL_Event&amp; ev) <span class="kw">override</span>;</span>
+<span id="cb255-21"><a href="lookatproject.html#cb255-21"></a>  <span class="dt">void</span> initializeGL() <span class="kw">override</span>;</span>
+<span id="cb255-22"><a href="lookatproject.html#cb255-22"></a>  <span class="dt">void</span> paintGL() <span class="kw">override</span>;</span>
+<span id="cb255-23"><a href="lookatproject.html#cb255-23"></a>  <span class="dt">void</span> paintUI() <span class="kw">override</span>;</span>
+<span id="cb255-24"><a href="lookatproject.html#cb255-24"></a>  <span class="dt">void</span> resizeGL(<span class="dt">int</span> width, <span class="dt">int</span> height) <span class="kw">override</span>;</span>
+<span id="cb255-25"><a href="lookatproject.html#cb255-25"></a>  <span class="dt">void</span> terminateGL() <span class="kw">override</span>;</span>
+<span id="cb255-26"><a href="lookatproject.html#cb255-26"></a></span>
+<span id="cb255-27"><a href="lookatproject.html#cb255-27"></a> <span class="kw">private</span>:</span>
+<span id="cb255-28"><a href="lookatproject.html#cb255-28"></a>  GLuint <span class="va">m_VAO</span>{};</span>
+<span id="cb255-29"><a href="lookatproject.html#cb255-29"></a>  GLuint <span class="va">m_VBO</span>{};</span>
+<span id="cb255-30"><a href="lookatproject.html#cb255-30"></a>  GLuint <span class="va">m_EBO</span>{};</span>
+<span id="cb255-31"><a href="lookatproject.html#cb255-31"></a>  GLuint <span class="va">m_program</span>{};</span>
+<span id="cb255-32"><a href="lookatproject.html#cb255-32"></a></span>
+<span id="cb255-33"><a href="lookatproject.html#cb255-33"></a>  <span class="dt">int</span> <span class="va">m_viewportWidth</span>{};</span>
+<span id="cb255-34"><a href="lookatproject.html#cb255-34"></a>  <span class="dt">int</span> <span class="va">m_viewportHeight</span>{};</span>
+<span id="cb255-35"><a href="lookatproject.html#cb255-35"></a></span>
+<span id="cb255-36"><a href="lookatproject.html#cb255-36"></a>  Camera <span class="va">m_camera</span>;</span>
+<span id="cb255-37"><a href="lookatproject.html#cb255-37"></a>  <span class="dt">float</span> <span class="va">m_dollySpeed</span>{<span class="fl">0.0</span><span class="bu">f</span>};</span>
+<span id="cb255-38"><a href="lookatproject.html#cb255-38"></a>  <span class="dt">float</span> <span class="va">m_truckSpeed</span>{<span class="fl">0.0</span><span class="bu">f</span>};</span>
+<span id="cb255-39"><a href="lookatproject.html#cb255-39"></a>  <span class="dt">float</span> <span class="va">m_panSpeed</span>{<span class="fl">0.0</span><span class="bu">f</span>};</span>
+<span id="cb255-40"><a href="lookatproject.html#cb255-40"></a></span>
+<span id="cb255-41"><a href="lookatproject.html#cb255-41"></a>  Ground <span class="va">m_ground</span>;</span>
+<span id="cb255-42"><a href="lookatproject.html#cb255-42"></a></span>
+<span id="cb255-43"><a href="lookatproject.html#cb255-43"></a>  <span class="bu">std::</span>vector&lt;Vertex&gt; <span class="va">m_vertices</span>;</span>
+<span id="cb255-44"><a href="lookatproject.html#cb255-44"></a>  <span class="bu">std::</span>vector&lt;GLuint&gt; <span class="va">m_indices</span>;</span>
+<span id="cb255-45"><a href="lookatproject.html#cb255-45"></a></span>
+<span id="cb255-46"><a href="lookatproject.html#cb255-46"></a>  <span class="dt">void</span> loadModelFromFile(<span class="bu">std::</span>string_view path);</span>
+<span id="cb255-47"><a href="lookatproject.html#cb255-47"></a>  <span class="dt">void</span> update();</span>
+<span id="cb255-48"><a href="lookatproject.html#cb255-48"></a>};</span>
+<span id="cb255-49"><a href="lookatproject.html#cb255-49"></a></span>
+<span id="cb255-50"><a href="lookatproject.html#cb255-50"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>O código é semelhante ao do projeto <code>loadmodel</code> visto no capítulo anterior. As diferenças estão nas seguintes linhas:</p>
+<ul>
+<li>Linhas 7 e 8: inclusão dos cabeçalhos <code>camera.hpp</code> e <code>ground.hpp</code>;</li>
+<li>Linha 20: declaração da função <code>handleEvent</code> para tratar os eventos do teclado;</li>
+<li>Linha 36: definição de um objeto da classe <code>Camera</code> para controlar a câmera LookAt;</li>
+<li>Linhas 37 a 39: definição de variáveis de controle de velocidade de dolly, truck e pan;</li>
+<li>Linha 41: definição de um objeto da classe <code>Ground</code> para desenhar o chão.</li>
+<li>Linha 47: definição de uma função <code>update</code> que será chamada em <code>paintGL</code>.</li>
+</ul>
+<p>Algumas coisas foram removidas em relação ao projeto <code>loadmodel</code>, como a variável que controlava o número de triângulos exibidos e a função <code>OpenGLWindow::standardize</code> que normalizava e centralizava o modelo no NDC. Dessa vez, o modelo armazenado no VBO será o modelo sem modificações, isto é, o modelo lido diretamente do arquivo. Para mudar a escala e posição do modelo, usaremos a matriz de modelo.</p>
+</div>
+<div id="openglwindow.cpp-6" class="section level3 unnumbered">
+<h3>openglwindow.cpp</h3>
+<p>O início de <code>openglwindow.cpp</code> é exatamente o mesmo do projeto anterior:</p>
+<div class="sourceCode" id="cb256" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb256-1"><a href="lookatproject.html#cb256-1"></a><span class="pp">#include </span><span class="im">&quot;openglwindow.hpp&quot;</span></span>
+<span id="cb256-2"><a href="lookatproject.html#cb256-2"></a></span>
+<span id="cb256-3"><a href="lookatproject.html#cb256-3"></a><span class="pp">#include </span><span class="im">&lt;fmt/core.h&gt;</span></span>
+<span id="cb256-4"><a href="lookatproject.html#cb256-4"></a><span class="pp">#include </span><span class="im">&lt;imgui.h&gt;</span></span>
+<span id="cb256-5"><a href="lookatproject.html#cb256-5"></a><span class="pp">#include </span><span class="im">&lt;tiny_obj_loader.h&gt;</span></span>
+<span id="cb256-6"><a href="lookatproject.html#cb256-6"></a></span>
+<span id="cb256-7"><a href="lookatproject.html#cb256-7"></a><span class="pp">#include </span><span class="im">&lt;cppitertools/itertools.hpp&gt;</span></span>
+<span id="cb256-8"><a href="lookatproject.html#cb256-8"></a><span class="pp">#include </span><span class="im">&lt;glm/gtx/fast_trigonometry.hpp&gt;</span></span>
+<span id="cb256-9"><a href="lookatproject.html#cb256-9"></a><span class="pp">#include </span><span class="im">&lt;glm/gtx/hash.hpp&gt;</span></span>
+<span id="cb256-10"><a href="lookatproject.html#cb256-10"></a><span class="pp">#include </span><span class="im">&lt;unordered_map&gt;</span></span>
+<span id="cb256-11"><a href="lookatproject.html#cb256-11"></a></span>
+<span id="cb256-12"><a href="lookatproject.html#cb256-12"></a><span class="co">// Explicit specialization of std::hash for Vertex</span></span>
+<span id="cb256-13"><a href="lookatproject.html#cb256-13"></a><span class="kw">namespace</span> std {</span>
+<span id="cb256-14"><a href="lookatproject.html#cb256-14"></a><span class="kw">template</span> &lt;&gt;</span>
+<span id="cb256-15"><a href="lookatproject.html#cb256-15"></a><span class="kw">struct</span> hash&lt;Vertex&gt; {</span>
+<span id="cb256-16"><a href="lookatproject.html#cb256-16"></a>  <span class="dt">size_t</span> <span class="kw">operator</span>()(Vertex <span class="at">const</span>&amp; vertex) <span class="at">const</span> <span class="kw">noexcept</span> {</span>
+<span id="cb256-17"><a href="lookatproject.html#cb256-17"></a>    <span class="at">const</span> <span class="bu">std::</span>size_t h1{<span class="bu">std::</span>hash&lt;glm::vec3&gt;()(vertex.position)};</span>
+<span id="cb256-18"><a href="lookatproject.html#cb256-18"></a>    <span class="cf">return</span> h1;</span>
+<span id="cb256-19"><a href="lookatproject.html#cb256-19"></a>  }</span>
+<span id="cb256-20"><a href="lookatproject.html#cb256-20"></a>};</span>
+<span id="cb256-21"><a href="lookatproject.html#cb256-21"></a>}  <span class="co">// namespace std</span></span></code></pre></div>
+<p>A definição de <code>OpenGLWindow::handleEvent</code> vem a seguir:</p>
+<div class="sourceCode" id="cb257" startFrom="23"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 22;"><span id="cb257-23"><a href="lookatproject.html#cb257-23"></a><span class="dt">void</span> OpenGLWindow::handleEvent(SDL_Event&amp; ev) {</span>
+<span id="cb257-24"><a href="lookatproject.html#cb257-24"></a>  <span class="cf">if</span> (ev.type == SDL_KEYDOWN) {</span>
+<span id="cb257-25"><a href="lookatproject.html#cb257-25"></a>    <span class="cf">if</span> (ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w)</span>
+<span id="cb257-26"><a href="lookatproject.html#cb257-26"></a>      <span class="va">m_dollySpeed</span> = <span class="fl">1.0</span><span class="bu">f</span>;</span>
+<span id="cb257-27"><a href="lookatproject.html#cb257-27"></a>    <span class="cf">if</span> (ev.key.keysym.sym == SDLK_DOWN || ev.key.keysym.sym == SDLK_s)</span>
+<span id="cb257-28"><a href="lookatproject.html#cb257-28"></a>      <span class="va">m_dollySpeed</span> = -<span class="fl">1.0</span><span class="bu">f</span>;</span>
+<span id="cb257-29"><a href="lookatproject.html#cb257-29"></a>    <span class="cf">if</span> (ev.key.keysym.sym == SDLK_LEFT || ev.key.keysym.sym == SDLK_a)</span>
+<span id="cb257-30"><a href="lookatproject.html#cb257-30"></a>      <span class="va">m_panSpeed</span> = -<span class="fl">1.0</span><span class="bu">f</span>;</span>
+<span id="cb257-31"><a href="lookatproject.html#cb257-31"></a>    <span class="cf">if</span> (ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_d)</span>
+<span id="cb257-32"><a href="lookatproject.html#cb257-32"></a>      <span class="va">m_panSpeed</span> = <span class="fl">1.0</span><span class="bu">f</span>;</span>
+<span id="cb257-33"><a href="lookatproject.html#cb257-33"></a>    <span class="cf">if</span> (ev.key.keysym.sym == SDLK_q) <span class="va">m_truckSpeed</span> = -<span class="fl">1.0</span><span class="bu">f</span>;</span>
+<span id="cb257-34"><a href="lookatproject.html#cb257-34"></a>    <span class="cf">if</span> (ev.key.keysym.sym == SDLK_e) <span class="va">m_truckSpeed</span> = <span class="fl">1.0</span><span class="bu">f</span>;</span>
+<span id="cb257-35"><a href="lookatproject.html#cb257-35"></a>  }</span>
+<span id="cb257-36"><a href="lookatproject.html#cb257-36"></a>  <span class="cf">if</span> (ev.type == SDL_KEYUP) {</span>
+<span id="cb257-37"><a href="lookatproject.html#cb257-37"></a>    <span class="cf">if</span> ((ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w) &amp;&amp;</span>
+<span id="cb257-38"><a href="lookatproject.html#cb257-38"></a>        <span class="va">m_dollySpeed</span> &gt; <span class="dv">0</span>)</span>
+<span id="cb257-39"><a href="lookatproject.html#cb257-39"></a>      <span class="va">m_dollySpeed</span> = <span class="fl">0.0</span><span class="bu">f</span>;</span>
+<span id="cb257-40"><a href="lookatproject.html#cb257-40"></a>    <span class="cf">if</span> ((ev.key.keysym.sym == SDLK_DOWN || ev.key.keysym.sym == SDLK_s) &amp;&amp;</span>
+<span id="cb257-41"><a href="lookatproject.html#cb257-41"></a>        <span class="va">m_dollySpeed</span> &lt; <span class="dv">0</span>)</span>
+<span id="cb257-42"><a href="lookatproject.html#cb257-42"></a>      <span class="va">m_dollySpeed</span> = <span class="fl">0.0</span><span class="bu">f</span>;</span>
+<span id="cb257-43"><a href="lookatproject.html#cb257-43"></a>    <span class="cf">if</span> ((ev.key.keysym.sym == SDLK_LEFT || ev.key.keysym.sym == SDLK_a) &amp;&amp;</span>
+<span id="cb257-44"><a href="lookatproject.html#cb257-44"></a>        <span class="va">m_panSpeed</span> &lt; <span class="dv">0</span>)</span>
+<span id="cb257-45"><a href="lookatproject.html#cb257-45"></a>      <span class="va">m_panSpeed</span> = <span class="fl">0.0</span><span class="bu">f</span>;</span>
+<span id="cb257-46"><a href="lookatproject.html#cb257-46"></a>    <span class="cf">if</span> ((ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_d) &amp;&amp;</span>
+<span id="cb257-47"><a href="lookatproject.html#cb257-47"></a>        <span class="va">m_panSpeed</span> &gt; <span class="dv">0</span>)</span>
+<span id="cb257-48"><a href="lookatproject.html#cb257-48"></a>      <span class="va">m_panSpeed</span> = <span class="fl">0.0</span><span class="bu">f</span>;</span>
+<span id="cb257-49"><a href="lookatproject.html#cb257-49"></a>    <span class="cf">if</span> (ev.key.keysym.sym == SDLK_q &amp;&amp; <span class="va">m_truckSpeed</span> &lt; <span class="dv">0</span>) <span class="va">m_truckSpeed</span> = <span class="fl">0.0</span><span class="bu">f</span>;</span>
+<span id="cb257-50"><a href="lookatproject.html#cb257-50"></a>    <span class="cf">if</span> (ev.key.keysym.sym == SDLK_e &amp;&amp; <span class="va">m_truckSpeed</span> &gt; <span class="dv">0</span>) <span class="va">m_truckSpeed</span> = <span class="fl">0.0</span><span class="bu">f</span>;</span>
+<span id="cb257-51"><a href="lookatproject.html#cb257-51"></a>  }</span>
+<span id="cb257-52"><a href="lookatproject.html#cb257-52"></a>}</span></code></pre></div>
+<p>Os eventos de teclado são tratados de forma separada para as teclas pressionadas (<code>SDL_KEYDOWN</code>, linhas 24 a 35) e para as teclas liberadas (<code>SDL_KEYUP</code>, linhas 36 a 51).</p>
+<p>Quando uma tecla é pressionada (seta ou <code>QWEASD</code>), a velocidade de dolly, pan ou truck é modificada para +1 ou -1. Quando a tecla é liberada, a velocidade correspondente volta para 0.</p>
+<p>Vamos agora à definição de <code>OpenGLWindow::initializeOpenGL</code>, que também é bem parecida com a do projeto <code>loadmodel</code>:</p>
+<div class="sourceCode" id="cb258" startFrom="54"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 53;"><span id="cb258-54"><a href="lookatproject.html#cb258-54"></a><span class="dt">void</span> OpenGLWindow::initializeGL() {</span>
+<span id="cb258-55"><a href="lookatproject.html#cb258-55"></a>  abcg::glClearColor(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>);</span>
+<span id="cb258-56"><a href="lookatproject.html#cb258-56"></a></span>
+<span id="cb258-57"><a href="lookatproject.html#cb258-57"></a>  <span class="co">// Enable depth buffering</span></span>
+<span id="cb258-58"><a href="lookatproject.html#cb258-58"></a>  abcg::glEnable(GL_DEPTH_TEST);</span>
+<span id="cb258-59"><a href="lookatproject.html#cb258-59"></a></span>
+<span id="cb258-60"><a href="lookatproject.html#cb258-60"></a>  <span class="co">// Create program</span></span>
+<span id="cb258-61"><a href="lookatproject.html#cb258-61"></a>  <span class="va">m_program</span> = createProgramFromFile(getAssetsPath() + <span class="st">&quot;lookat.vert&quot;</span>,</span>
+<span id="cb258-62"><a href="lookatproject.html#cb258-62"></a>                                    getAssetsPath() + <span class="st">&quot;lookat.frag&quot;</span>);</span>
+<span id="cb258-63"><a href="lookatproject.html#cb258-63"></a></span>
+<span id="cb258-64"><a href="lookatproject.html#cb258-64"></a>  <span class="va">m_ground</span>.initializeGL(<span class="va">m_program</span>);</span>
+<span id="cb258-65"><a href="lookatproject.html#cb258-65"></a></span>
+<span id="cb258-66"><a href="lookatproject.html#cb258-66"></a>  <span class="co">// Load model</span></span>
+<span id="cb258-67"><a href="lookatproject.html#cb258-67"></a>  loadModelFromFile(getAssetsPath() + <span class="st">&quot;bunny.obj&quot;</span>);</span>
+<span id="cb258-68"><a href="lookatproject.html#cb258-68"></a></span>
+<span id="cb258-69"><a href="lookatproject.html#cb258-69"></a>  <span class="co">// Generate VBO</span></span>
+<span id="cb258-70"><a href="lookatproject.html#cb258-70"></a>  abcg::glGenBuffers(<span class="dv">1</span>, &amp;<span class="va">m_VBO</span>);</span>
+<span id="cb258-71"><a href="lookatproject.html#cb258-71"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="va">m_VBO</span>);</span>
+<span id="cb258-72"><a href="lookatproject.html#cb258-72"></a>  abcg::glBufferData(GL_ARRAY_BUFFER, <span class="kw">sizeof</span>(<span class="va">m_vertices</span>[<span class="dv">0</span>]) * <span class="va">m_vertices</span>.size(),</span>
+<span id="cb258-73"><a href="lookatproject.html#cb258-73"></a>                     <span class="va">m_vertices</span>.data(), GL_STATIC_DRAW);</span>
+<span id="cb258-74"><a href="lookatproject.html#cb258-74"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
+<span id="cb258-75"><a href="lookatproject.html#cb258-75"></a></span>
+<span id="cb258-76"><a href="lookatproject.html#cb258-76"></a>  <span class="co">// Generate EBO</span></span>
+<span id="cb258-77"><a href="lookatproject.html#cb258-77"></a>  abcg::glGenBuffers(<span class="dv">1</span>, &amp;<span class="va">m_EBO</span>);</span>
+<span id="cb258-78"><a href="lookatproject.html#cb258-78"></a>  abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, <span class="va">m_EBO</span>);</span>
+<span id="cb258-79"><a href="lookatproject.html#cb258-79"></a>  abcg::glBufferData(GL_ELEMENT_ARRAY_BUFFER,</span>
+<span id="cb258-80"><a href="lookatproject.html#cb258-80"></a>                     <span class="kw">sizeof</span>(<span class="va">m_indices</span>[<span class="dv">0</span>]) * <span class="va">m_indices</span>.size(), <span class="va">m_indices</span>.data(),</span>
+<span id="cb258-81"><a href="lookatproject.html#cb258-81"></a>                     GL_STATIC_DRAW);</span>
+<span id="cb258-82"><a href="lookatproject.html#cb258-82"></a>  abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, <span class="dv">0</span>);</span>
+<span id="cb258-83"><a href="lookatproject.html#cb258-83"></a></span>
+<span id="cb258-84"><a href="lookatproject.html#cb258-84"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb258-85"><a href="lookatproject.html#cb258-85"></a>  abcg::glGenVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_VAO</span>);</span>
+<span id="cb258-86"><a href="lookatproject.html#cb258-86"></a></span>
+<span id="cb258-87"><a href="lookatproject.html#cb258-87"></a>  <span class="co">// Bind vertex attributes to current VAO</span></span>
+<span id="cb258-88"><a href="lookatproject.html#cb258-88"></a>  abcg::glBindVertexArray(<span class="va">m_VAO</span>);</span>
+<span id="cb258-89"><a href="lookatproject.html#cb258-89"></a></span>
+<span id="cb258-90"><a href="lookatproject.html#cb258-90"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="va">m_VBO</span>);</span>
+<span id="cb258-91"><a href="lookatproject.html#cb258-91"></a>  <span class="at">const</span> GLint positionAttribute{</span>
+<span id="cb258-92"><a href="lookatproject.html#cb258-92"></a>      abcg::glGetAttribLocation(<span class="va">m_program</span>, <span class="st">&quot;inPosition&quot;</span>)};</span>
+<span id="cb258-93"><a href="lookatproject.html#cb258-93"></a>  abcg::glEnableVertexAttribArray(positionAttribute);</span>
+<span id="cb258-94"><a href="lookatproject.html#cb258-94"></a>  abcg::glVertexAttribPointer(positionAttribute, <span class="dv">3</span>, GL_FLOAT, GL_FALSE,</span>
+<span id="cb258-95"><a href="lookatproject.html#cb258-95"></a>                              <span class="kw">sizeof</span>(Vertex), <span class="kw">nullptr</span>);</span>
+<span id="cb258-96"><a href="lookatproject.html#cb258-96"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
+<span id="cb258-97"><a href="lookatproject.html#cb258-97"></a></span>
+<span id="cb258-98"><a href="lookatproject.html#cb258-98"></a>  abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, <span class="va">m_EBO</span>);</span>
+<span id="cb258-99"><a href="lookatproject.html#cb258-99"></a></span>
+<span id="cb258-100"><a href="lookatproject.html#cb258-100"></a>  <span class="co">// End of binding to current VAO</span></span>
+<span id="cb258-101"><a href="lookatproject.html#cb258-101"></a>  abcg::glBindVertexArray(<span class="dv">0</span>);</span>
+<span id="cb258-102"><a href="lookatproject.html#cb258-102"></a></span>
+<span id="cb258-103"><a href="lookatproject.html#cb258-103"></a>  resizeGL(getWindowSettings().width, getWindowSettings().height);</span>
+<span id="cb258-104"><a href="lookatproject.html#cb258-104"></a>}</span></code></pre></div>
+<p>Em relação ao projeto anterior, modificamos o nomes dos shaders lidos (linhas 61 a 62), chamamos <code>Ground::initializeGL</code> na linha 64 (para inicializar o VAO/VBO do chão) e incluímos a chamada a <code>OpenGLWindow::resizeGL</code> na linha 103.</p>
+<p>A função <code>Camera::computeProjectioMatrix</code> é chamada dentro de <code>OpenGLWindow::resizeGL</code> para reconstruir a matriz de projeção. Os valores da matriz dependem do tamanho atual da janela. Assim, ao chamarmos <code>OpenGLWindow::resizeGL</code> em <code>OpenGLWindow::initializeGL</code>, garantimos que a aplicação começará com uma matriz de projeção válida para as dimensões da janela.</p>
+<p>A definição de <code>OpenGLWindow::loadModelFromFile</code> é a mesma do projeto anterior.</p>
+<p>Vamos à definição de <code>OpenGLWindow::paintGL</code>:</p>
+<div class="sourceCode" id="cb259" startFrom="160"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 159;"><span id="cb259-160"><a href="lookatproject.html#cb259-160"></a><span class="dt">void</span> OpenGLWindow::paintGL() {</span>
+<span id="cb259-161"><a href="lookatproject.html#cb259-161"></a>  update();</span>
+<span id="cb259-162"><a href="lookatproject.html#cb259-162"></a></span>
+<span id="cb259-163"><a href="lookatproject.html#cb259-163"></a>  <span class="co">// Clear color buffer and depth buffer</span></span>
+<span id="cb259-164"><a href="lookatproject.html#cb259-164"></a>  abcg::glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span>
+<span id="cb259-165"><a href="lookatproject.html#cb259-165"></a></span>
+<span id="cb259-166"><a href="lookatproject.html#cb259-166"></a>  abcg::glViewport(<span class="dv">0</span>, <span class="dv">0</span>, <span class="va">m_viewportWidth</span>, <span class="va">m_viewportHeight</span>);</span>
+<span id="cb259-167"><a href="lookatproject.html#cb259-167"></a></span>
+<span id="cb259-168"><a href="lookatproject.html#cb259-168"></a>  abcg::glUseProgram(<span class="va">m_program</span>);</span>
+<span id="cb259-169"><a href="lookatproject.html#cb259-169"></a></span>
+<span id="cb259-170"><a href="lookatproject.html#cb259-170"></a>  <span class="co">// Get location of uniform variables (could be precomputed)</span></span>
+<span id="cb259-171"><a href="lookatproject.html#cb259-171"></a>  <span class="at">const</span> GLint viewMatrixLoc{</span>
+<span id="cb259-172"><a href="lookatproject.html#cb259-172"></a>      abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;viewMatrix&quot;</span>)};</span>
+<span id="cb259-173"><a href="lookatproject.html#cb259-173"></a>  <span class="at">const</span> GLint projMatrixLoc{</span>
+<span id="cb259-174"><a href="lookatproject.html#cb259-174"></a>      abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;projMatrix&quot;</span>)};</span>
+<span id="cb259-175"><a href="lookatproject.html#cb259-175"></a>  <span class="at">const</span> GLint modelMatrixLoc{</span>
+<span id="cb259-176"><a href="lookatproject.html#cb259-176"></a>      abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;modelMatrix&quot;</span>)};</span>
+<span id="cb259-177"><a href="lookatproject.html#cb259-177"></a>  <span class="at">const</span> GLint colorLoc{abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;color&quot;</span>)};</span>
+<span id="cb259-178"><a href="lookatproject.html#cb259-178"></a></span>
+<span id="cb259-179"><a href="lookatproject.html#cb259-179"></a>  <span class="co">// Set uniform variables for viewMatrix and projMatrix</span></span>
+<span id="cb259-180"><a href="lookatproject.html#cb259-180"></a>  <span class="co">// These matrices are used for every scene object</span></span>
+<span id="cb259-181"><a href="lookatproject.html#cb259-181"></a>  abcg::glUniformMatrix4fv(viewMatrixLoc, <span class="dv">1</span>, GL_FALSE,</span>
+<span id="cb259-182"><a href="lookatproject.html#cb259-182"></a>                           &amp;<span class="va">m_camera</span>.<span class="va">m_viewMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb259-183"><a href="lookatproject.html#cb259-183"></a>  abcg::glUniformMatrix4fv(projMatrixLoc, <span class="dv">1</span>, GL_FALSE,</span>
+<span id="cb259-184"><a href="lookatproject.html#cb259-184"></a>                           &amp;<span class="va">m_camera</span>.<span class="va">m_projMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb259-185"><a href="lookatproject.html#cb259-185"></a></span>
+<span id="cb259-186"><a href="lookatproject.html#cb259-186"></a>  abcg::glBindVertexArray(<span class="va">m_VAO</span>);</span>
+<span id="cb259-187"><a href="lookatproject.html#cb259-187"></a></span>
+<span id="cb259-188"><a href="lookatproject.html#cb259-188"></a>  <span class="co">// Draw white bunny</span></span>
+<span id="cb259-189"><a href="lookatproject.html#cb259-189"></a>  glm::mat4 model{<span class="fl">1.0</span><span class="bu">f</span>};</span>
+<span id="cb259-190"><a href="lookatproject.html#cb259-190"></a>  model = glm::translate(model, glm::vec3(-<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>));</span>
+<span id="cb259-191"><a href="lookatproject.html#cb259-191"></a>  model = glm::rotate(model, glm::radians(<span class="fl">90.0</span><span class="bu">f</span>), glm::vec3(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>));</span>
+<span id="cb259-192"><a href="lookatproject.html#cb259-192"></a>  model = glm::scale(model, glm::vec3(<span class="fl">0.5</span><span class="bu">f</span>));</span>
+<span id="cb259-193"><a href="lookatproject.html#cb259-193"></a></span>
+<span id="cb259-194"><a href="lookatproject.html#cb259-194"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;model[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb259-195"><a href="lookatproject.html#cb259-195"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb259-196"><a href="lookatproject.html#cb259-196"></a>  abcg::glDrawElements(GL_TRIANGLES, <span class="va">m_indices</span>.size(), GL_UNSIGNED_INT,</span>
+<span id="cb259-197"><a href="lookatproject.html#cb259-197"></a>                       <span class="kw">nullptr</span>);</span>
+<span id="cb259-198"><a href="lookatproject.html#cb259-198"></a></span>
+<span id="cb259-199"><a href="lookatproject.html#cb259-199"></a>  <span class="co">// Draw yellow bunny</span></span>
+<span id="cb259-200"><a href="lookatproject.html#cb259-200"></a>  model = glm::mat4(<span class="fl">1.0</span>);</span>
+<span id="cb259-201"><a href="lookatproject.html#cb259-201"></a>  model = glm::translate(model, glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>));</span>
+<span id="cb259-202"><a href="lookatproject.html#cb259-202"></a>  model = glm::scale(model, glm::vec3(<span class="fl">0.5</span><span class="bu">f</span>));</span>
+<span id="cb259-203"><a href="lookatproject.html#cb259-203"></a></span>
+<span id="cb259-204"><a href="lookatproject.html#cb259-204"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;model[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb259-205"><a href="lookatproject.html#cb259-205"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.8</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb259-206"><a href="lookatproject.html#cb259-206"></a>  abcg::glDrawElements(GL_TRIANGLES, <span class="va">m_indices</span>.size(), GL_UNSIGNED_INT,</span>
+<span id="cb259-207"><a href="lookatproject.html#cb259-207"></a>                       <span class="kw">nullptr</span>);</span>
+<span id="cb259-208"><a href="lookatproject.html#cb259-208"></a></span>
+<span id="cb259-209"><a href="lookatproject.html#cb259-209"></a>  <span class="co">// Draw blue bunny</span></span>
+<span id="cb259-210"><a href="lookatproject.html#cb259-210"></a>  model = glm::mat4(<span class="fl">1.0</span>);</span>
+<span id="cb259-211"><a href="lookatproject.html#cb259-211"></a>  model = glm::translate(model, glm::vec3(<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>));</span>
+<span id="cb259-212"><a href="lookatproject.html#cb259-212"></a>  model = glm::rotate(model, glm::radians(-<span class="fl">90.0</span><span class="bu">f</span>), glm::vec3(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>));</span>
+<span id="cb259-213"><a href="lookatproject.html#cb259-213"></a>  model = glm::scale(model, glm::vec3(<span class="fl">0.5</span><span class="bu">f</span>));</span>
+<span id="cb259-214"><a href="lookatproject.html#cb259-214"></a></span>
+<span id="cb259-215"><a href="lookatproject.html#cb259-215"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;model[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb259-216"><a href="lookatproject.html#cb259-216"></a>  abcg::glUniform4f(colorLoc, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.8</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb259-217"><a href="lookatproject.html#cb259-217"></a>  abcg::glDrawElements(GL_TRIANGLES, <span class="va">m_indices</span>.size(), GL_UNSIGNED_INT,</span>
+<span id="cb259-218"><a href="lookatproject.html#cb259-218"></a>                       <span class="kw">nullptr</span>);</span>
+<span id="cb259-219"><a href="lookatproject.html#cb259-219"></a></span>
+<span id="cb259-220"><a href="lookatproject.html#cb259-220"></a>  <span class="co">// Draw red bunny</span></span>
+<span id="cb259-221"><a href="lookatproject.html#cb259-221"></a>  model = glm::mat4(<span class="fl">1.0</span>);</span>
+<span id="cb259-222"><a href="lookatproject.html#cb259-222"></a>  model = glm::scale(model, glm::vec3(<span class="fl">0.1</span><span class="bu">f</span>));</span>
+<span id="cb259-223"><a href="lookatproject.html#cb259-223"></a></span>
+<span id="cb259-224"><a href="lookatproject.html#cb259-224"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;model[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb259-225"><a href="lookatproject.html#cb259-225"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.25</span><span class="bu">f</span>, <span class="fl">0.25</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb259-226"><a href="lookatproject.html#cb259-226"></a>  abcg::glDrawElements(GL_TRIANGLES, <span class="va">m_indices</span>.size(), GL_UNSIGNED_INT,</span>
+<span id="cb259-227"><a href="lookatproject.html#cb259-227"></a>                       <span class="kw">nullptr</span>);</span>
+<span id="cb259-228"><a href="lookatproject.html#cb259-228"></a></span>
+<span id="cb259-229"><a href="lookatproject.html#cb259-229"></a>  abcg::glBindVertexArray(<span class="dv">0</span>);</span>
+<span id="cb259-230"><a href="lookatproject.html#cb259-230"></a></span>
+<span id="cb259-231"><a href="lookatproject.html#cb259-231"></a>  <span class="co">// Draw ground</span></span>
+<span id="cb259-232"><a href="lookatproject.html#cb259-232"></a>  <span class="va">m_ground</span>.paintGL();</span>
+<span id="cb259-233"><a href="lookatproject.html#cb259-233"></a></span>
+<span id="cb259-234"><a href="lookatproject.html#cb259-234"></a>  abcg::glUseProgram(<span class="dv">0</span>);</span>
+<span id="cb259-235"><a href="lookatproject.html#cb259-235"></a>}</span></code></pre></div>
+<p>A função <code>OpenGLWindow::update</code> é chamada logo do início (linha 161) para atualizar a posição e orientação da câmera LookAt.</p>
+<p>Nas linhas 179 e 184, o conteúdo das matrizes de visão e projeção é enviado às variáveis uniformes no shader:</p>
+<div class="sourceCode" id="cb260" startFrom="179"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 178;"><span id="cb260-179"><a href="lookatproject.html#cb260-179"></a>  <span class="co">// Set uniform variables for viewMatrix and projMatrix</span></span>
+<span id="cb260-180"><a href="lookatproject.html#cb260-180"></a>  <span class="co">// These matrices are used for every scene object</span></span>
+<span id="cb260-181"><a href="lookatproject.html#cb260-181"></a>  abcg::glUniformMatrix4fv(viewMatrixLoc, <span class="dv">1</span>, GL_FALSE,</span>
+<span id="cb260-182"><a href="lookatproject.html#cb260-182"></a>                           &amp;<span class="va">m_camera</span>.<span class="va">m_viewMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb260-183"><a href="lookatproject.html#cb260-183"></a>  abcg::glUniformMatrix4fv(projMatrixLoc, <span class="dv">1</span>, GL_FALSE,</span>
+<span id="cb260-184"><a href="lookatproject.html#cb260-184"></a>                           &amp;<span class="va">m_camera</span>.<span class="va">m_projMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span></code></pre></div>
+<p>Observe o uso da função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glUniform.xhtml"><code>glUniformMatrix4fv</code></a>. Essa função tem a assinatura</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb261-1"><a href="lookatproject.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> glUniformMatrix4fv(GLint location,</span>
+<span id="cb261-2"><a href="lookatproject.html#cb261-2" aria-hidden="true" tabindex="-1"></a>                        GLsizei count,</span>
+<span id="cb261-3"><a href="lookatproject.html#cb261-3" aria-hidden="true" tabindex="-1"></a>                        GLboolean transpose,</span>
+<span id="cb261-4"><a href="lookatproject.html#cb261-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">const</span> GLfloat *value);</span></code></pre></div>
+<p>onde</p>
+<ul>
+<li><code>location</code> é o identificador de localização da variável uniforme no shader;</li>
+<li><code>count</code> é o número de matrizes que queremos transferir à variável uniforme;</li>
+<li><code>transpose</code> é um valor booleano que indica se queremos enviar a transposta da matriz;</li>
+<li><code>value</code> é o ponteiro para o primeiro elemento do arranjo de elementos da matriz.</li>
+</ul>
+<p>A renderização do coelho branco é configurada nas linhas 188 a 197:</p>
+<div class="sourceCode" id="cb262" startFrom="188"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 187;"><span id="cb262-188"><a href="lookatproject.html#cb262-188"></a>  <span class="co">// Draw white bunny</span></span>
+<span id="cb262-189"><a href="lookatproject.html#cb262-189"></a>  glm::mat4 model{<span class="fl">1.0</span><span class="bu">f</span>};</span>
+<span id="cb262-190"><a href="lookatproject.html#cb262-190"></a>  model = glm::translate(model, glm::vec3(-<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>));</span>
+<span id="cb262-191"><a href="lookatproject.html#cb262-191"></a>  model = glm::rotate(model, glm::radians(<span class="fl">90.0</span><span class="bu">f</span>), glm::vec3(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>));</span>
+<span id="cb262-192"><a href="lookatproject.html#cb262-192"></a>  model = glm::scale(model, glm::vec3(<span class="fl">0.5</span><span class="bu">f</span>));</span>
+<span id="cb262-193"><a href="lookatproject.html#cb262-193"></a></span>
+<span id="cb262-194"><a href="lookatproject.html#cb262-194"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;model[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb262-195"><a href="lookatproject.html#cb262-195"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb262-196"><a href="lookatproject.html#cb262-196"></a>  abcg::glDrawElements(GL_TRIANGLES, <span class="va">m_indices</span>.size(), GL_UNSIGNED_INT,</span>
+<span id="cb262-197"><a href="lookatproject.html#cb262-197"></a>                       <span class="kw">nullptr</span>);</span></code></pre></div>
+<p>Nas linhas 189 a 192 é criada a concatenação de transformações que forma a <strong>matriz de modelo</strong> (<code>model</code>). Para o coelho branco, essa concatenação é</p>
+<p><span class="math display">\[
+\mathbf{M}_{\textrm{model}}=\mathbf{I}.\mathbf{T}(-1,0,0).\mathbf{R}_y\left(\frac{\pi}{2}\right).\mathbf{S}(0.5, 0.5, 0.5).
+\]</span>
+Essas transformações servem para posicionar o modelo do coelho no mundo. Inicialmente o modelo está na posição e orientação definida no arquivo <code>bunny.obj</code>: na origem, sobre o plano <span class="math inline">\(y=0\)</span>, como vimos na figura <a href="glspaces.html#fig:glspace1">7.17</a>. As transformações são aplicadas da seguinte forma:</p>
+<ul>
+<li>Transformação de escala para reduzir o tamanho do coelho para <span class="math inline">\(50\%\)</span> de seu tamanho original (linha 192);</li>
+<li>Rotação em <span class="math inline">\(90^{\circ}\)</span> em torno do eixo <span class="math inline">\(y\)</span> do espaço do objeto, que é o mesmo eixo <span class="math inline">\(y\)</span> do espaço do mundo (linha 191);</li>
+<li>Translação pelo vetor <span class="math inline">\((-1,0,0)\)</span>, que posiciona o coelho em sua posição final na cena (linha 190);</li>
+<li>Transformação identidade (linha 189).</li>
+</ul>
+<p>Na linha 194, a matriz de modelo é enviada à variável uniforme <code>m_modelMatrix</code> no vertex shader.</p>
+<p>Na linha 195, a variável uniforme <code>color</code> é definida com <span class="math inline">\((1,1,1,1)\)</span> (branco) no vertex shader.</p>
+<p>Finalmente, na linha 196 é feita a chamada ao comando de renderização.</p>
+<p>Observe como um procedimento semelhante é feito para os outros coelhos. Mudam apenas as transformações que serão usadas para criar a matriz <code>model</code>, e o valor de cor definido na variável uniforme <code>color</code>.</p>
+<p>Para o coelho amarelo:</p>
+<div class="sourceCode" id="cb263" startFrom="199"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 198;"><span id="cb263-199"><a href="lookatproject.html#cb263-199"></a>  <span class="co">// Draw yellow bunny</span></span>
+<span id="cb263-200"><a href="lookatproject.html#cb263-200"></a>  model = glm::mat4(<span class="fl">1.0</span>);</span>
+<span id="cb263-201"><a href="lookatproject.html#cb263-201"></a>  model = glm::translate(model, glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>));</span>
+<span id="cb263-202"><a href="lookatproject.html#cb263-202"></a>  model = glm::scale(model, glm::vec3(<span class="fl">0.5</span><span class="bu">f</span>));</span>
+<span id="cb263-203"><a href="lookatproject.html#cb263-203"></a></span>
+<span id="cb263-204"><a href="lookatproject.html#cb263-204"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;model[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb263-205"><a href="lookatproject.html#cb263-205"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.8</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb263-206"><a href="lookatproject.html#cb263-206"></a>  abcg::glDrawElements(GL_TRIANGLES, <span class="va">m_indices</span>.size(), GL_UNSIGNED_INT,</span>
+<span id="cb263-207"><a href="lookatproject.html#cb263-207"></a>                       <span class="kw">nullptr</span>);</span></code></pre></div>
+<p>Para o coelho azul:</p>
+<div class="sourceCode" id="cb264" startFrom="209"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 208;"><span id="cb264-209"><a href="lookatproject.html#cb264-209"></a>  <span class="co">// Draw blue bunny</span></span>
+<span id="cb264-210"><a href="lookatproject.html#cb264-210"></a>  model = glm::mat4(<span class="fl">1.0</span>);</span>
+<span id="cb264-211"><a href="lookatproject.html#cb264-211"></a>  model = glm::translate(model, glm::vec3(<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>));</span>
+<span id="cb264-212"><a href="lookatproject.html#cb264-212"></a>  model = glm::rotate(model, glm::radians(-<span class="fl">90.0</span><span class="bu">f</span>), glm::vec3(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>));</span>
+<span id="cb264-213"><a href="lookatproject.html#cb264-213"></a>  model = glm::scale(model, glm::vec3(<span class="fl">0.5</span><span class="bu">f</span>));</span>
+<span id="cb264-214"><a href="lookatproject.html#cb264-214"></a></span>
+<span id="cb264-215"><a href="lookatproject.html#cb264-215"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;model[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb264-216"><a href="lookatproject.html#cb264-216"></a>  abcg::glUniform4f(colorLoc, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.8</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb264-217"><a href="lookatproject.html#cb264-217"></a>  abcg::glDrawElements(GL_TRIANGLES, <span class="va">m_indices</span>.size(), GL_UNSIGNED_INT,</span>
+<span id="cb264-218"><a href="lookatproject.html#cb264-218"></a>                       <span class="kw">nullptr</span>);</span></code></pre></div>
+<p>Para o pequeno coelho vermelho:</p>
+<div class="sourceCode" id="cb265" startFrom="220"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 219;"><span id="cb265-220"><a href="lookatproject.html#cb265-220"></a>  <span class="co">// Draw red bunny</span></span>
+<span id="cb265-221"><a href="lookatproject.html#cb265-221"></a>  model = glm::mat4(<span class="fl">1.0</span>);</span>
+<span id="cb265-222"><a href="lookatproject.html#cb265-222"></a>  model = glm::scale(model, glm::vec3(<span class="fl">0.1</span><span class="bu">f</span>));</span>
+<span id="cb265-223"><a href="lookatproject.html#cb265-223"></a></span>
+<span id="cb265-224"><a href="lookatproject.html#cb265-224"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;model[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb265-225"><a href="lookatproject.html#cb265-225"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.25</span><span class="bu">f</span>, <span class="fl">0.25</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb265-226"><a href="lookatproject.html#cb265-226"></a>  abcg::glDrawElements(GL_TRIANGLES, <span class="va">m_indices</span>.size(), GL_UNSIGNED_INT,</span>
+<span id="cb265-227"><a href="lookatproject.html#cb265-227"></a>                       <span class="kw">nullptr</span>);</span></code></pre></div>
+<p>Note que todos os modelos foram renderizados com o mesmo VAO (linha 186), pois todos compartilham o mesmo VBO. É a matriz de modelo que faz com que cada coelho tenha uma transformação diferente no cenário 3D.</p>
+<p>No final de <code>OpenGLWindow::paintGL</code>, temos o seguinte código:</p>
+<div class="sourceCode" id="cb266" startFrom="229"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 228;"><span id="cb266-229"><a href="lookatproject.html#cb266-229"></a>  abcg::glBindVertexArray(<span class="dv">0</span>);</span>
+<span id="cb266-230"><a href="lookatproject.html#cb266-230"></a></span>
+<span id="cb266-231"><a href="lookatproject.html#cb266-231"></a>  <span class="co">// Draw ground</span></span>
+<span id="cb266-232"><a href="lookatproject.html#cb266-232"></a>  <span class="va">m_ground</span>.paintGL();</span>
+<span id="cb266-233"><a href="lookatproject.html#cb266-233"></a></span>
+<span id="cb266-234"><a href="lookatproject.html#cb266-234"></a>  abcg::glUseProgram(<span class="dv">0</span>);</span></code></pre></div>
+<p>Na linha 229, o VAO dos coelhos deixa de ser usado. Em seguida, na linha 232, o chão é desenhado. O chão tem seu próprio VAO, mas usa os mesmos shaders dos coelhos. É por isso que os shaders só são desabilitados na linha 234 com a chamada a <code>glUseProgram(0)</code>.</p>
+<p>A definição de <code>OpenGLWindow::terminateGL</code> ficará como a seguir:</p>
+<div class="sourceCode" id="cb267" startFrom="246"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 245;"><span id="cb267-246"><a href="lookatproject.html#cb267-246"></a><span class="dt">void</span> OpenGLWindow::terminateGL() {</span>
+<span id="cb267-247"><a href="lookatproject.html#cb267-247"></a>  <span class="va">m_ground</span>.terminateGL();</span>
+<span id="cb267-248"><a href="lookatproject.html#cb267-248"></a></span>
+<span id="cb267-249"><a href="lookatproject.html#cb267-249"></a>  abcg::glDeleteProgram(<span class="va">m_program</span>);</span>
+<span id="cb267-250"><a href="lookatproject.html#cb267-250"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_EBO</span>);</span>
+<span id="cb267-251"><a href="lookatproject.html#cb267-251"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_VBO</span>);</span>
+<span id="cb267-252"><a href="lookatproject.html#cb267-252"></a>  abcg::glDeleteVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_VAO</span>);</span>
+<span id="cb267-253"><a href="lookatproject.html#cb267-253"></a>}</span></code></pre></div>
+<p>Não há nada de muito novo nesse código, exceto a chamada a <code>Ground::terminateGL</code> para liberar o VAO e VBO do chão.</p>
+<p>Finalmente, a definição de <code>OpenGLWindow::update</code> ficará como a seguir:</p>
+<div class="sourceCode" id="cb268" startFrom="255"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 254;"><span id="cb268-255"><a href="lookatproject.html#cb268-255"></a><span class="dt">void</span> OpenGLWindow::update() {</span>
+<span id="cb268-256"><a href="lookatproject.html#cb268-256"></a>  <span class="at">const</span> <span class="dt">float</span> deltaTime{<span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(getDeltaTime())};</span>
+<span id="cb268-257"><a href="lookatproject.html#cb268-257"></a></span>
+<span id="cb268-258"><a href="lookatproject.html#cb268-258"></a>  <span class="co">// Update LookAt camera</span></span>
+<span id="cb268-259"><a href="lookatproject.html#cb268-259"></a>  <span class="va">m_camera</span>.dolly(<span class="va">m_dollySpeed</span> * deltaTime);</span>
+<span id="cb268-260"><a href="lookatproject.html#cb268-260"></a>  <span class="va">m_camera</span>.truck(<span class="va">m_truckSpeed</span> * deltaTime);</span>
+<span id="cb268-261"><a href="lookatproject.html#cb268-261"></a>  <span class="va">m_camera</span>.pan(<span class="va">m_panSpeed</span> * deltaTime);</span>
+<span id="cb268-262"><a href="lookatproject.html#cb268-262"></a>}</span></code></pre></div>
+<p>Aqui, as funções de movimentação da câmera são chamadas usando as variáveis de velocidade que tiveram seus valores determinados em <code>OpenGLWindow::handleEvent</code> de acordo com as teclas pressionadas.</p>
+</div>
+<div id="ground.hpp" class="section level3 unnumbered">
+<h3>ground.hpp</h3>
+<p>A classe <code>Ground</code> é responsável pelo desenho do chão. Embora não seja uma classe derivada de <code>abcg::OpenGLWindow</code>, os nomes de funções são os mesmos (<code>initializeGL</code>, <code>paintGL</code> e <code>terminateGL</code>). Como vimos anteriormente, essas funções são chamadas nas respectivas funções de <code>OpenGLWindow</code>:</p>
+<div class="sourceCode" id="cb269" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb269-1"><a href="lookatproject.html#cb269-1"></a><span class="pp">#ifndef GROUND_HPP_</span></span>
+<span id="cb269-2"><a href="lookatproject.html#cb269-2"></a><span class="pp">#define GROUND_HPP_</span></span>
+<span id="cb269-3"><a href="lookatproject.html#cb269-3"></a></span>
+<span id="cb269-4"><a href="lookatproject.html#cb269-4"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
+<span id="cb269-5"><a href="lookatproject.html#cb269-5"></a></span>
+<span id="cb269-6"><a href="lookatproject.html#cb269-6"></a><span class="kw">class</span> Ground {</span>
+<span id="cb269-7"><a href="lookatproject.html#cb269-7"></a> <span class="kw">public</span>:</span>
+<span id="cb269-8"><a href="lookatproject.html#cb269-8"></a>  <span class="dt">void</span> initializeGL(GLuint program);</span>
+<span id="cb269-9"><a href="lookatproject.html#cb269-9"></a>  <span class="dt">void</span> paintGL();</span>
+<span id="cb269-10"><a href="lookatproject.html#cb269-10"></a>  <span class="dt">void</span> terminateGL();</span>
+<span id="cb269-11"><a href="lookatproject.html#cb269-11"></a></span>
+<span id="cb269-12"><a href="lookatproject.html#cb269-12"></a> <span class="kw">private</span>:</span>
+<span id="cb269-13"><a href="lookatproject.html#cb269-13"></a>  GLuint <span class="va">m_VAO</span>{};</span>
+<span id="cb269-14"><a href="lookatproject.html#cb269-14"></a>  GLuint <span class="va">m_VBO</span>{};</span>
+<span id="cb269-15"><a href="lookatproject.html#cb269-15"></a></span>
+<span id="cb269-16"><a href="lookatproject.html#cb269-16"></a>  GLint <span class="va">m_modelMatrixLoc</span>{};</span>
+<span id="cb269-17"><a href="lookatproject.html#cb269-17"></a>  GLint <span class="va">m_colorLoc</span>{};</span>
+<span id="cb269-18"><a href="lookatproject.html#cb269-18"></a>};</span>
+<span id="cb269-19"><a href="lookatproject.html#cb269-19"></a></span>
+<span id="cb269-20"><a href="lookatproject.html#cb269-20"></a><span class="pp">#endif</span></span></code></pre></div>
+<p><code>Ground::initializeGL</code> recebe como parâmetro o identificador de um programa de shader já existente. Assim, o chão pode usar os mesmos shaders dos coelhos.</p>
+<p>Em <code>Ground::paintGL</code>, veremos que o chão é desenhado como um padrão de xadrez. Como é um padrão composto por quadriláteros, o VBO não precisa ser a malha geométrica do chão inteiro. O VBO é apenas um quadrilátero de tamanho unitário. Em <code>Ground::paintGL</code>, esse quadrilátero será desenhado várias vezes para formar um ladrilho com padrão de xadrez.</p>
+</div>
+<div id="ground.cpp" class="section level3 unnumbered">
+<h3>ground.cpp</h3>
+<p>Vamos começar com a definição de <code>Ground::initializeGL</code>:</p>
+<div class="sourceCode" id="cb270" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb270-1"><a href="lookatproject.html#cb270-1"></a><span class="pp">#include </span><span class="im">&quot;ground.hpp&quot;</span></span>
+<span id="cb270-2"><a href="lookatproject.html#cb270-2"></a></span>
+<span id="cb270-3"><a href="lookatproject.html#cb270-3"></a><span class="pp">#include </span><span class="im">&lt;cppitertools/itertools.hpp&gt;</span></span>
+<span id="cb270-4"><a href="lookatproject.html#cb270-4"></a></span>
+<span id="cb270-5"><a href="lookatproject.html#cb270-5"></a><span class="dt">void</span> Ground::initializeGL(GLuint program) {</span>
+<span id="cb270-6"><a href="lookatproject.html#cb270-6"></a>  <span class="co">// Unit quad on the xz plane</span></span>
+<span id="cb270-7"><a href="lookatproject.html#cb270-7"></a>  <span class="bu">std::</span>array vertices{glm::vec3(-<span class="fl">0.5</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>,  <span class="fl">0.5</span><span class="bu">f</span>), </span>
+<span id="cb270-8"><a href="lookatproject.html#cb270-8"></a>                      glm::vec3(-<span class="fl">0.5</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, -<span class="fl">0.5</span><span class="bu">f</span>),</span>
+<span id="cb270-9"><a href="lookatproject.html#cb270-9"></a>                      glm::vec3( <span class="fl">0.5</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>,  <span class="fl">0.5</span><span class="bu">f</span>),</span>
+<span id="cb270-10"><a href="lookatproject.html#cb270-10"></a>                      glm::vec3( <span class="fl">0.5</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, -<span class="fl">0.5</span><span class="bu">f</span>)};</span>
+<span id="cb270-11"><a href="lookatproject.html#cb270-11"></a></span>
+<span id="cb270-12"><a href="lookatproject.html#cb270-12"></a>  <span class="co">// Generate VBO</span></span>
+<span id="cb270-13"><a href="lookatproject.html#cb270-13"></a>  abcg::glGenBuffers(<span class="dv">1</span>, &amp;<span class="va">m_VBO</span>);</span>
+<span id="cb270-14"><a href="lookatproject.html#cb270-14"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="va">m_VBO</span>);</span>
+<span id="cb270-15"><a href="lookatproject.html#cb270-15"></a>  abcg::glBufferData(GL_ARRAY_BUFFER, <span class="kw">sizeof</span>(vertices), vertices.data(),</span>
+<span id="cb270-16"><a href="lookatproject.html#cb270-16"></a>                     GL_STATIC_DRAW);</span>
+<span id="cb270-17"><a href="lookatproject.html#cb270-17"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
+<span id="cb270-18"><a href="lookatproject.html#cb270-18"></a></span>
+<span id="cb270-19"><a href="lookatproject.html#cb270-19"></a>  <span class="co">// Create VAO and bind vertex attributes</span></span>
+<span id="cb270-20"><a href="lookatproject.html#cb270-20"></a>  abcg::glGenVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_VAO</span>);</span>
+<span id="cb270-21"><a href="lookatproject.html#cb270-21"></a>  abcg::glBindVertexArray(<span class="va">m_VAO</span>);</span>
+<span id="cb270-22"><a href="lookatproject.html#cb270-22"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="va">m_VBO</span>);</span>
+<span id="cb270-23"><a href="lookatproject.html#cb270-23"></a>  <span class="at">const</span> GLint posAttrib{abcg::glGetAttribLocation(program, <span class="st">&quot;inPosition&quot;</span>)};</span>
+<span id="cb270-24"><a href="lookatproject.html#cb270-24"></a>  abcg::glEnableVertexAttribArray(posAttrib);</span>
+<span id="cb270-25"><a href="lookatproject.html#cb270-25"></a>  abcg::glVertexAttribPointer(posAttrib, <span class="dv">3</span>, GL_FLOAT, GL_FALSE, <span class="dv">0</span>, <span class="kw">nullptr</span>);</span>
+<span id="cb270-26"><a href="lookatproject.html#cb270-26"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
+<span id="cb270-27"><a href="lookatproject.html#cb270-27"></a>  abcg::glBindVertexArray(<span class="dv">0</span>);</span>
+<span id="cb270-28"><a href="lookatproject.html#cb270-28"></a></span>
+<span id="cb270-29"><a href="lookatproject.html#cb270-29"></a>  <span class="co">// Save location of uniform variables</span></span>
+<span id="cb270-30"><a href="lookatproject.html#cb270-30"></a>  <span class="va">m_modelMatrixLoc</span> = abcg::glGetUniformLocation(program, <span class="st">&quot;modelMatrix&quot;</span>);</span>
+<span id="cb270-31"><a href="lookatproject.html#cb270-31"></a>  <span class="va">m_colorLoc</span> = abcg::glGetUniformLocation(program, <span class="st">&quot;color&quot;</span>);</span>
+<span id="cb270-32"><a href="lookatproject.html#cb270-32"></a>}</span></code></pre></div>
+<p>No início da função, definimos os vértices de um quadrilátero de tamanho unitário centralizado no plano <span class="math inline">\(xz\)</span>. Em seguida, criamos o VBO e fazemos a ligação do VBO com o atributo <code>inPosition</code> do shader <code>program</code>. Por fim, salvamos a localização das variáveis uniformes que serão utilizadas em <code>Ground::paintGL</code>.</p>
+<p>A propósito, eis o código de <code>Ground::paintGL</code>:</p>
+<div class="sourceCode" id="cb271" startFrom="34"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 33;"><span id="cb271-34"><a href="lookatproject.html#cb271-34"></a><span class="dt">void</span> Ground::paintGL() {</span>
+<span id="cb271-35"><a href="lookatproject.html#cb271-35"></a>  <span class="co">// Draw a grid of tiles centered on the xz plane</span></span>
+<span id="cb271-36"><a href="lookatproject.html#cb271-36"></a>  <span class="at">const</span> <span class="dt">int</span> N{<span class="dv">5</span>};</span>
+<span id="cb271-37"><a href="lookatproject.html#cb271-37"></a></span>
+<span id="cb271-38"><a href="lookatproject.html#cb271-38"></a>  abcg::glBindVertexArray(<span class="va">m_VAO</span>);</span>
+<span id="cb271-39"><a href="lookatproject.html#cb271-39"></a>  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> z : iter::range(-N, N + <span class="dv">1</span>)) {</span>
+<span id="cb271-40"><a href="lookatproject.html#cb271-40"></a>    <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> x : iter::range(-N, N + <span class="dv">1</span>)) {</span>
+<span id="cb271-41"><a href="lookatproject.html#cb271-41"></a>      <span class="co">// Set model matrix</span></span>
+<span id="cb271-42"><a href="lookatproject.html#cb271-42"></a>      glm::mat4 model{<span class="fl">1.0</span><span class="bu">f</span>};</span>
+<span id="cb271-43"><a href="lookatproject.html#cb271-43"></a>      model = glm::translate(model, glm::vec3(x, <span class="fl">0.0</span><span class="bu">f</span>, z));</span>
+<span id="cb271-44"><a href="lookatproject.html#cb271-44"></a>      abcg::glUniformMatrix4fv(<span class="va">m_modelMatrixLoc</span>, <span class="dv">1</span>, GL_FALSE, &amp;model[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb271-45"><a href="lookatproject.html#cb271-45"></a></span>
+<span id="cb271-46"><a href="lookatproject.html#cb271-46"></a>      <span class="co">// Set color (checkerboard pattern)</span></span>
+<span id="cb271-47"><a href="lookatproject.html#cb271-47"></a>      <span class="at">const</span> <span class="dt">float</span> gray{(z + x) % <span class="dv">2</span> == <span class="dv">0</span> ? <span class="fl">1.0</span><span class="bu">f</span> : <span class="fl">0.5</span><span class="bu">f</span>};</span>
+<span id="cb271-48"><a href="lookatproject.html#cb271-48"></a>      abcg::glUniform4f(<span class="va">m_colorLoc</span>, gray, gray, gray, <span class="fl">1.0</span><span class="bu">f</span>);</span>
+<span id="cb271-49"><a href="lookatproject.html#cb271-49"></a></span>
+<span id="cb271-50"><a href="lookatproject.html#cb271-50"></a>      abcg::glDrawArrays(GL_TRIANGLE_STRIP, <span class="dv">0</span>, <span class="dv">4</span>);</span>
+<span id="cb271-51"><a href="lookatproject.html#cb271-51"></a>    }</span>
+<span id="cb271-52"><a href="lookatproject.html#cb271-52"></a>  }</span>
+<span id="cb271-53"><a href="lookatproject.html#cb271-53"></a>  abcg::glBindVertexArray(<span class="dv">0</span>);</span>
+<span id="cb271-54"><a href="lookatproject.html#cb271-54"></a>}</span></code></pre></div>
+<p>Aqui, desenhamos uma grade de 11x11 quadriláteros (variando <span class="math inline">\(z\)</span> e <span class="math inline">\(x\)</span> de -5 a 5). Cada quadrilátero é transladado através de uma matriz de modelo e então desenhado com <code>glDrawArrays</code> usando a primitiva <code>GL_TRIANGLE_STRIP</code>. A cor utilizada (configurada pela variável uniforme do shader) é modificada de acordo com a paridade das coordenadas da grade de modo a formar o padrão de xadrez.</p>
+<p>Em <code>Ground::terminateGL</code>, apenas o VBO e o VAO são liberados:</p>
+<div class="sourceCode" id="cb272" startFrom="56"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 55;"><span id="cb272-56"><a href="lookatproject.html#cb272-56"></a><span class="dt">void</span> Ground::terminateGL() {</span>
+<span id="cb272-57"><a href="lookatproject.html#cb272-57"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_VBO</span>);</span>
+<span id="cb272-58"><a href="lookatproject.html#cb272-58"></a>  abcg::glDeleteVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_VAO</span>);</span>
+<span id="cb272-59"><a href="lookatproject.html#cb272-59"></a>}</span></code></pre></div>
+<p>Como o programa de shader é o mesmo dos coelhos, o responsável pela liberação dos shaders é <code>OpenGLWindow</code>, como vimos em <code>OpenGLWindow::terminateGLP</code>.</p>
+<p>Isso conclui o projeto <code>lookat</code>. Baixe o código completo a partir <a href="https://hbatagelo.github.io/abcgapps/src/lookat.zip">deste link</a>.</p>
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lookat.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
