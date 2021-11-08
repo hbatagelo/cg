@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="viewer1.html"/>
-<link rel="next" href="referências.html"/>
+<link rel="next" href="lighting.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -393,6 +393,42 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-8"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>9</b> Iluminação</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>9.1</b> Equação de renderização</a></li>
+<li class="chapter" data-level="9.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>9.2</b> Modelo de reflexão de Phong</a>
+<ul>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>9.3</b> Modelo de Blinn–Phong</a></li>
+<li class="chapter" data-level="9.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>9.4</b> Sombreamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>9.5</b> Normais como cores</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.hpp-9"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.cpp-9"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>9.6</b> Iluminação na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -650,121 +686,124 @@ div.csl-indent {
 <span id="cb303-63"><a href="starfield.html#cb303-63"></a>  abcg::glUseProgram(<span class="va">m_program</span>);</span>
 <span id="cb303-64"><a href="starfield.html#cb303-64"></a></span>
 <span id="cb303-65"><a href="starfield.html#cb303-65"></a>  <span class="co">// Get location of uniform variables (could be precomputed)</span></span>
-<span id="cb303-66"><a href="starfield.html#cb303-66"></a>  GLint viewMatrixLoc{abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;viewMatrix&quot;</span>)};</span>
-<span id="cb303-67"><a href="starfield.html#cb303-67"></a>  GLint projMatrixLoc{abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;projMatrix&quot;</span>)};</span>
-<span id="cb303-68"><a href="starfield.html#cb303-68"></a>  GLint modelMatrixLoc{abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;modelMatrix&quot;</span>)};</span>
-<span id="cb303-69"><a href="starfield.html#cb303-69"></a>  GLint colorLoc{abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;color&quot;</span>)};</span>
-<span id="cb303-70"><a href="starfield.html#cb303-70"></a></span>
-<span id="cb303-71"><a href="starfield.html#cb303-71"></a>  <span class="co">// Set uniform variables used by every scene object</span></span>
-<span id="cb303-72"><a href="starfield.html#cb303-72"></a>  abcg::glUniformMatrix4fv(viewMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_viewMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
-<span id="cb303-73"><a href="starfield.html#cb303-73"></a>  abcg::glUniformMatrix4fv(projMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_projMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
-<span id="cb303-74"><a href="starfield.html#cb303-74"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);  <span class="co">// White</span></span>
-<span id="cb303-75"><a href="starfield.html#cb303-75"></a></span>
-<span id="cb303-76"><a href="starfield.html#cb303-76"></a>  <span class="co">// Render each star</span></span>
-<span id="cb303-77"><a href="starfield.html#cb303-77"></a>  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> index : iter::range(<span class="va">m_numStars</span>)) {</span>
-<span id="cb303-78"><a href="starfield.html#cb303-78"></a>    <span class="at">const</span> <span class="kw">auto</span> &amp;position{<span class="va">m_starPositions</span>.at(index)};</span>
-<span id="cb303-79"><a href="starfield.html#cb303-79"></a>    <span class="at">const</span> <span class="kw">auto</span> &amp;rotation{<span class="va">m_starRotations</span>.at(index)};</span>
-<span id="cb303-80"><a href="starfield.html#cb303-80"></a></span>
-<span id="cb303-81"><a href="starfield.html#cb303-81"></a>    <span class="co">// Compute model matrix of the current star</span></span>
-<span id="cb303-82"><a href="starfield.html#cb303-82"></a>    glm::mat4 modelMatrix{<span class="fl">1.0</span><span class="bu">f</span>};</span>
-<span id="cb303-83"><a href="starfield.html#cb303-83"></a>    modelMatrix = glm::translate(modelMatrix, position);</span>
-<span id="cb303-84"><a href="starfield.html#cb303-84"></a>    modelMatrix = glm::scale(modelMatrix, glm::vec3(<span class="fl">0.2</span><span class="bu">f</span>));</span>
-<span id="cb303-85"><a href="starfield.html#cb303-85"></a>    modelMatrix = glm::rotate(modelMatrix, <span class="va">m_angle</span>, rotation);</span>
-<span id="cb303-86"><a href="starfield.html#cb303-86"></a></span>
-<span id="cb303-87"><a href="starfield.html#cb303-87"></a>    <span class="co">// Set uniform variable</span></span>
-<span id="cb303-88"><a href="starfield.html#cb303-88"></a>    abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;modelMatrix[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb303-66"><a href="starfield.html#cb303-66"></a>  <span class="at">const</span> GLint viewMatrixLoc{</span>
+<span id="cb303-67"><a href="starfield.html#cb303-67"></a>      abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;viewMatrix&quot;</span>)};</span>
+<span id="cb303-68"><a href="starfield.html#cb303-68"></a>  <span class="at">const</span> GLint projMatrixLoc{</span>
+<span id="cb303-69"><a href="starfield.html#cb303-69"></a>      abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;projMatrix&quot;</span>)};</span>
+<span id="cb303-70"><a href="starfield.html#cb303-70"></a>  <span class="at">const</span> GLint modelMatrixLoc{</span>
+<span id="cb303-71"><a href="starfield.html#cb303-71"></a>      abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;modelMatrix&quot;</span>)};</span>
+<span id="cb303-72"><a href="starfield.html#cb303-72"></a>  <span class="at">const</span> GLint colorLoc{abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;color&quot;</span>)};</span>
+<span id="cb303-73"><a href="starfield.html#cb303-73"></a></span>
+<span id="cb303-74"><a href="starfield.html#cb303-74"></a>  <span class="co">// Set uniform variables used by every scene object</span></span>
+<span id="cb303-75"><a href="starfield.html#cb303-75"></a>  abcg::glUniformMatrix4fv(viewMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_viewMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb303-76"><a href="starfield.html#cb303-76"></a>  abcg::glUniformMatrix4fv(projMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_projMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb303-77"><a href="starfield.html#cb303-77"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);  <span class="co">// White</span></span>
+<span id="cb303-78"><a href="starfield.html#cb303-78"></a></span>
+<span id="cb303-79"><a href="starfield.html#cb303-79"></a>  <span class="co">// Render each star</span></span>
+<span id="cb303-80"><a href="starfield.html#cb303-80"></a>  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> index : iter::range(<span class="va">m_numStars</span>)) {</span>
+<span id="cb303-81"><a href="starfield.html#cb303-81"></a>    <span class="at">const</span> <span class="kw">auto</span> &amp;position{<span class="va">m_starPositions</span>.at(index)};</span>
+<span id="cb303-82"><a href="starfield.html#cb303-82"></a>    <span class="at">const</span> <span class="kw">auto</span> &amp;rotation{<span class="va">m_starRotations</span>.at(index)};</span>
+<span id="cb303-83"><a href="starfield.html#cb303-83"></a></span>
+<span id="cb303-84"><a href="starfield.html#cb303-84"></a>    <span class="co">// Compute model matrix of the current star</span></span>
+<span id="cb303-85"><a href="starfield.html#cb303-85"></a>    glm::mat4 modelMatrix{<span class="fl">1.0</span><span class="bu">f</span>};</span>
+<span id="cb303-86"><a href="starfield.html#cb303-86"></a>    modelMatrix = glm::translate(modelMatrix, position);</span>
+<span id="cb303-87"><a href="starfield.html#cb303-87"></a>    modelMatrix = glm::scale(modelMatrix, glm::vec3(<span class="fl">0.2</span><span class="bu">f</span>));</span>
+<span id="cb303-88"><a href="starfield.html#cb303-88"></a>    modelMatrix = glm::rotate(modelMatrix, <span class="va">m_angle</span>, rotation);</span>
 <span id="cb303-89"><a href="starfield.html#cb303-89"></a></span>
-<span id="cb303-90"><a href="starfield.html#cb303-90"></a>    <span class="va">m_model</span>.render();</span>
-<span id="cb303-91"><a href="starfield.html#cb303-91"></a>  }</span>
+<span id="cb303-90"><a href="starfield.html#cb303-90"></a>    <span class="co">// Set uniform variable</span></span>
+<span id="cb303-91"><a href="starfield.html#cb303-91"></a>    abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;modelMatrix[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
 <span id="cb303-92"><a href="starfield.html#cb303-92"></a></span>
-<span id="cb303-93"><a href="starfield.html#cb303-93"></a>  glUseProgram(<span class="dv">0</span>);</span>
-<span id="cb303-94"><a href="starfield.html#cb303-94"></a>}</span></code></pre></div>
+<span id="cb303-93"><a href="starfield.html#cb303-93"></a>    <span class="va">m_model</span>.render();</span>
+<span id="cb303-94"><a href="starfield.html#cb303-94"></a>  }</span>
+<span id="cb303-95"><a href="starfield.html#cb303-95"></a></span>
+<span id="cb303-96"><a href="starfield.html#cb303-96"></a>  abcg::glUseProgram(<span class="dv">0</span>);</span>
+<span id="cb303-97"><a href="starfield.html#cb303-97"></a>}</span></code></pre></div>
 <p>Logo no início, a função <code>OpenGLWindow::update</code> é chamada (linha 56) para atualizar a posição e rotação das estrelas de modo a produzir o efeito de animação.</p>
-<p>Nas linhas 72 a 74 são definidos os valores das variáveis uniformes compartilhadas por todas as estrelas. Em particular, todas as estrelas usam a mesma matriz de visão e projeção. Além disso, todas usam a mesma cor (branca).</p>
-<p>No laço da linha 77, cada estrela é renderizada. A matriz de modelo é construída nas linhas 81 a 85 usando as informações da estrela em <code>m_starPositions</code> e <code>m_starRotations</code>.</p>
-<p>A matriz de modelo é copiada para o vertex shader na linha 88. Em seguida, na linha 90, a função <code>Model::render</code> é chamada para renderizar o objeto que representa a estrela, isto é, o cubo.</p>
+<p>Nas linhas 75 a 77 são definidos os valores das variáveis uniformes compartilhadas por todas as estrelas. Em particular, todas as estrelas usam a mesma matriz de visão e projeção. Além disso, todas usam a mesma cor (branca).</p>
+<p>No laço da linha 80, cada estrela é renderizada. A matriz de modelo é construída nas linhas 84 a 88 usando as informações da estrela em <code>m_starPositions</code> e <code>m_starRotations</code>.</p>
+<p>A matriz de modelo é copiada para o vertex shader na linha 91. Em seguida, na linha 93, a função <code>Model::render</code> é chamada para renderizar o objeto que representa a estrela, isto é, o cubo.</p>
 <p>É importante observar que, embora o mesmo cubo seja renderizado 500 vezes, cada iteração utiliza uma matriz de modelo diferente. Podemos fazer isso pois todas as estrelas usam a mesma malha de triângulos (8 vértices e 12 triângulos). O que muda é a posição e orientação. Atributos como posição, orientação e escala da malha podem ser modificados no vertex shader por matrizes de transformação, que é o que estamos fazendo.</p>
 <p>A definição de <code>OpenGLWindow::paintUI</code> ficará assim:</p>
-<div class="sourceCode" id="cb304" startFrom="96"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 95;"><span id="cb304-96"><a href="starfield.html#cb304-96"></a><span class="dt">void</span> OpenGLWindow::paintUI() {</span>
-<span id="cb304-97"><a href="starfield.html#cb304-97"></a>  abcg::OpenGLWindow::paintUI();</span>
-<span id="cb304-98"><a href="starfield.html#cb304-98"></a></span>
-<span id="cb304-99"><a href="starfield.html#cb304-99"></a>  {</span>
-<span id="cb304-100"><a href="starfield.html#cb304-100"></a>    <span class="at">const</span> <span class="kw">auto</span> widgetSize{ImVec2(<span class="dv">218</span>, <span class="dv">62</span>)};</span>
-<span id="cb304-101"><a href="starfield.html#cb304-101"></a>    ImGui::SetNextWindowPos(ImVec2(<span class="va">m_viewportWidth</span> - widgetSize.x - <span class="dv">5</span>, <span class="dv">5</span>));</span>
-<span id="cb304-102"><a href="starfield.html#cb304-102"></a>    ImGui::SetNextWindowSize(widgetSize);</span>
-<span id="cb304-103"><a href="starfield.html#cb304-103"></a>    ImGui::Begin(<span class="st">&quot;Widget window&quot;</span>, <span class="kw">nullptr</span>, ImGuiWindowFlags_NoDecoration);</span>
-<span id="cb304-104"><a href="starfield.html#cb304-104"></a></span>
-<span id="cb304-105"><a href="starfield.html#cb304-105"></a>    {</span>
-<span id="cb304-106"><a href="starfield.html#cb304-106"></a>      ImGui::PushItemWidth(<span class="dv">120</span>);</span>
-<span id="cb304-107"><a href="starfield.html#cb304-107"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t currentIndex{};</span>
-<span id="cb304-108"><a href="starfield.html#cb304-108"></a>      <span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; comboItems{<span class="st">&quot;Perspective&quot;</span>, <span class="st">&quot;Orthographic&quot;</span>};</span>
-<span id="cb304-109"><a href="starfield.html#cb304-109"></a></span>
-<span id="cb304-110"><a href="starfield.html#cb304-110"></a>      <span class="cf">if</span> (ImGui::BeginCombo(<span class="st">&quot;Projection&quot;</span>,</span>
-<span id="cb304-111"><a href="starfield.html#cb304-111"></a>                            comboItems.at(currentIndex).c_str())) {</span>
-<span id="cb304-112"><a href="starfield.html#cb304-112"></a>        <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> index : iter::range(comboItems.size())) {</span>
-<span id="cb304-113"><a href="starfield.html#cb304-113"></a>          <span class="at">const</span> <span class="dt">bool</span> isSelected{currentIndex == index};</span>
-<span id="cb304-114"><a href="starfield.html#cb304-114"></a>          <span class="cf">if</span> (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))</span>
-<span id="cb304-115"><a href="starfield.html#cb304-115"></a>            currentIndex = index;</span>
-<span id="cb304-116"><a href="starfield.html#cb304-116"></a>          <span class="cf">if</span> (isSelected) ImGui::SetItemDefaultFocus();</span>
-<span id="cb304-117"><a href="starfield.html#cb304-117"></a>        }</span>
-<span id="cb304-118"><a href="starfield.html#cb304-118"></a>        ImGui::EndCombo();</span>
-<span id="cb304-119"><a href="starfield.html#cb304-119"></a>      }</span>
-<span id="cb304-120"><a href="starfield.html#cb304-120"></a>      ImGui::PopItemWidth();</span>
-<span id="cb304-121"><a href="starfield.html#cb304-121"></a></span>
-<span id="cb304-122"><a href="starfield.html#cb304-122"></a>      ImGui::PushItemWidth(<span class="dv">170</span>);</span>
-<span id="cb304-123"><a href="starfield.html#cb304-123"></a>      <span class="at">const</span> <span class="kw">auto</span> aspect{<span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(<span class="va">m_viewportWidth</span>) /</span>
-<span id="cb304-124"><a href="starfield.html#cb304-124"></a>                        <span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(<span class="va">m_viewportHeight</span>)};</span>
-<span id="cb304-125"><a href="starfield.html#cb304-125"></a>      <span class="cf">if</span> (currentIndex == <span class="dv">0</span>) {</span>
-<span id="cb304-126"><a href="starfield.html#cb304-126"></a>        <span class="va">m_projMatrix</span> =</span>
-<span id="cb304-127"><a href="starfield.html#cb304-127"></a>            glm::perspective(glm::radians(<span class="va">m_FOV</span>), aspect, <span class="fl">0.01</span><span class="bu">f</span>, <span class="fl">100.0</span><span class="bu">f</span>);</span>
-<span id="cb304-128"><a href="starfield.html#cb304-128"></a></span>
-<span id="cb304-129"><a href="starfield.html#cb304-129"></a>        ImGui::SliderFloat(<span class="st">&quot;FOV&quot;</span>, &amp;<span class="va">m_FOV</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">179.0</span><span class="bu">f</span>, <span class="st">&quot;</span><span class="sc">%.0f</span><span class="st"> degrees&quot;</span>);</span>
-<span id="cb304-130"><a href="starfield.html#cb304-130"></a>      } <span class="cf">else</span> {</span>
-<span id="cb304-131"><a href="starfield.html#cb304-131"></a>        <span class="va">m_projMatrix</span> = glm::ortho(-<span class="fl">20.0</span><span class="bu">f</span> * aspect, <span class="fl">20.0</span><span class="bu">f</span> * aspect, -<span class="fl">20.0</span><span class="bu">f</span>,</span>
-<span id="cb304-132"><a href="starfield.html#cb304-132"></a>                                  <span class="fl">20.0</span><span class="bu">f</span>, <span class="fl">0.01</span><span class="bu">f</span>, <span class="fl">100.0</span><span class="bu">f</span>);</span>
-<span id="cb304-133"><a href="starfield.html#cb304-133"></a>      }</span>
-<span id="cb304-134"><a href="starfield.html#cb304-134"></a>      ImGui::PopItemWidth();</span>
-<span id="cb304-135"><a href="starfield.html#cb304-135"></a>    }</span>
-<span id="cb304-136"><a href="starfield.html#cb304-136"></a></span>
-<span id="cb304-137"><a href="starfield.html#cb304-137"></a>    ImGui::End();</span>
-<span id="cb304-138"><a href="starfield.html#cb304-138"></a>  }</span>
-<span id="cb304-139"><a href="starfield.html#cb304-139"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb304" startFrom="99"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 98;"><span id="cb304-99"><a href="starfield.html#cb304-99"></a><span class="dt">void</span> OpenGLWindow::paintUI() {</span>
+<span id="cb304-100"><a href="starfield.html#cb304-100"></a>  abcg::OpenGLWindow::paintUI();</span>
+<span id="cb304-101"><a href="starfield.html#cb304-101"></a></span>
+<span id="cb304-102"><a href="starfield.html#cb304-102"></a>  {</span>
+<span id="cb304-103"><a href="starfield.html#cb304-103"></a>    <span class="at">const</span> <span class="kw">auto</span> widgetSize{ImVec2(<span class="dv">218</span>, <span class="dv">62</span>)};</span>
+<span id="cb304-104"><a href="starfield.html#cb304-104"></a>    ImGui::SetNextWindowPos(ImVec2(<span class="va">m_viewportWidth</span> - widgetSize.x - <span class="dv">5</span>, <span class="dv">5</span>));</span>
+<span id="cb304-105"><a href="starfield.html#cb304-105"></a>    ImGui::SetNextWindowSize(widgetSize);</span>
+<span id="cb304-106"><a href="starfield.html#cb304-106"></a>    ImGui::Begin(<span class="st">&quot;Widget window&quot;</span>, <span class="kw">nullptr</span>, ImGuiWindowFlags_NoDecoration);</span>
+<span id="cb304-107"><a href="starfield.html#cb304-107"></a></span>
+<span id="cb304-108"><a href="starfield.html#cb304-108"></a>    {</span>
+<span id="cb304-109"><a href="starfield.html#cb304-109"></a>      ImGui::PushItemWidth(<span class="dv">120</span>);</span>
+<span id="cb304-110"><a href="starfield.html#cb304-110"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t currentIndex{};</span>
+<span id="cb304-111"><a href="starfield.html#cb304-111"></a>      <span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; comboItems{<span class="st">&quot;Perspective&quot;</span>, <span class="st">&quot;Orthographic&quot;</span>};</span>
+<span id="cb304-112"><a href="starfield.html#cb304-112"></a></span>
+<span id="cb304-113"><a href="starfield.html#cb304-113"></a>      <span class="cf">if</span> (ImGui::BeginCombo(<span class="st">&quot;Projection&quot;</span>,</span>
+<span id="cb304-114"><a href="starfield.html#cb304-114"></a>                            comboItems.at(currentIndex).c_str())) {</span>
+<span id="cb304-115"><a href="starfield.html#cb304-115"></a>        <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> index : iter::range(comboItems.size())) {</span>
+<span id="cb304-116"><a href="starfield.html#cb304-116"></a>          <span class="at">const</span> <span class="dt">bool</span> isSelected{currentIndex == index};</span>
+<span id="cb304-117"><a href="starfield.html#cb304-117"></a>          <span class="cf">if</span> (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))</span>
+<span id="cb304-118"><a href="starfield.html#cb304-118"></a>            currentIndex = index;</span>
+<span id="cb304-119"><a href="starfield.html#cb304-119"></a>          <span class="cf">if</span> (isSelected) ImGui::SetItemDefaultFocus();</span>
+<span id="cb304-120"><a href="starfield.html#cb304-120"></a>        }</span>
+<span id="cb304-121"><a href="starfield.html#cb304-121"></a>        ImGui::EndCombo();</span>
+<span id="cb304-122"><a href="starfield.html#cb304-122"></a>      }</span>
+<span id="cb304-123"><a href="starfield.html#cb304-123"></a>      ImGui::PopItemWidth();</span>
+<span id="cb304-124"><a href="starfield.html#cb304-124"></a></span>
+<span id="cb304-125"><a href="starfield.html#cb304-125"></a>      ImGui::PushItemWidth(<span class="dv">170</span>);</span>
+<span id="cb304-126"><a href="starfield.html#cb304-126"></a>      <span class="at">const</span> <span class="kw">auto</span> aspect{<span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(<span class="va">m_viewportWidth</span>) /</span>
+<span id="cb304-127"><a href="starfield.html#cb304-127"></a>                        <span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(<span class="va">m_viewportHeight</span>)};</span>
+<span id="cb304-128"><a href="starfield.html#cb304-128"></a>      <span class="cf">if</span> (currentIndex == <span class="dv">0</span>) {</span>
+<span id="cb304-129"><a href="starfield.html#cb304-129"></a>        <span class="va">m_projMatrix</span> =</span>
+<span id="cb304-130"><a href="starfield.html#cb304-130"></a>            glm::perspective(glm::radians(<span class="va">m_FOV</span>), aspect, <span class="fl">0.01</span><span class="bu">f</span>, <span class="fl">100.0</span><span class="bu">f</span>);</span>
+<span id="cb304-131"><a href="starfield.html#cb304-131"></a></span>
+<span id="cb304-132"><a href="starfield.html#cb304-132"></a>        ImGui::SliderFloat(<span class="st">&quot;FOV&quot;</span>, &amp;<span class="va">m_FOV</span>, <span class="fl">5.0</span><span class="bu">f</span>, <span class="fl">179.0</span><span class="bu">f</span>, <span class="st">&quot;</span><span class="sc">%.0f</span><span class="st"> degrees&quot;</span>);</span>
+<span id="cb304-133"><a href="starfield.html#cb304-133"></a>      } <span class="cf">else</span> {</span>
+<span id="cb304-134"><a href="starfield.html#cb304-134"></a>        <span class="va">m_projMatrix</span> = glm::ortho(-<span class="fl">20.0</span><span class="bu">f</span> * aspect, <span class="fl">20.0</span><span class="bu">f</span> * aspect, -<span class="fl">20.0</span><span class="bu">f</span>,</span>
+<span id="cb304-135"><a href="starfield.html#cb304-135"></a>                                  <span class="fl">20.0</span><span class="bu">f</span>, <span class="fl">0.01</span><span class="bu">f</span>, <span class="fl">100.0</span><span class="bu">f</span>);</span>
+<span id="cb304-136"><a href="starfield.html#cb304-136"></a>      }</span>
+<span id="cb304-137"><a href="starfield.html#cb304-137"></a>      ImGui::PopItemWidth();</span>
+<span id="cb304-138"><a href="starfield.html#cb304-138"></a>    }</span>
+<span id="cb304-139"><a href="starfield.html#cb304-139"></a></span>
+<span id="cb304-140"><a href="starfield.html#cb304-140"></a>    ImGui::End();</span>
+<span id="cb304-141"><a href="starfield.html#cb304-141"></a>  }</span>
+<span id="cb304-142"><a href="starfield.html#cb304-142"></a>}</span></code></pre></div>
 <p>Esse é o código que define os widgets da ImGui. Assim como fizemos no projeto anterior, a matriz de projeção (<code>m_projMatrix</code>) é definida como projeção perspectiva ou ortográfica de acordo com a seleção do usuário.</p>
 <p>O restante de <code>openglwindow.cpp</code> ficará assim:</p>
-<div class="sourceCode" id="cb305" startFrom="141"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 140;"><span id="cb305-141"><a href="starfield.html#cb305-141"></a><span class="dt">void</span> OpenGLWindow::resizeGL(<span class="dt">int</span> width, <span class="dt">int</span> height) {</span>
-<span id="cb305-142"><a href="starfield.html#cb305-142"></a>  <span class="va">m_viewportWidth</span> = width;</span>
-<span id="cb305-143"><a href="starfield.html#cb305-143"></a>  <span class="va">m_viewportHeight</span> = height;</span>
-<span id="cb305-144"><a href="starfield.html#cb305-144"></a>}</span>
-<span id="cb305-145"><a href="starfield.html#cb305-145"></a></span>
-<span id="cb305-146"><a href="starfield.html#cb305-146"></a><span class="dt">void</span> OpenGLWindow::terminateGL() {</span>
-<span id="cb305-147"><a href="starfield.html#cb305-147"></a>  <span class="va">m_model</span>.terminateGL();</span>
-<span id="cb305-148"><a href="starfield.html#cb305-148"></a>  abcg::glDeleteProgram(<span class="va">m_program</span>);</span>
-<span id="cb305-149"><a href="starfield.html#cb305-149"></a>}</span>
-<span id="cb305-150"><a href="starfield.html#cb305-150"></a></span>
-<span id="cb305-151"><a href="starfield.html#cb305-151"></a><span class="dt">void</span> OpenGLWindow::update() {</span>
-<span id="cb305-152"><a href="starfield.html#cb305-152"></a>  <span class="co">// Animate angle by 90 degrees per second</span></span>
-<span id="cb305-153"><a href="starfield.html#cb305-153"></a>  <span class="at">const</span> <span class="dt">float</span> deltaTime{<span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(getDeltaTime())};</span>
-<span id="cb305-154"><a href="starfield.html#cb305-154"></a>  <span class="va">m_angle</span> = glm::wrapAngle(<span class="va">m_angle</span> + glm::radians(<span class="fl">90.0</span><span class="bu">f</span>) * deltaTime);</span>
-<span id="cb305-155"><a href="starfield.html#cb305-155"></a></span>
-<span id="cb305-156"><a href="starfield.html#cb305-156"></a>  <span class="co">// Update stars</span></span>
-<span id="cb305-157"><a href="starfield.html#cb305-157"></a>  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> index : iter::range(<span class="va">m_numStars</span>)) {</span>
-<span id="cb305-158"><a href="starfield.html#cb305-158"></a>    <span class="kw">auto</span> &amp;position{<span class="va">m_starPositions</span>.at(index)};</span>
-<span id="cb305-159"><a href="starfield.html#cb305-159"></a>    <span class="kw">auto</span> &amp;rotation{<span class="va">m_starRotations</span>.at(index)};</span>
-<span id="cb305-160"><a href="starfield.html#cb305-160"></a></span>
-<span id="cb305-161"><a href="starfield.html#cb305-161"></a>    <span class="co">// Z coordinate increases by 10 units per second</span></span>
-<span id="cb305-162"><a href="starfield.html#cb305-162"></a>    position.z += deltaTime * <span class="fl">10.0</span><span class="bu">f</span>;</span>
+<div class="sourceCode" id="cb305" startFrom="144"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 143;"><span id="cb305-144"><a href="starfield.html#cb305-144"></a><span class="dt">void</span> OpenGLWindow::resizeGL(<span class="dt">int</span> width, <span class="dt">int</span> height) {</span>
+<span id="cb305-145"><a href="starfield.html#cb305-145"></a>  <span class="va">m_viewportWidth</span> = width;</span>
+<span id="cb305-146"><a href="starfield.html#cb305-146"></a>  <span class="va">m_viewportHeight</span> = height;</span>
+<span id="cb305-147"><a href="starfield.html#cb305-147"></a>}</span>
+<span id="cb305-148"><a href="starfield.html#cb305-148"></a></span>
+<span id="cb305-149"><a href="starfield.html#cb305-149"></a><span class="dt">void</span> OpenGLWindow::terminateGL() {</span>
+<span id="cb305-150"><a href="starfield.html#cb305-150"></a>  <span class="va">m_model</span>.terminateGL();</span>
+<span id="cb305-151"><a href="starfield.html#cb305-151"></a>  abcg::glDeleteProgram(<span class="va">m_program</span>);</span>
+<span id="cb305-152"><a href="starfield.html#cb305-152"></a>}</span>
+<span id="cb305-153"><a href="starfield.html#cb305-153"></a></span>
+<span id="cb305-154"><a href="starfield.html#cb305-154"></a><span class="dt">void</span> OpenGLWindow::update() {</span>
+<span id="cb305-155"><a href="starfield.html#cb305-155"></a>  <span class="co">// Animate angle by 90 degrees per second</span></span>
+<span id="cb305-156"><a href="starfield.html#cb305-156"></a>  <span class="at">const</span> <span class="dt">float</span> deltaTime{<span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(getDeltaTime())};</span>
+<span id="cb305-157"><a href="starfield.html#cb305-157"></a>  <span class="va">m_angle</span> = glm::wrapAngle(<span class="va">m_angle</span> + glm::radians(<span class="fl">90.0</span><span class="bu">f</span>) * deltaTime);</span>
+<span id="cb305-158"><a href="starfield.html#cb305-158"></a></span>
+<span id="cb305-159"><a href="starfield.html#cb305-159"></a>  <span class="co">// Update stars</span></span>
+<span id="cb305-160"><a href="starfield.html#cb305-160"></a>  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> index : iter::range(<span class="va">m_numStars</span>)) {</span>
+<span id="cb305-161"><a href="starfield.html#cb305-161"></a>    <span class="kw">auto</span> &amp;position{<span class="va">m_starPositions</span>.at(index)};</span>
+<span id="cb305-162"><a href="starfield.html#cb305-162"></a>    <span class="kw">auto</span> &amp;rotation{<span class="va">m_starRotations</span>.at(index)};</span>
 <span id="cb305-163"><a href="starfield.html#cb305-163"></a></span>
-<span id="cb305-164"><a href="starfield.html#cb305-164"></a>    <span class="co">// If this star is behind the camera, select a new random position and</span></span>
-<span id="cb305-165"><a href="starfield.html#cb305-165"></a>    <span class="co">// orientation, and move it back to -100</span></span>
-<span id="cb305-166"><a href="starfield.html#cb305-166"></a>    <span class="cf">if</span> (position.z &gt; <span class="fl">0.1</span><span class="bu">f</span>) {</span>
-<span id="cb305-167"><a href="starfield.html#cb305-167"></a>      randomizeStar(position, rotation);</span>
-<span id="cb305-168"><a href="starfield.html#cb305-168"></a>      position.z = -<span class="fl">100.0</span><span class="bu">f</span>;  <span class="co">// Back to -100</span></span>
-<span id="cb305-169"><a href="starfield.html#cb305-169"></a>    }</span>
-<span id="cb305-170"><a href="starfield.html#cb305-170"></a>  }</span>
-<span id="cb305-171"><a href="starfield.html#cb305-171"></a>}</span></code></pre></div>
-<p>Em <code>OpenGLWindow::update</code>, incrementamos <code>m_angle</code> a uma taxa de <span class="math inline">\(90^\circ\)</span> por segundo (linha 154).</p>
-<p>Além disso, iteramos sobre todas as estrelas no laço da linha 157. A coordenada <span class="math inline">\(z\)</span> da posição de cada estrela é incrementada a uma taxa de 10 unidades por segundo (linha 162). Assim, uma estrela que começa em <span class="math inline">\(z=-100\)</span> (distância máxima em relação à câmera) chega até <span class="math inline">\(z=0\)</span> (onde está a câmera) em 10 segundos.</p>
-<p>A condicional da linha 166 verifica se a estrela já passou para trás da câmera. Verificamos se a coordenada <span class="math inline">\(z\)</span> da posição é maior que <span class="math inline">\(0.1\)</span> pois a estrela é um cubo unitário que foi reduzido em tamanho por um fator de escala <span class="math inline">\(0.2\)</span>. Logo, quando o cubo está em <span class="math inline">\(z=0\)</span> (isto é, na posição <span class="math inline">\(z\)</span> da câmera), ainda está com metade da malha triangular (metade do cubo) no espaço <span class="math inline">\(z&lt;0\)</span>. Isso significa que o cubo ainda pode ser visto pela câmera, pois a câmera está olhando na direção de <span class="math inline">\(z\)</span> negativo e a distância do plano de recorte próximo foi definida como <span class="math inline">\(0.01\)</span> (veja a chamada a <code>glm::perspective</code> na linha 127). Se <span class="math inline">\(z&gt;0.1\)</span>, então com certeza o cubo está totalmente atrás da câmera. Quando isso acontece, <code>OpenGLWindow::randomizeStar</code> é chamada novamente para sortear uma nova posição e eixo de rotação para a estrela. Além disso, a estrela é deslocada para <span class="math inline">\(z=-100\)</span> para começar um novo percurso em direção ao plano <span class="math inline">\(z=0\)</span> da câmera.</p>
+<span id="cb305-164"><a href="starfield.html#cb305-164"></a>    <span class="co">// Z coordinate increases by 10 units per second</span></span>
+<span id="cb305-165"><a href="starfield.html#cb305-165"></a>    position.z += deltaTime * <span class="fl">10.0</span><span class="bu">f</span>;</span>
+<span id="cb305-166"><a href="starfield.html#cb305-166"></a></span>
+<span id="cb305-167"><a href="starfield.html#cb305-167"></a>    <span class="co">// If this star is behind the camera, select a new random position and</span></span>
+<span id="cb305-168"><a href="starfield.html#cb305-168"></a>    <span class="co">// orientation, and move it back to -100</span></span>
+<span id="cb305-169"><a href="starfield.html#cb305-169"></a>    <span class="cf">if</span> (position.z &gt; <span class="fl">0.1</span><span class="bu">f</span>) {</span>
+<span id="cb305-170"><a href="starfield.html#cb305-170"></a>      randomizeStar(position, rotation);</span>
+<span id="cb305-171"><a href="starfield.html#cb305-171"></a>      position.z = -<span class="fl">100.0</span><span class="bu">f</span>;  <span class="co">// Back to -100</span></span>
+<span id="cb305-172"><a href="starfield.html#cb305-172"></a>    }</span>
+<span id="cb305-173"><a href="starfield.html#cb305-173"></a>  }</span>
+<span id="cb305-174"><a href="starfield.html#cb305-174"></a>}</span></code></pre></div>
+<p>Em <code>OpenGLWindow::update</code>, incrementamos <code>m_angle</code> a uma taxa de <span class="math inline">\(90^\circ\)</span> por segundo (linha 157).</p>
+<p>Além disso, iteramos sobre todas as estrelas no laço da linha 160. A coordenada <span class="math inline">\(z\)</span> da posição de cada estrela é incrementada a uma taxa de 10 unidades por segundo (linha 165). Assim, uma estrela que começa em <span class="math inline">\(z=-100\)</span> (distância máxima em relação à câmera) chega até <span class="math inline">\(z=0\)</span> (onde está a câmera) em 10 segundos.</p>
+<p>A condicional da linha 169 verifica se a estrela já passou para trás da câmera. Verificamos se a coordenada <span class="math inline">\(z\)</span> da posição é maior que <span class="math inline">\(0.1\)</span> pois a estrela é um cubo unitário que foi reduzido em tamanho por um fator de escala <span class="math inline">\(0.2\)</span>. Logo, quando o cubo está em <span class="math inline">\(z=0\)</span> (isto é, na posição <span class="math inline">\(z\)</span> da câmera), ainda está com metade da malha triangular (metade do cubo) no espaço <span class="math inline">\(z&lt;0\)</span>. Isso significa que o cubo ainda pode ser visto pela câmera, pois a câmera está olhando na direção de <span class="math inline">\(z\)</span> negativo e a distância do plano de recorte próximo foi definida como <span class="math inline">\(0.01\)</span> (veja a chamada a <code>glm::perspective</code> na linha 130). Se <span class="math inline">\(z&gt;0.1\)</span>, então com certeza o cubo está totalmente atrás da câmera. Quando isso acontece, <code>OpenGLWindow::randomizeStar</code> é chamada novamente para sortear uma nova posição e eixo de rotação para a estrela. Além disso, a estrela é deslocada para <span class="math inline">\(z=-100\)</span> para começar um novo percurso em direção ao plano <span class="math inline">\(z=0\)</span> da câmera.</p>
 <p>Isso conclui o projeto <code>starfield</code>!</p>
 <p>Baixe o código completo usando <a href="https://hbatagelo.github.io/abcgapps/src/starfield.zip">este link</a>.</p>
 
@@ -777,7 +816,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="viewer1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lighting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

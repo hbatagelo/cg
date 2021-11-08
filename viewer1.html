@@ -393,6 +393,42 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-8"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>9</b> Iluminação</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>9.1</b> Equação de renderização</a></li>
+<li class="chapter" data-level="9.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>9.2</b> Modelo de reflexão de Phong</a>
+<ul>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>9.3</b> Modelo de Blinn–Phong</a></li>
+<li class="chapter" data-level="9.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>9.4</b> Sombreamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>9.5</b> Normais como cores</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.hpp-9"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.cpp-9"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>9.6</b> Iluminação na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -667,7 +703,7 @@ div.csl-indent {
 <span id="cb284-72"><a href="viewer1.html#cb284-72"></a>      <span class="at">const</span> tinyobj::<span class="dt">index_t</span> index{shape.mesh.indices.at(offset)};</span>
 <span id="cb284-73"><a href="viewer1.html#cb284-73"></a></span>
 <span id="cb284-74"><a href="viewer1.html#cb284-74"></a>      <span class="co">// Vertex position</span></span>
-<span id="cb284-75"><a href="viewer1.html#cb284-75"></a>      <span class="at">const</span> <span class="bu">std::</span>size_t startIndex{<span class="kw">static_cast</span>&lt;<span class="dt">size_t</span>&gt;(<span class="dv">3</span> * index.vertex_index)};</span>
+<span id="cb284-75"><a href="viewer1.html#cb284-75"></a>      <span class="at">const</span> <span class="dt">int</span> startIndex{<span class="dv">3</span> * index.vertex_index};</span>
 <span id="cb284-76"><a href="viewer1.html#cb284-76"></a>      <span class="at">const</span> <span class="dt">float</span> vx{attrib.vertices.at(startIndex + <span class="dv">0</span>)};</span>
 <span id="cb284-77"><a href="viewer1.html#cb284-77"></a>      <span class="at">const</span> <span class="dt">float</span> vy{attrib.vertices.at(startIndex + <span class="dv">1</span>)};</span>
 <span id="cb284-78"><a href="viewer1.html#cb284-78"></a>      <span class="at">const</span> <span class="dt">float</span> vz{attrib.vertices.at(startIndex + <span class="dv">2</span>)};</span>
@@ -1029,144 +1065,146 @@ div.csl-indent {
 <span id="cb291-54"><a href="viewer1.html#cb291-54"></a>  abcg::glUseProgram(<span class="va">m_program</span>);</span>
 <span id="cb291-55"><a href="viewer1.html#cb291-55"></a></span>
 <span id="cb291-56"><a href="viewer1.html#cb291-56"></a>  <span class="co">// Get location of uniform variables (could be precomputed)</span></span>
-<span id="cb291-57"><a href="viewer1.html#cb291-57"></a>  <span class="at">const</span> GLint viewMatrixLoc{glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;viewMatrix&quot;</span>)};</span>
-<span id="cb291-58"><a href="viewer1.html#cb291-58"></a>  <span class="at">const</span> GLint projMatrixLoc{glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;projMatrix&quot;</span>)};</span>
-<span id="cb291-59"><a href="viewer1.html#cb291-59"></a>  <span class="at">const</span> GLint modelMatrixLoc{glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;modelMatrix&quot;</span>)};</span>
-<span id="cb291-60"><a href="viewer1.html#cb291-60"></a>  <span class="at">const</span> GLint colorLoc{glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;color&quot;</span>)};</span>
-<span id="cb291-61"><a href="viewer1.html#cb291-61"></a></span>
-<span id="cb291-62"><a href="viewer1.html#cb291-62"></a>  <span class="co">// Set uniform variables used by every scene object</span></span>
-<span id="cb291-63"><a href="viewer1.html#cb291-63"></a>  abcg::glUniformMatrix4fv(viewMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_viewMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
-<span id="cb291-64"><a href="viewer1.html#cb291-64"></a>  abcg::glUniformMatrix4fv(projMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_projMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
-<span id="cb291-65"><a href="viewer1.html#cb291-65"></a></span>
-<span id="cb291-66"><a href="viewer1.html#cb291-66"></a>  <span class="co">// Set uniform variables of the current object</span></span>
-<span id="cb291-67"><a href="viewer1.html#cb291-67"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_modelMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
-<span id="cb291-68"><a href="viewer1.html#cb291-68"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);  <span class="co">// White</span></span>
-<span id="cb291-69"><a href="viewer1.html#cb291-69"></a></span>
-<span id="cb291-70"><a href="viewer1.html#cb291-70"></a>  <span class="va">m_model</span>.render(<span class="va">m_trianglesToDraw</span>);</span>
-<span id="cb291-71"><a href="viewer1.html#cb291-71"></a></span>
-<span id="cb291-72"><a href="viewer1.html#cb291-72"></a>  abcg::glUseProgram(<span class="dv">0</span>);</span>
-<span id="cb291-73"><a href="viewer1.html#cb291-73"></a>}</span></code></pre></div>
+<span id="cb291-57"><a href="viewer1.html#cb291-57"></a>  <span class="at">const</span> GLint viewMatrixLoc{</span>
+<span id="cb291-58"><a href="viewer1.html#cb291-58"></a>      abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;viewMatrix&quot;</span>)};</span>
+<span id="cb291-59"><a href="viewer1.html#cb291-59"></a>  <span class="at">const</span> GLint projMatrixLoc{</span>
+<span id="cb291-60"><a href="viewer1.html#cb291-60"></a>      abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;projMatrix&quot;</span>)};</span>
+<span id="cb291-61"><a href="viewer1.html#cb291-61"></a>  <span class="at">const</span> GLint modelMatrixLoc{</span>
+<span id="cb291-62"><a href="viewer1.html#cb291-62"></a>      abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;modelMatrix&quot;</span>)};</span>
+<span id="cb291-63"><a href="viewer1.html#cb291-63"></a>  <span class="at">const</span> GLint colorLoc{abcg::glGetUniformLocation(<span class="va">m_program</span>, <span class="st">&quot;color&quot;</span>)};</span>
+<span id="cb291-64"><a href="viewer1.html#cb291-64"></a></span>
+<span id="cb291-65"><a href="viewer1.html#cb291-65"></a>  <span class="co">// Set uniform variables used by every scene object</span></span>
+<span id="cb291-66"><a href="viewer1.html#cb291-66"></a>  abcg::glUniformMatrix4fv(viewMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_viewMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb291-67"><a href="viewer1.html#cb291-67"></a>  abcg::glUniformMatrix4fv(projMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_projMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb291-68"><a href="viewer1.html#cb291-68"></a></span>
+<span id="cb291-69"><a href="viewer1.html#cb291-69"></a>  <span class="co">// Set uniform variables of the current object</span></span>
+<span id="cb291-70"><a href="viewer1.html#cb291-70"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_modelMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb291-71"><a href="viewer1.html#cb291-71"></a>  abcg::glUniform4f(colorLoc, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);  <span class="co">// White</span></span>
+<span id="cb291-72"><a href="viewer1.html#cb291-72"></a></span>
+<span id="cb291-73"><a href="viewer1.html#cb291-73"></a>  <span class="va">m_model</span>.render(<span class="va">m_trianglesToDraw</span>);</span>
+<span id="cb291-74"><a href="viewer1.html#cb291-74"></a></span>
+<span id="cb291-75"><a href="viewer1.html#cb291-75"></a>  abcg::glUseProgram(<span class="dv">0</span>);</span>
+<span id="cb291-76"><a href="viewer1.html#cb291-76"></a>}</span></code></pre></div>
 <p>O código é semelhante ao utilizado no projeto anterior, mas agora está mais simples pois a chamada a <code>glDrawElements</code> é feita em <code>Model::render</code>.</p>
 <p>Em <code>OpenGLWindow::paintUI</code> definimos os controles de interface da ImGui:</p>
-<div class="sourceCode" id="cb292" startFrom="75"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 74;"><span id="cb292-75"><a href="viewer1.html#cb292-75"></a><span class="dt">void</span> OpenGLWindow::paintUI() {</span>
-<span id="cb292-76"><a href="viewer1.html#cb292-76"></a>  abcg::OpenGLWindow::paintUI();</span>
-<span id="cb292-77"><a href="viewer1.html#cb292-77"></a></span>
-<span id="cb292-78"><a href="viewer1.html#cb292-78"></a>  <span class="co">// Create window for slider</span></span>
-<span id="cb292-79"><a href="viewer1.html#cb292-79"></a>  {</span>
-<span id="cb292-80"><a href="viewer1.html#cb292-80"></a>    ImGui::SetNextWindowPos(ImVec2(<span class="dv">5</span>, <span class="va">m_viewportHeight</span> - <span class="dv">94</span>));</span>
-<span id="cb292-81"><a href="viewer1.html#cb292-81"></a>    ImGui::SetNextWindowSize(ImVec2(<span class="va">m_viewportWidth</span> - <span class="dv">10</span>, -<span class="dv">1</span>));</span>
-<span id="cb292-82"><a href="viewer1.html#cb292-82"></a>    ImGui::Begin(<span class="st">&quot;Slider window&quot;</span>, <span class="kw">nullptr</span>, ImGuiWindowFlags_NoDecoration);</span>
-<span id="cb292-83"><a href="viewer1.html#cb292-83"></a></span>
-<span id="cb292-84"><a href="viewer1.html#cb292-84"></a>    <span class="co">// Create a slider to control the number of rendered triangles</span></span>
-<span id="cb292-85"><a href="viewer1.html#cb292-85"></a>    {</span>
-<span id="cb292-86"><a href="viewer1.html#cb292-86"></a>      <span class="co">// Slider will fill the space of the window</span></span>
-<span id="cb292-87"><a href="viewer1.html#cb292-87"></a>      ImGui::PushItemWidth(<span class="va">m_viewportWidth</span> - <span class="dv">25</span>);</span>
-<span id="cb292-88"><a href="viewer1.html#cb292-88"></a></span>
-<span id="cb292-89"><a href="viewer1.html#cb292-89"></a>      ImGui::SliderInt(<span class="st">&quot;&quot;</span>, &amp;<span class="va">m_trianglesToDraw</span>, <span class="dv">0</span>, <span class="va">m_model</span>.getNumTriangles(),</span>
-<span id="cb292-90"><a href="viewer1.html#cb292-90"></a>                       <span class="st">&quot;</span><span class="sc">%d</span><span class="st"> triangles&quot;</span>);</span>
+<div class="sourceCode" id="cb292" startFrom="78"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 77;"><span id="cb292-78"><a href="viewer1.html#cb292-78"></a><span class="dt">void</span> OpenGLWindow::paintUI() {</span>
+<span id="cb292-79"><a href="viewer1.html#cb292-79"></a>  abcg::OpenGLWindow::paintUI();</span>
+<span id="cb292-80"><a href="viewer1.html#cb292-80"></a></span>
+<span id="cb292-81"><a href="viewer1.html#cb292-81"></a>  <span class="co">// Create window for slider</span></span>
+<span id="cb292-82"><a href="viewer1.html#cb292-82"></a>  {</span>
+<span id="cb292-83"><a href="viewer1.html#cb292-83"></a>    ImGui::SetNextWindowPos(ImVec2(<span class="dv">5</span>, <span class="va">m_viewportHeight</span> - <span class="dv">94</span>));</span>
+<span id="cb292-84"><a href="viewer1.html#cb292-84"></a>    ImGui::SetNextWindowSize(ImVec2(<span class="va">m_viewportWidth</span> - <span class="dv">10</span>, -<span class="dv">1</span>));</span>
+<span id="cb292-85"><a href="viewer1.html#cb292-85"></a>    ImGui::Begin(<span class="st">&quot;Slider window&quot;</span>, <span class="kw">nullptr</span>, ImGuiWindowFlags_NoDecoration);</span>
+<span id="cb292-86"><a href="viewer1.html#cb292-86"></a></span>
+<span id="cb292-87"><a href="viewer1.html#cb292-87"></a>    <span class="co">// Create a slider to control the number of rendered triangles</span></span>
+<span id="cb292-88"><a href="viewer1.html#cb292-88"></a>    {</span>
+<span id="cb292-89"><a href="viewer1.html#cb292-89"></a>      <span class="co">// Slider will fill the space of the window</span></span>
+<span id="cb292-90"><a href="viewer1.html#cb292-90"></a>      ImGui::PushItemWidth(<span class="va">m_viewportWidth</span> - <span class="dv">25</span>);</span>
 <span id="cb292-91"><a href="viewer1.html#cb292-91"></a></span>
-<span id="cb292-92"><a href="viewer1.html#cb292-92"></a>      ImGui::PopItemWidth();</span>
-<span id="cb292-93"><a href="viewer1.html#cb292-93"></a>    }</span>
+<span id="cb292-92"><a href="viewer1.html#cb292-92"></a>      ImGui::SliderInt(<span class="st">&quot;&quot;</span>, &amp;<span class="va">m_trianglesToDraw</span>, <span class="dv">0</span>, <span class="va">m_model</span>.getNumTriangles(),</span>
+<span id="cb292-93"><a href="viewer1.html#cb292-93"></a>                       <span class="st">&quot;</span><span class="sc">%d</span><span class="st"> triangles&quot;</span>);</span>
 <span id="cb292-94"><a href="viewer1.html#cb292-94"></a></span>
-<span id="cb292-95"><a href="viewer1.html#cb292-95"></a>    ImGui::End();</span>
-<span id="cb292-96"><a href="viewer1.html#cb292-96"></a>  }</span>
+<span id="cb292-95"><a href="viewer1.html#cb292-95"></a>      ImGui::PopItemWidth();</span>
+<span id="cb292-96"><a href="viewer1.html#cb292-96"></a>    }</span>
 <span id="cb292-97"><a href="viewer1.html#cb292-97"></a></span>
-<span id="cb292-98"><a href="viewer1.html#cb292-98"></a>  <span class="co">// Create a window for the other widgets</span></span>
-<span id="cb292-99"><a href="viewer1.html#cb292-99"></a>  {</span>
-<span id="cb292-100"><a href="viewer1.html#cb292-100"></a>    <span class="at">const</span> <span class="kw">auto</span> widgetSize{ImVec2(<span class="dv">222</span>, <span class="dv">90</span>)};</span>
-<span id="cb292-101"><a href="viewer1.html#cb292-101"></a>    ImGui::SetNextWindowPos(ImVec2(<span class="va">m_viewportWidth</span> - widgetSize.x - <span class="dv">5</span>, <span class="dv">5</span>));</span>
-<span id="cb292-102"><a href="viewer1.html#cb292-102"></a>    ImGui::SetNextWindowSize(widgetSize);</span>
-<span id="cb292-103"><a href="viewer1.html#cb292-103"></a>    ImGui::Begin(<span class="st">&quot;Widget window&quot;</span>, <span class="kw">nullptr</span>, ImGuiWindowFlags_NoDecoration);</span>
-<span id="cb292-104"><a href="viewer1.html#cb292-104"></a></span>
-<span id="cb292-105"><a href="viewer1.html#cb292-105"></a>    <span class="at">static</span> <span class="dt">bool</span> faceCulling{};</span>
-<span id="cb292-106"><a href="viewer1.html#cb292-106"></a>    ImGui::Checkbox(<span class="st">&quot;Back-face culling&quot;</span>, &amp;faceCulling);</span>
+<span id="cb292-98"><a href="viewer1.html#cb292-98"></a>    ImGui::End();</span>
+<span id="cb292-99"><a href="viewer1.html#cb292-99"></a>  }</span>
+<span id="cb292-100"><a href="viewer1.html#cb292-100"></a></span>
+<span id="cb292-101"><a href="viewer1.html#cb292-101"></a>  <span class="co">// Create a window for the other widgets</span></span>
+<span id="cb292-102"><a href="viewer1.html#cb292-102"></a>  {</span>
+<span id="cb292-103"><a href="viewer1.html#cb292-103"></a>    <span class="at">const</span> <span class="kw">auto</span> widgetSize{ImVec2(<span class="dv">222</span>, <span class="dv">90</span>)};</span>
+<span id="cb292-104"><a href="viewer1.html#cb292-104"></a>    ImGui::SetNextWindowPos(ImVec2(<span class="va">m_viewportWidth</span> - widgetSize.x - <span class="dv">5</span>, <span class="dv">5</span>));</span>
+<span id="cb292-105"><a href="viewer1.html#cb292-105"></a>    ImGui::SetNextWindowSize(widgetSize);</span>
+<span id="cb292-106"><a href="viewer1.html#cb292-106"></a>    ImGui::Begin(<span class="st">&quot;Widget window&quot;</span>, <span class="kw">nullptr</span>, ImGuiWindowFlags_NoDecoration);</span>
 <span id="cb292-107"><a href="viewer1.html#cb292-107"></a></span>
-<span id="cb292-108"><a href="viewer1.html#cb292-108"></a>    <span class="cf">if</span> (faceCulling) {</span>
-<span id="cb292-109"><a href="viewer1.html#cb292-109"></a>      abcg::glEnable(GL_CULL_FACE);</span>
-<span id="cb292-110"><a href="viewer1.html#cb292-110"></a>    } <span class="cf">else</span> {</span>
-<span id="cb292-111"><a href="viewer1.html#cb292-111"></a>      abcg::glDisable(GL_CULL_FACE);</span>
-<span id="cb292-112"><a href="viewer1.html#cb292-112"></a>    }</span>
-<span id="cb292-113"><a href="viewer1.html#cb292-113"></a></span>
-<span id="cb292-114"><a href="viewer1.html#cb292-114"></a>    <span class="co">// CW/CCW combo box</span></span>
-<span id="cb292-115"><a href="viewer1.html#cb292-115"></a>    {</span>
-<span id="cb292-116"><a href="viewer1.html#cb292-116"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t currentIndex{};</span>
-<span id="cb292-117"><a href="viewer1.html#cb292-117"></a>      <span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; comboItems{<span class="st">&quot;CCW&quot;</span>, <span class="st">&quot;CW&quot;</span>};</span>
-<span id="cb292-118"><a href="viewer1.html#cb292-118"></a></span>
-<span id="cb292-119"><a href="viewer1.html#cb292-119"></a>      ImGui::PushItemWidth(<span class="dv">120</span>);</span>
-<span id="cb292-120"><a href="viewer1.html#cb292-120"></a>      <span class="cf">if</span> (ImGui::BeginCombo(<span class="st">&quot;Front face&quot;</span>,</span>
-<span id="cb292-121"><a href="viewer1.html#cb292-121"></a>                            comboItems.at(currentIndex).c_str())) {</span>
-<span id="cb292-122"><a href="viewer1.html#cb292-122"></a>        <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> index : iter::range(comboItems.size())) {</span>
-<span id="cb292-123"><a href="viewer1.html#cb292-123"></a>          <span class="at">const</span> <span class="dt">bool</span> isSelected{currentIndex == index};</span>
-<span id="cb292-124"><a href="viewer1.html#cb292-124"></a>          <span class="cf">if</span> (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))</span>
-<span id="cb292-125"><a href="viewer1.html#cb292-125"></a>            currentIndex = index;</span>
-<span id="cb292-126"><a href="viewer1.html#cb292-126"></a>          <span class="cf">if</span> (isSelected) ImGui::SetItemDefaultFocus();</span>
-<span id="cb292-127"><a href="viewer1.html#cb292-127"></a>        }</span>
-<span id="cb292-128"><a href="viewer1.html#cb292-128"></a>        ImGui::EndCombo();</span>
-<span id="cb292-129"><a href="viewer1.html#cb292-129"></a>      }</span>
-<span id="cb292-130"><a href="viewer1.html#cb292-130"></a>      ImGui::PopItemWidth();</span>
-<span id="cb292-131"><a href="viewer1.html#cb292-131"></a></span>
-<span id="cb292-132"><a href="viewer1.html#cb292-132"></a>      <span class="cf">if</span> (currentIndex == <span class="dv">0</span>) {</span>
-<span id="cb292-133"><a href="viewer1.html#cb292-133"></a>        abcg::glFrontFace(GL_CCW);</span>
-<span id="cb292-134"><a href="viewer1.html#cb292-134"></a>      } <span class="cf">else</span> {</span>
-<span id="cb292-135"><a href="viewer1.html#cb292-135"></a>        abcg::glFrontFace(GL_CW);</span>
-<span id="cb292-136"><a href="viewer1.html#cb292-136"></a>      }</span>
-<span id="cb292-137"><a href="viewer1.html#cb292-137"></a>    }</span>
-<span id="cb292-138"><a href="viewer1.html#cb292-138"></a></span>
-<span id="cb292-139"><a href="viewer1.html#cb292-139"></a>    <span class="co">// Projection combo box</span></span>
-<span id="cb292-140"><a href="viewer1.html#cb292-140"></a>    {</span>
-<span id="cb292-141"><a href="viewer1.html#cb292-141"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t currentIndex{};</span>
-<span id="cb292-142"><a href="viewer1.html#cb292-142"></a>      <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; comboItems{<span class="st">&quot;Perspective&quot;</span>, <span class="st">&quot;Orthographic&quot;</span>};</span>
-<span id="cb292-143"><a href="viewer1.html#cb292-143"></a></span>
-<span id="cb292-144"><a href="viewer1.html#cb292-144"></a>      ImGui::PushItemWidth(<span class="dv">120</span>);</span>
-<span id="cb292-145"><a href="viewer1.html#cb292-145"></a>      <span class="cf">if</span> (ImGui::BeginCombo(<span class="st">&quot;Projection&quot;</span>,</span>
-<span id="cb292-146"><a href="viewer1.html#cb292-146"></a>                            comboItems.at(currentIndex).c_str())) {</span>
-<span id="cb292-147"><a href="viewer1.html#cb292-147"></a>        <span class="cf">for</span> (<span class="kw">auto</span> index : iter::range(comboItems.size())) {</span>
-<span id="cb292-148"><a href="viewer1.html#cb292-148"></a>          <span class="at">const</span> <span class="dt">bool</span> isSelected{currentIndex == index};</span>
-<span id="cb292-149"><a href="viewer1.html#cb292-149"></a>          <span class="cf">if</span> (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))</span>
-<span id="cb292-150"><a href="viewer1.html#cb292-150"></a>            currentIndex = index;</span>
-<span id="cb292-151"><a href="viewer1.html#cb292-151"></a>          <span class="cf">if</span> (isSelected) ImGui::SetItemDefaultFocus();</span>
-<span id="cb292-152"><a href="viewer1.html#cb292-152"></a>        }</span>
-<span id="cb292-153"><a href="viewer1.html#cb292-153"></a>        ImGui::EndCombo();</span>
-<span id="cb292-154"><a href="viewer1.html#cb292-154"></a>      }</span>
-<span id="cb292-155"><a href="viewer1.html#cb292-155"></a>      ImGui::PopItemWidth();</span>
-<span id="cb292-156"><a href="viewer1.html#cb292-156"></a></span>
-<span id="cb292-157"><a href="viewer1.html#cb292-157"></a>      <span class="cf">if</span> (currentIndex == <span class="dv">0</span>) {</span>
-<span id="cb292-158"><a href="viewer1.html#cb292-158"></a>        <span class="kw">auto</span> aspect{<span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(<span class="va">m_viewportWidth</span>) /</span>
-<span id="cb292-159"><a href="viewer1.html#cb292-159"></a>                    <span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(<span class="va">m_viewportHeight</span>)};</span>
-<span id="cb292-160"><a href="viewer1.html#cb292-160"></a>        <span class="va">m_projMatrix</span> =</span>
-<span id="cb292-161"><a href="viewer1.html#cb292-161"></a>            glm::perspective(glm::radians(<span class="fl">45.0</span><span class="bu">f</span>), aspect, <span class="fl">0.1</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>);</span>
-<span id="cb292-162"><a href="viewer1.html#cb292-162"></a></span>
-<span id="cb292-163"><a href="viewer1.html#cb292-163"></a>      } <span class="cf">else</span> {</span>
-<span id="cb292-164"><a href="viewer1.html#cb292-164"></a>        <span class="va">m_projMatrix</span> = glm::ortho(-<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.1</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>);</span>
-<span id="cb292-165"><a href="viewer1.html#cb292-165"></a>      }</span>
-<span id="cb292-166"><a href="viewer1.html#cb292-166"></a>    }</span>
-<span id="cb292-167"><a href="viewer1.html#cb292-167"></a></span>
-<span id="cb292-168"><a href="viewer1.html#cb292-168"></a>    ImGui::End();</span>
-<span id="cb292-169"><a href="viewer1.html#cb292-169"></a>  }</span>
-<span id="cb292-170"><a href="viewer1.html#cb292-170"></a>}</span></code></pre></div>
-<p>Observe, na estrutura condicional das linhas 157 a 165, como a matriz de projeção é criada com <code>glm::perspective</code> ou <code>glm::ortho</code>, dependendo da escolha do usuário.</p>
+<span id="cb292-108"><a href="viewer1.html#cb292-108"></a>    <span class="at">static</span> <span class="dt">bool</span> faceCulling{};</span>
+<span id="cb292-109"><a href="viewer1.html#cb292-109"></a>    ImGui::Checkbox(<span class="st">&quot;Back-face culling&quot;</span>, &amp;faceCulling);</span>
+<span id="cb292-110"><a href="viewer1.html#cb292-110"></a></span>
+<span id="cb292-111"><a href="viewer1.html#cb292-111"></a>    <span class="cf">if</span> (faceCulling) {</span>
+<span id="cb292-112"><a href="viewer1.html#cb292-112"></a>      abcg::glEnable(GL_CULL_FACE);</span>
+<span id="cb292-113"><a href="viewer1.html#cb292-113"></a>    } <span class="cf">else</span> {</span>
+<span id="cb292-114"><a href="viewer1.html#cb292-114"></a>      abcg::glDisable(GL_CULL_FACE);</span>
+<span id="cb292-115"><a href="viewer1.html#cb292-115"></a>    }</span>
+<span id="cb292-116"><a href="viewer1.html#cb292-116"></a></span>
+<span id="cb292-117"><a href="viewer1.html#cb292-117"></a>    <span class="co">// CW/CCW combo box</span></span>
+<span id="cb292-118"><a href="viewer1.html#cb292-118"></a>    {</span>
+<span id="cb292-119"><a href="viewer1.html#cb292-119"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t currentIndex{};</span>
+<span id="cb292-120"><a href="viewer1.html#cb292-120"></a>      <span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; comboItems{<span class="st">&quot;CCW&quot;</span>, <span class="st">&quot;CW&quot;</span>};</span>
+<span id="cb292-121"><a href="viewer1.html#cb292-121"></a></span>
+<span id="cb292-122"><a href="viewer1.html#cb292-122"></a>      ImGui::PushItemWidth(<span class="dv">120</span>);</span>
+<span id="cb292-123"><a href="viewer1.html#cb292-123"></a>      <span class="cf">if</span> (ImGui::BeginCombo(<span class="st">&quot;Front face&quot;</span>,</span>
+<span id="cb292-124"><a href="viewer1.html#cb292-124"></a>                            comboItems.at(currentIndex).c_str())) {</span>
+<span id="cb292-125"><a href="viewer1.html#cb292-125"></a>        <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> index : iter::range(comboItems.size())) {</span>
+<span id="cb292-126"><a href="viewer1.html#cb292-126"></a>          <span class="at">const</span> <span class="dt">bool</span> isSelected{currentIndex == index};</span>
+<span id="cb292-127"><a href="viewer1.html#cb292-127"></a>          <span class="cf">if</span> (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))</span>
+<span id="cb292-128"><a href="viewer1.html#cb292-128"></a>            currentIndex = index;</span>
+<span id="cb292-129"><a href="viewer1.html#cb292-129"></a>          <span class="cf">if</span> (isSelected) ImGui::SetItemDefaultFocus();</span>
+<span id="cb292-130"><a href="viewer1.html#cb292-130"></a>        }</span>
+<span id="cb292-131"><a href="viewer1.html#cb292-131"></a>        ImGui::EndCombo();</span>
+<span id="cb292-132"><a href="viewer1.html#cb292-132"></a>      }</span>
+<span id="cb292-133"><a href="viewer1.html#cb292-133"></a>      ImGui::PopItemWidth();</span>
+<span id="cb292-134"><a href="viewer1.html#cb292-134"></a></span>
+<span id="cb292-135"><a href="viewer1.html#cb292-135"></a>      <span class="cf">if</span> (currentIndex == <span class="dv">0</span>) {</span>
+<span id="cb292-136"><a href="viewer1.html#cb292-136"></a>        abcg::glFrontFace(GL_CCW);</span>
+<span id="cb292-137"><a href="viewer1.html#cb292-137"></a>      } <span class="cf">else</span> {</span>
+<span id="cb292-138"><a href="viewer1.html#cb292-138"></a>        abcg::glFrontFace(GL_CW);</span>
+<span id="cb292-139"><a href="viewer1.html#cb292-139"></a>      }</span>
+<span id="cb292-140"><a href="viewer1.html#cb292-140"></a>    }</span>
+<span id="cb292-141"><a href="viewer1.html#cb292-141"></a></span>
+<span id="cb292-142"><a href="viewer1.html#cb292-142"></a>    <span class="co">// Projection combo box</span></span>
+<span id="cb292-143"><a href="viewer1.html#cb292-143"></a>    {</span>
+<span id="cb292-144"><a href="viewer1.html#cb292-144"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t currentIndex{};</span>
+<span id="cb292-145"><a href="viewer1.html#cb292-145"></a>      <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; comboItems{<span class="st">&quot;Perspective&quot;</span>, <span class="st">&quot;Orthographic&quot;</span>};</span>
+<span id="cb292-146"><a href="viewer1.html#cb292-146"></a></span>
+<span id="cb292-147"><a href="viewer1.html#cb292-147"></a>      ImGui::PushItemWidth(<span class="dv">120</span>);</span>
+<span id="cb292-148"><a href="viewer1.html#cb292-148"></a>      <span class="cf">if</span> (ImGui::BeginCombo(<span class="st">&quot;Projection&quot;</span>,</span>
+<span id="cb292-149"><a href="viewer1.html#cb292-149"></a>                            comboItems.at(currentIndex).c_str())) {</span>
+<span id="cb292-150"><a href="viewer1.html#cb292-150"></a>        <span class="cf">for</span> (<span class="kw">auto</span> index : iter::range(comboItems.size())) {</span>
+<span id="cb292-151"><a href="viewer1.html#cb292-151"></a>          <span class="at">const</span> <span class="dt">bool</span> isSelected{currentIndex == index};</span>
+<span id="cb292-152"><a href="viewer1.html#cb292-152"></a>          <span class="cf">if</span> (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))</span>
+<span id="cb292-153"><a href="viewer1.html#cb292-153"></a>            currentIndex = index;</span>
+<span id="cb292-154"><a href="viewer1.html#cb292-154"></a>          <span class="cf">if</span> (isSelected) ImGui::SetItemDefaultFocus();</span>
+<span id="cb292-155"><a href="viewer1.html#cb292-155"></a>        }</span>
+<span id="cb292-156"><a href="viewer1.html#cb292-156"></a>        ImGui::EndCombo();</span>
+<span id="cb292-157"><a href="viewer1.html#cb292-157"></a>      }</span>
+<span id="cb292-158"><a href="viewer1.html#cb292-158"></a>      ImGui::PopItemWidth();</span>
+<span id="cb292-159"><a href="viewer1.html#cb292-159"></a></span>
+<span id="cb292-160"><a href="viewer1.html#cb292-160"></a>      <span class="cf">if</span> (currentIndex == <span class="dv">0</span>) {</span>
+<span id="cb292-161"><a href="viewer1.html#cb292-161"></a>        <span class="at">const</span> <span class="kw">auto</span> aspect{<span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(<span class="va">m_viewportWidth</span>) /</span>
+<span id="cb292-162"><a href="viewer1.html#cb292-162"></a>                          <span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(<span class="va">m_viewportHeight</span>)};</span>
+<span id="cb292-163"><a href="viewer1.html#cb292-163"></a>        <span class="va">m_projMatrix</span> =</span>
+<span id="cb292-164"><a href="viewer1.html#cb292-164"></a>            glm::perspective(glm::radians(<span class="fl">45.0</span><span class="bu">f</span>), aspect, <span class="fl">0.1</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>);</span>
+<span id="cb292-165"><a href="viewer1.html#cb292-165"></a>      } <span class="cf">else</span> {</span>
+<span id="cb292-166"><a href="viewer1.html#cb292-166"></a>        <span class="va">m_projMatrix</span> = glm::ortho(-<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, -<span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.1</span><span class="bu">f</span>, <span class="fl">5.0</span><span class="bu">f</span>);</span>
+<span id="cb292-167"><a href="viewer1.html#cb292-167"></a>      }</span>
+<span id="cb292-168"><a href="viewer1.html#cb292-168"></a>    }</span>
+<span id="cb292-169"><a href="viewer1.html#cb292-169"></a></span>
+<span id="cb292-170"><a href="viewer1.html#cb292-170"></a>    ImGui::End();</span>
+<span id="cb292-171"><a href="viewer1.html#cb292-171"></a>  }</span>
+<span id="cb292-172"><a href="viewer1.html#cb292-172"></a>}</span></code></pre></div>
+<p>Observe, na estrutura condicional das linhas 160 a 167, como a matriz de projeção é criada com <code>glm::perspective</code> ou <code>glm::ortho</code>, dependendo da escolha do usuário.</p>
 <p>O restante de <code>openglwindow.cpp</code> ficará assim:</p>
-<div class="sourceCode" id="cb293" startFrom="172"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 171;"><span id="cb293-172"><a href="viewer1.html#cb293-172"></a><span class="dt">void</span> OpenGLWindow::resizeGL(<span class="dt">int</span> width, <span class="dt">int</span> height) {</span>
-<span id="cb293-173"><a href="viewer1.html#cb293-173"></a>  <span class="va">m_viewportWidth</span> = width;</span>
-<span id="cb293-174"><a href="viewer1.html#cb293-174"></a>  <span class="va">m_viewportHeight</span> = height;</span>
-<span id="cb293-175"><a href="viewer1.html#cb293-175"></a></span>
-<span id="cb293-176"><a href="viewer1.html#cb293-176"></a>  <span class="va">m_trackBall</span>.resizeViewport(width, height);</span>
-<span id="cb293-177"><a href="viewer1.html#cb293-177"></a>}</span>
-<span id="cb293-178"><a href="viewer1.html#cb293-178"></a></span>
-<span id="cb293-179"><a href="viewer1.html#cb293-179"></a><span class="dt">void</span> OpenGLWindow::terminateGL() {</span>
-<span id="cb293-180"><a href="viewer1.html#cb293-180"></a>  <span class="va">m_model</span>.terminateGL();</span>
-<span id="cb293-181"><a href="viewer1.html#cb293-181"></a>  abcg::glDeleteProgram(<span class="va">m_program</span>);</span>
-<span id="cb293-182"><a href="viewer1.html#cb293-182"></a>}</span>
-<span id="cb293-183"><a href="viewer1.html#cb293-183"></a></span>
-<span id="cb293-184"><a href="viewer1.html#cb293-184"></a><span class="dt">void</span> OpenGLWindow::update() {</span>
-<span id="cb293-185"><a href="viewer1.html#cb293-185"></a>  <span class="va">m_modelMatrix</span> = <span class="va">m_trackBall</span>.getRotation();</span>
-<span id="cb293-186"><a href="viewer1.html#cb293-186"></a></span>
-<span id="cb293-187"><a href="viewer1.html#cb293-187"></a>  <span class="va">m_viewMatrix</span> =</span>
-<span id="cb293-188"><a href="viewer1.html#cb293-188"></a>      glm::lookAt(glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">2.0</span><span class="bu">f</span> + <span class="va">m_zoom</span>),</span>
-<span id="cb293-189"><a href="viewer1.html#cb293-189"></a>                  glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>), glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>));</span>
-<span id="cb293-190"><a href="viewer1.html#cb293-190"></a>}</span></code></pre></div>
-<p>Em <code>OpenGLWindow::resizeGL</code>, chamamos <code>TrackBall::resizeViewport</code> (linha 176) para atualizar as dimensões da janela ao trackball.</p>
-<p>Em <code>OpenGLWindow::updateGL</code>, fazemos com que a matriz de modelo seja a própria matriz de rotação do trackball (linha 185). É também nesta função que calculamos a matriz de visão usando a câmera LookAt. Note como <code>m_zoom</code> altera a posição <span class="math inline">\(z\)</span> da câmera.</p>
+<div class="sourceCode" id="cb293" startFrom="174"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 173;"><span id="cb293-174"><a href="viewer1.html#cb293-174"></a><span class="dt">void</span> OpenGLWindow::resizeGL(<span class="dt">int</span> width, <span class="dt">int</span> height) {</span>
+<span id="cb293-175"><a href="viewer1.html#cb293-175"></a>  <span class="va">m_viewportWidth</span> = width;</span>
+<span id="cb293-176"><a href="viewer1.html#cb293-176"></a>  <span class="va">m_viewportHeight</span> = height;</span>
+<span id="cb293-177"><a href="viewer1.html#cb293-177"></a></span>
+<span id="cb293-178"><a href="viewer1.html#cb293-178"></a>  <span class="va">m_trackBall</span>.resizeViewport(width, height);</span>
+<span id="cb293-179"><a href="viewer1.html#cb293-179"></a>}</span>
+<span id="cb293-180"><a href="viewer1.html#cb293-180"></a></span>
+<span id="cb293-181"><a href="viewer1.html#cb293-181"></a><span class="dt">void</span> OpenGLWindow::terminateGL() {</span>
+<span id="cb293-182"><a href="viewer1.html#cb293-182"></a>  <span class="va">m_model</span>.terminateGL();</span>
+<span id="cb293-183"><a href="viewer1.html#cb293-183"></a>  abcg::glDeleteProgram(<span class="va">m_program</span>);</span>
+<span id="cb293-184"><a href="viewer1.html#cb293-184"></a>}</span>
+<span id="cb293-185"><a href="viewer1.html#cb293-185"></a></span>
+<span id="cb293-186"><a href="viewer1.html#cb293-186"></a><span class="dt">void</span> OpenGLWindow::update() {</span>
+<span id="cb293-187"><a href="viewer1.html#cb293-187"></a>  <span class="va">m_modelMatrix</span> = <span class="va">m_trackBall</span>.getRotation();</span>
+<span id="cb293-188"><a href="viewer1.html#cb293-188"></a></span>
+<span id="cb293-189"><a href="viewer1.html#cb293-189"></a>  <span class="va">m_viewMatrix</span> =</span>
+<span id="cb293-190"><a href="viewer1.html#cb293-190"></a>      glm::lookAt(glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">2.0</span><span class="bu">f</span> + <span class="va">m_zoom</span>),</span>
+<span id="cb293-191"><a href="viewer1.html#cb293-191"></a>                  glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>), glm::vec3(<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>));</span>
+<span id="cb293-192"><a href="viewer1.html#cb293-192"></a>}</span></code></pre></div>
+<p>Em <code>OpenGLWindow::resizeGL</code>, chamamos <code>TrackBall::resizeViewport</code> (linha 178) para atualizar as dimensões da janela ao trackball.</p>
+<p>Em <code>OpenGLWindow::updateGL</code>, fazemos com que a matriz de modelo seja a própria matriz de rotação do trackball (linha 187). É também nesta função que calculamos a matriz de visão usando a câmera LookAt. Note como <code>m_zoom</code> altera a posição <span class="math inline">\(z\)</span> da câmera.</p>
 <p>Isso é tudo. Baixe o código completo do projeto a partir <a href="https://hbatagelo.github.io/abcgapps/src/viewer1.zip">deste link</a>.</p>
 </div>
 </div>

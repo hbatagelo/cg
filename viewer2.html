@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9.5 Normais como cores | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9.5 Normais como cores | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9.5 Normais como cores | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="shading.html"/>
+<link rel="next" href="viewer3.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#habilitando-o-opengl"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#habilitando-o-opengl-1"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-em-linha-de-comando"><i class="fa fa-check"></i>Compilando em linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-visual-studio-code"><i class="fa fa-check"></i>Compilando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-visual-studio-code"><i class="fa fa-check"></i>Depurando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.hpp-2"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.cpp-2"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.hpp-3"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.cpp-3"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#frames"><i class="fa fa-check"></i>Frames</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-5"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.hpp-5"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.cpp-5"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação"><i class="fa fa-check"></i>Transformação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.hpp-6"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.cpp-6"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.hpp-7"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.cpp-7"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.hpp-8"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-8"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>9</b> Iluminação</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>9.1</b> Equação de renderização</a></li>
+<li class="chapter" data-level="9.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>9.2</b> Modelo de reflexão de Phong</a>
+<ul>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>9.3</b> Modelo de Blinn–Phong</a></li>
+<li class="chapter" data-level="9.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>9.4</b> Sombreamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>9.5</b> Normais como cores</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.hpp-9"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.cpp-9"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>9.6</b> Iluminação na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="mailto:harlen.batagelo@ufabc.edu.br" target="blank">Harlen Batagelo</a>
+<a href="mailto:bruno.marques@ufabc.edu.br" target="blank">Bruno Marques</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="viewer2" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> Normais como cores</h2>
+<p>Nesta seção, implementaremos a segunda versão do visualizador de modelos 3D apresentado originalmente na seção <a href="viewer1.html#viewer1">8.4</a>.</p>
+<p>As seguintes funcionalidade serão incorporadas:</p>
+<ul>
+<li>Cálculo de normais de vértices, usando o procedimento descrito no final da seção <a href="euclidean.html#euclidean">6.3</a>;</li>
+<li>Um novo shader que visualiza os vetores normais através de cores;</li>
+<li>Uma caixa de combinação (combo box) para selecionar entre o shader do projeto anterior e o novo shader.</li>
+<li>Um botão “Load 3D Model” para carregar arquivos OBJ durante a execução.</li>
+</ul>
+<p>O resultado ficará como a seguir:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/viewer2/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<div id="configuração-inicial-9" class="section level3 unnumbered">
+<h3>Configuração inicial</h3>
+<p>Faça uma cópia do projeto <code>viewer1</code> da seção <a href="viewer1.html#viewer1">8.4</a> e renomeie-o para <code>viewer2</code>.</p>
+<ul>
+<li><p>Dentro de <code>abcg/examples/viewer2/assets</code>, crie os arquivos vazios <code>normal.frag</code> e <code>normal.vert</code>. Esses serão os arquivos do novo shader de visualização de vetores normais como cores.</p></li>
+<li><p>Baixe o arquivo <code>imfilebrowser.h</code> do repositório <a href="https://github.com/AirGuanZ/imgui-filebrowser"><code>AirGuanZ/imgui-filebrowser</code></a> e salve-o em <code>abcg/examples/viewer2</code>. Esse arquivo contém a implementação do controle “imgui-filebrowser,” que é uma caixa de diálogo de seleção de arquivos usando a interface da ImGui.</p></li>
+</ul>
+<p>Como os demais arquivos utilizados são os mesmos do projeto anterior, vamos nos concentrar apenas nas partes que serão modificadas.</p>
+</div>
+<div id="model.hpp-1" class="section level3 unnumbered">
+<h3>model.hpp</h3>
+<p>Modifique a estrutura <code>Vertex</code> para que cada vértice tenha um atributo adicional de vetor normal <code>glm::vec3 normal</code>:</p>
+<div class="sourceCode" id="cb306" startFrom="8"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 7;"><span id="cb306-8"><a href="viewer2.html#cb306-8"></a><span class="kw">struct</span> Vertex {</span>
+<span id="cb306-9"><a href="viewer2.html#cb306-9"></a>  glm::vec3 position{};</span>
+<span id="cb306-10"><a href="viewer2.html#cb306-10"></a>  glm::vec3 normal{};</span>
+<span id="cb306-11"><a href="viewer2.html#cb306-11"></a></span>
+<span id="cb306-12"><a href="viewer2.html#cb306-12"></a>  <span class="dt">bool</span> <span class="kw">operator</span>==(<span class="at">const</span> Vertex&amp; other) <span class="at">const</span> <span class="kw">noexcept</span> {</span>
+<span id="cb306-13"><a href="viewer2.html#cb306-13"></a>    <span class="at">static</span> <span class="at">const</span> <span class="kw">auto</span> epsilon{<span class="bu">std::</span>numeric_limits&lt;<span class="dt">float</span>&gt;::epsilon()};</span>
+<span id="cb306-14"><a href="viewer2.html#cb306-14"></a>    <span class="cf">return</span> glm::all(glm::epsilonEqual(position, other.position, epsilon)) &amp;&amp;</span>
+<span id="cb306-15"><a href="viewer2.html#cb306-15"></a>           glm::all(glm::epsilonEqual(normal, other.normal, epsilon));</span>
+<span id="cb306-16"><a href="viewer2.html#cb306-16"></a>  }</span>
+<span id="cb306-17"><a href="viewer2.html#cb306-17"></a>};</span></code></pre></div>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Na implementação do operador de igualdade de <code>Vertex</code>, estamos agora utilizando um método mais preciso de determinar se dois vetores são iguais.</p>
+<p>Em vez de fazer <code>position == other.position</code> e <code>normal == other.normal</code>, verificamos se cada elemento de cada tupla está a uma distância que corresponde a um <em>epsilon</em> de um <code>float</code> (diferença entre <code>1.0f</code> e o próximo valor representado por um <code>float</code>).</p>
+<p>Essa é uma forma mais robusta de comparar dois vértices, pois vértices equivalentes podem ter coordenadas ligeiramente diferentes por conta de erros de conversão de ponto flutuante durante a leitura do arquivo OBJ.</p>
+</div>
+<p>Dentro da classe <code>Model</code>, incluiremos as seguintes definições:</p>
+<div class="sourceCode" id="cb307" startFrom="38"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 37;"><span id="cb307-38"><a href="viewer2.html#cb307-38"></a>  <span class="dt">bool</span> <span class="va">m_hasNormals</span>{<span class="kw">false</span>};</span>
+<span id="cb307-39"><a href="viewer2.html#cb307-39"></a></span>
+<span id="cb307-40"><a href="viewer2.html#cb307-40"></a>  <span class="dt">void</span> computeNormals();</span></code></pre></div>
+<p>Durante a leitura do arquivo OBJ, se o modelo já vier com vetores normais calculados, <code>m_hasNormals</code> será <code>true</code>. Caso contrário, será <code>false</code> e então chamaremos <code>Model::computeNormals</code> para calcular as normais.</p>
+</div>
+<div id="model.cpp-1" class="section level3 unnumbered">
+<h3>model.cpp</h3>
+<p>Como modificamos a estrutura <code>Vertex</code> em <code>model.hpp</code>, precisamos modificar também a especialização de <code>std::hash</code> para gerar um valor de hashing que leve em conta tanto a posição do vértice quanto o vetor normal. Afinal, dois vértices na mesma posição espacial são vértices diferentes caso tenham vetores normais diferentes:</p>
+<div class="sourceCode" id="cb308" startFrom="11"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 10;"><span id="cb308-11"><a href="viewer2.html#cb308-11"></a><span class="co">// Explicit specialization of std::hash for Vertex</span></span>
+<span id="cb308-12"><a href="viewer2.html#cb308-12"></a><span class="kw">namespace</span> std {</span>
+<span id="cb308-13"><a href="viewer2.html#cb308-13"></a><span class="kw">template</span> &lt;&gt;</span>
+<span id="cb308-14"><a href="viewer2.html#cb308-14"></a><span class="kw">struct</span> hash&lt;Vertex&gt; {</span>
+<span id="cb308-15"><a href="viewer2.html#cb308-15"></a>  <span class="dt">size_t</span> <span class="kw">operator</span>()(Vertex <span class="at">const</span>&amp; vertex) <span class="at">const</span> <span class="kw">noexcept</span> {</span>
+<span id="cb308-16"><a href="viewer2.html#cb308-16"></a>    <span class="at">const</span> <span class="bu">std::</span>size_t h1{<span class="bu">std::</span>hash&lt;glm::vec3&gt;()(vertex.position)};</span>
+<span id="cb308-17"><a href="viewer2.html#cb308-17"></a>    <span class="at">const</span> <span class="bu">std::</span>size_t h2{<span class="bu">std::</span>hash&lt;glm::vec3&gt;()(vertex.normal)};</span>
+<span id="cb308-18"><a href="viewer2.html#cb308-18"></a>    <span class="cf">return</span> h1 ^ h2;</span>
+<span id="cb308-19"><a href="viewer2.html#cb308-19"></a>  }</span>
+<span id="cb308-20"><a href="viewer2.html#cb308-20"></a>};</span>
+<span id="cb308-21"><a href="viewer2.html#cb308-21"></a>}  <span class="co">// namespace std</span></span></code></pre></div>
+<p>O valor de hashing é calculado como <code>h1 ^ h2</code>, onde <code>^</code> é o operador “ou exclusivo” bit a bit. Essa é uma forma simples de misturar dois valores para obter um valor de hashing.</p>
+<div id="calculando-as-normais-de-vértices" class="section level4 unnumbered">
+<h4>Calculando as normais de vértices</h4>
+<p>O cálculo dos vetores normais dos vértices é feito em <code>Model::computeNormals</code>:</p>
+<div class="sourceCode" id="cb309" startFrom="23"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 22;"><span id="cb309-23"><a href="viewer2.html#cb309-23"></a><span class="dt">void</span> Model::computeNormals() {</span>
+<span id="cb309-24"><a href="viewer2.html#cb309-24"></a>  <span class="co">// Clear previous vertex normals</span></span>
+<span id="cb309-25"><a href="viewer2.html#cb309-25"></a>  <span class="cf">for</span> (<span class="kw">auto</span>&amp; vertex : <span class="va">m_vertices</span>) {</span>
+<span id="cb309-26"><a href="viewer2.html#cb309-26"></a>    vertex.normal = glm::zero&lt;glm::vec3&gt;();</span>
+<span id="cb309-27"><a href="viewer2.html#cb309-27"></a>  }</span>
+<span id="cb309-28"><a href="viewer2.html#cb309-28"></a></span>
+<span id="cb309-29"><a href="viewer2.html#cb309-29"></a>  <span class="co">// Compute face normals</span></span>
+<span id="cb309-30"><a href="viewer2.html#cb309-30"></a>  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> offset : iter::range&lt;<span class="dt">int</span>&gt;(<span class="dv">0</span>, <span class="va">m_indices</span>.size(), <span class="dv">3</span>)) {</span>
+<span id="cb309-31"><a href="viewer2.html#cb309-31"></a>    <span class="co">// Get face vertices</span></span>
+<span id="cb309-32"><a href="viewer2.html#cb309-32"></a>    Vertex&amp; a{<span class="va">m_vertices</span>.at(<span class="va">m_indices</span>.at(offset + <span class="dv">0</span>))};</span>
+<span id="cb309-33"><a href="viewer2.html#cb309-33"></a>    Vertex&amp; b{<span class="va">m_vertices</span>.at(<span class="va">m_indices</span>.at(offset + <span class="dv">1</span>))};</span>
+<span id="cb309-34"><a href="viewer2.html#cb309-34"></a>    Vertex&amp; c{<span class="va">m_vertices</span>.at(<span class="va">m_indices</span>.at(offset + <span class="dv">2</span>))};</span>
+<span id="cb309-35"><a href="viewer2.html#cb309-35"></a></span>
+<span id="cb309-36"><a href="viewer2.html#cb309-36"></a>    <span class="co">// Compute normal</span></span>
+<span id="cb309-37"><a href="viewer2.html#cb309-37"></a>    <span class="at">const</span> <span class="kw">auto</span> edge1{b.position - a.position};</span>
+<span id="cb309-38"><a href="viewer2.html#cb309-38"></a>    <span class="at">const</span> <span class="kw">auto</span> edge2{c.position - b.position};</span>
+<span id="cb309-39"><a href="viewer2.html#cb309-39"></a>    <span class="at">const</span> glm::vec3 normal{glm::cross(edge1, edge2)};</span>
+<span id="cb309-40"><a href="viewer2.html#cb309-40"></a></span>
+<span id="cb309-41"><a href="viewer2.html#cb309-41"></a>    <span class="co">// Accumulate on vertices</span></span>
+<span id="cb309-42"><a href="viewer2.html#cb309-42"></a>    a.normal += normal;</span>
+<span id="cb309-43"><a href="viewer2.html#cb309-43"></a>    b.normal += normal;</span>
+<span id="cb309-44"><a href="viewer2.html#cb309-44"></a>    c.normal += normal;</span>
+<span id="cb309-45"><a href="viewer2.html#cb309-45"></a>  }</span>
+<span id="cb309-46"><a href="viewer2.html#cb309-46"></a></span>
+<span id="cb309-47"><a href="viewer2.html#cb309-47"></a>  <span class="co">// Normalize</span></span>
+<span id="cb309-48"><a href="viewer2.html#cb309-48"></a>  <span class="cf">for</span> (<span class="kw">auto</span>&amp; vertex : <span class="va">m_vertices</span>) {</span>
+<span id="cb309-49"><a href="viewer2.html#cb309-49"></a>    vertex.normal = glm::normalize(vertex.normal);</span>
+<span id="cb309-50"><a href="viewer2.html#cb309-50"></a>  }</span>
+<span id="cb309-51"><a href="viewer2.html#cb309-51"></a></span>
+<span id="cb309-52"><a href="viewer2.html#cb309-52"></a>  <span class="va">m_hasNormals</span> = <span class="kw">true</span>;</span>
+<span id="cb309-53"><a href="viewer2.html#cb309-53"></a>}</span></code></pre></div>
+<p>Esta função é chamada logo após o carregamento do modelo, isto é, quando <code>m_vertices</code> e <code>m_indices</code> já contêm a geometria indexada do modelo, mas antes da criação do VBO/EBO.</p>
+<p>Antes de calcular os vetores normais, todos os vetores normais em <code>m_vertices</code> são definidos como <span class="math inline">\((0,0,0)\)</span>:</p>
+<div class="sourceCode" id="cb310" startFrom="24"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 23;"><span id="cb310-24"><a href="viewer2.html#cb310-24"></a>  <span class="co">// Clear previous vertex normals</span></span>
+<span id="cb310-25"><a href="viewer2.html#cb310-25"></a>  <span class="cf">for</span> (<span class="kw">auto</span>&amp; vertex : <span class="va">m_vertices</span>) {</span>
+<span id="cb310-26"><a href="viewer2.html#cb310-26"></a>    vertex.normal = glm::zero&lt;glm::vec3&gt;();</span>
+<span id="cb310-27"><a href="viewer2.html#cb310-27"></a>  }</span></code></pre></div>
+<p>Para cada triângulo <span class="math inline">\(\triangle ABC\)</span> da malha, o vetor normal é calculado como</p>
+<p><span class="math display">\[\mathbf{n}=(B-A) \times (C-B),\]</span></p>
+<div class="sourceCode" id="cb311" startFrom="36"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 35;"><span id="cb311-36"><a href="viewer2.html#cb311-36"></a>    <span class="co">// Compute normal</span></span>
+<span id="cb311-37"><a href="viewer2.html#cb311-37"></a>    <span class="at">const</span> <span class="kw">auto</span> edge1{b.position - a.position};</span>
+<span id="cb311-38"><a href="viewer2.html#cb311-38"></a>    <span class="at">const</span> <span class="kw">auto</span> edge2{c.position - b.position};</span>
+<span id="cb311-39"><a href="viewer2.html#cb311-39"></a>    <span class="at">const</span> glm::vec3 normal{glm::cross(edge1, edge2)};</span></code></pre></div>
+<p>O resultado é acumulado nos vértices:</p>
+<div class="sourceCode" id="cb312" startFrom="41"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 40;"><span id="cb312-41"><a href="viewer2.html#cb312-41"></a>    <span class="co">// Accumulate on vertices</span></span>
+<span id="cb312-42"><a href="viewer2.html#cb312-42"></a>    a.normal += normal;</span>
+<span id="cb312-43"><a href="viewer2.html#cb312-43"></a>    b.normal += normal;</span>
+<span id="cb312-44"><a href="viewer2.html#cb312-44"></a>    c.normal += normal;</span></code></pre></div>
+<p>Lembre-se que, como estamos usando geometria indexada, um mesmo vértice pode ser compartilhado por vários triângulos. Então, ao final do laço que itera todos os triângulos, o atributo <code>normal</code> de cada vértice será a soma dos vetores normais dos triângulos que usam tal vértice. Por exemplo, se um vértice é compartilhado por 5 triângulos, então seu atributo <code>normal</code> será a soma dos vetores normais desses 5 triângulos.</p>
+<p>Para finalizar, basta normalizar o atributo <code>normal</code> de cada vértice. O resultado será um vetor unitário que corresponde à média dos vetores normais dos triângulos adjacentes:</p>
+<div class="sourceCode" id="cb313" startFrom="47"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 46;"><span id="cb313-47"><a href="viewer2.html#cb313-47"></a>  <span class="co">// Normalize</span></span>
+<span id="cb313-48"><a href="viewer2.html#cb313-48"></a>  <span class="cf">for</span> (<span class="kw">auto</span>&amp; vertex : <span class="va">m_vertices</span>) {</span>
+<span id="cb313-49"><a href="viewer2.html#cb313-49"></a>    vertex.normal = glm::normalize(vertex.normal);</span>
+<span id="cb313-50"><a href="viewer2.html#cb313-50"></a>  }</span></code></pre></div>
+</div>
+<div id="leitura-do-arquivo-obj" class="section level4 unnumbered">
+<h4>Leitura do arquivo OBJ</h4>
+<p>A função <code>Model::loadObj</code> é modificada para ler vetores normais caso estejam presentes (linhas 116 a 126 do código abaixo). Se os vetores normais não são encontrados, chamamos <code>Model::computeNormals</code> (linhas 148 a 150):</p>
+<div class="sourceCode" id="cb314" startFrom="76"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 75;"><span id="cb314-76"><a href="viewer2.html#cb314-76"></a><span class="dt">void</span> Model::loadObj(<span class="bu">std::</span>string_view path, <span class="dt">bool</span> standardize) {</span>
+<span id="cb314-77"><a href="viewer2.html#cb314-77"></a>  tinyobj::ObjReader reader;</span>
+<span id="cb314-78"><a href="viewer2.html#cb314-78"></a></span>
+<span id="cb314-79"><a href="viewer2.html#cb314-79"></a>  <span class="cf">if</span> (!reader.ParseFromFile(path.data())) {</span>
+<span id="cb314-80"><a href="viewer2.html#cb314-80"></a>    <span class="cf">if</span> (!reader.Error().empty()) {</span>
+<span id="cb314-81"><a href="viewer2.html#cb314-81"></a>      <span class="cf">throw</span> abcg::Exception{abcg::Exception::Runtime(</span>
+<span id="cb314-82"><a href="viewer2.html#cb314-82"></a>          fmt::format(<span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st"> (</span><span class="sc">{}</span><span class="st">)&quot;</span>, path, reader.Error()))};</span>
+<span id="cb314-83"><a href="viewer2.html#cb314-83"></a>    }</span>
+<span id="cb314-84"><a href="viewer2.html#cb314-84"></a>    <span class="cf">throw</span> abcg::Exception{</span>
+<span id="cb314-85"><a href="viewer2.html#cb314-85"></a>        abcg::Exception::Runtime(fmt::format(<span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st">&quot;</span>, path))};</span>
+<span id="cb314-86"><a href="viewer2.html#cb314-86"></a>  }</span>
+<span id="cb314-87"><a href="viewer2.html#cb314-87"></a></span>
+<span id="cb314-88"><a href="viewer2.html#cb314-88"></a>  <span class="cf">if</span> (!reader.Warning().empty()) {</span>
+<span id="cb314-89"><a href="viewer2.html#cb314-89"></a>    fmt::print(<span class="st">&quot;Warning: </span><span class="sc">{}\n</span><span class="st">&quot;</span>, reader.Warning());</span>
+<span id="cb314-90"><a href="viewer2.html#cb314-90"></a>  }</span>
+<span id="cb314-91"><a href="viewer2.html#cb314-91"></a></span>
+<span id="cb314-92"><a href="viewer2.html#cb314-92"></a>  <span class="at">const</span> <span class="kw">auto</span>&amp; attrib{reader.GetAttrib()};</span>
+<span id="cb314-93"><a href="viewer2.html#cb314-93"></a>  <span class="at">const</span> <span class="kw">auto</span>&amp; shapes{reader.GetShapes()};</span>
+<span id="cb314-94"><a href="viewer2.html#cb314-94"></a></span>
+<span id="cb314-95"><a href="viewer2.html#cb314-95"></a>  <span class="va">m_vertices</span>.clear();</span>
+<span id="cb314-96"><a href="viewer2.html#cb314-96"></a>  <span class="va">m_indices</span>.clear();</span>
+<span id="cb314-97"><a href="viewer2.html#cb314-97"></a></span>
+<span id="cb314-98"><a href="viewer2.html#cb314-98"></a>  <span class="va">m_hasNormals</span> = <span class="kw">false</span>;</span>
+<span id="cb314-99"><a href="viewer2.html#cb314-99"></a></span>
+<span id="cb314-100"><a href="viewer2.html#cb314-100"></a>  <span class="co">// A key:value map with key=Vertex and value=index</span></span>
+<span id="cb314-101"><a href="viewer2.html#cb314-101"></a>  <span class="bu">std::</span>unordered_map&lt;Vertex, GLuint&gt; hash{};</span>
+<span id="cb314-102"><a href="viewer2.html#cb314-102"></a></span>
+<span id="cb314-103"><a href="viewer2.html#cb314-103"></a>  <span class="co">// Loop over shapes</span></span>
+<span id="cb314-104"><a href="viewer2.html#cb314-104"></a>  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span>&amp; shape : shapes) {</span>
+<span id="cb314-105"><a href="viewer2.html#cb314-105"></a>    <span class="co">// Loop over indices</span></span>
+<span id="cb314-106"><a href="viewer2.html#cb314-106"></a>    <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> offset : iter::range(shape.mesh.indices.size())) {</span>
+<span id="cb314-107"><a href="viewer2.html#cb314-107"></a>      <span class="co">// Access to vertex</span></span>
+<span id="cb314-108"><a href="viewer2.html#cb314-108"></a>      <span class="at">const</span> tinyobj::<span class="dt">index_t</span> index{shape.mesh.indices.at(offset)};</span>
+<span id="cb314-109"><a href="viewer2.html#cb314-109"></a></span>
+<span id="cb314-110"><a href="viewer2.html#cb314-110"></a>      <span class="co">// Vertex position</span></span>
+<span id="cb314-111"><a href="viewer2.html#cb314-111"></a>      <span class="at">const</span> <span class="dt">int</span> startIndex{<span class="dv">3</span> * index.vertex_index};</span>
+<span id="cb314-112"><a href="viewer2.html#cb314-112"></a>      <span class="at">const</span> <span class="dt">float</span> vx{attrib.vertices.at(startIndex + <span class="dv">0</span>)};</span>
+<span id="cb314-113"><a href="viewer2.html#cb314-113"></a>      <span class="at">const</span> <span class="dt">float</span> vy{attrib.vertices.at(startIndex + <span class="dv">1</span>)};</span>
+<span id="cb314-114"><a href="viewer2.html#cb314-114"></a>      <span class="at">const</span> <span class="dt">float</span> vz{attrib.vertices.at(startIndex + <span class="dv">2</span>)};</span>
+<span id="cb314-115"><a href="viewer2.html#cb314-115"></a></span>
+<span id="cb314-116"><a href="viewer2.html#cb314-116"></a>      <span class="co">// Vertex normal</span></span>
+<span id="cb314-117"><a href="viewer2.html#cb314-117"></a>      <span class="dt">float</span> nx{};</span>
+<span id="cb314-118"><a href="viewer2.html#cb314-118"></a>      <span class="dt">float</span> ny{};</span>
+<span id="cb314-119"><a href="viewer2.html#cb314-119"></a>      <span class="dt">float</span> nz{};</span>
+<span id="cb314-120"><a href="viewer2.html#cb314-120"></a>      <span class="cf">if</span> (index.normal_index &gt;= <span class="dv">0</span>) {</span>
+<span id="cb314-121"><a href="viewer2.html#cb314-121"></a>        <span class="va">m_hasNormals</span> = <span class="kw">true</span>;</span>
+<span id="cb314-122"><a href="viewer2.html#cb314-122"></a>        <span class="at">const</span> <span class="dt">int</span> normalStartIndex{<span class="dv">3</span> * index.normal_index};</span>
+<span id="cb314-123"><a href="viewer2.html#cb314-123"></a>        nx = attrib.normals.at(normalStartIndex + <span class="dv">0</span>);</span>
+<span id="cb314-124"><a href="viewer2.html#cb314-124"></a>        ny = attrib.normals.at(normalStartIndex + <span class="dv">1</span>);</span>
+<span id="cb314-125"><a href="viewer2.html#cb314-125"></a>        nz = attrib.normals.at(normalStartIndex + <span class="dv">2</span>);</span>
+<span id="cb314-126"><a href="viewer2.html#cb314-126"></a>      }</span>
+<span id="cb314-127"><a href="viewer2.html#cb314-127"></a></span>
+<span id="cb314-128"><a href="viewer2.html#cb314-128"></a>      Vertex vertex{};</span>
+<span id="cb314-129"><a href="viewer2.html#cb314-129"></a>      vertex.position = {vx, vy, vz};</span>
+<span id="cb314-130"><a href="viewer2.html#cb314-130"></a>      vertex.normal = {nx, ny, nz};</span>
+<span id="cb314-131"><a href="viewer2.html#cb314-131"></a></span>
+<span id="cb314-132"><a href="viewer2.html#cb314-132"></a>      <span class="co">// If hash doesn&#39;t contain this vertex</span></span>
+<span id="cb314-133"><a href="viewer2.html#cb314-133"></a>      <span class="cf">if</span> (hash.count(vertex) == <span class="dv">0</span>) {</span>
+<span id="cb314-134"><a href="viewer2.html#cb314-134"></a>        <span class="co">// Add this index (size of m_vertices)</span></span>
+<span id="cb314-135"><a href="viewer2.html#cb314-135"></a>        hash[vertex] = <span class="va">m_vertices</span>.size();</span>
+<span id="cb314-136"><a href="viewer2.html#cb314-136"></a>        <span class="co">// Add this vertex</span></span>
+<span id="cb314-137"><a href="viewer2.html#cb314-137"></a>        <span class="va">m_vertices</span>.push_back(vertex);</span>
+<span id="cb314-138"><a href="viewer2.html#cb314-138"></a>      }</span>
+<span id="cb314-139"><a href="viewer2.html#cb314-139"></a></span>
+<span id="cb314-140"><a href="viewer2.html#cb314-140"></a>      <span class="va">m_indices</span>.push_back(hash[vertex]);</span>
+<span id="cb314-141"><a href="viewer2.html#cb314-141"></a>    }</span>
+<span id="cb314-142"><a href="viewer2.html#cb314-142"></a>  }</span>
+<span id="cb314-143"><a href="viewer2.html#cb314-143"></a></span>
+<span id="cb314-144"><a href="viewer2.html#cb314-144"></a>  <span class="cf">if</span> (standardize) {</span>
+<span id="cb314-145"><a href="viewer2.html#cb314-145"></a>    <span class="kw">this</span>-&gt;standardize();</span>
+<span id="cb314-146"><a href="viewer2.html#cb314-146"></a>  }</span>
+<span id="cb314-147"><a href="viewer2.html#cb314-147"></a></span>
+<span id="cb314-148"><a href="viewer2.html#cb314-148"></a>  <span class="cf">if</span> (!<span class="va">m_hasNormals</span>) {</span>
+<span id="cb314-149"><a href="viewer2.html#cb314-149"></a>    computeNormals();</span>
+<span id="cb314-150"><a href="viewer2.html#cb314-150"></a>  }</span>
+<span id="cb314-151"><a href="viewer2.html#cb314-151"></a></span>
+<span id="cb314-152"><a href="viewer2.html#cb314-152"></a>  createBuffers();</span>
+<span id="cb314-153"><a href="viewer2.html#cb314-153"></a>}</span></code></pre></div>
+</div>
+<div id="mapeamento-do-vbo-com-as-normais" class="section level4 unnumbered">
+<h4>Mapeamento do VBO com as normais</h4>
+<p>Uma vez que cada vértice tem agora dois atributos (posição e vetor normal), precisamos configurar como o VBO será mapeado para os atributos de entrada do vertex shader que chamaremos de <code>inPosition</code> e <code>inNormal</code>. Isso é feito em <code>Model::setupVAO</code>:</p>
+<div class="sourceCode" id="cb315" startFrom="167"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 166;"><span id="cb315-167"><a href="viewer2.html#cb315-167"></a><span class="dt">void</span> Model::setupVAO(GLuint program) {</span>
+<span id="cb315-168"><a href="viewer2.html#cb315-168"></a>  <span class="co">// Release previous VAO</span></span>
+<span id="cb315-169"><a href="viewer2.html#cb315-169"></a>  abcg::glDeleteVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_VAO</span>);</span>
+<span id="cb315-170"><a href="viewer2.html#cb315-170"></a></span>
+<span id="cb315-171"><a href="viewer2.html#cb315-171"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb315-172"><a href="viewer2.html#cb315-172"></a>  abcg::glGenVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_VAO</span>);</span>
+<span id="cb315-173"><a href="viewer2.html#cb315-173"></a>  abcg::glBindVertexArray(<span class="va">m_VAO</span>);</span>
+<span id="cb315-174"><a href="viewer2.html#cb315-174"></a></span>
+<span id="cb315-175"><a href="viewer2.html#cb315-175"></a>  <span class="co">// Bind EBO and VBO</span></span>
+<span id="cb315-176"><a href="viewer2.html#cb315-176"></a>  abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, <span class="va">m_EBO</span>);</span>
+<span id="cb315-177"><a href="viewer2.html#cb315-177"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="va">m_VBO</span>);</span>
+<span id="cb315-178"><a href="viewer2.html#cb315-178"></a></span>
+<span id="cb315-179"><a href="viewer2.html#cb315-179"></a>  <span class="co">// Bind vertex attributes</span></span>
+<span id="cb315-180"><a href="viewer2.html#cb315-180"></a>  <span class="at">const</span> GLint positionAttribute{</span>
+<span id="cb315-181"><a href="viewer2.html#cb315-181"></a>      abcg::glGetAttribLocation(program, <span class="st">&quot;inPosition&quot;</span>)};</span>
+<span id="cb315-182"><a href="viewer2.html#cb315-182"></a>  <span class="cf">if</span> (positionAttribute &gt;= <span class="dv">0</span>) {</span>
+<span id="cb315-183"><a href="viewer2.html#cb315-183"></a>    abcg::glEnableVertexAttribArray(positionAttribute);</span>
+<span id="cb315-184"><a href="viewer2.html#cb315-184"></a>    abcg::glVertexAttribPointer(positionAttribute, <span class="dv">3</span>, GL_FLOAT, GL_FALSE,</span>
+<span id="cb315-185"><a href="viewer2.html#cb315-185"></a>                                <span class="kw">sizeof</span>(Vertex), <span class="kw">nullptr</span>);</span>
+<span id="cb315-186"><a href="viewer2.html#cb315-186"></a>  }</span>
+<span id="cb315-187"><a href="viewer2.html#cb315-187"></a></span>
+<span id="cb315-188"><a href="viewer2.html#cb315-188"></a>  <span class="at">const</span> GLint normalAttribute{abcg::glGetAttribLocation(program, <span class="st">&quot;inNormal&quot;</span>)};</span>
+<span id="cb315-189"><a href="viewer2.html#cb315-189"></a>  <span class="cf">if</span> (normalAttribute &gt;= <span class="dv">0</span>) {</span>
+<span id="cb315-190"><a href="viewer2.html#cb315-190"></a>    abcg::glEnableVertexAttribArray(normalAttribute);</span>
+<span id="cb315-191"><a href="viewer2.html#cb315-191"></a>    GLsizei offset{<span class="kw">sizeof</span>(glm::vec3)};</span>
+<span id="cb315-192"><a href="viewer2.html#cb315-192"></a>    abcg::glVertexAttribPointer(normalAttribute, <span class="dv">3</span>, GL_FLOAT, GL_FALSE,</span>
+<span id="cb315-193"><a href="viewer2.html#cb315-193"></a>                                <span class="kw">sizeof</span>(Vertex),</span>
+<span id="cb315-194"><a href="viewer2.html#cb315-194"></a>                                <span class="kw">reinterpret_cast</span>&lt;<span class="dt">void</span>*&gt;(offset));</span>
+<span id="cb315-195"><a href="viewer2.html#cb315-195"></a>  }</span>
+<span id="cb315-196"><a href="viewer2.html#cb315-196"></a></span>
+<span id="cb315-197"><a href="viewer2.html#cb315-197"></a>  <span class="co">// End of binding</span></span>
+<span id="cb315-198"><a href="viewer2.html#cb315-198"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
+<span id="cb315-199"><a href="viewer2.html#cb315-199"></a>  abcg::glBindVertexArray(<span class="dv">0</span>);</span>
+<span id="cb315-200"><a href="viewer2.html#cb315-200"></a>}</span></code></pre></div>
+<p>Nosso VBO usa dados intercalados no formato</p>
+<p><span class="math display">\[\left[ [x\;\; y\;\; z]_1\;\; [n_x\;\; n_y\;\; n_z]_1\;\;
+[x\;\; y\;\; z]_2\;\; [n_x\;\; n_y\;\; n_z]_2\;\;
+\cdots\;\; [x\;\; y\;\; z]_m\;\; [n_x\;\; n_y\;\; n_z]_m \right],\]</span></p>
+<p>onde <span class="math inline">\([x\;\; y\;\; z]_i\)</span> e <span class="math inline">\([n_x\;\; n_y\;\; n_z]_i\)</span> são a posição e vetor normal do <span class="math inline">\(i\)</span>-ésimo vértice do arranjo.</p>
+<p>Logo, o mapeamento para <code>inNormal</code> precisa usar um deslocamento (offset) de <code>sizeof(glm::vec3)</code>, que é o que fazemos nas linhas 191 a 194.</p>
+</div>
+</div>
+<div id="openglwindow.hpp-9" class="section level3 unnumbered">
+<h3>openglwindow.hpp</h3>
+<p>Na versão anterior deste visualizador (projeto <code>viewer1</code>) só era possível usar um único programa de shader, identificado por <code>m_program</code>. Em particular, esse programa de shader correspondia ao par de shaders <code>depth.vert</code> e <code>depth.frag</code>. Nesta aplicação, o usuário poderá escolher entre dois programas de shaders. Para permitir isso, a variável <code>m_program</code> definida na classe <code>OpenGLWindow</code> será substituída por um conjunto de variáveis:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb316-1"><a href="viewer2.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector&lt;<span class="at">const</span> <span class="dt">char</span>*&gt; <span class="va">m_shaderNames</span>{<span class="st">&quot;normal&quot;</span>, <span class="st">&quot;depth&quot;</span>};</span>
+<span id="cb316-2"><a href="viewer2.html#cb316-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector&lt;GLuint&gt; <span class="va">m_programs</span>;</span>
+<span id="cb316-3"><a href="viewer2.html#cb316-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="va">m_currentProgramIndex</span>{-<span class="dv">1</span>};</span></code></pre></div>
+<p>onde</p>
+<ul>
+<li><p><code>m_shaderNames</code> é um arranjo de nomes dos pares de shaders contidos no subdiretório <code>assets</code>. Neste projeto usaremos os shaders <code>normal</code> e <code>depth</code>. Vamos supor que cada nome corresponde a dois arquivos, um com extensão <code>.vert</code> (vertex shader) e outro com extensão <code>.frag</code> (fragment shader).</p></li>
+<li><p><code>m_programs</code> é um arranjo de identificadores dos programas de shader compilados, um para cada elemento de <code>m_shaderNames</code>;</p></li>
+<li><p><code>m_currentProgramIndex</code> é um índice para <code>m_programs</code> que indica qual é o programa atualmente selecionado pelo usuário.</p>
+<p>Sempre que um novo programa for selecionado usando a caixa de combinação da ImGui, <code>Model::SetupVAO</code> será chamada para o novo programa, pois o VAO é modificado de acordo com os shaders.</p>
+<p>Por padrão, o valor de <code>m_currentProgramIndex</code> é <code>-1</code>. Na primeira chamada a <code>OpenGLWindow::paintUI</code>, esse valor é modificado para <code>0</code>, que é o índice padrão da caixa de combinação de seleção de shaders. Como isso equivale a uma mudança de programa, a função <code>Model::SetupVAO</code> é chamada (poderíamos chamar <code>Model::SetupVAO</code> em <code>OpenGLWindow::initializeGL</code>, mas assim evitamos duplicação de código).</p></li>
+</ul>
+</div>
+<div id="openglwindow.cpp-9" class="section level3 unnumbered">
+<h3>openglwindow.cpp</h3>
+<p>No início do arquivo precisamos incluir alguns cabeçalhos a mais:</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb317-1"><a href="viewer2.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;glm/gtc/matrix_inverse.hpp&gt;</span></span>
+<span id="cb317-2"><a href="viewer2.html#cb317-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;imfilebrowser.h&quot;</span></span></code></pre></div>
+<div id="initializegl" class="section level4 unnumbered">
+<h4>initializeGL</h4>
+<p>Em <code>OpenGLWindow::initializeGL</code>, compilamos e ligamos todos os shaders mencionados em <code>m_shaderNames</code>, supondo que o arquivo <code>.vert</code> tem o mesmo nome do arquivo <code>.frag</code>:</p>
+<div class="sourceCode" id="cb318" startFrom="32"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 31;"><span id="cb318-32"><a href="viewer2.html#cb318-32"></a><span class="dt">void</span> OpenGLWindow::initializeGL() {</span>
+<span id="cb318-33"><a href="viewer2.html#cb318-33"></a>  abcg::glClearColor(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>);</span>
+<span id="cb318-34"><a href="viewer2.html#cb318-34"></a>  abcg::glEnable(GL_DEPTH_TEST);</span>
+<span id="cb318-35"><a href="viewer2.html#cb318-35"></a></span>
+<span id="cb318-36"><a href="viewer2.html#cb318-36"></a>  <span class="co">// Create programs</span></span>
+<span id="cb318-37"><a href="viewer2.html#cb318-37"></a>  <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span>&amp; name : <span class="va">m_shaderNames</span>) {</span>
+<span id="cb318-38"><a href="viewer2.html#cb318-38"></a>    <span class="at">const</span> <span class="kw">auto</span> program{createProgramFromFile(getAssetsPath() + name + <span class="st">&quot;.vert&quot;</span>,</span>
+<span id="cb318-39"><a href="viewer2.html#cb318-39"></a>                                             getAssetsPath() + name + <span class="st">&quot;.frag&quot;</span>)};</span>
+<span id="cb318-40"><a href="viewer2.html#cb318-40"></a>    <span class="va">m_programs</span>.push_back(program);</span>
+<span id="cb318-41"><a href="viewer2.html#cb318-41"></a>  }</span>
+<span id="cb318-42"><a href="viewer2.html#cb318-42"></a></span>
+<span id="cb318-43"><a href="viewer2.html#cb318-43"></a>  <span class="co">// Load model</span></span>
+<span id="cb318-44"><a href="viewer2.html#cb318-44"></a>  <span class="va">m_model</span>.loadObj(getAssetsPath() + <span class="st">&quot;bunny.obj&quot;</span>);</span>
+<span id="cb318-45"><a href="viewer2.html#cb318-45"></a>  <span class="va">m_trianglesToDraw</span> = <span class="va">m_model</span>.getNumTriangles();</span>
+<span id="cb318-46"><a href="viewer2.html#cb318-46"></a>}</span></code></pre></div>
+<p>Observe que continuamos carregando <code>bunny.obj</code> como modelo 3D inicial. A função <code>Model::loadObj</code> será chamada novamente sempre que o usuário selecionar um novo arquivo usando o botão “Load 3D Model” que definiremos mais adiante em <code>OpenGLWindow::paintUI</code>.</p>
+</div>
+<div id="paintgl" class="section level4 unnumbered">
+<h4>paintGL</h4>
+<p>A definição de <code>OpenGLWindow::paintGL</code> ficará assim:</p>
+<div class="sourceCode" id="cb319" startFrom="48"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 47;"><span id="cb319-48"><a href="viewer2.html#cb319-48"></a><span class="dt">void</span> OpenGLWindow::paintGL() {</span>
+<span id="cb319-49"><a href="viewer2.html#cb319-49"></a>  update();</span>
+<span id="cb319-50"><a href="viewer2.html#cb319-50"></a></span>
+<span id="cb319-51"><a href="viewer2.html#cb319-51"></a>  abcg::glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span>
+<span id="cb319-52"><a href="viewer2.html#cb319-52"></a>  abcg::glViewport(<span class="dv">0</span>, <span class="dv">0</span>, <span class="va">m_viewportWidth</span>, <span class="va">m_viewportHeight</span>);</span>
+<span id="cb319-53"><a href="viewer2.html#cb319-53"></a></span>
+<span id="cb319-54"><a href="viewer2.html#cb319-54"></a>  <span class="co">// Use currently selected program</span></span>
+<span id="cb319-55"><a href="viewer2.html#cb319-55"></a>  <span class="at">const</span> <span class="kw">auto</span> program{<span class="va">m_programs</span>.at(<span class="va">m_currentProgramIndex</span>)};</span>
+<span id="cb319-56"><a href="viewer2.html#cb319-56"></a>  abcg::glUseProgram(program);</span>
+<span id="cb319-57"><a href="viewer2.html#cb319-57"></a></span>
+<span id="cb319-58"><a href="viewer2.html#cb319-58"></a>  <span class="co">// Get location of uniform variables</span></span>
+<span id="cb319-59"><a href="viewer2.html#cb319-59"></a>  <span class="at">const</span> GLint viewMatrixLoc{abcg::glGetUniformLocation(program, <span class="st">&quot;viewMatrix&quot;</span>)};</span>
+<span id="cb319-60"><a href="viewer2.html#cb319-60"></a>  <span class="at">const</span> GLint projMatrixLoc{abcg::glGetUniformLocation(program, <span class="st">&quot;projMatrix&quot;</span>)};</span>
+<span id="cb319-61"><a href="viewer2.html#cb319-61"></a>  <span class="at">const</span> GLint modelMatrixLoc{</span>
+<span id="cb319-62"><a href="viewer2.html#cb319-62"></a>      abcg::glGetUniformLocation(program, <span class="st">&quot;modelMatrix&quot;</span>)};</span>
+<span id="cb319-63"><a href="viewer2.html#cb319-63"></a>  <span class="at">const</span> GLint normalMatrixLoc{</span>
+<span id="cb319-64"><a href="viewer2.html#cb319-64"></a>      abcg::glGetUniformLocation(program, <span class="st">&quot;normalMatrix&quot;</span>)};</span>
+<span id="cb319-65"><a href="viewer2.html#cb319-65"></a></span>
+<span id="cb319-66"><a href="viewer2.html#cb319-66"></a>  <span class="co">// Set uniform variables used by every scene object</span></span>
+<span id="cb319-67"><a href="viewer2.html#cb319-67"></a>  abcg::glUniformMatrix4fv(viewMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_viewMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb319-68"><a href="viewer2.html#cb319-68"></a>  abcg::glUniformMatrix4fv(projMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_projMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb319-69"><a href="viewer2.html#cb319-69"></a></span>
+<span id="cb319-70"><a href="viewer2.html#cb319-70"></a>  <span class="co">// Set uniform variables of the current object</span></span>
+<span id="cb319-71"><a href="viewer2.html#cb319-71"></a>  abcg::glUniformMatrix4fv(modelMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_modelMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb319-72"><a href="viewer2.html#cb319-72"></a></span>
+<span id="cb319-73"><a href="viewer2.html#cb319-73"></a>  <span class="at">const</span> <span class="kw">auto</span> modelViewMatrix{glm::mat3(<span class="va">m_viewMatrix</span> * <span class="va">m_modelMatrix</span>)};</span>
+<span id="cb319-74"><a href="viewer2.html#cb319-74"></a>  <span class="at">const</span> glm::mat3 normalMatrix{glm::inverseTranspose(modelViewMatrix)};</span>
+<span id="cb319-75"><a href="viewer2.html#cb319-75"></a>  abcg::glUniformMatrix3fv(normalMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;normalMatrix[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb319-76"><a href="viewer2.html#cb319-76"></a></span>
+<span id="cb319-77"><a href="viewer2.html#cb319-77"></a>  <span class="va">m_model</span>.render(<span class="va">m_trianglesToDraw</span>);</span>
+<span id="cb319-78"><a href="viewer2.html#cb319-78"></a></span>
+<span id="cb319-79"><a href="viewer2.html#cb319-79"></a>  abcg::glUseProgram(<span class="dv">0</span>);</span>
+<span id="cb319-80"><a href="viewer2.html#cb319-80"></a>}</span></code></pre></div>
+<p>Observe que, além de enviar para o shader as matrizes <span class="math inline">\(4 \times 4\)</span> de visão (<code>viewMatrix</code>), projeção (<code>projMatrix</code>) e modelo (<code>modelMatrix</code>), também enviamos uma matriz <span class="math inline">\(3 \times 3\)</span> chamada de <code>normalMatrix</code>.</p>
+<p>Nas linhas 73 a 75, a matriz <code>normalMatrix</code> é calculada como a transposta da inversa de <span class="math inline">\(M_{\textrm{view}}M_{\textrm{model}}\)</span>, isto é:</p>
+<p><span class="math display">\[
+M_{\textrm{normal}}=\left((M_{\textrm{view}}M_{\textrm{model}})^{-1}\right)^{T}.
+\]</span></p>
+<p><span class="math inline">\(M_{\textrm{normal}}\)</span> é a matriz que transforma um vetor normal do espaço do mundo para um vetor normal do espaço da câmera. Existe um motivo especial para usar essa matriz no lugar de <span class="math inline">\(M_{\textrm{view}}M_{\textrm{model}}\)</span> para transformar vetores normais. Isso será explicado logo mais no final desta seção.</p>
+</div>
+<div id="paintui" class="section level4 unnumbered">
+<h4>paintUI</h4>
+<p>No início de <code>OpenGLWindow::paintUI</code>, inicializamos o objeto que define a caixa de diálogo do elemento de interface “imgui-filebrowser”:</p>
+<div class="sourceCode" id="cb320" startFrom="85"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 84;"><span id="cb320-85"><a href="viewer2.html#cb320-85"></a>  <span class="at">static</span> ImGui::FileBrowser fileDialog;</span>
+<span id="cb320-86"><a href="viewer2.html#cb320-86"></a>  fileDialog.SetTitle(<span class="st">&quot;Load 3D Model&quot;</span>);</span>
+<span id="cb320-87"><a href="viewer2.html#cb320-87"></a>  fileDialog.SetTypeFilters({<span class="st">&quot;.obj&quot;</span>});</span>
+<span id="cb320-88"><a href="viewer2.html#cb320-88"></a>  fileDialog.SetWindowSize(<span class="va">m_viewportWidth</span> * <span class="fl">0.8</span><span class="bu">f</span>, <span class="va">m_viewportHeight</span> * <span class="fl">0.8</span><span class="bu">f</span>);</span>
+<span id="cb320-89"><a href="viewer2.html#cb320-89"></a>  fileDialog.SetPwd(getAssetsPath());</span></code></pre></div>
+<p>Com essa configuração, o navegador de arquivos mostrará arquivos com extensão <code>.obj</code> no subdiretório <code>assets</code>, e a caixa de diálogo ocupará 80% do tamanho do viewport.</p>
+<p>A caixa de seleção de shaders é implementada com o seguinte trecho de código:</p>
+<div class="sourceCode" id="cb321" startFrom="180"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 179;"><span id="cb321-180"><a href="viewer2.html#cb321-180"></a>    <span class="co">// Shader combo box</span></span>
+<span id="cb321-181"><a href="viewer2.html#cb321-181"></a>    {</span>
+<span id="cb321-182"><a href="viewer2.html#cb321-182"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t currentIndex{};</span>
+<span id="cb321-183"><a href="viewer2.html#cb321-183"></a></span>
+<span id="cb321-184"><a href="viewer2.html#cb321-184"></a>      ImGui::PushItemWidth(<span class="dv">120</span>);</span>
+<span id="cb321-185"><a href="viewer2.html#cb321-185"></a>      <span class="cf">if</span> (ImGui::BeginCombo(<span class="st">&quot;Shader&quot;</span>, <span class="va">m_shaderNames</span>.at(currentIndex))) {</span>
+<span id="cb321-186"><a href="viewer2.html#cb321-186"></a>        <span class="cf">for</span> (<span class="at">const</span> <span class="kw">auto</span> index : iter::range(<span class="va">m_shaderNames</span>.size())) {</span>
+<span id="cb321-187"><a href="viewer2.html#cb321-187"></a>          <span class="at">const</span> <span class="dt">bool</span> isSelected{currentIndex == index};</span>
+<span id="cb321-188"><a href="viewer2.html#cb321-188"></a>          <span class="cf">if</span> (ImGui::Selectable(<span class="va">m_shaderNames</span>.at(index), isSelected))</span>
+<span id="cb321-189"><a href="viewer2.html#cb321-189"></a>            currentIndex = index;</span>
+<span id="cb321-190"><a href="viewer2.html#cb321-190"></a>          <span class="cf">if</span> (isSelected) ImGui::SetItemDefaultFocus();</span>
+<span id="cb321-191"><a href="viewer2.html#cb321-191"></a>        }</span>
+<span id="cb321-192"><a href="viewer2.html#cb321-192"></a>        ImGui::EndCombo();</span>
+<span id="cb321-193"><a href="viewer2.html#cb321-193"></a>      }</span>
+<span id="cb321-194"><a href="viewer2.html#cb321-194"></a>      ImGui::PopItemWidth();</span>
+<span id="cb321-195"><a href="viewer2.html#cb321-195"></a></span>
+<span id="cb321-196"><a href="viewer2.html#cb321-196"></a>      <span class="co">// Set up VAO if shader program has changed</span></span>
+<span id="cb321-197"><a href="viewer2.html#cb321-197"></a>      <span class="cf">if</span> (<span class="kw">static_cast</span>&lt;<span class="dt">int</span>&gt;(currentIndex) != <span class="va">m_currentProgramIndex</span>) {</span>
+<span id="cb321-198"><a href="viewer2.html#cb321-198"></a>        <span class="va">m_currentProgramIndex</span> = <span class="kw">static_cast</span>&lt;<span class="dt">int</span>&gt;(currentIndex);</span>
+<span id="cb321-199"><a href="viewer2.html#cb321-199"></a>        <span class="va">m_model</span>.setupVAO(<span class="va">m_programs</span>.at(<span class="va">m_currentProgramIndex</span>));</span>
+<span id="cb321-200"><a href="viewer2.html#cb321-200"></a>      }</span>
+<span id="cb321-201"><a href="viewer2.html#cb321-201"></a>    }</span></code></pre></div>
+<p>Veja que usamos os nomes de <code>m_shaderNames</code> como elementos da caixa de combinação. Observe também que a função <code>Model::setupVAO</code> é chamada sempre que um novo shader é selecionado (linhas 196 a 200).</p>
+<p>O botão “Load 3D Model” é criado com o código a seguir:</p>
+<div class="sourceCode" id="cb322" startFrom="203"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 202;"><span id="cb322-203"><a href="viewer2.html#cb322-203"></a>    <span class="cf">if</span> (ImGui::Button(<span class="st">&quot;Load 3D Model...&quot;</span>, ImVec2(-<span class="dv">1</span>, -<span class="dv">1</span>))) {</span>
+<span id="cb322-204"><a href="viewer2.html#cb322-204"></a>      fileDialog.Open();</span>
+<span id="cb322-205"><a href="viewer2.html#cb322-205"></a>    }</span></code></pre></div>
+<p>Quando o botão é pressionado, chamamos <code>fileDialog.Open</code> para abrir a caixa de diálogo de seleção de arquivos OBJ.</p>
+<p>No fim de <code>OpenGLWindow::paintUI</code>, colocamos o código responsável pela renderização da caixa de diálogo e pela leitura do novo modelo 3D.</p>
+<div class="sourceCode" id="cb323" startFrom="210"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 209;"><span id="cb323-210"><a href="viewer2.html#cb323-210"></a>  fileDialog.Display();</span>
+<span id="cb323-211"><a href="viewer2.html#cb323-211"></a></span>
+<span id="cb323-212"><a href="viewer2.html#cb323-212"></a>  <span class="cf">if</span> (fileDialog.HasSelected()) {</span>
+<span id="cb323-213"><a href="viewer2.html#cb323-213"></a>    <span class="co">// Load model</span></span>
+<span id="cb323-214"><a href="viewer2.html#cb323-214"></a>    <span class="va">m_model</span>.loadObj(fileDialog.GetSelected().string());</span>
+<span id="cb323-215"><a href="viewer2.html#cb323-215"></a>    <span class="va">m_model</span>.setupVAO(<span class="va">m_programs</span>.at(<span class="va">m_currentProgramIndex</span>));</span>
+<span id="cb323-216"><a href="viewer2.html#cb323-216"></a>    <span class="va">m_trianglesToDraw</span> = <span class="va">m_model</span>.getNumTriangles();</span>
+<span id="cb323-217"><a href="viewer2.html#cb323-217"></a>    fileDialog.ClearSelected();</span>
+<span id="cb323-218"><a href="viewer2.html#cb323-218"></a>  }</span></code></pre></div>
+<p>Se algum arquivo foi selecionado na caixa de diálogo (linha 212), chamamos <code>Model::loadObj</code> para carregar o arquivo, e então <code>Model::setupVAO</code> para configurar o VAO. Por fim, atualizamos a variável <code>m_trianglesToDraw</code>, utilizada para controlar o número de triângulos processados por <code>glDrawElements</code>.</p>
+<p>Isso é tudo em relação às mudanças do código em C++. Vamos agora à definição dos shaders <code>normal.vert</code> e <code>normal.frag</code> usando GLSL.</p>
+</div>
+</div>
+<div id="normal.frag" class="section level3 unnumbered">
+<h3>normal.frag</h3>
+<p>Vamos começar pelo conteúdo de <code>normal.frag</code>, que é bem simples:</p>
+<div class="sourceCode" id="cb324" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb324-1"><a href="viewer2.html#cb324-1"></a><span class="pp">#version 410</span></span>
+<span id="cb324-2"><a href="viewer2.html#cb324-2"></a></span>
+<span id="cb324-3"><a href="viewer2.html#cb324-3"></a><span class="dt">in</span> <span class="dt">vec4</span> fragColor;</span>
+<span id="cb324-4"><a href="viewer2.html#cb324-4"></a><span class="dt">out</span> <span class="dt">vec4</span> outColor;</span>
+<span id="cb324-5"><a href="viewer2.html#cb324-5"></a></span>
+<span id="cb324-6"><a href="viewer2.html#cb324-6"></a><span class="dt">void</span> <span class="fu">main</span>() { outColor = fragColor; }</span></code></pre></div>
+<p>A cor de entrada é simplesmente copiada para a cor de saída, como já fizemos em vários outros projetos. Assim, se cada vértice do triângulo tiver uma cor diferente, <code>fragColor</code> será uma cor interpolada linearmente a partir dos vértices. O resultado será um gradiente de cor.</p>
+</div>
+<div id="normal.vert" class="section level3 unnumbered">
+<h3>normal.vert</h3>
+<p>Este shader converte as coordenadas do vetor normal de vértice em uma cor RGB.</p>
+<p>Em muitos casos, é mais fácil visualizar a direção de vetores normais através de cores do que através do desenho de setas que saem dos vértices. Se o modelo tiver muitos vértices, as setas cobrirão todo o objeto e não conseguiremos distinguir um vetor de outro. Isso é ainda mais importante se quisermos observar os vetores normais calculados para cada fragmento.</p>
+<p>As coordenadas <span class="math inline">\((x, y, z)\)</span> de um vetor unitário estão no intervalo <span class="math inline">\([-1,1]\)</span>. Uma cor RGB tem componentes <span class="math inline">\((r, g, b)\)</span> no intervalo <span class="math inline">\([0,1]\)</span>. Logo, a conversão das coordenadas em cores é um simples mapeamento linear de <span class="math inline">\([-1,1]\)</span> para <span class="math inline">\([0,1]\)</span>:</p>
+<p><span class="math display">\[
+r = \frac{x+1}{2}, \qquad g = \frac{y+1}{2}, \qquad b = \frac{z+1}{2}.
+\]</span></p>
+<p>Assim, se o vetor normal tiver coordenadas <span class="math inline">\((1,0,0)\)</span> (direção do eixo <span class="math inline">\(x\)</span> positivo), o resultado será um tom próximo ao vermelho <span class="math inline">\((1, 0.5, 0.5)\)</span>. Se o vetor normal tiver coordenadas <span class="math inline">\((0,1,0)\)</span> (direção de <span class="math inline">\(y\)</span> positivo), o resultado será um tom próximo ao verde <span class="math inline">\((0.5, 1, 0.5)\)</span>. Se tiver coordenadas <span class="math inline">\((0,0,1)\)</span> (direção de <span class="math inline">\(z\)</span> positivo), terá um tom próximo ao azul <span class="math inline">\((0.5, 0.5, 1)\)</span>. Essa convenção de cores é a mesma que temos utilizado nas ilustrações dos eixos principais em todas as figuras. A figura <a href="viewer2.html#fig:normalcolors">9.20</a> mostra as cores correspondentes para as direções <span class="math inline">\(\pm x\)</span>, <span class="math inline">\(\pm y\)</span> e <span class="math inline">\(\pm z\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalcolors"></span>
+<img src="images/09_normalcolors.svg" alt="Cores correspondentes para as direções positivas e negativas dos eixos principais." width="65%" />
+<p class="caption">
+Figura 9.20: Cores correspondentes para as direções positivas e negativas dos eixos principais.
+</p>
+</div>
+<p>O código ficará como a seguir:</p>
+<div class="sourceCode" id="cb325" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb325-1"><a href="viewer2.html#cb325-1"></a><span class="pp">#version 410</span></span>
+<span id="cb325-2"><a href="viewer2.html#cb325-2"></a></span>
+<span id="cb325-3"><a href="viewer2.html#cb325-3"></a><span class="kw">layout</span>(<span class="dt">location</span> = <span class="dv">0</span>) <span class="dt">in</span> <span class="dt">vec3</span> inPosition;</span>
+<span id="cb325-4"><a href="viewer2.html#cb325-4"></a><span class="kw">layout</span>(<span class="dt">location</span> = <span class="dv">1</span>) <span class="dt">in</span> <span class="dt">vec3</span> inNormal;</span>
+<span id="cb325-5"><a href="viewer2.html#cb325-5"></a></span>
+<span id="cb325-6"><a href="viewer2.html#cb325-6"></a><span class="kw">uniform</span> <span class="dt">mat4</span> modelMatrix;</span>
+<span id="cb325-7"><a href="viewer2.html#cb325-7"></a><span class="kw">uniform</span> <span class="dt">mat4</span> viewMatrix;</span>
+<span id="cb325-8"><a href="viewer2.html#cb325-8"></a><span class="kw">uniform</span> <span class="dt">mat4</span> projMatrix;</span>
+<span id="cb325-9"><a href="viewer2.html#cb325-9"></a><span class="kw">uniform</span> <span class="dt">mat3</span> normalMatrix;</span>
+<span id="cb325-10"><a href="viewer2.html#cb325-10"></a></span>
+<span id="cb325-11"><a href="viewer2.html#cb325-11"></a><span class="dt">out</span> <span class="dt">vec4</span> fragColor;</span>
+<span id="cb325-12"><a href="viewer2.html#cb325-12"></a></span>
+<span id="cb325-13"><a href="viewer2.html#cb325-13"></a><span class="dt">void</span> <span class="fu">main</span>() {</span>
+<span id="cb325-14"><a href="viewer2.html#cb325-14"></a>  <span class="dt">mat4</span> MVP = projMatrix * viewMatrix * modelMatrix;</span>
+<span id="cb325-15"><a href="viewer2.html#cb325-15"></a></span>
+<span id="cb325-16"><a href="viewer2.html#cb325-16"></a>  <span class="bu">gl_Position</span> = MVP * <span class="dt">vec4</span>(inPosition, <span class="fl">1.0</span>);</span>
+<span id="cb325-17"><a href="viewer2.html#cb325-17"></a></span>
+<span id="cb325-18"><a href="viewer2.html#cb325-18"></a>  <span class="dt">vec3</span> N = inNormal;  <span class="co">// Object space</span></span>
+<span id="cb325-19"><a href="viewer2.html#cb325-19"></a>  <span class="co">// vec3 N = normalMatrix * inNormal; // Eye space</span></span>
+<span id="cb325-20"><a href="viewer2.html#cb325-20"></a></span>
+<span id="cb325-21"><a href="viewer2.html#cb325-21"></a>  <span class="co">// Convert from [-1,1] to [0,1]</span></span>
+<span id="cb325-22"><a href="viewer2.html#cb325-22"></a>  fragColor = <span class="dt">vec4</span>((N + <span class="fl">1.0</span>) / <span class="fl">2.0</span>, <span class="fl">1.0</span>);</span>
+<span id="cb325-23"><a href="viewer2.html#cb325-23"></a>}</span></code></pre></div>
+<p>Temos dois atributos de entrada: <code>inPosition</code> (linha 3) e <code>inNormal</code> (linha 4), que correspondem à posição do vértice e seu vetor normal unitário. Vamos supor que <strong>ambos estão no espaço do objeto</strong>.</p>
+<p>Temos apenas um atributo de saída (linha 11), que é a cor que iremos calcular com base no vetor normal.</p>
+<p>Na linha 14, criamos uma matriz <code>MVP</code> que é a composição das matrizes de modelo, visão e projeção.</p>
+<p>Na linha 16, multiplicamos <code>MVP</code> pela posição do vértice, de modo a converter a posição em coordenadas do espaço do objeto para coordenadas do espaço de recorte. O resultado é atribuído a <code>gl_Position</code>.</p>
+<p>Na linha 18, criamos um vetor <code>N</code> que é uma cópia de <code>inNormal</code>.</p>
+<p>A conversão de XYZ para RGBA é feita na linha 22 (a componente A é sempre 1).</p>
+<div class="tipbox">
+<svg aria-hidden="true" role="img" viewBox="0 0 352 512" style="height:1.4em;width:0.96em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#7e4d1d;overflow:visible;position:relative;"><path d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
+<div class="tipboxtitle">
+Dica
+</div>
+<p>Da forma como está, <code>fragColor</code> é a cor que representa um vetor normal unitário no espaço do objeto.</p>
+<p>Experimente comentar a linha 18 e, no lugar, usar o código que está comentado na linha 19. Isso fará com que <code>fragColor</code> represente um vetor normal unitário no espaço da câmera.</p>
+<p>Tente identificar visualmente a diferença entre vetores normais no espaço do objeto e no espaço da câmera. Há alguma cor que aparece para <code>N</code> em um espaço e não aparece para <code>N</code> em outro espaço? Por quê?</p>
+</div>
+<div id="convertendo-normais-para-o-espaço-da-câmera" class="section level4 unnumbered">
+<h4>Convertendo normais para o espaço da câmera</h4>
+<p>Se usarmos a linha 19 no lugar da linha 18, <code>N</code> será transformado por <code>normalMatrix</code> para converter o vetor normal do espaço do objeto para o espaço da câmera. Em muitos casos, isso é o mesmo que fazer</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb326-1"><a href="viewer2.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="dt">vec4</span> N = viewMatrix * modelMatrix * <span class="dt">vec4</span>(inNormal, <span class="dv">0</span>);</span></code></pre></div>
+<p>O problema é que transformar um vetor normal pela matriz de modelo e visão nem sempre resulta em um vetor normal à superfície. Esse é o caso quando a matriz de modelo (ou de visão) contém uma escala não uniforme. Veja, na figura <a href="viewer2.html#fig:normaltransform">9.21</a>, como uma escala não uniforme faz com que a maioria dos vetores normais não sejam mais perpendiculares às faces (que nesse caso são lados) do objeto.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normaltransform"></span>
+<img src="images/09_normaltransform.svg" alt="A escala não uniforme pode alterar o ângulo entre o vetor normal e um vetor tangente à superfície." width="100%" />
+<p class="caption">
+Figura 9.21: A escala não uniforme pode alterar o ângulo entre o vetor normal e um vetor tangente à superfície.
+</p>
+</div>
+<p>Suponha que os vetores <span class="math inline">\(\mathbf{n}\)</span> e <span class="math inline">\(\mathbf{t}\)</span> da figura <a href="viewer2.html#fig:normaltransform">9.21</a> sejam matrizes coluna</p>
+<p><span class="math display">\[\mathbf{n}=\begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix},\qquad
+\mathbf{t}=\begin{bmatrix}t_x\\t_y\\t_z\end{bmatrix}.\]</span></p>
+<p>Os vetores são perpendiculares. Logo,</p>
+<p><span class="math display">\[\mathbf{n} \cdot \mathbf{t} = 0.\]</span></p>
+<p>Também podemos escrever na notação de multiplicação entre matrizes:</p>
+<p><span class="math display">\[
+\mathbf{n}^T\mathbf{t} = 0.
+\]</span></p>
+<p>Seja <span class="math inline">\(\mathbf{M}\)</span> a matriz modelo-visão:</p>
+<p><span class="math display">\[
+\mathbf{M}=\mathbf{M}_{\textrm{view}}\mathbf{M}_{\textrm{model}}.
+\]</span>
+Já sabemos que nem sempre <span class="math inline">\(\mathbf{M}\mathbf{n} \cdot \mathbf{M}\mathbf{t}=0\)</span>. Acabamos de ver um contraexemplo na figura <a href="viewer2.html#fig:normaltransform">9.21</a>. Entretanto, suponha que existe uma matriz <span class="math inline">\(\mathbf{W}\)</span> tal que</p>
+<p><span class="math display">\[(\mathbf{W}\mathbf{n}) \cdot (\mathbf{M}\mathbf{t}) = 0.\]</span>
+Podemos reescrever a expressão como</p>
+<p><span class="math display">\[
+\begin{align}
+(\mathbf{W}\mathbf{n})^T(\mathbf{M}\mathbf{t}) = 0,\\
+(\mathbf{n}^T\mathbf{W}^T)(\mathbf{M}\mathbf{t}) = 0,\\
+\mathbf{n}^T(\mathbf{W}^T\mathbf{M})\mathbf{t} = 0.\\
+\end{align}
+\]</span>
+Nesta última expressão, observe que, se o termo entre parênteses resultar em uma matriz identidade, isto é, se</p>
+<p><span class="math display">\[(\mathbf{W}^T\mathbf{M})=\mathbf{I},\]</span></p>
+<p>então</p>
+<p><span class="math display">\[\mathbf{n}^T\mathbf{t} = 0,\]</span></p>
+<p>que é o que declaramos no início (os vetores são perpendiculares). Podemos isolar <span class="math inline">\(\mathbf{W}\)</span> para obter a forma final da matriz que devemos usar para transformar o vetor normal:</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{W}^T\mathbf{M}&amp;=\mathbf{I},\\
+\mathbf{W}^T&amp;=\mathbf{M}^{-1},\\
+\mathbf{W}&amp;=(\mathbf{M}^{-1})^T.\\
+\end{align}
+\]</span>
+Isso mostra que a matriz que devemos utilizar para converter um vetor normal do espaço do objeto para o espaço da câmera é a transposta da inversa da matriz modelo-visão:</p>
+<p><span class="math display">\[
+\mathbf{M}_{\textrm{normal}}=(\mathbf{M_{\textrm{modelview}}}^{-1})^T.
+\]</span></p>
+<p>Baixe o código completo do projeto usando <a href="https://hbatagelo.github.io/abcgapps/src/viewer2.zip">este link</a>.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="shading.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="viewer3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
