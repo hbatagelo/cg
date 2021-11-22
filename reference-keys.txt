@@ -193,6 +193,13 @@ fig:texturing5
 fig:texturing1
 fig:texturing2
 fig:texturing18
+fig:normalmap1
+fig:normalmap5
+fig:normalmap3
+fig:normalmap6
+fig:normalmap8
+fig:normalmap4
+fig:normalmap7
 config
 linux
 macos
@@ -247,3 +254,4 @@ texmapping
 texwrapping
 texfiltering
 viewer4
+normalmapping

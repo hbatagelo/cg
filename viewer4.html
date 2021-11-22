@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="texfiltering.html"/>
-<link rel="next" href="referências.html"/>
+<link rel="next" href="normalmapping.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -450,6 +450,13 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
 </ul></li>
+<li class="chapter" data-level="10.5" data-path="normalmapping.html"><a href="normalmapping.html"><i class="fa fa-check"></i><b>10.5</b> Mapeamento de normais</a>
+<ul>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#espaço-tangente"><i class="fa fa-check"></i>Espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#transformação-para-o-espaço-tangente"><i class="fa fa-check"></i>Transformação para o espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
@@ -538,7 +545,7 @@ div.csl-indent {
 <p>Entre outras coisas, o arquivo especifica o parâmetro de brilho especular (<code>Ns</code>) do material e as propriedades de reflexão ambiente (<code>Ka</code>), difusa (<code>Kd</code>) e especular (<code>Ks</code>). Além disso, o arquivo contém o nome do mapa de textura que deve ser utilizado para modificar a reflexão ambiente (<code>map_Ka</code>) e reflexão difusa (<code>map_Kd</code>). Há outras propriedades, mas elas não serão utilizadas no momento.</p>
 <p>Nossa implementação de <code>Model::loadObj</code>, que utiliza funções da <a href="https://github.com/tinyobjloader/tinyobjloader"><code>TinyObjLoader</code></a>, carrega automaticamente a textura difusa, se houver. A definição completa dessa versão atualizada de <code>Model::loadObj</code> é mostrada seguir (arquivo <code>model.cpp</code>).</p>
 <div class="sourceCode" id="cb361" startFrom="84"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 83;"><span id="cb361-84"><a href="viewer4.html#cb361-84"></a><span class="dt">void</span> Model::loadObj(<span class="bu">std::</span>string_view path, <span class="dt">bool</span> standardize) {</span>
-<span id="cb361-85"><a href="viewer4.html#cb361-85"></a>  <span class="kw">auto</span> basePath{<span class="bu">std::</span>filesystem<span class="bu">::</span>path{path}.parent_path().string() + <span class="st">&quot;/&quot;</span>};</span>
+<span id="cb361-85"><a href="viewer4.html#cb361-85"></a>  <span class="at">const</span> <span class="kw">auto</span> basePath{<span class="bu">std::</span>filesystem<span class="bu">::</span>path{path}.parent_path().string() + <span class="st">&quot;/&quot;</span>};</span>
 <span id="cb361-86"><a href="viewer4.html#cb361-86"></a></span>
 <span id="cb361-87"><a href="viewer4.html#cb361-87"></a>  tinyobj::ObjReaderConfig readerConfig;</span>
 <span id="cb361-88"><a href="viewer4.html#cb361-88"></a>  readerConfig.mtl_search_path = basePath;  <span class="co">// Path to material files</span></span>
@@ -1065,11 +1072,9 @@ Observação
 </div>
 <p>Se <code>mappingMode</code> é <code>3</code>, então nenhuma função de mapeamento é chamada e as coordenadas de textura utilizadas em <code>BlinnPhong</code> são aquelas contidas em <code>fragTexCoord</code>, pois essas são as coordenadas de textura interpoladas a partir das coordenadas definidas nos vértices.</p>
 <p>Isso resume as modificações necessárias para habilitar a texturização. O restante do código contém modificações complementares relacionadas a conceitos que já foram abordados em projetos anteriores, como a mudança da interface da ImGui e a determinação de um ângulo e eixo de rotação inicial para o trackball virtual.</p>
-
 </div>
 </div>
 </div>
-<!-- </div> -->
 <div class="footnotes">
 <hr />
 <ol start="31">
@@ -1082,7 +1087,7 @@ Observação
         </div>
       </div>
 <a href="texfiltering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="normalmapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

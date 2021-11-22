@@ -450,6 +450,13 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
 </ul></li>
+<li class="chapter" data-level="10.5" data-path="normalmapping.html"><a href="normalmapping.html"><i class="fa fa-check"></i><b>10.5</b> Mapeamento de normais</a>
+<ul>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#espaço-tangente"><i class="fa fa-check"></i>Espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#transformação-para-o-espaço-tangente"><i class="fa fa-check"></i>Transformação para o espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
@@ -829,7 +836,7 @@ a
 \end{align}
 \]</span></p></li>
 </ul>
-<p>A complexidade de tempo para calcular determinante por este método é <span class="math inline">\(O(n!)\)</span>. Isso só é rápido para matrizes de ordem até 5. Há soluções mais eficientes para matrizes de ordem mais elevada, como o uso de <em>decomposição LU</em> ou <em>eliminação de Gauss</em>, com complexidade <span class="math inline">\(O(n^3)\)</span>. Entretanto, como usaremos matrizes de ordem até 4, o método anterior é suficiente.</p>
+<p>A complexidade de tempo para calcular o determinante por este método é <span class="math inline">\(O(n!)\)</span>. Isso só é rápido para matrizes de ordem até 5. Há soluções mais eficientes para matrizes de ordem mais elevada, como o uso de <em>decomposição LU</em> ou <em>eliminação de Gauss</em>, com complexidade <span class="math inline">\(O(n^3)\)</span>. Entretanto, como usaremos matrizes de ordem até 4, o método anterior é suficiente.</p>
 <p>A matriz inversa de uma matriz <span class="math inline">\(\mathbf{A}\)</span> inversível pode ser calculada como</p>
 <p><span class="math display">\[
 \mathbf{A}^{-1}=\frac{1}{|\mathbf{A}|} . \textrm{adj}(\mathbf{A}),
