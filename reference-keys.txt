@@ -200,6 +200,13 @@ fig:normalmap6
 fig:normalmap8
 fig:normalmap4
 fig:normalmap7
+fig:spheremap
+fig:cubemap0
+fig:cubemap1
+fig:cubemap2
+fig:cubemap4
+tab:ior
+fig:cubemap3
 config
 linux
 macos
@@ -255,3 +262,4 @@ texwrapping
 texfiltering
 viewer4
 normalmapping
+envmapping

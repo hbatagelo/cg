@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10.6 Mapeamento de ambiente | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10.6 Mapeamento de ambiente | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10.6 Mapeamento de ambiente | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="normalmapping.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#habilitando-o-opengl"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#habilitando-o-opengl-1"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-em-linha-de-comando"><i class="fa fa-check"></i>Compilando em linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-visual-studio-code"><i class="fa fa-check"></i>Compilando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-visual-studio-code"><i class="fa fa-check"></i>Depurando no Visual Studio Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.hpp-2"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.cpp-2"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.hpp-3"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.cpp-3"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#frames"><i class="fa fa-check"></i>Frames</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-5"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.hpp-5"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.cpp-5"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação"><i class="fa fa-check"></i>Transformação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.hpp-6"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.cpp-6"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.hpp-7"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.cpp-7"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.hpp-8"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-8"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>9</b> Iluminação</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>9.1</b> Equação de renderização</a></li>
+<li class="chapter" data-level="9.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>9.2</b> Modelo de reflexão de Phong</a>
+<ul>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>9.3</b> Modelo de Blinn–Phong</a></li>
+<li class="chapter" data-level="9.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>9.4</b> Sombreamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>9.5</b> Normais como cores</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.hpp-9"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.cpp-9"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>9.6</b> Iluminação na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="texturing.html"><a href="texturing.html"><i class="fa fa-check"></i><b>10</b> Texturização</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="texmapping.html"><a href="texmapping.html"><i class="fa fa-check"></i><b>10.1</b> Mapeamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-planar"><i class="fa fa-check"></i>Mapeamento planar</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-cilíndrico"><i class="fa fa-check"></i>Mapeamento cilíndrico</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-esférico"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-uv-unwrap"><i class="fa fa-check"></i>Mapeamento UV unwrap</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="texwrapping.html"><a href="texwrapping.html"><i class="fa fa-check"></i><b>10.2</b> Empacotamento</a></li>
+<li class="chapter" data-level="10.3" data-path="texfiltering.html"><a href="texfiltering.html"><i class="fa fa-check"></i><b>10.3</b> Filtragem</a>
+<ul>
+<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#magnificação"><i class="fa fa-check"></i>Magnificação</a></li>
+<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#minificação"><i class="fa fa-check"></i>Minificação</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="viewer4.html"><a href="viewer4.html"><i class="fa fa-check"></i><b>10.4</b> Texturização na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-texturas"><i class="fa fa-check"></i>Carregando texturas</a></li>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="normalmapping.html"><a href="normalmapping.html"><i class="fa fa-check"></i><b>10.5</b> Mapeamento de normais</a>
+<ul>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#espaço-tangente"><i class="fa fa-check"></i>Espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#transformação-para-o-espaço-tangente"><i class="fa fa-check"></i>Transformação para o espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="envmapping.html"><a href="envmapping.html"><i class="fa fa-check"></i><b>10.6</b> Mapeamento de ambiente</a>
+<ul>
+<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-esférico-1"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
+<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-cúbico"><i class="fa fa-check"></i>Mapeamento cúbico</a></li>
+<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-de-ambiente-na-prática"><i class="fa fa-check"></i>Mapeamento de ambiente na prática</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="mailto:harlen.batagelo@ufabc.edu.br" target="blank">Harlen Batagelo</a>
+<a href="mailto:bruno.marques@ufabc.edu.br" target="blank">Bruno Marques</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="envmapping" class="section level2" number="10.6">
+<h2><span class="header-section-number">10.6</span> Mapeamento de ambiente</h2>
+<p>No modelo de reflexão de Phong e Blinn-Phong, a cor calculada em um ponto da superfície é determinada unicamente pela luz que incide diretamente sobre o ponto. A luz indireta (isto é, a luz refletida de outros objetos) é ignorada. Uma consequência disso é que não é possível representar superfícies que refletem o ambiente ao seu redor. Entretanto, a aparência de objetos reflexivos pode ser obtida através da técnica de mapeamento de ambiente.</p>
+<p><strong>Mapeamento de ambiente</strong> (<em>environment mapping</em>) é uma técnica de texturização que aproxima a aparência de superfícies reflexivas.</p>
+<p>O exemplo interativo a seguir usa mapeamento de ambiente (mais especificamente, mapeamento cúbico) para simular uma superfície reflexiva. Use o botão esquerdo do mouse para rodar o objeto, e o botão direito para rodar o ambiente exibido como textura de fundo:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/cubemap/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="530" scrolling="no"
+  ></iframe>
+<p>A ideia principal do mapeamento de ambiente consiste na definição de uma correspondência entre as coordenadas de um vetor 3D sobre um ponto da superfície – geralmente o vetor de reflexão ideal <span class="math inline">\(\hat{\mathbf{r}}\)</span> – e as coordenadas de uma textura que representa o ambiente ao redor do ponto. O valor amostrado corresponde à iluminação ambiente refletida pela superfície.</p>
+<p>Para simplificar, geralmente supõe-se que o ambiente é estático e está a uma distância infinita da superfície. Desse modo, o resultado não depende da translação do objeto que está sendo renderizado.</p>
+<p>Há dois tipos principais de mapeamento de ambiente:</p>
+<ul>
+<li><strong>Mapeamento esférico</strong> (<em>sphere mapping</em>).</li>
+<li><strong>Mapeamento cúbico</strong> (<em>cube mapping</em>).</li>
+</ul>
+<div id="mapeamento-esférico-1" class="section level3 unnumbered">
+<h3>Mapeamento esférico</h3>
+<p>No mapeamento esférico, usa-se um <strong>mapa de textura esférico</strong> (<em>sphere map</em>) que contém a representação 2D de uma visão de <span class="math inline">\(360^{\circ}\)</span> do ambiente. A figura <a href="envmapping.html#fig:spheremap">10.26</a> mostra um exemplo de mapa esférico.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:spheremap"></span>
+<img src="images/10_spheremap.jpg" alt="Mapa de textura esférico (adaptado do [original](https://www.opengl.org/archives/resources/code/samples/advanced/advanced97/notes/node95.html))."  />
+<p class="caption">
+Figura 10.26: Mapa de textura esférico (adaptado do <a href="https://www.opengl.org/archives/resources/code/samples/advanced/advanced97/notes/node95.html">original</a>).
+</p>
+</div>
+<p>Se o vetor de reflexão ideal de um ponto <span class="math inline">\(P\)</span> de uma superfície tem coordenadas <span class="math inline">\(\hat{\mathbf{r}}=(x, y, z)\)</span> no espaço da câmera, as respectivas coordenadas de textura no mapa esférico são calculadas como</p>
+<p><span class="math display">\[
+u=\frac{1}{2}\left(\frac{x}{m}+1\right),\\
+v=\frac{1}{2}\left(\frac{y}{m}+1\right),
+\]</span></p>
+<p>onde</p>
+<p><span class="math display">\[
+m=\sqrt{x^2+y^2+(z+1)^2}.
+\]</span></p>
+<p>O valor resultante do mapa esférico amostrado em <span class="math inline">\((u,v)\)</span> é a intensidade de cor do ambiente refletida em <span class="math inline">\(P\)</span>.</p>
+<p>Embora o mapeamento entre o vetor unitário de coordenadas <span class="math inline">\((x,y,z)\)</span> e as coordenadas de textura <span class="math inline">\((u,v)\)</span> seja simples, o mapeamento esférico possui várias limitações:</p>
+<ul>
+<li>O mapa de textura esférico precisa ser reconstruído sempre que a câmera mudar de orientação.</li>
+<li>A representação 2D da visão de <span class="math inline">\(360^{\circ}\)</span> introduz distorções severas no mapeamento do ambiente, principalmente nas bordas da esfera mapeada. Apenas o texel em <span class="math inline">\((u,v)=(0.5, 0.5)\)</span> não tem distorção.</li>
+<li>O vetor <span class="math inline">\((0,0,-1)\)</span> não tem representação no mapa esférico. Essa direção corresponde a uma singularidade no mapeamento.</li>
+</ul>
+<p>O mapeamento cúbico não tem tais restrições e por isso substitui o mapeamento esférico na maioria das aplicações.</p>
+</div>
+<div id="mapeamento-cúbico" class="section level3 unnumbered">
+<h3>Mapeamento cúbico</h3>
+<p>O mapeamento cúbico considera que cada ponto da superfície está situado no centro de um cubo imaginário que representa o ambiente ao redor do ponto. Cada lado do cubo corresponde a uma textura, de modo que qualquer direção no <span class="math inline">\(\mathbb{R}^3\)</span> pode ser mapeada para uma posição única em alguma das seis texturas (figura <a href="envmapping.html#fig:cubemap0">10.27</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cubemap0"></span>
+<img src="images/10_cubemap0.svg" alt="Cada direção corresponde a um par de coordenadas de textura em um dos lados do cubo."  />
+<p class="caption">
+Figura 10.27: Cada direção corresponde a um par de coordenadas de textura em um dos lados do cubo.
+</p>
+</div>
+<p>A coleção de seis texturas, uma para cada lado do cubo, é chamada de <strong>mapa de textura cúbico</strong> (do inglês <em>cubemap</em>). A figura <a href="envmapping.html#fig:cubemap1">10.28</a> mostra um exemplo de mapa de textura cúbico e seu mapeamento no cubo imaginário (mapa de textura por <a href="https://www.humus.name/index.php?page=Textures&amp;ID=39">Emil Persson</a>). Pela convenção do OpenGL, o cubo é definido em um sistema que segue a regra da mão esquerda.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cubemap1"></span>
+<img src="images/10_cubemap1.png" alt="Mapa de textura cúbico mapeado sobre as faces internas de um cubo."  />
+<p class="caption">
+Figura 10.28: Mapa de textura cúbico mapeado sobre as faces internas de um cubo.
+</p>
+</div>
+<div id="reflexão" class="section level4 unnumbered">
+<h4>Reflexão</h4>
+<p>Para aproximar uma superfície reflexiva, a direção do vetor <span class="math inline">\(\hat{\mathbf{r}}=(x,y,z)\)</span> calculado sobre um ponto <span class="math inline">\(P\)</span> da superfície é mapeada para coordenadas de textura <span class="math inline">\((u,v)\)</span> em uma das seis texturas do mapa cúbico. O resultado da amostragem é a intensidade de luz do ambiente refletida por <span class="math inline">\(P\)</span> (figura <a href="envmapping.html#fig:cubemap2">10.29</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cubemap2"></span>
+<img src="images/10_cubemap2.png" alt="Mapeamento cúbico usando o vetor de reflexão ideal."  />
+<p class="caption">
+Figura 10.29: Mapeamento cúbico usando o vetor de reflexão ideal.
+</p>
+</div>
+<p>As coordenadas de textura são calculadas como</p>
+<p><span class="math display">\[
+u=\frac{1}{2}\left(\frac{u_c}{m}+1\right),\\
+v=\frac{1}{2}\left(\frac{v_c}{m}+1\right),
+\]</span></p>
+<p>onde</p>
+<p><span class="math display">\[
+m = \text{max}\{|x|, |y|, |z|\},
+\]</span></p>
+<p>e</p>
+<p><span class="math display">\[
+(u_c, v_c) =
+\begin{cases}
+ (-z,-y) \quad\text{na textura +x}           &amp;\text{se}\quad x&gt;0    \quad\text{e}\quad m=|x|, \\
+ (\phantom{-}z,-y) \quad\text{na textura}-\hspace{-0.25em}\text{x} &amp;\text{se}\quad x\leq0 \quad\text{e}\quad m=|x|, \\
+ (\phantom{-}x,\phantom{-}z) \quad\text{na textura +y} &amp;\text{se}\quad y&gt;0    \quad\text{e}\quad m=|y|, \\
+ (\phantom{-}x,-z) \quad\text{na textura}-\hspace{-0.25em}\text{y} &amp;\text{se}\quad y\leq0 \quad\text{e}\quad m=|y|, \\
+ (\phantom{-}x,-y) \quad\text{na textura +z} &amp;\text{se}\quad z&gt;0    \quad\text{e}\quad m=|z|, \\
+ (-x,-y) \quad\text{na textura}-\hspace{-0.25em}\text{z} &amp;\text{se}\quad z\leq0 \quad\text{e}\quad m=|z|.
+\end{cases}
+\]</span></p>
+</div>
+<div id="refração" class="section level4 unnumbered">
+<h4>Refração</h4>
+<p>Refração é o fenômeno de mudança na direção de propagação da luz quando a luz transmitida por um meio muda para outro meio (por exemplo, do ar para a água). A figura <a href="envmapping.html#fig:cubemap4">10.30</a> ilustra como a luz na direção <span class="math inline">\(\hat{\mathbf{i}}\)</span> propagada no ar muda para uma direção <span class="math inline">\(\hat{\mathbf{t}}\)</span> ao atravessar a superfície de diferentes materiais (água, vidro e diamante).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cubemap4"></span>
+<img src="images/10_cubemap4.svg" alt="Refração em diferentes meios." width="100%" />
+<p class="caption">
+Figura 10.30: Refração em diferentes meios.
+</p>
+</div>
+<p>A relação entre o ângulo <span class="math inline">\(\theta_1\)</span> (ângulo de incidência) e o ângulo <span class="math inline">\(\theta_2\)</span> (ângulo de refração), é dada pela <a href="https://en.wikipedia.org/wiki/Snell%27s_law">Lei de Snell</a>:</p>
+<p><span class="math display">\[
+\frac{\sin{\theta_1}}{\sin{\theta_2}}=\frac{n_1}{n_2},
+\]</span></p>
+<p>onde <span class="math inline">\(n_1\)</span> e <span class="math inline">\(n_2\)</span> são os índices de refração dos meios.</p>
+<p>A tabela <a href="envmapping.html#tab:ior">10.1</a> mostra os índices de refração de alguns materiais.</p>
+<div align="center">
+<table>
+<caption><span id="tab:ior">Tabela 10.1: </span> Índices de refração.</caption>
+<thead>
+<tr class="header">
+<th align="left">Meio</th>
+<th align="left">Índice de refração</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ar</td>
+<td align="left">1.00</td>
+</tr>
+<tr class="even">
+<td align="left">Água</td>
+<td align="left">1.33</td>
+</tr>
+<tr class="odd">
+<td align="left">Gelo</td>
+<td align="left">1.31</td>
+</tr>
+<tr class="even">
+<td align="left">Vidro</td>
+<td align="left">1.52</td>
+</tr>
+<tr class="odd">
+<td align="left">Diamante</td>
+<td align="left">2.42</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>O mapeamento de ambiente pode ser utilizado para simular o efeito de refração. Para isto, considera-se que o vetor <span class="math inline">\(\hat{\mathbf{i}}\)</span> de luz incidente é a direção oposta do vetor até o observador, isto é,</p>
+<p><span class="math display">\[
+\hat{\mathbf{i}}=-\hat{\mathbf{v}}.
+\]</span></p>
+<p>Uma vez calculado o vetor <span class="math inline">\(\hat{\mathbf{t}}\)</span>, basta amostrar o mapa de textura cúbico a partir das coordenadas de <span class="math inline">\(\hat{\mathbf{t}}\)</span> no lugar de <span class="math inline">\(\hat{\mathbf{r}}\)</span>.</p>
+<p>A figura <a href="envmapping.html#fig:cubemap3">10.31</a> ilustra a geometria do cálculo do vetor <span class="math inline">\(\hat{\mathbf{t}}\)</span> a partir do vetor <span class="math inline">\(\hat{\mathbf{i}}\)</span>, vetor <span class="math inline">\(\hat{\mathbf{n}}\)</span> normal à superfície, e ângulos <span class="math inline">\(\theta_1\)</span> e <span class="math inline">\(\theta_2\)</span> de incidência e refração.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cubemap3"></span>
+<img src="images/10_cubemap3.svg" alt="Geometria do vetor de refração." width="70%" />
+<p class="caption">
+Figura 10.31: Geometria do vetor de refração.
+</p>
+</div>
+<p>O vetor <span class="math inline">\(\hat{\mathbf{t}}\)</span> pode ser escrito como a soma de dois vetores <span class="math inline">\(\mathbf{a}\)</span> e <span class="math inline">\(\mathbf{b}\)</span>:</p>
+<p><span class="math display">\[
+\hat{\mathbf{t}}=\mathbf{a}+\mathbf{b},
+\]</span></p>
+<p>onde</p>
+<p><span class="math display">\[
+\begin{align}
+&amp;\mathbf{a}=\hat{\mathbf{m}}\sin{\theta_2},\\
+&amp;\mathbf{b}=-\hat{\mathbf{n}}\cos{\theta_2}.
+\end{align}
+\]</span></p>
+<p>O vetor <span class="math inline">\(\mathbf{a}\)</span> depende do vetor unitário <span class="math inline">\(\hat{\mathbf{m}}\)</span> calculado como</p>
+<p><span class="math display">\[
+\hat{\mathbf{m}}=\dfrac{\hat{\mathbf{i}}+\mathbf{c}}{\sin{\theta_1}},
+\]</span></p>
+<p>onde</p>
+<p><span class="math display">\[
+\mathbf{c}=\hat{\mathbf{n}}\cos{\theta_1}.
+\]</span></p>
+<p>Observe que <span class="math inline">\(\hat{\mathbf{i}}+\mathbf{c}\)</span> tem tamanho <span class="math inline">\(\sin{\theta_1}\)</span>. Logo, a divisão por <span class="math inline">\(\sin{\theta_1}\)</span> resulta no vetor unitário <span class="math inline">\(\hat{\mathbf{m}}\)</span>.</p>
+<p>Expandindo a equação <span class="math inline">\(\hat{\mathbf{t}}=\mathbf{a}+\mathbf{b}\)</span> e combinando com a relação entre os senos dos ângulos (Lei de Snell), é possível chegar à forma simplificada:</p>
+<p><span class="math display">\[
+\hat{\mathbf{t}}=\eta\hat{\mathbf{i}}+(\eta c_1 - c_2)\hat{\mathbf{n}},
+\]</span></p>
+<p>onde <span class="math inline">\(\eta\)</span> é a razão entre os índices de refração:</p>
+<p><span class="math display">\[
+\eta = \frac{n_1}{n_2},
+\]</span></p>
+<p>e</p>
+<p><span class="math display">\[
+\begin{align}
+&amp;c_1=\cos{\theta_1}=\hat{\mathbf{n}}\cdot \hat{\mathbf{i}},\\
+&amp;c_2=\cos{\theta_2}=\sqrt{1 - \eta^2\left(1-c_1^2\right)}.
+\end{align}
+\]</span></p>
+</div>
+</div>
+<div id="mapeamento-de-ambiente-na-prática" class="section level3 unnumbered">
+<h3>Mapeamento de ambiente na prática</h3>
+<p>Vamos continuar com o desenvolvimento do visualizador de modelos 3D, desta vez acrescentando shaders de mapeamento cúbico para simular o efeito de reflexão e refração.</p>
+<p>Esta será a versão 6 do visualizador (<code>viewer6</code>). Utilizaremos o código do projeto <code>viewer5</code> apresentado na seção <a href="normalmapping.html#normalmapping">10.5</a> e incluiremos os seguintes shaders:</p>
+<ul>
+<li><code>cubereflect.vert</code> e <code>cubereflect.frag</code> para simular o efeito de reflexão.</li>
+<li><code>cuberefract.vert</code> e <code>cuberefract.frag</code> para simular o efeito de refração.</li>
+<li><code>skybox.vert</code> e <code>skybox.frag</code> para mostrar o mapa de textura cúbico como uma textura de fundo;</li>
+</ul>
+<p>O resultado ficará como a seguir:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/viewer6/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<p>Baixe o código completo <a href="https://hbatagelo.github.io/abcgapps/src/viewer6.zip">deste link</a>.</p>
+<div id="carregando-o-mapa-de-textura-cúbico" class="section level4 unnumbered">
+<h4>Carregando o mapa de textura cúbico</h4>
+<p>Nos projetos anteriores, utilizamos as funções <code>Model::loadDiffuseTexture</code> e <code>Model::loadNormalTexture</code> para carregar as texturas difusa e de normais. Agora, incluiremos a função <code>Model::loadCubeTexture</code> para criar o mapa de textura cúbico:</p>
+<div class="sourceCode" id="cb391" startFrom="138"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 137;"><span id="cb391-138"><a href="envmapping.html#cb391-138"></a><span class="dt">void</span> Model::loadCubeTexture(<span class="at">const</span> <span class="bu">std::</span>string&amp; path) {</span>
+<span id="cb391-139"><a href="envmapping.html#cb391-139"></a>  <span class="cf">if</span> (!<span class="bu">std::</span>filesystem<span class="bu">::</span>exists(path)) <span class="cf">return</span>;</span>
+<span id="cb391-140"><a href="envmapping.html#cb391-140"></a></span>
+<span id="cb391-141"><a href="envmapping.html#cb391-141"></a>  abcg::glDeleteTextures(<span class="dv">1</span>, &amp;<span class="va">m_cubeTexture</span>);</span>
+<span id="cb391-142"><a href="envmapping.html#cb391-142"></a>  <span class="va">m_cubeTexture</span> = abcg::opengl::loadCubemap(</span>
+<span id="cb391-143"><a href="envmapping.html#cb391-143"></a>      {path + <span class="st">&quot;posx.jpg&quot;</span>, path + <span class="st">&quot;negx.jpg&quot;</span>, path + <span class="st">&quot;posy.jpg&quot;</span>,</span>
+<span id="cb391-144"><a href="envmapping.html#cb391-144"></a>       path + <span class="st">&quot;negy.jpg&quot;</span>, path + <span class="st">&quot;posz.jpg&quot;</span>, path + <span class="st">&quot;negz.jpg&quot;</span>});</span>
+<span id="cb391-145"><a href="envmapping.html#cb391-145"></a>}</span></code></pre></div>
+<p>A textura é identificada por <code>m_cubeTexture</code>.</p>
+<p><code>Model::loadCubeTexture</code> recebe o caminho de um diretório (<code>path</code>) que deve conter os arquivos <code>posx.jpg</code>, <code>negx.jpg</code>, <code>posy.jpg</code>, <code>negy.jpg</code>, <code>posz.jpg</code> e <code>negz.jpg</code> correspondentes aos arquivos de imagem das texturas de cada lado do cubo. Esses nomes são enviados como um arranjo de strings para o método <code>abcg::opengl::loadCubemap</code>, definido em <code>abcg_image.cpp</code>.</p>
+<p>Internamente, <code>abcg::opengl::loadCubemap</code> cria um identificador de textura e liga-o ao alvo <code>GL_TEXTURE_CUBE_MAP</code> no lugar de <code>GL_TEXTURE_2D</code>:</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb392-1"><a href="envmapping.html#cb392-1" aria-hidden="true" tabindex="-1"></a>GLuint textureID{};</span>
+<span id="cb392-2"><a href="envmapping.html#cb392-2" aria-hidden="true" tabindex="-1"></a>glGenTextures(<span class="dv">1</span>, &amp;textureID);</span>
+<span id="cb392-3"><a href="envmapping.html#cb392-3" aria-hidden="true" tabindex="-1"></a>glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);</span></code></pre></div>
+<p>Em seguida, a função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexImage2D.xhtml"><code>glTexImage2D</code></a> é chamada seis vezes. Cada chamada de <code>glTexImage2D</code> usa como alvo um dos identificadores a seguir que identifica um lado do cubo:</p>
+<ul>
+<li><code>GL_TEXTURE_CUBE_MAP_POSITIVE_X</code> para o lado +x;</li>
+<li><code>GL_TEXTURE_CUBE_MAP_NEGATIVE_X</code> para o lado -x;</li>
+<li><code>GL_TEXTURE_CUBE_MAP_POSITIVE_Y</code> para o lado +y;</li>
+<li><code>GL_TEXTURE_CUBE_MAP_NEGATIVE_Y</code> para o lado -y;</li>
+<li><code>GL_TEXTURE_CUBE_MAP_POSITIVE_Z</code> para o lado +z;</li>
+<li><code>GL_TEXTURE_CUBE_MAP_NEGATIVE_Z</code> para o lado -z.</li>
+</ul>
+<p>Consulte a definição de <code>abcg::opengl::loadCubemap</code> em <code>abcg/abcg_image.cpp</code> para mais detalhes. Voltando agora ao nosso código, a função <code>Model::loadCubeTexture</code> é chamada em <code>OpenGLWindow::initializeGL</code>:</p>
+<div class="sourceCode" id="cb393" startFrom="54"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 53;"><span id="cb393-54"><a href="envmapping.html#cb393-54"></a>  <span class="co">// Load cubemap</span></span>
+<span id="cb393-55"><a href="envmapping.html#cb393-55"></a>  <span class="va">m_model</span>.loadCubeTexture(getAssetsPath() + <span class="st">&quot;maps/cube/&quot;</span>);</span></code></pre></div>
+<p>Essa chamada de função supõe que os seis arquivos de imagem estão em <code>assets/maps/cube/</code>.</p>
+<p>Em <code>Model::render</code>, precisamos habilitar a unidade de textura que utilizará o mapa de textura cúbico. Nos projetos anteriores, ativamos as unidades <code>GL_TEXTURE0</code> para a textura difusa, e <code>GL_TEXTURE1</code> para a textura de normais. Agora, ativaremos a unidade <code>GL_TEXTURE2</code> para o mapa cúbico:</p>
+<div class="sourceCode" id="cb394" startFrom="289"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 288;"><span id="cb394-289"><a href="envmapping.html#cb394-289"></a>  abcg::glActiveTexture(GL_TEXTURE0);</span>
+<span id="cb394-290"><a href="envmapping.html#cb394-290"></a>  abcg::glBindTexture(GL_TEXTURE_2D, <span class="va">m_diffuseTexture</span>);</span>
+<span id="cb394-291"><a href="envmapping.html#cb394-291"></a></span>
+<span id="cb394-292"><a href="envmapping.html#cb394-292"></a>  abcg::glActiveTexture(GL_TEXTURE1);</span>
+<span id="cb394-293"><a href="envmapping.html#cb394-293"></a>  abcg::glBindTexture(GL_TEXTURE_2D, <span class="va">m_normalTexture</span>);</span>
+<span id="cb394-294"><a href="envmapping.html#cb394-294"></a></span>
+<span id="cb394-295"><a href="envmapping.html#cb394-295"></a>  abcg::glActiveTexture(GL_TEXTURE2);</span>
+<span id="cb394-296"><a href="envmapping.html#cb394-296"></a>  abcg::glBindTexture(GL_TEXTURE_CUBE_MAP, <span class="va">m_cubeTexture</span>);</span></code></pre></div>
+<p>Com essa configuração, podemos usar até três amostradores de textura ao mesmo tempo no fragment shader: <code>diffuseTex</code>, <code>normalTex</code>, e agora <code>cubeTex</code>. Na verdade, nossos novos shaders (<code>cubereflect.frag</code> e <code>cuberefract.frag</code>) não usam <code>diffuseTex</code> e <code>normalTex</code>, e poderíamos deixar o mapa cúbico na unidade <code>GL_TEXTURE0</code>. Entretanto, da forma como está o código já está pronto para ter o suporte a três amostradores simultâneos.</p>
+<p>Há ainda mais um passo necessário para habilitar o uso amostrador no shader. Em <code>OpenGLWindow::paintGL</code>, precisamos definir o valor da variável uniforme <code>cubeTex</code>. Esse valor deve ser <code>2</code> pois queremos que essa variável use a unidade de textura <code>GL_TEXTURE2</code>. Assim, em <code>OpenGLWindow::paintGL</code> teremos os seguintes trecho de código atualizados:</p>
+<div class="sourceCode" id="cb395" startFrom="140"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 139;"><span id="cb395-140"><a href="envmapping.html#cb395-140"></a>  <span class="at">const</span> GLint cubeTexLoc{abcg::glGetUniformLocation(program, <span class="st">&quot;cubeTex&quot;</span>)};</span></code></pre></div>
+<p>e</p>
+<div class="sourceCode" id="cb396" startFrom="150"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 149;"><span id="cb396-150"><a href="envmapping.html#cb396-150"></a>  abcg::glUniform1i(cubeTexLoc, <span class="dv">2</span>);</span></code></pre></div>
+</div>
+<div id="shaders-1" class="section level4 unnumbered">
+<h4>Shaders</h4>
+<p>Os shaders de reflexão e refração são bastante similares. Começaremos com o shaders de reflexão (<code>cubereflect.vert</code> e <code>cubereflect.frag</code>) e em seguida abordaremos os shaders de refração (<code>cuberefract.vert</code> e <code>cuberefract.frag</code>).</p>
+<p>Para simplificar, vamos considerar que a cor de cada ponto da superfície do modelo é determinada unicamente pelos valores do mapa de textura cúbico. Em outras palavras, será ignorada a iluminação e a texturização difusa ou de normais.</p>
+<div id="cubereflect.vert" class="section level5 unnumbered">
+<h5>cubereflect.vert</h5>
+<p>O código completo do vertex shader é mostrado a seguir:</p>
+<div class="sourceCode" id="cb397" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb397-1"><a href="envmapping.html#cb397-1"></a><span class="pp">#version 410</span></span>
+<span id="cb397-2"><a href="envmapping.html#cb397-2"></a></span>
+<span id="cb397-3"><a href="envmapping.html#cb397-3"></a><span class="kw">layout</span>(<span class="dt">location</span> = <span class="dv">0</span>) <span class="dt">in</span> <span class="dt">vec3</span> inPosition;</span>
+<span id="cb397-4"><a href="envmapping.html#cb397-4"></a><span class="kw">layout</span>(<span class="dt">location</span> = <span class="dv">1</span>) <span class="dt">in</span> <span class="dt">vec3</span> inNormal;</span>
+<span id="cb397-5"><a href="envmapping.html#cb397-5"></a></span>
+<span id="cb397-6"><a href="envmapping.html#cb397-6"></a><span class="kw">uniform</span> <span class="dt">mat4</span> modelMatrix;</span>
+<span id="cb397-7"><a href="envmapping.html#cb397-7"></a><span class="kw">uniform</span> <span class="dt">mat4</span> viewMatrix;</span>
+<span id="cb397-8"><a href="envmapping.html#cb397-8"></a><span class="kw">uniform</span> <span class="dt">mat4</span> projMatrix;</span>
+<span id="cb397-9"><a href="envmapping.html#cb397-9"></a><span class="kw">uniform</span> <span class="dt">mat3</span> normalMatrix;</span>
+<span id="cb397-10"><a href="envmapping.html#cb397-10"></a></span>
+<span id="cb397-11"><a href="envmapping.html#cb397-11"></a><span class="dt">out</span> <span class="dt">vec3</span> fragP;</span>
+<span id="cb397-12"><a href="envmapping.html#cb397-12"></a><span class="dt">out</span> <span class="dt">vec3</span> fragN;</span>
+<span id="cb397-13"><a href="envmapping.html#cb397-13"></a></span>
+<span id="cb397-14"><a href="envmapping.html#cb397-14"></a><span class="dt">void</span> <span class="fu">main</span>() {</span>
+<span id="cb397-15"><a href="envmapping.html#cb397-15"></a>  fragP = (viewMatrix * modelMatrix * <span class="dt">vec4</span>(inPosition, <span class="fl">1.0</span>)).<span class="fu">xyz</span>;</span>
+<span id="cb397-16"><a href="envmapping.html#cb397-16"></a>  fragN = normalMatrix * inNormal;</span>
+<span id="cb397-17"><a href="envmapping.html#cb397-17"></a></span>
+<span id="cb397-18"><a href="envmapping.html#cb397-18"></a>  <span class="bu">gl_Position</span> = projMatrix * <span class="dt">vec4</span>(fragP, <span class="fl">1.0</span>);</span>
+<span id="cb397-19"><a href="envmapping.html#cb397-19"></a>}</span></code></pre></div>
+<p>Os atributos de entrada são apenas dois:</p>
+<ul>
+<li><code>inPosition</code>: posição do vértice no espaço do objeto;</li>
+<li><code>inNormal</code>: vetor normal no espaço do objeto.</li>
+</ul>
+<p>Observe que não precisamos das coordenadas de textura, pois elas podem ser calculadas a partir das coordenadas do vetor de reflexão ideal.</p>
+<p>Os atributos de saída também são apenas dois, e correspondem aos atributos de entrada transformados para o espaço da câmera:</p>
+<ul>
+<li><code>fragP</code>: posição do vértice no espaço da câmera;</li>
+<li><code>fragN</code>: vetor normal no espaço da câmera.</li>
+</ul>
+<p>Com esses atributos, podemos calcular o vetor de reflexão no fragment shader e então amostrar o mapa de textura cúbico.</p>
+</div>
+<div id="cubereflect.frag" class="section level5 unnumbered">
+<h5>cubereflect.frag</h5>
+<p>O código completo é mostrado a seguir:</p>
+<div class="sourceCode" id="cb398" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb398-1"><a href="envmapping.html#cb398-1"></a><span class="pp">#version 410</span></span>
+<span id="cb398-2"><a href="envmapping.html#cb398-2"></a></span>
+<span id="cb398-3"><a href="envmapping.html#cb398-3"></a><span class="dt">in</span> <span class="dt">vec3</span> fragP;</span>
+<span id="cb398-4"><a href="envmapping.html#cb398-4"></a><span class="dt">in</span> <span class="dt">vec3</span> fragN;</span>
+<span id="cb398-5"><a href="envmapping.html#cb398-5"></a></span>
+<span id="cb398-6"><a href="envmapping.html#cb398-6"></a><span class="kw">uniform</span> <span class="dt">mat3</span> texMatrix;</span>
+<span id="cb398-7"><a href="envmapping.html#cb398-7"></a><span class="kw">uniform</span> <span class="dt">samplerCube</span> cubeTex;</span>
+<span id="cb398-8"><a href="envmapping.html#cb398-8"></a></span>
+<span id="cb398-9"><a href="envmapping.html#cb398-9"></a><span class="dt">out</span> <span class="dt">vec4</span> outColor;</span>
+<span id="cb398-10"><a href="envmapping.html#cb398-10"></a></span>
+<span id="cb398-11"><a href="envmapping.html#cb398-11"></a><span class="dt">void</span> <span class="fu">main</span>() {</span>
+<span id="cb398-12"><a href="envmapping.html#cb398-12"></a>  <span class="dt">vec3</span> V = <span class="bu">normalize</span>(-fragP);</span>
+<span id="cb398-13"><a href="envmapping.html#cb398-13"></a>  <span class="dt">vec3</span> N = <span class="bu">normalize</span>(fragN);</span>
+<span id="cb398-14"><a href="envmapping.html#cb398-14"></a>  <span class="dt">vec3</span> R = <span class="bu">reflect</span>(-V, N);</span>
+<span id="cb398-15"><a href="envmapping.html#cb398-15"></a></span>
+<span id="cb398-16"><a href="envmapping.html#cb398-16"></a>  outColor = <span class="bu">texture</span>(cubeTex, texMatrix * R);</span>
+<span id="cb398-17"><a href="envmapping.html#cb398-17"></a>}</span></code></pre></div>
+<p>O amostrador do mapa de textura cúbico é definido pela variável <code>cubeTex</code> na linha 7. Observe que o tipo de dado é <code>samplerCube</code> no lugar de <code>sampler2D</code>.</p>
+<p>Na linha 12, o vetor <code>V</code> (vetor na direção da câmera) é calculado como <code>-fragP</code>, pois</p>
+<p><span class="math display">\[
+\hat{\mathbf{v}}=\frac{E-P}{|E-P|},
+\]</span>
+e <span class="math inline">\(E\)</span> é a posição da câmera no espaço da câmera, que é a origem. Logo,</p>
+<p><span class="math display">\[
+\hat{\mathbf{v}}=\frac{-P}{|-P|}.
+\]</span></p>
+<p>Na linha 13, o vetor <code>N</code> é <code>fragN</code> normalizado. A normalização é necessária pois, no fragment shader, <code>fragN</code> é o resultado da interpolação linear das coordenadas dos vetores normais definidos nos vértices, e a interpolação linear de dois vetores unitários diferentes entre si não é um vetor unitário.</p>
+<p>Na linha 14, o vetor <code>R</code> de reflexão ideal é calculado com a função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/reflect.xhtml"><code>reflect</code></a>. O primeiro argumento é <code>-V</code> pois <code>reflect</code> supõe que esse argumento é o vetor incidente em <span class="math inline">\(P\)</span>, e não o vetor que sai de <span class="math inline">\(P\)</span>.</p>
+<p>Na linha 16, a função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/texture.xhtml"><code>texture</code></a> é utilizada com o amostrador <code>cubeTex</code> para amostrar o mapa de textura cúbico usando as coordenadas do vetor de reflexão ideal. Como o amostrador é do tipo <code>samplerCube</code>, o OpenGL se encarrega de amostrar o lado correto do cubo imaginário.</p>
+<p>Observe que, na chamada a <code>texture</code>, transformamos <code>R</code> pela matriz <code>texMatrix</code>. Essa é a matriz inversa de rotação obtida do trackball virtual <code>m_trackBallLight</code> (trackball usado para mudar a direção da fonte de luz). Com isso podemos simular o efeito de girar o cubo imaginário usando o trackball da fonte da luz. Em <code>OpenGLWindow::paintGL</code>, a variável uniforme <code>texMatrix</code> é definida como:</p>
+<div class="sourceCode" id="cb399" startFrom="153"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 152;"><span id="cb399-153"><a href="envmapping.html#cb399-153"></a>  <span class="at">const</span> glm::mat3 texMatrix{<span class="va">m_trackBallLight</span>.getRotation()};</span>
+<span id="cb399-154"><a href="envmapping.html#cb399-154"></a>  abcg::glUniformMatrix3fv(texMatrixLoc, <span class="dv">1</span>, GL_TRUE, &amp;texMatrix[<span class="dv">0</span>][<span class="dv">0</span>]);</span></code></pre></div>
+<p>O segundo argumento de <code>glUniformMatrix3fv</code> é <code>GL_TRUE</code>. Isso faz com que a matriz enviada seja a transposta da original, que é igual à inversa da matriz (lembre-se que matrizes de rotação são ortogonais). Precisamos da matriz inversa, pois rodar o cubo imaginário por, digamos, <span class="math inline">\(90^\circ\)</span> em torno do eixo <span class="math inline">\(x\)</span>, corresponde a manter o cubo parado e rodar o vetor <code>R</code> por <span class="math inline">\(-90^\circ\)</span> em torno do mesmo eixo. Só podemos rodar o vetor <code>R</code>, pois o OpenGL não possui uma função para rodar o cubo imaginário.</p>
+<p>Isso é tudo para o efeito de reflexão. Vamos agora aos shaders de refração.</p>
+</div>
+<div id="cuberefract.vert" class="section level5 unnumbered">
+<h5>cuberefract.vert</h5>
+<p>O código deste vertex shader é exatamente igual ao código de <code>cubereflect.vert</code>:</p>
+<div class="sourceCode" id="cb400" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb400-1"><a href="envmapping.html#cb400-1"></a><span class="pp">#version 410</span></span>
+<span id="cb400-2"><a href="envmapping.html#cb400-2"></a></span>
+<span id="cb400-3"><a href="envmapping.html#cb400-3"></a><span class="kw">layout</span>(<span class="dt">location</span> = <span class="dv">0</span>) <span class="dt">in</span> <span class="dt">vec3</span> inPosition;</span>
+<span id="cb400-4"><a href="envmapping.html#cb400-4"></a><span class="kw">layout</span>(<span class="dt">location</span> = <span class="dv">1</span>) <span class="dt">in</span> <span class="dt">vec3</span> inNormal;</span>
+<span id="cb400-5"><a href="envmapping.html#cb400-5"></a></span>
+<span id="cb400-6"><a href="envmapping.html#cb400-6"></a><span class="kw">uniform</span> <span class="dt">mat4</span> modelMatrix;</span>
+<span id="cb400-7"><a href="envmapping.html#cb400-7"></a><span class="kw">uniform</span> <span class="dt">mat4</span> viewMatrix;</span>
+<span id="cb400-8"><a href="envmapping.html#cb400-8"></a><span class="kw">uniform</span> <span class="dt">mat4</span> projMatrix;</span>
+<span id="cb400-9"><a href="envmapping.html#cb400-9"></a><span class="kw">uniform</span> <span class="dt">mat3</span> normalMatrix;</span>
+<span id="cb400-10"><a href="envmapping.html#cb400-10"></a></span>
+<span id="cb400-11"><a href="envmapping.html#cb400-11"></a><span class="dt">out</span> <span class="dt">vec3</span> fragP;</span>
+<span id="cb400-12"><a href="envmapping.html#cb400-12"></a><span class="dt">out</span> <span class="dt">vec3</span> fragN;</span>
+<span id="cb400-13"><a href="envmapping.html#cb400-13"></a></span>
+<span id="cb400-14"><a href="envmapping.html#cb400-14"></a><span class="dt">void</span> <span class="fu">main</span>() {</span>
+<span id="cb400-15"><a href="envmapping.html#cb400-15"></a>  fragP = (viewMatrix * modelMatrix * <span class="dt">vec4</span>(inPosition, <span class="fl">1.0</span>)).<span class="fu">xyz</span>;</span>
+<span id="cb400-16"><a href="envmapping.html#cb400-16"></a>  fragN = normalMatrix * inNormal;</span>
+<span id="cb400-17"><a href="envmapping.html#cb400-17"></a></span>
+<span id="cb400-18"><a href="envmapping.html#cb400-18"></a>  <span class="bu">gl_Position</span> = projMatrix * <span class="dt">vec4</span>(fragP, <span class="fl">1.0</span>);</span>
+<span id="cb400-19"><a href="envmapping.html#cb400-19"></a>}</span></code></pre></div>
+</div>
+<div id="cuberefract.frag" class="section level5 unnumbered">
+<h5>cuberefract.frag</h5>
+<p>O código do fragment shader também é praticamente idêntico ao código de <code>cubereflect.frag</code>:</p>
+<div class="sourceCode" id="cb401" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb401-1"><a href="envmapping.html#cb401-1"></a><span class="pp">#version 410</span></span>
+<span id="cb401-2"><a href="envmapping.html#cb401-2"></a></span>
+<span id="cb401-3"><a href="envmapping.html#cb401-3"></a><span class="dt">in</span> <span class="dt">vec3</span> fragP;</span>
+<span id="cb401-4"><a href="envmapping.html#cb401-4"></a><span class="dt">in</span> <span class="dt">vec3</span> fragN;</span>
+<span id="cb401-5"><a href="envmapping.html#cb401-5"></a></span>
+<span id="cb401-6"><a href="envmapping.html#cb401-6"></a><span class="kw">uniform</span> <span class="dt">mat3</span> texMatrix;</span>
+<span id="cb401-7"><a href="envmapping.html#cb401-7"></a><span class="kw">uniform</span> <span class="dt">samplerCube</span> cubeTex;</span>
+<span id="cb401-8"><a href="envmapping.html#cb401-8"></a></span>
+<span id="cb401-9"><a href="envmapping.html#cb401-9"></a><span class="dt">out</span> <span class="dt">vec4</span> outColor;</span>
+<span id="cb401-10"><a href="envmapping.html#cb401-10"></a></span>
+<span id="cb401-11"><a href="envmapping.html#cb401-11"></a><span class="dt">void</span> <span class="fu">main</span>() {</span>
+<span id="cb401-12"><a href="envmapping.html#cb401-12"></a>  <span class="dt">vec3</span> V = <span class="bu">normalize</span>(-fragP);</span>
+<span id="cb401-13"><a href="envmapping.html#cb401-13"></a>  <span class="dt">vec3</span> N = <span class="bu">normalize</span>(fragN);</span>
+<span id="cb401-14"><a href="envmapping.html#cb401-14"></a>  <span class="dt">vec3</span> T = <span class="bu">refract</span>(-V, N, <span class="fl">1.0</span> / <span class="fl">1.52</span>);  <span class="co">// Air to glass</span></span>
+<span id="cb401-15"><a href="envmapping.html#cb401-15"></a></span>
+<span id="cb401-16"><a href="envmapping.html#cb401-16"></a>  outColor = <span class="bu">texture</span>(cubeTex, texMatrix * T);</span>
+<span id="cb401-17"><a href="envmapping.html#cb401-17"></a>}</span></code></pre></div>
+<p>A única diferença em relação ao shader de reflexão é que, na linha 14, calculamos um vetor <code>T</code> de refração usando a função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/refract.xhtml"><code>refract</code></a>. A função recebe como argumentos o vetor incidente (<code>-V</code>), vetor normal (<code>N</code>), e razão entre os índices de refração, que neste caso é <code>1.0 / 1.52</code> pois estamos considerando uma transição do ar para o vidro.</p>
+</div>
+</div>
+<div id="renderizando-um-skybox" class="section level4 unnumbered">
+<h4>Renderizando um skybox</h4>
+<p>Skybox é o nome dado a um cubo centralizado ao redor da câmera e texturizado com o mapa de textura cúbico de modo a simular uma imagem de fundo.</p>
+<p>Para renderizar um skybox, precisamos definir primeiro a geometria do cubo. Na definição da classe <code>OpenGLWindow</code> (em <code>openglwindow.hpp</code>), definimos a posição dos vértices de cada lado do cubo em um arranjo <code>m_skyPositions</code>:</p>
+<div class="sourceCode" id="cb402" startFrom="60"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 59;"><span id="cb402-60"><a href="envmapping.html#cb402-60"></a>  <span class="at">const</span> <span class="bu">std::</span>array&lt;glm::vec3, <span class="dv">36</span>&gt;  <span class="va">m_skyPositions</span>{</span>
+<span id="cb402-61"><a href="envmapping.html#cb402-61"></a>    <span class="co">// Front</span></span>
+<span id="cb402-62"><a href="envmapping.html#cb402-62"></a>    glm::vec3{-<span class="dv">1</span>, -<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, -<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, +<span class="dv">1</span>, +<span class="dv">1</span>},</span>
+<span id="cb402-63"><a href="envmapping.html#cb402-63"></a>    glm::vec3{-<span class="dv">1</span>, -<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, +<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, +<span class="dv">1</span>, +<span class="dv">1</span>},</span>
+<span id="cb402-64"><a href="envmapping.html#cb402-64"></a>    <span class="co">// Back</span></span>
+<span id="cb402-65"><a href="envmapping.html#cb402-65"></a>    glm::vec3{+<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, +<span class="dv">1</span>, -<span class="dv">1</span>},</span>
+<span id="cb402-66"><a href="envmapping.html#cb402-66"></a>    glm::vec3{+<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, +<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, +<span class="dv">1</span>, -<span class="dv">1</span>},</span>
+<span id="cb402-67"><a href="envmapping.html#cb402-67"></a>    <span class="co">// Right</span></span>
+<span id="cb402-68"><a href="envmapping.html#cb402-68"></a>    glm::vec3{+<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, +<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, +<span class="dv">1</span>, +<span class="dv">1</span>},</span>
+<span id="cb402-69"><a href="envmapping.html#cb402-69"></a>    glm::vec3{+<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, +<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, -<span class="dv">1</span>, +<span class="dv">1</span>},</span>
+<span id="cb402-70"><a href="envmapping.html#cb402-70"></a>    <span class="co">// Left</span></span>
+<span id="cb402-71"><a href="envmapping.html#cb402-71"></a>    glm::vec3{-<span class="dv">1</span>, -<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, +<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, +<span class="dv">1</span>, -<span class="dv">1</span>},</span>
+<span id="cb402-72"><a href="envmapping.html#cb402-72"></a>    glm::vec3{-<span class="dv">1</span>, -<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, +<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>},</span>
+<span id="cb402-73"><a href="envmapping.html#cb402-73"></a>    <span class="co">// Top</span></span>
+<span id="cb402-74"><a href="envmapping.html#cb402-74"></a>    glm::vec3{-<span class="dv">1</span>, +<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, +<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, +<span class="dv">1</span>, -<span class="dv">1</span>},</span>
+<span id="cb402-75"><a href="envmapping.html#cb402-75"></a>    glm::vec3{-<span class="dv">1</span>, +<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, +<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, +<span class="dv">1</span>, -<span class="dv">1</span>},</span>
+<span id="cb402-76"><a href="envmapping.html#cb402-76"></a>    <span class="co">// Bottom</span></span>
+<span id="cb402-77"><a href="envmapping.html#cb402-77"></a>    glm::vec3{-<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, -<span class="dv">1</span>, +<span class="dv">1</span>},</span>
+<span id="cb402-78"><a href="envmapping.html#cb402-78"></a>    glm::vec3{-<span class="dv">1</span>, -<span class="dv">1</span>, -<span class="dv">1</span>}, glm::vec3{+<span class="dv">1</span>, -<span class="dv">1</span>, +<span class="dv">1</span>}, glm::vec3{-<span class="dv">1</span>, -<span class="dv">1</span>, +<span class="dv">1</span>}</span>
+<span id="cb402-79"><a href="envmapping.html#cb402-79"></a>  };</span></code></pre></div>
+<p>O cubo será renderizado com <code>GL_TRIANGLES</code> sem usar geometria indexada. Assim, cada lado do cubo é formado por dois triângulos, e cada triângulo é uma sequência de três vértices do tipo <code>glm::vec3</code>.</p>
+<p>Podemos definir coordenadas de textura para cada lado do cubo e então renderizar cada lado com a textura correspondente do mapa de textura cúbico. Entretanto, isso não é necessário. Podemos usar diretamente a posição dos vértices como coordenadas de amostragem do amostrador <code>samplerCube</code>.</p>
+<p>Precisamos de um VBO (<code>m_skyVBO</code>), VAO (<code>m_skyVAO</code>), e um programa de shader (<code>m_skyProgram</code>) para renderizar o cubo. Em <code>OpenGLWindow</code>, definiremos os seguintes membros da classe:</p>
+<div class="sourceCode" id="cb403" startFrom="54"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 53;"><span id="cb403-54"><a href="envmapping.html#cb403-54"></a>  <span class="at">const</span> <span class="bu">std::</span>string <span class="va">m_skyShaderName</span>{<span class="st">&quot;skybox&quot;</span>};</span>
+<span id="cb403-55"><a href="envmapping.html#cb403-55"></a>  GLuint <span class="va">m_skyVAO</span>{};</span>
+<span id="cb403-56"><a href="envmapping.html#cb403-56"></a>  GLuint <span class="va">m_skyVBO</span>{};</span>
+<span id="cb403-57"><a href="envmapping.html#cb403-57"></a>  GLuint <span class="va">m_skyProgram</span>{};</span></code></pre></div>
+<p><code>m_skyShaderName</code> é o nome dos arquivos dos shaders: <code>skybox.vert</code> e <code>skybox.frag</code>.</p>
+<p>Os recursos (VBO, VAO, etc) são inicializados na função <code>OpenGLWindow::initializeSkybox</code> chamada em <code>OpenGLWindow::initializeGL</code>:</p>
+<div class="sourceCode" id="cb404" startFrom="64"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 63;"><span id="cb404-64"><a href="envmapping.html#cb404-64"></a><span class="dt">void</span> OpenGLWindow::initializeSkybox() {</span>
+<span id="cb404-65"><a href="envmapping.html#cb404-65"></a>  <span class="co">// Create skybox program</span></span>
+<span id="cb404-66"><a href="envmapping.html#cb404-66"></a>  <span class="at">const</span> <span class="kw">auto</span> path{getAssetsPath() + <span class="st">&quot;shaders/&quot;</span> + <span class="va">m_skyShaderName</span>};</span>
+<span id="cb404-67"><a href="envmapping.html#cb404-67"></a>  <span class="va">m_skyProgram</span> = createProgramFromFile(path + <span class="st">&quot;.vert&quot;</span>, path + <span class="st">&quot;.frag&quot;</span>);</span>
+<span id="cb404-68"><a href="envmapping.html#cb404-68"></a></span>
+<span id="cb404-69"><a href="envmapping.html#cb404-69"></a>  <span class="co">// Generate VBO</span></span>
+<span id="cb404-70"><a href="envmapping.html#cb404-70"></a>  abcg::glGenBuffers(<span class="dv">1</span>, &amp;<span class="va">m_skyVBO</span>);</span>
+<span id="cb404-71"><a href="envmapping.html#cb404-71"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="va">m_skyVBO</span>);</span>
+<span id="cb404-72"><a href="envmapping.html#cb404-72"></a>  abcg::glBufferData(GL_ARRAY_BUFFER, <span class="kw">sizeof</span>(<span class="va">m_skyPositions</span>),</span>
+<span id="cb404-73"><a href="envmapping.html#cb404-73"></a>                     <span class="va">m_skyPositions</span>.data(), GL_STATIC_DRAW);</span>
+<span id="cb404-74"><a href="envmapping.html#cb404-74"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
+<span id="cb404-75"><a href="envmapping.html#cb404-75"></a></span>
+<span id="cb404-76"><a href="envmapping.html#cb404-76"></a>  <span class="co">// Get location of attributes in the program</span></span>
+<span id="cb404-77"><a href="envmapping.html#cb404-77"></a>  <span class="at">const</span> GLint positionAttribute{</span>
+<span id="cb404-78"><a href="envmapping.html#cb404-78"></a>      abcg::glGetAttribLocation(<span class="va">m_skyProgram</span>, <span class="st">&quot;inPosition&quot;</span>)};</span>
+<span id="cb404-79"><a href="envmapping.html#cb404-79"></a></span>
+<span id="cb404-80"><a href="envmapping.html#cb404-80"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb404-81"><a href="envmapping.html#cb404-81"></a>  abcg::glGenVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_skyVAO</span>);</span>
+<span id="cb404-82"><a href="envmapping.html#cb404-82"></a></span>
+<span id="cb404-83"><a href="envmapping.html#cb404-83"></a>  <span class="co">// Bind vertex attributes to current VAO</span></span>
+<span id="cb404-84"><a href="envmapping.html#cb404-84"></a>  abcg::glBindVertexArray(<span class="va">m_skyVAO</span>);</span>
+<span id="cb404-85"><a href="envmapping.html#cb404-85"></a></span>
+<span id="cb404-86"><a href="envmapping.html#cb404-86"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="va">m_skyVBO</span>);</span>
+<span id="cb404-87"><a href="envmapping.html#cb404-87"></a>  abcg::glEnableVertexAttribArray(positionAttribute);</span>
+<span id="cb404-88"><a href="envmapping.html#cb404-88"></a>  abcg::glVertexAttribPointer(positionAttribute, <span class="dv">3</span>, GL_FLOAT, GL_FALSE, <span class="dv">0</span>,</span>
+<span id="cb404-89"><a href="envmapping.html#cb404-89"></a>                              <span class="kw">nullptr</span>);</span>
+<span id="cb404-90"><a href="envmapping.html#cb404-90"></a>  abcg::glBindBuffer(GL_ARRAY_BUFFER, <span class="dv">0</span>);</span>
+<span id="cb404-91"><a href="envmapping.html#cb404-91"></a></span>
+<span id="cb404-92"><a href="envmapping.html#cb404-92"></a>  <span class="co">// End of binding to current VAO</span></span>
+<span id="cb404-93"><a href="envmapping.html#cb404-93"></a>  abcg::glBindVertexArray(<span class="dv">0</span>);</span>
+<span id="cb404-94"><a href="envmapping.html#cb404-94"></a>}</span></code></pre></div>
+<p>Também precisamos definir a função <code>OpenGLWindow::terminateSkybox</code> que é chamada em <code>OpenGLWindow::terminateGL</code> para liberar os recursos:</p>
+<div class="sourceCode" id="cb405" startFrom="478"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 477;"><span id="cb405-478"><a href="envmapping.html#cb405-478"></a><span class="dt">void</span> OpenGLWindow::terminateSkybox() {</span>
+<span id="cb405-479"><a href="envmapping.html#cb405-479"></a>  abcg::glDeleteProgram(<span class="va">m_skyProgram</span>);</span>
+<span id="cb405-480"><a href="envmapping.html#cb405-480"></a>  abcg::glDeleteBuffers(<span class="dv">1</span>, &amp;<span class="va">m_skyVBO</span>);</span>
+<span id="cb405-481"><a href="envmapping.html#cb405-481"></a>  abcg::glDeleteVertexArrays(<span class="dv">1</span>, &amp;<span class="va">m_skyVAO</span>);</span>
+<span id="cb405-482"><a href="envmapping.html#cb405-482"></a>}</span></code></pre></div>
+<p>Para renderizar o cubo, definiremos a função <code>OpenGLWindow::renderSkybox</code> que é chamada em <code>OpenGLWindow::paintGL</code> depois da renderização do objeto que está sendo visualizado:</p>
+<div class="sourceCode" id="cb406" startFrom="183"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 182;"><span id="cb406-183"><a href="envmapping.html#cb406-183"></a><span class="dt">void</span> OpenGLWindow::renderSkybox() {</span>
+<span id="cb406-184"><a href="envmapping.html#cb406-184"></a>  abcg::glUseProgram(<span class="va">m_skyProgram</span>);</span>
+<span id="cb406-185"><a href="envmapping.html#cb406-185"></a></span>
+<span id="cb406-186"><a href="envmapping.html#cb406-186"></a>  <span class="co">// Get location of uniform variables</span></span>
+<span id="cb406-187"><a href="envmapping.html#cb406-187"></a>  <span class="at">const</span> GLint viewMatrixLoc{</span>
+<span id="cb406-188"><a href="envmapping.html#cb406-188"></a>      abcg::glGetUniformLocation(<span class="va">m_skyProgram</span>, <span class="st">&quot;viewMatrix&quot;</span>)};</span>
+<span id="cb406-189"><a href="envmapping.html#cb406-189"></a>  <span class="at">const</span> GLint projMatrixLoc{</span>
+<span id="cb406-190"><a href="envmapping.html#cb406-190"></a>      abcg::glGetUniformLocation(<span class="va">m_skyProgram</span>, <span class="st">&quot;projMatrix&quot;</span>)};</span>
+<span id="cb406-191"><a href="envmapping.html#cb406-191"></a>  <span class="at">const</span> GLint skyTexLoc{abcg::glGetUniformLocation(<span class="va">m_skyProgram</span>, <span class="st">&quot;skyTex&quot;</span>)};</span>
+<span id="cb406-192"><a href="envmapping.html#cb406-192"></a></span>
+<span id="cb406-193"><a href="envmapping.html#cb406-193"></a>  <span class="co">// Set uniform variables</span></span>
+<span id="cb406-194"><a href="envmapping.html#cb406-194"></a>  <span class="at">const</span> <span class="kw">auto</span> viewMatrix{<span class="va">m_trackBallLight</span>.getRotation()};</span>
+<span id="cb406-195"><a href="envmapping.html#cb406-195"></a>  abcg::glUniformMatrix4fv(viewMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;viewMatrix[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb406-196"><a href="envmapping.html#cb406-196"></a>  abcg::glUniformMatrix4fv(projMatrixLoc, <span class="dv">1</span>, GL_FALSE, &amp;<span class="va">m_projMatrix</span>[<span class="dv">0</span>][<span class="dv">0</span>]);</span>
+<span id="cb406-197"><a href="envmapping.html#cb406-197"></a>  abcg::glUniform1i(skyTexLoc, <span class="dv">0</span>);</span>
+<span id="cb406-198"><a href="envmapping.html#cb406-198"></a></span>
+<span id="cb406-199"><a href="envmapping.html#cb406-199"></a>  abcg::glBindVertexArray(<span class="va">m_skyVAO</span>);</span>
+<span id="cb406-200"><a href="envmapping.html#cb406-200"></a></span>
+<span id="cb406-201"><a href="envmapping.html#cb406-201"></a>  abcg::glActiveTexture(GL_TEXTURE0);</span>
+<span id="cb406-202"><a href="envmapping.html#cb406-202"></a>  abcg::glBindTexture(GL_TEXTURE_CUBE_MAP, <span class="va">m_model</span>.getCubeTexture());</span>
+<span id="cb406-203"><a href="envmapping.html#cb406-203"></a></span>
+<span id="cb406-204"><a href="envmapping.html#cb406-204"></a>  abcg::glEnable(GL_CULL_FACE);</span>
+<span id="cb406-205"><a href="envmapping.html#cb406-205"></a>  abcg::glFrontFace(GL_CW);</span>
+<span id="cb406-206"><a href="envmapping.html#cb406-206"></a>  abcg::glDepthFunc(GL_LEQUAL);</span>
+<span id="cb406-207"><a href="envmapping.html#cb406-207"></a>  abcg::glDrawArrays(GL_TRIANGLES, <span class="dv">0</span>, <span class="va">m_skyPositions</span>.size());</span>
+<span id="cb406-208"><a href="envmapping.html#cb406-208"></a>  abcg::glDepthFunc(GL_LESS);</span>
+<span id="cb406-209"><a href="envmapping.html#cb406-209"></a></span>
+<span id="cb406-210"><a href="envmapping.html#cb406-210"></a>  abcg::glBindVertexArray(<span class="dv">0</span>);</span>
+<span id="cb406-211"><a href="envmapping.html#cb406-211"></a>  abcg::glUseProgram(<span class="dv">0</span>);</span>
+<span id="cb406-212"><a href="envmapping.html#cb406-212"></a>}</span></code></pre></div>
+<p>Observe como a matriz de visão é a matriz de rotação do trackball da fonte de luz (<code>m_trackBallLight</code>). Assim, conseguimos rodar o cubo através desse trackball.</p>
+<p>Como a câmera está dentro do cubo, o back-face culling é ativado (linha 204) considerando que o lado da frente das faces tem orientação horária (linha 205), isto é, o lado da frente é o lado voltado para dentro do cubo.</p>
+<p>Na linha 206, a função de comparação do teste de profundidade é modificada para <code>GL_LEQUAL</code> (menor ou igual a) no lugar da configuração padrão <code>GL_LESS</code> (menor que). Isso é necessário pois, no shader, faremos com que a posição de cada fragmento tenha valor máximo de profundidade (<span class="math inline">\(z=1\)</span> em NDC) para que somente os pixels “de fundo” do framebuffer sejam modificados. Na configuração padrão, <code>glClear</code> limpa os pixels do buffer de profundidade com valor 1. Assim, após a renderização do objeto, os pixels com valor 1 correspondem aos pixels que não foram modificados, e somente esses pixels precisam ser desenhados com a textura de fundo. A função <code>GL_LEQUAL</code> garante que esses pixels serão preenchidos com o skybox.</p>
+<p>No lugar de modificar a função de teste de profundidade e renderizar o cubo com <span class="math inline">\(z=1\)</span> em NDC, poderíamos simplesmente renderizar o cubo primeiro (sem modificar o buffer de profundidade), e então renderizar o objeto por cima. Entretanto, a abordagem que adotamos (desenhar o cubo depois do objeto) é mais eficiente pois evita sobreposições de pixels e permite que o pipeline não perca tempo processando fragmentos que não passarão no teste de profundidade.</p>
+<p>Os shaders <code>skybox.vert</code> e <code>skybox.frag</code> são definimos a seguir.</p>
+<div id="skybox.vert" class="section level5 unnumbered">
+<h5>skybox.vert</h5>
+<div class="sourceCode" id="cb407" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb407-1"><a href="envmapping.html#cb407-1"></a><span class="pp">#version 410</span></span>
+<span id="cb407-2"><a href="envmapping.html#cb407-2"></a></span>
+<span id="cb407-3"><a href="envmapping.html#cb407-3"></a><span class="kw">layout</span>(<span class="dt">location</span> = <span class="dv">0</span>) <span class="dt">in</span> <span class="dt">vec3</span> inPosition;</span>
+<span id="cb407-4"><a href="envmapping.html#cb407-4"></a></span>
+<span id="cb407-5"><a href="envmapping.html#cb407-5"></a><span class="dt">out</span> <span class="dt">vec3</span> fragTexCoord;</span>
+<span id="cb407-6"><a href="envmapping.html#cb407-6"></a></span>
+<span id="cb407-7"><a href="envmapping.html#cb407-7"></a><span class="kw">uniform</span> <span class="dt">mat4</span> viewMatrix;</span>
+<span id="cb407-8"><a href="envmapping.html#cb407-8"></a><span class="kw">uniform</span> <span class="dt">mat4</span> projMatrix;</span>
+<span id="cb407-9"><a href="envmapping.html#cb407-9"></a></span>
+<span id="cb407-10"><a href="envmapping.html#cb407-10"></a><span class="dt">void</span> <span class="fu">main</span>() {</span>
+<span id="cb407-11"><a href="envmapping.html#cb407-11"></a>  fragTexCoord = inPosition;</span>
+<span id="cb407-12"><a href="envmapping.html#cb407-12"></a></span>
+<span id="cb407-13"><a href="envmapping.html#cb407-13"></a>  <span class="dt">vec4</span> P = projMatrix * viewMatrix * <span class="dt">vec4</span>(inPosition, <span class="fl">1.0</span>);</span>
+<span id="cb407-14"><a href="envmapping.html#cb407-14"></a>  <span class="bu">gl_Position</span> = P.<span class="fu">xyww</span>;</span>
+<span id="cb407-15"><a href="envmapping.html#cb407-15"></a>}</span></code></pre></div>
+<p>O atributo de entrada do vertex shader é a posição do vértice do cubo (<code>inPosition</code>).</p>
+<p>O atributo de saída é <code>fragTexCoord</code>, que corresponde às coordenadas que serão utilizadas para amostrar o mapa de textura cúbico. Na linha 11, essas coordenadas são definidas com os valores de <code>inPosition</code>, isto é, a posição do vértice é considerada como as coordenadas do vetor que será utilizado para amostrar a textura.</p>
+<p>Na linha 13, <code>P</code> é a posição do vértice transformada para o espaço de recorte.</p>
+<p>Na linha 14, utilizamos um pequeno truque: definimos <code>gl_Position</code> como <code>P.xyww</code>, que corresponde a um vetor no qual o valor da coordenada <span class="math inline">\(w\)</span> é repetido como valor da coordenada <span class="math inline">\(z\)</span>. Ao fazer isso, garantimos que <span class="math inline">\(z\)</span> será sempre 1 em NDC, pois a divisão por <span class="math inline">\(w\)</span> feita após o recorte dividirá <span class="math inline">\(z\)</span> por <span class="math inline">\(w\)</span>. Como ambos têm o mesmo valor, o resultado será 1. Com isso conseguimos fazer parecer que as faces do cubo estão sempre no fundo da cena.</p>
+</div>
+<div id="skybox.frag" class="section level5 unnumbered">
+<h5>skybox.frag</h5>
+<div class="sourceCode" id="cb408" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb408-1"><a href="envmapping.html#cb408-1"></a><span class="pp">#version 410</span></span>
+<span id="cb408-2"><a href="envmapping.html#cb408-2"></a></span>
+<span id="cb408-3"><a href="envmapping.html#cb408-3"></a><span class="dt">in</span> <span class="dt">vec3</span> fragTexCoord;</span>
+<span id="cb408-4"><a href="envmapping.html#cb408-4"></a></span>
+<span id="cb408-5"><a href="envmapping.html#cb408-5"></a><span class="dt">out</span> <span class="dt">vec4</span> outColor;</span>
+<span id="cb408-6"><a href="envmapping.html#cb408-6"></a></span>
+<span id="cb408-7"><a href="envmapping.html#cb408-7"></a><span class="kw">uniform</span> <span class="dt">samplerCube</span> skyTex;</span>
+<span id="cb408-8"><a href="envmapping.html#cb408-8"></a></span>
+<span id="cb408-9"><a href="envmapping.html#cb408-9"></a><span class="dt">void</span> <span class="fu">main</span>() { outColor = <span class="bu">texture</span>(skyTex, fragTexCoord); }</span></code></pre></div>
+<p>O fragment shader recebe a saída do vertex shader (<code>fragTexCoord</code>), que são as coordenadas utilizadas para amostrar o mapa de textura cúbido através do amostrador <code>skyTex</code>.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Como o OpenGL define o cubo imaginário do mapeamento cúbico em um espaço que segue a regra da mão esquerda, a imagem de fundo do skybox normalmente ficaria espelhada em relação ao que é mostrado na figura <a href="envmapping.html#fig:cubemap1">10.28</a>. Isso só não ocorre porque a função <code>abcg::opengl::loadCubemap</code> corrige automaticamente as texturas para nós. A correção é feita trocando a textura +z com a textura -z, virando +y e -y de cabeça para baixo, e virando as demais texturas horizontalmente. Consulte o código da função para mais detalhes.</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="normalmapping.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
