@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.5 ABCg | MCTA008-17 Computação Gráfica</title>
+  <title>Turma A2 noturno | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.5 ABCg | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="Turma A2 noturno | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.5 ABCg | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="Turma A2 noturno | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="vscode.html"/>
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="atividades-finais.html"/>
+<link rel="next" href="referências.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -464,7 +464,10 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-de-ambiente-na-prática"><i class="fa fa-check"></i>Mapeamento de ambiente na prática</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="atividades-entregues.html"><a href="atividades-entregues.html"><i class="fa fa-check"></i>Atividades entregues</a></li>
+<li class="chapter" data-level="" data-path="atividades-finais.html"><a href="atividades-finais.html"><i class="fa fa-check"></i>Atividades finais</a>
+<ul>
+<li class="chapter" data-level="" data-path="turma-a2-noturno.html"><a href="turma-a2-noturno.html"><i class="fa fa-check"></i>Turma A2 noturno</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -490,311 +493,50 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="abcg" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> ABCg</h2>
-<p>Para facilitar o desenvolvimento das atividades práticas utilizaremos a biblioteca <a href="https://github.com/hbatagelo/abcg">ABCg</a> desenvolvida especialmente para esta disciplina.</p>
-<p>A ABCg permite a prototipagem rápida de aplicações gráficas interativas 3D em C++ capazes de rodar tanto no desktop (binário nativo) quanto no navegador (binário <a href="https://webassembly.org">WebAssembly</a>).</p>
-<p>Internamente a ABCg utiliza a biblioteca <a href="https://www.libsdl.org">SDL</a> para gerenciar o acesso a dispositivos de entrada (mouse/teclado/<em>gamepad</em>) e saída (vídeo e áudio) de forma independente de plataforma, e a biblioteca <a href="http://glew.sourceforge.net">GLEW</a> para acesso às funções da API gráfica OpenGL. Além disso, a API do <a href="https://emscripten.org">Emscripten</a> é utilizada sempre que a aplicação é compilada para gerar binário WebAssembly.</p>
-<p>A ABCg é mais propriamente um <em>framework</em> do que uma biblioteca de funções, pois assume o controle da aplicação. Por outro lado, a camada de abstração para as APIs utilizadas é mínima e é possível acessar as funções da SDL e OpenGL diretamente (e faremos isso sempre que possível). Outras bibliotecas também utilizadas e que podem ser acessadas diretamente são:</p>
+<div id="turma-a2-noturno" class="section level2 unnumbered">
+<h2>Turma A2 noturno</h2>
 <ul>
-<li><a href="https://github.com/ryanhaining/cppitertools">CPPIterTools</a>: para o suporte a laços <em>range-based</em> em C++ usando funções do tipo <code>range</code>, <code>enumerate</code> e <code>zip</code> similares às do Python;</li>
-<li><a href="https://github.com/ocornut/imgui">Dear ImGui</a>: para gerenciamento de <em>widgets</em> de interface gráfica do usuário, tais como janelas, botões e caixas de edição;</li>
-<li><a href="https://fmt.dev/latest/index.html">{fmt}</a>: como alternativa mais eficiente ao <em>stdio</em> da linguagem C (<code>printf</code>, <code>scanf</code>, etc) e <em>iostreams</em> do C++ (<code>std::cout</code>, <code>std::cin</code>, etc), e para formatação de strings com uma sintaxe similar ao <a href="https://docs.python.org/3/library/stdtypes.html#str.format">str-format</a> do Python;</li>
-<li><a href="https://github.com/microsoft/GSL">Guidelines Support Library</a> (GSL): para uso de funções e tipos de dados recomendados pelo <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">C++ Core Guidelines</a>;</li>
-<li><a href="https://github.com/g-truc/glm">OpenGL Mathematics</a> (GLM): para suporte a operações de transformação geométrica com vetores e matrizes;</li>
-<li><a href="https://github.com/tinyobjloader/tinyobjloader">tinyobjloader</a>: para a leitura de modelos 3D no formato <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">Wavefront OBJ</a>.</li>
+<li><strong>Earth and Moon</strong> (<a href="https://bruishida.github.io/abcg/earthandmoon/">WebAssembly</a>, <a href="https://github.com/bruishida/abcg/tree/main/examples/earthandmoon">GitHub</a>)</li>
+<li><strong>Animal’s House - Primeiros passos da língua inglesa</strong> (<a href="https://marcosvmm.github.io/abcg/animalshouse/">WebAssembly</a>, <a href="https://github.com/MarcosVMM/abcg">GitHub</a>)</li>
+<li><strong>Ball around a wolf</strong> (<a href="https://feosilva.github.io/computacao-grafica-atividade-3/public/atividade3.html">WebAssembly</a>, <a href="https://github.com/FeoSilva/computacao-grafica-atividade-3">GitHub</a>)</li>
+<li><strong>Block Tube V2</strong> (<a href="https://danieldigenova.github.io/blocktubev2/">WebAssembly</a>, <a href="https://github.com/danieldigenova/abcg/tree/main/examples/blocktubeV2">GitHub</a>)</li>
+<li><strong>Boneco de Gelo e Fogo</strong> (<a href="https://youtu.be/hiwl6sOdm-k">Vídeo</a>, <a href="https://github.com/matheusbaio95/abcg/tree/main/examples/Entrega3">GitHub</a>)</li>
+<li><strong>Boids 3D</strong> (<a href="https://patrick-oliveira.github.io/abcg/boids3d/">WebAssembly</a>, <a href="https://github.com/patrick-oliveira/abcg">GitHub</a>)</li>
+<li><strong>Bunnies</strong> (<a href="https://maru-0.github.io/Lots-of-shiny-bunnies/public">WebAssembly</a>, <a href="https://github.com/maru-0/Lots-of-shiny-bunnies">GitHub</a>)</li>
+<li><strong>Campo de futebol</strong> (<a href="https://gabrielthewalrus.github.io/CAMPODEFUTEBOL/index.html">WebAssembly</a>, <a href="https://github.com/GabrielTheWalrus/CG-2021">GitHub</a>)</li>
+<li><strong>Cube place</strong> (<a href="https://morenoyuri.github.io/">WebAssembly</a>, <a href="https://github.com/morenoyuri/abcg/">GitHub</a>)</li>
+<li><strong>Dark Maze</strong> (<a href="https://github.com/PauloRodriguesJr/abcg/tree/main/examples/v-darkmaze">GitHub</a>)</li>
+<li><strong>Deformador de objetos</strong> (<a href="https://fabioluisaf.github.io/deformador/">WebAssembly</a>, <a href="https://github.com/fabioluisaf/deformador">GitHub</a>)</li>
+<li><strong>Dragão Midas</strong> (<a href="https://vitorbonelli.github.io/comp_grafica_projeto_final/midas/">WebAssembly</a>, <a href="https://github.com/vitorbonelli/comp_grafica_projeto_final">GitHub</a>)</li>
+<li><strong>Ducket League</strong> (<a href="https://chokitus.github.io/abcg/ducketleague/index.html">WebAssembly</a>, <a href="https://github.com/Chokitus/abcg">GitHub</a>)</li>
+<li><strong>Endless Runner</strong> (<a href="https://drive.google.com/file/d/1cFJ6snGokIqa4fDut6hmCjEHcuxxul2Z/view?usp=sharing">Vídeo</a>, <a href="https://github.com/GuDuarte/CG-Proj3">GitHub</a>)</li>
+<li><strong>Estátua do vigésimo presidente americano James Garfield</strong> (<a href="https://bluheart.github.io/abcg/atividade3_web/">WebAssembly</a>, <a href="https://github.com/bluheart/abcg/tree/main/examples/atividade3">GitHub</a>)</li>
+<li><strong>Floresta 3D</strong> (<a href="https://danilobrands.github.io/abcg/public/">WebAssembly</a>, <a href="https://github.com/danilobrands/abcg/tree/gh-pages/examples/ProjetoFinal_v2">GitHub</a>)</li>
+<li><strong>Fruits!</strong> (<a href="https://lima-renan.github.io/abcg/fruits/">WebAssembly</a>, <a href="https://lima-renan.github.io/abcg/">GitHub</a>)</li>
+<li><strong>Haunted Maze 3D</strong> (<a href="https://igornerest.github.io/abcg/public/maze3d/">WebAssembly</a>, <a href="https://github.com/igornerest/abcg">GitHub</a>)</li>
+<li><strong>Karambit Viewer</strong> (<a href="https://igormeirelles.github.io/karambit/">WebAssembly</a>, <a href="https://github.com/igormeirelles/karambit">GitHub</a>)</li>
+<li><strong>Lookat - Tea Party!</strong> (<a href="https://marianagregorio.github.io/abcg/">WebAssembly</a>, <a href="https://github.com/marianagregorio/abcg">GitHub</a>)</li>
+<li><strong>Maze</strong> (<a href="https://isaiasalves.github.io/CG-ATV3/public/">WebAssembly</a>, <a href="https://github.com/isaiasalves/CG-ATV3">GitHub</a>)</li>
+<li><strong>Mini Earth</strong> (<a href="https://fiali1.github.io/cg_entrega3/miniEarth/">WebAssembly</a>, <a href="https://github.com/fiali1/cg_entrega3">GitHub</a>)</li>
+<li><strong>Mirror</strong> (<a href="https://sjneves.github.io/MirrorOpenGL/public/">WebAssembly</a>, <a href="https://github.com/sjneves/MirrorOpenGL">GitHub</a>)</li>
+<li><strong>OpenCraft</strong> (<a href="https://wxnn08.github.io/OpenCraft/live-demo/">WebAssembly</a>, <a href="https://github.com/wxnn08/OpenCraft">GitHub</a>)</li>
+<li><strong>Os patos</strong> (<a href="https://github.com/LarissaCatharine/Os-patos">GitHub</a>)</li>
+<li><strong>Planet Tour</strong> (<a href="https://o-eduardo.github.io/abcg/planettour/">WebAssembly</a>, <a href="https://github.com/o-eduardo/abcg/tree/main/examples/planettour">GitHub</a>)</li>
+<li><strong>Renderização 3D de um labirinto</strong> (<a href="https://lucaspinheirodefreitas.github.io/abcg/maze-1.0.0/index.html">WebAssembly</a>, <a href="https://github.com/lucaspinheirodefreitas/abcg/tree/desenvolvimento">GitHub</a>)</li>
+<li><strong>RUN! from UFABC</strong> (<a href="https://erickfunier.github.io/ComputerGraphics/ABCg/run-ufabc/index.html">WebAssembly</a>, <a href="https://github.com/erickfunier/abcg/tree/Atividade-3">GitHub</a>)</li>
+<li><strong>Scape Room</strong> (<a href="https://github.com/dimas-castro/CG-Project/tree/main/examples/scaperoom">GitHub</a>)</li>
+<li><strong>Screensaver: Deathstar</strong> (<a href="https://emerson-matos.github.io/projeto3.html">WebAssembly</a>, <a href="https://github.com/arthurhf/abcg/tree/main/examples/deathstar">GitHub</a>)</li>
+<li><strong>Simulação de avião</strong> (<a href="https://martinezguilherme.github.io/computacao_grafica_atividade_3">WebAssembly</a>, <a href="https://github.com/martinezguilherme/computacao_grafica_atividade_3">GitHub</a>)</li>
+<li><strong>Sistema Solar</strong> (<a href="https://eduardameirinhos.github.io/play-solar-system/solar-system/">WebAssembly</a>, <a href="https://github.com/EduardaMeirinhos/abcg/tree/main/examples/solarsystem">GitHub</a>)</li>
+<li><strong>Skull Screensaver 2</strong> (<a href="https://richardiago.github.io/abcg/screensaver2/">WebAssembly</a>, <a href="https://github.com/richardiago/abcg/tree/main/examples/screensaver2">GitHub</a>)</li>
+<li><strong>spaceTrip</strong> (<a href="https://luc4t0n1.github.io/spaceTrip.html">WebAssembly</a>, <a href="https://github.com/LUC4T0N1/spaceTrip">GitHub</a>)</li>
+<li><strong>The Tree Log Challenge</strong> (<a href="https://www.youtube.com/watch?v=wkYMRViWfk0">Vídeo</a>, <a href="https://github.com/kaiqueiwata/Atividade3">GitHub</a>)</li>
+<li><strong>Three Bodies Viewer v2</strong> (<a href="https://lucas-muniz.github.io/ComputacaoGrafica-abcgapps/threebodiesv2/">WebAssembly</a>, <a href="https://github.com/Lucas-Muniz/ComputacaoGrafica-atividades/tree/main/Atividade1">GitHub</a>)</li>
+<li><strong>Tour na neve</strong> (<a href="https://denisyudi.github.io/abcg/snow">WebAssembly</a>, <a href="https://github.com/denisyudi/abcg/tree/main/examples/snow">GitHub</a>)</li>
+<li><strong>Trenó SP</strong> (<a href="https://nanomugen.github.io/trenosp/">WebAssembly</a>, <a href="https://github.com/nanomugen/trenosp">GitHub</a>)</li>
+<li><strong>Uma sala 3D repleta de cubos com diversas texturas</strong> (<a href="https://www.youtube.com/watch?v=CCF2DYq4Da0">Vídeo</a>, <a href="https://github.com/vanessaarseli/atividade3">GitHub</a>)</li>
 </ul>
-<p>A seguir veremos como instalar e compilar a ABCg junto com um exemplo de uso.</p>
-<div id="instalação" class="section level3 unnumbered">
-<h3>Instalação</h3>
-<p>Em um terminal, clone o repositório do GitHub:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb58-1"><a href="abcg.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/hbatagelo/abcg.git</span></code></pre></div>
-<div class="infobox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
-<div class="infoboxtitle">
-Observação
-</div>
-<p>A versão mais recente da ABCg (atualmente v2.0.0) também pode ser baixada como um arquivo compactado de <a href="https://github.com/hbatagelo/abcg/releases/latest">https://github.com/hbatagelo/abcg/releases/latest</a>.</p>
-</div>
-<div class="warningbox">
-<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1.4em;width:1.22em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#861f1f;overflow:visible;position:relative;"><path d="M323.56 51.2c-20.8 19.3-39.58 39.59-56.22 59.97C240.08 73.62 206.28 35.53 168 0 69.74 91.17 0 209.96 0 281.6 0 408.85 100.29 512 224 512s224-103.15 224-230.4c0-53.27-51.98-163.14-124.44-230.4zm-19.47 340.65C282.43 407.01 255.72 416 226.86 416 154.71 416 96 368.26 96 290.75c0-38.61 24.31-72.63 72.79-130.75 6.93 7.98 98.83 125.34 98.83 125.34l58.63-66.88c4.14 6.85 7.91 13.55 11.27 19.97 27.35 52.19 15.81 118.97-33.43 153.42z"/></svg>
-<div class="warningboxtitle">
-Atenção
-</div>
-<p>No Windows, certifique-se de clonar o repositório em um diretório cujo nome não contenha espaços ou caracteres especiais. Por exemplo, clone em <code>C:\cg</code> em vez de <code>C:\computação gráfica</code>.</p>
-</div>
-<p>O repositório tem a estrutura mostrada a seguir. Para simplificar, os arquivos e subdiretórios <code>.git*</code> foram omitidos:</p>
-<pre><code>abcg
-│   .clang-format
-│   .clang-tidy
-│   build.bat
-│   build.sh
-│   build-wasm.bat
-│   build-wasm.sh
-│   CMakeLists.txt
-│   LICENSE
-│   README.md
-│   runweb.bat
-│   runweb.sh
-│   VERSION.md
-│
-└───abcg
-│   │   ...
-│
-└───cmake
-│   │   ...
-│   
-└───examples
-│   │   ...
-│
-└───public
-    │   ...</code></pre>
-<p>Os arquivos <code>.clang-format</code> e <code>.clang-tidy</code> são arquivos de configuração utilizados pelas ferramentas <a href="https://clang.llvm.org/docs/ClangFormat.html">ClangFormat</a> (formatação) e <a href="https://clang.llvm.org/extra/clang-tidy/">Clang-Tidy</a> (<em>linter</em>) caso estejam instaladas.</p>
-<p>Os arquivos <code>.sh</code> são shell scripts de compilação e execução em linha de comando. Note que há scripts correspondentes com extensão <code>.bat</code> para usar no Prompt de Comando do Windows (<strong>o PowerShell não é suportado</strong>):</p>
-<ul>
-<li><code>build.sh</code>: para compilar a biblioteca e os exemplos em binários nativos;</li>
-<li><code>build-wasm.sh</code>: similar ao <code>build.sh</code>, mas para gerar binário em WebAssembly dentro do subdiretório <code>public</code>;</li>
-<li><code>runweb.sh</code>: para rodar um servidor web local que serve o conteúdo de <code>public</code>.</li>
-</ul>
-<p>O arquivo <code>CMakeLists.txt</code> é o script de configuração utilizado internamente pelo CMake.</p>
-<p>Os subdiretórios são os seguintes:</p>
-<ul>
-<li><code>abcg</code> contém o código-fonte da biblioteca e suas dependências;</li>
-<li><code>cmake</code> contém scripts auxiliares de configuração do CMake;</li>
-<li><code>examples</code> contém um exemplo de uso da ABCg: um “Hello, World!” que usa OpenGL e interface da ImGui;</li>
-<li><code>public</code> contém páginas web para exibir o exemplo “Hello, World!” no navegador.</li>
-</ul>
-</div>
-<div id="compilando-em-linha-de-comando" class="section level3 unnumbered">
-<h3>Compilando em linha de comando</h3>
-<p>Execute o script <code>build.sh</code> (Linux/macOS) ou <code>build.bat</code> (Windows) para iniciar o processo de configuração e construção. A saída será similar a esta (o exemplo a seguir é do Windows):</p>
-<pre><code>-- The C compiler identification is GNU 10.3.0
--- The CXX compiler identification is GNU 10.3.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/msys64/mingw64/bin/gcc.exe - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/msys64/mingw64/bin/g++.exe - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
-Using ccache
--- Found OpenGL: opengl32
--- Found GLEW: C:/msys64/mingw64/lib/cmake/glew/glew-config.cmake
--- Looking for pthread.h
--- Looking for pthread.h - found
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
--- Found Threads: TRUE
--- Found SDL2: mingw32;-mwindows;C:/msys64/mingw64/lib/libSDL2main.a;C:/msys64/mingw64/lib/libSDL2.dll.a
--- Found SDL2_image: C:/msys64/mingw64/lib/libSDL2_image.dll.a
--- Configuring done
--- Generating done
--- Build files have been written to: C:/abcg/build
-...
-[22/22] Linking CXX executable bin\helloworld.exe</code></pre>
-<p>Ao final, os binários estarão disponíveis no subdiretório <code>build</code>. A biblioteca estática estará em <code>build/abcg/libabcg.a</code> e o executável do exemplo “Hello, World!” estará em <code>build/bin/helloworld</code>.</p>
-<p>Para testar, execute o <code>helloworld</code>. No Linux/macOS:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb61-1"><a href="abcg.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./build/bin/helloworld/helloworld</span></span></code></pre></div>
-<p>No Windows:</p>
-<pre class="cmd"><code>.\build\bin\helloworld\helloworld.exe | cat</code></pre>
-<div class="notebox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
-<div class="noteboxtitle">
-Importante
-</div>
-<p>No Windows, a saída deve sempre ser redirecionada para <code>cat</code> ou <code>tee</code>. Se isso não for feito, nenhuma saída de texto será exibida no terminal. Isso se deve a um bug do MSYS2.</p>
-</div>
-<div class="infobox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
-<div class="infoboxtitle">
-Observação
-</div>
-<p>Observe o conteúdo de <code>build.sh</code> (<code>build.bat</code> contém instruções equivalentes):</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb63-1"><a href="abcg.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb63-2"><a href="abcg.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
-<span id="cb63-3"><a href="abcg.html#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-4"><a href="abcg.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="va">BUILD_TYPE=</span>Debug</span>
-<span id="cb63-5"><a href="abcg.html#cb63-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-6"><a href="abcg.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset build directory</span></span>
-<span id="cb63-7"><a href="abcg.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> build</span>
-<span id="cb63-8"><a href="abcg.html#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> build <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build</span>
-<span id="cb63-9"><a href="abcg.html#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-10"><a href="abcg.html#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure</span></span>
-<span id="cb63-11"><a href="abcg.html#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span><span class="va">$BUILD_TYPE</span> ..</span>
-<span id="cb63-12"><a href="abcg.html#cb63-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-13"><a href="abcg.html#cb63-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Build</span></span>
-<span id="cb63-14"><a href="abcg.html#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$OSTYPE</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;darwin&quot;</span><span class="pp">*</span> <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb63-15"><a href="abcg.html#cb63-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># macOS</span></span>
-<span id="cb63-16"><a href="abcg.html#cb63-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">NUM_PROCESSORS=$(</span><span class="ex">sysctl</span> <span class="at">-n</span> hw.ncpu<span class="va">)</span></span>
-<span id="cb63-17"><a href="abcg.html#cb63-17" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb63-18"><a href="abcg.html#cb63-18" aria-hidden="true" tabindex="-1"></a>  <span class="va">NUM_PROCESSORS=$(</span><span class="ex">nproc</span><span class="va">)</span></span>
-<span id="cb63-19"><a href="abcg.html#cb63-19" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb63-20"><a href="abcg.html#cb63-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">--build</span> . <span class="at">--config</span> <span class="va">$BUILD_TYPE</span> <span class="at">--</span> <span class="at">-j</span> <span class="va">$NUM_PROCESSORS</span></span></code></pre></div>
-<ul>
-<li><p>A variável <code>BUILD_TYPE</code> está como <code>Debug</code>, mas pode ser modificada para <code>Release</code>, <code>MinSizeRel</code> ou <code>RelWithDebInfo</code>. Use a opção <code>Debug</code> (padrão) ou <code>RelWithDebInfo</code> enquanto estiver depurando o código. Use <code>Release</code> para gerar um binário otimizado e sem arquivos de símbolos de depuração (otimiza para gerar código mais rápido) ou <code>MinSizeRel</code> (otimiza para gerar binário de menor tamanho).</p></li>
-<li><p>Observe que o script apaga o subdiretório <code>build</code> antes de criá-lo novamente. Portanto, <strong>não salve arquivos dentro de <code>build</code> pois eles serão apagados na próxima compilação!</strong></p></li>
-<li><p>A geração dos binários usando o CMake é composta de duas etapas: <strong>configuração</strong> (<code>cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE ..</code>) e <strong>construção</strong> (<code>cmake --build . --config $BUILD_TYPE</code>). A configuração gera os scripts do sistema de compilação nativo (por exemplo, arquivos Makefile ou Ninja). A construção dispara a compilação e ligação usando tais scripts. Todos os arquivos gerados na configuração e construção ficam armazenados no subdiretório <code>build</code>.</p></li>
-</ul>
-</div>
-</div>
-<div id="compilando-no-visual-studio-code" class="section level3 unnumbered">
-<h3>Compilando no Visual Studio Code</h3>
-<p>Primeiramente, clone o repositório abcg do GitHub como mostrado na seção anterior. Apague o subdiretório <code>build</code> caso você já tenha compilado via linha de comando.</p>
-<p>No Visual Studio Code, selecione o menu “File &gt; Open Folder…” e abra a pasta <code>abcg</code>. No canto inferior direito da janela aparecerá uma notificação solicitando se você quer configurar o projeto. Selecione “Yes.”</p>
-<p><img src="images/00_cmake_configure.png" style="display: block; margin: auto;" /></p>
-<p>Ao fazer isso, será feita uma varredura no sistema para identificar os compiladores e <em>toolchains</em> visíveis no <code>PATH</code>. Uma lista de “kits” encontrados aparecerá na janela “Output” do CMake/Build, como a seguir:</p>
-<pre><code>[kit] Found Kit: Clang 11.0.0
-[kit] Found Kit: GCC for x86_64-w64-mingw32 10.2.0</code></pre>
-<p>Ao final da varredura, <strong>selecione o kit “GCC for x86_64-w64-mingw32” versão 10 ou posterior</strong>. Ao fazer isso, será iniciado o processo de configuração do CMake. Esse processo gera os arquivos que serão utilizados pelo sistema de construção nativo dentro de um subdiretório <code>build</code> do projeto.</p>
-<p>Se aparecer uma notificação pedindo para configurar o projeto sempre que ele for aberto, Responda “Yes”:</p>
-<p><img src="images/00_cmake_configure2.png" style="display: block; margin: auto;" /></p>
-<p>Após o término da configuração do CMake, aparecerá uma outra notificação solicitando permissão para configurar o Intellisense. Responda “Allow.”</p>
-<p><img src="images/00_cmake_configure3.png" style="display: block; margin: auto;" /></p>
-<p>Se, além disso, aparecer uma notificação sobre o arquivo <code>compile_commands.json</code>, como a seguir, responda “Yes” novamente:</p>
-<p><img src="images/00_cmake_configure4.png" style="display: block; margin: auto;" /></p>
-<p><code>compile_commands.json</code> é um arquivo gerado automaticamente pelo CMake e que contém os comandos de compilação e o caminho de cada unidade de tradução utilizada no projeto. O IntelliSense utiliza as informações desse arquivo para habilitar as referências cruzadas.</p>
-<div class="notebox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
-<div class="noteboxtitle">
-Importante
-</div>
-<p>A construção dos projetos usando o CMake é feita em duas etapas:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Configuração</strong>: consiste na geração dos scripts do sistema de compilação nativo (por exemplo, arquivos Makefile ou Ninja);</li>
-<li><strong>Construção</strong>: consiste no disparo da compilação e ligação usando os scripts gerados na configuração, além da execução de etapas de pré e pós-construção definidas nos scripts dos arquivos <code>CMakeList.txt</code>.</li>
-</ol>
-<p>Tanto os arquivos da configuração quanto os da construção (binários) são gravados no subdiretório <code>build</code>.</p>
-<p>Geralmente a configuração só precisa ser feita uma vez e depois refeita caso o subdiretório <code>build</code> tenha sido apagado, ou após a alteração do kit de compilação, ou após a alteração do <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html"><em>build type</em></a> (por exemplo, de <code>Debug</code> para <code>Release</code>).</p>
-<p>Como indicado na figura abaixo, na barra de status há botões para selecionar o build type e configurar o CMake, selecionar o kit de compilação, e construir a aplicação. A opção de construir já se encarrega de configurar o CMake caso os arquivos de configuração ainda não tenham sido gerados.</p>
-<p><img src="images/00_vscode.png" style="display: block; margin: auto;" /></p>
-<p>Essas opções também estão disponíveis na <em>paleta de comandos</em> do editor, acessada com <code>Ctrl+Shift+P</code>. Os comandos são:</p>
-<ul>
-<li>“CMake: Select Variant”: para selecionar um build type;</li>
-<li>“CMake: Select a Kit”: para selecionar um kit de compilação;</li>
-<li>“CMake: Configure”: para configurar o CMake usando o kit e o build type atual;</li>
-<li>“CMake: Build”: para construir o projeto.</li>
-</ul>
-</div>
-<div class="infobox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
-<div class="infoboxtitle">
-Observação
-</div>
-<p>Os <em>build types</em> permitidos no CMake são:</p>
-<ul>
-<li><code>Debug</code> para gerar binários não otimizados e com arquivos de símbolos de depuração. Esse é o build type padrão;</li>
-<li><code>RelWithDebInfo</code> para gerar arquivos de símbolos de depuração com binários otimizados;</li>
-<li><code>Release</code> para gerar binários otimizados e favorecer código mais rápido. Essa opção não gera os arquivos de símbolos de depuração;</li>
-<li><code>MinSizeRel</code>, semelhante ao <code>Release</code>, mas a otimização tenta gerar binário de menor tamanho.</li>
-</ul>
-</div>
-<p>Para compilar e gerar os binários, tecle <code>F7</code> ou clique em “Build” na barra de status. O progresso será exibido na janela “Output” do CMake/Build. Se a construção terminar com sucesso, a última linha de texto da janela Output será:</p>
-<pre><code>[build] Build finished with exit code 0</code></pre>
-<p>Os arquivos gerados na construção ficam armazenados no subdiretório <code>build</code>, da mesma forma como ocorre na compilação via linha de comando.</p>
-<p>Para testar, abra um terminal e execute <code>./build/bin/helloworld/helloworld</code> (Linux/macOS) ou <code>.\build\bin\helloworld\helloworld.exe</code> (Windows).</p>
-<div class="warningbox">
-<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1.4em;width:1.22em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#861f1f;overflow:visible;position:relative;"><path d="M323.56 51.2c-20.8 19.3-39.58 39.59-56.22 59.97C240.08 73.62 206.28 35.53 168 0 69.74 91.17 0 209.96 0 281.6 0 408.85 100.29 512 224 512s224-103.15 224-230.4c0-53.27-51.98-163.14-124.44-230.4zm-19.47 340.65C282.43 407.01 255.72 416 226.86 416 154.71 416 96 368.26 96 290.75c0-38.61 24.31-72.63 72.79-130.75 6.93 7.98 98.83 125.34 98.83 125.34l58.63-66.88c4.14 6.85 7.91 13.55 11.27 19.97 27.35 52.19 15.81 118.97-33.43 153.42z"/></svg>
-<div class="warningboxtitle">
-Atenção
-</div>
-<p>A configuração do CMake gerada a partir do Visual Studio Code não é necessariamente a mesma gerada usando os scripts de linha de comando: o compilador pode ser diferente, ou o <em>build type</em> pode ser diferente.</p>
-<p>Se em algum momento você construir o projeto via linha de comando usando os scripts <code>.sh</code> ou <code>.bat</code> e depois quiser construir pelo editor, <strong>certifique-se de apagar o subdiretório <code>build</code> antes de entrar no VS Code</strong>. Isso forçará uma nova configuração do CMake e evitará erros de incompatibilidade entre as configurações.</p>
-</div>
-</div>
-<div id="depurando-no-visual-studio-code" class="section level3 unnumbered">
-<h3>Depurando no Visual Studio Code</h3>
-<p>Podemos depurar o código com GDB ou LLDB usando a interface do Visual Studio Code.</p>
-<p>Após construir o projeto com build type <code>Debug</code> ou <code>RelWithDebInfo</code>, selecione a opção “Run” (<code>Ctrl+Shift+D</code> ou botão na barra de atividades) e então a opção “create a launch.json file” para criar um arquivo <code>launch.json</code> no subdiretório <code>.vscode</code> da pasta do projeto:</p>
-<p><img src="images/00_vscode_run.png" style="display: block; margin: auto;" /></p>
-<p>Em “Select Environment,” selecione “C++ (GDB/LLDB).” Isso criará uma configuração inicial para o arquivo json:</p>
-<p><img src="images/00_vscode_run2.png" style="display: block; margin: auto;" /></p>
-<p>No arquivo <code>launch.json</code>, modifique o valor da chave <code>program</code> para apontar para o executável que se deseja depurar. Por exemplo, <code>${workspaceFolder}/build/bin/helloworld/helloworld</code> para apontar para o executável do “Hello, World!”</p>
-<div class="infobox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
-<div class="infoboxtitle">
-Observação
-</div>
-<p><code>${workspaceFolder}</code> é uma variável pré-definida do Visual Studio Code que contém o caminho da pasta do projeto. Consulte a <a href="https://code.visualstudio.com/docs/editor/variables-reference">documentação</a> para informações sobre outras variáveis disponíveis.</p>
-</div>
-<p>Modifique o valor da chave <code>miDebuggerPath</code> para o caminho do executável do GDB ou LLDB, ou deixe vazio para usar o padrão do sistema. No Windows, a chave <code>miDebuggerPath</code> deve conter explicitamente o caminho completo para o GDB, que é <code>C:\msys64\mingw64\bin\gdb.exe</code> caso o MSYS2 tenha sido instalado em <code>C:\msys64</code>. No Windows também é necessário configurar o terminal padrão do VS Code para “Command Prompt” no lugar de “PowerShell.”</p>
-<p>O exemplo abaixo mostra o conteúdo completo de <code>launch.json</code> para depurar o “Hello, World!” no Windows.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb66-1"><a href="abcg.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb66-2"><a href="abcg.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">//</span> <span class="er">Use</span> <span class="er">IntelliSense</span> <span class="er">to</span> <span class="er">learn</span> <span class="er">about</span> <span class="er">possible</span> <span class="er">attributes.</span></span>
-<span id="cb66-3"><a href="abcg.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="er">//</span> <span class="er">Hover</span> <span class="er">to</span> <span class="er">view</span> <span class="er">descriptions</span> <span class="er">of</span> <span class="er">existing</span> <span class="er">attributes.</span></span>
-<span id="cb66-4"><a href="abcg.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="er">//</span> <span class="er">For</span> <span class="er">more</span> <span class="er">information</span><span class="fu">,</span> <span class="er">visit</span><span class="fu">:</span> <span class="er">https://go.microsoft.com/fwlink/?linkid=</span><span class="dv">830387</span></span>
-<span id="cb66-5"><a href="abcg.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;0.2.0&quot;</span><span class="fu">,</span></span>
-<span id="cb66-6"><a href="abcg.html#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;configurations&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb66-7"><a href="abcg.html#cb66-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb66-8"><a href="abcg.html#cb66-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;(gdb) Launch&quot;</span><span class="fu">,</span></span>
-<span id="cb66-9"><a href="abcg.html#cb66-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;cppdbg&quot;</span><span class="fu">,</span></span>
-<span id="cb66-10"><a href="abcg.html#cb66-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;request&quot;</span><span class="fu">:</span> <span class="st">&quot;launch&quot;</span><span class="fu">,</span></span>
-<span id="cb66-11"><a href="abcg.html#cb66-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;program&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceFolder}/build/bin/helloworld/helloworld.exe&quot;</span><span class="fu">,</span></span>
-<span id="cb66-12"><a href="abcg.html#cb66-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
-<span id="cb66-13"><a href="abcg.html#cb66-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;stopAtEntry&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
-<span id="cb66-14"><a href="abcg.html#cb66-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;cwd&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceFolder}&quot;</span><span class="fu">,</span></span>
-<span id="cb66-15"><a href="abcg.html#cb66-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;environment&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
-<span id="cb66-16"><a href="abcg.html#cb66-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;externalConsole&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb66-17"><a href="abcg.html#cb66-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;MIMode&quot;</span><span class="fu">:</span> <span class="st">&quot;gdb&quot;</span><span class="fu">,</span></span>
-<span id="cb66-18"><a href="abcg.html#cb66-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;miDebuggerPath&quot;</span><span class="fu">:</span> <span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">msys64</span><span class="ch">\\</span><span class="st">mingw64</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">gdb.exe&quot;</span><span class="fu">,</span></span>
-<span id="cb66-19"><a href="abcg.html#cb66-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;setupCommands&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb66-20"><a href="abcg.html#cb66-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
-<span id="cb66-21"><a href="abcg.html#cb66-21" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Enable pretty-printing for gdb&quot;</span><span class="fu">,</span></span>
-<span id="cb66-22"><a href="abcg.html#cb66-22" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;text&quot;</span><span class="fu">:</span> <span class="st">&quot;-enable-pretty-printing&quot;</span><span class="fu">,</span></span>
-<span id="cb66-23"><a href="abcg.html#cb66-23" aria-hidden="true" tabindex="-1"></a>          <span class="dt">&quot;ignoreFailures&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb66-24"><a href="abcg.html#cb66-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
-<span id="cb66-25"><a href="abcg.html#cb66-25" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
-<span id="cb66-26"><a href="abcg.html#cb66-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb66-27"><a href="abcg.html#cb66-27" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb66-28"><a href="abcg.html#cb66-28" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
-<p>Observe que o valor da chave <code>externalConsole</code> foi modificado para <code>true</code> para que um terminal de saída seja aberto durante a depuração. Consulte a <a href="https://code.visualstudio.com/docs/editor/debugging">documentação sobre depuração</a> para informações sobre outras opções e informações gerais sobre como depurar código no editor.</p>
-<p>Após modificar o arquivo <code>launch.json</code>, selecione novamente a opção “Run” na barra de atividades ou tecle <code>F5</code> para iniciar o programa no modo de depuração.</p>
-<p>Reedite o arquivo <code>launch.json</code> sempre que mudar o nome do executável que se queira depurar.</p>
-</div>
-<div id="compilando-para-webassembly" class="section level3 unnumbered">
-<h3>Compilando para WebAssembly</h3>
-<p>Podemos compilar as aplicações ABCg para WebAssembly de modo a rodá-las diretamente no navegador. A construção é feita via linha de comando usando o <em>toolchain</em> <a href="https://emscripten.org/">Emscripten</a>. Acompanhe a seguir como construir o exemplo “Hello, World!” para WebAssembly e abri-lo no navegador:</p>
-<ol style="list-style-type: decimal">
-<li>Em um terminal (shell ou Prompt de Comando), ative as variáveis de ambiente do Emscripten (script <code>emsdk_env.sh</code>/<code>emsdk_env.bat</code> do SDK). Após isso, o compilador <code>emcc</code> deverá estar visível no <code>PATH</code>;</li>
-<li>No diretório <code>abcg</code>, execute <code>build-wasm.sh</code> (Linux/macOS) ou <code>build-wasm.bat</code> (Windows). Isso iniciará a configuração do CMake e a construção dos binários. Os arquivos resultantes serão gerados no subdiretório <code>public</code>: nesse caso, <code>helloworld.data</code> (arquivo de dados/assets), <code>helloworld.js</code> (arquivo JavaScript) e <code>helloworld.wasm</code> (binário WebAssembly);</li>
-<li>Execute o script <code>runweb.sh</code> (Linux/macOS) ou <code>runweb.bat</code> (Windows) para rodar um servidor web local. O conteúdo de <code>public</code> estará disponível em <a href="http://localhost:8080/">http://localhost:8080/</a>;</li>
-<li>Abra a página <a href="http://localhost:8080/helloworld.html">http://localhost:8080/helloworld.html</a> que chama o script <code>helloworld.js</code> recém-criado. A página HTML não faz parte do processo de construção e foi criada previamente.</li>
-</ol>
-<p>O resultado será semelhante ao exibido a seguir (uma aplicação mostrando um triângulo colorido e uma caixa de diálogo com alguns controles de interface). A pequena janela de texto abaixo da janela da aplicação mostra o conteúdo do terminal. Nesse caso, são exibidas algumas informações sobre o OpenGL (versão utilizada, fornecedor do driver, etc).</p>
-<iframe
-  src="https://hbatagelo.github.io/abcgapps/helloworld/index.html"
-  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="745" scrolling="no"
-  ></iframe>
-<div class="infobox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
-<div class="infoboxtitle">
-Observação
-</div>
-<p>O subdiretório <code>public</code> contém, além do <code>helloworld.html</code>:</p>
-<ul>
-<li><code>full_window.html</code>: para exibir o “Hello, World!” ocupando a janela inteira do navegador;</li>
-<li><code>full_window_console.html</code>: idêntico ao anterior, mas com a sobreposição das mensagens do console na tela.</li>
-</ul>
-</div>
-<p>Nos próximos capítulos veremos como construir novas aplicações usando a ABCg.</p>
-<div class="tipbox">
-<svg aria-hidden="true" role="img" viewBox="0 0 352 512" style="height:1.4em;width:0.96em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#7e4d1d;overflow:visible;position:relative;"><path d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
-<div class="tipboxtitle">
-Dica
-</div>
-<p>Aproveite o restante da primeira semana de aula para se familiarizar com os conceitos do chamado “C++ moderno” (C++11 em diante): ponteiros inteligentes (<em>smart pointers</em>), expressões <em>lambda</em>, variáveis <em>auto</em> e semântica de movimentação (<em>move semantics</em>). Isso facilitará o entendimento do código da ABCg nos próximos capítulos.</p>
-<ul>
-<li><p>Uma referência rápida (<em>cheatsheet</em>) ao C++ moderno está disponível em <a href="https://github.com/AnthonyCalandra/modern-cpp-features">https://github.com/AnthonyCalandra/modern-cpp-features</a>.</p></li>
-<li><p>Um excelente livro é o <a href="https://www.stroustrup.com/Tour.html">A Tour of C++</a>, de Bjarne Stroustrup. Se não puder ter acesso ao livro, há recursos gratuitos como os sites <a href="https://www.learncpp.com/">learncpp.com</a> e <a href="https://www.tutorialspoint.com/cplusplus/index.htm">tutorialspoint.com</a>.</p></li>
-<li><p>A <a href="https://docs.microsoft.com/pt-br/cpp/cpp/">documentação da Microsoft sobre C++</a> é uma opção em português. Há uma referência sobre a linguagem C++ e sobre a biblioteca C++ padrão.</p></li>
-<li><p>Consulte também o <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">C++ Core Guidelines</a> para ficar a par das boas práticas de programação.</p></li>
-<li><p>Para uma referência completa da linguagem, consulte <a href="https://cppreference.com/">cppreference.com</a>. Algumas partes estão traduzidas para o português.</p></li>
-</ul>
-</div>
 
-</div>
 </div>
 <!-- </div> -->
             </section>
@@ -802,8 +544,8 @@ Dica
           </div>
         </div>
       </div>
-<a href="vscode.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="intro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="atividades-finais.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
