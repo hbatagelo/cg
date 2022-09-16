@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.4 Visual Studio Code | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.4 Visual Studio Code | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="github-repo" content="hbatagelo/cgbook" />
@@ -31,7 +30,6 @@
   
 <link rel="prev" href="windows.html"/>
 <link rel="next" href="abcg.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,8 +47,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -151,7 +150,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
 <ul>
-<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#habilitando-o-opengl"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
@@ -161,17 +160,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
 <ul>
-<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#habilitando-o-opengl-1"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
 <li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
 <ul>
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
-<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-em-linha-de-comando"><i class="fa fa-check"></i>Compilando em linha de comando</a></li>
-<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-visual-studio-code"><i class="fa fa-check"></i>Compilando no Visual Studio Code</a></li>
-<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-visual-studio-code"><i class="fa fa-check"></i>Depurando no Visual Studio Code</a></li>
-<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
@@ -192,284 +192,22 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
-<ul>
-<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
-<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
-<ul>
-<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
-<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
-<ul>
-<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
-<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
-<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
-<ul>
-<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
-<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
-<ul>
-<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
-<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
-<ul>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
-<ul>
-<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.hpp-2"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.cpp-2"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
-<ul>
-<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.hpp-3"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.cpp-3"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
-<ul>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
-<ul>
-<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
-<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
-<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
-<ul>
-<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
-<ul>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#frames"><i class="fa fa-check"></i>Frames</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
-<ul>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-5"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.hpp-5"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.cpp-5"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
-<ul>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação"><i class="fa fa-check"></i>Transformação</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
-<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
-<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
-<ul>
-<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
-<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
-<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
-<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
-</ul></li>
-<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
-<ul>
-<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
-<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
-<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
-<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
-</ul></li>
-<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
-<ul>
-<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
-<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
-<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
-<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
-</ul></li>
-<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
-<ul>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.hpp-6"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.cpp-6"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
-<ul>
-<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
-<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
-<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
-<ul>
-<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
-<ul>
-<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
-<ul>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.hpp-7"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.cpp-7"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
-<ul>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.hpp-8"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-8"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>9</b> Iluminação</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>9.1</b> Equação de renderização</a></li>
-<li class="chapter" data-level="9.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>9.2</b> Modelo de reflexão de Phong</a>
-<ul>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>9.3</b> Modelo de Blinn–Phong</a></li>
-<li class="chapter" data-level="9.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>9.4</b> Sombreamento</a>
-<ul>
-<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
-<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
-<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>9.5</b> Normais como cores</a>
-<ul>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.hpp-9"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.cpp-9"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
-</ul></li>
-<li class="chapter" data-level="9.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>9.6</b> Iluminação na prática</a>
-<ul>
-<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
-<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
-<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="texturing.html"><a href="texturing.html"><i class="fa fa-check"></i><b>10</b> Texturização</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="texmapping.html"><a href="texmapping.html"><i class="fa fa-check"></i><b>10.1</b> Mapeamento</a>
-<ul>
-<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-planar"><i class="fa fa-check"></i>Mapeamento planar</a></li>
-<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-cilíndrico"><i class="fa fa-check"></i>Mapeamento cilíndrico</a></li>
-<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-esférico"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
-<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-uv-unwrap"><i class="fa fa-check"></i>Mapeamento UV unwrap</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="texwrapping.html"><a href="texwrapping.html"><i class="fa fa-check"></i><b>10.2</b> Empacotamento</a></li>
-<li class="chapter" data-level="10.3" data-path="texfiltering.html"><a href="texfiltering.html"><i class="fa fa-check"></i><b>10.3</b> Filtragem</a>
-<ul>
-<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#magnificação"><i class="fa fa-check"></i>Magnificação</a></li>
-<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#minificação"><i class="fa fa-check"></i>Minificação</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="viewer4.html"><a href="viewer4.html"><i class="fa fa-check"></i><b>10.4</b> Texturização na prática</a>
-<ul>
-<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-texturas"><i class="fa fa-check"></i>Carregando texturas</a></li>
-<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
-<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
-</ul></li>
-<li class="chapter" data-level="10.5" data-path="normalmapping.html"><a href="normalmapping.html"><i class="fa fa-check"></i><b>10.5</b> Mapeamento de normais</a>
-<ul>
-<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#espaço-tangente"><i class="fa fa-check"></i>Espaço tangente</a></li>
-<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#transformação-para-o-espaço-tangente"><i class="fa fa-check"></i>Transformação para o espaço tangente</a></li>
-<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
-<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
-</ul></li>
-<li class="chapter" data-level="10.6" data-path="envmapping.html"><a href="envmapping.html"><i class="fa fa-check"></i><b>10.6</b> Mapeamento de ambiente</a>
-<ul>
-<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-esférico-1"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
-<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-cúbico"><i class="fa fa-check"></i>Mapeamento cúbico</a></li>
-<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-de-ambiente-na-prática"><i class="fa fa-check"></i>Mapeamento de ambiente na prática</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="atividades-entregues.html"><a href="atividades-entregues.html"><i class="fa fa-check"></i>Atividades entregues</a></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
-<a href="mailto:harlen.batagelo@ufabc.edu.br" target="blank">Harlen Batagelo</a>
-<a href="mailto:bruno.marques@ufabc.edu.br" target="blank">Bruno Marques</a>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
 <br>
 </li>
 
@@ -490,20 +228,16 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="vscode" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Visual Studio Code</h2>
+<div id="vscode" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Visual Studio Code<a href="vscode.html#vscode" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Para desenvolver as atividades não é necessário usar um IDE ou editor em particular. Os códigos podem ser escritos em qualquer editor de texto não formatado e a compilação pode ser feita em linha de comando. Entretanto, é recomendável utilizar um editor/IDE como o <a href="https://www.jetbrains.com/clion/">CLion</a>, <a href="https://www.gnu.org/software/emacs/">Emacs</a>, <a href="https://www.sublimetext.com/">Sublime Text</a>, <a href="https://www.vim.org/">Vim</a>, <a href="https://code.visualstudio.com/">Visual Studio Code</a>, ou outro semelhante que seja capaz de oferecer funcionalidades de preenchimento automático de código, detecção de erros, ajuda sensível ao contexto e integração de construção com o CMake.</p>
-<p>A seguir veremos como configurar o <a href="https://code.visualstudio.com/">Visual Studio Code</a> (VS Code) para deixá-lo pronto para o desenvolvimento das atividades. O procedimento é simples e é o mesmo no Linux, macOS e Windows:</p>
+<p>A seguir veremos como configurar o <a href="https://code.visualstudio.com/">Visual Studio Code</a> (VS Code) para deixá-lo pronto para o desenvolvimento das atividades. O procedimento é bem simples e é o mesmo no Linux, macOS e Windows:</p>
 <ol style="list-style-type: decimal">
-<li><p>Instale o VS Code através do instalador disponível em <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>.</p></li>
-<li><p>No editor, instale as seguintes extensões:</p>
-<ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++ for Visual Studio Code</a>: para habilitar o suporte à edição e depuração de código C/C++ e as funcionalidades de preenchimento automático e referência cruzada do IntelliSense.</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools">CMake Tools</a>: para integrar o CMake com o Visual Studio Code. Com essa extensão o editor consegue varrer o sistema em busca dos “kits” de compilação disponíveis e permite disparar o processo de configuração e compilação a partir do editor.</li>
-</ul></li>
+<li><p>Instale o VS Code através do instalador disponível em <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a> ou através do gerenciador de pacotes de seu sistema operacional.</p></li>
+<li><p>Abra o editor e, na janela de extensões (<code>Ctrl+Shift+X</code>), instale a extensão <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack">C/C++ Extension Pack</a>.</p></li>
 </ol>
 <p>Isso já é o suficiente para começarmos a trabalhar. Ainda precisaremos de algumas configurações extras para habilitar a depuração de código, mas veremos isso na seção a seguir (<a href="abcg.html#abcg">1.5</a>).</p>
-<p>Caso você queira usar outro editor ou IDE, consulte a documentação específica do produto sobre como fazer a integração com o CMake e sobre como usar o GDB/LLDB para depurar código.</p>
+<p>Caso você queira usar outro editor ou IDE, consulte a documentação específica de seu editor sobre como fazer a integração com o CMake e sobre como usar o GDB/LLDB para depurar código.</p>
 <div class="notebox">
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
 <div class="noteboxtitle">
@@ -517,15 +251,14 @@ Importante
 Dicas
 </div>
 <ul>
-<li><p>Opcionalmente, instale a extensão <a href="https://marketplace.visualstudio.com/items?itemName=twxs.cmake">CMake For VisualStudio Code</a> para ter suporte à edição de código dos scripts CMake.</p></li>
-<li><p>Em sistemas que possuem as ferramentas extras do <a href="https://clang.llvm.org">Clang</a> para <em>linting</em> e formatação de código tais como <a href="https://clang.llvm.org/extra/clang-tidy">Clang-Tidy</a> e <a href="https://clang.llvm.org/docs/ClangFormat.html">ClangFormat</a>, é possível instalar extensões para usá-las em tempo real e para formatar o código automaticamente sempre que o arquivo é salvo. Uma dessas extensões é o <a href="https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd">vscode-clangd</a>, baseado no servidor <a href="https://clangd.llvm.org/">clangd</a> do LLVM. Infelizmente essa extensão não funciona corretamente no Windows com MSYS2, mas há diversas alternativas no <a href="https://marketplace.visualstudio.com/vscode">Visual Studio Code Marketplace</a>. Procure extensões com as palavras-chave “clang-tidy” e “clang-format.” Essas ferramentas ajudam a evitar os erros e <em>bugs</em> mais comuns e melhoram bastante a produtividade.</p>
-<p>No Ubuntu, o ClangFormat e Clang-Tidy podem ser instalados com:</p>
+<li><p>Em sistemas que possuem as ferramentas extras do <a href="https://clang.llvm.org">Clang</a> para <em>linting</em> e formatação de código como o <a href="https://clang.llvm.org/extra/clang-tidy">Clang-Tidy</a> e <a href="https://clang.llvm.org/docs/ClangFormat.html">ClangFormat</a>, é possível instalar extensões para fazer análise estática em tempo real e formatar o código automaticamente sempre que um arquivo é salvo. Uma dessas extensões é o <a href="https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd">clangd</a>, baseado no servidor <a href="https://clangd.llvm.org/">de mesmo nome</a> do <a href="https://llvm.org/">LLVM</a>.</p>
+<p>Como vimos na seção <a href="linux.html#linux">1.1</a>, o Clang-Tidy e ClangFormat podem ser instalados no Ubuntu com os seguintes comandos:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb56-1"><a href="vscode.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install clang-tidy clang-format</span></code></pre></div>
-<p>Isso instalará também o compilador Clang.</p>
-<p>No MSYS2:</p>
+<p>No Windows com MSYS2, abra o shell do MSYS2 e execute o seguinte comando:</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb57-1"><a href="vscode.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pacman</span> <span class="at">-S</span> mingw-w64-x86_64-clang-tools-extra</span></code></pre></div>
-<p>Para ativar a formatação automática de código sempre que o arquivo é salvo, adicione a chave <code>"editor.formatOnSave": true</code> no arquivo de configuração do VS Code (<code>settings.json</code>).</p></li>
-<li><p>Para a análise estática em tempo real de código GLSL, instale a extensão <a href="https://marketplace.visualstudio.com/items?itemName=CADENAS.vscode-glsllint">GLSL Lint</a>. Isso ajudará a evitar <em>bugs</em> e erros comuns na programação dos shaders em GLSL.</p></li>
+<p>Para ativar a formatação automática de código sempre que o arquivo for salvo, abra o arquivo JSON contendo as configurações do usuário do VS Code (opção “Preferences: Open User Settings (JSON)” da paleta de comandos) e adicione a chave <code>"editor.formatOnSave": true</code>.</p></li>
+<li><p>Para a análise estática em tempo real de código GLSL, instale a extensão <a href="https://marketplace.visualstudio.com/items?itemName=CADENAS.vscode-glsllint">GLSL Lint</a>. Isso ajudará a evitar erros de sintaxe comuns na programação dos shaders em GLSL. Essa extensão instala também o <a href="https://marketplace.visualstudio.com/items?itemName=slevesque.shader">Shader languages support for VS Code</a> para habilitar o <em>syntax highlighting</em> e <em>autocomplete</em> do código GLSL.</p></li>
+<li><p>Explore o <a href="https://marketplace.visualstudio.com/">Visual Studio Marketplace</a> para instalar outras extensões de sua preferência. Por exemplo, se você é fã do <a href="https://www.gnu.org/software/emacs/">Emacs</a>, instale o <a href="https://marketplace.visualstudio.com/items?itemName=vscodeemacs.emacs">VSCodeEmacs</a> para emular as teclas do Emacs no VS Code. Se você prefere o <a href="https://www.vim.org/">Vim</a>, instale o <a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim">VSCodeVim</a>. E se você só quer relaxar um pouco, instale o <a href="https://marketplace.visualstudio.com/items?itemName=geekanant.chrome-dinosaur-game">Chrome Dinosaur Game</a>!</p></li>
 </ul>
 </div>
 </div>

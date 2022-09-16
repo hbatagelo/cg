@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 Primeiro programa | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 Primeiro programa | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="github-repo" content="hbatagelo/cgbook" />
@@ -30,8 +29,7 @@
   
   
 <link rel="prev" href="linha-do-tempo.html"/>
-<link rel="next" href="graphicssystem.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<link rel="next" href="tictactoe.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,8 +47,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -151,7 +150,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
 <ul>
-<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#habilitando-o-opengl"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
@@ -161,17 +160,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
 <ul>
-<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#habilitando-o-opengl-1"><i class="fa fa-check"></i>Habilitando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
 <li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
 <ul>
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
-<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-em-linha-de-comando"><i class="fa fa-check"></i>Compilando em linha de comando</a></li>
-<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-visual-studio-code"><i class="fa fa-check"></i>Compilando no Visual Studio Code</a></li>
-<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-visual-studio-code"><i class="fa fa-check"></i>Depurando no Visual Studio Code</a></li>
-<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
@@ -192,284 +192,22 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly-1"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.1</b> Vetorial <em>x</em> matricial</a>
-<ul>
-<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
-<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.2</b> Dispositivos de E/S</a>
-<ul>
-<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
-<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.3</b> Framebuffer</a>
-<ul>
-<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
-<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
-<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#backbuffering"><i class="fa fa-check"></i>Backbuffering</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.4</b> Triângulo de Sierpinski</a>
-<ul>
-<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
-<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
-<ul>
-<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
-<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
-<ul>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
-<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
-<ul>
-<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.hpp-2"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#openglwindow.cpp-2"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
-<ul>
-<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.hpp-3"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#openglwindow.cpp-3"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
-<ul>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
-<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
-<ul>
-<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
-<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
-<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
-<ul>
-<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
-<ul>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#frames"><i class="fa fa-check"></i>Frames</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
-<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
-<ul>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-5"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.hpp-5"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#openglwindow.cpp-5"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
-<ul>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
-<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação"><i class="fa fa-check"></i>Transformação</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
-<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
-<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
-<ul>
-<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
-<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
-<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
-<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
-</ul></li>
-<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
-<ul>
-<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
-<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
-<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
-<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
-</ul></li>
-<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
-<ul>
-<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
-<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
-<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
-<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
-</ul></li>
-<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
-<ul>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.hpp-6"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#openglwindow.cpp-6"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
-<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
-<ul>
-<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
-<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
-<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
-<ul>
-<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
-<ul>
-<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
-<ul>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.hpp-7"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.cpp-7"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
-<ul>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.hpp-8"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-8"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>9</b> Iluminação</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>9.1</b> Equação de renderização</a></li>
-<li class="chapter" data-level="9.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>9.2</b> Modelo de reflexão de Phong</a>
-<ul>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
-<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>9.3</b> Modelo de Blinn–Phong</a></li>
-<li class="chapter" data-level="9.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>9.4</b> Sombreamento</a>
-<ul>
-<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
-<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
-<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>9.5</b> Normais como cores</a>
-<ul>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.hpp-9"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#openglwindow.cpp-9"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
-<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
-</ul></li>
-<li class="chapter" data-level="9.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>9.6</b> Iluminação na prática</a>
-<ul>
-<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
-<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
-<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="texturing.html"><a href="texturing.html"><i class="fa fa-check"></i><b>10</b> Texturização</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="texmapping.html"><a href="texmapping.html"><i class="fa fa-check"></i><b>10.1</b> Mapeamento</a>
-<ul>
-<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-planar"><i class="fa fa-check"></i>Mapeamento planar</a></li>
-<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-cilíndrico"><i class="fa fa-check"></i>Mapeamento cilíndrico</a></li>
-<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-esférico"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
-<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-uv-unwrap"><i class="fa fa-check"></i>Mapeamento UV unwrap</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="texwrapping.html"><a href="texwrapping.html"><i class="fa fa-check"></i><b>10.2</b> Empacotamento</a></li>
-<li class="chapter" data-level="10.3" data-path="texfiltering.html"><a href="texfiltering.html"><i class="fa fa-check"></i><b>10.3</b> Filtragem</a>
-<ul>
-<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#magnificação"><i class="fa fa-check"></i>Magnificação</a></li>
-<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#minificação"><i class="fa fa-check"></i>Minificação</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="viewer4.html"><a href="viewer4.html"><i class="fa fa-check"></i><b>10.4</b> Texturização na prática</a>
-<ul>
-<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-texturas"><i class="fa fa-check"></i>Carregando texturas</a></li>
-<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
-<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
-</ul></li>
-<li class="chapter" data-level="10.5" data-path="normalmapping.html"><a href="normalmapping.html"><i class="fa fa-check"></i><b>10.5</b> Mapeamento de normais</a>
-<ul>
-<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#espaço-tangente"><i class="fa fa-check"></i>Espaço tangente</a></li>
-<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#transformação-para-o-espaço-tangente"><i class="fa fa-check"></i>Transformação para o espaço tangente</a></li>
-<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
-<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
-</ul></li>
-<li class="chapter" data-level="10.6" data-path="envmapping.html"><a href="envmapping.html"><i class="fa fa-check"></i><b>10.6</b> Mapeamento de ambiente</a>
-<ul>
-<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-esférico-1"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
-<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-cúbico"><i class="fa fa-check"></i>Mapeamento cúbico</a></li>
-<li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-de-ambiente-na-prática"><i class="fa fa-check"></i>Mapeamento de ambiente na prática</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="atividades-entregues.html"><a href="atividades-entregues.html"><i class="fa fa-check"></i>Atividades entregues</a></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
-<a href="mailto:harlen.batagelo@ufabc.edu.br" target="blank">Harlen Batagelo</a>
-<a href="mailto:bruno.marques@ufabc.edu.br" target="blank">Bruno Marques</a>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
 <br>
 </li>
 
@@ -490,136 +228,121 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="firstapp" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Primeiro programa</h2>
-<p>Nesta seção seguiremos um passo a passo de construção de um primeiro programa com a biblioteca ABCg. Será o nosso “Hello, World!” similar ao exemplo da ABCg mostrado na seção <a href="abcg.html#abcg">1.5</a>, mas sem o triângulo colorido renderizado com OpenGL.</p>
-<div id="configuração-inicial" class="section level3 unnumbered">
-<h3>Configuração inicial</h3>
+<div id="firstapp" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Primeiro programa<a href="firstapp.html#firstapp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nesta seção seguiremos um passo a passo de construção de um primeiro programa com a biblioteca ABCg. Será o nosso “Hello, World!”, similar ao exemplo da ABCg mostrado na seção <a href="abcg.html#abcg">1.5</a>, mas sem o triângulo colorido renderizado com OpenGL.</p>
+<div id="configuração-inicial" class="section level3 unnumbered hasAnchor">
+<h3>Configuração inicial<a href="firstapp.html#configuração-inicial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li><p>Faça uma cópia (ou <em>fork</em>) de <a href="https://github.com/hbatagelo/abcg.git">https://github.com/hbatagelo/abcg.git</a>. Assim você poderá modificar livremente a biblioteca e armazená-la em seu repositório pessoal.</p></li>
+<li><p>Faça uma cópia (ou <em>fork</em>) do conteúdo de <a href="https://github.com/hbatagelo/abcg.git">https://github.com/hbatagelo/abcg.git</a>. Desse modo você poderá modificar livremente a biblioteca e armazená-la em seu repositório pessoal.</p></li>
 <li><p>Como a ABCg já tem um projeto de exemplo chamado <code>helloworld</code>, vamos chamar o nosso de <code>firstapp</code>. Em <code>abcg/examples</code>, crie o subdiretório <code>abcg/examples/firstapp</code>.</p>
-<p>A escolha de deixar o projeto como um subdiretório de <code>abcg/examples</code> é conveniente pois podemos replicar a configuração de <code>abcg/examples/helloworld</code>. Assim, bastará construir a ABCg e o nosso projeto será automaticamente construído como um exemplo adicional da biblioteca.</p></li>
+<p>A escolha de deixar o projeto como um subdiretório de <code>abcg/examples</code> é conveniente pois bastará construir a ABCg para que o nosso projeto seja automaticamente construído como um exemplo adicional da biblioteca.</p></li>
 <li><p>Abra o arquivo <code>abcg/examples/CMakeLists.txt</code> e acrescente a linha <code>add_subdirectory(firstapp)</code>. O conteúdo ficará assim:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb67-1"><a href="firstapp.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(helloworld)</span>
-<span id="cb67-2"><a href="firstapp.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(firstapp)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb74-1"><a href="firstapp.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(helloworld)</span>
+<span id="cb74-2"><a href="firstapp.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(firstapp)</span></code></pre></div>
 <p>Dessa forma o CMake incluirá o subdiretório <code>firstapp</code> na busca de um script <code>CMakeLists.txt</code> contendo a configuração do projeto.</p></li>
 <li><p>Crie o arquivo <code>abcg/examples/firstapp/CMakeLists.txt</code>. Edite-o com o seguinte conteúdo:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb68-1"><a href="firstapp.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(firstapp)</span>
-<span id="cb68-2"><a href="firstapp.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJECT_NAME}</span> main.cpp openglwindow.cpp)</span>
-<span id="cb68-3"><a href="firstapp.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">enable_abcg</span>(<span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div>
-<p>O comando <code>project</code> na primeira linha define o nome do projeto. Em seguida, <code>add_executable</code> define que o executável terá o mesmo nome definido em <code>project</code> e será gerado a partir dos fontes <code>main.cpp</code> e <code>openglwindow.cpp</code> (não é necessário colocar os arquivos <code>.h</code> ou <code>.hpp</code>). Por fim, a função <code>enable_abcg()</code> configura o projeto para usar a ABCg. Essa função é definida em <code>abcg/cmake/ABCg.cmake</code>, que é um script CMake chamado a partir do <code>CMakeLists.txt</code> do diretório raiz.</p></li>
-<li><p>Em <code>abcg/examples/firstapp</code>, crie os arquivos <code>main.cpp</code>, <code>openglwindow.cpp</code> e <code>openglwindow.hpp</code>. Vamos editá-los a seguir.</p></li>
+<div class="sourceCode" id="cb75"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb75-1"><a href="firstapp.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(firstapp)</span>
+<span id="cb75-2"><a href="firstapp.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJECT_NAME}</span> <span class="bn">main.cpp</span> window.cpp)</span>
+<span id="cb75-3"><a href="firstapp.html#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="fu">enable_abcg</span>(<span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div>
+<p>O comando <code>project</code> na primeira linha define o nome do projeto. Em seguida, <code>add_executable</code> define que o executável terá o mesmo nome definido em <code>project</code> e será gerado a partir dos fontes <code>main.cpp</code> e <code>window.cpp</code> (não é necessário colocar os arquivos <code>.h</code> ou <code>.hpp</code>). Por fim, a função <code>enable_abcg()</code> configura o projeto para usar a ABCg. Essa função é definida em <code>abcg/cmake/ABCg.cmake</code>, que é um script CMake chamado a partir do <code>CMakeLists.txt</code> do diretório raiz.</p></li>
+<li><p>Em <code>abcg/examples/firstapp</code>, crie os arquivos <code>main.cpp</code>, <code>window.cpp</code> e <code>window.hpp</code>. Vamos editá-los a seguir.</p></li>
 </ol>
 </div>
-<div id="main.cpp" class="section level3 unnumbered">
-<h3>main.cpp</h3>
-<p>Em <code>main.cpp</code> definiremos a função <code>main</code>:</p>
-<div class="sourceCode" id="cb69" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb69-1"><a href="firstapp.html#cb69-1"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
-<span id="cb69-2"><a href="firstapp.html#cb69-2"></a><span class="pp">#include </span><span class="im">&quot;openglwindow.hpp&quot;</span></span>
-<span id="cb69-3"><a href="firstapp.html#cb69-3"></a></span>
-<span id="cb69-4"><a href="firstapp.html#cb69-4"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {</span>
-<span id="cb69-5"><a href="firstapp.html#cb69-5"></a>  <span class="co">// Create application instance</span></span>
-<span id="cb69-6"><a href="firstapp.html#cb69-6"></a>  abcg::Application app(argc, argv);</span>
-<span id="cb69-7"><a href="firstapp.html#cb69-7"></a>  </span>
-<span id="cb69-8"><a href="firstapp.html#cb69-8"></a>  <span class="co">// Create OpenGL window</span></span>
-<span id="cb69-9"><a href="firstapp.html#cb69-9"></a>  <span class="kw">auto</span> window{<span class="bu">std::</span>make_unique&lt;OpenGLWindow&gt;()};</span>
-<span id="cb69-10"><a href="firstapp.html#cb69-10"></a>  window-&gt;setWindowSettings({.title = <span class="st">&quot;First App&quot;</span>});</span>
-<span id="cb69-11"><a href="firstapp.html#cb69-11"></a>  </span>
-<span id="cb69-12"><a href="firstapp.html#cb69-12"></a>  <span class="co">// Run application</span></span>
-<span id="cb69-13"><a href="firstapp.html#cb69-13"></a>  app.run(<span class="bu">std::</span>move(window));</span>
-<span id="cb69-14"><a href="firstapp.html#cb69-14"></a>  </span>
-<span id="cb69-15"><a href="firstapp.html#cb69-15"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb69-16"><a href="firstapp.html#cb69-16"></a>}</span></code></pre></div>
+<div id="main.cpp" class="section level3 unnumbered hasAnchor">
+<h3>main.cpp<a href="firstapp.html#main.cpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Em <code>main.cpp</code> definimos o ponto de entrada da aplicação:</p>
+<div class="sourceCode" id="cb76" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb76-1"><a href="firstapp.html#cb76-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb76-2"><a href="firstapp.html#cb76-2"></a></span>
+<span id="cb76-3"><a href="firstapp.html#cb76-3"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb76-4"><a href="firstapp.html#cb76-4"></a>  <span class="co">// Create application instance</span></span>
+<span id="cb76-5"><a href="firstapp.html#cb76-5"></a>  abcg<span class="op">::</span>Application app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb76-6"><a href="firstapp.html#cb76-6"></a></span>
+<span id="cb76-7"><a href="firstapp.html#cb76-7"></a>  <span class="co">// Create OpenGL window</span></span>
+<span id="cb76-8"><a href="firstapp.html#cb76-8"></a>  Window window<span class="op">;</span></span>
+<span id="cb76-9"><a href="firstapp.html#cb76-9"></a>  window<span class="op">.</span>setWindowSettings<span class="op">({.</span>title <span class="op">=</span> <span class="st">&quot;First App&quot;</span><span class="op">});</span></span>
+<span id="cb76-10"><a href="firstapp.html#cb76-10"></a></span>
+<span id="cb76-11"><a href="firstapp.html#cb76-11"></a>  <span class="co">// Run application</span></span>
+<span id="cb76-12"><a href="firstapp.html#cb76-12"></a>  app<span class="op">.</span>run<span class="op">(</span>window<span class="op">);</span></span>
+<span id="cb76-13"><a href="firstapp.html#cb76-13"></a></span>
+<span id="cb76-14"><a href="firstapp.html#cb76-14"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb76-15"><a href="firstapp.html#cb76-15"></a><span class="op">}</span></span></code></pre></div>
 <ul>
-<li><p>Nas duas primeiras linhas são incluídos os arquivos de cabeçalho: <code>abcg.hpp</code> faz parte da ABCg e dá acesso às principais classes e funções da biblioteca; <code>openglwindow.hpp</code> é o arquivo que acabamos de criar e que terá a definição de uma classe <code>OpenGLWindow</code> responsável pelo comportamento da janela da aplicação;</p></li>
-<li><p>Na linha 6 é definido um objeto <code>app</code> da classe <code>abcg::Application</code>, responsável pelo gerenciamento da aplicação;</p></li>
-<li><p>Na linha 9 é criado um ponteiro inteligente (<em>smart pointer</em>) <code>window</code> para uma instância de <code>OpenGLWindow</code>;</p></li>
-<li><p>Na linha 10 é definido o título da janela. <code>setWindowSettings</code> é uma função membro de <code>abcg::OpenGLWindow</code> (classe base de <code>OpenGLWindow</code>) e recebe uma estrutura <code>abcg::WindowSettings</code> contendo as configurações da janela;</p></li>
-<li><p>Na linha 13, a função membro <code>abcg::Application::run</code> é chamada para inicializar os subsistemas da SDL, inicializar a janela recém-criada e entrar no laço principal da aplicação.</p></li>
+<li><p>Na primeira linha incluímos o arquivo de cabeçalho que terá a definição de uma classe customizada <code>Window</code> responsável pelo comportamento da janela da aplicação. Faremos com que essa classe seja derivada de <code>abcg::OpenGLWindow</code> para que possamos usar as funções da ABCg de gerenciamento de janelas compatíveis com OpenGL;</p></li>
+<li><p>Na linha 5 criamos um objeto <code>app</code> da classe <code>abcg::Application</code>, responsável pelo gerenciamento da aplicação;</p></li>
+<li><p>Na linha 8 criamos o objeto <code>window</code> que presenta nossa janela customizada;</p></li>
+<li><p>Na linha 9 definimos o título da janela. <code>setWindowSettings</code> é uma função membro de <code>abcg::OpenGLWindow</code>, classe base de <code>Window</code>. A função recebe uma estrutura <code>abcg::WindowSettings</code> contendo as configurações da janela;</p></li>
+<li><p>Na linha 12, a função <code>abcg::Application::run</code> é chamada para inicializar os subsistemas da SDL, inicializar a janela recém-criada e entrar no laço principal da aplicação. A função retornará somente quando a janela de aplicação for fechada.</p></li>
 </ul>
 <div class="infobox">
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
 <div class="infoboxtitle">
 Observação
 </div>
-<ul>
-<li>Todas as classes e funções da ABCg fazem parte do <em>namespace</em> <code>abcg</code>.</li>
-<li>O código acima usa diferentes conceitos de C++ moderno:
-<ol style="list-style-type: decimal">
-<li>A palavra-chave <a href="https://en.cppreference.com/w/cpp/language/auto"><code>auto</code></a> para dedução automática do tipo de variável a partir de sua inicialização;</li>
-<li>A criação de um ponteiro inteligente com <a href="https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique"><code>std::make_unique</code></a>;</li>
-<li>O uso de <a href="https://www.geeksforgeeks.org/uniform-initialization-in-c/"><em>inicialização uniforme</em></a> com chaves;</li>
-<li>O uso de <a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization"><em>inicializadores designados</em></a> para inicializar o membro <code>title</code> da estrutura <code>abcg::WindowSettings</code> diretamente através de seu nome;</li>
-<li>O uso de <a href="https://en.cppreference.com/w/cpp/utility/move"><code>std::move</code></a> para indicar que o ponteiro inteligente <code>window</code> está sendo transferido (e não copiado) para <code>abcg::Application</code>.</li>
-</ol></li>
-</ul>
+<p>Todas as classes e funções da ABCg fazem parte do <em>namespace</em> <code>abcg</code>. Como vimos no código anterior, <code>abcg::OpenGLWindow</code> é uma classe da ABCg responsável pelo gerenciamento de janelas compatíveis com OpenGL. De modo semelhante, <code>abcg::Application</code> é uma classe da ABCg responsável pelo gerenciamento da aplicação.</p>
+<p>Em todos os programas que faremos durante a disciplina, começaremos definindo uma classe derivada de <code>abcg::OpenGLWindow</code>, como a classe <code>Window</code> de nossa primeira aplicação. Tal classe derivada será customizada com comandos do OpenGL para que possamos desenhar o conteúdo da janela.</p>
 </div>
 <p>Internamente a ABCg usa tratamento de exceções. As exceções são lançadas como objetos da classe <code>abcg::Exception</code>, derivada de <a href="https://en.cppreference.com/w/cpp/error/exception"><code>std::exception</code></a>. Vamos alterar um pouco o código anterior para capturar as exceções que possam ocorrer e imprimir no console a mensagem de erro correspondente. O código final de <code>main.cpp</code> ficará assim:</p>
-<div class="sourceCode" id="cb70" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb70-1"><a href="firstapp.html#cb70-1"></a><span class="pp">#include </span><span class="im">&lt;fmt/core.h&gt;</span></span>
-<span id="cb70-2"><a href="firstapp.html#cb70-2"></a></span>
-<span id="cb70-3"><a href="firstapp.html#cb70-3"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
-<span id="cb70-4"><a href="firstapp.html#cb70-4"></a><span class="pp">#include </span><span class="im">&quot;openglwindow.hpp&quot;</span></span>
-<span id="cb70-5"><a href="firstapp.html#cb70-5"></a></span>
-<span id="cb70-6"><a href="firstapp.html#cb70-6"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {</span>
-<span id="cb70-7"><a href="firstapp.html#cb70-7"></a>  <span class="cf">try</span> {</span>
-<span id="cb70-8"><a href="firstapp.html#cb70-8"></a>    <span class="co">// Create application instance</span></span>
-<span id="cb70-9"><a href="firstapp.html#cb70-9"></a>    abcg::Application app(argc, argv);</span>
-<span id="cb70-10"><a href="firstapp.html#cb70-10"></a>    </span>
-<span id="cb70-11"><a href="firstapp.html#cb70-11"></a>    <span class="co">// Create OpenGL window</span></span>
-<span id="cb70-12"><a href="firstapp.html#cb70-12"></a>    <span class="kw">auto</span> window{<span class="bu">std::</span>make_unique&lt;OpenGLWindow&gt;()};</span>
-<span id="cb70-13"><a href="firstapp.html#cb70-13"></a>    window-&gt;setWindowSettings({.title = <span class="st">&quot;First App&quot;</span>});</span>
-<span id="cb70-14"><a href="firstapp.html#cb70-14"></a>    </span>
-<span id="cb70-15"><a href="firstapp.html#cb70-15"></a>    <span class="co">// Run application</span></span>
-<span id="cb70-16"><a href="firstapp.html#cb70-16"></a>    app.run(<span class="bu">std::</span>move(window));</span>
-<span id="cb70-17"><a href="firstapp.html#cb70-17"></a>  } <span class="cf">catch</span> (<span class="at">const</span> abcg::Exception &amp;exception) {</span>
-<span id="cb70-18"><a href="firstapp.html#cb70-18"></a>    fmt::print(stderr, <span class="st">&quot;</span><span class="sc">{}\n</span><span class="st">&quot;</span>, exception.what());</span>
-<span id="cb70-19"><a href="firstapp.html#cb70-19"></a>    <span class="cf">return</span> -<span class="dv">1</span>;</span>
-<span id="cb70-20"><a href="firstapp.html#cb70-20"></a>  }</span>
-<span id="cb70-21"><a href="firstapp.html#cb70-21"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb70-22"><a href="firstapp.html#cb70-22"></a>}</span></code></pre></div>
-<p>O que mudou aqui é que o código anterior foi colocado dentro do escopo <code>try</code> de um bloco <code>try...catch</code>. No escopo <code>catch</code>, a função <code>fmt::print</code> imprime no erro padrão (<em>stderr</em>) a mensagem de erro associada com a exceção capturada. <code>fmt::print</code> faz parte da biblioteca <a href="https://fmt.dev/latest/index.html"><code>{fmt}</code></a>, incluída pelo cabeçalho <code>fmt/core.h</code>. Ela permite a formatação de strings usando uma sintaxe parecida com as <em>f-strings</em> da linguagem Python<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.</p>
+<div class="sourceCode" id="cb77" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb77-1"><a href="firstapp.html#cb77-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb77-2"><a href="firstapp.html#cb77-2"></a></span>
+<span id="cb77-3"><a href="firstapp.html#cb77-3"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb77-4"><a href="firstapp.html#cb77-4"></a>  <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb77-5"><a href="firstapp.html#cb77-5"></a>    <span class="co">// Create application instance</span></span>
+<span id="cb77-6"><a href="firstapp.html#cb77-6"></a>    abcg<span class="op">::</span>Application app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb77-7"><a href="firstapp.html#cb77-7"></a></span>
+<span id="cb77-8"><a href="firstapp.html#cb77-8"></a>    <span class="co">// Create OpenGL window</span></span>
+<span id="cb77-9"><a href="firstapp.html#cb77-9"></a>    Window window<span class="op">;</span></span>
+<span id="cb77-10"><a href="firstapp.html#cb77-10"></a>    window<span class="op">.</span>setWindowSettings<span class="op">({.</span>title <span class="op">=</span> <span class="st">&quot;First App&quot;</span><span class="op">});</span></span>
+<span id="cb77-11"><a href="firstapp.html#cb77-11"></a></span>
+<span id="cb77-12"><a href="firstapp.html#cb77-12"></a>    <span class="co">// Run application</span></span>
+<span id="cb77-13"><a href="firstapp.html#cb77-13"></a>    app<span class="op">.</span>run<span class="op">(</span>window<span class="op">);</span></span>
+<span id="cb77-14"><a href="firstapp.html#cb77-14"></a>  <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">std::</span>exception<span class="op"> </span><span class="at">const</span> <span class="op">&amp;</span>exception<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb77-15"><a href="firstapp.html#cb77-15"></a>    fmt<span class="op">::</span>print<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;</span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> exception<span class="op">.</span>what<span class="op">());</span></span>
+<span id="cb77-16"><a href="firstapp.html#cb77-16"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb77-17"><a href="firstapp.html#cb77-17"></a>  <span class="op">}</span></span>
+<span id="cb77-18"><a href="firstapp.html#cb77-18"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb77-19"><a href="firstapp.html#cb77-19"></a><span class="op">}</span></span></code></pre></div>
+<p>O código anterior foi colocado dentro do escopo <code>try</code> de um bloco <code>try...catch</code>. No escopo <code>catch</code>, a função <code>fmt::print</code> imprime no erro padrão (<em>stderr</em>) a mensagem de erro associada com a exceção capturada. <code>fmt::print</code> faz parte da biblioteca <a href="https://fmt.dev/latest/index.html"><code>{fmt}</code></a>. Ela permite a formatação e impressão de strings usando uma sintaxe parecida com as <em>f-strings</em> da linguagem Python<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>.</p>
 </div>
-<div id="openglwindow.hpp" class="section level3 unnumbered">
-<h3>openglwindow.hpp</h3>
-<p>No arquivo <code>openglwindow.hpp</code> vamos definir a classe <code>OpenGLWindow</code> que será responsável pelo gerenciamento do conteúdo da janela da aplicação:</p>
-<div class="sourceCode" id="cb71" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb71-1"><a href="firstapp.html#cb71-1"></a><span class="pp">#ifndef OPENGLWINDOW_HPP_</span></span>
-<span id="cb71-2"><a href="firstapp.html#cb71-2"></a><span class="pp">#define OPENGLWINDOW_HPP_</span></span>
-<span id="cb71-3"><a href="firstapp.html#cb71-3"></a></span>
-<span id="cb71-4"><a href="firstapp.html#cb71-4"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
-<span id="cb71-5"><a href="firstapp.html#cb71-5"></a></span>
-<span id="cb71-6"><a href="firstapp.html#cb71-6"></a><span class="kw">class</span> OpenGLWindow : <span class="kw">public</span> abcg::OpenGLWindow {};</span>
-<span id="cb71-7"><a href="firstapp.html#cb71-7"></a></span>
-<span id="cb71-8"><a href="firstapp.html#cb71-8"></a><span class="pp">#endif</span></span></code></pre></div>
-<p>Observe que nossa classe <code>OpenGLWindow</code> é derivada de <code>abcg::OpenGLWindow</code>, que faz parte da ABCg.</p>
-<p><code>abcg::OpenGLWindow</code> gerencia uma janela capaz de renderizar gráficos com a API OpenGL. A classe possui um conjunto de funções virtuais que podem ser substituídas pela classe derivada de modo a alterar o comportamento da janela. O comportamento padrão é desenhar a janela com fundo preto, com um contador de FPS (<em>frames per second</em>, ou quadros por segundo) sobreposto no canto superior esquerdo da janela, e um botão no canto inferior esquerdo para alternar entre tela cheia e modo janela (com atalho pela tecla <code>F11</code>). O contador e o botão são gerenciados pela biblioteca <a href="https://github.com/ocornut/imgui">Dear ImGui</a> (no restante do texto vamos chamá-la apenas de ImGui).</p>
+<div id="window.hpp" class="section level3 unnumbered hasAnchor">
+<h3>window.hpp<a href="firstapp.html#window.hpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No arquivo <code>window.hpp</code> definiremos nossa classe <code>Window</code> que será responsável pelo gerenciamento do conteúdo da janela da aplicação:</p>
+<div class="sourceCode" id="cb78" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb78-1"><a href="firstapp.html#cb78-1"></a><span class="pp">#ifndef WINDOW_HPP_</span></span>
+<span id="cb78-2"><a href="firstapp.html#cb78-2"></a><span class="pp">#define WINDOW_HPP_</span></span>
+<span id="cb78-3"><a href="firstapp.html#cb78-3"></a></span>
+<span id="cb78-4"><a href="firstapp.html#cb78-4"></a><span class="pp">#include </span><span class="im">&quot;abcgOpenGL.hpp&quot;</span></span>
+<span id="cb78-5"><a href="firstapp.html#cb78-5"></a></span>
+<span id="cb78-6"><a href="firstapp.html#cb78-6"></a><span class="kw">class</span> Window <span class="op">:</span> <span class="kw">public</span> abcg<span class="op">::</span>OpenGLWindow <span class="op">{};</span></span>
+<span id="cb78-7"><a href="firstapp.html#cb78-7"></a></span>
+<span id="cb78-8"><a href="firstapp.html#cb78-8"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>Observe novamente que nossa classe <code>Window</code> é derivada de <code>abcg::OpenGLWindow</code>, que faz parte da ABCg.</p>
+<p><code>abcg::OpenGLWindow</code> gerencia uma janela capaz de renderizar gráficos com a API OpenGL. A classe possui um conjunto de funções virtuais que podem ser substituídas pela classe derivada de modo a alterar o comportamento da janela. O comportamento padrão consiste em desenhar a janela com fundo preto, com um contador de FPS (<em>Frames Per Second</em>, ou quadros por segundo) sobreposto no canto superior esquerdo da janela, e um botão no canto inferior esquerdo para alternar entre tela cheia e modo janela (com atalho pela tecla <code>F11</code>). O contador e o botão são gerenciados pela biblioteca <a href="https://github.com/ocornut/imgui">Dear ImGui</a> (no restante do texto vamos chamá-la apenas de ImGui).</p>
 <p>Por enquanto nossa classe não faz nada de especial. Ela só deriva de <code>abcg::OpenGLWindow</code> e não define nenhuma função ou variável membro. Mesmo assim, já podemos construir a aplicação. Experimente fazer isso. Na linha de comando, use o script <code>build.sh</code> (Linux/macOS) ou <code>build.bat</code> (Windows). Se você estiver no Visual Studio Code, abra a pasta <code>abcg</code> pelo editor, use a opção de configuração do CMake e então construa o projeto (<code>F7</code>). O executável será gerado em <code>abcg/build/bin/firstapp</code>.</p>
-<p>Da forma como está, a aplicação mostrará uma janela com fundo preto e os dois controles de GUI (<em>widgets</em>) mencionados anteriomente. Isso acontece porque <code>OpenGLWindow</code> não está substituindo nenhuma das funções virtuais de <code>abcg::OpenGLWindow</code>. Todo o comportamento está sendo definido pela classe base:</p>
+<p>Da forma como está, a aplicação mostrará uma janela com fundo preto e os dois controles de GUI (<em>widgets</em>) mencionados anteriomente. Isso acontece porque <code>Window</code> não substitui nenhuma das funções virtuais de <code>abcg::OpenGLWindow</code>. Todo o comportamento está sendo definido pela classe base:</p>
 <p><img src="images/02_firstapp.png" style="display: block; margin: auto;" /></p>
-<p>Vamos alterar o conteúdo e o comportamento dessa nossa janela <code>OpenGLWindow</code>. Imitaremos o comportamento do projeto <code>helloworld</code> que cria uma pequena janela da ImGui. Modifique <code>openglwindow.hpp</code> para o código a seguir:</p>
-<div class="sourceCode" id="cb72" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb72-1"><a href="firstapp.html#cb72-1"></a><span class="pp">#ifndef OPENGLWINDOW_HPP_</span></span>
-<span id="cb72-2"><a href="firstapp.html#cb72-2"></a><span class="pp">#define OPENGLWINDOW_HPP_</span></span>
-<span id="cb72-3"><a href="firstapp.html#cb72-3"></a></span>
-<span id="cb72-4"><a href="firstapp.html#cb72-4"></a><span class="pp">#include </span><span class="im">&lt;array&gt;</span></span>
-<span id="cb72-5"><a href="firstapp.html#cb72-5"></a></span>
-<span id="cb72-6"><a href="firstapp.html#cb72-6"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
-<span id="cb72-7"><a href="firstapp.html#cb72-7"></a></span>
-<span id="cb72-8"><a href="firstapp.html#cb72-8"></a><span class="kw">class</span> OpenGLWindow : <span class="kw">public</span> abcg::OpenGLWindow {</span>
-<span id="cb72-9"><a href="firstapp.html#cb72-9"></a> <span class="kw">protected</span>:</span>
-<span id="cb72-10"><a href="firstapp.html#cb72-10"></a>  <span class="dt">void</span> initializeGL() <span class="kw">override</span>;</span>
-<span id="cb72-11"><a href="firstapp.html#cb72-11"></a>  <span class="dt">void</span> paintGL() <span class="kw">override</span>;</span>
-<span id="cb72-12"><a href="firstapp.html#cb72-12"></a>  <span class="dt">void</span> paintUI() <span class="kw">override</span>;</span>
-<span id="cb72-13"><a href="firstapp.html#cb72-13"></a></span>
-<span id="cb72-14"><a href="firstapp.html#cb72-14"></a> <span class="kw">private</span>:</span>
-<span id="cb72-15"><a href="firstapp.html#cb72-15"></a>  <span class="bu">std::</span>array&lt;<span class="dt">float</span>, <span class="dv">4</span>&gt; <span class="va">m_clearColor</span>{<span class="fl">0.906</span><span class="bu">f</span>, <span class="fl">0.910</span><span class="bu">f</span>, <span class="fl">0.918</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>};</span>
-<span id="cb72-16"><a href="firstapp.html#cb72-16"></a>};</span>
-<span id="cb72-17"><a href="firstapp.html#cb72-17"></a></span>
-<span id="cb72-18"><a href="firstapp.html#cb72-18"></a><span class="pp">#endif</span></span></code></pre></div>
-<p><code>initializeGL</code>, <code>paintGL</code> e <code>paintUI</code> substituem funções virtuais de <code>abcg::OpenGLWindow</code>. A palavra-chave <code>override</code> é opcional mas é recomendável, pois deixa explícito que as funções são substituições das funções virtuais da classe base:</p>
+<p>Vamos alterar o conteúdo e o comportamento da nossa janela <code>Window</code>. Imitaremos o comportamento do projeto <code>helloworld</code> que cria uma pequena subjanela da ImGui. Modifique <code>window.hpp</code> para o código a seguir:</p>
+<div class="sourceCode" id="cb79" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb79-1"><a href="firstapp.html#cb79-1"></a><span class="pp">#ifndef WINDOW_HPP_</span></span>
+<span id="cb79-2"><a href="firstapp.html#cb79-2"></a><span class="pp">#define WINDOW_HPP_</span></span>
+<span id="cb79-3"><a href="firstapp.html#cb79-3"></a></span>
+<span id="cb79-4"><a href="firstapp.html#cb79-4"></a><span class="pp">#include </span><span class="im">&quot;abcgOpenGL.hpp&quot;</span></span>
+<span id="cb79-5"><a href="firstapp.html#cb79-5"></a></span>
+<span id="cb79-6"><a href="firstapp.html#cb79-6"></a><span class="kw">class</span> Window <span class="op">:</span> <span class="kw">public</span> abcg<span class="op">::</span>OpenGLWindow <span class="op">{</span></span>
+<span id="cb79-7"><a href="firstapp.html#cb79-7"></a><span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb79-8"><a href="firstapp.html#cb79-8"></a>  <span class="dt">void</span> onCreate<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb79-9"><a href="firstapp.html#cb79-9"></a>  <span class="dt">void</span> onPaint<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb79-10"><a href="firstapp.html#cb79-10"></a>  <span class="dt">void</span> onPaintUI<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb79-11"><a href="firstapp.html#cb79-11"></a></span>
+<span id="cb79-12"><a href="firstapp.html#cb79-12"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb79-13"><a href="firstapp.html#cb79-13"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span><span class="dt">float</span><span class="op">,</span> <span class="dv">4</span><span class="op">&gt;</span> <span class="va">m_clearColor</span><span class="op">{</span><span class="fl">0.906</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.910</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.918</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb79-14"><a href="firstapp.html#cb79-14"></a><span class="op">};</span></span>
+<span id="cb79-15"><a href="firstapp.html#cb79-15"></a></span>
+<span id="cb79-16"><a href="firstapp.html#cb79-16"></a><span class="pp">#endif</span></span></code></pre></div>
+<p><code>onCreate</code>, <code>onPaint</code> e <code>onPaintUI</code> substituem funções virtuais de <code>abcg::OpenGLWindow</code>. A palavra-chave <code>override</code> é opcional, mas é recomendável pois deixa explícito que as funções são substituições das funções virtuais da classe base:</p>
 <ul>
-<li><p><code>initializeGL</code> é onde colocaremos os comandos de inicialização do estado da janela e do OpenGL. Internamente <strong>a ABCg chama essa função apenas uma vez no início do programa</strong>, após ter inicializado os subsistemas da SDL e o OpenGL.</p></li>
-<li><p><code>paintGL</code> é onde colocaremos todas as funções de desenho do OpenGL. Internamente <strong>a ABCg chama essa função continuamente no laço principal da aplicação</strong>, uma vez para cada quadro (<em>frame</em>) de exibição. Por exemplo, na imagem acima, <code>paintGL</code> estava sendo chamada a uma média de 3988.7 vezes por segundo;</p></li>
-<li><p><code>paintUI</code> é onde colocaremos todas as funções de desenho de widgets da ImGui (botões, menus, caixas de seleção, etc). Internamente, <code>paintUI</code> é chamado sempre que <code>paintGL</code> é chamado;</p></li>
-<li><p><code>m_clearColor</code> é um arranjo de quatro valores <code>float</code> entre 0 e 1. Esses valores definem a cor de fundo da janela (neste caso, um cinza claro).</p></li>
+<li><p><code>onCreate</code> é onde colocaremos os comandos de inicialização do estado da janela e do OpenGL. Internamente <strong>a ABCg chama essa função apenas uma vez no início do programa</strong>, após ter inicializado os subsistemas da SDL e o OpenGL.</p></li>
+<li><p><code>onPaint</code> é onde colocaremos todas as funções de desenho do OpenGL. Internamente <strong>a ABCg chama essa função continuamente no laço principal da aplicação</strong>, uma vez para cada quadro (<em>frame</em>) de exibição. Por exemplo, na imagem acima, <code>onPaint</code> estava sendo chamada a uma média de 3988,7 vezes por segundo;</p></li>
+<li><p><code>onPaintUI</code> é onde colocaremos todas as funções de desenho de widgets da ImGui (botões, menus, caixas de seleção, etc). Internamente, <code>onPaintUI</code> é chamado logo depois que <code>onPaint</code> é chamado;</p></li>
+<li><p><code>m_clearColor</code> é um arranjo de quatro valores <code>float</code> entre 0 e 1. Esses valores definem a cor RGBA de fundo da janela, que neste caso é um cinza claro.</p></li>
 </ul>
 <div class="infobox">
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
@@ -627,84 +350,79 @@ Observação
 Observação
 </div>
 <p>Poderíamos ter definido <code>m_clearColor</code> da seguinte forma, mais familiar aos programadores em C:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb73-1"><a href="firstapp.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> <span class="va">m_clearColor</span>[<span class="dv">4</span>] = {<span class="fl">0.906</span><span class="bu">f</span>, <span class="fl">0.910</span><span class="bu">f</span>, <span class="fl">0.918</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>};</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb80-1"><a href="firstapp.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> <span class="va">m_clearColor</span><span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="fl">0.906</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.910</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.918</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span></code></pre></div>
 <p>Entretanto, em C++ o <code>std::array</code> é a <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#slcon1-prefer-using-stl-array-or-vector-instead-of-a-c-array">forma recomendada</a> e mais segura de trabalhar com arranjos.</p>
 </div>
 </div>
-<div id="openglwindow.cpp" class="section level3 unnumbered">
-<h3>openglwindow.cpp</h3>
-<p>Em <code>openglwindow.cpp</code> definiremos as funções virtuais substituídas:</p>
-<div class="sourceCode" id="cb74" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb74-1"><a href="firstapp.html#cb74-1"></a><span class="pp">#include </span><span class="im">&lt;fmt/core.h&gt;</span></span>
-<span id="cb74-2"><a href="firstapp.html#cb74-2"></a></span>
-<span id="cb74-3"><a href="firstapp.html#cb74-3"></a><span class="pp">#include </span><span class="im">&quot;openglwindow.hpp&quot;</span></span>
-<span id="cb74-4"><a href="firstapp.html#cb74-4"></a></span>
-<span id="cb74-5"><a href="firstapp.html#cb74-5"></a><span class="pp">#include </span><span class="im">&lt;imgui.h&gt;</span></span>
-<span id="cb74-6"><a href="firstapp.html#cb74-6"></a></span>
-<span id="cb74-7"><a href="firstapp.html#cb74-7"></a><span class="dt">void</span> OpenGLWindow::initializeGL() {</span>
-<span id="cb74-8"><a href="firstapp.html#cb74-8"></a>  <span class="kw">auto</span> windowSettings{getWindowSettings()};</span>
-<span id="cb74-9"><a href="firstapp.html#cb74-9"></a>  fmt::print(<span class="st">&quot;Initial window size: </span><span class="sc">{}</span><span class="st">x</span><span class="sc">{}\n</span><span class="st">&quot;</span>, windowSettings.width,</span>
-<span id="cb74-10"><a href="firstapp.html#cb74-10"></a>             windowSettings.height);</span>
-<span id="cb74-11"><a href="firstapp.html#cb74-11"></a>}</span>
-<span id="cb74-12"><a href="firstapp.html#cb74-12"></a></span>
-<span id="cb74-13"><a href="firstapp.html#cb74-13"></a><span class="dt">void</span> OpenGLWindow::paintGL() {</span>
-<span id="cb74-14"><a href="firstapp.html#cb74-14"></a>  <span class="co">// Set the clear color</span></span>
-<span id="cb74-15"><a href="firstapp.html#cb74-15"></a>  abcg::glClearColor(<span class="va">m_clearColor</span>[<span class="dv">0</span>], <span class="va">m_clearColor</span>[<span class="dv">1</span>], <span class="va">m_clearColor</span>[<span class="dv">2</span>],</span>
-<span id="cb74-16"><a href="firstapp.html#cb74-16"></a>                     <span class="va">m_clearColor</span>[<span class="dv">3</span>]);</span>
-<span id="cb74-17"><a href="firstapp.html#cb74-17"></a>  <span class="co">// Clear the color buffer</span></span>
-<span id="cb74-18"><a href="firstapp.html#cb74-18"></a>  abcg::glClear(GL_COLOR_BUFFER_BIT);</span>
-<span id="cb74-19"><a href="firstapp.html#cb74-19"></a>}</span>
-<span id="cb74-20"><a href="firstapp.html#cb74-20"></a></span>
-<span id="cb74-21"><a href="firstapp.html#cb74-21"></a><span class="dt">void</span> OpenGLWindow::paintUI() {</span>
-<span id="cb74-22"><a href="firstapp.html#cb74-22"></a>  <span class="co">// Parent class will show fullscreen button and FPS meter</span></span>
-<span id="cb74-23"><a href="firstapp.html#cb74-23"></a>  abcg::OpenGLWindow::paintUI();</span>
-<span id="cb74-24"><a href="firstapp.html#cb74-24"></a></span>
-<span id="cb74-25"><a href="firstapp.html#cb74-25"></a>  <span class="co">// Our own ImGui widgets go below</span></span>
-<span id="cb74-26"><a href="firstapp.html#cb74-26"></a>  {</span>
-<span id="cb74-27"><a href="firstapp.html#cb74-27"></a>    <span class="co">// Window begin</span></span>
-<span id="cb74-28"><a href="firstapp.html#cb74-28"></a>    ImGui::Begin(<span class="st">&quot;Hello, First App!&quot;</span>);</span>
-<span id="cb74-29"><a href="firstapp.html#cb74-29"></a></span>
-<span id="cb74-30"><a href="firstapp.html#cb74-30"></a>    <span class="co">// Static text</span></span>
-<span id="cb74-31"><a href="firstapp.html#cb74-31"></a>    <span class="kw">auto</span> windowSettings{getWindowSettings()};</span>
-<span id="cb74-32"><a href="firstapp.html#cb74-32"></a>    ImGui::Text(<span class="st">&quot;Current window size: </span><span class="sc">%d</span><span class="st">x</span><span class="sc">%d</span><span class="st"> (in windowed mode)&quot;</span>,</span>
-<span id="cb74-33"><a href="firstapp.html#cb74-33"></a>                windowSettings.width, windowSettings.height);</span>
-<span id="cb74-34"><a href="firstapp.html#cb74-34"></a></span>
-<span id="cb74-35"><a href="firstapp.html#cb74-35"></a>    <span class="co">// Slider from 0.0f to 1.0f</span></span>
-<span id="cb74-36"><a href="firstapp.html#cb74-36"></a>    <span class="at">static</span> <span class="dt">float</span> f{};</span>
-<span id="cb74-37"><a href="firstapp.html#cb74-37"></a>    ImGui::SliderFloat(<span class="st">&quot;float&quot;</span>, &amp;f, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
-<span id="cb74-38"><a href="firstapp.html#cb74-38"></a></span>
-<span id="cb74-39"><a href="firstapp.html#cb74-39"></a>    <span class="co">// ColorEdit to change the clear color</span></span>
-<span id="cb74-40"><a href="firstapp.html#cb74-40"></a>    ImGui::ColorEdit3(<span class="st">&quot;clear color&quot;</span>, <span class="va">m_clearColor</span>.data());</span>
-<span id="cb74-41"><a href="firstapp.html#cb74-41"></a></span>
-<span id="cb74-42"><a href="firstapp.html#cb74-42"></a>    <span class="co">// More static text</span></span>
-<span id="cb74-43"><a href="firstapp.html#cb74-43"></a>    ImGui::Text(<span class="st">&quot;Application average </span><span class="sc">%.3f</span><span class="st"> ms/frame (</span><span class="sc">%.1f</span><span class="st"> FPS)&quot;</span>,</span>
-<span id="cb74-44"><a href="firstapp.html#cb74-44"></a>                <span class="fl">1000.0</span> / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);</span>
-<span id="cb74-45"><a href="firstapp.html#cb74-45"></a></span>
-<span id="cb74-46"><a href="firstapp.html#cb74-46"></a>    <span class="co">// Window end</span></span>
-<span id="cb74-47"><a href="firstapp.html#cb74-47"></a>    ImGui::End();</span>
-<span id="cb74-48"><a href="firstapp.html#cb74-48"></a>  }</span>
-<span id="cb74-49"><a href="firstapp.html#cb74-49"></a>}</span></code></pre></div>
-<p>No início do arquivo, observe que é incluído o cabeçalho <code>imgui.h</code> para o uso das funções da ImGui.</p>
-<p>Vejamos com mais atenção o trecho com a definição de <code>OpenGLWindow::initializeGL</code>:</p>
-<div class="sourceCode" id="cb75" startFrom="7"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 6;"><span id="cb75-7"><a href="firstapp.html#cb75-7"></a><span class="dt">void</span> OpenGLWindow::initializeGL() {</span>
-<span id="cb75-8"><a href="firstapp.html#cb75-8"></a>  <span class="kw">auto</span> windowSettings{getWindowSettings()};</span>
-<span id="cb75-9"><a href="firstapp.html#cb75-9"></a>  fmt::print(<span class="st">&quot;Initial window size: </span><span class="sc">{}</span><span class="st">x</span><span class="sc">{}\n</span><span class="st">&quot;</span>, windowSettings.width,</span>
-<span id="cb75-10"><a href="firstapp.html#cb75-10"></a>             windowSettings.height);</span>
-<span id="cb75-11"><a href="firstapp.html#cb75-11"></a>}</span></code></pre></div>
-<p>Na linha 8, <code>windowSettings</code> é uma estrutura <code>abcg::WindowSettings</code> retornada por <code>abcg::OpenGLWindow::getWindowSettings()</code> com as configurações da janela. Na linha 9, <code>fmt::print</code> imprime no console o tamanho da janela<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</p>
-<p>Observe agora o trecho com a definição de <code>OpenGLWindow::paintGL</code>:</p>
-<div class="sourceCode" id="cb76" startFrom="13"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 12;"><span id="cb76-13"><a href="firstapp.html#cb76-13"></a><span class="dt">void</span> OpenGLWindow::paintGL() {</span>
-<span id="cb76-14"><a href="firstapp.html#cb76-14"></a>  <span class="co">// Set the clear color</span></span>
-<span id="cb76-15"><a href="firstapp.html#cb76-15"></a>  abcg::glClearColor(<span class="va">m_clearColor</span>[<span class="dv">0</span>], <span class="va">m_clearColor</span>[<span class="dv">1</span>], <span class="va">m_clearColor</span>[<span class="dv">2</span>],</span>
-<span id="cb76-16"><a href="firstapp.html#cb76-16"></a>                     <span class="va">m_clearColor</span>[<span class="dv">3</span>]);</span>
-<span id="cb76-17"><a href="firstapp.html#cb76-17"></a>  <span class="co">// Clear the color buffer</span></span>
-<span id="cb76-18"><a href="firstapp.html#cb76-18"></a>  abcg::glClear(GL_COLOR_BUFFER_BIT);</span>
-<span id="cb76-19"><a href="firstapp.html#cb76-19"></a>}</span></code></pre></div>
+<div id="window.cpp" class="section level3 unnumbered hasAnchor">
+<h3>window.cpp<a href="firstapp.html#window.cpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Em <code>window.cpp</code>, definiremos as funções virtuais substituídas:</p>
+<div class="sourceCode" id="cb81" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb81-1"><a href="firstapp.html#cb81-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb81-2"><a href="firstapp.html#cb81-2"></a></span>
+<span id="cb81-3"><a href="firstapp.html#cb81-3"></a><span class="dt">void</span> Window<span class="op">::</span>onCreate<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb81-4"><a href="firstapp.html#cb81-4"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>windowSettings<span class="op">{</span>getWindowSettings<span class="op">()};</span></span>
+<span id="cb81-5"><a href="firstapp.html#cb81-5"></a>  fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;Initial window size: </span><span class="sc">{}</span><span class="st">x</span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> windowSettings<span class="op">.</span>width<span class="op">,</span></span>
+<span id="cb81-6"><a href="firstapp.html#cb81-6"></a>             windowSettings<span class="op">.</span>height<span class="op">);</span></span>
+<span id="cb81-7"><a href="firstapp.html#cb81-7"></a><span class="op">}</span></span>
+<span id="cb81-8"><a href="firstapp.html#cb81-8"></a></span>
+<span id="cb81-9"><a href="firstapp.html#cb81-9"></a><span class="dt">void</span> Window<span class="op">::</span>onPaint<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb81-10"><a href="firstapp.html#cb81-10"></a>  <span class="co">// Set the clear color</span></span>
+<span id="cb81-11"><a href="firstapp.html#cb81-11"></a>  abcg<span class="op">::</span>glClearColor<span class="op">(</span><span class="va">m_clearColor</span><span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">),</span> <span class="va">m_clearColor</span><span class="op">.</span>at<span class="op">(</span><span class="dv">1</span><span class="op">),</span> <span class="va">m_clearColor</span><span class="op">.</span>at<span class="op">(</span><span class="dv">2</span><span class="op">),</span></span>
+<span id="cb81-12"><a href="firstapp.html#cb81-12"></a>                     <span class="va">m_clearColor</span><span class="op">.</span>at<span class="op">(</span><span class="dv">3</span><span class="op">));</span></span>
+<span id="cb81-13"><a href="firstapp.html#cb81-13"></a>  <span class="co">// Clear the color buffer</span></span>
+<span id="cb81-14"><a href="firstapp.html#cb81-14"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb81-15"><a href="firstapp.html#cb81-15"></a><span class="op">}</span></span>
+<span id="cb81-16"><a href="firstapp.html#cb81-16"></a></span>
+<span id="cb81-17"><a href="firstapp.html#cb81-17"></a><span class="dt">void</span> Window<span class="op">::</span>onPaintUI<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb81-18"><a href="firstapp.html#cb81-18"></a>  <span class="co">// Parent class will show fullscreen button and FPS meter</span></span>
+<span id="cb81-19"><a href="firstapp.html#cb81-19"></a>  abcg<span class="op">::</span>OpenGLWindow<span class="op">::</span>onPaintUI<span class="op">();</span></span>
+<span id="cb81-20"><a href="firstapp.html#cb81-20"></a></span>
+<span id="cb81-21"><a href="firstapp.html#cb81-21"></a>  <span class="co">// Our own ImGui widgets go below</span></span>
+<span id="cb81-22"><a href="firstapp.html#cb81-22"></a>  <span class="op">{</span></span>
+<span id="cb81-23"><a href="firstapp.html#cb81-23"></a>    <span class="co">// Window begin</span></span>
+<span id="cb81-24"><a href="firstapp.html#cb81-24"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot;Hello, First App!&quot;</span><span class="op">);</span></span>
+<span id="cb81-25"><a href="firstapp.html#cb81-25"></a></span>
+<span id="cb81-26"><a href="firstapp.html#cb81-26"></a>    <span class="co">// Static text</span></span>
+<span id="cb81-27"><a href="firstapp.html#cb81-27"></a>    <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>windowSettings<span class="op">{</span>getWindowSettings<span class="op">()};</span></span>
+<span id="cb81-28"><a href="firstapp.html#cb81-28"></a>    ImGui<span class="op">::</span>Text<span class="op">(</span><span class="st">&quot;Current window size: </span><span class="sc">%d</span><span class="st">x</span><span class="sc">%d</span><span class="st"> (in windowed mode)&quot;</span><span class="op">,</span></span>
+<span id="cb81-29"><a href="firstapp.html#cb81-29"></a>                windowSettings<span class="op">.</span>width<span class="op">,</span> windowSettings<span class="op">.</span>height<span class="op">);</span></span>
+<span id="cb81-30"><a href="firstapp.html#cb81-30"></a></span>
+<span id="cb81-31"><a href="firstapp.html#cb81-31"></a>    <span class="co">// Slider from 0.0f to 1.0f</span></span>
+<span id="cb81-32"><a href="firstapp.html#cb81-32"></a>    <span class="at">static</span> <span class="dt">float</span> f<span class="op">{};</span></span>
+<span id="cb81-33"><a href="firstapp.html#cb81-33"></a>    ImGui<span class="op">::</span>SliderFloat<span class="op">(</span><span class="st">&quot;float&quot;</span><span class="op">,</span> <span class="op">&amp;</span>f<span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb81-34"><a href="firstapp.html#cb81-34"></a></span>
+<span id="cb81-35"><a href="firstapp.html#cb81-35"></a>    <span class="co">// ColorEdit to change the clear color</span></span>
+<span id="cb81-36"><a href="firstapp.html#cb81-36"></a>    ImGui<span class="op">::</span>ColorEdit3<span class="op">(</span><span class="st">&quot;clear color&quot;</span><span class="op">,</span> <span class="va">m_clearColor</span><span class="op">.</span>data<span class="op">());</span></span>
+<span id="cb81-37"><a href="firstapp.html#cb81-37"></a></span>
+<span id="cb81-38"><a href="firstapp.html#cb81-38"></a>    <span class="co">// More static text</span></span>
+<span id="cb81-39"><a href="firstapp.html#cb81-39"></a>    ImGui<span class="op">::</span>Text<span class="op">(</span><span class="st">&quot;Application average </span><span class="sc">%.3f</span><span class="st"> ms/frame (</span><span class="sc">%.1f</span><span class="st"> FPS)&quot;</span><span class="op">,</span></span>
+<span id="cb81-40"><a href="firstapp.html#cb81-40"></a>                <span class="fl">1000.0</span> <span class="op">/</span> ImGui<span class="op">::</span>GetIO<span class="op">().</span>Framerate<span class="op">,</span> ImGui<span class="op">::</span>GetIO<span class="op">().</span>Framerate<span class="op">);</span></span>
+<span id="cb81-41"><a href="firstapp.html#cb81-41"></a></span>
+<span id="cb81-42"><a href="firstapp.html#cb81-42"></a>    <span class="co">// Window end</span></span>
+<span id="cb81-43"><a href="firstapp.html#cb81-43"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb81-44"><a href="firstapp.html#cb81-44"></a>  <span class="op">}</span></span>
+<span id="cb81-45"><a href="firstapp.html#cb81-45"></a><span class="op">}</span></span></code></pre></div>
+<p>Vejamos com mais atenção o trecho com a definição de <code>Window::onCreate</code>:</p>
+<div class="sourceCode" id="cb82" startFrom="3"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 2;"><span id="cb82-3"><a href="firstapp.html#cb82-3"></a><span class="dt">void</span> Window<span class="op">::</span>onCreate<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb82-4"><a href="firstapp.html#cb82-4"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>windowSettings<span class="op">{</span>getWindowSettings<span class="op">()};</span></span>
+<span id="cb82-5"><a href="firstapp.html#cb82-5"></a>  fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;Initial window size: </span><span class="sc">{}</span><span class="st">x</span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> windowSettings<span class="op">.</span>width<span class="op">,</span></span>
+<span id="cb82-6"><a href="firstapp.html#cb82-6"></a>             windowSettings<span class="op">.</span>height<span class="op">);</span></span>
+<span id="cb82-7"><a href="firstapp.html#cb82-7"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linha 4, <code>windowSettings</code> é uma estrutura <code>abcg::WindowSettings</code> retornada por <code>abcg::OpenGLWindow::getWindowSettings()</code> com as configurações da janela. Na linha 5, <code>fmt::print</code> imprime no console o tamanho da janela<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
+<p>Observe agora o trecho com a definição de <code>Window::onPaint</code>:</p>
+<div class="sourceCode" id="cb83" startFrom="9"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 8;"><span id="cb83-9"><a href="firstapp.html#cb83-9"></a><span class="dt">void</span> Window<span class="op">::</span>onPaint<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb83-10"><a href="firstapp.html#cb83-10"></a>  <span class="co">// Set the clear color</span></span>
+<span id="cb83-11"><a href="firstapp.html#cb83-11"></a>  abcg<span class="op">::</span>glClearColor<span class="op">(</span><span class="va">m_clearColor</span><span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">),</span> <span class="va">m_clearColor</span><span class="op">.</span>at<span class="op">(</span><span class="dv">1</span><span class="op">),</span> <span class="va">m_clearColor</span><span class="op">.</span>at<span class="op">(</span><span class="dv">2</span><span class="op">),</span></span>
+<span id="cb83-12"><a href="firstapp.html#cb83-12"></a>                     <span class="va">m_clearColor</span><span class="op">.</span>at<span class="op">(</span><span class="dv">3</span><span class="op">));</span></span>
+<span id="cb83-13"><a href="firstapp.html#cb83-13"></a>  <span class="co">// Clear the color buffer</span></span>
+<span id="cb83-14"><a href="firstapp.html#cb83-14"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb83-15"><a href="firstapp.html#cb83-15"></a><span class="op">}</span></span></code></pre></div>
 <p>Aqui são chamadas duas funções do OpenGL: <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glClearColor.xhtml"><code>glClearColor</code></a> e <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glClear.xhtml"><code>glClear</code></a>.</p>
 <ul>
-<li><code>glClearColor</code> é utilizada para determinar a cor que será usada para limpar a janela<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. A função recebe quatro parâmetros do tipo <code>float</code> (<code>red</code>, <code>green</code>, <code>blue</code>, <code>alpha</code>), que correspondem a componentes de cor RGB e um valor adicional de opacidade (<code>alpha</code>). Esse formato de cor é chamado de <a href="https://htmlcolors.com/rgba-color">RGBA</a>. Os valores são fixados (<em>clamped</em>) no intervalo <span class="math inline">\([0,1]\)</span> em ponto flutuante.</li>
+<li><code>glClearColor</code> é utilizada para determinar a cor que será usada para limpar a janela<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. A função recebe quatro parâmetros do tipo <code>float</code> (<code>red</code>, <code>green</code>, <code>blue</code>, <code>alpha</code>), que correspondem às componentes de cor RGB e um valor adicional de opacidade (<code>alpha</code>). Esse formato de cor é chamado de <a href="https://htmlcolors.com/rgba-color">RGBA</a>. Os valores são fixados (<em>clamped</em>) no intervalo <span class="math inline">\([0,1]\)</span> em ponto flutuante.</li>
 <li><code>glClear</code>, usando como argumento a constante <code>GL_COLOR_BUFFER_BIT</code>, limpa a janela com a cor especificada na última chamada de <code>glClearColor</code>.</li>
 </ul>
-<p>Em resumo, nosso <code>paintGL</code> limpa a tela com a cor RGBA especificada em <code>m_clearColor</code>.</p>
+<p>Em resumo, nosso <code>onPaint</code> limpa a tela com a cor RGBA especificada em <code>m_clearColor</code>.</p>
 <div class="notebox">
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
 <div class="noteboxtitle">
@@ -713,8 +431,8 @@ Importante
 <ul>
 <li><p>As funções do OpenGL são prefixadas com as letras <code>gl</code>;</p></li>
 <li><p>As constantes do OpenGL são prefixadas com <code>GL_</code>.</p></li>
-<li><p>A versão mais recente do OpenGL é a 4.6. A documentação de cada versão está disponível em <a href="https://www.khronos.org/registry/OpenGL/"><code>https://www.khronos.org/registry/OpenGL/</code></a>.</p></li>
-<li><p>Neste curso, usaremos as funções do OpenGL que são comuns ao <a href="https://www.khronos.org/registry/OpenGL/specs/es/3.0/es_spec_3.0.withchanges.pdf">OpenGL ES 3.0</a> de modo a manter compatibilidade com o <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/">WebGL 2.0</a>. Assim conseguiremos fazer aplicações que rodam tanto no desktop quanto no navegador.</p></li>
+<li><p>Neste curso usaremos as funções do OpenGL que são comuns ao <a href="https://www.khronos.org/registry/OpenGL/specs/es/3.0/es_spec_3.0.withchanges.pdf">OpenGL ES 3.0</a> de modo a manter compatibilidade com o <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/">WebGL 2.0</a>. Assim conseguiremos fazer aplicações que podem ser executadas tanto no desktop quanto no navegador usando o mesmo código fonte.</p></li>
+<li><p>A versão mais recente do OpenGL é a 4.6. A documentação de cada versão está disponível em <a href="https://registry.khronos.org/OpenGL/index_gl.php"><code>https://registry.khronos.org/OpenGL/index_gl.php</code></a>.</p></li>
 </ul>
 </div>
 <div class="infobox">
@@ -722,167 +440,176 @@ Importante
 <div class="infoboxtitle">
 Observação
 </div>
-<p>Na ABCg, podemos usar as funções <code>gl</code> dentro do namespace <code>abcg</code> de modo a rastrear erros do OpenGL com o sistema de tratamento de exceções da ABCg.</p>
-<p>Por exemplo, ao escrevermos <code>abcg::glClear</code> no lugar de <code>glClear</code>, estamos na verdade chamando uma função <em>wrapper</em> que verifica automaticamente se a chamada da função OpenGL é válida. Se algum erro ocorrer, uma exceção é lançada e capturada pelo <code>catch</code> que implementamos na função <code>main</code>. A mensagem de erro (a string em <code>exception.what()</code>) inclui a descrição do erro, o nome do arquivo, o nome da função e o número da linha do código onde o erro foi detectado. Isso pode ser muito útil para a depuração de erros do OpenGL. Por isso, sempre que possível, prefixe as funções do OpenGL com <code>abcg::</code>.</p>
+<p>Na ABCg, podemos prefixar as funções <code>gl</code> com o namespace <code>abcg</code> de modo a rastrear erros do OpenGL com o sistema de tratamento de exceções da ABCg.</p>
+<p>Por exemplo, ao escrevermos <code>abcg::glClear</code> no lugar de <code>glClear</code>, estamos na verdade chamando uma função <em>wrapper</em> que verifica automaticamente se a chamada da função OpenGL é válida. Se algum erro ocorrer, uma exceção será lançada e capturada pelo <code>catch</code> que implementamos na função <code>main</code>. A mensagem de erro (retornada por <code>exception.what()</code> no escopo do <code>catch</code>) inclui a descrição do erro, o nome do arquivo, o nome da função e o número da linha do código onde o erro foi detectado. Isso pode ser bastante útil para a depuração de erros do OpenGL. Sempre que possível, prefixe as funções do OpenGL com <code>abcg::</code>.</p>
 <p>A verificação automática de erros do OpenGL é habilitada somente quando a aplicação é compilada no modo Debug. Não há sobrecarga nas chamadas das funções do OpenGL com o namespace <code>abcg</code> quando a aplicação é compilada em modo Release.</p>
 </div>
-<p>Agora vamos à definição de <code>OpenGLWindow::paintUI</code>, responsável pelo desenho da interface usando a ImGui:</p>
-<div class="sourceCode" id="cb77" startFrom="21"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 20;"><span id="cb77-21"><a href="firstapp.html#cb77-21"></a><span class="dt">void</span> OpenGLWindow::paintUI() {</span>
-<span id="cb77-22"><a href="firstapp.html#cb77-22"></a>  <span class="co">// Parent class will show fullscreen button and FPS meter</span></span>
-<span id="cb77-23"><a href="firstapp.html#cb77-23"></a>  abcg::OpenGLWindow::paintUI();</span>
-<span id="cb77-24"><a href="firstapp.html#cb77-24"></a></span>
-<span id="cb77-25"><a href="firstapp.html#cb77-25"></a>  <span class="co">// Our own ImGui widgets go below</span></span>
-<span id="cb77-26"><a href="firstapp.html#cb77-26"></a>  {</span>
-<span id="cb77-27"><a href="firstapp.html#cb77-27"></a>    <span class="co">// Window begin</span></span>
-<span id="cb77-28"><a href="firstapp.html#cb77-28"></a>    ImGui::Begin(<span class="st">&quot;Hello, First App!&quot;</span>);</span>
-<span id="cb77-29"><a href="firstapp.html#cb77-29"></a></span>
-<span id="cb77-30"><a href="firstapp.html#cb77-30"></a>    <span class="co">// Static text</span></span>
-<span id="cb77-31"><a href="firstapp.html#cb77-31"></a>    <span class="kw">auto</span> windowSettings{getWindowSettings()};</span>
-<span id="cb77-32"><a href="firstapp.html#cb77-32"></a>    ImGui::Text(<span class="st">&quot;Current window size: </span><span class="sc">%d</span><span class="st">x</span><span class="sc">%d</span><span class="st"> (in windowed mode)&quot;</span>,</span>
-<span id="cb77-33"><a href="firstapp.html#cb77-33"></a>                windowSettings.width, windowSettings.height);</span>
-<span id="cb77-34"><a href="firstapp.html#cb77-34"></a>    </span>
-<span id="cb77-35"><a href="firstapp.html#cb77-35"></a>    <span class="co">// Slider from 0.0f to 1.0f</span></span>
-<span id="cb77-36"><a href="firstapp.html#cb77-36"></a>    <span class="at">static</span> <span class="dt">float</span> f{};</span>
-<span id="cb77-37"><a href="firstapp.html#cb77-37"></a>    ImGui::SliderFloat(<span class="st">&quot;float&quot;</span>, &amp;f, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">1.0</span><span class="bu">f</span>);</span>
-<span id="cb77-38"><a href="firstapp.html#cb77-38"></a></span>
-<span id="cb77-39"><a href="firstapp.html#cb77-39"></a>    <span class="co">// ColorEdit to change the clear color</span></span>
-<span id="cb77-40"><a href="firstapp.html#cb77-40"></a>    ImGui::ColorEdit3(<span class="st">&quot;clear color&quot;</span>, <span class="va">m_clearColor</span>.data());</span>
-<span id="cb77-41"><a href="firstapp.html#cb77-41"></a></span>
-<span id="cb77-42"><a href="firstapp.html#cb77-42"></a>    <span class="co">// More static text</span></span>
-<span id="cb77-43"><a href="firstapp.html#cb77-43"></a>    ImGui::Text(<span class="st">&quot;Application average </span><span class="sc">%.3f</span><span class="st"> ms/frame (</span><span class="sc">%.1f</span><span class="st"> FPS)&quot;</span>,</span>
-<span id="cb77-44"><a href="firstapp.html#cb77-44"></a>                <span class="fl">1000.0</span> / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);</span>
-<span id="cb77-45"><a href="firstapp.html#cb77-45"></a></span>
-<span id="cb77-46"><a href="firstapp.html#cb77-46"></a>    <span class="co">// Window end</span></span>
-<span id="cb77-47"><a href="firstapp.html#cb77-47"></a>    ImGui::End();</span>
-<span id="cb77-48"><a href="firstapp.html#cb77-48"></a>  }</span>
-<span id="cb77-49"><a href="firstapp.html#cb77-49"></a>}</span></code></pre></div>
+<p>Agora vamos à definição de <code>Window::onPaintUI</code>, responsável pelo desenho da interface usando a ImGui:</p>
+<div class="sourceCode" id="cb84" startFrom="17"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 16;"><span id="cb84-17"><a href="firstapp.html#cb84-17"></a><span class="dt">void</span> Window<span class="op">::</span>onPaintUI<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb84-18"><a href="firstapp.html#cb84-18"></a>  <span class="co">// Parent class will show fullscreen button and FPS meter</span></span>
+<span id="cb84-19"><a href="firstapp.html#cb84-19"></a>  abcg<span class="op">::</span>OpenGLWindow<span class="op">::</span>onPaintUI<span class="op">();</span></span>
+<span id="cb84-20"><a href="firstapp.html#cb84-20"></a></span>
+<span id="cb84-21"><a href="firstapp.html#cb84-21"></a>  <span class="co">// Our own ImGui widgets go below</span></span>
+<span id="cb84-22"><a href="firstapp.html#cb84-22"></a>  <span class="op">{</span></span>
+<span id="cb84-23"><a href="firstapp.html#cb84-23"></a>    <span class="co">// Window begin</span></span>
+<span id="cb84-24"><a href="firstapp.html#cb84-24"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot;Hello, First App!&quot;</span><span class="op">);</span></span>
+<span id="cb84-25"><a href="firstapp.html#cb84-25"></a></span>
+<span id="cb84-26"><a href="firstapp.html#cb84-26"></a>    <span class="co">// Static text</span></span>
+<span id="cb84-27"><a href="firstapp.html#cb84-27"></a>    <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>windowSettings<span class="op">{</span>getWindowSettings<span class="op">()};</span></span>
+<span id="cb84-28"><a href="firstapp.html#cb84-28"></a>    ImGui<span class="op">::</span>Text<span class="op">(</span><span class="st">&quot;Current window size: </span><span class="sc">%d</span><span class="st">x</span><span class="sc">%d</span><span class="st"> (in windowed mode)&quot;</span><span class="op">,</span></span>
+<span id="cb84-29"><a href="firstapp.html#cb84-29"></a>                windowSettings<span class="op">.</span>width<span class="op">,</span> windowSettings<span class="op">.</span>height<span class="op">);</span></span>
+<span id="cb84-30"><a href="firstapp.html#cb84-30"></a></span>
+<span id="cb84-31"><a href="firstapp.html#cb84-31"></a>    <span class="co">// Slider from 0.0f to 1.0f</span></span>
+<span id="cb84-32"><a href="firstapp.html#cb84-32"></a>    <span class="at">static</span> <span class="dt">float</span> f<span class="op">{};</span></span>
+<span id="cb84-33"><a href="firstapp.html#cb84-33"></a>    ImGui<span class="op">::</span>SliderFloat<span class="op">(</span><span class="st">&quot;float&quot;</span><span class="op">,</span> <span class="op">&amp;</span>f<span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb84-34"><a href="firstapp.html#cb84-34"></a></span>
+<span id="cb84-35"><a href="firstapp.html#cb84-35"></a>    <span class="co">// ColorEdit to change the clear color</span></span>
+<span id="cb84-36"><a href="firstapp.html#cb84-36"></a>    ImGui<span class="op">::</span>ColorEdit3<span class="op">(</span><span class="st">&quot;clear color&quot;</span><span class="op">,</span> <span class="va">m_clearColor</span><span class="op">.</span>data<span class="op">());</span></span>
+<span id="cb84-37"><a href="firstapp.html#cb84-37"></a></span>
+<span id="cb84-38"><a href="firstapp.html#cb84-38"></a>    <span class="co">// More static text</span></span>
+<span id="cb84-39"><a href="firstapp.html#cb84-39"></a>    ImGui<span class="op">::</span>Text<span class="op">(</span><span class="st">&quot;Application average </span><span class="sc">%.3f</span><span class="st"> ms/frame (</span><span class="sc">%.1f</span><span class="st"> FPS)&quot;</span><span class="op">,</span></span>
+<span id="cb84-40"><a href="firstapp.html#cb84-40"></a>                <span class="fl">1000.0</span> <span class="op">/</span> ImGui<span class="op">::</span>GetIO<span class="op">().</span>Framerate<span class="op">,</span> ImGui<span class="op">::</span>GetIO<span class="op">().</span>Framerate<span class="op">);</span></span>
+<span id="cb84-41"><a href="firstapp.html#cb84-41"></a></span>
+<span id="cb84-42"><a href="firstapp.html#cb84-42"></a>    <span class="co">// Window end</span></span>
+<span id="cb84-43"><a href="firstapp.html#cb84-43"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb84-44"><a href="firstapp.html#cb84-44"></a>  <span class="op">}</span></span>
+<span id="cb84-45"><a href="firstapp.html#cb84-45"></a><span class="op">}</span></span></code></pre></div>
 <ul>
-<li><p>Na linha 23 é chamada a função membro <code>paintUI</code> da classe base. A <code>paintUI</code> da classe base mostra o medidor de FPS e o botão para alternar a tela cheia.</p></li>
-<li><p>Na linha 28 é criada uma janela da ImGui com o título “Hello, First App!” A partir desta linha, até a linha 47, todas as chamadas a funções da ImGui criam widgets dentro dessa janela. Apenas para isso ficar mais explícito, todo o código está dentro do escopo delimitado pelas chaves nas linhas 26 e 48.</p></li>
-<li><p>Na linha 32 é criado um texto estático mostrando o tamanho atual da janela.</p></li>
-<li><p>Na linha 37 é criado um <em>slider</em> horizontal que pode variar de 0 a 1 em ponto flutuante. O valor do slider é armazenado em <code>f</code>. A variável <code>f</code> é declarada como <code>static</code> para que seu estado seja retido entre as chamadas de <code>paintUI</code> (outra opção é declarar a variável como membro da classe).</p></li>
-<li><p>Na linha 40 é criado um widget de edição de cor para alterar os valores de <code>m_clearColor</code>.</p></li>
-<li><p>Na linha 43 é criado mais um texto estático com informações de FPS extraídas de <code>ImGui::GetIO().Framerate</code>.</p></li>
+<li><p>Na linha 19 é chamada a função membro <code>onPaintUI</code> da classe base, que mostra o medidor de FPS e o botão para alternar entre o modo janela e tela cheia.</p></li>
+<li><p>Na linha 24 é criada uma janela da ImGui com o título “Hello, First App!”. A partir desta linha, até a linha 43, todas as chamadas a funções da ImGui criam widgets dentro dessa janela recém-criada. Apenas para isso ficar mais explícito, todo o código que corresponde a esta janela está dentro do escopo delimitado pelas chaves nas linhas 22 e 44.</p></li>
+<li><p>Na linha 27 é criado um texto estático que mostra o tamanho atual da janela.</p></li>
+<li><p>Na linha 32 é criado um <em>slider</em> horizontal que pode variar de 0 a 1 em ponto flutuante. O valor do slider é armazenado em <code>f</code>. A variável <code>f</code> é declarada como <code>static</code> para que seu estado seja retido entre as chamadas de <code>onPaintUI</code> (outra opção é declarar a variável como membro da classe).</p></li>
+<li><p>Na linha 36 é criado um widget de edição de cor para alterar os valores de <code>m_clearColor</code>.</p></li>
+<li><p>Na linha 39 é criado mais um texto estático com informações de FPS extraídas de <code>ImGui::GetIO().Framerate</code>.</p></li>
 </ul>
-<p>Esse código é praticamente o mesmo do “Hello, World!” Construa a aplicação para ver o resultado:</p>
+<p>Esse código é praticamente o mesmo do “Hello, World!”. Construa a aplicação para ver o resultado:</p>
 <iframe
   src="https://hbatagelo.github.io/abcgapps/firstapp/index.html"
   allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="745"
   ></iframe>
-<p>A seguir temos alguns exemplos de uso de outros widgets da ImGui. Experimente incluir esses trechos de código no <code>paintUI</code>:</p>
-<ul>
-<li><p>Botões:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb78-1"><a href="firstapp.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 100x50 button</span></span>
-<span id="cb78-2"><a href="firstapp.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (ImGui::Button(<span class="st">&quot;Press me!&quot;</span>, ImVec2(<span class="dv">100</span>, <span class="dv">50</span>))) {</span>
-<span id="cb78-3"><a href="firstapp.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  fmt::print(<span class="st">&quot;Button pressed.</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
-<span id="cb78-4"><a href="firstapp.html#cb78-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb78-5"><a href="firstapp.html#cb78-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-6"><a href="firstapp.html#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Nx50 button, where N is the remaining width available</span></span>
-<span id="cb78-7"><a href="firstapp.html#cb78-7" aria-hidden="true" tabindex="-1"></a>ImGui::Button(<span class="st">&quot;Press me!&quot;</span>, ImVec2(-<span class="dv">1</span>, <span class="dv">50</span>));</span>
-<span id="cb78-8"><a href="firstapp.html#cb78-8" aria-hidden="true" tabindex="-1"></a><span class="co">// See also IsItemHovered, IsItemActive, etc</span></span>
-<span id="cb78-9"><a href="firstapp.html#cb78-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (ImGui::IsItemClicked()) {</span>
-<span id="cb78-10"><a href="firstapp.html#cb78-10" aria-hidden="true" tabindex="-1"></a>  fmt::print(<span class="st">&quot;Button pressed.</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
-<span id="cb78-11"><a href="firstapp.html#cb78-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></li>
-<li><p>Checkbox:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb79-1"><a href="firstapp.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="dt">bool</span> enabled{<span class="kw">true</span>};</span>
-<span id="cb79-2"><a href="firstapp.html#cb79-2" aria-hidden="true" tabindex="-1"></a>ImGui::Checkbox(<span class="st">&quot;Some option&quot;</span>, &amp;enabled);</span>
-<span id="cb79-3"><a href="firstapp.html#cb79-3" aria-hidden="true" tabindex="-1"></a>fmt::print(<span class="st">&quot;The checkbox is </span><span class="sc">{}\n</span><span class="st">&quot;</span>, enabled ? <span class="st">&quot;enabled&quot;</span> : <span class="st">&quot;disabled&quot;</span>);</span></code></pre></div></li>
-<li><p>Combo box:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb80-1"><a href="firstapp.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="bu">std::</span>size_t currentIndex{};</span>
-<span id="cb80-2"><a href="firstapp.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; comboItems{<span class="st">&quot;AAA&quot;</span>, <span class="st">&quot;BBB&quot;</span>, <span class="st">&quot;CCC&quot;</span>};</span>
-<span id="cb80-3"><a href="firstapp.html#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-4"><a href="firstapp.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (ImGui::BeginCombo(<span class="st">&quot;Combo box&quot;</span>, comboItems.at(currentIndex).c_str())) {</span>
-<span id="cb80-5"><a href="firstapp.html#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">auto</span> index{<span class="dv">0</span><span class="bu">u</span>}; index &lt; comboItems.size(); ++index) {</span>
-<span id="cb80-6"><a href="firstapp.html#cb80-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">bool</span> isSelected{currentIndex == index};</span>
-<span id="cb80-7"><a href="firstapp.html#cb80-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))</span>
-<span id="cb80-8"><a href="firstapp.html#cb80-8" aria-hidden="true" tabindex="-1"></a>      currentIndex = index;</span>
-<span id="cb80-9"><a href="firstapp.html#cb80-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-10"><a href="firstapp.html#cb80-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Set the initial focus when opening the combo (scrolling + keyboard</span></span>
-<span id="cb80-11"><a href="firstapp.html#cb80-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// navigation focus)</span></span>
-<span id="cb80-12"><a href="firstapp.html#cb80-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (isSelected) ImGui::SetItemDefaultFocus();</span>
-<span id="cb80-13"><a href="firstapp.html#cb80-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb80-14"><a href="firstapp.html#cb80-14" aria-hidden="true" tabindex="-1"></a>  ImGui::EndCombo();</span>
-<span id="cb80-15"><a href="firstapp.html#cb80-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb80-16"><a href="firstapp.html#cb80-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-17"><a href="firstapp.html#cb80-17" aria-hidden="true" tabindex="-1"></a>fmt::print(<span class="st">&quot;Selected combo box item: </span><span class="sc">{}\n</span><span class="st">&quot;</span>, comboItems.at(currentIndex));</span></code></pre></div></li>
-<li><p>Menu (em uma janela de tamanho fixo e com o <em>flag</em> adicional <code>ImGuiWindowFlags_MenuBar</code> para permitir o uso da barra de menu):</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb81-1"><a href="firstapp.html#cb81-1" aria-hidden="true" tabindex="-1"></a>ImGui::SetNextWindowSize(ImVec2(<span class="dv">300</span>, <span class="dv">100</span>));</span>
-<span id="cb81-2"><a href="firstapp.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> flags{ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoResize};</span>
-<span id="cb81-3"><a href="firstapp.html#cb81-3" aria-hidden="true" tabindex="-1"></a>ImGui::Begin(<span class="st">&quot;Window with menu&quot;</span>, <span class="kw">nullptr</span>, flags);</span>
-<span id="cb81-4"><a href="firstapp.html#cb81-4" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb81-5"><a href="firstapp.html#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> save{};</span>
-<span id="cb81-6"><a href="firstapp.html#cb81-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">static</span> <span class="dt">bool</span> showCompliment{};  <span class="co">// Hold state</span></span>
-<span id="cb81-7"><a href="firstapp.html#cb81-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-8"><a href="firstapp.html#cb81-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Menu Bar</span></span>
-<span id="cb81-9"><a href="firstapp.html#cb81-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (ImGui::BeginMenuBar()) {</span>
-<span id="cb81-10"><a href="firstapp.html#cb81-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// File menu</span></span>
-<span id="cb81-11"><a href="firstapp.html#cb81-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (ImGui::BeginMenu(<span class="st">&quot;File&quot;</span>)) {</span>
-<span id="cb81-12"><a href="firstapp.html#cb81-12" aria-hidden="true" tabindex="-1"></a>      ImGui::MenuItem(<span class="st">&quot;Save&quot;</span>, <span class="kw">nullptr</span>, &amp;save);</span>
-<span id="cb81-13"><a href="firstapp.html#cb81-13" aria-hidden="true" tabindex="-1"></a>      ImGui::EndMenu();</span>
-<span id="cb81-14"><a href="firstapp.html#cb81-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb81-15"><a href="firstapp.html#cb81-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// View menu</span></span>
-<span id="cb81-16"><a href="firstapp.html#cb81-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (ImGui::BeginMenu(<span class="st">&quot;View&quot;</span>)) {</span>
-<span id="cb81-17"><a href="firstapp.html#cb81-17" aria-hidden="true" tabindex="-1"></a>      ImGui::MenuItem(<span class="st">&quot;Show Compliment&quot;</span>, <span class="kw">nullptr</span>, &amp;showCompliment);</span>
-<span id="cb81-18"><a href="firstapp.html#cb81-18" aria-hidden="true" tabindex="-1"></a>      ImGui::EndMenu();</span>
-<span id="cb81-19"><a href="firstapp.html#cb81-19" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb81-20"><a href="firstapp.html#cb81-20" aria-hidden="true" tabindex="-1"></a>    ImGui::EndMenuBar();</span>
-<span id="cb81-21"><a href="firstapp.html#cb81-21" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb81-22"><a href="firstapp.html#cb81-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-23"><a href="firstapp.html#cb81-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (save) {</span>
-<span id="cb81-24"><a href="firstapp.html#cb81-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Save file...</span></span>
-<span id="cb81-25"><a href="firstapp.html#cb81-25" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb81-26"><a href="firstapp.html#cb81-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-27"><a href="firstapp.html#cb81-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (showCompliment) {</span>
-<span id="cb81-28"><a href="firstapp.html#cb81-28" aria-hidden="true" tabindex="-1"></a>    ImGui::Text(<span class="st">&quot;You&#39;re a beautiful person.&quot;</span>);</span>
-<span id="cb81-29"><a href="firstapp.html#cb81-29" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb81-30"><a href="firstapp.html#cb81-30" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb81-31"><a href="firstapp.html#cb81-31" aria-hidden="true" tabindex="-1"></a>ImGui::End();</span></code></pre></div></li>
-<li><p>Mais sliders:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb82-1"><a href="firstapp.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="bu">std::</span>array pos2d{<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>};</span>
-<span id="cb82-2"><a href="firstapp.html#cb82-2" aria-hidden="true" tabindex="-1"></a>ImGui::SliderFloat2(<span class="st">&quot;2D position&quot;</span>, pos2d.data(), <span class="fl">0.0</span>, <span class="fl">50.0</span>);</span>
-<span id="cb82-3"><a href="firstapp.html#cb82-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-4"><a href="firstapp.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="bu">std::</span>array pos3d{<span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>, <span class="fl">0.0</span><span class="bu">f</span>};</span>
-<span id="cb82-5"><a href="firstapp.html#cb82-5" aria-hidden="true" tabindex="-1"></a>ImGui::SliderFloat3(<span class="st">&quot;3D position&quot;</span>, pos3d.data(), -<span class="fl">1.0</span>, <span class="fl">1.0</span>);</span></code></pre></div></li>
-</ul>
-<p>Infelizmente, a ImGui não tem um manual com exemplos de uso de todos os widgets suportados. A melhor referência atualmente é o código da função <code>ImGui::ShowDemoWindow</code> em <code>abcg/external/imgui/imgui_demo.cpp</code>. Essa função cria uma janela de demonstração contendo uma grande variedade de exemplos de uso de widgets e recursos da ImGui. No exemplo “Hello, World!” tal janela é exibida quando o checkbox “Show demo window” está ativado.</p>
-<div class="infobox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
-<div class="infoboxtitle">
-Observação
-</div>
-<p>A ImGui é uma biblioteca de GUI que trabalha em <em>modo imediato</em>, isto é, não retém o estado das janelas e widgets (o “Im” de ImGui vem de <em>immediate mode</em>). Isso significa que, sempre que <code>paintUI</code> é chamado, a GUI é redefinida por completo. O gerenciamento da persistência de estado deve ser feito pelo usuário, por exemplo, através de variáveis estáticas ou variáveis membros da classe.</p>
-</div>
 <div class="questionbox">
 <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1.4em;width:1.57em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M519.442 288.651c-41.519 0-59.5 31.593-82.058 31.593C377.409 320.244 432 144 432 144s-196.288 80-196.288-3.297c0-35.827 36.288-46.25 36.288-85.985C272 19.216 243.885 0 210.539 0c-34.654 0-66.366 18.891-66.366 56.346 0 41.364 31.711 59.277 31.711 81.75C175.885 207.719 0 166.758 0 166.758v333.237s178.635 41.047 178.635-28.662c0-22.473-40-40.107-40-81.471 0-37.456 29.25-56.346 63.577-56.346 33.673 0 61.788 19.216 61.788 54.717 0 39.735-36.288 50.158-36.288 85.985 0 60.803 129.675 25.73 181.23 25.73 0 0-34.725-120.101 25.827-120.101 35.962 0 46.423 36.152 86.308 36.152C556.712 416 576 387.99 576 354.443c0-34.199-18.962-65.792-56.558-65.792z"/></svg>
 <div class="questionboxtitle">
 Exercício
 </div>
-<p>Usando o projeto <code>firstapp</code> como base, faça um “Jogo da Velha” com interface composta de widgets da ImGui:</p>
+<p>A seguir temos alguns exemplos de uso de outros widgets da ImGui. Experimente incluir esses trechos de código em <code>onPaintUI</code>:</p>
 <ul>
-<li>Simule o tabuleiro do jogo com um arranjo de 3x3 botões. Inicialmente deixe os botões sem texto. Cada vez que um botão for pressionado, substitua-o por um <code>X</code> ou <code>O</code> de acordo com o turno do jogador;</li>
-<li>Use um widget de texto estático para mostrar informações como o resultado do jogo e o turno atual;</li>
-<li>Inclua um menu com uma opção para reiniciar o jogo.</li>
+<li><p>Botões:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb85-1"><a href="firstapp.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 100x50 button</span></span>
+<span id="cb85-2"><a href="firstapp.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Button<span class="op">(</span><span class="st">&quot;Press me!&quot;</span><span class="op">,</span> ImVec2<span class="op">(</span><span class="dv">100</span><span class="op">,</span> <span class="dv">50</span><span class="op">)))</span> <span class="op">{</span></span>
+<span id="cb85-3"><a href="firstapp.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;1st button pressed.</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb85-4"><a href="firstapp.html#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb85-5"><a href="firstapp.html#cb85-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-6"><a href="firstapp.html#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Nx50 button, where N is the remaining width available</span></span>
+<span id="cb85-7"><a href="firstapp.html#cb85-7" aria-hidden="true" tabindex="-1"></a>ImGui<span class="op">::</span>Button<span class="op">(</span><span class="st">&quot;Press me!&quot;</span><span class="op">,</span> ImVec2<span class="op">(-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">50</span><span class="op">));</span></span>
+<span id="cb85-8"><a href="firstapp.html#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="co">// See also IsItemHovered, IsItemActive, etc</span></span>
+<span id="cb85-9"><a href="firstapp.html#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>IsItemClicked<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb85-10"><a href="firstapp.html#cb85-10" aria-hidden="true" tabindex="-1"></a>  fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;2nd Button pressed.</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb85-11"><a href="firstapp.html#cb85-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<li><p>Checkbox:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb86-1"><a href="firstapp.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="dt">bool</span> enabled<span class="op">{</span><span class="kw">true</span><span class="op">};</span></span>
+<span id="cb86-2"><a href="firstapp.html#cb86-2" aria-hidden="true" tabindex="-1"></a>ImGui<span class="op">::</span>Checkbox<span class="op">(</span><span class="st">&quot;Some option&quot;</span><span class="op">,</span> <span class="op">&amp;</span>enabled<span class="op">);</span></span>
+<span id="cb86-3"><a href="firstapp.html#cb86-3" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;The checkbox is </span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> enabled <span class="op">?</span> <span class="st">&quot;enabled&quot;</span> <span class="op">:</span> <span class="st">&quot;disabled&quot;</span><span class="op">);</span></span></code></pre></div></li>
+<li><p>Combo box:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb87-1"><a href="firstapp.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="bu">std::</span>size_t<span class="op"> </span>currentIndex<span class="op">{};</span></span>
+<span id="cb87-2"><a href="firstapp.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op"> </span>comboItems<span class="op">{</span><span class="st">&quot;AAA&quot;</span><span class="op">,</span> <span class="st">&quot;BBB&quot;</span><span class="op">,</span> <span class="st">&quot;CCC&quot;</span><span class="op">};</span></span>
+<span id="cb87-3"><a href="firstapp.html#cb87-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="firstapp.html#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginCombo<span class="op">(</span><span class="st">&quot;Combo box&quot;</span><span class="op">,</span> comboItems<span class="op">.</span>at<span class="op">(</span>currentIndex<span class="op">)))</span> <span class="op">{</span></span>
+<span id="cb87-5"><a href="firstapp.html#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> index<span class="op">{</span><span class="dv">0</span><span class="bu">U</span><span class="op">};</span> index <span class="op">&lt;</span> comboItems<span class="op">.</span>size<span class="op">();</span> <span class="op">++</span>index<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb87-6"><a href="firstapp.html#cb87-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> <span class="at">const</span> isSelected<span class="op">{</span>currentIndex <span class="op">==</span> index<span class="op">};</span></span>
+<span id="cb87-7"><a href="firstapp.html#cb87-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Selectable<span class="op">(</span>comboItems<span class="op">.</span>at<span class="op">(</span>index<span class="op">),</span> isSelected<span class="op">))</span></span>
+<span id="cb87-8"><a href="firstapp.html#cb87-8" aria-hidden="true" tabindex="-1"></a>      currentIndex <span class="op">=</span> index<span class="op">;</span></span>
+<span id="cb87-9"><a href="firstapp.html#cb87-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-10"><a href="firstapp.html#cb87-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Set the initial focus when opening the combo (scrolling + keyboard</span></span>
+<span id="cb87-11"><a href="firstapp.html#cb87-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// navigation focus)</span></span>
+<span id="cb87-12"><a href="firstapp.html#cb87-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>isSelected<span class="op">)</span></span>
+<span id="cb87-13"><a href="firstapp.html#cb87-13" aria-hidden="true" tabindex="-1"></a>      ImGui<span class="op">::</span>SetItemDefaultFocus<span class="op">();</span></span>
+<span id="cb87-14"><a href="firstapp.html#cb87-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb87-15"><a href="firstapp.html#cb87-15" aria-hidden="true" tabindex="-1"></a>  ImGui<span class="op">::</span>EndCombo<span class="op">();</span></span>
+<span id="cb87-16"><a href="firstapp.html#cb87-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb87-17"><a href="firstapp.html#cb87-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-18"><a href="firstapp.html#cb87-18" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;Selected combo box item: </span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> comboItems<span class="op">.</span>at<span class="op">(</span>currentIndex<span class="op">));</span></span></code></pre></div></li>
+<li><p>Menu (em uma janela de tamanho fixo e com o <em>flag</em> adicional <code>ImGuiWindowFlags_MenuBar</code> para permitir o uso da barra de menu):</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb88-1"><a href="firstapp.html#cb88-1" aria-hidden="true" tabindex="-1"></a>ImGui<span class="op">::</span>SetNextWindowSize<span class="op">(</span>ImVec2<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">100</span><span class="op">));</span></span>
+<span id="cb88-2"><a href="firstapp.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="kw">auto</span> flags<span class="op">{</span>ImGuiWindowFlags_MenuBar <span class="op">|</span> ImGuiWindowFlags_NoResize<span class="op">};</span></span>
+<span id="cb88-3"><a href="firstapp.html#cb88-3" aria-hidden="true" tabindex="-1"></a>ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot;Window with menu&quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> flags<span class="op">);</span></span>
+<span id="cb88-4"><a href="firstapp.html#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb88-5"><a href="firstapp.html#cb88-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> save<span class="op">{};</span></span>
+<span id="cb88-6"><a href="firstapp.html#cb88-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">static</span> <span class="dt">bool</span> showCompliment<span class="op">{};</span>  <span class="co">// Hold state</span></span>
+<span id="cb88-7"><a href="firstapp.html#cb88-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-8"><a href="firstapp.html#cb88-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Menu Bar</span></span>
+<span id="cb88-9"><a href="firstapp.html#cb88-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginMenuBar<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb88-10"><a href="firstapp.html#cb88-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// File menu</span></span>
+<span id="cb88-11"><a href="firstapp.html#cb88-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginMenu<span class="op">(</span><span class="st">&quot;File&quot;</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb88-12"><a href="firstapp.html#cb88-12" aria-hidden="true" tabindex="-1"></a>      ImGui<span class="op">::</span>MenuItem<span class="op">(</span><span class="st">&quot;Save&quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> <span class="op">&amp;</span>save<span class="op">);</span></span>
+<span id="cb88-13"><a href="firstapp.html#cb88-13" aria-hidden="true" tabindex="-1"></a>      ImGui<span class="op">::</span>EndMenu<span class="op">();</span></span>
+<span id="cb88-14"><a href="firstapp.html#cb88-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb88-15"><a href="firstapp.html#cb88-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// View menu</span></span>
+<span id="cb88-16"><a href="firstapp.html#cb88-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginMenu<span class="op">(</span><span class="st">&quot;View&quot;</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb88-17"><a href="firstapp.html#cb88-17" aria-hidden="true" tabindex="-1"></a>      ImGui<span class="op">::</span>MenuItem<span class="op">(</span><span class="st">&quot;Show Compliment&quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> <span class="op">&amp;</span>showCompliment<span class="op">);</span></span>
+<span id="cb88-18"><a href="firstapp.html#cb88-18" aria-hidden="true" tabindex="-1"></a>      ImGui<span class="op">::</span>EndMenu<span class="op">();</span></span>
+<span id="cb88-19"><a href="firstapp.html#cb88-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb88-20"><a href="firstapp.html#cb88-20" aria-hidden="true" tabindex="-1"></a>    ImGui<span class="op">::</span>EndMenuBar<span class="op">();</span></span>
+<span id="cb88-21"><a href="firstapp.html#cb88-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb88-22"><a href="firstapp.html#cb88-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-23"><a href="firstapp.html#cb88-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>save<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb88-24"><a href="firstapp.html#cb88-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Save file...</span></span>
+<span id="cb88-25"><a href="firstapp.html#cb88-25" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb88-26"><a href="firstapp.html#cb88-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-27"><a href="firstapp.html#cb88-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>showCompliment<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb88-28"><a href="firstapp.html#cb88-28" aria-hidden="true" tabindex="-1"></a>    ImGui<span class="op">::</span>Text<span class="op">(</span><span class="st">&quot;You&#39;re a beautiful person.&quot;</span><span class="op">);</span></span>
+<span id="cb88-29"><a href="firstapp.html#cb88-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb88-30"><a href="firstapp.html#cb88-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb88-31"><a href="firstapp.html#cb88-31" aria-hidden="true" tabindex="-1"></a>ImGui<span class="op">::</span>End<span class="op">();</span></span></code></pre></div></li>
+<li><p>Mais sliders:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb89-1"><a href="firstapp.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="bu">std::</span>array<span class="op"> </span>pos2d<span class="op">{</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb89-2"><a href="firstapp.html#cb89-2" aria-hidden="true" tabindex="-1"></a>ImGui<span class="op">::</span>SliderFloat2<span class="op">(</span><span class="st">&quot;2D position&quot;</span><span class="op">,</span> pos2d<span class="op">.</span>data<span class="op">(),</span> <span class="fl">0.0</span><span class="op">,</span> <span class="fl">50.0</span><span class="op">);</span></span>
+<span id="cb89-3"><a href="firstapp.html#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="firstapp.html#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="bu">std::</span>array<span class="op"> </span>pos3d<span class="op">{</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb89-5"><a href="firstapp.html#cb89-5" aria-hidden="true" tabindex="-1"></a>ImGui<span class="op">::</span>SliderFloat3<span class="op">(</span><span class="st">&quot;3D position&quot;</span><span class="op">,</span> pos3d<span class="op">.</span>data<span class="op">(),</span> <span class="op">-</span><span class="fl">1.0</span><span class="op">,</span> <span class="fl">1.0</span><span class="op">);</span></span></code></pre></div></li>
 </ul>
-<p>Explore diferentes funções da biblioteca, tais como:</p>
-<ul>
-<li><code>ImGui::Columns</code> para fazer arranjos de widgets;</li>
-<li><code>ImGui::Spacing</code> para adicionar espaçamentos verticais;</li>
-<li><code>ImGui::SameLine</code> para criar widgets lado-a-lado e ajustar o espaçamento horizontal;</li>
-<li><code>ImGui::Separator()</code> para desenhar linhas de separação.</li>
-</ul>
-<p>Um exemplo é dado a seguir:</p>
-<iframe
-  src="https://hbatagelo.github.io/abcgapps/tictactoe/index.html"
-  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="635"
-  ></iframe>
+</div>
+<div class="tipbox">
+<svg aria-hidden="true" role="img" viewBox="0 0 352 512" style="height:1.4em;width:0.96em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#7e4d1d;overflow:visible;position:relative;"><path d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
+<div class="tipboxtitle">
+Dica
+</div>
+<p>A ImGui não tem um manual com exemplos de uso de todos os widgets suportados. A melhor referência atualmente é o código da função <code>ImGui::ShowDemoWindow</code> em <code>abcg/external/imgui/imgui_demo.cpp</code>. Essa função cria uma janela de demonstração contendo uma grande variedade de exemplos de uso de widgets e recursos da ImGui. No exemplo “Hello, World!”, tal janela é exibida quando a caixa de seleção “Show demo window” está ativada.</p>
+<p>Por exemplo, caso você queira implementar um “List Box” como exibido na janela de demonstração abaixo, procure pela string “List boxes” ou “listbox 1” em <code>abcg/external/imgui/imgui_demo.cpp</code>, copie o código correspondente e adapte-o em sua aplicação.</p>
+<p><img src="images/02_imgui.png" style="display: block; margin: auto;" /></p>
+<p>O código correspondente em <code>imgui_demo.cpp</code> é o seguinte:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb90-1"><a href="firstapp.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> items<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span> <span class="st">&quot;AAAA&quot;</span><span class="op">,</span> <span class="st">&quot;BBBB&quot;</span><span class="op">,</span> <span class="st">&quot;CCCC&quot;</span><span class="op">,</span> <span class="st">&quot;DDDD&quot;</span><span class="op">,</span> <span class="st">&quot;EEEE&quot;</span><span class="op">,</span> <span class="st">&quot;FFFF&quot;</span><span class="op">,</span> <span class="st">&quot;GGGG&quot;</span><span class="op">,</span> <span class="st">&quot;HHHH&quot;</span><span class="op">,</span> <span class="st">&quot;IIII&quot;</span><span class="op">,</span> <span class="st">&quot;JJJJ&quot;</span><span class="op">,</span> <span class="st">&quot;KKKK&quot;</span><span class="op">,</span> <span class="st">&quot;LLLLLLL&quot;</span><span class="op">,</span> <span class="st">&quot;MMMM&quot;</span><span class="op">,</span> <span class="st">&quot;OOOOOOO&quot;</span> <span class="op">};</span></span>
+<span id="cb90-2"><a href="firstapp.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="at">static</span> <span class="dt">int</span> item_current_idx <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="co">// Here we store our selection data as an index.</span></span>
+<span id="cb90-3"><a href="firstapp.html#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginListBox<span class="op">(</span><span class="st">&quot;listbox 1&quot;</span><span class="op">))</span></span>
+<span id="cb90-4"><a href="firstapp.html#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb90-5"><a href="firstapp.html#cb90-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> n <span class="op">&lt;</span> IM_ARRAYSIZE<span class="op">(</span>items<span class="op">);</span> n<span class="op">++)</span></span>
+<span id="cb90-6"><a href="firstapp.html#cb90-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb90-7"><a href="firstapp.html#cb90-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">const</span> <span class="dt">bool</span> is_selected <span class="op">=</span> <span class="op">(</span>item_current_idx <span class="op">==</span> n<span class="op">);</span></span>
+<span id="cb90-8"><a href="firstapp.html#cb90-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Selectable<span class="op">(</span>items<span class="op">[</span>n<span class="op">],</span> is_selected<span class="op">))</span></span>
+<span id="cb90-9"><a href="firstapp.html#cb90-9" aria-hidden="true" tabindex="-1"></a>            item_current_idx <span class="op">=</span> n<span class="op">;</span></span>
+<span id="cb90-10"><a href="firstapp.html#cb90-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-11"><a href="firstapp.html#cb90-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Set the initial focus when opening the combo (scrolling + keyboard navigation focus)</span></span>
+<span id="cb90-12"><a href="firstapp.html#cb90-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>is_selected<span class="op">)</span></span>
+<span id="cb90-13"><a href="firstapp.html#cb90-13" aria-hidden="true" tabindex="-1"></a>            ImGui<span class="op">::</span>SetItemDefaultFocus<span class="op">();</span></span>
+<span id="cb90-14"><a href="firstapp.html#cb90-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb90-15"><a href="firstapp.html#cb90-15" aria-hidden="true" tabindex="-1"></a>    ImGui<span class="op">::</span>EndListBox<span class="op">();</span></span>
+<span id="cb90-16"><a href="firstapp.html#cb90-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>A documentação das funções, constantes e enumerações está no formato de comentários nos arquivos <code>abcg/external/imgui/imgui.h</code> e <code>abcg/external/imgui/imgui.cpp</code>.</p>
+</div>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>A ImGui é uma biblioteca de GUI que trabalha em <em>modo imediato</em> (o “Im” de ImGui vem de <em>immediate mode</em>), isto é, os controles de UI não retém estado entre os quadros de exibição. Sempre que a função <code>onPaintUI</code> é chamada, a GUI é redesenhada por completo. O gerenciamento de estado deve ser feito pelo usuário, por exemplo, através de variáveis estáticas (como a variável <code>f</code> da linha 32 de <code>window.cpp</code> para guardar o valor do slider) ou variáveis membros da classe (como a variável <code>m_clearColor</code> da classe <code>Window</code>)<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>.</p>
 </div>
 </div>
-<div id="compilando-para-webassembly-1" class="section level3 unnumbered">
-<h3>Compilando para WebAssembly</h3>
-<p>Para compilar para WebAssembly basta usar o script <code>build-wasm.sh</code> (Linux/macOS) ou <code>build-wasm.bat</code> (Windows). Apenas certifique-se de habilitar antes as variáveis de ambiente do SDK do Emscripten como fizemos na seção <a href="abcg.html#abcg">1.5</a>.</p>
-<p>Após a construção do projeto, os arquivos resultantes (<code>firstapp.js</code> e <code>firstapp.wasm</code>) estarão no subdiretório <code>public</code>. Para usá-los, precisamos de um arquivo HTML.</p>
-<p>Faça uma cópia de um dos arquivos HTML já existentes (<code>helloworld.html</code>, <code>full_window.html</code> ou <code>full_window_console.html</code>). No final do arquivo copiado, mude a string <code>src="helloworld.js"</code> para <code>src="firstapp.js"</code>, assim:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb83-1"><a href="firstapp.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span><span class="ot"> async type=</span><span class="st">&quot;text/javascript&quot;</span><span class="ot"> src=</span><span class="st">&quot;firstapp.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
+<div id="compilando-para-webassembly" class="section level3 unnumbered hasAnchor">
+<h3>Compilando para WebAssembly<a href="firstapp.html#compilando-para-webassembly" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para compilar nossa aplicação para WebAssembly basta usar o script <code>build-wasm.sh</code> (Linux/macOS) ou <code>build-wasm.bat</code> (Windows). Apenas certifique-se de habilitar antes as variáveis de ambiente do SDK do Emscripten como fizemos na seção <a href="abcg.html#abcg">1.5</a>.</p>
+<p>Após a construção do projeto, os arquivos resultantes (<code>firstapp.js</code> e <code>firstapp.wasm</code>) serão gravados no subdiretório <code>public</code>. Para usá-los vamos precisar de um arquivo HTML.</p>
+<p>Faça uma cópia de um dos arquivos HTML já existentes em <code>public</code> (<code>helloworld.html</code>, <code>full_window.html</code> ou <code>full_window_console.html</code>). Mude o nome do arquivo para <code>firstapp.html</code>. No final do arquivo, mude a string <code>src="helloworld.js"</code> para <code>src="firstapp.js"</code>, assim:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb91-1"><a href="firstapp.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">async</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;firstapp.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
 <p>Para testar, monte o servidor local com <code>runweb.sh</code> ou <code>runweb.bat</code> e abra o arquivo HTML em <a href="http://localhost:8080/">http://localhost:8080/</a>.</p>
 <div class="tipbox">
 <svg aria-hidden="true" role="img" viewBox="0 0 352 512" style="height:1.4em;width:0.96em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#7e4d1d;overflow:visible;position:relative;"><path d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
@@ -896,18 +623,17 @@ Dica
 <li><p>Nas configurações do repositório no GitHub, habilite o GitHub Pages informando o <em>branch</em> que será utilizado (por exemplo, <code>main</code>).</p></li>
 </ol>
 <p>O conteúdo estará disponível em <code>https://username.github.io/reponame/firstapp/</code> onde <code>username</code> e <code>reponame</code> são respectivamente seu nome de usuário e o nome do repositório.</p>
-<p>Ao longo do curso, suba seus projetos nesse repositório. No diretório raiz, mantenha um <code>index.html</code> com a descrição do portfólio e o link para cada página de projeto.</p>
-</div>
-
+<p>Ao longo do quadrimestre, suba seus projetos nesse repositório. No diretório raiz você pode criar um <code>index.html</code> com a descrição do portfólio e o link para cada página de projeto.</p>
 </div>
 </div>
-<!-- </div> -->
+</div>
 <div class="footnotes">
 <hr />
-<ol start="5">
-<li id="fn5"><p>Um subconjunto da <code>{fmt}</code> foi incorporado à <a href="https://en.cppreference.com/w/cpp/utility/format">biblioteca de formatação de texto</a> no C++20, mas ainda não há suporte equivalente ao <code>fmt::print</code> (impressão formatada com saída padrão).<a href="firstapp.html#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p>O tamanho padrão para uma aplicação desktop é 800x600. Na versão para web, a janela pode ser redimensionada de acordo com a regra CSS do elemento canvas do HTML5.<a href="firstapp.html#fnref6" class="footnote-back">↩︎</a></p></li>
-<li id="fn7"><p>Mais precisamente, <code>glClearColor</code> define a cor que será utilizada para limpar os <em>buffers</em> de cor do <em>framebuffer</em>. Veremos mais sobre o conceito de framebuffer nos próximos capítulos.<a href="firstapp.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<ol start="7">
+<li id="fn7"><p>Um subconjunto da <code>{fmt}</code> foi incorporado à <a href="https://en.cppreference.com/w/cpp/utility/format">biblioteca de formatação de texto</a> no C++20. O suporte equivalente ao <code>fmt::print</code> (impressão formatada com saída padrão) está disponível no C++23 através de <a href="https://en.cppreference.com/w/cpp/io/print"><code>std::print</code></a>, mas ainda não é suportado nas principais implementações da biblioteca padrão.<a href="firstapp.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>O tamanho padrão para uma aplicação desktop é 800x600. Na versão para web, a janela pode ser redimensionada de acordo com a regra CSS do elemento canvas do HTML5.<a href="firstapp.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>Mais precisamente, <code>glClearColor</code> define a cor que será utilizada para limpar os <em>buffers</em> de cor do <em>framebuffer</em>. Veremos mais sobre o conceito de framebuffer nos próximos capítulos.<a href="firstapp.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>A ImGui pode reter <em>algum</em> estado dos controles de UI entre os frames. Por exemplo, em uma janela com vários botões, a ImGui guarda internamente qual botão está com o foco atual. Em um widget do tipo árvore, ela guarda a informação de quais nós estão expandidos e quais estão colapsados.<a href="firstapp.html#fnref10" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -916,7 +642,7 @@ Dica
         </div>
       </div>
 <a href="linha-do-tempo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="graphicssystem.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tictactoe.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

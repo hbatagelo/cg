@@ -50,6 +50,14 @@ p.flushright {
 }
 
 /******************************************************************************
+Spacing between references
+*/
+div.csl-entry {
+  clear: both;
+  margin-bottom: 10px;
+}
+
+/******************************************************************************
 Resizable iframe
 */
 iframe {
@@ -103,15 +111,18 @@ summary
 }
 
 .book .book-summary ul.summary {
-  scrollbar-width: thin;
+  /*scrollbar-width: auto;
+  scrollbar-height: auto;*/
 }
 
 .book .book-body, .book .book-body .body-inner {
-  scrollbar-width: thin;
+  /*scrollbar-width: auto;
+  scrollbar-height: auto;*/
 }
 
 ::-webkit-scrollbar {
-  width: 9px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;

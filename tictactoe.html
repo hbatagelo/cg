@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.4 Jogo da Velha | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.4 Jogo da Velha | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.4 Jogo da Velha | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="firstapp.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tictactoe" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Jogo da Velha<a href="tictactoe.html#tictactoe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Usando o projeto <code>firstapp</code> como base, faremos nesta seção um “Jogo da Velha” com interface composta apenas de widgets da ImGui. Com isso ficaremos mais familiarizados com a ImGui e entraremos em contato com novas funções da biblioteca, tais como:</p>
+<ul>
+<li><code>ImGui::BeginTable</code> e <code>ImGui::EndTable</code> para fazer tabelas;</li>
+<li><code>ImGui::Spacing</code> para adicionar espaçamentos verticais;</li>
+<li><code>ImGui::PushFont</code> e <code>ImGui::PopFont</code> para usar novas fontes.</li>
+</ul>
+<p>A ideia principal é simular o tabuleiro do jogo com um arranjo de 3x3 botões:</p>
+<ul>
+<li>O jogo começará com os botões vazios, sem texto. Cada vez que um botão for pressionado, seu texto será substituído por um <code>X</code> ou <code>O</code> de acordo com o turno do jogador. Para simplificar não jogaremos contra o computador: o jogo só funcionará no modo “humano <em>versus</em> humano”;</li>
+<li>Internamente manteremos um arranjo contendo o estado do jogo para determinar se houve um vencedor ou se “deu velha” (empate);</li>
+<li>Usaremos um widget de texto estático para mostrar o turno atual e o resultado do jogo;</li>
+<li>Incluiremos também um botão e uma opção de menu para reiniciar o jogo.</li>
+</ul>
+<p>O resultado ficará como a seguir:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/tictactoe/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="630" scrolling="no"
+  ></iframe>
+<div id="configuração-inicial-1" class="section level3 unnumbered hasAnchor">
+<h3>Configuração inicial<a href="tictactoe.html#configuração-inicial-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Nosso projeto será chamado <code>tictactoe</code>. Em <code>abcg/examples</code>, crie o subdiretório <code>abcg/examples/tictactoe</code>.</p></li>
+<li><p>Abra o arquivo <code>abcg/examples/CMakeLists.txt</code> e acrescente a linha <code>add_subdirectory(tictactoe)</code>. Para evitar que os projetos anteriores continuem sendo compilados, comente as linhas anteriores. O resultado ficará assim:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb92-1"><a href="tictactoe.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add_subdirectory(helloworld)</span></span>
+<span id="cb92-2"><a href="tictactoe.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># add_subdirectory(firstapp)</span></span>
+<span id="cb92-3"><a href="tictactoe.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(tictactoe)</span></code></pre></div></li>
+<li><p>Crie o arquivo <code>abcg/examples/tictactoe/CMakeLists.txt</code>. O conteúdo é o mesmo do projeto anterior. A única mudança é o nome do projeto:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb93-1"><a href="tictactoe.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(tictactoe)</span>
+<span id="cb93-2"><a href="tictactoe.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJECT_NAME}</span> <span class="bn">main.cpp</span> window.cpp)</span>
+<span id="cb93-3"><a href="tictactoe.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">enable_abcg</span>(<span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div></li>
+<li><p>Em <code>abcg/examples/tictactoe</code>, crie o subdiretório <code>assets</code>. Nas aplicações usando a ABCg, o subdiretório <code>assets</code> é utilizado para armazenar arquivos de recursos utilizados em tempo de execução (arquivos de fontes, imagens, sons, etc). No nosso caso, colocaremos em <code>assets</code> o arquivo de fonte TrueType <code>Inconsolata-Medium.ttf</code> que será utilizado para o texto dos <code>X</code>s e <code>O</code>s. O arquivo <a href="https://github.com/google/fonts/blob/main/ofl/inconsolata/static/Inconsolata-Medium.ttf">pode ser baixado</a>, ou simplesmente copiado de <code>abcg/abcg/assets</code> (essa também é a fonte padrão da ABCg).</p></li>
+</ol>
+<div class="notebox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
+<div class="noteboxtitle">
+Importante
+</div>
+<p>Sempre que um projeto da ABCg é configurado pelo CMake, o diretório <code>assets</code> é copiado automaticamente para o diretório do executável (<code>build/bin/proj</code>, onde <code>proj</code> é o nome do projeto).</p>
+<p>Toda vez que um arquivo de <code>assets</code> for modificado, é necessário limpar o diretório <code>build</code> para forçar a cópia de <code>assets</code> para <code>build/bin/proj</code> na próxima compilação. Isso pode ser feito de diferentes maneiras:</p>
+<ul>
+<li>Removendo o diretório <code>build</code> antes de compilar novamente;</li>
+<li>No VS Code, usando o comando “CMake: Clean Rebuild” da paleta de comandos (<code>Ctrl+Shift+P</code>);</li>
+<li>Construindo o projeto através da linha de comando com <code>build.sh</code>/<code>build.bat</code>.</li>
+</ul>
+</div>
+<ol start="5" style="list-style-type: decimal">
+<li>Em <code>abcg/examples/tictactoe</code>, crie os arquivos <code>main.cpp</code>, <code>window.cpp</code> e <code>window.hpp</code>. Vamos editá-los a seguir.</li>
+</ol>
+</div>
+<div id="main.cpp-1" class="section level3 unnumbered hasAnchor">
+<h3>main.cpp<a href="tictactoe.html#main.cpp-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O conteúdo de <code>main.cpp</code> é praticamente o mesmo de nossa primeira aplicação. A única diferença é o título da janela e seu tamanho inicial, que agora será 600x600.</p>
+<div class="sourceCode" id="cb94" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb94-1"><a href="tictactoe.html#cb94-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb94-2"><a href="tictactoe.html#cb94-2"></a></span>
+<span id="cb94-3"><a href="tictactoe.html#cb94-3"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb94-4"><a href="tictactoe.html#cb94-4"></a>  <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb94-5"><a href="tictactoe.html#cb94-5"></a>    abcg<span class="op">::</span>Application app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb94-6"><a href="tictactoe.html#cb94-6"></a></span>
+<span id="cb94-7"><a href="tictactoe.html#cb94-7"></a>    Window window<span class="op">;</span></span>
+<span id="cb94-8"><a href="tictactoe.html#cb94-8"></a>    window<span class="op">.</span>setWindowSettings<span class="op">(</span></span>
+<span id="cb94-9"><a href="tictactoe.html#cb94-9"></a>        <span class="op">{.</span>width <span class="op">=</span> <span class="dv">600</span><span class="op">,</span> <span class="op">.</span>height <span class="op">=</span> <span class="dv">600</span><span class="op">,</span> <span class="op">.</span>title <span class="op">=</span> <span class="st">&quot;Tic-Tac-Toe&quot;</span><span class="op">});</span></span>
+<span id="cb94-10"><a href="tictactoe.html#cb94-10"></a></span>
+<span id="cb94-11"><a href="tictactoe.html#cb94-11"></a>    app<span class="op">.</span>run<span class="op">(</span>window<span class="op">);</span></span>
+<span id="cb94-12"><a href="tictactoe.html#cb94-12"></a>  <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">std::</span>exception<span class="op"> </span><span class="at">const</span> <span class="op">&amp;</span>exception<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb94-13"><a href="tictactoe.html#cb94-13"></a>    fmt<span class="op">::</span>print<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;</span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> exception<span class="op">.</span>what<span class="op">());</span></span>
+<span id="cb94-14"><a href="tictactoe.html#cb94-14"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb94-15"><a href="tictactoe.html#cb94-15"></a>  <span class="op">}</span></span>
+<span id="cb94-16"><a href="tictactoe.html#cb94-16"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb94-17"><a href="tictactoe.html#cb94-17"></a><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="window.hpp-1" class="section level3 unnumbered hasAnchor">
+<h3>window.hpp<a href="tictactoe.html#window.hpp-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Aqui definiremos nossa classe <code>Window</code>, responsável pelo gerenciamento da janela da aplicação e também da lógica do jogo. O conteúdo ficará como a seguir:</p>
+<div class="sourceCode" id="cb95" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb95-1"><a href="tictactoe.html#cb95-1"></a><span class="pp">#ifndef WINDOW_HPP_</span></span>
+<span id="cb95-2"><a href="tictactoe.html#cb95-2"></a><span class="pp">#define WINDOW_HPP_</span></span>
+<span id="cb95-3"><a href="tictactoe.html#cb95-3"></a></span>
+<span id="cb95-4"><a href="tictactoe.html#cb95-4"></a><span class="pp">#include </span><span class="im">&quot;abcgOpenGL.hpp&quot;</span></span>
+<span id="cb95-5"><a href="tictactoe.html#cb95-5"></a></span>
+<span id="cb95-6"><a href="tictactoe.html#cb95-6"></a><span class="kw">class</span> Window <span class="op">:</span> <span class="kw">public</span> abcg<span class="op">::</span>OpenGLWindow <span class="op">{</span></span>
+<span id="cb95-7"><a href="tictactoe.html#cb95-7"></a><span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb95-8"><a href="tictactoe.html#cb95-8"></a>  <span class="dt">void</span> onCreate<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb95-9"><a href="tictactoe.html#cb95-9"></a>  <span class="dt">void</span> onPaintUI<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb95-10"><a href="tictactoe.html#cb95-10"></a></span>
+<span id="cb95-11"><a href="tictactoe.html#cb95-11"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb95-12"><a href="tictactoe.html#cb95-12"></a>  <span class="at">static</span> <span class="dt">int</span> <span class="at">const</span> <span class="va">m_N</span><span class="op">{</span><span class="dv">3</span><span class="op">};</span> <span class="co">// Board size is m_N x m_N</span></span>
+<span id="cb95-13"><a href="tictactoe.html#cb95-13"></a></span>
+<span id="cb95-14"><a href="tictactoe.html#cb95-14"></a>  <span class="kw">enum</span> <span class="kw">class</span> GameState <span class="op">{</span> Play<span class="op">,</span> Draw<span class="op">,</span> WinX<span class="op">,</span> WinO <span class="op">};</span></span>
+<span id="cb95-15"><a href="tictactoe.html#cb95-15"></a>  GameState <span class="va">m_gameState</span><span class="op">;</span></span>
+<span id="cb95-16"><a href="tictactoe.html#cb95-16"></a></span>
+<span id="cb95-17"><a href="tictactoe.html#cb95-17"></a>  <span class="dt">bool</span> <span class="va">m_XsTurn</span><span class="op">{</span><span class="kw">true</span><span class="op">};</span></span>
+<span id="cb95-18"><a href="tictactoe.html#cb95-18"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span><span class="dt">char</span><span class="op">,</span> <span class="va">m_N</span> <span class="op">*</span> <span class="va">m_N</span><span class="op">&gt;</span> <span class="va">m_board</span><span class="op">{};</span> <span class="co">// &#39;\0&#39;, &#39;X&#39; or &#39;O&#39;</span></span>
+<span id="cb95-19"><a href="tictactoe.html#cb95-19"></a></span>
+<span id="cb95-20"><a href="tictactoe.html#cb95-20"></a>  ImFont <span class="op">*</span><span class="va">m_font</span><span class="op">{};</span></span>
+<span id="cb95-21"><a href="tictactoe.html#cb95-21"></a></span>
+<span id="cb95-22"><a href="tictactoe.html#cb95-22"></a>  <span class="dt">void</span> checkEndCondition<span class="op">();</span></span>
+<span id="cb95-23"><a href="tictactoe.html#cb95-23"></a>  <span class="dt">void</span> restartGame<span class="op">();</span></span>
+<span id="cb95-24"><a href="tictactoe.html#cb95-24"></a><span class="op">};</span></span>
+<span id="cb95-25"><a href="tictactoe.html#cb95-25"></a></span>
+<span id="cb95-26"><a href="tictactoe.html#cb95-26"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>Em comparação com o projeto <code>firstapp</code>, desta vez não substituímos o método <code>onPaint</code>. Podemos fazer isso pois todo o conteúdo da janela será composto por controles de UI desenhados em <code>onPaintUI</code>.</p>
+<p>Nossa aplicação precisa de algumas variáveis para armazenar o estado do jogo. Na linha 12, <code>m_N</code> é o tamanho dos lados do tabuleiro. O Jogo da Velha é jogado em um tabuleiro 3x3, mas podemos mudar esse valor para jogar com um tabuleiro 4x4, 5x5, etc. O código é genérico o suficiente para permitir isso.</p>
+<p>Na linha 14 definimos <code>GameState</code> como uma enumeração de todos os possíveis estados do jogo. Os estados serão interpretados da seguinte maneira:</p>
+<ul>
+<li><code>GameState::Play</code> é quando a partida está sendo jogada. Nesse estado o jogador do turno atual poderá clicar em algum lugar do tabuleiro para colocar um <code>X</code> ou <code>O</code>;</li>
+<li><code>GameState::Draw</code> é quando o jogo acabou e “deu velha”;</li>
+<li><code>GameState::WinX</code> é quando o jogo acabou e <code>X</code> ganhou;</li>
+<li><code>GameState::WinO</code> é quando o jogo acabou e <code>O</code> ganhou.</li>
+</ul>
+<p>O estado atual será indicado por <code>m_gameState</code> na linha 15.</p>
+<p>Na linha 17, <code>m_XsTurn</code> é uma variável que indica se o turno atual é do <code>X</code>.</p>
+<p>Na linha 18, <code>m_board</code> é o estado do tabuleiro, definido como um arranjo de 3x3=9 caracteres (arranjo 3x3 <a href="https://en.wikipedia.org/wiki/Row-_and_column-major_order">orientado a linhas</a>). Cada caractere pode ser <code>\0</code> (caractere nulo) para indicar que a posição está vazia, ou a letra <code>X</code>, ou a letra <code>O</code>.</p>
+<p>Na linha 20, o ponteiro <code>m_font</code> será usado para representar a fonte dos <code>X</code>s e <code>O</code>s.</p>
+<p>A classe tem duas funções:</p>
+<ul>
+<li><code>checkEndCondition</code>, que será usada no final de cada turno para verificar se <code>m_board</code> está em alguma condição de vitória ou empate;</li>
+<li><code>restateGame</code>, para limpar o tabuleiro e iniciar um novo jogo.</li>
+</ul>
+</div>
+<div id="window.cpp-1" class="section level3 unnumbered hasAnchor">
+<h3>window.cpp<a href="tictactoe.html#window.cpp-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Aqui definiremos as funções membro da classe <code>Window</code>. Começaremos definindo <code>Window::onCreate</code>. Como <code>Window::onCreate</code> é chamada apenas uma vez quando a janela é criada, ela é ideal para fazermos as configurações iniciais da aplicação, como o carregamento da nova fonte para os <code>X</code>s e <code>O</code>s, que tem tamanho maior que a fonte padrão. O resultado ficará assim:</p>
+<div class="sourceCode" id="cb96" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb96-1"><a href="tictactoe.html#cb96-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb96-2"><a href="tictactoe.html#cb96-2"></a></span>
+<span id="cb96-3"><a href="tictactoe.html#cb96-3"></a><span class="dt">void</span> Window<span class="op">::</span>onCreate<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb96-4"><a href="tictactoe.html#cb96-4"></a>  <span class="co">// Load font with bigger size for the X&#39;s and O&#39;s</span></span>
+<span id="cb96-5"><a href="tictactoe.html#cb96-5"></a>  <span class="kw">auto</span> <span class="at">const</span> filename<span class="op">{</span>abcg<span class="op">::</span>Application<span class="op">::</span>getAssetsPath<span class="op">()</span> <span class="op">+</span></span>
+<span id="cb96-6"><a href="tictactoe.html#cb96-6"></a>                      <span class="st">&quot;Inconsolata-Medium.ttf&quot;</span><span class="op">};</span></span>
+<span id="cb96-7"><a href="tictactoe.html#cb96-7"></a>  <span class="va">m_font</span> <span class="op">=</span> ImGui<span class="op">::</span>GetIO<span class="op">().</span>Fonts<span class="op">-&gt;</span>AddFontFromFileTTF<span class="op">(</span>filename<span class="op">.</span>c_str<span class="op">(),</span> <span class="fl">72.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb96-8"><a href="tictactoe.html#cb96-8"></a>  <span class="cf">if</span> <span class="op">(</span><span class="va">m_font</span> <span class="op">==</span> <span class="kw">nullptr</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb96-9"><a href="tictactoe.html#cb96-9"></a>    <span class="cf">throw</span> abcg<span class="op">::</span>RuntimeError<span class="op">{</span><span class="st">&quot;Cannot load font file&quot;</span><span class="op">};</span></span>
+<span id="cb96-10"><a href="tictactoe.html#cb96-10"></a>  <span class="op">}</span></span>
+<span id="cb96-11"><a href="tictactoe.html#cb96-11"></a></span>
+<span id="cb96-12"><a href="tictactoe.html#cb96-12"></a>  restartGame<span class="op">();</span></span>
+<span id="cb96-13"><a href="tictactoe.html#cb96-13"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linha 5 criamos uma string com o caminho completo do arquivo <code>Inconsolata-Medium.ttf</code>. Para isso usamos a função <code>abcg::Application::getAssetsPath()</code> que retorna o caminho atual do subdiretório <code>assets</code>.</p>
+<p>Na linha 7 chamamos as funções da ImGui para carregar a fonte com tamanho 72. Se ocorrer algum erro no carregamento, o ponteiro <code>m_Font</code> será nulo. Neste caso lançamos uma exceção (linha 9) que será capturada no bloco <code>try...catch</code> de <code>main</code>.</p>
+<p>Na linha 12 chamamos a função <code>restartGame</code> para deixar o jogo pronto para uma nova partida. A propósito, vejamos como fica a implementação de <code>restartGame</code>:</p>
+<div class="sourceCode" id="cb97" startFrom="193"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 192;"><span id="cb97-193"><a href="tictactoe.html#cb97-193"></a><span class="dt">void</span> Window<span class="op">::</span>restartGame<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb97-194"><a href="tictactoe.html#cb97-194"></a>  <span class="va">m_board</span><span class="op">.</span>fill<span class="op">(</span><span class="ch">&#39;</span><span class="sc">\0</span><span class="ch">&#39;</span><span class="op">);</span></span>
+<span id="cb97-195"><a href="tictactoe.html#cb97-195"></a>  <span class="va">m_gameState</span> <span class="op">=</span> GameState<span class="op">::</span>Play<span class="op">;</span></span>
+<span id="cb97-196"><a href="tictactoe.html#cb97-196"></a><span class="op">}</span></span></code></pre></div>
+<p>A função simplesmente preenche o tabuleiro com caracteres nulos e define o estado do jogo como <code>GameState::Play</code>.</p>
+<p>Vamos agora definir <code>Window::onPaintUI</code>. É nessa função que a interface será desenhada e a lógica de interação com os controles de UI implementada. Começaremos definindo a janela da ImGui:</p>
+<div class="sourceCode" id="cb98" startFrom="15"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 14;"><span id="cb98-15"><a href="tictactoe.html#cb98-15"></a><span class="dt">void</span> Window<span class="op">::</span>onPaintUI<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb98-16"><a href="tictactoe.html#cb98-16"></a>  <span class="co">// Get size of application&#39;s window</span></span>
+<span id="cb98-17"><a href="tictactoe.html#cb98-17"></a>  <span class="kw">auto</span> <span class="at">const</span> appWindowWidth<span class="op">{</span>gsl<span class="op">::</span>narrowt<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;(</span>getWindowSettings<span class="op">().</span>width<span class="op">)};</span></span>
+<span id="cb98-18"><a href="tictactoe.html#cb98-18"></a>  <span class="kw">auto</span> <span class="at">const</span> appWindowHeight<span class="op">{</span>gsl<span class="op">::</span>narrow<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;(</span>getWindowSettings<span class="op">().</span>height<span class="op">)};</span></span>
+<span id="cb98-19"><a href="tictactoe.html#cb98-19"></a></span>
+<span id="cb98-20"><a href="tictactoe.html#cb98-20"></a>  <span class="co">// &quot;Tic-Tac-Toe&quot; window</span></span>
+<span id="cb98-21"><a href="tictactoe.html#cb98-21"></a>  <span class="op">{</span></span>
+<span id="cb98-22"><a href="tictactoe.html#cb98-22"></a>    ImGui<span class="op">::</span>SetNextWindowSize<span class="op">(</span>ImVec2<span class="op">(</span>appWindowWidth<span class="op">,</span> appWindowHeight<span class="op">));</span></span>
+<span id="cb98-23"><a href="tictactoe.html#cb98-23"></a>    ImGui<span class="op">::</span>SetNextWindowPos<span class="op">(</span>ImVec2<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">));</span></span>
+<span id="cb98-24"><a href="tictactoe.html#cb98-24"></a></span>
+<span id="cb98-25"><a href="tictactoe.html#cb98-25"></a>    <span class="kw">auto</span> <span class="at">const</span> flags<span class="op">{</span>ImGuiWindowFlags_MenuBar <span class="op">|</span> ImGuiWindowFlags_NoResize <span class="op">|</span></span>
+<span id="cb98-26"><a href="tictactoe.html#cb98-26"></a>                     ImGuiWindowFlags_NoCollapse<span class="op">};</span></span>
+<span id="cb98-27"><a href="tictactoe.html#cb98-27"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot;Tic-Tac-Toe&quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> flags<span class="op">);</span></span>
+<span id="cb98-28"><a href="tictactoe.html#cb98-28"></a></span>
+<span id="cb98-29"><a href="tictactoe.html#cb98-29"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Add Menu</span></span>
+<span id="cb98-30"><a href="tictactoe.html#cb98-30"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Add static text showing current turn or win/draw messages</span></span>
+<span id="cb98-31"><a href="tictactoe.html#cb98-31"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Add game board</span></span>
+<span id="cb98-32"><a href="tictactoe.html#cb98-32"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Add &quot;Restart game&quot; button</span></span>
+<span id="cb98-33"><a href="tictactoe.html#cb98-33"></a></span>
+<span id="cb98-34"><a href="tictactoe.html#cb98-34"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb98-35"><a href="tictactoe.html#cb98-35"></a>  <span class="op">}</span></span>
+<span id="cb98-36"><a href="tictactoe.html#cb98-36"></a><span class="op">}</span></span></code></pre></div>
+<p>Nas linhas 17 e 18 pegamos o tamanho atual da janela da aplicação através da função <code>abcg::getWindowSettings</code>. Essa função retorna uma referência a um objeto do tipo <code>abcg::WindowSettings</code> contendo as configurações da janela, incluindo sua largura (<code>width</code>) e altura (<code>height</code>). Os valores são inteiros e precisam ser convertidos para <code>float</code> para serem utilizados nas funções da ImGui.</p>
+<p>O conteúdo da janela da ImGui é definido no escopo das linhas 21 a 35. Em particular, na linha 22 chamamos <code>ImGui::SetNextWindowSize</code> para informar que a janela que estamos prestes a criar terá o tamanho da janela da aplicação. De forma parecida, na linha 23 chamamos <code>ImGui::SetNextWindowPos</code> para informar que tal janela deverá ser posicionada na coordenada (0,0) da janela da aplicação (canto superior esquerdo).</p>
+<p>Na linha 25 definimos uma máscara de bits com as propriedades da janela que será criada. A janela terá uma barra de menu (<code>ImGuiWindowFlags_MenuBar</code>), não poderá ser redimensionada (<code>ImGuiWindowFlags_NoResize</code>), e não poderá ser colapsada ao clicar na barra de título (<code>ImGuiWindowFlags_NoCollapse</code>).</p>
+<p>Na linha 27 criamos de fato o controle de UI da janela. Ela é criada com as configurações definidas anteriormente. Todos os widgets criados entre essa linha de <code>ImGui::Begin</code> até a linha 34 de <code>ImGui::End()</code> serão colocados dentro dessa janela. Por enquanto a janela está vazia e só deixamos alguns comentários de tarefas a fazer:</p>
+<div class="sourceCode" id="cb99" startFrom="29"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 28;"><span id="cb99-29"><a href="tictactoe.html#cb99-29"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Add Menu</span></span>
+<span id="cb99-30"><a href="tictactoe.html#cb99-30"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Add static text showing current turn or win/draw messages</span></span>
+<span id="cb99-31"><a href="tictactoe.html#cb99-31"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Add game board</span></span>
+<span id="cb99-32"><a href="tictactoe.html#cb99-32"></a>    <span class="co">// </span><span class="al">TODO</span><span class="co">: Add &quot;Restart game&quot; button</span></span></code></pre></div>
+<p>Vamos fazer essas tarefas a seguir.</p>
+<div id="adicionando-o-menu" class="section level4 unnumbered hasAnchor">
+<h4>Adicionando o menu<a href="tictactoe.html#adicionando-o-menu" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Substitua a linha de comentário <code>TODO: Add Menu</code> pelo seguinte trecho de código:</p>
+<div class="sourceCode" id="cb100" startFrom="29"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 28;"><span id="cb100-29"><a href="tictactoe.html#cb100-29"></a>    <span class="co">// Menu</span></span>
+<span id="cb100-30"><a href="tictactoe.html#cb100-30"></a>    <span class="op">{</span></span>
+<span id="cb100-31"><a href="tictactoe.html#cb100-31"></a>      <span class="dt">bool</span> restartSelected<span class="op">{};</span></span>
+<span id="cb100-32"><a href="tictactoe.html#cb100-32"></a>      <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginMenuBar<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb100-33"><a href="tictactoe.html#cb100-33"></a>        <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginMenu<span class="op">(</span><span class="st">&quot;Game&quot;</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb100-34"><a href="tictactoe.html#cb100-34"></a>          ImGui<span class="op">::</span>MenuItem<span class="op">(</span><span class="st">&quot;Restart&quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> <span class="op">&amp;</span>restartSelected<span class="op">);</span></span>
+<span id="cb100-35"><a href="tictactoe.html#cb100-35"></a>          ImGui<span class="op">::</span>EndMenu<span class="op">();</span></span>
+<span id="cb100-36"><a href="tictactoe.html#cb100-36"></a>        <span class="op">}</span></span>
+<span id="cb100-37"><a href="tictactoe.html#cb100-37"></a>        ImGui<span class="op">::</span>EndMenuBar<span class="op">();</span></span>
+<span id="cb100-38"><a href="tictactoe.html#cb100-38"></a>      <span class="op">}</span></span>
+<span id="cb100-39"><a href="tictactoe.html#cb100-39"></a>      <span class="cf">if</span> <span class="op">(</span>restartSelected<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb100-40"><a href="tictactoe.html#cb100-40"></a>        restartGame<span class="op">();</span></span>
+<span id="cb100-41"><a href="tictactoe.html#cb100-41"></a>      <span class="op">}</span></span>
+<span id="cb100-42"><a href="tictactoe.html#cb100-42"></a>    <span class="op">}</span></span></code></pre></div>
+<p>Este código cria uma barra de menu com uma opção “Game”. Dentro desta opção há apenas um item de menu chamado “Restart”. Observe que o estado de “Restart” é armazenado na variável booleana <code>restartSelected</code>, inicializada com <code>false</code> na linha 31. Se o item de menu é selecionado, <code>ImGui::MenuItem</code> muda <code>restartSelected</code> para <code>true</code> e assim chamamos <code>restartGame</code> na linha 40 para reiniciar o estado do jogo.</p>
+</div>
+<div id="adicionando-o-texto-do-turno-atual-de-vitória-e-empate" class="section level4 unnumbered hasAnchor">
+<h4>Adicionando o texto do turno atual, de vitória e empate<a href="tictactoe.html#adicionando-o-texto-do-turno-atual-de-vitória-e-empate" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Continuando com as tarefas por fazer, substitua a linha de comentário <code>TODO: Add static text showing current turn or win/draw messages</code> pelo seguinte código:</p>
+<div class="sourceCode" id="cb101" startFrom="44"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 43;"><span id="cb101-44"><a href="tictactoe.html#cb101-44"></a>    <span class="co">// Static text showing current turn or win/draw messages</span></span>
+<span id="cb101-45"><a href="tictactoe.html#cb101-45"></a>    <span class="op">{</span></span>
+<span id="cb101-46"><a href="tictactoe.html#cb101-46"></a>      <span class="bu">std::</span>string<span class="op"> </span>text<span class="op">;</span></span>
+<span id="cb101-47"><a href="tictactoe.html#cb101-47"></a>      <span class="cf">switch</span> <span class="op">(</span><span class="va">m_gameState</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb101-48"><a href="tictactoe.html#cb101-48"></a>      <span class="cf">case</span> GameState<span class="op">::</span>Play<span class="op">:</span></span>
+<span id="cb101-49"><a href="tictactoe.html#cb101-49"></a>        text <span class="op">=</span> fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;</span><span class="sc">{}</span><span class="st">&#39;s turn&quot;</span><span class="op">,</span> <span class="va">m_XsTurn</span> <span class="op">?</span> <span class="ch">&#39;X&#39;</span> <span class="op">:</span> <span class="ch">&#39;O&#39;</span><span class="op">);</span></span>
+<span id="cb101-50"><a href="tictactoe.html#cb101-50"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb101-51"><a href="tictactoe.html#cb101-51"></a>      <span class="cf">case</span> GameState<span class="op">::</span>Draw<span class="op">:</span></span>
+<span id="cb101-52"><a href="tictactoe.html#cb101-52"></a>        text <span class="op">=</span> <span class="st">&quot;Draw!&quot;</span><span class="op">;</span></span>
+<span id="cb101-53"><a href="tictactoe.html#cb101-53"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb101-54"><a href="tictactoe.html#cb101-54"></a>      <span class="cf">case</span> GameState<span class="op">::</span>WinX<span class="op">:</span></span>
+<span id="cb101-55"><a href="tictactoe.html#cb101-55"></a>        text <span class="op">=</span> <span class="st">&quot;X&#39;s player wins!&quot;</span><span class="op">;</span></span>
+<span id="cb101-56"><a href="tictactoe.html#cb101-56"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb101-57"><a href="tictactoe.html#cb101-57"></a>      <span class="cf">case</span> GameState<span class="op">::</span>WinO<span class="op">:</span></span>
+<span id="cb101-58"><a href="tictactoe.html#cb101-58"></a>        text <span class="op">=</span> <span class="st">&quot;O&#39;s player wins!&quot;</span><span class="op">;</span></span>
+<span id="cb101-59"><a href="tictactoe.html#cb101-59"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb101-60"><a href="tictactoe.html#cb101-60"></a>      <span class="op">}</span></span>
+<span id="cb101-61"><a href="tictactoe.html#cb101-61"></a>      <span class="co">// Center text</span></span>
+<span id="cb101-62"><a href="tictactoe.html#cb101-62"></a>      ImGui<span class="op">::</span>SetCursorPosX<span class="op">(</span></span>
+<span id="cb101-63"><a href="tictactoe.html#cb101-63"></a>          <span class="op">(</span>appWindowWidth <span class="op">-</span> ImGui<span class="op">::</span>CalcTextSize<span class="op">(</span>text<span class="op">.</span>c_str<span class="op">()).</span>x<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb101-64"><a href="tictactoe.html#cb101-64"></a>      ImGui<span class="op">::</span>Text<span class="op">(</span><span class="st">&quot;</span><span class="sc">%s</span><span class="st">&quot;</span><span class="op">,</span> text<span class="op">.</span>c_str<span class="op">());</span></span>
+<span id="cb101-65"><a href="tictactoe.html#cb101-65"></a>      ImGui<span class="op">::</span>Spacing<span class="op">();</span></span>
+<span id="cb101-66"><a href="tictactoe.html#cb101-66"></a>    <span class="op">}</span></span>
+<span id="cb101-67"><a href="tictactoe.html#cb101-67"></a></span>
+<span id="cb101-68"><a href="tictactoe.html#cb101-68"></a>    ImGui<span class="op">::</span>Spacing<span class="op">();</span></span></code></pre></div>
+<p>Na linha 46 definimos uma string que recebe um texto diferente dependendo do estado atual de <code>m_gameState</code>. Se o jogo está no modo <code>Play</code>, o texto será <code>X's turn</code> ou <code>O's turn</code>. Se o jogo está no modo <code>Draw</code>, <code>WinX</code> ou <code>WinO</code>, mensagens correspondentes de empate e vitória serão utilizadas.</p>
+<p>Na linha 62, <code>ImGui::SetCursorPosX</code> define a posição horizontal da janela em que o texto começará a ser exibido, da esquerda para a direita. Para que o texto fique centralizado horizontalmente, sua posição inicial deve ser a metade da largura da janela (<code>appWindowWidth / 2</code>) menos a metade da largura do texto (calculada com <code>ImGui::CalcTextSize</code>).</p>
+<p>O widget de texto é criado na linha 64. Em seguida, adicionamos um espaçamento vertical na linha 65, e outro na linha 68 para deixar um bom espaço entre o texto e o tabuleiro que será desenhado na próxima etapa.</p>
+</div>
+<div id="implementando-o-tabuleiro" class="section level4 unnumbered hasAnchor">
+<h4>Implementando o tabuleiro<a href="tictactoe.html#implementando-o-tabuleiro" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O tabuleiro será mostrado como uma grade de 3x3 botões (no caso de <code>m_N</code> ser 3), sendo que cada botão terá como texto o caractere correspondente em <code>m_board</code>.</p>
+<p>Substitua a linha de comentário <code>TODO: Add game board</code> pelo seguinte código:</p>
+<div class="sourceCode" id="cb102" startFrom="70"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 69;"><span id="cb102-70"><a href="tictactoe.html#cb102-70"></a>    <span class="co">// Game board</span></span>
+<span id="cb102-71"><a href="tictactoe.html#cb102-71"></a>    <span class="op">{</span></span>
+<span id="cb102-72"><a href="tictactoe.html#cb102-72"></a>      <span class="kw">auto</span> <span class="at">const</span> gridHeight<span class="op">{</span>appWindowHeight <span class="op">-</span> <span class="dv">22</span> <span class="op">-</span> <span class="dv">60</span> <span class="op">-</span> <span class="op">(</span><span class="va">m_N</span> <span class="op">*</span> <span class="dv">10</span><span class="op">)</span> <span class="op">-</span> <span class="dv">60</span><span class="op">};</span></span>
+<span id="cb102-73"><a href="tictactoe.html#cb102-73"></a>      <span class="kw">auto</span> <span class="at">const</span> buttonHeight<span class="op">{</span>gridHeight <span class="op">/</span> <span class="va">m_N</span><span class="op">};</span></span>
+<span id="cb102-74"><a href="tictactoe.html#cb102-74"></a></span>
+<span id="cb102-75"><a href="tictactoe.html#cb102-75"></a>      <span class="co">// Use custom font</span></span>
+<span id="cb102-76"><a href="tictactoe.html#cb102-76"></a>      ImGui<span class="op">::</span>PushFont<span class="op">(</span><span class="va">m_font</span><span class="op">);</span></span>
+<span id="cb102-77"><a href="tictactoe.html#cb102-77"></a>      <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginTable<span class="op">(</span><span class="st">&quot;Game board&quot;</span><span class="op">,</span> <span class="va">m_N</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb102-78"><a href="tictactoe.html#cb102-78"></a>        <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> i <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="va">m_N</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb102-79"><a href="tictactoe.html#cb102-79"></a>          ImGui<span class="op">::</span>TableNextRow<span class="op">();</span></span>
+<span id="cb102-80"><a href="tictactoe.html#cb102-80"></a>          <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> j <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="va">m_N</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb102-81"><a href="tictactoe.html#cb102-81"></a>            ImGui<span class="op">::</span>TableSetColumnIndex<span class="op">(</span>j<span class="op">);</span></span>
+<span id="cb102-82"><a href="tictactoe.html#cb102-82"></a>            <span class="kw">auto</span> <span class="at">const</span> offset<span class="op">{</span>i <span class="op">*</span> <span class="va">m_N</span> <span class="op">+</span> j<span class="op">};</span></span>
+<span id="cb102-83"><a href="tictactoe.html#cb102-83"></a></span>
+<span id="cb102-84"><a href="tictactoe.html#cb102-84"></a>            <span class="co">// Get current character</span></span>
+<span id="cb102-85"><a href="tictactoe.html#cb102-85"></a>            <span class="kw">auto</span> ch<span class="op">{</span><span class="va">m_board</span><span class="op">.</span>at<span class="op">(</span>offset<span class="op">)};</span></span>
+<span id="cb102-86"><a href="tictactoe.html#cb102-86"></a></span>
+<span id="cb102-87"><a href="tictactoe.html#cb102-87"></a>            <span class="co">// Replace null character with whitespace because the button label</span></span>
+<span id="cb102-88"><a href="tictactoe.html#cb102-88"></a>            <span class="co">// cannot be an empty string</span></span>
+<span id="cb102-89"><a href="tictactoe.html#cb102-89"></a>            <span class="cf">if</span> <span class="op">(</span>ch <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb102-90"><a href="tictactoe.html#cb102-90"></a>              ch <span class="op">=</span> <span class="ch">&#39; &#39;</span><span class="op">;</span></span>
+<span id="cb102-91"><a href="tictactoe.html#cb102-91"></a>            <span class="op">}</span></span>
+<span id="cb102-92"><a href="tictactoe.html#cb102-92"></a></span>
+<span id="cb102-93"><a href="tictactoe.html#cb102-93"></a>            <span class="co">// Button text is ch followed by an ID in the format ##ij</span></span>
+<span id="cb102-94"><a href="tictactoe.html#cb102-94"></a>            <span class="kw">auto</span> buttonText<span class="op">{</span>fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;</span><span class="sc">{}</span><span class="st">##</span><span class="sc">{}{}</span><span class="st">&quot;</span><span class="op">,</span> ch<span class="op">,</span> i<span class="op">,</span> j<span class="op">)};</span></span>
+<span id="cb102-95"><a href="tictactoe.html#cb102-95"></a>            <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Button<span class="op">(</span>buttonText<span class="op">.</span>c_str<span class="op">(),</span> ImVec2<span class="op">(-</span><span class="dv">1</span><span class="op">,</span> buttonHeight<span class="op">)))</span> <span class="op">{</span></span>
+<span id="cb102-96"><a href="tictactoe.html#cb102-96"></a>              <span class="cf">if</span> <span class="op">(</span><span class="va">m_gameState</span> <span class="op">==</span> GameState<span class="op">::</span>Play <span class="op">&amp;&amp;</span> ch <span class="op">==</span> <span class="ch">&#39; &#39;</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb102-97"><a href="tictactoe.html#cb102-97"></a>                <span class="va">m_board</span><span class="op">.</span>at<span class="op">(</span>offset<span class="op">)</span> <span class="op">=</span> <span class="va">m_XsTurn</span> <span class="op">?</span> <span class="ch">&#39;X&#39;</span> <span class="op">:</span> <span class="ch">&#39;O&#39;</span><span class="op">;</span></span>
+<span id="cb102-98"><a href="tictactoe.html#cb102-98"></a>                checkEndCondition<span class="op">();</span></span>
+<span id="cb102-99"><a href="tictactoe.html#cb102-99"></a>                <span class="va">m_XsTurn</span> <span class="op">=</span> <span class="op">!</span><span class="va">m_XsTurn</span><span class="op">;</span></span>
+<span id="cb102-100"><a href="tictactoe.html#cb102-100"></a>              <span class="op">}</span></span>
+<span id="cb102-101"><a href="tictactoe.html#cb102-101"></a>            <span class="op">}</span></span>
+<span id="cb102-102"><a href="tictactoe.html#cb102-102"></a>          <span class="op">}</span></span>
+<span id="cb102-103"><a href="tictactoe.html#cb102-103"></a>          ImGui<span class="op">::</span>Spacing<span class="op">();</span></span>
+<span id="cb102-104"><a href="tictactoe.html#cb102-104"></a>        <span class="op">}</span></span>
+<span id="cb102-105"><a href="tictactoe.html#cb102-105"></a>        ImGui<span class="op">::</span>EndTable<span class="op">();</span></span>
+<span id="cb102-106"><a href="tictactoe.html#cb102-106"></a>      <span class="op">}</span></span>
+<span id="cb102-107"><a href="tictactoe.html#cb102-107"></a>      ImGui<span class="op">::</span>PopFont<span class="op">();</span></span>
+<span id="cb102-108"><a href="tictactoe.html#cb102-108"></a>    <span class="op">}</span></span>
+<span id="cb102-109"><a href="tictactoe.html#cb102-109"></a></span>
+<span id="cb102-110"><a href="tictactoe.html#cb102-110"></a>    ImGui<span class="op">::</span>Spacing<span class="op">();</span></span></code></pre></div>
+<p>Neste código, primeiro começamos calculando dois valores de altura (linhas 72 e 73). <code>gridHeight</code> é a altura da área útil do tabuleiro. Ela é calculada a partir da altura da janela, subtraída da altura aproximada dos outros controles de UI (22 da barra de menu, 60+60 para a área acima e abaixo do tabuleiro) e do espaçamento entre os botões do tabuleiro (10). <code>buttonHeight</code> é a altura de cada botão.</p>
+<p>Na linha 76, <code>ImGui::PushFont</code> faz com que a fonte <code>m_font</code> seja ativada no lugar da fonte padrão. Todo controle de UI definido entre essa linha até <code>ImGui::PopFont</code> (linha 107) usará essa fonte.</p>
+<p>Na linha 77 criamos uma tabela “Game board”, composta de <code>m_N</code> colunas. O nome “Game board” não aparece na tela. Ele serve apenas como um identificador deste controle de UI.</p>
+<p>Os laços das linha 78 e 79 iteram sobre as linhas e colunas do tabuleiro, respectivamente. Para cada nova linha chamamos <code>ImGui::TableNextRow</code> (linha 79), e para cada coluna chamamos <code>ImGui::TableSetColumnIndex</code> (linha 81) com o índice da coluna.</p>
+<p>Na linha 85 lemos o caractere atual de <code>m_board</code> para a linha e coluna atual. Este caractere é a letra (<code>X</code>, <code>O</code>, ou vazio) que deve ser exibida como texto do botão. Entretanto, se for um caractere nulo, mudamos para um espaço (linhas 89 a 91) pois o comando <code>ImGui::Button</code> não aceita strings vazias.</p>
+<p>Na linha 95 criamos o botão atual. Seu tamanho é <code>ImVec2(-1, buttonHeight)</code>, o que significa que a largura será a máxima possível (definida por <code>-1</code> ou outro valor negativo) e a altura será <code>buttonHeight</code>. O texto do botão (<code>buttonText</code>) é definido de forma um pouco mais complicada. O texto não é só o caractere <code>ch</code>. Se o caractere na posição (0,2) for um <code>X</code>, <code>buttonText</code> será <code>X##02</code>. Esse <code>##02</code> não é mostrado no botão. Ele é utilizado para indicar à ImGui que o <em>identificador</em> do botão é a string <code>02</code>. Cada botão precisa ter um identificador único. A ImGui usa esses identificadores para definir quem está com o foco atual do teclado. Geralmente a ImGui usa o próprio texto do botão como identificador, mas como temos possivelmente vários botões com o mesmo texto (<code>X</code>, <code>O</code> ou espaço), precisamos recorrer à sintaxe <code>##id</code> para definir identificadores únicos.</p>
+<p>Se o botão é pressionado, <code>ImGui::Button</code> retorna <code>true</code>. Nesse caso, precisamos verificar se a posição correspondente de <code>m_board</code> pode ser de fato modificada. Para isso o jogo deve estar no modo <code>Play</code> e <code>ch</code> não pode ser <code>X</code> ou <code>O</code> (linha 96), isto é, cada posição do tabuleiro só pode ser preenchida uma vez.</p>
+<p>Na linha 97 modificamos <code>m_board</code> para <code>X</code> ou <code>O</code> dependendo de quem está jogando o turno atual. Em seguida chamamos <code>checkEndCondition</code> para verificar se houve vitória ou empate (linha 98), e então alternamos o turno do jogador (linha 99).</p>
+</div>
+<div id="adicionando-o-botão-de-reinício" class="section level4 unnumbered hasAnchor">
+<h4>Adicionando o botão de reinício<a href="tictactoe.html#adicionando-o-botão-de-reinício" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Abaixo do tabuleiro colocaremos um botão para reiniciar o jogo.</p>
+<p>Substitua a linha de comentário <code>TODO: Add "Restart game" button</code> pelo seguinte código:</p>
+<div class="sourceCode" id="cb103" startFrom="113"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 112;"><span id="cb103-113"><a href="tictactoe.html#cb103-113"></a>    <span class="co">// &quot;Restart game&quot; button</span></span>
+<span id="cb103-114"><a href="tictactoe.html#cb103-114"></a>    <span class="op">{</span></span>
+<span id="cb103-115"><a href="tictactoe.html#cb103-115"></a>      <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Button<span class="op">(</span><span class="st">&quot;Restart game&quot;</span><span class="op">,</span> ImVec2<span class="op">(-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">50</span><span class="op">)))</span> <span class="op">{</span></span>
+<span id="cb103-116"><a href="tictactoe.html#cb103-116"></a>        restartGame<span class="op">();</span></span>
+<span id="cb103-117"><a href="tictactoe.html#cb103-117"></a>      <span class="op">}</span></span>
+<span id="cb103-118"><a href="tictactoe.html#cb103-118"></a>    <span class="op">}</span></span></code></pre></div>
+<p>O botão terá largura máxima (<code>-1</code>) e altura <code>50</code>.</p>
+<p>Note que, sempre que definimos um novo controle de UI, a ImGui cria o controle em uma nova linha (com exceção dos botões da tabela, criados entre <code>ImGui::BeginTable</code> e <code>ImGui::EndTable</code>). Fora de uma tabela, se quisermos que os controles não fiquem empilhados, podemos chamar <code>ImGui::SameLine</code> antes de criar o próximo controle. Assim ele será criado do lado direito do anterior.</p>
+</div>
+<div id="verificando-a-condição-de-vitória-e-empate" class="section level4 unnumbered hasAnchor">
+<h4>Verificando a condição de vitória e empate<a href="tictactoe.html#verificando-a-condição-de-vitória-e-empate" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para concluir a implementação de nosso Jogo da Velha, precisamos definir a função <code>checkEndCondition</code>. Essa função é chamada após cada jogada para verificar se <code>m_board</code> está em alguma condição de vitória ou empate:</p>
+<ul>
+<li>Se alguma linha, coluna ou diagonal de <code>m_board</code> tiver somente <code>X</code>, então o jogador do <code>X</code> ganhou (devemos mudar o estado do jogo para <code>GameState::WinX</code>).</li>
+<li>Se alguma linha, coluna ou diagonal de <code>m_board</code> tiver somente <code>O</code>, então o jogador do <code>O</code> ganhou (devemos ir ao estado <code>GameState::WinO</code>).</li>
+<li>Se o tabuleiro não tiver mais nenhum caractere nulo, e nem o <code>X</code> nem o <code>O</code> ganharam, então “deu velha” (devemos ir ao estado <code>GameState::Draw</code>).</li>
+</ul>
+<p>Vamos implementar a função aos poucos, começando com o código a seguir. Note que há vários comentários com tarefas por fazer (<code>TODO</code>):</p>
+<div class="sourceCode" id="cb104" startFrom="123"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 122;"><span id="cb104-123"><a href="tictactoe.html#cb104-123"></a><span class="dt">void</span> Window<span class="op">::</span>checkEndCondition<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb104-124"><a href="tictactoe.html#cb104-124"></a>  <span class="cf">if</span> <span class="op">(</span><span class="va">m_gameState</span> <span class="op">!=</span> GameState<span class="op">::</span>Play<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb104-125"><a href="tictactoe.html#cb104-125"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb104-126"><a href="tictactoe.html#cb104-126"></a>  <span class="op">}</span></span>
+<span id="cb104-127"><a href="tictactoe.html#cb104-127"></a></span>
+<span id="cb104-128"><a href="tictactoe.html#cb104-128"></a>  <span class="co">// Lambda expression that checks if a string contains only Xs or Os. If so, it</span></span>
+<span id="cb104-129"><a href="tictactoe.html#cb104-129"></a>  <span class="co">// changes the game state to WinX or WinO accordingly and returns true.</span></span>
+<span id="cb104-130"><a href="tictactoe.html#cb104-130"></a>  <span class="co">// Otherwise, returns false.</span></span>
+<span id="cb104-131"><a href="tictactoe.html#cb104-131"></a>  <span class="kw">auto</span> allXsOrOs<span class="op">{[&amp;](</span><span class="bu">std::</span>string_view<span class="op"> </span>str<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb104-132"><a href="tictactoe.html#cb104-132"></a>    <span class="cf">if</span> <span class="op">(</span>str <span class="op">==</span> <span class="bu">std::</span>string<span class="op">(</span><span class="va">m_N</span><span class="op">,</span> <span class="ch">&#39;X&#39;</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb104-133"><a href="tictactoe.html#cb104-133"></a>      <span class="va">m_gameState</span> <span class="op">=</span> GameState<span class="op">::</span>WinX<span class="op">;</span></span>
+<span id="cb104-134"><a href="tictactoe.html#cb104-134"></a>      <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb104-135"><a href="tictactoe.html#cb104-135"></a>    <span class="op">}</span></span>
+<span id="cb104-136"><a href="tictactoe.html#cb104-136"></a>    <span class="cf">if</span> <span class="op">(</span>str <span class="op">==</span> <span class="bu">std::</span>string<span class="op">(</span><span class="va">m_N</span><span class="op">,</span> <span class="ch">&#39;O&#39;</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb104-137"><a href="tictactoe.html#cb104-137"></a>      <span class="va">m_gameState</span> <span class="op">=</span> GameState<span class="op">::</span>WinO<span class="op">;</span></span>
+<span id="cb104-138"><a href="tictactoe.html#cb104-138"></a>      <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb104-139"><a href="tictactoe.html#cb104-139"></a>    <span class="op">}</span></span>
+<span id="cb104-140"><a href="tictactoe.html#cb104-140"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb104-141"><a href="tictactoe.html#cb104-141"></a>  <span class="op">}};</span></span>
+<span id="cb104-142"><a href="tictactoe.html#cb104-142"></a></span>
+<span id="cb104-143"><a href="tictactoe.html#cb104-143"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co">: Check rows</span></span>
+<span id="cb104-144"><a href="tictactoe.html#cb104-144"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co">: Check columns</span></span>
+<span id="cb104-145"><a href="tictactoe.html#cb104-145"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co">: Check main diagonal</span></span>
+<span id="cb104-146"><a href="tictactoe.html#cb104-146"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co">: Check inverse diagonal</span></span>
+<span id="cb104-147"><a href="tictactoe.html#cb104-147"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co">: Check draw</span></span>
+<span id="cb104-148"><a href="tictactoe.html#cb104-148"></a><span class="op">}</span></span></code></pre></div>
+<p>O tabuleiro só precisa ser verificado quando o jogo está no estado <code>GameState::Play</code>. A condição da linha 124 verifica isso.</p>
+<p>Na linha 131 definimos uma expressão lambda que será usada várias vezes posteriormente para verificar as linhas, colunas e diagonais de <code>m_board</code>. Mais especificamente, a expressão lambda verifica se uma string <code>str</code> passada como parâmetro é composta apenas por 3 caracteres <code>X</code> ou 3 caracteres <code>O</code> (supondo que <code>m_N</code> é 3). Se sim, ela retorna <code>true</code> e seta o estado do jogo para <code>WinX</code> ou <code>WinO</code> de forma correspondente. Se não, ela só retorna <code>false</code>.</p>
+<p>Vamos agora implementar o código que corresponde ao comentário <code>TODO: Check rows</code>, isto é, o código que verifica cada linha do tabuleiro:</p>
+<div class="sourceCode" id="cb105" startFrom="143"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 142;"><span id="cb105-143"><a href="tictactoe.html#cb105-143"></a>  <span class="co">// Check rows</span></span>
+<span id="cb105-144"><a href="tictactoe.html#cb105-144"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> i <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="va">m_N</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb105-145"><a href="tictactoe.html#cb105-145"></a>    <span class="bu">std::</span>string<span class="op"> </span>concatenation<span class="op">;</span></span>
+<span id="cb105-146"><a href="tictactoe.html#cb105-146"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> j <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="va">m_N</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb105-147"><a href="tictactoe.html#cb105-147"></a>      concatenation <span class="op">+=</span> <span class="va">m_board</span><span class="op">.</span>at<span class="op">(</span>i <span class="op">*</span> <span class="va">m_N</span> <span class="op">+</span> j<span class="op">);</span></span>
+<span id="cb105-148"><a href="tictactoe.html#cb105-148"></a>    <span class="op">}</span></span>
+<span id="cb105-149"><a href="tictactoe.html#cb105-149"></a>    <span class="cf">if</span> <span class="op">(</span>allXsOrOs<span class="op">(</span>concatenation<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb105-150"><a href="tictactoe.html#cb105-150"></a>      <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb105-151"><a href="tictactoe.html#cb105-151"></a>    <span class="op">}</span></span>
+<span id="cb105-152"><a href="tictactoe.html#cb105-152"></a>  <span class="op">}</span></span></code></pre></div>
+<p>Os laços aninhados iteram as linhas (<code>i</code>) e colunas (<code>j</code>) do tabuleiro. Para cada linha, uma string <code>concatenation</code> é preenchida com os caracteres daquela linha. <code>allXsOrOs</code> é então chamada para verificar se a string contém 3 <code>X</code> ou 3 <code>O</code>. Se sim, <code>checkEndCondition</code> retorna na linha 150 pois a condição final já foi encontrada. Caso contrário, a verificação deve continuar. O código dos outros <code>TODO</code>s é similar:</p>
+<div class="sourceCode" id="cb106" startFrom="154"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 153;"><span id="cb106-154"><a href="tictactoe.html#cb106-154"></a>  <span class="co">// Check columns</span></span>
+<span id="cb106-155"><a href="tictactoe.html#cb106-155"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> j <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="va">m_N</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb106-156"><a href="tictactoe.html#cb106-156"></a>    <span class="bu">std::</span>string<span class="op"> </span>concatenation<span class="op">;</span></span>
+<span id="cb106-157"><a href="tictactoe.html#cb106-157"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> i <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="va">m_N</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb106-158"><a href="tictactoe.html#cb106-158"></a>      concatenation <span class="op">+=</span> <span class="va">m_board</span><span class="op">.</span>at<span class="op">(</span>i <span class="op">*</span> <span class="va">m_N</span> <span class="op">+</span> j<span class="op">);</span></span>
+<span id="cb106-159"><a href="tictactoe.html#cb106-159"></a>    <span class="op">}</span></span>
+<span id="cb106-160"><a href="tictactoe.html#cb106-160"></a>    <span class="cf">if</span> <span class="op">(</span>allXsOrOs<span class="op">(</span>concatenation<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb106-161"><a href="tictactoe.html#cb106-161"></a>      <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb106-162"><a href="tictactoe.html#cb106-162"></a>    <span class="op">}</span></span>
+<span id="cb106-163"><a href="tictactoe.html#cb106-163"></a>  <span class="op">}</span></span>
+<span id="cb106-164"><a href="tictactoe.html#cb106-164"></a></span>
+<span id="cb106-165"><a href="tictactoe.html#cb106-165"></a>  <span class="co">// Check main diagonal</span></span>
+<span id="cb106-166"><a href="tictactoe.html#cb106-166"></a>  <span class="op">{</span></span>
+<span id="cb106-167"><a href="tictactoe.html#cb106-167"></a>    <span class="bu">std::</span>string<span class="op"> </span>concatenation<span class="op">;</span></span>
+<span id="cb106-168"><a href="tictactoe.html#cb106-168"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> i <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="va">m_N</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb106-169"><a href="tictactoe.html#cb106-169"></a>      concatenation <span class="op">+=</span> <span class="va">m_board</span><span class="op">.</span>at<span class="op">(</span>i <span class="op">*</span> <span class="va">m_N</span> <span class="op">+</span> i<span class="op">);</span></span>
+<span id="cb106-170"><a href="tictactoe.html#cb106-170"></a>    <span class="op">}</span></span>
+<span id="cb106-171"><a href="tictactoe.html#cb106-171"></a>    <span class="cf">if</span> <span class="op">(</span>allXsOrOs<span class="op">(</span>concatenation<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb106-172"><a href="tictactoe.html#cb106-172"></a>      <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb106-173"><a href="tictactoe.html#cb106-173"></a>    <span class="op">}</span></span>
+<span id="cb106-174"><a href="tictactoe.html#cb106-174"></a>  <span class="op">}</span></span>
+<span id="cb106-175"><a href="tictactoe.html#cb106-175"></a></span>
+<span id="cb106-176"><a href="tictactoe.html#cb106-176"></a>  <span class="co">// Check inverse diagonal</span></span>
+<span id="cb106-177"><a href="tictactoe.html#cb106-177"></a>  <span class="op">{</span></span>
+<span id="cb106-178"><a href="tictactoe.html#cb106-178"></a>    <span class="bu">std::</span>string<span class="op"> </span>concatenation<span class="op">;</span></span>
+<span id="cb106-179"><a href="tictactoe.html#cb106-179"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> i <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="va">m_N</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb106-180"><a href="tictactoe.html#cb106-180"></a>      concatenation <span class="op">+=</span> <span class="va">m_board</span><span class="op">.</span>at<span class="op">(</span>i <span class="op">*</span> <span class="va">m_N</span> <span class="op">+</span> <span class="op">(</span><span class="va">m_N</span> <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span><span class="op">));</span></span>
+<span id="cb106-181"><a href="tictactoe.html#cb106-181"></a>    <span class="op">}</span></span>
+<span id="cb106-182"><a href="tictactoe.html#cb106-182"></a>    <span class="cf">if</span> <span class="op">(</span>allXsOrOs<span class="op">(</span>concatenation<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb106-183"><a href="tictactoe.html#cb106-183"></a>      <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb106-184"><a href="tictactoe.html#cb106-184"></a>    <span class="op">}</span></span>
+<span id="cb106-185"><a href="tictactoe.html#cb106-185"></a>  <span class="op">}</span></span>
+<span id="cb106-186"><a href="tictactoe.html#cb106-186"></a></span>
+<span id="cb106-187"><a href="tictactoe.html#cb106-187"></a>  <span class="co">// Check draw</span></span>
+<span id="cb106-188"><a href="tictactoe.html#cb106-188"></a>  <span class="cf">if</span> <span class="op">(</span><span class="bu">std::</span>find<span class="op">(</span><span class="va">m_board</span><span class="op">.</span>begin<span class="op">(),</span> <span class="va">m_board</span><span class="op">.</span>end<span class="op">(),</span> <span class="ch">&#39;</span><span class="sc">\0</span><span class="ch">&#39;</span><span class="op">)</span> <span class="op">==</span> <span class="va">m_board</span><span class="op">.</span>end<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb106-189"><a href="tictactoe.html#cb106-189"></a>    <span class="va">m_gameState</span> <span class="op">=</span> GameState<span class="op">::</span>Draw<span class="op">;</span></span>
+<span id="cb106-190"><a href="tictactoe.html#cb106-190"></a>  <span class="op">}</span></span></code></pre></div>
+<p>A verificação do empate é feita na condicional da linha 188. Observe que ela só será executada se as condições de vitória anteriores não tiverem sido satisfeitas. Então, se nesse momento não tiver nenhum caractere nulo em <code>m_board</code>, significa que o tabuleiro está todo preenchido com <code>X</code> e <code>O</code> mas ninguém ganhou, isto é, “deu velha”.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Laços baseados em intervalos
+</div>
+<p>Observe que usamos laços <code>for</code> baseados em intervalos (<a href="https://en.cppreference.com/w/cpp/language/range-for"><em>range-based for loops</em></a>) juntos com a função <code>iter::range</code> da biblioteca <a href="https://github.com/ryanhaining/cppitertools">CPPItertools</a>.</p>
+<p>Use laços baseados em intervalos sempre que possível. Eles são mais fáceis de ler e mais seguros pois evitam bugs comuns como trocar <code>&lt;</code> por outro comparador (<code>&gt;</code>, ou <code>&lt;=</code>) ou incrementar a variável errada.</p>
+<p>Por exemplo, para iterar com um índice <code>i</code> de 0 a 9, ao invés de usar o <code>for</code> tradicional</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb107-1"><a href="tictactoe.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb107-2"><a href="tictactoe.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// i = 0, 1, ..., 9</span></span>
+<span id="cb107-3"><a href="tictactoe.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>prefira fazer assim:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb108-1"><a href="tictactoe.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> i <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="dv">10</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb108-2"><a href="tictactoe.html#cb108-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// i = 0, 1, ..., 9</span></span>
+<span id="cb108-3"><a href="tictactoe.html#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><code>iter::range</code> funciona da mesma forma que a função <code>range</code> do Python.</p>
+<p>De forma semelhante, para iterar um arranjo <code>a</code> e imprimir seu conteúdo, prefira fazer assim</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb109-1"><a href="tictactoe.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>array<span class="op"> </span>a<span class="op">{</span><span class="st">&quot;foo&quot;</span><span class="op">,</span> <span class="st">&quot;bar&quot;</span><span class="op">,</span> <span class="st">&quot;baz&quot;</span><span class="op">};</span></span>
+<span id="cb109-2"><a href="tictactoe.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb109-3"><a href="tictactoe.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>str <span class="op">:</span> a<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb109-4"><a href="tictactoe.html#cb109-4" aria-hidden="true" tabindex="-1"></a>  fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;</span><span class="sc">{}</span><span class="st">&quot;</span><span class="op">,</span> str<span class="op">);</span></span>
+<span id="cb109-5"><a href="tictactoe.html#cb109-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>ao invés de:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb110-1"><a href="tictactoe.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>array<span class="op"> </span>a<span class="op">{</span><span class="st">&quot;foo&quot;</span><span class="op">,</span> <span class="st">&quot;bar&quot;</span><span class="op">,</span> <span class="st">&quot;baz&quot;</span><span class="op">};</span></span>
+<span id="cb110-2"><a href="tictactoe.html#cb110-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-3"><a href="tictactoe.html#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">std::</span>size_t<span class="op"> </span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> a<span class="op">.</span>size<span class="op">();</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb110-4"><a href="tictactoe.html#cb110-4" aria-hidden="true" tabindex="-1"></a>  fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;</span><span class="sc">{}</span><span class="st">&quot;</span><span class="op">,</span> a<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb110-5"><a href="tictactoe.html#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</div>
+<p>O projeto completo do Jogo da Velha pode ser baixado <a href="https://hbatagelo.github.io/abcgapps/src/tictactoe.zip">deste link</a>.</p>
+
+</div>
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="firstapp.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
