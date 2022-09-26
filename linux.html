@@ -204,6 +204,38 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -300,7 +332,7 @@ Importante
 <h3>Atualizando o GCC<a href="linux.html#atualizando-o-gcc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As atividades da disciplina farão uso de um <em>framework</em> de desenvolvimento que exige um compilador com suporte a C++20. Esse requisito é atendido se instalarmos uma versão recente do GCC, como o GCC 11 ou posterior.</p>
 <p><strong>A versão padrão do GCC no Ubuntu 22.04 LTS é compatível com C++20.</strong> Então, se você seguiu as instruções de instalação até aqui usando o Ubuntu 22.04 ou uma versão mais recente, não é necessário atualizar o GCC.</p>
-<p>Caso sua versão do Ubuntu seja mais antiga que a 22.04, verifique qual é a saída de <code>g++ --version</code>. Por exemplo, no Ubuntu 20.04 o GCC padrão é o 9.3 e saída será assim:</p>
+<p>Caso sua versão do Ubuntu seja mais antiga que a 22.04, verifique no terminal a saída de <code>g++ --version</code>. Por exemplo, no Ubuntu 20.04 o GCC padrão é o 9.3, e a saída será assim:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="linux.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="er">(</span><span class="ex">Ubuntu</span> 9.3.0-17ubuntu1~20.04<span class="kw">)</span> <span class="ex">9.3.0</span></span>
 <span id="cb13-2"><a href="linux.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2019</span> Free Software Foundation, Inc.</span>
 <span id="cb13-3"><a href="linux.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> is free software<span class="kw">;</span> <span class="ex">see</span> the source for copying conditions.  There is NO</span>

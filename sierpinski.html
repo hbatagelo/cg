@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.5 Triângulo de Sierpinski | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.5 Triângulo de Sierpinski | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.5 Triângulo de Sierpinski | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="framebuffer.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sierpinski" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Triângulo de Sierpinski<a href="sierpinski.html#sierpinski" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nesta atividade usaremos pela primeira vez comandos de desenho do OpenGL. Usaremos esses comandos para desenhar um <a href="https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle">triângulo de Sierpinski</a> composto de pontos no plano.</p>
+<p>O triângulo de Sierpinski é um fractal que pode ser gerado por um tipo de sistema dinâmico chamado de sistema de função iterada (<em>iterated function system</em>, ou IFS). Esse processo pode ser implementado através de um algoritmo conhecido como <a href="https://mathworld.wolfram.com/ChaosGame.html"><em>jogo do caos</em></a>.</p>
+<p>Para “jogar” o jogo do caos, começamos definindo três pontos <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> e <span class="math inline">\(C\)</span> não colineares. Por exemplo, <span class="math inline">\(A=(0, 1)\)</span>, <span class="math inline">\(B=(-1, -1)\)</span> e <span class="math inline">\(C=(1, -1)\)</span>:</p>
+<p><img src="images/03_sierpinski1.svg" width="55%" style="display: block; margin: auto;" /></p>
+<p>Além dos pontos <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> e <span class="math inline">\(C\)</span>, definimos mais um ponto <span class="math inline">\(P\)</span> em uma posição aleatória do plano. Com <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span> e <span class="math inline">\(P\)</span> definidos, o jogo do caos consiste nos seguintes passos:</p>
+<ol style="list-style-type: decimal">
+<li>Mova <span class="math inline">\(P\)</span> para o ponto médio entre <span class="math inline">\(P\)</span> e um dos pontos <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span> escolhido de forma aleatória;</li>
+<li>Volte ao passo 1.</li>
+</ol>
+<p>Para gerar o triângulo de Sierpinski, basta desenhar <span class="math inline">\(P\)</span> a cada iteração. O jogo não tem fim, mas quanto maior o número de iterações, mais pontos serão desenhados e mais detalhes terá o fractal (figura <a href="sierpinski.html#fig:sierpinski1">3.42</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sierpinski1"></span>
+<img src="images/03_sierpinski2.gif" alt="Triângulo de Sierpinski desenhado com 1.000, 10.000 e 100.000 iterações em uma área de 210x210 pixels."  />
+<p class="caption">
+Figura 3.42: Triângulo de Sierpinski desenhado com 1.000, 10.000 e 100.000 iterações em uma área de 210x210 pixels.
+</p>
+</div>
+<p>Implementaremos o jogo do caos usando a mesma estrutura dos projetos <code>firstapp</code> (seção <a href="firstapp.html#firstapp">2.3</a>) e <code>tictactoe</code> (seção <a href="tictactoe.html#tictactoe">2.4</a>). O procedimento será simples: para cada chamada de <code>onPaint</code>, faremos uma iteração do jogo e desenharemos um ponto na posição <span class="math inline">\(P\)</span> usando um comando de renderização do OpenGL. Os pontos desenhados serão acumulados no framebuffer e o resultado será a visualização da construção do fractal.</p>
+<div id="configuração-inicial-2" class="section level3 unnumbered hasAnchor">
+<h3>Configuração inicial<a href="sierpinski.html#configuração-inicial-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Crie o subdiretório <code>abcg/examples/sierpinski</code> e modifique o arquivo <code>abcg/examples/CMakeLists.txt</code> para incluir essa nova pasta. Comente as linhas de <code>add_subdirectory</code> dos projetos anteriores para que eles não sejam compilados:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb114-1"><a href="sierpinski.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add_subdirectory(helloworld)</span></span>
+<span id="cb114-2"><a href="sierpinski.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="co"># add_subdirectory(firstapp)</span></span>
+<span id="cb114-3"><a href="sierpinski.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add_subdirectory(tictactoe)</span></span>
+<span id="cb114-4"><a href="sierpinski.html#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(sierpinski)</span></code></pre></div>
+<p>Crie o arquivo <code>abcg/examples/sierpinski/CMakeLists.txt</code> com o seguinte conteúdo, similar ao que utilizamos nos projetos anteriores:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb115-1"><a href="sierpinski.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(sierpinski)</span>
+<span id="cb115-2"><a href="sierpinski.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJECT_NAME}</span> <span class="bn">main.cpp</span> window.cpp)</span>
+<span id="cb115-3"><a href="sierpinski.html#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="fu">enable_abcg</span>(<span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div>
+<p>Crie também os arquivos <code>main.cpp</code>, <code>window.cpp</code> e <code>window.hpp</code> em <code>abcg/examples/sierpinski</code>. Vamos editá-los a seguir.</p>
+</div>
+<div id="main.cpp-2" class="section level3 unnumbered hasAnchor">
+<h3>main.cpp<a href="sierpinski.html#main.cpp-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O conteúdo de <code>main.cpp</code> ficará como a seguir:</p>
+<div class="sourceCode" id="cb116" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb116-1"><a href="sierpinski.html#cb116-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb116-2"><a href="sierpinski.html#cb116-2"></a></span>
+<span id="cb116-3"><a href="sierpinski.html#cb116-3"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb116-4"><a href="sierpinski.html#cb116-4"></a>  <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb116-5"><a href="sierpinski.html#cb116-5"></a>    abcg<span class="op">::</span>Application app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb116-6"><a href="sierpinski.html#cb116-6"></a></span>
+<span id="cb116-7"><a href="sierpinski.html#cb116-7"></a>    Window window<span class="op">;</span></span>
+<span id="cb116-8"><a href="sierpinski.html#cb116-8"></a>    window<span class="op">.</span>setOpenGLSettings<span class="op">({.</span>samples <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="op">.</span>doubleBuffering <span class="op">=</span> <span class="kw">false</span><span class="op">});</span></span>
+<span id="cb116-9"><a href="sierpinski.html#cb116-9"></a>    window<span class="op">.</span>setWindowSettings<span class="op">({.</span>width <span class="op">=</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb116-10"><a href="sierpinski.html#cb116-10"></a>                              <span class="op">.</span>height <span class="op">=</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb116-11"><a href="sierpinski.html#cb116-11"></a>                              <span class="op">.</span>showFullscreenButton <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb116-12"><a href="sierpinski.html#cb116-12"></a>                              <span class="op">.</span>title <span class="op">=</span> <span class="st">&quot;Sierpinski Triangle&quot;</span><span class="op">});</span></span>
+<span id="cb116-13"><a href="sierpinski.html#cb116-13"></a></span>
+<span id="cb116-14"><a href="sierpinski.html#cb116-14"></a>    app<span class="op">.</span>run<span class="op">(</span>window<span class="op">);</span></span>
+<span id="cb116-15"><a href="sierpinski.html#cb116-15"></a>  <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">std::</span>exception<span class="op"> </span><span class="at">const</span> <span class="op">&amp;</span>exception<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb116-16"><a href="sierpinski.html#cb116-16"></a>    fmt<span class="op">::</span>print<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;</span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> exception<span class="op">.</span>what<span class="op">());</span></span>
+<span id="cb116-17"><a href="sierpinski.html#cb116-17"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb116-18"><a href="sierpinski.html#cb116-18"></a>  <span class="op">}</span></span>
+<span id="cb116-19"><a href="sierpinski.html#cb116-19"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb116-20"><a href="sierpinski.html#cb116-20"></a><span class="op">}</span></span></code></pre></div>
+<p>Esse código é parecido com o <code>main.cpp</code> dos projetos <code>firstapp</code> e <code>tictactoe</code>. As únicas diferenças estão nas funções chamadas nas linhas 8 e 9:</p>
+<div class="sourceCode" id="cb117" startFrom="8"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 7;"><span id="cb117-8"><a href="sierpinski.html#cb117-8"></a>    window<span class="op">.</span>setOpenGLSettings<span class="op">({.</span>samples <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="op">.</span>doubleBuffering <span class="op">=</span> <span class="kw">false</span><span class="op">});</span></span>
+<span id="cb117-9"><a href="sierpinski.html#cb117-9"></a>    window<span class="op">.</span>setWindowSettings<span class="op">({.</span>width <span class="op">=</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb117-10"><a href="sierpinski.html#cb117-10"></a>                              <span class="op">.</span>height <span class="op">=</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb117-11"><a href="sierpinski.html#cb117-11"></a>                              <span class="op">.</span>showFullscreenButton <span class="op">=</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb117-12"><a href="sierpinski.html#cb117-12"></a>                              <span class="op">.</span>title <span class="op">=</span> <span class="st">&quot;Sierpinski Triangle&quot;</span><span class="op">});</span></span></code></pre></div>
+<ul>
+<li><p><code>setOpenGLSettings</code> é uma função membro de <code>abcg::OpenGLWindow</code>, classe base de nossa classe customizada <code>Window</code>.</p>
+<p><code>setOpenGLSettings</code> recebe uma estrutura <code>abcg::OpenGLSettings</code> com as configurações de inicialização do OpenGL. Essas configurações são usadas pela SDL no momento da criação de um “contexto do OpenGL” que representa o framebuffer vinculado à janela e todo o estado interno do OpenGL:</p>
+<ul>
+<li>O atributo <code>samples = 2</code> faz com que o framebuffer suporte suavização de serrilhado (<em>antialiasing</em>) das primitivas do OpenGL;</li>
+<li>O atributo <code>.doubleBuffering = false</code> é uma configuração de criação do contexto do OpenGL que faz com que a técnica de double buffering seja desativada. Desse modo, conseguiremos desenhar os pontos incrementalmente no framebuffer para formar o desenho do fractal. Se não desativarmos o double buffering, o OpenGL poderá apagar o conteúdo do backbuffer para cada novo quadro de exibição (isso acontece com a versão para web), e então só visualizaremos o último ponto desenhado.</li>
+</ul></li>
+<li><p>No estrutura <code>abcg::WindowSettings</code> passada como argumento de <code>setWindowSettings</code>, usamos <code>showFullscreenButton = false</code> para desativar a exibição do botão de tela cheia. Afinal, não queremos que o botão obstrua o desenho do fractal. Mesmo sem o botão, o modo janela pode ser alternado com o modo de tela cheia através da tecla <code>F11</code>.</p></li>
+</ul>
+</div>
+<div id="window.hpp-2" class="section level3 unnumbered hasAnchor">
+<h3>window.hpp<a href="sierpinski.html#window.hpp-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Na definição da classe <code>Window</code>, substituiremos novas funções virtuais de <code>abcg::OpenGLWindow</code> e definiremos novas variáveis que serão utilizadas para atualizar o jogo do caos e desenhar o ponto na tela:</p>
+<div class="sourceCode" id="cb118" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb118-1"><a href="sierpinski.html#cb118-1"></a><span class="pp">#ifndef WINDOW_HPP_</span></span>
+<span id="cb118-2"><a href="sierpinski.html#cb118-2"></a><span class="pp">#define WINDOW_HPP_</span></span>
+<span id="cb118-3"><a href="sierpinski.html#cb118-3"></a></span>
+<span id="cb118-4"><a href="sierpinski.html#cb118-4"></a><span class="pp">#include </span><span class="im">&lt;random&gt;</span></span>
+<span id="cb118-5"><a href="sierpinski.html#cb118-5"></a></span>
+<span id="cb118-6"><a href="sierpinski.html#cb118-6"></a><span class="pp">#include </span><span class="im">&quot;abcgOpenGL.hpp&quot;</span></span>
+<span id="cb118-7"><a href="sierpinski.html#cb118-7"></a></span>
+<span id="cb118-8"><a href="sierpinski.html#cb118-8"></a><span class="kw">class</span> Window <span class="op">:</span> <span class="kw">public</span> abcg<span class="op">::</span>OpenGLWindow <span class="op">{</span></span>
+<span id="cb118-9"><a href="sierpinski.html#cb118-9"></a><span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb118-10"><a href="sierpinski.html#cb118-10"></a>  <span class="dt">void</span> onCreate<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb118-11"><a href="sierpinski.html#cb118-11"></a>  <span class="dt">void</span> onPaint<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb118-12"><a href="sierpinski.html#cb118-12"></a>  <span class="dt">void</span> onPaintUI<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb118-13"><a href="sierpinski.html#cb118-13"></a>  <span class="dt">void</span> onResize<span class="op">(</span>glm<span class="op">::</span>ivec2 <span class="at">const</span> <span class="op">&amp;</span>size<span class="op">)</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb118-14"><a href="sierpinski.html#cb118-14"></a>  <span class="dt">void</span> onDestroy<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb118-15"><a href="sierpinski.html#cb118-15"></a></span>
+<span id="cb118-16"><a href="sierpinski.html#cb118-16"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb118-17"><a href="sierpinski.html#cb118-17"></a>  glm<span class="op">::</span>ivec2 <span class="va">m_viewportSize</span><span class="op">{};</span></span>
+<span id="cb118-18"><a href="sierpinski.html#cb118-18"></a></span>
+<span id="cb118-19"><a href="sierpinski.html#cb118-19"></a>  GLuint <span class="va">m_VAO</span><span class="op">{};</span></span>
+<span id="cb118-20"><a href="sierpinski.html#cb118-20"></a>  GLuint <span class="va">m_VBOVertices</span><span class="op">{};</span></span>
+<span id="cb118-21"><a href="sierpinski.html#cb118-21"></a>  GLuint <span class="va">m_program</span><span class="op">{};</span></span>
+<span id="cb118-22"><a href="sierpinski.html#cb118-22"></a></span>
+<span id="cb118-23"><a href="sierpinski.html#cb118-23"></a>  <span class="bu">std::</span>default_random_engine<span class="op"> </span><span class="va">m_randomEngine</span><span class="op">;</span></span>
+<span id="cb118-24"><a href="sierpinski.html#cb118-24"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span>glm<span class="op">::</span>vec2<span class="op">,</span> <span class="dv">3</span><span class="op">&gt;</span> <span class="at">const</span> <span class="va">m_points</span><span class="op">{{{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span> <span class="op">{-</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">},</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">}}};</span></span>
+<span id="cb118-25"><a href="sierpinski.html#cb118-25"></a>  glm<span class="op">::</span>vec2 <span class="va">m_P</span><span class="op">{};</span></span>
+<span id="cb118-26"><a href="sierpinski.html#cb118-26"></a></span>
+<span id="cb118-27"><a href="sierpinski.html#cb118-27"></a>  <span class="dt">void</span> setupModel<span class="op">();</span></span>
+<span id="cb118-28"><a href="sierpinski.html#cb118-28"></a><span class="op">};</span></span>
+<span id="cb118-29"><a href="sierpinski.html#cb118-29"></a></span>
+<span id="cb118-30"><a href="sierpinski.html#cb118-30"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>Observe que, além de usarmos as funções <code>onCreate</code>, <code>onPaint</code> e <code>onPaintUI</code>, estamos agora substituindo mais duas funções virtuais de <code>abcg::OpenGLWindow</code>:</p>
+<ul>
+<li><p><code>onResize</code> <strong>é chamada pela ABCg sempre que o tamanho da janela é alterado</strong>. O novo tamanho é recebido pelo parâmetro <code>size</code>, que é um vetor 2D de inteiros <code>glm::ivec2</code> disponibilizado pela biblioteca <a href="https://github.com/g-truc/glm">OpenGL Mathematics</a> (GLM)<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>.</p>
+<p>Na nossa aplicação, quando a ABCg chamar <code>onResize</code>, faremos uma cópia de <code>size</code> em <code>m_viewportSize</code> (linha 17). Isso será feito para que, em <code>onPaint</code>, possamos configurar o tamanho da área de desenho (<em>viewport</em>) do OpenGL para ser o mesmo tamanho da janela da aplicação. O conceito de viewport será aprofundado mais adiante.</p></li>
+<li><p><code>onDestroy</code> <strong>é chamada pela ABCg quando a janela é destruída</strong>, isto é, no fim da aplicação. Essa é a função complementar de <code>onCreate</code>, usada para liberar os recursos do OpenGL que foram alocados em <code>onCreate</code> ou durante a aplicação.</p></li>
+</ul>
+<p>Da linha 17 a 25 temos a definição das variáveis da classe:</p>
+<div class="sourceCode" id="cb119" startFrom="17"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 16;"><span id="cb119-17"><a href="sierpinski.html#cb119-17"></a>  glm<span class="op">::</span>ivec2 <span class="va">m_viewportSize</span><span class="op">{};</span></span>
+<span id="cb119-18"><a href="sierpinski.html#cb119-18"></a></span>
+<span id="cb119-19"><a href="sierpinski.html#cb119-19"></a>  GLuint <span class="va">m_VAO</span><span class="op">{};</span></span>
+<span id="cb119-20"><a href="sierpinski.html#cb119-20"></a>  GLuint <span class="va">m_VBOVertices</span><span class="op">{};</span></span>
+<span id="cb119-21"><a href="sierpinski.html#cb119-21"></a>  GLuint <span class="va">m_program</span><span class="op">{};</span></span>
+<span id="cb119-22"><a href="sierpinski.html#cb119-22"></a></span>
+<span id="cb119-23"><a href="sierpinski.html#cb119-23"></a>  <span class="bu">std::</span>default_random_engine<span class="op"> </span><span class="va">m_randomEngine</span><span class="op">;</span></span>
+<span id="cb119-24"><a href="sierpinski.html#cb119-24"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span>glm<span class="op">::</span>vec2<span class="op">,</span> <span class="dv">3</span><span class="op">&gt;</span> <span class="at">const</span> <span class="va">m_points</span><span class="op">{{{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span> <span class="op">{-</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">},</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">}}};</span></span>
+<span id="cb119-25"><a href="sierpinski.html#cb119-25"></a>  glm<span class="op">::</span>vec2 <span class="va">m_P</span><span class="op">{};</span></span></code></pre></div>
+<ul>
+<li><p><code>m_VAO</code>, <code>m_VBOVertices</code> e <code>m_program</code> são identificadores de recursos alocados pelo OpenGL, geralmente armazenados na memória da placa de vídeo. Esses recursos correspondem aos shaders que definem o comportamento da renderização, e ao arranjo ordenado de vértices utilizado para montar as primitivas geométricas no pipeline de renderização. No nosso caso, o arranjo de vértices contém apenas um vértice e equivale ao ponto <span class="math inline">\(P\)</span> que queremos desenhar.</p></li>
+<li><p><code>m_viewportSize</code>, como já vimos, serve para armazenar o tamanho da janela da aplicação que é recebido em <code>onResize</code>.</p></li>
+<li><p><code>m_randomEngine</code> é um objeto do gerador de números pseudoaleatórios da biblioteca padrão do C++ (note o uso do <code>#include &lt;random&gt;</code> na linha 4). Esse objeto é utilizado para sortear a posição inicial de <span class="math inline">\(P\)</span> e qual ponto (<span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> ou <span class="math inline">\(C\)</span>) será escolhido em cada iteração do jogo do caos.</p></li>
+<li><p><code>m_points</code> é um arranjo que contém a posição dos pontos <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> e <span class="math inline">\(C\)</span>. As coordenadas dos pontos são descritas por uma estrutura <code>glm::vec2</code> que representa um vetor 2D com coordenadas do tipo <code>float</code>.</p></li>
+<li><p><code>m_P</code> é a posição do ponto <span class="math inline">\(P\)</span>.</p></li>
+</ul>
+<p>Além da definição das variáveis, na linha 27 é declarada a função <code>Window::setupModel</code> que cria os recursos identificados por <code>m_VAO</code> e <code>m_VBOVertices</code>. A função é chamada sempre que um novo ponto <span class="math inline">\(P\)</span> precisa ser desenhado.</p>
+</div>
+<div id="window.cpp-2" class="section level3 unnumbered hasAnchor">
+<h3>window.cpp<a href="sierpinski.html#window.cpp-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Primeiro vamos implementar a lógica do jogo sem desenhar na tela. Em seguida, incluiremos o código que usa o OpenGL para desenhar os pontos.</p>
+<p>Começaremos com a definição de <code>Window::onCreate()</code>. Como essa função é chamada apenas uma vez na inicialização da aplicação, colocaremos aqui o código que inicia o gerador de números pseudoaleatórios e sorteia as coordenadas iniciais de <span class="math inline">\(P\)</span> (que no código é <code>m_P</code>):</p>
+<div class="sourceCode" id="cb120" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb120-1"><a href="sierpinski.html#cb120-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb120-2"><a href="sierpinski.html#cb120-2"></a></span>
+<span id="cb120-3"><a href="sierpinski.html#cb120-3"></a><span class="dt">void</span> Window<span class="op">::</span>onCreate<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb120-4"><a href="sierpinski.html#cb120-4"></a>  <span class="co">// Start pseudorandom number generator</span></span>
+<span id="cb120-5"><a href="sierpinski.html#cb120-5"></a>  <span class="kw">auto</span> <span class="at">const</span> seed<span class="op">{</span><span class="bu">std::</span>chrono<span class="bu">::</span>steady_clock<span class="bu">::</span>now<span class="op">().</span>time_since_epoch<span class="op">().</span>count<span class="op">()};</span></span>
+<span id="cb120-6"><a href="sierpinski.html#cb120-6"></a>  <span class="va">m_randomEngine</span><span class="op">.</span>seed<span class="op">(</span>seed<span class="op">);</span></span>
+<span id="cb120-7"><a href="sierpinski.html#cb120-7"></a></span>
+<span id="cb120-8"><a href="sierpinski.html#cb120-8"></a>  <span class="co">// Randomly pick a pair of coordinates in the range [-1; 1)</span></span>
+<span id="cb120-9"><a href="sierpinski.html#cb120-9"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;</span> realDistribution<span class="op">(-</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb120-10"><a href="sierpinski.html#cb120-10"></a>  <span class="va">m_P</span><span class="op">.</span>x <span class="op">=</span> realDistribution<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">);</span></span>
+<span id="cb120-11"><a href="sierpinski.html#cb120-11"></a>  <span class="va">m_P</span><span class="op">.</span>y <span class="op">=</span> realDistribution<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">);</span></span>
+<span id="cb120-12"><a href="sierpinski.html#cb120-12"></a><span class="op">}</span>  </span></code></pre></div>
+<p>O gerador <code>m_randomEngine</code> é iniciado usando como semente o tempo do sistema.</p>
+<p>As coordenadas de <code>m_P</code> são iniciadas como valores sorteados do intervalo <span class="math inline">\([-1, 1)\)</span>. O intervalo não precisa ser este necessariamente, mas fazendo assim garantimos que o ponto inicial será visto na tela<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>. Na configuração padrão do OpenGL, só conseguimos visualizar as primitivas gráficas que estão situadas entre as coordenadas <span class="math inline">\((-1, -1)\)</span> e <span class="math inline">\((1, 1)\)</span>. Na configuração padrão, a coordenada <span class="math inline">\((-1, -1)\)</span> é mapeada ao canto inferior esquerdo da janela, e a coordenada <span class="math inline">\((1, 1)\)</span> é mapeada ao canto superior direito. Esse mapeamento poderá ser modificado posteriormente com a função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glViewport.xhtml"><code>glViewport</code></a>.</p>
+<p>Vamos agora implementar o passo iterativo do jogo. Faremos isso em <code>Window::onPaint</code>. Assim, cada quadro de exibição corresponderá a uma iteração:</p>
+<div class="sourceCode" id="cb121" startFrom="50"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 49;"><span id="cb121-50"><a href="sierpinski.html#cb121-50"></a><span class="dt">void</span> Window<span class="op">::</span>onPaint<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb121-51"><a href="sierpinski.html#cb121-51"></a>  <span class="co">// Randomly pick the index of a triangle vertex</span></span>
+<span id="cb121-52"><a href="sierpinski.html#cb121-52"></a>  <span class="bu">std::</span>uniform_int_distribution<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> intDistribution<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="va">m_points</span><span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb121-53"><a href="sierpinski.html#cb121-53"></a>  <span class="kw">auto</span> <span class="at">const</span> index<span class="op">{</span>intDistribution<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb121-54"><a href="sierpinski.html#cb121-54"></a></span>
+<span id="cb121-55"><a href="sierpinski.html#cb121-55"></a>  <span class="co">// The new position is the midpoint between the current position and the</span></span>
+<span id="cb121-56"><a href="sierpinski.html#cb121-56"></a>  <span class="co">// chosen vertex position</span></span>
+<span id="cb121-57"><a href="sierpinski.html#cb121-57"></a>  <span class="va">m_P</span> <span class="op">=</span> <span class="op">(</span><span class="va">m_P</span> <span class="op">+</span> <span class="va">m_points</span><span class="op">.</span>at<span class="op">(</span>index<span class="op">))</span> <span class="op">/</span> <span class="fl">2.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb121-58"><a href="sierpinski.html#cb121-58"></a></span>
+<span id="cb121-59"><a href="sierpinski.html#cb121-59"></a>  <span class="co">// Print coordinates to console</span></span>
+<span id="cb121-60"><a href="sierpinski.html#cb121-60"></a>  <span class="co">// fmt::print(&quot;({:+.2f}, {:+.2f})\n&quot;, m_P.x, m_P.y);</span></span>
+<span id="cb121-61"><a href="sierpinski.html#cb121-61"></a><span class="op">}</span></span></code></pre></div>
+<p>Neste trecho de código, <code>index</code> é um índice do arranjo <code>m_points</code>. Assim, <code>m_points.at(index)</code> é um dos pontos <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> ou <span class="math inline">\(C\)</span> que definem os vértices do triângulo. Observe que utilizamos uma distribuição uniforme para sortear o índice (<a href="https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution"><code>std::uniform_int_distribution</code></a>). Isso é importante para que o fractal seja desenhado como esperado.</p>
+<p>A nova posição de <code>m_P</code> é calculada como o ponto médio entre <code>m_P</code> e o ponto de <code>m_points</code>.</p>
+<p>O código comentado pode ser utilizado para imprimir no terminal as novas coordenadas de <code>m_P</code>.</p>
+<p>Isso conclui a implementação da lógica do jogo. O resto do código será para desenhar <code>m_P</code> como um ponto na tela. No OpenGL anterior à versão 3.1, isso seria tão simples quanto acrescentar o seguinte código em <code>Window::onPaint</code>:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb122-1"><a href="sierpinski.html#cb122-1" aria-hidden="true" tabindex="-1"></a>glBegin<span class="op">(</span>GL_POINTS<span class="op">);</span></span>
+<span id="cb122-2"><a href="sierpinski.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  glVertex2f<span class="op">(</span><span class="va">m_P</span><span class="op">.</span>x<span class="op">,</span> <span class="va">m_P</span><span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb122-3"><a href="sierpinski.html#cb122-3" aria-hidden="true" tabindex="-1"></a>glEnd<span class="op">();</span></span></code></pre></div>
+<p>Entretanto, como vimos na seção <a href="vectorxraster.html#vectorxraster">3.2</a>, esse código é obsoleto e não é mais suportado em muitos drivers e plataformas. Precisaremos seguir os seguintes passos para desenhar um simples ponto na tela:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Criar um “buffer de vértices” como um recurso do OpenGL.</strong> Esse recurso é chamado VBO (<em>Vertex Buffer Object</em>) e corresponde ao arranjo ordenado de vértices utilizado pela GPU para montar as primitivas que serão renderizadas. No nosso caso, o buffer de vértices só precisa ter um vértice, que é a coordenada do ponto que queremos desenhar. A variável <code>m_VBOVertices</code> é um inteiro que identifica esse recurso.</li>
+<li><strong>Programar o comportamento do pipeline de renderização.</strong> Isso é feito compilando e ligando um par de shaders que fica armazenado na GPU como um único “programa de shader”, identificado pela variável <code>m_program</code>. No OpenGL, os shaders são escritos na linguagem GLSL (OpenGL Shading Language), que é parecida com a linguagem C, mas possui novos tipos de dados e operações.</li>
+<li><strong>Especificar como o buffer de vértices será lido pelo programa de shader.</strong> No nosso código, o estado dessa configuração é armazenado como um objeto do OpenGL chamado VAO (<em>Vertex Array Object</em>), identificado pela variável <code>m_VAO</code>.</li>
+</ol>
+<p>Somente após alocar e ativar esses recursos é que podemos iniciar o pipeline de renderização, chamando uma função de desenho em <code>Window::onPaint</code>. Não se preocupe se tudo isso está parecendo muito complexo nesse momento. Nos próximos capítulos revisitaremos cada etapa diversas vezes até nos familiarizarmos com todo o processo. Por enquanto, utilizaremos o código já pronto.</p>
+<p>Primeiro, defina <code>Window::setupModel</code> como a seguir:</p>
+<div class="sourceCode" id="cb123" startFrom="110"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 109;"><span id="cb123-110"><a href="sierpinski.html#cb123-110"></a><span class="dt">void</span> Window<span class="op">::</span>setupModel<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb123-111"><a href="sierpinski.html#cb123-111"></a>  <span class="co">// Release previous VBO and VAO</span></span>
+<span id="cb123-112"><a href="sierpinski.html#cb123-112"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOVertices</span><span class="op">);</span></span>
+<span id="cb123-113"><a href="sierpinski.html#cb123-113"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb123-114"><a href="sierpinski.html#cb123-114"></a></span>
+<span id="cb123-115"><a href="sierpinski.html#cb123-115"></a>  <span class="co">// Generate a new VBO and get the associated ID</span></span>
+<span id="cb123-116"><a href="sierpinski.html#cb123-116"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOVertices</span><span class="op">);</span></span>
+<span id="cb123-117"><a href="sierpinski.html#cb123-117"></a>  <span class="co">// Bind VBO in order to use it</span></span>
+<span id="cb123-118"><a href="sierpinski.html#cb123-118"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOVertices</span><span class="op">);</span></span>
+<span id="cb123-119"><a href="sierpinski.html#cb123-119"></a>  <span class="co">// Upload data to VBO</span></span>
+<span id="cb123-120"><a href="sierpinski.html#cb123-120"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="va">m_P</span><span class="op">),</span> <span class="op">&amp;</span><span class="va">m_P</span><span class="op">,</span> GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb123-121"><a href="sierpinski.html#cb123-121"></a>  <span class="co">// Unbinding the VBO is allowed (data can be released now)</span></span>
+<span id="cb123-122"><a href="sierpinski.html#cb123-122"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb123-123"><a href="sierpinski.html#cb123-123"></a></span>
+<span id="cb123-124"><a href="sierpinski.html#cb123-124"></a>  <span class="co">// Get location of attributes in the program</span></span>
+<span id="cb123-125"><a href="sierpinski.html#cb123-125"></a>  <span class="kw">auto</span> <span class="at">const</span> positionAttribute<span class="op">{</span></span>
+<span id="cb123-126"><a href="sierpinski.html#cb123-126"></a>      abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inPosition&quot;</span><span class="op">)};</span></span>
+<span id="cb123-127"><a href="sierpinski.html#cb123-127"></a></span>
+<span id="cb123-128"><a href="sierpinski.html#cb123-128"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb123-129"><a href="sierpinski.html#cb123-129"></a>  abcg<span class="op">::</span>glGenVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb123-130"><a href="sierpinski.html#cb123-130"></a></span>
+<span id="cb123-131"><a href="sierpinski.html#cb123-131"></a>  <span class="co">// Bind vertex attributes to current VAO</span></span>
+<span id="cb123-132"><a href="sierpinski.html#cb123-132"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb123-133"><a href="sierpinski.html#cb123-133"></a></span>
+<span id="cb123-134"><a href="sierpinski.html#cb123-134"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>positionAttribute<span class="op">);</span></span>
+<span id="cb123-135"><a href="sierpinski.html#cb123-135"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOVertices</span><span class="op">);</span></span>
+<span id="cb123-136"><a href="sierpinski.html#cb123-136"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>positionAttribute<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb123-137"><a href="sierpinski.html#cb123-137"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb123-138"><a href="sierpinski.html#cb123-138"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb123-139"><a href="sierpinski.html#cb123-139"></a></span>
+<span id="cb123-140"><a href="sierpinski.html#cb123-140"></a>  <span class="co">// End of binding to current VAO</span></span>
+<span id="cb123-141"><a href="sierpinski.html#cb123-141"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb123-142"><a href="sierpinski.html#cb123-142"></a><span class="op">}</span></span></code></pre></div>
+<p>Esse código cria o VBO (<code>m_VBOVertices</code>) e VAO (<code>m_VAO</code>) usando a posição atual de <code>m_P</code>.</p>
+<p>Agora, modifique <code>onCreate</code> para o seguinte código final:</p>
+<div class="sourceCode" id="cb124" startFrom="3"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 2;"><span id="cb124-3"><a href="sierpinski.html#cb124-3"></a><span class="dt">void</span> Window<span class="op">::</span>onCreate<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb124-4"><a href="sierpinski.html#cb124-4"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">*</span>vertexShader<span class="op">{</span><span class="st">R&quot;gl(</span><span class="vs">#version 300 es</span></span>
+<span id="cb124-5"><a href="sierpinski.html#cb124-5"></a><span class="vs">    layout(location = 0) in vec2 inPosition;</span></span>
+<span id="cb124-6"><a href="sierpinski.html#cb124-6"></a></span>
+<span id="cb124-7"><a href="sierpinski.html#cb124-7"></a><span class="vs">    void main() { </span></span>
+<span id="cb124-8"><a href="sierpinski.html#cb124-8"></a><span class="vs">      gl_PointSize = 2.0;</span></span>
+<span id="cb124-9"><a href="sierpinski.html#cb124-9"></a><span class="vs">      gl_Position = vec4(inPosition, 0, 1); </span></span>
+<span id="cb124-10"><a href="sierpinski.html#cb124-10"></a><span class="vs">    }</span></span>
+<span id="cb124-11"><a href="sierpinski.html#cb124-11"></a><span class="vs">  </span><span class="st">)gl&quot;</span><span class="op">};</span></span>
+<span id="cb124-12"><a href="sierpinski.html#cb124-12"></a></span>
+<span id="cb124-13"><a href="sierpinski.html#cb124-13"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">*</span>fragmentShader<span class="op">{</span><span class="st">R&quot;gl(</span><span class="vs">#version 300 es</span></span>
+<span id="cb124-14"><a href="sierpinski.html#cb124-14"></a><span class="vs">    precision mediump float;</span></span>
+<span id="cb124-15"><a href="sierpinski.html#cb124-15"></a></span>
+<span id="cb124-16"><a href="sierpinski.html#cb124-16"></a><span class="vs">    out vec4 outColor;</span></span>
+<span id="cb124-17"><a href="sierpinski.html#cb124-17"></a></span>
+<span id="cb124-18"><a href="sierpinski.html#cb124-18"></a><span class="vs">    void main() { outColor = vec4(1); }</span></span>
+<span id="cb124-19"><a href="sierpinski.html#cb124-19"></a><span class="vs">  </span><span class="st">)gl&quot;</span><span class="op">};</span></span>
+<span id="cb124-20"><a href="sierpinski.html#cb124-20"></a></span>
+<span id="cb124-21"><a href="sierpinski.html#cb124-21"></a>  <span class="co">// Create shader program</span></span>
+<span id="cb124-22"><a href="sierpinski.html#cb124-22"></a>  <span class="va">m_program</span> <span class="op">=</span> abcg<span class="op">::</span>createOpenGLProgram<span class="op">(</span></span>
+<span id="cb124-23"><a href="sierpinski.html#cb124-23"></a>      <span class="op">{{.</span>source <span class="op">=</span> vertexShader<span class="op">,</span> <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Vertex<span class="op">},</span></span>
+<span id="cb124-24"><a href="sierpinski.html#cb124-24"></a>       <span class="op">{.</span>source <span class="op">=</span> fragmentShader<span class="op">,</span> <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Fragment<span class="op">}});</span></span>
+<span id="cb124-25"><a href="sierpinski.html#cb124-25"></a></span>
+<span id="cb124-26"><a href="sierpinski.html#cb124-26"></a>  <span class="co">// Clear window</span></span>
+<span id="cb124-27"><a href="sierpinski.html#cb124-27"></a>  abcg<span class="op">::</span>glClearColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb124-28"><a href="sierpinski.html#cb124-28"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb124-29"><a href="sierpinski.html#cb124-29"></a></span>
+<span id="cb124-30"><a href="sierpinski.html#cb124-30"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span>GLfloat<span class="op">,</span> <span class="dv">2</span><span class="op">&gt;</span> sizes<span class="op">{};</span></span>
+<span id="cb124-31"><a href="sierpinski.html#cb124-31"></a><span class="pp">#if !defined(__EMSCRIPTEN__)</span></span>
+<span id="cb124-32"><a href="sierpinski.html#cb124-32"></a>  abcg<span class="op">::</span>glEnable<span class="op">(</span>GL_PROGRAM_POINT_SIZE<span class="op">);</span></span>
+<span id="cb124-33"><a href="sierpinski.html#cb124-33"></a>  abcg<span class="op">::</span>glGetFloatv<span class="op">(</span>GL_POINT_SIZE_RANGE<span class="op">,</span> sizes<span class="op">.</span>data<span class="op">());</span></span>
+<span id="cb124-34"><a href="sierpinski.html#cb124-34"></a><span class="pp">#else</span></span>
+<span id="cb124-35"><a href="sierpinski.html#cb124-35"></a>  abcg<span class="op">::</span>glGetFloatv<span class="op">(</span>GL_ALIASED_POINT_SIZE_RANGE<span class="op">,</span> sizes<span class="op">.</span>data<span class="op">());</span></span>
+<span id="cb124-36"><a href="sierpinski.html#cb124-36"></a><span class="pp">#endif</span></span>
+<span id="cb124-37"><a href="sierpinski.html#cb124-37"></a>  fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;Point size: </span><span class="sc">{:.2f}</span><span class="st"> (min), </span><span class="sc">{:.2f}</span><span class="st"> (max)</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> sizes<span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">),</span></span>
+<span id="cb124-38"><a href="sierpinski.html#cb124-38"></a>             sizes<span class="op">.</span>at<span class="op">(</span><span class="dv">1</span><span class="op">));</span></span>
+<span id="cb124-39"><a href="sierpinski.html#cb124-39"></a></span>
+<span id="cb124-40"><a href="sierpinski.html#cb124-40"></a>  <span class="co">// Start pseudorandom number generator</span></span>
+<span id="cb124-41"><a href="sierpinski.html#cb124-41"></a>  <span class="kw">auto</span> <span class="at">const</span> seed<span class="op">{</span><span class="bu">std::</span>chrono<span class="bu">::</span>steady_clock<span class="bu">::</span>now<span class="op">().</span>time_since_epoch<span class="op">().</span>count<span class="op">()};</span></span>
+<span id="cb124-42"><a href="sierpinski.html#cb124-42"></a>  <span class="va">m_randomEngine</span><span class="op">.</span>seed<span class="op">(</span>seed<span class="op">);</span></span>
+<span id="cb124-43"><a href="sierpinski.html#cb124-43"></a></span>
+<span id="cb124-44"><a href="sierpinski.html#cb124-44"></a>  <span class="co">// Randomly pick a pair of coordinates in the range [-1; 1)</span></span>
+<span id="cb124-45"><a href="sierpinski.html#cb124-45"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;</span> realDistribution<span class="op">(-</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb124-46"><a href="sierpinski.html#cb124-46"></a>  <span class="va">m_P</span><span class="op">.</span>x <span class="op">=</span> realDistribution<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">);</span></span>
+<span id="cb124-47"><a href="sierpinski.html#cb124-47"></a>  <span class="va">m_P</span><span class="op">.</span>y <span class="op">=</span> realDistribution<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">);</span></span>
+<span id="cb124-48"><a href="sierpinski.html#cb124-48"></a><span class="op">}</span></span></code></pre></div>
+<p>Nesta função, <code>vertexShader</code> e <code>fragmentShader</code> são strings que contêm o código-fonte dos shaders. <code>vertexShader</code> é o código do chamado <em>vertex shader</em>, que programa o processamento de vértices na GPU. <code>fragmentShader</code> é o código do <em>fragment shader</em>, que programa o processamento de pixels na GPU (ou, mais precisamente, o processamento de fragmentos, que são conjuntos de atributos que representam uma amostra de geometria rasterizada).</p>
+<p>A compilação e ligação dos shaders é feita pela função <code>abcg::createOpenGLProgram</code>. Se acontecer algum erro de compilação, a mensagem de erro será exibida no console e uma exceção será lançada.</p>
+<p>Note que limpamos o buffer de cor com a cor preta, usando <code>glClearColor</code> e <code>glClear</code> (linhas 27 e 28).</p>
+<p>Observe o trecho de código entre as diretivas de pré-processamento:</p>
+<div class="sourceCode" id="cb125" startFrom="31"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 30;"><span id="cb125-31"><a href="sierpinski.html#cb125-31"></a><span class="pp">#if !defined(__EMSCRIPTEN__)</span></span>
+<span id="cb125-32"><a href="sierpinski.html#cb125-32"></a>  glEnable<span class="op">(</span>GL_PROGRAM_POINT_SIZE<span class="op">);</span></span>
+<span id="cb125-33"><a href="sierpinski.html#cb125-33"></a>  abcg<span class="op">::</span>glGetFloatv<span class="op">(</span>GL_POINT_SIZE_RANGE<span class="op">,</span> sizes<span class="op">.</span>data<span class="op">());</span></span>
+<span id="cb125-34"><a href="sierpinski.html#cb125-34"></a><span class="pp">#else</span></span></code></pre></div>
+<p>Esse código só será compilado quando não usarmos o Emscripten, isto é, quando o binário for compilado para desktop. No OpenGL para desktop, o comando da linha 32 é necessário para que o tamanho do ponto que será desenhado possa ser definido no vertex shader. Quando o código é compilado com o Emscripten, podemos considerar que a definição do tamanho do ponto no vertex shader é suportada por padrão, pois o OpenGL utilizado nesse caso é o <a href="https://www.khronos.org/opengles/">OpenGL ES</a> (o WebGL usa um subconjunto de funções do OpenGL ES).</p>
+<p>Observe, no código do vertex shader, que o tamanho do ponto é definido com <code>gl_PointSize = 2.0</code> (isto é, dois pixels). Os tamanhos válidos dependem do que é suportado pelo hardware. Para imprimir no console os tamanhos mínimo e máximo, usamos <code>glGetFloatv</code> neste trecho de código:</p>
+<div class="sourceCode" id="cb126" startFrom="30"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 29;"><span id="cb126-30"><a href="sierpinski.html#cb126-30"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span>GLfloat<span class="op">,</span> <span class="dv">2</span><span class="op">&gt;</span> sizes<span class="op">{};</span></span>
+<span id="cb126-31"><a href="sierpinski.html#cb126-31"></a><span class="pp">#if !defined(__EMSCRIPTEN__)</span></span>
+<span id="cb126-32"><a href="sierpinski.html#cb126-32"></a>  abcg<span class="op">::</span>glEnable<span class="op">(</span>GL_PROGRAM_POINT_SIZE<span class="op">);</span></span>
+<span id="cb126-33"><a href="sierpinski.html#cb126-33"></a>  abcg<span class="op">::</span>glGetFloatv<span class="op">(</span>GL_POINT_SIZE_RANGE<span class="op">,</span> sizes<span class="op">.</span>data<span class="op">());</span></span>
+<span id="cb126-34"><a href="sierpinski.html#cb126-34"></a><span class="pp">#else</span></span>
+<span id="cb126-35"><a href="sierpinski.html#cb126-35"></a>  abcg<span class="op">::</span>glGetFloatv<span class="op">(</span>GL_ALIASED_POINT_SIZE_RANGE<span class="op">,</span> sizes<span class="op">.</span>data<span class="op">());</span></span>
+<span id="cb126-36"><a href="sierpinski.html#cb126-36"></a><span class="pp">#endif</span></span>
+<span id="cb126-37"><a href="sierpinski.html#cb126-37"></a>  fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;Point size: </span><span class="sc">{:.2f}</span><span class="st"> (min), </span><span class="sc">{:.2f}</span><span class="st"> (max)</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> sizes<span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">),</span></span>
+<span id="cb126-38"><a href="sierpinski.html#cb126-38"></a>             sizes<span class="op">.</span>at<span class="op">(</span><span class="dv">1</span><span class="op">));</span></span></code></pre></div>
+<p>A função <code>glGetFloatv</code> com o identificador <code>GL_POINT_SIZE_RANGE</code> (para OpenGL desktop) e <code>GL_ALIASED_POINT_SIZE_RANGE</code> (para OpenGL ES) preenche o arranjo <code>sizes</code> com os tamanhos mínimo e máximo suportados. Em seguida, <code>fmt::print</code> mostra os valores no console.</p>
+<p>Voltando agora à implementação de <code>Window::onPaint</code>, o código final ficará assim:</p>
+<div class="sourceCode" id="cb127" startFrom="50"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 49;"><span id="cb127-50"><a href="sierpinski.html#cb127-50"></a><span class="dt">void</span> Window<span class="op">::</span>onPaint<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb127-51"><a href="sierpinski.html#cb127-51"></a>  <span class="co">// Create OpenGL buffers for drawing the point at m_P</span></span>
+<span id="cb127-52"><a href="sierpinski.html#cb127-52"></a>  setupModel<span class="op">();</span></span>
+<span id="cb127-53"><a href="sierpinski.html#cb127-53"></a></span>
+<span id="cb127-54"><a href="sierpinski.html#cb127-54"></a>  <span class="co">// Set the viewport</span></span>
+<span id="cb127-55"><a href="sierpinski.html#cb127-55"></a>  abcg<span class="op">::</span>glViewport<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>x<span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb127-56"><a href="sierpinski.html#cb127-56"></a></span>
+<span id="cb127-57"><a href="sierpinski.html#cb127-57"></a>  <span class="co">// Start using the shader program</span></span>
+<span id="cb127-58"><a href="sierpinski.html#cb127-58"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb127-59"><a href="sierpinski.html#cb127-59"></a>  <span class="co">// Start using VAO</span></span>
+<span id="cb127-60"><a href="sierpinski.html#cb127-60"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb127-61"><a href="sierpinski.html#cb127-61"></a></span>
+<span id="cb127-62"><a href="sierpinski.html#cb127-62"></a>  <span class="co">// Draw a single point</span></span>
+<span id="cb127-63"><a href="sierpinski.html#cb127-63"></a>  abcg<span class="op">::</span>glDrawArrays<span class="op">(</span>GL_POINTS<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb127-64"><a href="sierpinski.html#cb127-64"></a></span>
+<span id="cb127-65"><a href="sierpinski.html#cb127-65"></a>  <span class="co">// End using VAO</span></span>
+<span id="cb127-66"><a href="sierpinski.html#cb127-66"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb127-67"><a href="sierpinski.html#cb127-67"></a>  <span class="co">// End using the shader program</span></span>
+<span id="cb127-68"><a href="sierpinski.html#cb127-68"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb127-69"><a href="sierpinski.html#cb127-69"></a></span>
+<span id="cb127-70"><a href="sierpinski.html#cb127-70"></a>  <span class="co">// Randomly pick the index of a triangle vertex</span></span>
+<span id="cb127-71"><a href="sierpinski.html#cb127-71"></a>  <span class="bu">std::</span>uniform_int_distribution<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> intDistribution<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="va">m_points</span><span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb127-72"><a href="sierpinski.html#cb127-72"></a>  <span class="kw">auto</span> <span class="at">const</span> index<span class="op">{</span>intDistribution<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb127-73"><a href="sierpinski.html#cb127-73"></a></span>
+<span id="cb127-74"><a href="sierpinski.html#cb127-74"></a>  <span class="co">// The new position is the midpoint between the current position and the</span></span>
+<span id="cb127-75"><a href="sierpinski.html#cb127-75"></a>  <span class="co">// chosen vertex position</span></span>
+<span id="cb127-76"><a href="sierpinski.html#cb127-76"></a>  <span class="va">m_P</span> <span class="op">=</span> <span class="op">(</span><span class="va">m_P</span> <span class="op">+</span> <span class="va">m_points</span><span class="op">.</span>at<span class="op">(</span>index<span class="op">))</span> <span class="op">/</span> <span class="fl">2.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb127-77"><a href="sierpinski.html#cb127-77"></a></span>
+<span id="cb127-78"><a href="sierpinski.html#cb127-78"></a>  <span class="co">// Print coordinates to console</span></span>
+<span id="cb127-79"><a href="sierpinski.html#cb127-79"></a>  <span class="co">// fmt::print(&quot;({:+.2f}, {:+.2f})\n&quot;, m_P.x, m_P.y);</span></span>
+<span id="cb127-80"><a href="sierpinski.html#cb127-80"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linha 52, <code>setupModel</code> cria os recursos do OpenGL necessários para desenhar um ponto na posição atual de <code>m_P</code>.</p>
+<p>Na linha 55, <code>glViewport</code> configura o mapeamento entre o sistema de coordenadas no qual nossos pontos foram definidos (coordenadas normalizadas do dispositivo, ou NDC, de <em>normalized device coordinates</em>), e o sistema de coordenadas da janela (<em>window coordinates</em>), em pixels, com origem no canto inferior esquerdo da janela da aplicação.</p>
+<p>A figura <a href="sierpinski.html#fig:sierpinski2">3.43</a> ilustra como fica configurado o mapeamento entre coordenadas em NDC para coordenadas da janela, supondo uma chamada a <code>glViewport(x, y, w, h)</code>, onde <code>x</code>, <code>y</code>, <code>w</code> e <code>h</code> são inteiros dados em pixels da tela. Na figura, o chamado <em>viewport</em> do OpenGL é a janela formada pelo retângulo entre os pontos <span class="math inline">\((x,y)\)</span> e <span class="math inline">\((x+w,y+h)\)</span>.</p>
+<p>No nosso código com <code>glViewport(0, 0, m_viewportSize.x, m_viewportSize.y)</code>, o ponto <span class="math inline">\((-1,-1)\)</span> em NDC é mapeado para o pixel <span class="math inline">\((0, 0)\)</span> da janela (canto inferior esquerdo), e o ponto <span class="math inline">\((1,1)\)</span> em NDC é mapeado para o pixel <span class="math inline">\((0,0)\)</span> + (<code>m_viewportSize.x</code>, <code>m_viewportSize.y</code>). Isso faz com que o viewport ocupe toda a janela da aplicação.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sierpinski2"></span>
+<img src="images/03_sierpinski2.svg" alt="Mapeamento das coordenadas normalizadas no dispositivo (NDC) para coordenadas da janela usando `glViewport(x, y, w, h)`."  />
+<p class="caption">
+Figura 3.43: Mapeamento das coordenadas normalizadas no dispositivo (NDC) para coordenadas da janela usando <code>glViewport(x, y, w, h)</code>.
+</p>
+</div>
+<p>Com o viewport devidamente configurado, iniciamos o pipeline de renderização neste trecho:</p>
+<div class="sourceCode" id="cb128" startFrom="57"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 56;"><span id="cb128-57"><a href="sierpinski.html#cb128-57"></a>  <span class="co">// Start using the shader program</span></span>
+<span id="cb128-58"><a href="sierpinski.html#cb128-58"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb128-59"><a href="sierpinski.html#cb128-59"></a>  <span class="co">// Start using VAO</span></span>
+<span id="cb128-60"><a href="sierpinski.html#cb128-60"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb128-61"><a href="sierpinski.html#cb128-61"></a></span>
+<span id="cb128-62"><a href="sierpinski.html#cb128-62"></a>  <span class="co">// Draw a single point</span></span>
+<span id="cb128-63"><a href="sierpinski.html#cb128-63"></a>  abcg<span class="op">::</span>glDrawArrays<span class="op">(</span>GL_POINTS<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb128-64"><a href="sierpinski.html#cb128-64"></a></span>
+<span id="cb128-65"><a href="sierpinski.html#cb128-65"></a>  <span class="co">// End using VAO</span></span>
+<span id="cb128-66"><a href="sierpinski.html#cb128-66"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb128-67"><a href="sierpinski.html#cb128-67"></a>  <span class="co">// End using the shader program</span></span>
+<span id="cb128-68"><a href="sierpinski.html#cb128-68"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span></code></pre></div>
+<p>Na linha 58, <code>glUseProgram</code> ativa os shaders compilados no programa <code>m_program</code>.</p>
+<p>Na linha 60, <code>glBindVertexArray</code> ativa o VAO (<code>m_VAO</code>), que contém as especificações de como o arranjo de vértices (VBO) será lido no vertex shader atualmente ativo. Ao ativar o VAO, também é ativado automaticamente o VBO identificado por <code>m_VBO</code>.</p>
+<p>Finalmente, na linha 63, <code>glDrawArrays</code> inicia o pipeline de renderização usando os shaders e o VBO ativos. O primeiro argumento (<code>GL_POINTS</code>) indica que os vértices do arranjo de vértices devem ser tratados como pontos. O segundo argumento (<code>0</code>) é o índice inicial dos vértices no VBO. O terceiro argumento (<code>1</code>) informa quantos vértices devem ser processados.</p>
+<p>O processamento no pipeline de renderização é realizado de forma paralela e assíncrona com a CPU. Isto é, <code>glDrawArrays</code> retorna imediatamente, enquanto a GPU continua trabalhando em paralelo renderizando a geometria no framebuffer.</p>
+<p>Após o comando de renderização, nas linhas 66 e 68 temos comandos para desativar o VAO e os shaders. Essa desativação é opcional pois, de qualquer forma, o mesmo VAO e os mesmos shaders serão utilizados na próxima chamada de <code>Window::onPaint</code>. Ainda assim, é uma boa prática de programação desativá-los logo após seu uso.</p>
+<p>Vamos agora definir a função <code>Window::onResize</code>, assim:</p>
+<div class="sourceCode" id="cb129" startFrom="97"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 96;"><span id="cb129-97"><a href="sierpinski.html#cb129-97"></a><span class="dt">void</span> Window<span class="op">::</span>onResize<span class="op">(</span>glm<span class="op">::</span>ivec2 <span class="at">const</span> <span class="op">&amp;</span>size<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb129-98"><a href="sierpinski.html#cb129-98"></a>  <span class="va">m_viewportSize</span> <span class="op">=</span> size<span class="op">;</span></span>
+<span id="cb129-99"><a href="sierpinski.html#cb129-99"></a></span>
+<span id="cb129-100"><a href="sierpinski.html#cb129-100"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb129-101"><a href="sierpinski.html#cb129-101"></a><span class="op">}</span></span></code></pre></div>
+<p>Como vimos, <code>resizeGL</code> é chamada sempre que a janela da aplicação muda de tamanho. Observe que simplesmente armazenamos o tamanho da janela em <code>m_viewportSize</code>. Como <code>m_viewportSize</code> será usado em <code>glViewport</code>, garantimos que o viewport sempre ocupará toda a janela da aplicação.</p>
+<p>Observe que também chamamos <code>glClear</code> para apagar o buffer de cor. Essa é uma forma de reiniciar o desenho do fractal. Afinal, estragaríamos o triângulo de Sierpinski se continuássemos desenhando sobre o fractal de tamanho anterior.</p>
+<p>A função <code>Window::onDestroy</code> é definida da seguinte maneira:</p>
+<div class="sourceCode" id="cb130" startFrom="103"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 102;"><span id="cb130-103"><a href="sierpinski.html#cb130-103"></a><span class="dt">void</span> Window<span class="op">::</span>onDestroy<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb130-104"><a href="sierpinski.html#cb130-104"></a>  <span class="co">// Release shader program, VBO and VAO</span></span>
+<span id="cb130-105"><a href="sierpinski.html#cb130-105"></a>  abcg<span class="op">::</span>glDeleteProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb130-106"><a href="sierpinski.html#cb130-106"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOVertices</span><span class="op">);</span></span>
+<span id="cb130-107"><a href="sierpinski.html#cb130-107"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb130-108"><a href="sierpinski.html#cb130-108"></a><span class="op">}</span></span></code></pre></div>
+<p>Os comandos <code>glDelete*</code> liberam os recursos alocados em <code>Window::setupModel</code>.</p>
+<p>Para finalizar, definiremos <code>Window::onPaintUI</code> usando o seguinte código:</p>
+<div class="sourceCode" id="cb131" startFrom="82"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 81;"><span id="cb131-82"><a href="sierpinski.html#cb131-82"></a><span class="dt">void</span> Window<span class="op">::</span>onPaintUI<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb131-83"><a href="sierpinski.html#cb131-83"></a>  abcg<span class="op">::</span>OpenGLWindow<span class="op">::</span>onPaintUI<span class="op">();</span></span>
+<span id="cb131-84"><a href="sierpinski.html#cb131-84"></a></span>
+<span id="cb131-85"><a href="sierpinski.html#cb131-85"></a>  <span class="op">{</span></span>
+<span id="cb131-86"><a href="sierpinski.html#cb131-86"></a>    ImGui<span class="op">::</span>SetNextWindowPos<span class="op">(</span>ImVec2<span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="dv">81</span><span class="op">));</span></span>
+<span id="cb131-87"><a href="sierpinski.html#cb131-87"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> ImGuiWindowFlags_NoDecoration<span class="op">);</span></span>
+<span id="cb131-88"><a href="sierpinski.html#cb131-88"></a></span>
+<span id="cb131-89"><a href="sierpinski.html#cb131-89"></a>    <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Button<span class="op">(</span><span class="st">&quot;Clear window&quot;</span><span class="op">,</span> ImVec2<span class="op">(</span><span class="dv">150</span><span class="op">,</span> <span class="dv">30</span><span class="op">)))</span> <span class="op">{</span></span>
+<span id="cb131-90"><a href="sierpinski.html#cb131-90"></a>      abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb131-91"><a href="sierpinski.html#cb131-91"></a>    <span class="op">}</span></span>
+<span id="cb131-92"><a href="sierpinski.html#cb131-92"></a></span>
+<span id="cb131-93"><a href="sierpinski.html#cb131-93"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb131-94"><a href="sierpinski.html#cb131-94"></a>  <span class="op">}</span></span>
+<span id="cb131-95"><a href="sierpinski.html#cb131-95"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linha 83 chamamos o <code>onPaintUI</code> da classe base, responsável por mostrar o contador de FPS. Normalmente, o botão de tela cheia também seria desenhado, mas desabilitamos sua exibição em <code>main.cpp</code>.</p>
+<p>O código nas linhas 85 a 94 cria uma pequena janela da ImGui (com título em branco e sem decorações) contendo um botão “Clear window” que chama <code>glClear</code> sempre que pressionado.</p>
+<p>Isso é tudo! Construa a aplicação para ver o resultado:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/sierpinski/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="750"
+  ></iframe>
+<p>O projeto completo pode ser baixado <a href="https://hbatagelo.github.io/abcgapps/src/sierpinski.zip">deste link</a>.</p>
+<div class="questionbox">
+<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1.4em;width:1.57em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M519.442 288.651c-41.519 0-59.5 31.593-82.058 31.593C377.409 320.244 432 144 432 144s-196.288 80-196.288-3.297c0-35.827 36.288-46.25 36.288-85.985C272 19.216 243.885 0 210.539 0c-34.654 0-66.366 18.891-66.366 56.346 0 41.364 31.711 59.277 31.711 81.75C175.885 207.719 0 166.758 0 166.758v333.237s178.635 41.047 178.635-28.662c0-22.473-40-40.107-40-81.471 0-37.456 29.25-56.346 63.577-56.346 33.673 0 61.788 19.216 61.788 54.717 0 39.735-36.288 50.158-36.288 85.985 0 60.803 129.675 25.73 181.23 25.73 0 0-34.725-120.101 25.827-120.101 35.962 0 46.423 36.152 86.308 36.152C556.712 416 576 387.99 576 354.443c0-34.199-18.962-65.792-56.558-65.792z"/></svg>
+<div class="questionboxtitle">
+Exercícios
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Em <code>Window::onPaint</code>, utilizamos <code>std::uniform_int_distribution</code> para sortear os vértices do triângulo usando uma distribuição uniforme. Veja o que acontece caso a distribuição não seja uniforme. Em particular, troque <code>std::uniform_int_distribution</code> por <a href="https://en.cppreference.com/w/cpp/numeric/random/discrete_distribution"><code>std::discrete_distribution</code></a> e use pesos diferentes para cada vértice. Por exemplo, use <code>std::discrete_distribution&lt;int&gt; intDistribution({30, 50, 20})</code> para que os índices 0, 1, e 2 tenham respectivamente 30%, 50%, e 20% de chance de serem sorteados.</p></li>
+<li><p>Faça com que os pesos da distribuição discreta do item anterior possam ser configurados pelo usuário através de sliders da ImGui. Além disso, faça com que a soma dos três pesos seja sempre 100.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<!-- </div> -->
+<div class="footnotes">
+<hr />
+<ol start="15">
+<li id="fn15"><p>A biblioteca GLM fornece estruturas e funções de operações matemáticas compatíveis com a especificação da linguagem de shaders do OpenGL (GLSL). Por exemplo, <code>glm::ivec2</code> representa um vetor de dois valores do tipo <code>int</code>. Na linguagem de shaders também existe <code>ivec2</code>, mas ele existe como um tipo de dado nativo.<a href="sierpinski.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>O ponto inicial poderia ser simplesmente um ponto fixo ou um dos vértices, mas nosso código segue o algoritmo original descrito no início da seção.<a href="sierpinski.html#fnref16" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="framebuffer.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.3 Windows | MCTA008-17 Computação Gráfica</title>
+  <title>3 Sistemas gráficos | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.3 Windows | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="3 Sistemas gráficos | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.3 Windows | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="3 Sistemas gráficos | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="macos.html"/>
-<link rel="next" href="vscode.html"/>
+<link rel="prev" href="tictactoe.html"/>
+<link rel="next" href="lightcolor.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -260,94 +260,41 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="windows" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Windows<a href="windows.html#windows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para a instalação das ferramentas e bibliotecas de desenvolvimento no Windows, utilizaremos o <a href="https://www.msys2.org">MSYS2</a>.</p>
-<p>MSYS2 é um ambiente de terminal tipo Unix com acesso a um repositório de ferramentas e bibliotecas de desenvolvimento de aplicações nativas em Windows através do gerenciador de pacotes <a href="https://wiki.archlinux.org/index.php/pacman">pacman</a>. Essas ferramentas e bibliotecas incluem o CMake, Git, GLEW, SDL 2.0 e SDL_image 2.0, entre outras que vamos utilizar na disciplina. O MSYS2 também permite instalar o <a href="http://mingw-w64.org">MinGW-W64</a>. Com isso conseguiremos usar o compilador GCC para gerar binários nativos para o Windows 64 bits e poderemos também usar o GDB para depurar nossos programas.</p>
-<div class="infobox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
-<div class="infoboxtitle">
-Por que não o Visual Studio?
-</div>
-<p>Poderíamos instalar as ferramentas de desenvolvimento sem precisar do MSYS2. O <a href="https://visualstudio.microsoft.com/">Visual Studio</a> é uma alternativa ao GCC e tem a vantagem de ser um IDE completo. A desvantagem é que a instalação das dependências é mais complexa, intrusiva e suscetível a incompatibilidades decorrentes das diferentes configurações do Windows. Daremos preferência ao MSYS2 pois a instalação é mais simples e a experiência de uso das ferramentas é mais parecida com a das outras plataformas.</p>
-</div>
-<p>Siga os passos a seguir para instalar o MSYS2 e as ferramentas/bibliotecas de desenvolvimento:</p>
+<div id="graphicssystem" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Sistemas gráficos<a href="graphicssystem.html#graphicssystem" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Um sistema gráfico é um sistema computacional com capacidade de processar dados para gerar imagens em um dispositivo de exibição. Em sistemas interativos, a interação com os modelos de dados gráficos se dá através de um ou mais dispositivos de entrada. Assim, de maneira geral, um sistema gráfico é composto pelos seguintes componentes:</p>
 <ol style="list-style-type: decimal">
-<li><p>Baixe o instalador de <a href="https://www.msys2.org">https://www.msys2.org</a>, execute-o e siga as instruções de instalação.</p></li>
-<li><p>Abra o shell do MSYS2 (aplicativo “MSYS2 MSYS” no menu Iniciar) e execute o seguinte comando:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb43-1"><a href="windows.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pacman</span> <span class="at">-S</span> git mingw-w64-x86_64-ccache mingw-w64-x86_64-cmake mingw-w64-x86_64-gcc mingw-w64-x86_64-gdb mingw-w64-x86_64-ninja mingw-w64-x86_64-glew mingw-w64-x86_64-SDL2 mingw-w64-x86_64-SDL2_image</span></code></pre></div>
-<p>Isso instalará as ferramentas Git, <a href="https://ccache.dev/">Ccache</a>, CMake, <a href="https://ninja-build.org/">Ninja</a> (o Ninja substitui o GNU Make no Windows), GCC e GDB (do MinGW-W64), e as bibliotecas GLEW, SDL 2.0 e SDL_image 2.0.</p>
-<p>Opcionalmente, instale o pacote <code>mingw-w64-x86_64-glslang</code> com o comando a seguir. Isso instalará a ferramenta <code>glslangValidator</code> que poderá ser usada como <em>linter</em> de código na linguagem GLSL (linguagem de shader que será utilizada na disciplina):</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb44-1"><a href="windows.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pacman</span> <span class="at">-S</span> mingw-w64-x86_64-glslang</span></code></pre></div>
-<p>Ao terminar a instalação, feche o shell do MSYS2.</p></li>
-<li><p>Baixe o instalador do <a href="https://www.python.org/downloads">Python 3</a> para Windows 64 bits e execute-o. No restante do texto usaremos como exemplo a versão 3.10, mas qualquer versão a partir da 3.6 é suportada.</p>
-<p>Durante a instalação, <strong>certifique-se de ativar a opção “Add Python 3.10 to PATH”</strong>.</p>
-<p>Após a instalação, abra o Prompt de Comando (<code>cmd.exe</code>) e execute o comando <code>where python</code> para exibir os diferentes caminhos em que o <code>python</code> é alcançado pela variável de ambiente <code>Path</code>. O resultado deverá ser parecido com o seguinte:</p>
-<pre><code>C:\&gt;where python
-C:\Users\ufabc\AppData\Local\Programs\Python\Python310\python.exe
-C:\Users\ufabc\AppData\Local\Microsoft\WindowsApps\python.exe</code></pre>
-<p><strong>O primeiro caminho exibido deve ser o caminho do executável do Python que acabou de ser instalado.</strong> Neste caso está correto, pois o Python foi instalado no local padrão do instalador que é <code>%LocalAppData%\Programs\Python\Python310</code> (neste exemplo, o nome do usuário é <code>ufabc</code>).</p></li>
-<li><p>No menu inicial, procure por “Editar variáveis de ambiente para a sua conta”. Edite a variável <code>Path</code> do usuário atual e inclua os caminhos para <code>mingw64\bin</code> e <code>usr\bin</code> do MSYS2. Por exemplo, se o MSYS2 foi instalado em <code>C:\msys64</code>, inclua os seguintes caminhos no <code>Path</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
-<pre><code>C:\msys64\usr\bin
-C:\msys64\mingw64\bin</code></pre>
-<p>Edite a ordem dos caminhos de tal forma que os caminhos do Python sejam listados antes dos caminhos do MSYS2, como mostra a figura a seguir. Essa ordem é importante pois o MSYS2 também instala o Python 3, mas queremos usar o Python do Windows:</p>
-<p><img src="images/00_path.png" style="display: block; margin: auto;" /></p>
-<p>Para testar se o MSYS2 foi instalado corretamente, abra o Prompt de Comando e execute o comando <code>g++ --version</code>. A saída deverá ser parecida com a seguinte:</p>
-<pre><code>g++ (Rev5, Built by MSYS2 project) 12.1.0
-Copyright (C) 2022 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</code></pre></li>
+<li><strong>Dispositivos de entrada</strong>: teclado e dispositivos apontadores como <em>mouse</em>, <em>touch pad</em>, <em>touch screen</em>, <em>graphics tablet</em>, <em>trackball</em>, <em>joystick</em>, <em>gamepad</em>, entre outros.</li>
+<li><strong>Processadores</strong>: unidade de processamento central (CPU, <em>central processing unit</em>), unidade de processamento gráfico (GPU, <em>graphics processing unit</em>) e seus subsistemas (controladores, memórias e barramentos) necessários ao processamento dos modelos de dados e conversão em representações visuais;</li>
+<li><strong>Dispositivos de saída</strong>: monitores e telas de LCD (<em>liquid-crystal display</em>), OLED (<em>organic light-emitting diodes</em>), CRT (<em>cathode-ray tube</em>) ou plasma, entre outros dispositivos de exibição.</li>
 </ol>
-<div id="verificando-o-opengl-1" class="section level3 unnumbered hasAnchor">
-<h3>Verificando o OpenGL<a href="windows.html#verificando-o-opengl-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>O suporte ao OpenGL vem integrado ao Windows. Apenas certifique-se de instalar os drivers mais recentes da sua placa de vídeo.</p>
+<p>A definição de um sistema gráfico com esses componentes é bastante ampla e pode incluir tanto as estações gráficas de alto desempenho equipadas com várias GPUs, quanto os computadores pessoais sem processador a gráficos. Pode incluir também os consoles de videogames, <em>smartphones</em>, <em>smartwatches</em>, <em>smart TVs</em>, GPSs, entre outros dispositivos com poder computacional suficiente para produzir saída em um dispositivo de exibição (figura <a href="graphicssystem.html#fig:graphicssystems1">3.1</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:graphicssystems1"></span>
+<img src="images/03_graphics_systems1.jpg" alt="Exemplos de sistemas gráficos." width="100%" />
+<p class="caption">
+Figura 3.1: Exemplos de sistemas gráficos.
+</p>
 </div>
-<div id="instalando-o-emscripten-2" class="section level3 unnumbered hasAnchor">
-<h3>Instalando o Emscripten<a href="windows.html#instalando-o-emscripten-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li><p>Abra o Prompt de Comando em algum caminho onde queira instalar a pasta do SDK do Emscripten (por exemplo, <code>C:\</code>). Note the o terminal deve ser o Prompt de Comando e não o PowerShell.</p></li>
-<li><p>Clone o repositório do SDK:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb48-1"><a href="windows.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/emscripten-core/emsdk.git</span></code></pre></div></li>
-<li><p>Entre na pasta recém-criada:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb49-1"><a href="windows.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> emsdk</span></code></pre></div></li>
-<li><p>Baixe e instale o SDK atualizado (<em>latest</em>):</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb50-1"><a href="windows.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emsdk</span> install latest</span></code></pre></div></li>
-<li><p>Ative o SDK <em>latest</em> para o usuário atual:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb51-1"><a href="windows.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emsdk</span> activate latest</span></code></pre></div></li>
-<li><p>Configure as variáveis de ambiente e <code>PATH</code> do compilador para o terminal atual:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb52-1"><a href="windows.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emsdk_env.bat</span></span></code></pre></div></li>
-</ol>
-<p>Para testar se a instalação foi bem-sucedida, execute o comando <code>emcc --version</code>. A saída deverá ser parecida com a seguinte:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb53-1"><a href="windows.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emcc</span> <span class="er">(</span><span class="ex">Emscripten</span> gcc/clang-like replacement + linker emulating GNU ld<span class="kw">)</span> <span class="ex">3.1.18</span> <span class="er">(</span><span class="ex">d5ca9bba6513763d5bdddbd0efff759332bd85d7</span><span class="kw">)</span></span>
-<span id="cb53-2"><a href="windows.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Copyright</span> <span class="er">(</span><span class="ex">C</span><span class="kw">)</span> <span class="ex">2014</span> the Emscripten authors <span class="er">(</span><span class="ex">see</span> AUTHORS.txt<span class="kw">)</span></span>
-<span id="cb53-3"><a href="windows.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> is free and open source software under the MIT license.</span>
-<span id="cb53-4"><a href="windows.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="ex">There</span> is NO warranty<span class="kw">;</span> <span class="ex">not</span> even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></code></pre></div>
-<div class="notebox">
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
-<div class="noteboxtitle">
-Importante
+<p>Em sistemas gráficos atuais, o papel principal do processador gráfico é realizar a conversão de primitivas geométricas em uma imagem digital. Nos sistemas mais simples, sem aceleração de gráficos em hardware, a CPU é responsável por todo o processamento gráfico e não há distinção entre a memória da CPU e a memória de processamento gráfico.</p>
+<p>Em sistemas com processador dedicado a gráficos (GPU), a GPU pode estar integrada com o chip da CPU (como o <a href="https://www.intel.com/content/www/us/en/embedded/software/hd-gma/hd-graphics-drivers-and-graphics-media-accelerator-drivers-overview.html">Intel HD Graphics</a> ou <a href="https://www.amd.com/en/products/embedded-graphics">AMD HD Graphics</a>), ou situada em uma placa de vídeo discreta com memória dedicada. GPUs discretas podem coexistir em um mesmo sistema com GPUs integradas, em diferentes configurações.</p>
+<p>Em sistemas de alto desempenho, várias GPUs em placas discretas podem ser combinadas para dividir a carga de processamento usando tecnologias como a <a href="https://www.nvidia.com/en-gb/geforce/technologies/sli/">SLI</a> e <a href="https://blogs.nvidia.com/blog/2014/11/14/what-is-nvlink/">NVLink</a> da NVIDIA, e <a href="https://wccftech.com/amd-bids-farewell-to-crossfire-mgpu/">MGPU</a> da AMD.</p>
+<p>A saída de um sistema gráfico é um mapa de bits armazenado em uma área da memória RAM chamada de <strong>framebuffer</strong>. Esse mapa de bits corresponde a uma imagem digital pronta para ser exibida no dispositivo de exibição. O hardware gráfico atualiza continuamente o dispositivo de exibição com o conteúdo o framebuffer. A imagem mostrada em cada atualização é chamada de <strong>quadro de exibição</strong>.</p>
+<p>A figura <a href="graphicssystem.html#fig:graphicssystems2">3.2</a> mostra uma visão geral de um sistema gráfico atual com GPU dedicada em uma configuração comum em desktops. Os dados gráficos são enviados da CPU à GPU através de um barramento de alta velocidade. A GPU opera de forma assíncrona à CPU e gera a saída no framebuffer situado na memória RAM da placa gráfica.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:graphicssystems2"></span>
+<img src="images/03_graphics_systems2.svg" alt="Arquitetura de um sistema gráfico atual com placa gráfica dedicada." width="100%" />
+<p class="caption">
+Figura 3.2: Arquitetura de um sistema gráfico atual com placa gráfica dedicada.
+</p>
 </div>
-<p>Refaça o passo 6 sempre que abrir um terminal ou execute o comando a seguir para registrar permanentemente as variáveis de ambiente no registro do sistema:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb54-1"><a href="windows.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="ex">emsdk_env.bat</span> <span class="at">--permanent</span></span></code></pre></div>
-<p>Caso não queira modificar o registro do sistema, crie um atalho para <code>cmd.exe</code> e use a opção <code>/k</code> para executar o arquivo <code>emsdk_env.bat</code> sempre que o Prompt de Comando for aberto. Por exemplo:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb55-1"><a href="windows.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cmd.exe</span> /k <span class="st">&quot;C:\emsdk\emsdk_env.bat&quot;</span></span></code></pre></div>
-<p>Mude esse caminho de acordo com o local onde <code>emsdk_env.bat</code> foi instalado.</p>
-</div>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>A variável <code>Path</code> existe tanto nas variáveis do <strong>usuário</strong> quanto nas variáveis do <strong>sistema</strong>. A modificação do <code>Path</code> do usuário geralmente é suficiente para uma instalação correta. Se ocorrer algum erro ao seguir as instruções de construção do “Hello, World!” na seção <a href="abcg.html#abcg">1.5</a> (erro de construção ou de DLL não encontrada), experimente alterar o <code>Path</code> do sistema ao invés do usuário.<a href="windows.html#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
+<p>Assim como as CPUs atualmente são compostas por vários núcleos programáveis de processamento, assim também são as GPUs atualmente, mas em uma escala muito maior. Enquanto as CPUs topo-de-linha para desktop possuem no máximo 18 núcleos, como o processador <a href="https://www.intel.com/content/www/us/en/products/sku/198017/intel-core-i910980xe-extreme-edition-processor-24-75m-cache-3-00-ghz/specifications.html">Intel Core i9-10980XE</a>, uma GPU como a <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3080-3080ti/">NVIDIA RTX 3080 Ti</a> contém 10240 núcleos de processamento (chamados de <em>CUDA cores</em>) divididos entre 80 multiprocessadores. Por outro lado, enquanto os núcleos de uma CPU são destinados a processamento de propósito geral, os núcleos de uma GPU suportam um conjunto mais limitado de instruções, dedicado ao processamento de fluxos de dados. GPUs também podem ter núcleos para processamento ainda mais específico. Por exemplo, a mesma NVIDIA RTX 3080 Ti conta também com 320 núcleos dedicados a operações com tensores (<em>tensor cores</em>). Um <em>tensor core</em> é especializado em uma única operação: multiplicar duas matrizes 4x4 em ponto flutuante de 16 bits e acumular o resultado em uma matriz 4x4 em ponto flutuante de 16 ou 32 bits. Além disso, a RTX 3080 Ti também possui 80 núcleos dedicados a processamento de traçado de raios (<em>RT cores</em>).</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="macos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="vscode.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tictactoe.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lightcolor.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

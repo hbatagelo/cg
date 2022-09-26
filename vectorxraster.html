@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.2 Vetorial x matricial | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.2 Vetorial x matricial | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.2 Vetorial x matricial | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lightcolor.html"/>
+<link rel="next" href="es.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="vectorxraster" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Vetorial <em>x</em> matricial<a href="vectorxraster.html#vectorxraster" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Em computação gráfica, é comum trabalharmos com dois tipos de representações de gráficos: a representação vetorial, utilizada na descrição de formas 2D e 3D compostas por primitivas geométricas, e a representação matricial, utilizada em imagens digitais e definição de texturas.</p>
+<p>O processo de converter representações vetoriais em representações matriciais desempenha um papel central no pipeline de processamento gráfico, uma vez que a representação matricial é a representação final de uma imagem nos dispositivos de exibição. Essa <strong>conversão matricial</strong>, também chamada de <strong>rasterização</strong> (<em>raster conversion</em> ou <em>scan conversion</em>), é implementada em hardware nas GPUs atuais.</p>
+<p>A figura <a href="vectorxraster.html#fig:vectorxraster">3.17</a> ilustra o resultado da conversão de uma representação vetorial em representação matricial. As formas geométricas à esquerda estão representadas originalmente no formato SVG (<em>Scalable Vector Graphics</em>), que é o formato padrão de gráficos vetoriais nos navegadores Web. A imagem à direita é um arranjo bidimensional de valores de cor, resultado da renderização das formas SVG em uma imagem digital (neste caso, uma imagem de baixa resolução).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vectorxraster"></span>
+<img src="images/03_vectorxraster.svg" alt="Rasterização de um círculo e triângulo." width="90%" />
+<p class="caption">
+Figura 3.17: Rasterização de um círculo e triângulo.
+</p>
+</div>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>A figura <a href="vectorxraster.html#fig:vectorxraster">3.17</a> é apenas ilustrativa. Rigorosamente falando, a imagem da esquerda também está no formato matricial. O navegador converte automaticamente o código SVG em comandos da API gráfica que fazem com que a GPU renderize a imagem que vemos na tela. A rasterização ocorre durante este processamento. A imagem à direita não precisa passar pelo processo de renderização pois já é uma imagem digital em seu formato nativo.</p>
+</div>
+<div id="representação-vetorial" class="section level3 unnumbered hasAnchor">
+<h3>Representação vetorial<a href="vectorxraster.html#representação-vetorial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Na representação vetorial, os gráficos são descritos em termos de primitivas geométricas. Por exemplo, o formato SVG é um formato de descrição de gráficos vetoriais 2D através de sequências de comandos de desenho. Uma forma 2D pode ser descrita através da definição de um “caminho” (<em>path</em>) composto por uma sequência de passos de movimentação de uma caneta virtual sobre um plano. Os principais passos utilizados são comandos do tipo <strong>MoveTo</strong>, <strong>LineTo</strong> e <strong>ClosePath</strong>:</p>
+<ul>
+<li><strong>MoveTo</strong> (denotado por <code>M</code> ou <code>m</code> em SVG<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>) move a caneta virtual para uma nova posição na área de desenho, como se ela fosse levantada da superfície e posicionada em outro local;</li>
+<li><strong>LineTo</strong> (<code>L</code> ou <code>l</code>) traça um segmento de reta da posição atual da caneta até uma nova posição, que passa a ser a nova posição da caneta;</li>
+<li>Em uma sequência de comandos <strong>LineTo</strong>, o comando <strong>ClosePath</strong> (<code>Z</code> ou <code>z</code>) traça um segmento de reta que fecha o caminho da posição atual da caneta ao ponto inicial.</li>
+</ul>
+<p>Observe o código SVG a seguir que resulta no desenho do triângulo visto mais abaixo:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb111-1"><a href="vectorxraster.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;svg</span> <span class="er">width</span><span class="ot">=</span><span class="st">&quot;250&quot;</span> <span class="er">height</span><span class="ot">=</span><span class="st">&quot;210&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb111-2"><a href="vectorxraster.html#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;path</span> <span class="er">d</span><span class="ot">=</span><span class="st">&quot;M125 0 L0 200 L250 200 Z&quot;</span> <span class="er">stroke</span><span class="ot">=</span><span class="st">&quot;black&quot;</span> <span class="er">fill</span><span class="ot">=</span><span class="st">&quot;lightgray&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb111-3"><a href="vectorxraster.html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/svg&gt;</span> </span></code></pre></div>
+<p>No rótulo <code>&lt;svg&gt;</code>, os atributos <code>width="250"</code> e <code>height="210"</code> definem que a área de desenho tem largura 250 e altura 210. Por padrão, a origem fica no canto superior esquerdo. O eixo horizontal (<span class="math inline">\(x\)</span>) é positivo para a direita, e o eixo vertical (<span class="math inline">\(y\)</span>) é positivo para baixo.</p>
+<p>O atributo <code>d</code> do rótulo <code>&lt;path&gt;</code> contém os comandos de desenho do caminho. <code>M125 0</code> move a caneta virtual para a posição (125,0). Em seguida, <code>L0 200</code> traça um segmento da posição atual até a posição (0, 200), que passa a ser a nova posição da caneta. <code>L250 200</code> traça um novo segmento até (250, 200). O comando <code>Z</code> fecha o caminho até a posição inicial em (125, 0), completando o triângulo. O atributo <code>stroke="black"</code> define a cor do traço como preto, e <code>fill="lightgray"</code> define a cor de preenchimento como cinza claro:</p>
+<svg width="250" height="210">
+  <path d="M125 0 L0 200 L250 200 Z" stroke="black" fill="lightgray" />
+</svg> 
+<p>O formato SVG também suporta a descrição de curvas, arcos, retângulos, círculos, elipses, entre outras primitivas geométricas. Comandos similares são suportados em outros formatos de gráficos vetoriais, como o EPS (<em>Encapsulated PostScript</em>), PDF (<em>Portable Document Format</em>), AI (<em>Adobe Illustrator Artwork</em>) e DXF (<em>AutoCAD Drawing Exchange Format</em>).</p>
+<div id="representação-vetorial-no-opengl" class="section level4 unnumbered hasAnchor">
+<h4>Representação vetorial no OpenGL<a href="vectorxraster.html#representação-vetorial-no-opengl" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>No OpenGL, a representação vetorial é utilizada para definir a geometria que será processada durante a renderização. <strong>Todas as primitivas geométricas são definidas a partir de vértices</strong> que representam posições em um espaço, e atributos adicionais definidos pelo programador (por exemplo, a cor do vértice). Esses vértices são armazenados em arranjos ordenados que são processados em um fluxo de vértices no pipeline de renderização especificado pelo OpenGL.</p>
+<p>Os vértices podem ser utilizados para formar diferentes primitivas. Por exemplo, o uso do identificador <code>GL_TRIANGLES</code> na função de renderização <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glDrawArrays.xhtml"><code>glDrawArrays</code></a> faz com que seja formado um triângulo a cada grupo de três vértices do arranjo de vértices. Assim, se o arranjo tiver seis vértices (em uma sequência de 0 a 5), serão formados dois triângulos: um triângulo com os vértices 0, 1, 2, e outro com os vértices 3, 4, 5. Para o mesmo arranjo de vértices, <code>GL_POINTS</code> faz com que o pipeline de renderização interprete cada vértice como um ponto separado, e <code>GL_LINE_STRIP</code> faz com que o pipeline de renderização forme uma sequência de segmentos (uma polilinha) conectando os vértices. A figura <a href="vectorxraster.html#fig:glprimitives1">3.18</a> ilustra a formação dessas primitivas para um arranjo de seis vértices no plano. A numeração indica a ordem dos vértices no arranjo.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:glprimitives1"></span>
+<img src="images/03_glprimitives1.svg" alt="Formando diferentes primitivas do OpenGL com um mesmo arranjo de vértices." width="100%" />
+<p class="caption">
+Figura 3.18: Formando diferentes primitivas do OpenGL com um mesmo arranjo de vértices.
+</p>
+</div>
+<p>A figura <a href="vectorxraster.html#fig:glprimitives2">3.19</a> mostra como a geometria das primitivas pode mudar (com exceção de <code>GL_POINTS</code>) caso os vértices estejam em uma ordem diferente no arranjo.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:glprimitives2"></span>
+<img src="images/03_glprimitives2.svg" alt="A ordem dos vértices no arranjo altera a geometria das primitivas." width="100%" />
+<p class="caption">
+Figura 3.19: A ordem dos vértices no arranjo altera a geometria das primitivas.
+</p>
+</div>
+<p>Veremos com mais detalhes o uso de primitivas no próximo capítulo quando abordaremos as diferentes etapas de processamento do pipeline de renderização do OpenGL.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Até a década de 2010, a maneira mais comum de renderizar primitivas no OpenGL era através de comandos do <em>modo imediato</em> de renderização, como a seguir (em C/C++):</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb112-1"><a href="vectorxraster.html#cb112-1" aria-hidden="true" tabindex="-1"></a>glColor3f<span class="op">(</span><span class="fl">0.83</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.83</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.83</span><span class="bu">f</span><span class="op">);</span> <span class="co">// Light gray color</span></span>
+<span id="cb112-2"><a href="vectorxraster.html#cb112-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-3"><a href="vectorxraster.html#cb112-3" aria-hidden="true" tabindex="-1"></a>glBegin<span class="op">(</span>GL_TRIANGLES<span class="op">);</span></span>
+<span id="cb112-4"><a href="vectorxraster.html#cb112-4" aria-hidden="true" tabindex="-1"></a>  glVertex2i<span class="op">(-</span><span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb112-5"><a href="vectorxraster.html#cb112-5" aria-hidden="true" tabindex="-1"></a>  glVertex2i<span class="op">(</span> <span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb112-6"><a href="vectorxraster.html#cb112-6" aria-hidden="true" tabindex="-1"></a>  glVertex2i<span class="op">(</span> <span class="dv">0</span><span class="op">,</span>  <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb112-7"><a href="vectorxraster.html#cb112-7" aria-hidden="true" tabindex="-1"></a>glEnd<span class="op">();</span></span></code></pre></div>
+<p>Nesse código, a função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glColor.xml"><code>glColor3f</code></a> informa que a cor dos vértices que estão prestes a ser definidos será um cinza claro, como no triângulo desenhado com SVG. O sufixo <code>3f</code> de <code>glColor3f</code> indica que os argumentos são três valores do tipo <code>float</code>.</p>
+<p>Entre as funções <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glBegin.xml"><code>glBegin</code></a> e <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glEnd.xml"><code>glEnd</code></a> é definida a sequência de vértices. Cada chamada a <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glVertex.xml"><code>glVertex2i</code></a> define as coordenadas 2D de um vértice (o sufixo <code>2i</code> indica que as coordenadas são compostas por dois números inteiros). Como há três vértices e a primitiva é identificada com <code>GL_TRIANGLES</code>, será desenhado um triângulo cinza similar ao triângulo desenhado com SVG, porém sem o contorno preto<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>.</p>
+<p>O sistema de coordenadas nativo do OpenGL não é o mesmo da área de desenho do formato SVG. No OpenGL, a origem é o centro da janela de visualização, sendo que o eixo <span class="math inline">\(x\)</span> é positivo à direita e o eixo <span class="math inline">\(y\)</span> é positivo para cima. Além disso, para que a primitiva possa ser vista, as coordenadas dos vértices precisam estar entre -1 e 1 (em ponto flutuante).</p>
+<p>Para desenhar o triângulo colorido do exemplo “Hello, World!”, como visto na seção <a href="abcg.html#abcg">1.5</a>, poderíamos utilizar o seguinte código:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb113-1"><a href="vectorxraster.html#cb113-1" aria-hidden="true" tabindex="-1"></a>glBegin<span class="op">(</span>GL_TRIANGLES<span class="op">);</span></span>
+<span id="cb113-2"><a href="vectorxraster.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  glColor3f<span class="op">(</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">);</span> <span class="co">// Red</span></span>
+<span id="cb113-3"><a href="vectorxraster.html#cb113-3" aria-hidden="true" tabindex="-1"></a>  glVertex2f<span class="op">(</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.5</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb113-4"><a href="vectorxraster.html#cb113-4" aria-hidden="true" tabindex="-1"></a>  glColor3f<span class="op">(</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span> <span class="co">// Magenta</span></span>
+<span id="cb113-5"><a href="vectorxraster.html#cb113-5" aria-hidden="true" tabindex="-1"></a>  glVertex2f<span class="op">(</span><span class="fl">0.5</span><span class="bu">f</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.5</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb113-6"><a href="vectorxraster.html#cb113-6" aria-hidden="true" tabindex="-1"></a>  glColor3f<span class="op">(</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span> <span class="co">// Green</span></span>
+<span id="cb113-7"><a href="vectorxraster.html#cb113-7" aria-hidden="true" tabindex="-1"></a>  glVertex2f<span class="op">(-</span><span class="fl">0.5</span><span class="bu">f</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.5</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb113-8"><a href="vectorxraster.html#cb113-8" aria-hidden="true" tabindex="-1"></a>glEnd<span class="op">();</span></span></code></pre></div>
+<p>Observe que, antes da definição de cada vértice, é definida a sua cor. Quando o triângulo é processado na GPU, as cores em cada vértice são interpoladas bilinearmente (em <span class="math inline">\(x\)</span> e em <span class="math inline">\(y\)</span>) ao longo da superfície do triângulo, formando um gradiente de cores.</p>
+<p>Em nossos programas usando a ABCg, bastaria colocar esse código na função membro <code>onPaint</code> de nossa classe derivada de <code>abcg::OpenGLWindow</code>. Internamente o OpenGL utilizaria um <em>pipeline de renderização de função fixa</em> (pipeline não programável) para desenhar o triângulo. No entanto, se compararmos com o código atual do projeto no subdiretório <code>abcg\examples\helloworld</code>, perceberemos que não há nenhum comando <code>glBegin</code>, <code>glVertex*</code> ou <code>glColor*</code>. Isso acontece porque o código acima é obsoleto. As funções do modo imediato foram retiradas do OpenGL na versão 3.1 (de 2009). Ainda é possível habilitar um “perfil de compatibilidade” (<em>compatibility profile</em>) para usar funções obsoletas do OpenGL, mas esse perfil não é recomendado para código atual. Por isso, não o utilizaremos neste curso.</p>
+<p>Atualmente, para desenhar primitivas com o OpenGL, o arranjo ordenado de vértices precisa ser enviada previamente à GPU juntamente com programas chamados <em>shaders</em> que definem como os vértices serão processados e como os pixels serão preenchidos após a rasterização.</p>
+<p>Desenhar um simples triângulo preenchido no OpenGL não é tão simples como antigamente, mas essa dificuldade é compensada pela maior eficiência e flexibilidade obtida com a possibilidade de programar o comportamento da GPU.</p>
+</div>
+</div>
+</div>
+<div id="representação-matricial" class="section level3 unnumbered hasAnchor">
+<h3>Representação matricial<a href="vectorxraster.html#representação-matricial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Na representação matricial, também chamada de representação <strong>raster</strong>, as imagens são compostas por arranjos bidimensionais de elementos discretos e finitos chamados de <strong>pixels</strong> (<em>picture elements</em>). Um pixel contém uma informação de amostra de cor e corresponde ao menor elemento que compõe a imagem. A <strong>resolução da imagem</strong> é o número de linhas e colunas do arranjo bidimensional. Esse é o formato utilizado nos arquivos GIF (<em>Graphics Interchange Format</em>), TIFF (<em>Tag Image File Format</em>), PNG (<em>Portable Graphics Format</em>), JPEG e BMP. A figura <a href="vectorxraster.html#fig:rasterdetail">3.20</a> mostra uma imagem digital e um detalhe ampliado.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rasterdetail"></span>
+<img src="images/03_rasterdetail.svg" alt="Imagem digital de 300x394 pixels e detalhe ampliado de 38x38 pixels."  />
+<p class="caption">
+Figura 3.20: Imagem digital de 300x394 pixels e detalhe ampliado de 38x38 pixels.
+</p>
+</div>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Embora os pixels ampliados da figura <a href="vectorxraster.html#fig:rasterdetail">3.20</a> sejam mostrados como pequenos quadrados coloridos, um pixel não tem necessariamente o formato de um quadrado. Um pixel é apenas uma amostra de cor e pode ser exibido em diferentes formatos de acordo com o dispositivo de exibição.</p>
+</div>
+<p>Uma imagem digital pode ser armazenada como um <strong>mapa de bits</strong> (<em>bitmap</em>). A quantidade de cores que podem ser representadas em um pixel – a <strong>profundidade da cor</strong> (<em>color depth</em>) – depende do número de bits designados a cada pixel. Em uma <strong>imagem binária</strong>, cada pixel é representado por apenas 1 bit. Desse modo, a imagem só pode ter duas cores, como preto (para os bits com estado 0) e branco (para os bits com estado 1). A figura <a href="vectorxraster.html#fig:flowerbinary">3.21</a> mostra uma imagem binária em formato <a href="https://en.wikipedia.org/wiki/BMP_file_format">BMP</a>, que é um formato simples utilizado para armazenar mapas de bits.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:flowerbinary"></span>
+<img src="images/03_flower_binary.bmp" alt="Imagem binária."  />
+<p class="caption">
+Figura 3.21: Imagem binária.
+</p>
+</div>
+<p>A imagem da figura <a href="vectorxraster.html#fig:flowerbinary">3.21</a> foi gerada a partir de outra imagem de maior profundidade de cor (figura <a href="vectorxraster.html#fig:floweroriginal">3.25</a>) usando o algoritmo Floyd-Steinberg de <em>dithering</em> <span class="citation">(<a href="#ref-steinberg1976" role="doc-biblioref">Floyd and Steinberg 1976</a>)</span>. Dithering é o processo de introduzir um ruído ou padrão de pontilhado que atenua a percepção de artefatos no formato de bandas resultantes da quantização da cor (<em>color banding</em>). A figura <a href="vectorxraster.html#fig:dithering">3.22</a> mostra esse efeito em uma imagem colorida. A imagem da esquerda é a imagem original, com 24 bits de profundidade de cor. A imagem do centro teve a profundidade de cor reduzida para 4 bits (16 cores). É possível perceber as bandas de cor no gradiente do céu. Na imagem da direita, a profundidade de cor também foi reduzida para 4 bits, mas o uso de dithering reduz a percepção das variações bruscas de tom.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dithering"></span>
+<img src="images/03_dithering.png" alt="Redução de bandas de cor com dithering. Esquerda: imagem original de 24 bits/pixel. Centro: redução para 4 bits/pixel. Direita: redução para 4 bits/pixel usando dithering."  />
+<p class="caption">
+Figura 3.22: Redução de bandas de cor com dithering. Esquerda: imagem original de 24 bits/pixel. Centro: redução para 4 bits/pixel. Direita: redução para 4 bits/pixel usando dithering.
+</p>
+</div>
+<p>Em imagens com profundidade de cor de 8 bits, cada pixel pode assumir um valor de 0 a 255. Esse valor pode ser interpretado como um nível de luminosidade para, por exemplo, descrever <strong>imagens monocromáticas</strong> de 256 tons de cinza (figura <a href="vectorxraster.html#fig:flowermono">3.23</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:flowermono"></span>
+<img src="images/03_flower_mono.png" alt="Imagem monocromática de 8 bits por pixel."  />
+<p class="caption">
+Figura 3.23: Imagem monocromática de 8 bits por pixel.
+</p>
+</div>
+<p>Uma outra possibilidade é fazer com que cada valor corresponda a um índice de uma paleta de cores que determina qual será a cor do pixel. Em imagens de 8 bits, a paleta de cores é uma tabela de 256 cores, sendo que cada cor é definida por 3 bytes, um para cada componente de cor RGB (vermelho, verde, azul). Esse formato de <strong>cor indexada</strong> foi o formato predominante em computadores pessoais na década de 1990, quando o hardware gráfico só conseguia exibir um máximo de 256 cores simultâneas no modo VGA (<em>Video Graphics Array</em>). O formato <a href="https://en.wikipedia.org/wiki/GIF">GIF</a>, criado em 1987, utiliza cores indexadas. A figura <a href="vectorxraster.html#fig:flowerindexed">3.24</a> exibe uma imagem GIF e sua paleta correspondente de 256 cores.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:flowerindexed"></span>
+<img src="images/03_flower_indexed.gif" alt="Imagem de 8 bits com cores indexadas (esquerda) e paleta utilizada (direita)."  />
+<p class="caption">
+Figura 3.24: Imagem de 8 bits com cores indexadas (esquerda) e paleta utilizada (direita).
+</p>
+</div>
+<p>Atualmente, as imagens digitais coloridas usam o formato <strong>true color</strong> no qual cada pixel tem 24 bits (3 bytes, um para cada componente de cor RGB), sem o uso de paleta de cor (figura <a href="vectorxraster.html#fig:floweroriginal">3.25</a>). Isso possibilita a exibição de <span class="math inline">\(2^{24}\)</span> cores simultâneas (aproximadamente 16 milhões).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:floweroriginal"></span>
+<img src="images/03_flower_original.jpg" alt="Imagem de 24 bits por pixel."  />
+<p class="caption">
+Figura 3.25: Imagem de 24 bits por pixel.
+</p>
+</div>
+<p>Em arquivos de imagens, também é comum o uso de 32 bits por pixel (4 bytes), sendo 3 bytes para as componentes de cor e 1 byte para definir o nível de opacidade do pixel. Isso permite realizar composição de imagens sobrepostas, por exemplo, misturando cores de uma imagem A sobre uma imagem B, usando o valor de opacidade como peso da combinação.</p>
+<p>Geralmente, os valores de intensidade de cor de um pixel são representados por números inteiros. Entretanto, imagens podem ser especificadas em um formato HDR (<em>high dynamic range</em>) no qual cada componente de cor pode ter até 32 bits em formato de ponto flutuante, permitindo alcançar uma faixa mais ampla de intensidades.</p>
+<p>As GPUs atuais fornecem suporte a um variado conjunto de formatos de bits, incluindo suporte a mapas de bits compactados e tipos de dados em formato de ponto flutuante de 16 e 32 bits.</p>
+</div>
+</div>
+<h3>Referências<a href="referências.html#referências" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-steinberg1976" class="csl-entry">
+Floyd, Robert W., and Louis Steinberg. 1976. <span>“<span>A</span>n <span>A</span>daptive <span>A</span>lgorithm for <span>S</span>patial <span>G</span>reyscale.”</span> <em>Proceedings of the Society of Information Display</em> 17 (2): 75–77.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="11">
+<li id="fn11"><p>Na especificação de um caminho em SVG, letras maiúsculas correspondem a comandos dados em coordenadas absolutas, enquanto que letras minúsculas correspondem a comandos dados em coordenadas relativas à posição atual da caneta.<a href="vectorxraster.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Para desenhar o contorno preto poderíamos duplicar o código, mudando <code>glColor3f</code> para <code>(0.0f, 0.0f, 0.0f)</code> (cor preta) e chamando <code>glBegin</code> com <code>GL_LINE_LOOP</code>.<a href="vectorxraster.html#fnref12" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lightcolor.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="es.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

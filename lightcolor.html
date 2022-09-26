@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.1 Luz e cor | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.1 Luz e cor | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.1 Luz e cor | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="graphicssystem.html"/>
+<link rel="next" href="vectorxraster.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lightcolor" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Luz e cor<a href="lightcolor.html#lightcolor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Luz</strong> é a radiação eletromagnética visível ao olho humano, situada em uma faixa de frequências entre a radiação infravermelha e a ultravioleta (figura <a href="lightcolor.html#fig:spectrum">3.3</a>). Em particular, a luz corresponde à radiação nas frequências eletromagnéticas na faixa de 420 e 750 THz, mas é mais frequentemente caracterizada pelo comprimento de onda em vez da frequência. Cada comprimento de onda corresponde a uma <strong>cor monocromática</strong> ou <strong>cor espectral</strong>, de 400 nm, que corresponde ao limite entre o ultravioleta e o violeta, até 700 nm, que corresponde ao limite entre o vermelho e o infravermelho.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:spectrum"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/EM_spectrum.svg" alt="Espectro eletromagnético e espectro visível ([fonte](https://commons.wikimedia.org/wiki/File:EM_spectrum.svg))." width="100%" />
+<p class="caption">
+Figura 3.3: Espectro eletromagnético e espectro visível (<a href="https://commons.wikimedia.org/wiki/File:EM_spectrum.svg">fonte</a>).
+</p>
+</div>
+<p>A luz de um <a href="https://en.wikipedia.org/wiki/Laser">laser</a> é um exemplo de luz monocromática. Entretanto, em geral, a luz é uma combinação de um contínuo de diferentes comprimentos de onda em diferentes intensidades. Por exemplo, a cor branca não é uma cor monocromática, mas a composição de um espectro de luz visível que corresponde aproximadamente à luz do sol.</p>
+<p>É possível representar a distribuição de energia emitida, transmitida ou refletida de um objeto através de uma <em>função de distribuição espectral de potência radiante</em> (SPD, ou <em>spectral power distribution</em>). SPDs podem mensuradas a partir de objetos reais através de um <a href="https://en.wikipedia.org/wiki/Spectroradiometer">espectrorradiômetro</a>. A figura <a href="lightcolor.html#fig:spd">3.4</a> mostra algumas dessas distribuições: para uma lâmpada incandescente (lâmpada halógena de tungstênio) e para a luz do dia (luz solar filtrada pela atmosfera). O eixo horizontal representa o comprimento de onda e o eixo vertical representa uma potência relativa (normalizada).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:spd"></span>
+<img src="images/03_spds.svg" alt="Gráficos de distribuição de energia espectral (SPD) para uma lâmpada halógena e para a luz do dia." width="100%" />
+<p class="caption">
+Figura 3.4: Gráficos de distribuição de energia espectral (SPD) para uma lâmpada halógena e para a luz do dia.
+</p>
+</div>
+<p><strong>Cor</strong> é uma sensação visual; é o que percebemos quando uma composição espectral de luz estimula as células fotorreceptoras de nossos olhos, produzindo impulsos nervosos que são interpretados pelo cérebro. A sensação da cor, e a visão de uma forma geral, depende de fatores físicos (por exemplo, a distribuição da energia espectral da luz), fatores biológicos (por exemplo, a distribuição das células fotorreceptoras no fundo do olho) e psicológicos (por exemplo, como o cérebro interpreta os impulsos nervosos recebidos pelo nervo óptico).</p>
+<div id="visão-tricromática" class="section level3 unnumbered hasAnchor">
+<h3>Visão tricromática<a href="lightcolor.html#visão-tricromática" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A estrutura básica do olho humano é mostrada na figura <a href="lightcolor.html#fig:eyestructure">3.5</a>. A parte da frente é análoga a um sistema de lentes de uma câmera. A íris controla a entrada da luz pela pupila. A córnea e o cristalino transmitem e focalizam a luz no fundo do olho. A luz incide sobre a retina, onde encontram-se as células fotorreceptoras. O ponto cego é uma área da retina da qual parte o nervo óptico responsável por transmitir os impulsos nervosos até o cérebro <span class="citation">(<a href="#ref-neuroscience2018" role="doc-biblioref">Dale Purves 2018</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:eyestructure"></span>
+<img src="images/03_eyestructure.svg" alt="Estrutura do olho humano." width="100%" />
+<p class="caption">
+Figura 3.5: Estrutura do olho humano.
+</p>
+</div>
+<p>A retina é composta por dois tipos de células fotorreceptoras: os <strong>cones</strong> e os <strong>bastonetes</strong>. A distribuição dessas células varia de acordo com o ângulo relativo à fóvea (figura <a href="lightcolor.html#fig:rodsandcones">3.6</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rodsandcones"></span>
+<img src="images/03_rodsandcones.svg" alt="Concentração de cones e bastonetes na retina em relação ao ângulo a partir da fóvea." width="100%" />
+<p class="caption">
+Figura 3.6: Concentração de cones e bastonetes na retina em relação ao ângulo a partir da fóvea.
+</p>
+</div>
+<p>Os <strong>bastonetes</strong> estão presentes em maior número (cerca de 90 milhões) e são responsáveis pela visão periférica. Bastonetes não são capazes de distinguir cores e possuem baixa acuidade visual. Por outro lado, são mais sensíveis ao brilho em condições de baixa luminosidade. Em ambientes escuros, como por exemplo em uma noite de lua nova, usamos apenas os bastonetes. A visão nessas condições é chamada de <em>visão escotópica</em>.</p>
+<p>Os <strong>cones</strong> estão presentes em menor número (cerca de 4,5 milhões), concentrados em torno de uma pequena região central da retina chamada de <em>fóvea</em>. Os cones são responsáveis pela visão em condições normais de luminosidade, com máxima acuidade e distinção de cores. A visão com os cones é chamada de <em>visão fotópica</em>. Há três tipos de cones:</p>
+<ul>
+<li><strong>Cones S</strong> cobrem comprimentos de onda mais curtos, com sensibilidade máxima em torno de 420 a 440 nm;</li>
+<li><strong>Cones M</strong> cobrem comprimentos de onda médios, com sensibilidade máxima em torno de 530 a 545 nm;</li>
+<li><strong>Cones L</strong> cobrem comprimentos de onda mais longos, com sensibilidade máxima entre 560 a 580 nm.</li>
+</ul>
+<p>A figura <a href="lightcolor.html#fig:conetypes">3.7</a> mostra a sensibilidade média dos cones para cada comprimento de onda, em uma escala normalizada.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:conetypes"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Cone-fundamentals-with-srgb-spectrum.svg" alt="Sensibilidade dos cones S, M e L aos diferentes comprimentos de onda do espectro visível ([fonte](https://commons.wikimedia.org/wiki/File:Cone-fundamentals-with-srgb-spectrum.svg))." width="80%" />
+<p class="caption">
+Figura 3.7: Sensibilidade dos cones S, M e L aos diferentes comprimentos de onda do espectro visível (<a href="https://commons.wikimedia.org/wiki/File:Cone-fundamentals-with-srgb-spectrum.svg">fonte</a>).
+</p>
+</div>
+<p>A sobreposição da sensibilidade dos cones S, M e L fundamenta a <strong>teoria da visão tricromática</strong> desenvolvida no século XIX por <a href="https://en.wikipedia.org/wiki/Thomas_Young_(scientist)">Thomas Young</a> e <a href="https://en.wikipedia.org/wiki/Hermann_von_Helmholtz">Herman von Helmholtz</a>. Em 1802, Young levantou a hipótese da existência de três tipos de células fotorreceptoras com sensibilidades sobrepostas a diferentes comprimentos de onda <span class="citation">(<a href="#ref-young1802" role="doc-biblioref">Young 1802</a>)</span>. Na década de 1850, Helmholtz sugeriu que os cones possuem maior sensibilidade a três cores primárias que correspondem aproximadamente ao vermelho, verde e azul. <a href="https://en.wikipedia.org/wiki/James_Clerk_Maxwell">James Clerk Maxwell</a> também contribuiu com a teoria da visão tricromática através de experimentos de correspondência de cores e demonstração matemática de sua viabilidade <span class="citation">(<a href="#ref-maxwell_1857" role="doc-biblioref">Maxwell 1857</a>)</span>.</p>
+<p>O <em>triângulo de Maxwell</em> (figura <a href="lightcolor.html#fig:maxwelltriangle">3.8</a>) mostra como as cores verde, vermelho e azul podem ser combinadas para formar uma gama de cores. As arestas contêm cores compostas por combinações de duas primárias, enquanto que o interior contém cores obtidas através da mistura das três primárias.</p>
+<p>A teoria de Young-Helmholtz foi eventualmente validada no século XX por experimentos de observação da luz refletida da retina, experimentos subjetivos de correspondência de cores, e técnicas de microespectrofotometria.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:maxwelltriangle"></span>
+<img src="images/03_maxwelltriangle.svg" alt="Triângulo de Maxwell." width="60%" />
+<p class="caption">
+Figura 3.8: Triângulo de Maxwell.
+</p>
+</div>
+<p>Um aspecto importante que decorre do espalhamento das sensibilidades dos cones é a possibilidade de diferentes SPDs produzirem a mesma sensação de cor. Por exemplo, a resposta do estímulo de um cone S em ~445 nm (pico de sensibilidade) pode ser a mesma do estímulo em ~500 nm (baixa sensibilidade) com intensidade mais alta. Isso significa que objetos que refletem luz com diferentes SPDs podem ser percebidos como uma mesma cor. Esse fenômeno é chamado de <strong>metamerismo</strong>, e uma mesma cor produzida com diferentes SPDs é chamada de <strong>cor metamérica</strong>. É por causa do metamerismo que, por exemplo, a sensação da cor espectral 510 nm (ciano) ou 558 nm (amarelo) pode ser reproduzida em um monitor de LED composto apenas por LEDs vermelhos, verdes e azuis.</p>
+<p>A figura <a href="lightcolor.html#fig:luminosity">3.9</a> mostra um gráfico de eficiência luminosa que mostra a sensibilidade média da visão humana para cada comprimento de onda do espectro visível na visão fotópica e escotópica. Os dados que compõem este gráfico foram obtidos através de avaliações subjetivas com diferentes indivíduos, e hoje servem como uma linha de base da sensibilidade teórica da visão humana. O gráfico da visão fotópica, denotado por <span class="math inline">\(y(\lambda)\)</span> ou <span class="math inline">\(V(\lambda)\)</span>, foi padronizado em 1931 pela comissão internacional de iluminação (CIE, <em>commission internationale de l’éclairage</em>) <span class="citation">(<a href="#ref-CIE1931" role="doc-biblioref">CIE 1932</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:luminosity"></span>
+<img src="images/03_luminosity.svg" alt="Funções de eficiência luminosa para a visão fotópica e escotópica." width="70%" />
+<p class="caption">
+Figura 3.9: Funções de eficiência luminosa para a visão fotópica e escotópica.
+</p>
+</div>
+<p>Em condições de luminosidade intermediária (por exemplo, à luz da lua), usamos tanto os bastonetes quanto os cones, na chamada visão <em>mesópica</em>. Na visão mesópica, a eficácia relativa da visão é maior na região mais próxima ao azul. Isso faz com que objetos vermelhos pareçam mais escuros que objetos de outra cor, e a luz em geral tende a parecer mais fria (<a href="https://en.wikipedia.org/wiki/Purkinje_effect">efeito Purkinje</a>).</p>
+</div>
+<div id="modelos-de-cor" class="section level3 unnumbered hasAnchor">
+<h3>Modelos de cor<a href="lightcolor.html#modelos-de-cor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Um modelo de cor é um modelo matemático utilizado para representar cores através de tuplas de números. Os modelos mais utilizados são o modelo RGB (e suas variantes, como HSL e HSV), e o modelo CMY e CMYK.</p>
+<div id="rgb-hsl-e-hsv" class="section level4 unnumbered hasAnchor">
+<h4>RGB, HSL e HSV<a href="lightcolor.html#rgb-hsl-e-hsv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O <strong>modelo RGB</strong> é o modelo de cor utilizado por dispositivos de exibição baseados em emissão de luz. Uma cor no formato RGB é representada por três números que correspondem a uma combinação de intensidades de luz de cor vermelha (R, <em>red</em>), verde (G, <em>green</em>) e azul (B, <em>blue</em>). Em geral, cada componente de cor é representada por valores em ponto flutuante entre 0 (intensidade mínima) e 1 (intensidade máxima), ou como valores inteiros entre 0 e 255 de modo que a cor possa ser representada com três bytes. Esse último formato é o formato padrão das cores na web, comumente escritos em notação hexadecimal.</p>
+<p>As cores primárias no modelo RGB podem ser combinadas para formar cores secundárias: ciano (verde + azul), magenta (azul + vermelho) e amarelo (vermelho + verde). A combinação das cores primárias em igual proporção produz tons de cinza, do preto (0,0,0) ao branco (1,1,1). O conjunto de todas possíveis combinações pode ser visualizado como um cubo de cores como mostra a figura <a href="lightcolor.html#fig:rgb">3.10</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rgb"></span>
+<img src="images/03_rgb.svg" alt="Modelo RGB ([fonte](https://commons.wikimedia.org/wiki/File:RGB_color_solid_cube.png))." width="100%" />
+<p class="caption">
+Figura 3.10: Modelo RGB (<a href="https://commons.wikimedia.org/wiki/File:RGB_color_solid_cube.png">fonte</a>).
+</p>
+</div>
+<p>Embora o modelo RGB seja o modelo padrão de representação de cores em imagens digitais e em APIs gráficas, a composição de cores através da mistura de cores primárias pode ser pouco intuitiva. Em aplicativos de edição de imagens é comum o uso de modelos alternativos, como o HSL (<em>hue</em>, <em>saturation</em>, <em>lightness</em>) e HSV (<em>hue</em>, <em>saturation</em>, <em>value</em>). Esses modelos permitem que as cores sejam combinadas através de valores de matiz (entre 0º e 360º), saturação (entre 0 e 1) e luminosidade/intensidade (entre 0 e 1). A figura <a href="lightcolor.html#fig:hslhsv">3.11</a> ilustra esses modelos.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hslhsv"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Hsl-hsv_models.svg" alt="Modelo HSL e HSV ([fonte](https://commons.wikimedia.org/wiki/File:Hsl-hsv_models.svg))." width="100%" />
+<p class="caption">
+Figura 3.11: Modelo HSL e HSV (<a href="https://commons.wikimedia.org/wiki/File:Hsl-hsv_models.svg">fonte</a>).
+</p>
+</div>
+</div>
+<div id="cmy-e-cmyk" class="section level4 unnumbered hasAnchor">
+<h4>CMY e CMYK<a href="lightcolor.html#cmy-e-cmyk" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O modelo RGB é um modelo <strong>aditivo</strong> de cor pois as cores são obtidas através da adição de cores primárias. O oposto do modelo aditivo é o modelo <strong>subtrativo</strong>, utilizado em tintas e pigmentos. Quando uma luz incide sobre um pigmento, este absorve determinados comprimentos de onda e reflete outros, de modo que a cor percebida depende da SPD de luz filtrada refletida do pigmento.</p>
+<p>O <strong>modelo CMY</strong> é um modelo subtrativo que usa como cores primárias o ciano (C, <em>cyan</em>), magenta (M, <em>magenta</em>) e amarelo (Y, <em>yellow</em>). Pigmentos nessas cores filtram (absorvem) a luz nas cores vermelha, verde e azul, respectivamente. Assim, quando os pigmentos são aplicados sobre uma superfície branca, a cor preta resulta da mistura dessas cores primárias em igual quantidade, enquanto a cor branca corresponde à ausência dos pigmentos. Em impressoras é comum o uso do <strong>modelo CMYK</strong> que inclui o pigmento preto (K, <em>black</em>) de modo a melhorar o contraste. Isso ocorre porque os pigmentos CMY utilizados em impressão geralmente não absorvem perfeitamente as cores complementares RGB. Além disso, o uso de um pigmento preto ajuda a reduzir So consumo das tintas CMY.</p>
+</div>
+</div>
+<div id="sistema-cie-1931" class="section level3 unnumbered hasAnchor">
+<h3>Sistema CIE 1931<a href="lightcolor.html#sistema-cie-1931" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Os modelos RGB ou CMYK por si só não definem a colorimetria das cores primárias. Um mesmo valor de cor RGB pode parecer diferente dependendo das características das fontes de luz ou dos pigmentos que geram as cores primárias. Para possibilitar a correta reprodução de cores entre diferentes dispositivos, é necessário que o modelo de cor tenha como referencial um <strong>espaço de cor absoluto</strong> no qual as cores possam ser caracterizadas por medidas colorimétricas tais como comprimento de onda e intensidade.</p>
+<p>Se tivermos fontes de luz capazes de gerar cores primárias monocromáticas em diferentes intensidades, podemos modelar um espaço de cor absoluto através de uma medição empírica de quais intensidades de cores primárias são necessárias para produzir cada cor espectral. William David Wright <span class="citation">(<a href="#ref-Wright1929" role="doc-biblioref">Wright 1929</a>)</span> e John Guild <span class="citation">(<a href="#ref-Guild1932" role="doc-biblioref">Guild 1932</a>)</span> realizaram tal experimento na década de 1920. Os resultados foram padronizados no sistema CIE 1931, utilizado atualmente como sistema padrão de correspondência de cores <span class="citation">(<a href="#ref-Smith1931" role="doc-biblioref">Smith and Guild 1931</a>)</span> <span class="citation">(<a href="#ref-CIE1931" role="doc-biblioref">CIE 1932</a>)</span>.</p>
+<p>Nos experimentos de Wright e Guild, as intensidades de três fontes de luz monocromática (700 nm, 546.1 nm, e 435.8 nm) foram ajustadas em condições de visão fotópica de modo que a combinação das três cores imitasse cada cor do espectro visível. O experimento foi repetido com diferentes pessoas, obtendo resultados semelhantes, padronizado pelo resultado mostrado na figura <a href="lightcolor.html#fig:rgbmatching">3.12</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rgbmatching"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/36/CIE1931_RGBCMF.png" alt="Funções de correspondência CIE RGB ([fonte](https://commons.wikimedia.org/wiki/File:CIE1931_RGBCMF.png))." width="80%" />
+<p class="caption">
+Figura 3.12: Funções de correspondência CIE RGB (<a href="https://commons.wikimedia.org/wiki/File:CIE1931_RGBCMF.png">fonte</a>).
+</p>
+</div>
+<p>Curiosamente, alguns valores são negativos. Isso ocorre porque há cores espectrais que não podem ser obtidas a partir da combinação de apenas três cores primárias. Quando esses casos aconteciam durante o experimento, o sujeito da experimentação adicionava vermelho, verde ou azul à cor espectral de referência até conseguir obter uma correspondência. A adição na cor de referência corresponde efetivamente a uma subtração nas primárias, produzindo os valores negativos.</p>
+<p>A escala das funções de correspondência supõe que as cores primárias possuem o mesmo brilho. Entretanto, segundo a função de eficiência luminosa <span class="math inline">\(V(\lambda)\)</span>, a visão humana percebe o brilho de forma mais eficiente para comprimentos de onda na região do amarelo-esverdeado. As funções de correspondência podem ser ajustadas para as luminâncias absolutas usando as escalas 1, 4.5907 e 0.0601, respectivamente. Os valores das funções R, G e B resultantes dessa escala são chamados de <strong>valores de triestímulo</strong>:</p>
+<p><span class="math display">\[
+\begin{align}
+R &amp;= \bar{r}(\lambda) \times 1,\\
+G &amp;= \bar{g}(\lambda) \times 4.5907,\\
+B &amp;= \bar{b}(\lambda) \times 0.0601.\\
+\end{align}
+\]</span></p>
+<p>A combinação dos valores de triestímulo resulta em um espaço tridimensional. Para facilitar a visualização, a dimensão que corresponde unicamente a variações de intensidade pode ser ignorada. Isso pode ser feito através de uma normalização de <span class="math inline">\(R\)</span>, <span class="math inline">\(G\)</span> e <span class="math inline">\(B\)</span> de modo que a soma dos valores seja sempre igual a um:</p>
+<p><span class="math display">\[
+r = \frac{R}{R+G+B},\\
+g = \frac{G}{R+G+B},\\
+b = \frac{B}{R+G+B},\\
+\,\\
+r+g+b = 1.
+\]</span></p>
+<p>Valores de <span class="math inline">\(r\)</span>, <span class="math inline">\(g\)</span> e <span class="math inline">\(b\)</span> são chamados de <strong>valores de cromaticidade</strong>, pois representam a informação da cor independente da intensidade. Podemos nos concentrar apenas em <span class="math inline">\(r\)</span> e <span class="math inline">\(g\)</span>, pois <span class="math inline">\(b\)</span> é uma combinação dos dois primeiros (<span class="math inline">\(b=1-r-g\)</span>). Desse modo, podemos desenhar um gráfico bidimensional de cromaticidade no plano <span class="math inline">\(rg\)</span> como mostra a figura <a href="lightcolor.html#fig:chromaticity">3.13</a>. Pontos sobre a borda da região colorida indicam coordenadas de cromaticidade que correspondem a cores espectrais. Pontos dentro da região colorida correspondem às cores não-espectrais que podem ser obtidas a partir da combinação de cores espectrais. Os pontos na região triangular colorida no primeiro quadrante correspondem às cores que podem ser obtidas a partir da combinação das cores primárias. Em particular, as cores primárias vermelho, verde e azul estão situadas nas coordenadas (1,0), (0,1) e (0,0), respectivamente. A região colorida com coordenadas negativas corresponde a cores reais, mas que não podem ser alcançadas através da combinação das cores primárias utilizadas.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:chromaticity"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/16/CIE1931_rgxy.png" alt="Diagrama de cromaticidade CIE _rg_ ([fonte](https://commons.wikimedia.org/wiki/File:CIE1931_rgxy.png))." width="80%" />
+<p class="caption">
+Figura 3.13: Diagrama de cromaticidade CIE <em>rg</em> (<a href="https://commons.wikimedia.org/wiki/File:CIE1931_rgxy.png">fonte</a>).
+</p>
+</div>
+<p>Para obter funções de correspondência de cores com valores unicamente positivos, a CIE criou o espaço de cor CIE XYZ, que usa cores primárias imaginárias XYZ no lugar de RGB. Esse espaço é obtido a partir de uma transformação linear das funções de correspondência CIE RGB. Além de tornar as funções positivas, a transformação é feita de tal forma que a função <span class="math inline">\(\bar{y}(\lambda)\)</span> deste novo espaço corresponda exatamente à função de eficiência luminosa <span class="math inline">\(V(\lambda)\)</span> na visão fotópica. As funções de correspondência resultantes são mostradas na figura <a href="lightcolor.html#fig:xyzmatching">3.14</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:xyzmatching"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/CIE_1931_XYZ_Color_Matching_Functions.svg" alt="Funções de correspondência CIE XYZ ([fonte](https://en.wikipedia.org/wiki/File:CIE_1931_XYZ_Color_Matching_Functions.svg))." width="80%" />
+<p class="caption">
+Figura 3.14: Funções de correspondência CIE XYZ (<a href="https://en.wikipedia.org/wiki/File:CIE_1931_XYZ_Color_Matching_Functions.svg">fonte</a>).
+</p>
+</div>
+<p>Da mesma forma que podemos obter um diagrama de cromaticidade CIE <em>rg</em> a partir da normalização das funções de correspondência CIE RGB, podemos também obter um diagrama de cromaticidade <em>xy</em> com a normalização</p>
+<p><span class="math display">\[
+x = \frac{X}{X+Y+Z},\\
+y = \frac{Y}{X+Y+Z},\\
+z = \frac{Z}{X+Y+Z}.\\
+\,\\
+x+y+z = 1.
+\]</span></p>
+<p>O diagrama de cromaticidade <em>xy</em> é mostrado na figura <a href="lightcolor.html#fig:xychromaticity">3.15</a>. O triângulo dentro da região colorida mostra a região formada pelas primárias <span class="math inline">\(R\)</span>, <span class="math inline">\(G\)</span>, <span class="math inline">\(B\)</span> do experimento de Wright e Guild. As cores que podem ser obtidas a partir da combinação de primárias é chamada de <strong>gama de cores</strong> (em inglês, <em>color gamut</em>) e corresponde à área do triângulo.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:xychromaticity"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/60/CIE1931xy_CIERGB.svg" alt="Diagrama de cromaticidade CIE _xy_ ([fonte](https://en.wikipedia.org/wiki/File:CIE1931xy_CIERGB.svg))." width="80%" />
+<p class="caption">
+Figura 3.15: Diagrama de cromaticidade CIE <em>xy</em> (<a href="https://en.wikipedia.org/wiki/File:CIE1931xy_CIERGB.svg">fonte</a>).
+</p>
+</div>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>No diagrama de cromaticidade CIE <em>rg</em> (figura <a href="lightcolor.html#fig:chromaticity">3.13</a>), a transformação de CIE RGB para CIE XYZ leva os pontos <span class="math inline">\(C_r\)</span>, <span class="math inline">\(C_g\)</span> e <span class="math inline">\(C_g\)</span> (vértices do triângulo vermelho) para os pontos <span class="math inline">\((1,0)\)</span>, <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((0,0)\)</span> do diagrama de cromaticidade CIE <em>xy</em> (figura <a href="lightcolor.html#fig:xychromaticity">3.15</a>).</p>
+</div>
+<p>O espaço formado pelas coordenadas <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> e <span class="math inline">\(Y\)</span> é chamado de espaço CIE xyY. Nesse espaço, as duas primeiras coordenadas (<span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>) correspondem às cromaticidades, isto é, às variações de cor independente de luminosidade. A terceira coordenada (<span class="math inline">\(Y\)</span>) corresponde apenas a variações de luminosidade. O espaço CIE xyZ tem sido utilizado como referência para caracterizar de forma precisa os diferentes espaços de cor utilizados em dispositivos de exibição e impressão.</p>
+<p>A figura <a href="lightcolor.html#fig:gamuts">3.16</a> mostra alguns dos principais espaços de cor utilizados na indústria. O padrão mais comum em monitores de computador é o espaço sRGB, criado pela HP e Microsoft em 1996 e depois tornado padrão pela Comissão Eletrotécnica Internacional (IEC, <em>International Electrotechnical Commission</em>) como o padrão IEC 61966-2-1:1999. Se um monitor é compatível com o espaço sRGB, isso significa que ele é capaz de reproduzir a gama de cores desse espaço. Para todo monitor é possível determinar um perfil de correspondência de cores do modelo RGB para as cores correspondentes no espaço CIE XYZ (essa correspondência é chamada de <em>perfil ICC</em>). Desse modo é possível estabelecer uma correspondência exata entre cores do monitor e cores de outro dispositivo, garantindo a reprodução fiel das cores.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gamuts"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/CIE1931xy_gamut_comparison.svg" alt="Gamas de cores de diferentes espaços de cor ([fonte](https://commons.wikimedia.org/wiki/File:CIE1931xy_gamut_comparison.svg))." width="80%" />
+<p class="caption">
+Figura 3.16: Gamas de cores de diferentes espaços de cor (<a href="https://commons.wikimedia.org/wiki/File:CIE1931xy_gamut_comparison.svg">fonte</a>).
+</p>
+</div>
+</div>
+</div>
+<h3>Referências<a href="referências.html#referências" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-CIE1931" class="csl-entry">
+CIE. 1932. <em>Commission Internationale de l’eclairage Proceedings, 1931</em>. Cambridge: Cambridge University Press.
+</div>
+<div id="ref-neuroscience2018" class="csl-entry">
+Dale Purves, David Fitzpatrick, George J. Augustine. 2018. <em>Neuroscience</em>. 6th ed. New York, NY, USA: Oxford University Press.
+</div>
+<div id="ref-Guild1932" class="csl-entry">
+Guild, John. 1932. <span>“The Colorimetric Properties of the Spectrum.”</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 230: 149–87. <a href="https://doi.org/10.1098/rsta.1932.0005">https://doi.org/10.1098/rsta.1932.0005</a>.
+</div>
+<div id="ref-maxwell_1857" class="csl-entry">
+Maxwell, James Clerk. 1857. <span>“XVIII.—Experiments on Colour, as Perceived by the Eye, with Remarks on Colour-Blindness.”</span> <em>Transactions of the Royal Society of Edinburgh</em> 21 (2): 275–98. <a href="https://doi.org/10.1017/S0080456800032117">https://doi.org/10.1017/S0080456800032117</a>.
+</div>
+<div id="ref-Smith1931" class="csl-entry">
+Smith, Thomas, and John Guild. 1931. <span>“The c.i.e. Colorimetric Standards and Their Use.”</span> <em>Transactions of the Optical Society</em> 33 (3): 73–134. <a href="https://doi.org/10.1088/1475-4878/33/3/301">https://doi.org/10.1088/1475-4878/33/3/301</a>.
+</div>
+<div id="ref-Wright1929" class="csl-entry">
+Wright, William David. 1929. <span>“A Re-Determination of the Trichromatic Coefficients of the Spectral Colours.”</span> <em>Transactions of the Optical Society</em> 30 (4): 141–64. <a href="https://doi.org/10.1088/1475-4878/30/4/301">https://doi.org/10.1088/1475-4878/30/4/301</a>.
+</div>
+<div id="ref-young1802" class="csl-entry">
+Young, Thomas. 1802. <span>“The Bakerian Lecture: On the Theory of Light and Colours.”</span> <em>Philosophical Transactions of the Royal Society of London</em> 92 (0): 12–48. <a href="https://doi.org/10.1098/rstl.1802.0004">https://doi.org/10.1098/rstl.1802.0004</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="graphicssystem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vectorxraster.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
