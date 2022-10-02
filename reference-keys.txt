@@ -69,6 +69,15 @@ fig:framebuffer1
 fig:framebuffer2
 fig:sierpinski1
 fig:sierpinski2
+fig:pipeline1
+fig:pinhole1
+fig:pinhole2
+fig:04raycasting
+fig:04raytracing
+fig:04rasterization
+fig:glpipeline
+fig:glprimitives
+fig:helloworldtriangle
 config
 linux
 macos
@@ -86,3 +95,8 @@ vectorxraster
 es
 framebuffer
 sierpinski
+pipeline
+dados-gráficos
+ray-casting-x-rasterização
+glpipeline
+coloredtriangles

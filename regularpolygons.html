@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.1 Polígonos regulares | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.1 Polígonos regulares | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.1 Polígonos regulares | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="game.html"/>
+<link rel="next" href="asteroids.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regularpolygons" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Polígonos regulares<a href="regularpolygons.html#regularpolygons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Este projeto é um aprimoramento do projeto <code>coloredtriangles</code> da seção <a href="coloredtriangles.html#coloredtriangles">4.4</a>. No lugar de desenharmos triângulos (<code>GL_TRIANGLES</code>), desenharemos polígonos regulares 2D formados por leques de triângulos (<code>GL_TRIANGLE_FAN</code>). Para cada quadro de exibição, será renderizado um polígono regular colorido em uma posição aleatória do viewport. O número de lados de cada polígono também será escolhido aleatoriamente. A aplicação ficará como a seguir:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/regularpolygons/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<div id="configuração-inicial-4" class="section level3 unnumbered hasAnchor">
+<h3>Configuração inicial<a href="regularpolygons.html#configuração-inicial-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A configuração inicial é a mesma dos projetos anteriores. Apenas mude o nome do projeto para <code>regularpolygons</code> e inclua a linha <code>add_subdirectory(regularpolygons)</code> em <code>abcg/examples/CMakeLists.txt</code>.</p>
+<p>O arquivo <code>abcg/examples/regularpolygons/CMakeLists.txt</code> ficará assim:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb158-1"><a href="regularpolygons.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(regularpolygons)</span>
+<span id="cb158-2"><a href="regularpolygons.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJECT_NAME}</span> <span class="bn">main.cpp</span> window.cpp)</span>
+<span id="cb158-3"><a href="regularpolygons.html#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="fu">enable_abcg</span>(<span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div>
+<p>Este projeto também terá os arquivos <code>main.cpp</code>, <code>window.cpp</code> e <code>window.hpp</code>.</p>
+</div>
+<div id="main.cpp-4" class="section level3 unnumbered hasAnchor">
+<h3>main.cpp<a href="regularpolygons.html#main.cpp-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O conteúdo aqui é praticamente idêntico ao do projeto <code>coloredtriangles</code>. Continuaremos com o double buffering desabilitado de modo a desenhar cada novo polígono sobre o conteúdo anterior do framebuffer.</p>
+<div class="sourceCode" id="cb159" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb159-1"><a href="regularpolygons.html#cb159-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb159-2"><a href="regularpolygons.html#cb159-2"></a></span>
+<span id="cb159-3"><a href="regularpolygons.html#cb159-3"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb159-4"><a href="regularpolygons.html#cb159-4"></a>  <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb159-5"><a href="regularpolygons.html#cb159-5"></a>    abcg<span class="op">::</span>Application app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb159-6"><a href="regularpolygons.html#cb159-6"></a></span>
+<span id="cb159-7"><a href="regularpolygons.html#cb159-7"></a>    Window window<span class="op">;</span></span>
+<span id="cb159-8"><a href="regularpolygons.html#cb159-8"></a>    window<span class="op">.</span>setOpenGLSettings<span class="op">({.</span>samples <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="op">.</span>doubleBuffering <span class="op">=</span> <span class="kw">false</span><span class="op">});</span></span>
+<span id="cb159-9"><a href="regularpolygons.html#cb159-9"></a>    window<span class="op">.</span>setWindowSettings<span class="op">({</span></span>
+<span id="cb159-10"><a href="regularpolygons.html#cb159-10"></a>        <span class="op">.</span>width <span class="op">=</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb159-11"><a href="regularpolygons.html#cb159-11"></a>        <span class="op">.</span>height <span class="op">=</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb159-12"><a href="regularpolygons.html#cb159-12"></a>        <span class="op">.</span>title <span class="op">=</span> <span class="st">&quot;Regular Polygons&quot;</span><span class="op">,</span></span>
+<span id="cb159-13"><a href="regularpolygons.html#cb159-13"></a>    <span class="op">});</span></span>
+<span id="cb159-14"><a href="regularpolygons.html#cb159-14"></a></span>
+<span id="cb159-15"><a href="regularpolygons.html#cb159-15"></a>    app<span class="op">.</span>run<span class="op">(</span>window<span class="op">);</span></span>
+<span id="cb159-16"><a href="regularpolygons.html#cb159-16"></a>  <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">std::</span>exception<span class="op"> </span><span class="at">const</span> <span class="op">&amp;</span>exception<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb159-17"><a href="regularpolygons.html#cb159-17"></a>    fmt<span class="op">::</span>print<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;</span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> exception<span class="op">.</span>what<span class="op">());</span></span>
+<span id="cb159-18"><a href="regularpolygons.html#cb159-18"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb159-19"><a href="regularpolygons.html#cb159-19"></a>  <span class="op">}</span></span>
+<span id="cb159-20"><a href="regularpolygons.html#cb159-20"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb159-21"><a href="regularpolygons.html#cb159-21"></a><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="window.hpp-4" class="section level3 unnumbered hasAnchor">
+<h3>window.hpp<a href="regularpolygons.html#window.hpp-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Aqui também há poucas mudanças em relação ao projeto anterior:</p>
+<div class="sourceCode" id="cb160" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb160-1"><a href="regularpolygons.html#cb160-1"></a><span class="pp">#ifndef WINDOW_HPP_</span></span>
+<span id="cb160-2"><a href="regularpolygons.html#cb160-2"></a><span class="pp">#define WINDOW_HPP_</span></span>
+<span id="cb160-3"><a href="regularpolygons.html#cb160-3"></a></span>
+<span id="cb160-4"><a href="regularpolygons.html#cb160-4"></a><span class="pp">#include </span><span class="im">&lt;random&gt;</span></span>
+<span id="cb160-5"><a href="regularpolygons.html#cb160-5"></a></span>
+<span id="cb160-6"><a href="regularpolygons.html#cb160-6"></a><span class="pp">#include </span><span class="im">&quot;abcgOpenGL.hpp&quot;</span></span>
+<span id="cb160-7"><a href="regularpolygons.html#cb160-7"></a></span>
+<span id="cb160-8"><a href="regularpolygons.html#cb160-8"></a><span class="kw">class</span> Window <span class="op">:</span> <span class="kw">public</span> abcg<span class="op">::</span>OpenGLWindow <span class="op">{</span></span>
+<span id="cb160-9"><a href="regularpolygons.html#cb160-9"></a><span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb160-10"><a href="regularpolygons.html#cb160-10"></a>  <span class="dt">void</span> onCreate<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb160-11"><a href="regularpolygons.html#cb160-11"></a>  <span class="dt">void</span> onPaint<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb160-12"><a href="regularpolygons.html#cb160-12"></a>  <span class="dt">void</span> onPaintUI<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb160-13"><a href="regularpolygons.html#cb160-13"></a>  <span class="dt">void</span> onResize<span class="op">(</span>glm<span class="op">::</span>ivec2 <span class="at">const</span> <span class="op">&amp;</span>size<span class="op">)</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb160-14"><a href="regularpolygons.html#cb160-14"></a>  <span class="dt">void</span> onDestroy<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb160-15"><a href="regularpolygons.html#cb160-15"></a></span>
+<span id="cb160-16"><a href="regularpolygons.html#cb160-16"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb160-17"><a href="regularpolygons.html#cb160-17"></a>  glm<span class="op">::</span>ivec2 <span class="va">m_viewportSize</span><span class="op">{};</span></span>
+<span id="cb160-18"><a href="regularpolygons.html#cb160-18"></a></span>
+<span id="cb160-19"><a href="regularpolygons.html#cb160-19"></a>  GLuint <span class="va">m_VAO</span><span class="op">{};</span></span>
+<span id="cb160-20"><a href="regularpolygons.html#cb160-20"></a>  GLuint <span class="va">m_VBOPositions</span><span class="op">{};</span></span>
+<span id="cb160-21"><a href="regularpolygons.html#cb160-21"></a>  GLuint <span class="va">m_VBOColors</span><span class="op">{};</span></span>
+<span id="cb160-22"><a href="regularpolygons.html#cb160-22"></a>  GLuint <span class="va">m_program</span><span class="op">{};</span></span>
+<span id="cb160-23"><a href="regularpolygons.html#cb160-23"></a></span>
+<span id="cb160-24"><a href="regularpolygons.html#cb160-24"></a>  <span class="bu">std::</span>default_random_engine<span class="op"> </span><span class="va">m_randomEngine</span><span class="op">;</span></span>
+<span id="cb160-25"><a href="regularpolygons.html#cb160-25"></a></span>
+<span id="cb160-26"><a href="regularpolygons.html#cb160-26"></a>  abcg<span class="op">::</span>Timer <span class="va">m_timer</span><span class="op">;</span></span>
+<span id="cb160-27"><a href="regularpolygons.html#cb160-27"></a>  <span class="dt">int</span> <span class="va">m_delay</span><span class="op">{</span><span class="dv">200</span><span class="op">};</span></span>
+<span id="cb160-28"><a href="regularpolygons.html#cb160-28"></a></span>
+<span id="cb160-29"><a href="regularpolygons.html#cb160-29"></a>  <span class="dt">void</span> setupModel<span class="op">(</span><span class="dt">int</span> sides<span class="op">);</span></span>
+<span id="cb160-30"><a href="regularpolygons.html#cb160-30"></a><span class="op">};</span></span>
+<span id="cb160-31"><a href="regularpolygons.html#cb160-31"></a></span>
+<span id="cb160-32"><a href="regularpolygons.html#cb160-32"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>Observe que há novamente dois VBOs: um para a posição e outro para a cor dos vértices (linhas 20 e 21).</p>
+<p>Na linha 27, a variável <code>m_delay</code> é utilizada para especificar o intervalo de tempo, em milissegundos, entre a renderização dos polígonos.</p>
+</div>
+<div id="window.cpp-4" class="section level3 unnumbered hasAnchor">
+<h3>window.cpp<a href="regularpolygons.html#window.cpp-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A definição de <code>Window::onCreate</code> é a mesma do projeto anterior, mas com o conteúdo do vertex shader modificado:</p>
+<div class="sourceCode" id="cb161" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb161-1"><a href="regularpolygons.html#cb161-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb161-2"><a href="regularpolygons.html#cb161-2"></a></span>
+<span id="cb161-3"><a href="regularpolygons.html#cb161-3"></a><span class="dt">void</span> Window<span class="op">::</span>onCreate<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb161-4"><a href="regularpolygons.html#cb161-4"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">*</span>vertexShader<span class="op">{</span><span class="st">R&quot;gl(</span><span class="vs">#version 300 es</span></span>
+<span id="cb161-5"><a href="regularpolygons.html#cb161-5"></a></span>
+<span id="cb161-6"><a href="regularpolygons.html#cb161-6"></a><span class="vs">    layout(location = 0) in vec2 inPosition;</span></span>
+<span id="cb161-7"><a href="regularpolygons.html#cb161-7"></a><span class="vs">    layout(location = 1) in vec4 inColor;</span></span>
+<span id="cb161-8"><a href="regularpolygons.html#cb161-8"></a></span>
+<span id="cb161-9"><a href="regularpolygons.html#cb161-9"></a><span class="vs">    uniform vec2 translation;</span></span>
+<span id="cb161-10"><a href="regularpolygons.html#cb161-10"></a><span class="vs">    uniform float scale;</span></span>
+<span id="cb161-11"><a href="regularpolygons.html#cb161-11"></a></span>
+<span id="cb161-12"><a href="regularpolygons.html#cb161-12"></a><span class="vs">    out vec4 fragColor;</span></span>
+<span id="cb161-13"><a href="regularpolygons.html#cb161-13"></a></span>
+<span id="cb161-14"><a href="regularpolygons.html#cb161-14"></a><span class="vs">    void main() {</span></span>
+<span id="cb161-15"><a href="regularpolygons.html#cb161-15"></a><span class="vs">      vec2 newPosition = inPosition * scale + translation;</span></span>
+<span id="cb161-16"><a href="regularpolygons.html#cb161-16"></a><span class="vs">      gl_Position = vec4(newPosition, 0, 1);</span></span>
+<span id="cb161-17"><a href="regularpolygons.html#cb161-17"></a><span class="vs">      fragColor = inColor;</span></span>
+<span id="cb161-18"><a href="regularpolygons.html#cb161-18"></a><span class="vs">    }</span></span>
+<span id="cb161-19"><a href="regularpolygons.html#cb161-19"></a><span class="vs">  </span><span class="st">)gl&quot;</span><span class="op">};</span></span>
+<span id="cb161-20"><a href="regularpolygons.html#cb161-20"></a></span>
+<span id="cb161-21"><a href="regularpolygons.html#cb161-21"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">*</span>fragmentShader<span class="op">{</span><span class="st">R&quot;gl(</span><span class="vs">#version 300 es</span></span>
+<span id="cb161-22"><a href="regularpolygons.html#cb161-22"></a></span>
+<span id="cb161-23"><a href="regularpolygons.html#cb161-23"></a><span class="vs">    precision mediump float;  </span></span>
+<span id="cb161-24"><a href="regularpolygons.html#cb161-24"></a></span>
+<span id="cb161-25"><a href="regularpolygons.html#cb161-25"></a><span class="vs">    in vec4 fragColor;</span></span>
+<span id="cb161-26"><a href="regularpolygons.html#cb161-26"></a></span>
+<span id="cb161-27"><a href="regularpolygons.html#cb161-27"></a><span class="vs">    out vec4 outColor;</span></span>
+<span id="cb161-28"><a href="regularpolygons.html#cb161-28"></a></span>
+<span id="cb161-29"><a href="regularpolygons.html#cb161-29"></a><span class="vs">    void main() { outColor = fragColor; }</span></span>
+<span id="cb161-30"><a href="regularpolygons.html#cb161-30"></a><span class="vs">  </span><span class="st">)gl&quot;</span><span class="op">};</span></span>
+<span id="cb161-31"><a href="regularpolygons.html#cb161-31"></a></span>
+<span id="cb161-32"><a href="regularpolygons.html#cb161-32"></a>  <span class="va">m_program</span> <span class="op">=</span> abcg<span class="op">::</span>createOpenGLProgram<span class="op">(</span></span>
+<span id="cb161-33"><a href="regularpolygons.html#cb161-33"></a>      <span class="op">{{.</span>source <span class="op">=</span> vertexShader<span class="op">,</span> <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Vertex<span class="op">},</span></span>
+<span id="cb161-34"><a href="regularpolygons.html#cb161-34"></a>       <span class="op">{.</span>source <span class="op">=</span> fragmentShader<span class="op">,</span> <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Fragment<span class="op">}});</span></span>
+<span id="cb161-35"><a href="regularpolygons.html#cb161-35"></a></span>
+<span id="cb161-36"><a href="regularpolygons.html#cb161-36"></a>  abcg<span class="op">::</span>glClearColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb161-37"><a href="regularpolygons.html#cb161-37"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb161-38"><a href="regularpolygons.html#cb161-38"></a></span>
+<span id="cb161-39"><a href="regularpolygons.html#cb161-39"></a>  <span class="va">m_randomEngine</span><span class="op">.</span>seed<span class="op">(</span></span>
+<span id="cb161-40"><a href="regularpolygons.html#cb161-40"></a>      <span class="bu">std::</span>chrono<span class="bu">::</span>steady_clock<span class="bu">::</span>now<span class="op">().</span>time_since_epoch<span class="op">().</span>count<span class="op">());</span></span>
+<span id="cb161-41"><a href="regularpolygons.html#cb161-41"></a><span class="op">}</span></span></code></pre></div>
+<p>No projeto <code>coloredtriangles</code>, o vertex shader estava assim:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb162-1"><a href="regularpolygons.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#version 300 es</span></span>
+<span id="cb162-2"><a href="regularpolygons.html#cb162-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-3"><a href="regularpolygons.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">0</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec2</span> inPosition<span class="op">;</span></span>
+<span id="cb162-4"><a href="regularpolygons.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">1</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec4</span> inColor<span class="op">;</span></span>
+<span id="cb162-5"><a href="regularpolygons.html#cb162-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-6"><a href="regularpolygons.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="dt">out</span> <span class="dt">vec4</span> fragColor<span class="op">;</span></span>
+<span id="cb162-7"><a href="regularpolygons.html#cb162-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-8"><a href="regularpolygons.html#cb162-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span> </span>
+<span id="cb162-9"><a href="regularpolygons.html#cb162-9" aria-hidden="true" tabindex="-1"></a>  <span class="bu">gl_Position</span> <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>inPosition<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb162-10"><a href="regularpolygons.html#cb162-10" aria-hidden="true" tabindex="-1"></a>  fragColor <span class="op">=</span> inColor<span class="op">;</span></span>
+<span id="cb162-11"><a href="regularpolygons.html#cb162-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Neste projeto o código está assim:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb163-1"><a href="regularpolygons.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#version 300 es</span></span>
+<span id="cb163-2"><a href="regularpolygons.html#cb163-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-3"><a href="regularpolygons.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">0</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec2</span> inPosition<span class="op">;</span></span>
+<span id="cb163-4"><a href="regularpolygons.html#cb163-4" aria-hidden="true" tabindex="-1"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">1</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec4</span> inColor<span class="op">;</span></span>
+<span id="cb163-5"><a href="regularpolygons.html#cb163-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-6"><a href="regularpolygons.html#cb163-6" aria-hidden="true" tabindex="-1"></a><span class="kw">uniform</span> <span class="dt">vec2</span> translation<span class="op">;</span></span>
+<span id="cb163-7"><a href="regularpolygons.html#cb163-7" aria-hidden="true" tabindex="-1"></a><span class="kw">uniform</span> <span class="dt">float</span> scale<span class="op">;</span></span>
+<span id="cb163-8"><a href="regularpolygons.html#cb163-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-9"><a href="regularpolygons.html#cb163-9" aria-hidden="true" tabindex="-1"></a><span class="dt">out</span> <span class="dt">vec4</span> fragColor<span class="op">;</span></span>
+<span id="cb163-10"><a href="regularpolygons.html#cb163-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-11"><a href="regularpolygons.html#cb163-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb163-12"><a href="regularpolygons.html#cb163-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec2</span> newPosition <span class="op">=</span> inPosition <span class="op">*</span> scale <span class="op">+</span> translation<span class="op">;</span></span>
+<span id="cb163-13"><a href="regularpolygons.html#cb163-13" aria-hidden="true" tabindex="-1"></a>  <span class="bu">gl_Position</span> <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>newPosition<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb163-14"><a href="regularpolygons.html#cb163-14" aria-hidden="true" tabindex="-1"></a>  fragColor <span class="op">=</span> inColor<span class="op">;</span></span>
+<span id="cb163-15"><a href="regularpolygons.html#cb163-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>A principal mudança é o uso de duas variáveis uniformes, identificadas pela palavra-chave <code>uniform</code>. São elas:</p>
+<ul>
+<li><code>translation</code>: um fator de translação (deslocamento) da geometria;</li>
+<li><code>scale</code>: um fator de escala da geometria.</li>
+</ul>
+<p>O conteúdo de <code>translation</code> e <code>scale</code> é definido em <code>onPaint</code> antes da chamada do comando de renderização. Lembre-se que variáveis uniformes são variáveis globais do shader que não mudam de valor de um vértice para outro, ao contrário do que ocorre com as variáveis <code>inPosition</code> e <code>inColor</code>.</p>
+<p>Observe o conteúdo de <code>main</code>:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb164-1"><a href="regularpolygons.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb164-2"><a href="regularpolygons.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec2</span> newPosition <span class="op">=</span> inPosition <span class="op">*</span> scale <span class="op">+</span> translation<span class="op">;</span></span>
+<span id="cb164-3"><a href="regularpolygons.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">gl_Position</span> <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>newPosition<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb164-4"><a href="regularpolygons.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  fragColor <span class="op">=</span> inColor<span class="op">;</span></span>
+<span id="cb164-5"><a href="regularpolygons.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>A posição original do vértice (<code>inPosition</code>) é multiplicada por <code>scale</code> e somada com <code>translation</code> para gerar uma nova posição (<code>newPosition</code>), que é a posição final do vértice passada para <code>gl_Position</code>.</p>
+<p>Na expressão <code>inPosition * scale + translation</code>, <code>inPosition * scale</code> resulta na aplicação do fator de escala nas coordenadas <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> do vértice. Como isso é feito para cada vértice da geometria, o resultado será a mudança do tamanho do objeto. Se o fator de escala for 1, não haverá mudança de escala. Se for 0.5, o tamanho do objeto será reduzido pela metade em <span class="math inline">\(x\)</span> e em <span class="math inline">\(y\)</span>. Se for 2.0, o tamanho será dobrado em <span class="math inline">\(x\)</span> e em <span class="math inline">\(y\)</span>, e assim por diante.</p>
+<p>O resultado de <code>inPosition * scale</code> é somado com <code>translation</code>. Isso significa que, após a mudança de escala, a geometria será deslocada no plano pelas coordenadas <span class="math inline">\((x,y)\)</span> da translação.</p>
+<p>Ao aplicar a escala e a translação do vertex shader, podemos usar um mesmo VBO para renderizar o objeto em posições e escalas diferentes, como mostra a figura <a href="regularpolygons.html#fig:regularpolygons1">5.1</a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:regularpolygons1"></span>
+<img src="images/05_regularpolygons1.svg" alt="Resultado da transformação dos vértices de um triângulo usando diferentes fatores de escala e translação." width="100%" />
+<p class="caption">
+Figura 5.1: Resultado da transformação dos vértices de um triângulo usando diferentes fatores de escala e translação.
+</p>
+</div>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>O uso de variáveis uniformes e transformações geométricas no vertex shader pode reduzir significativamente o consumo de memória dos dados gráficos. Para citar um exemplo, suponha que queremos renderizar uma cena no estilo do jogo <a href="https://www.minecraft.net/">Minecraft</a> composta por 100 mil cubos. A estratégia mais ingênua para renderizar essa cena é criar um único VBO contendo os vértices dos 100 mil cubos. Se usarmos <code>GL_TRIANGLES</code>, cada lado do cubo terá de ser renderizado como 2 triângulos, isto é, precisaremos de 6 vértices (3 vértices por triângulo). Como um cubo tem 6 lados, teremos então 36 vértices por cubo. Logo, nosso VBO de 100 mil cubos terá 3600000 vértices<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>.</p>
+<p>Ao usar variáveis uniformes, podemos criar um VBO para apenas um cubo e renderizar esse cubo 100 mil vezes, cada um com um fator de escala e translação diferente. No fim, o número de vértices processados será igual, mas o uso de memória terá uma redução de 5 ordens de magnitude!</p>
+</div>
+<p>Vamos agora à definição de <code>Window::onPaintGL</code>:</p>
+<div class="sourceCode" id="cb165" startFrom="43"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 42;"><span id="cb165-43"><a href="regularpolygons.html#cb165-43"></a><span class="dt">void</span> Window<span class="op">::</span>onPaint<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb165-44"><a href="regularpolygons.html#cb165-44"></a>  <span class="cf">if</span> <span class="op">(</span><span class="va">m_timer</span><span class="op">.</span>elapsed<span class="op">()</span> <span class="op">&lt;</span> <span class="va">m_delay</span> <span class="op">/</span> <span class="fl">1000.0</span><span class="op">)</span></span>
+<span id="cb165-45"><a href="regularpolygons.html#cb165-45"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb165-46"><a href="regularpolygons.html#cb165-46"></a>  <span class="va">m_timer</span><span class="op">.</span>restart<span class="op">();</span></span>
+<span id="cb165-47"><a href="regularpolygons.html#cb165-47"></a></span>
+<span id="cb165-48"><a href="regularpolygons.html#cb165-48"></a>  <span class="co">// Create a regular polygon with number of sides in the range [3,20]</span></span>
+<span id="cb165-49"><a href="regularpolygons.html#cb165-49"></a>  <span class="bu">std::</span>uniform_int_distribution<span class="op"> </span>intDist<span class="op">(</span><span class="dv">3</span><span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span>
+<span id="cb165-50"><a href="regularpolygons.html#cb165-50"></a>  <span class="kw">auto</span> <span class="at">const</span> sides<span class="op">{</span>intDist<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb165-51"><a href="regularpolygons.html#cb165-51"></a>  setupModel<span class="op">(</span>sides<span class="op">);</span></span>
+<span id="cb165-52"><a href="regularpolygons.html#cb165-52"></a></span>
+<span id="cb165-53"><a href="regularpolygons.html#cb165-53"></a>  abcg<span class="op">::</span>glViewport<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>x<span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb165-54"><a href="regularpolygons.html#cb165-54"></a></span>
+<span id="cb165-55"><a href="regularpolygons.html#cb165-55"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb165-56"><a href="regularpolygons.html#cb165-56"></a></span>
+<span id="cb165-57"><a href="regularpolygons.html#cb165-57"></a>  <span class="co">// Pick a random xy position from (-1,-1) to (1,1)</span></span>
+<span id="cb165-58"><a href="regularpolygons.html#cb165-58"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd1<span class="op">(-</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb165-59"><a href="regularpolygons.html#cb165-59"></a>  glm<span class="op">::</span>vec2 <span class="at">const</span> translation<span class="op">{</span>rd1<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd1<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb165-60"><a href="regularpolygons.html#cb165-60"></a>  <span class="kw">auto</span> <span class="at">const</span> translationLocation<span class="op">{</span></span>
+<span id="cb165-61"><a href="regularpolygons.html#cb165-61"></a>      abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;translation&quot;</span><span class="op">)};</span></span>
+<span id="cb165-62"><a href="regularpolygons.html#cb165-62"></a>  abcg<span class="op">::</span>glUniform2fv<span class="op">(</span>translationLocation<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span>translation<span class="op">.</span>x<span class="op">);</span></span>
+<span id="cb165-63"><a href="regularpolygons.html#cb165-63"></a></span>
+<span id="cb165-64"><a href="regularpolygons.html#cb165-64"></a>  <span class="co">// Pick a random scale factor (1% to 25%)</span></span>
+<span id="cb165-65"><a href="regularpolygons.html#cb165-65"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd2<span class="op">(</span><span class="fl">0.01</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.25</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb165-66"><a href="regularpolygons.html#cb165-66"></a>  <span class="kw">auto</span> <span class="at">const</span> scale<span class="op">{</span>rd2<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb165-67"><a href="regularpolygons.html#cb165-67"></a>  <span class="kw">auto</span> <span class="at">const</span> scaleLocation<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;scale&quot;</span><span class="op">)};</span></span>
+<span id="cb165-68"><a href="regularpolygons.html#cb165-68"></a>  abcg<span class="op">::</span>glUniform1f<span class="op">(</span>scaleLocation<span class="op">,</span> scale<span class="op">);</span></span>
+<span id="cb165-69"><a href="regularpolygons.html#cb165-69"></a></span>
+<span id="cb165-70"><a href="regularpolygons.html#cb165-70"></a>  <span class="co">// Render</span></span>
+<span id="cb165-71"><a href="regularpolygons.html#cb165-71"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb165-72"><a href="regularpolygons.html#cb165-72"></a>  abcg<span class="op">::</span>glDrawArrays<span class="op">(</span>GL_TRIANGLE_FAN<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> sides <span class="op">+</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb165-73"><a href="regularpolygons.html#cb165-73"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb165-74"><a href="regularpolygons.html#cb165-74"></a></span>
+<span id="cb165-75"><a href="regularpolygons.html#cb165-75"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb165-76"><a href="regularpolygons.html#cb165-76"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linha 44, o tempo contado por <code>m_timer</code> é comparado com <code>m_delay</code>. Se o tempo ainda não atingiu <code>m_delay</code>, a função retorna. Caso contrário, o temporizador é reiniciado na linha 46 e a execução continua nas linhas seguintes.</p>
+<p>Na linha 51, <code>setupModel(sides)</code> é chamada para criar o VBO de um polígono regular de <code>sides</code> lados. O número de lados é escolhido aletoriamente do intervalo <span class="math inline">\([3,20]\)</span>.</p>
+<p>Nas linhas 57 a 68 são definidos os valores das variáveis uniformes do shader:</p>
+<div class="sourceCode" id="cb166" startFrom="57"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 56;"><span id="cb166-57"><a href="regularpolygons.html#cb166-57"></a>  <span class="co">// Pick a random xy position from (-1,-1) to (1,1)</span></span>
+<span id="cb166-58"><a href="regularpolygons.html#cb166-58"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd1<span class="op">(-</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb166-59"><a href="regularpolygons.html#cb166-59"></a>  glm<span class="op">::</span>vec2 <span class="at">const</span> translation<span class="op">{</span>rd1<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd1<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb166-60"><a href="regularpolygons.html#cb166-60"></a>  <span class="kw">auto</span> <span class="at">const</span> translationLocation<span class="op">{</span></span>
+<span id="cb166-61"><a href="regularpolygons.html#cb166-61"></a>      abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;translation&quot;</span><span class="op">)};</span></span>
+<span id="cb166-62"><a href="regularpolygons.html#cb166-62"></a>  abcg<span class="op">::</span>glUniform2fv<span class="op">(</span>translationLocation<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span>translation<span class="op">.</span>x<span class="op">);</span></span>
+<span id="cb166-63"><a href="regularpolygons.html#cb166-63"></a></span>
+<span id="cb166-64"><a href="regularpolygons.html#cb166-64"></a>  <span class="co">// Pick a random scale factor (1% to 25%)</span></span>
+<span id="cb166-65"><a href="regularpolygons.html#cb166-65"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd2<span class="op">(</span><span class="fl">0.01</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.25</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb166-66"><a href="regularpolygons.html#cb166-66"></a>  <span class="kw">auto</span> <span class="at">const</span> scale<span class="op">{</span>rd2<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb166-67"><a href="regularpolygons.html#cb166-67"></a>  <span class="kw">auto</span> <span class="at">const</span> scaleLocation<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;scale&quot;</span><span class="op">)};</span></span>
+<span id="cb166-68"><a href="regularpolygons.html#cb166-68"></a>  abcg<span class="op">::</span>glUniform1f<span class="op">(</span>scaleLocation<span class="op">,</span> scale<span class="op">);</span></span></code></pre></div>
+<p>Na linha 59, <code>translation</code> contém coordenadas 2D aleatórias no intervalo <span class="math inline">\([-1,1)\)</span>. Na linha 66, <code>scale</code> é um fator de escala aleatório no intervalo <span class="math inline">\([0.01, 0.25)\)</span>.</p>
+<p>Nas linhas 60 e 67, <code>translationLocation</code> e <code>scaleLocation</code> contêm os identificadores de localização das variáveis uniformes do shader. Esse valores são obtidos com <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGetUniformLocation.xhtml"><code>glGetUniformLocation</code></a> passando o identificador do programa de shader como primeiro argumento (<code>m_program</code>) e o nome da variável uniforme como segundo argumento.</p>
+<p>A atribuição dos valores das variáveis uniformes é feita nas linhas 62 e 68. As funções <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glUniform.xhtml"><code>glUniform*</code></a> têm como primeiro parâmetro a localização da variável uniforme que será modificada, seguida de uma lista de parâmetros que depende do sufixo no fim de <code>glUniform</code>:</p>
+<ul>
+<li>Em <code>glUniform2fv</code>, <code>2fv</code> significa que a variável uniforme é um arranjo de tuplas de dois valores do tipo <code>float</code>, isto é, um arranjo de <code>vec2</code>. Nesse caso, o segundo parâmetro é a quantidade de <code>vec2</code> que deverão ser copiados para a variável uniforme do shader. O argumento é <code>1</code> porque <code>translation</code> não é apenas um <code>vec2</code>. O terceiro parâmetro é o endereço do primeiro elemento do conjunto de dados que serão copiados.</li>
+<li>Em <code>glUniform1f</code>, <code>1f</code> significa que a variável uniforme é apenas um valor do tipo <code>float</code>. Nesse caso, o segundo parâmetro é simplesmente o valor <code>float</code>.</li>
+</ul>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>O formato geral de <code>glUniform</code> é <code>glUniform{1|2|3|4}{f|i|ui}[v]</code>:</p>
+<ul>
+<li><code>{1|2|3|4}</code> define o número de componentes do tipo de dado:
+<ul>
+<li><code>1</code> para <code>float</code>, <code>int</code>, <code>unsigned int</code> e <code>bool</code>;</li>
+<li><code>2</code> para <code>vec2</code>, <code>ivec2</code>, <code>uvec2</code>, <code>bvec2</code>;</li>
+<li><code>3</code> para <code>vec3</code>, <code>ivec3</code>, <code>uvec3</code>, <code>bvec3</code>;</li>
+<li><code>4</code> para <code>vec4</code>, <code>ivec4</code>, <code>uvec4</code>, <code>bvec4</code>.</li>
+</ul></li>
+<li><code>{f|i|ui}</code> define o tipo de dado de cada componente:
+<ul>
+<li><code>f</code> para <code>float</code>, <code>vec2</code>, <code>vec3</code>, <code>vec4</code>;</li>
+<li><code>i</code> para <code>int</code>, <code>ivec2</code>, <code>ivec3</code>, <code>ivec4</code>;</li>
+<li><code>ui</code> para <code>unsigned int</code>, <code>uvec2</code>, <code>uvec3</code>, <code>uvec4</code>.</li>
+</ul></li>
+</ul>
+<p>Tanto <code>f</code>, <code>i</code> e <code>ui</code> podem ser usados para copiar dados para variáveis uniformes booleanas (<code>bool</code>, <code>bvec2</code>, <code>bvec3</code>, <code>bvec4</code>). Nesse caso, <code>true</code> é qualquer valor diferente de zero.</p>
+<p>Se o <code>v</code> final não é especificado, então <code>{1|2|3|4}</code> é também o número de parâmetros após o identificador de localização. Por exemplo:</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb167-1"><a href="regularpolygons.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Variável uniform é um float ou bool</span></span>
+<span id="cb167-2"><a href="regularpolygons.html#cb167-2" aria-hidden="true" tabindex="-1"></a>glUniform1f<span class="op">(</span>loc<span class="op">,</span> <span class="fl">3.14</span><span class="bu">f</span><span class="op">);</span>        </span>
+<span id="cb167-3"><a href="regularpolygons.html#cb167-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-4"><a href="regularpolygons.html#cb167-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Variável uniform é um unsigned int ou bool</span></span>
+<span id="cb167-5"><a href="regularpolygons.html#cb167-5" aria-hidden="true" tabindex="-1"></a>glUniform1ui<span class="op">(</span>loc<span class="op">,</span> <span class="dv">42</span><span class="op">);</span></span>
+<span id="cb167-6"><a href="regularpolygons.html#cb167-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-7"><a href="regularpolygons.html#cb167-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Variável uniform é um vec2 ou bvec2</span></span>
+<span id="cb167-8"><a href="regularpolygons.html#cb167-8" aria-hidden="true" tabindex="-1"></a>glUniform2f<span class="op">(</span>loc<span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">10.5</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb167-9"><a href="regularpolygons.html#cb167-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-10"><a href="regularpolygons.html#cb167-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Variável uniform é um ivec4 ou bvec4</span></span>
+<span id="cb167-11"><a href="regularpolygons.html#cb167-11" aria-hidden="true" tabindex="-1"></a>glUniform4i<span class="op">(</span>loc<span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span> </span></code></pre></div>
+<p>Se o <code>v</code> é especificado, o segundo parâmetro é o número de elementos do arranjo, e o terceiro parâmetro é o ponteiro para os dados. Por exemplo:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb168-1"><a href="regularpolygons.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Variável uniform é um float ou bool</span></span>
+<span id="cb168-2"><a href="regularpolygons.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> pi<span class="op">{</span><span class="fl">3.14</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb168-3"><a href="regularpolygons.html#cb168-3" aria-hidden="true" tabindex="-1"></a>glUniform1fv<span class="op">(</span>loc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span>pi<span class="op">);</span></span>
+<span id="cb168-4"><a href="regularpolygons.html#cb168-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-5"><a href="regularpolygons.html#cb168-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Variável uniform é um unsigned int ou bool</span></span>
+<span id="cb168-6"><a href="regularpolygons.html#cb168-6" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">int</span> answer<span class="op">{</span><span class="dv">42</span><span class="op">};</span></span>
+<span id="cb168-7"><a href="regularpolygons.html#cb168-7" aria-hidden="true" tabindex="-1"></a>glUniform1uiv<span class="op">(</span>loc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span>answer<span class="op">);</span></span>
+<span id="cb168-8"><a href="regularpolygons.html#cb168-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-9"><a href="regularpolygons.html#cb168-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Variável uniform é um vec2 ou bvec2</span></span>
+<span id="cb168-10"><a href="regularpolygons.html#cb168-10" aria-hidden="true" tabindex="-1"></a>glm<span class="op">::</span>vec2 foo<span class="op">{</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">10.5</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb168-11"><a href="regularpolygons.html#cb168-11" aria-hidden="true" tabindex="-1"></a>glUniform2fv<span class="op">(</span>loc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span>foo<span class="op">.</span>x<span class="op">);</span></span>
+<span id="cb168-12"><a href="regularpolygons.html#cb168-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-13"><a href="regularpolygons.html#cb168-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Variável uniform é um ivec4[2] ou bvec4[2]</span></span>
+<span id="cb168-14"><a href="regularpolygons.html#cb168-14" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>array<span class="op"> </span>bar<span class="op">{</span>glm<span class="op">::</span>ivec4<span class="op">{-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">3</span><span class="op">},</span></span>
+<span id="cb168-15"><a href="regularpolygons.html#cb168-15" aria-hidden="true" tabindex="-1"></a>               glm<span class="op">::</span>ivec4<span class="op">{</span><span class="dv">7</span><span class="op">,</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">90</span><span class="op">}};</span></span>
+<span id="cb168-16"><a href="regularpolygons.html#cb168-16" aria-hidden="true" tabindex="-1"></a>glUniform4iv<span class="op">(</span>loc<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="op">&amp;</span>bar<span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">).</span>x<span class="op">);</span> </span></code></pre></div>
+</div>
+<p>Nas linhas 71 a 73 temos a chamada ao comando de renderização:</p>
+<div class="sourceCode" id="cb169" startFrom="71"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 70;"><span id="cb169-71"><a href="regularpolygons.html#cb169-71"></a>  <span class="co">// Render</span></span>
+<span id="cb169-72"><a href="regularpolygons.html#cb169-72"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb169-73"><a href="regularpolygons.html#cb169-73"></a>  abcg<span class="op">::</span>glDrawArrays<span class="op">(</span>GL_TRIANGLE_FAN<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> sides <span class="op">+</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb169-74"><a href="regularpolygons.html#cb169-74"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span></code></pre></div>
+<p>O VAO é vinculado na linha 71. O resultado é a ativação e configuração da ligação dos VBOs com o programa de shader. O comando de renderização é chamado na linha 72. Observe o uso da constante <code>GL_TRIANGLE_FAN</code>. O número de vértices é <code>sides + 2</code> porque definiremos nossos polígonos de tal modo que o número de vértices será sempre o número de lados mais dois, como mostra a figura <a href="regularpolygons.html#fig:regularpolygons2">5.2</a> para a definição de um pentágono:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:regularpolygons2"></span>
+<img src="images/05_regularpolygons2.svg" alt="Pentágono formado por um leque de sete vértices." width="40%" />
+<p class="caption">
+Figura 5.2: Pentágono formado por um leque de sete vértices.
+</p>
+</div>
+<p>No pentágono, o vértice de índice 6 tem a mesma posição do vértice de índice 1 para “fechar” o leque de triângulos. Na verdade, o leque poderia definir um pentágono com apenas cinco vértices, como mostra a figura <a href="regularpolygons.html#fig:regularpolygons3">5.3</a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:regularpolygons3"></span>
+<img src="images/05_regularpolygons3.svg" alt="Pentágono formado por um leque de cinco vértices." width="40%" />
+<p class="caption">
+Figura 5.3: Pentágono formado por um leque de cinco vértices.
+</p>
+</div>
+<p>A escolha de manter o vértice de índice 0 no centro é proposital pois permite simular um efeito de gradiente de cor parecido com um gradiente radial. Para isto, basta atribuir uma cor ao vértice 0, e outra cor aos demais vértices. Como os atributos dos vértices são interpolados linearmente pelo rasterizador para cada fragmento gerado, o resultado será um degradê de cor. A figura <a href="regularpolygons.html#fig:regularpolygons4">5.4</a> mostra um exemplo usando amarelo no vértice central e azul nos demais vértices:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:regularpolygons4"></span>
+<img src="images/05_regularpolygons4.svg" alt="Pentágono com gradiente de cor formado através da interpolação do atributo de cor dos vértices." width="40%" />
+<p class="caption">
+Figura 5.4: Pentágono com gradiente de cor formado através da interpolação do atributo de cor dos vértices.
+</p>
+</div>
+<p>Continuando com a definição das funções membro da classe <code>Window</code>, definiremos <code>Window::onPaintUI</code> usando o código a seguir. O código é bem parecido com o do projeto anterior. A diferença é que, no lugar de <code>ImGui::ColorEdit3</code>, criaremos um slider para controlar o valor de <code>m_delay</code> e criaremos um botão para limpar a janela:</p>
+<div class="sourceCode" id="cb170" startFrom="78"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 77;"><span id="cb170-78"><a href="regularpolygons.html#cb170-78"></a><span class="dt">void</span> Window<span class="op">::</span>onPaintUI<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb170-79"><a href="regularpolygons.html#cb170-79"></a>  abcg<span class="op">::</span>OpenGLWindow<span class="op">::</span>onPaintUI<span class="op">();</span></span>
+<span id="cb170-80"><a href="regularpolygons.html#cb170-80"></a></span>
+<span id="cb170-81"><a href="regularpolygons.html#cb170-81"></a>  <span class="op">{</span></span>
+<span id="cb170-82"><a href="regularpolygons.html#cb170-82"></a>    <span class="kw">auto</span> <span class="at">const</span> widgetSize<span class="op">{</span>ImVec2<span class="op">(</span><span class="dv">200</span><span class="op">,</span> <span class="dv">72</span><span class="op">)};</span></span>
+<span id="cb170-83"><a href="regularpolygons.html#cb170-83"></a>    ImGui<span class="op">::</span>SetNextWindowPos<span class="op">(</span>ImVec2<span class="op">(</span><span class="va">m_viewportSize</span><span class="op">.</span>x <span class="op">-</span> widgetSize<span class="op">.</span>x <span class="op">-</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb170-84"><a href="regularpolygons.html#cb170-84"></a>                                   <span class="va">m_viewportSize</span><span class="op">.</span>y <span class="op">-</span> widgetSize<span class="op">.</span>y <span class="op">-</span> <span class="dv">5</span><span class="op">));</span></span>
+<span id="cb170-85"><a href="regularpolygons.html#cb170-85"></a>    ImGui<span class="op">::</span>SetNextWindowSize<span class="op">(</span>widgetSize<span class="op">);</span></span>
+<span id="cb170-86"><a href="regularpolygons.html#cb170-86"></a>    <span class="kw">auto</span> <span class="at">const</span> windowFlags<span class="op">{</span>ImGuiWindowFlags_NoResize <span class="op">|</span></span>
+<span id="cb170-87"><a href="regularpolygons.html#cb170-87"></a>                           ImGuiWindowFlags_NoCollapse <span class="op">|</span></span>
+<span id="cb170-88"><a href="regularpolygons.html#cb170-88"></a>                           ImGuiWindowFlags_NoTitleBar<span class="op">};</span></span>
+<span id="cb170-89"><a href="regularpolygons.html#cb170-89"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> windowFlags<span class="op">);</span></span>
+<span id="cb170-90"><a href="regularpolygons.html#cb170-90"></a></span>
+<span id="cb170-91"><a href="regularpolygons.html#cb170-91"></a>    ImGui<span class="op">::</span>PushItemWidth<span class="op">(</span><span class="dv">140</span><span class="op">);</span></span>
+<span id="cb170-92"><a href="regularpolygons.html#cb170-92"></a>    ImGui<span class="op">::</span>SliderInt<span class="op">(</span><span class="st">&quot;Delay&quot;</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_delay</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">%d</span><span class="st"> ms&quot;</span><span class="op">);</span></span>
+<span id="cb170-93"><a href="regularpolygons.html#cb170-93"></a>    ImGui<span class="op">::</span>PopItemWidth<span class="op">();</span></span>
+<span id="cb170-94"><a href="regularpolygons.html#cb170-94"></a></span>
+<span id="cb170-95"><a href="regularpolygons.html#cb170-95"></a>    <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Button<span class="op">(</span><span class="st">&quot;Clear window&quot;</span><span class="op">,</span> ImVec2<span class="op">(-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">30</span><span class="op">)))</span> <span class="op">{</span></span>
+<span id="cb170-96"><a href="regularpolygons.html#cb170-96"></a>      abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb170-97"><a href="regularpolygons.html#cb170-97"></a>    <span class="op">}</span></span>
+<span id="cb170-98"><a href="regularpolygons.html#cb170-98"></a></span>
+<span id="cb170-99"><a href="regularpolygons.html#cb170-99"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb170-100"><a href="regularpolygons.html#cb170-100"></a>  <span class="op">}</span></span>
+<span id="cb170-101"><a href="regularpolygons.html#cb170-101"></a><span class="op">}</span></span></code></pre></div>
+<p>A definição de <code>Window::onResize</code> e <code>Window::onDestroy</code> é idêntica à do projeto anterior:</p>
+<div class="sourceCode" id="cb171" startFrom="103"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 102;"><span id="cb171-103"><a href="regularpolygons.html#cb171-103"></a><span class="dt">void</span> Window<span class="op">::</span>onResize<span class="op">(</span>glm<span class="op">::</span>ivec2 <span class="at">const</span> <span class="op">&amp;</span>size<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb171-104"><a href="regularpolygons.html#cb171-104"></a>  <span class="va">m_viewportSize</span> <span class="op">=</span> size<span class="op">;</span></span>
+<span id="cb171-105"><a href="regularpolygons.html#cb171-105"></a></span>
+<span id="cb171-106"><a href="regularpolygons.html#cb171-106"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb171-107"><a href="regularpolygons.html#cb171-107"></a><span class="op">}</span></span>
+<span id="cb171-108"><a href="regularpolygons.html#cb171-108"></a></span>
+<span id="cb171-109"><a href="regularpolygons.html#cb171-109"></a><span class="dt">void</span> Window<span class="op">::</span>onDestroy<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb171-110"><a href="regularpolygons.html#cb171-110"></a>  abcg<span class="op">::</span>glDeleteProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb171-111"><a href="regularpolygons.html#cb171-111"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb171-112"><a href="regularpolygons.html#cb171-112"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb171-113"><a href="regularpolygons.html#cb171-113"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb171-114"><a href="regularpolygons.html#cb171-114"></a><span class="op">}</span></span></code></pre></div>
+<p>Vamos agora à definição da função <code>Window::setupModel</code>. O código completo é mostrado abaixo, mas analisaremos cada trecho em seguida:</p>
+<div class="sourceCode" id="cb172" startFrom="116"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 115;"><span id="cb172-116"><a href="regularpolygons.html#cb172-116"></a><span class="dt">void</span> Window<span class="op">::</span>setupModel<span class="op">(</span><span class="dt">int</span> sides<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb172-117"><a href="regularpolygons.html#cb172-117"></a>  <span class="co">// Release previous resources, if any</span></span>
+<span id="cb172-118"><a href="regularpolygons.html#cb172-118"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb172-119"><a href="regularpolygons.html#cb172-119"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb172-120"><a href="regularpolygons.html#cb172-120"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb172-121"><a href="regularpolygons.html#cb172-121"></a></span>
+<span id="cb172-122"><a href="regularpolygons.html#cb172-122"></a>  <span class="co">// Select random colors for the radial gradient</span></span>
+<span id="cb172-123"><a href="regularpolygons.html#cb172-123"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd<span class="op">(</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb172-124"><a href="regularpolygons.html#cb172-124"></a>  glm<span class="op">::</span>vec3 <span class="at">const</span> color1<span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span></span>
+<span id="cb172-125"><a href="regularpolygons.html#cb172-125"></a>                         rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb172-126"><a href="regularpolygons.html#cb172-126"></a>  glm<span class="op">::</span>vec3 <span class="at">const</span> color2<span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span></span>
+<span id="cb172-127"><a href="regularpolygons.html#cb172-127"></a>                         rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb172-128"><a href="regularpolygons.html#cb172-128"></a></span>
+<span id="cb172-129"><a href="regularpolygons.html#cb172-129"></a>  <span class="co">// Minimum number of sides is 3</span></span>
+<span id="cb172-130"><a href="regularpolygons.html#cb172-130"></a>  sides <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span><span class="dv">3</span><span class="op">,</span> sides<span class="op">);</span></span>
+<span id="cb172-131"><a href="regularpolygons.html#cb172-131"></a></span>
+<span id="cb172-132"><a href="regularpolygons.html#cb172-132"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>glm<span class="op">::</span>vec2<span class="op">&gt;</span> positions<span class="op">;</span></span>
+<span id="cb172-133"><a href="regularpolygons.html#cb172-133"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>glm<span class="op">::</span>vec3<span class="op">&gt;</span> colors<span class="op">;</span></span>
+<span id="cb172-134"><a href="regularpolygons.html#cb172-134"></a></span>
+<span id="cb172-135"><a href="regularpolygons.html#cb172-135"></a>  <span class="co">// Polygon center</span></span>
+<span id="cb172-136"><a href="regularpolygons.html#cb172-136"></a>  positions<span class="op">.</span>emplace_back<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb172-137"><a href="regularpolygons.html#cb172-137"></a>  colors<span class="op">.</span>push_back<span class="op">(</span>color1<span class="op">);</span></span>
+<span id="cb172-138"><a href="regularpolygons.html#cb172-138"></a></span>
+<span id="cb172-139"><a href="regularpolygons.html#cb172-139"></a>  <span class="co">// Border vertices</span></span>
+<span id="cb172-140"><a href="regularpolygons.html#cb172-140"></a>  <span class="kw">auto</span> <span class="at">const</span> step<span class="op">{</span>M_PI <span class="op">*</span> <span class="dv">2</span> <span class="op">/</span> sides<span class="op">};</span></span>
+<span id="cb172-141"><a href="regularpolygons.html#cb172-141"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> angle <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="fl">0.0</span><span class="op">,</span> M_PI <span class="op">*</span> <span class="dv">2</span><span class="op">,</span> step<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb172-142"><a href="regularpolygons.html#cb172-142"></a>    positions<span class="op">.</span>emplace_back<span class="op">(</span><span class="bu">std::</span>cos<span class="op">(</span>angle<span class="op">),</span> <span class="bu">std::</span>sin<span class="op">(</span>angle<span class="op">));</span></span>
+<span id="cb172-143"><a href="regularpolygons.html#cb172-143"></a>    colors<span class="op">.</span>push_back<span class="op">(</span>color2<span class="op">);</span></span>
+<span id="cb172-144"><a href="regularpolygons.html#cb172-144"></a>  <span class="op">}</span></span>
+<span id="cb172-145"><a href="regularpolygons.html#cb172-145"></a></span>
+<span id="cb172-146"><a href="regularpolygons.html#cb172-146"></a>  <span class="co">// Duplicate second vertex</span></span>
+<span id="cb172-147"><a href="regularpolygons.html#cb172-147"></a>  positions<span class="op">.</span>push_back<span class="op">(</span>positions<span class="op">.</span>at<span class="op">(</span><span class="dv">1</span><span class="op">));</span></span>
+<span id="cb172-148"><a href="regularpolygons.html#cb172-148"></a>  colors<span class="op">.</span>push_back<span class="op">(</span>color2<span class="op">);</span></span>
+<span id="cb172-149"><a href="regularpolygons.html#cb172-149"></a></span>
+<span id="cb172-150"><a href="regularpolygons.html#cb172-150"></a>  <span class="co">// Generate VBO of positions</span></span>
+<span id="cb172-151"><a href="regularpolygons.html#cb172-151"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb172-152"><a href="regularpolygons.html#cb172-152"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb172-153"><a href="regularpolygons.html#cb172-153"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> positions<span class="op">.</span>size<span class="op">()</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span>glm<span class="op">::</span>vec2<span class="op">),</span></span>
+<span id="cb172-154"><a href="regularpolygons.html#cb172-154"></a>                     positions<span class="op">.</span>data<span class="op">(),</span> GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb172-155"><a href="regularpolygons.html#cb172-155"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb172-156"><a href="regularpolygons.html#cb172-156"></a></span>
+<span id="cb172-157"><a href="regularpolygons.html#cb172-157"></a>  <span class="co">// Generate VBO of colors</span></span>
+<span id="cb172-158"><a href="regularpolygons.html#cb172-158"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb172-159"><a href="regularpolygons.html#cb172-159"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb172-160"><a href="regularpolygons.html#cb172-160"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> colors<span class="op">.</span>size<span class="op">()</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span>glm<span class="op">::</span>vec3<span class="op">),</span></span>
+<span id="cb172-161"><a href="regularpolygons.html#cb172-161"></a>                     colors<span class="op">.</span>data<span class="op">(),</span> GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb172-162"><a href="regularpolygons.html#cb172-162"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb172-163"><a href="regularpolygons.html#cb172-163"></a></span>
+<span id="cb172-164"><a href="regularpolygons.html#cb172-164"></a>  <span class="co">// Get location of attributes in the program</span></span>
+<span id="cb172-165"><a href="regularpolygons.html#cb172-165"></a>  <span class="kw">auto</span> <span class="at">const</span> positionAttribute<span class="op">{</span></span>
+<span id="cb172-166"><a href="regularpolygons.html#cb172-166"></a>      abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inPosition&quot;</span><span class="op">)};</span></span>
+<span id="cb172-167"><a href="regularpolygons.html#cb172-167"></a>  <span class="kw">auto</span> <span class="at">const</span> colorAttribute<span class="op">{</span>abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inColor&quot;</span><span class="op">)};</span></span>
+<span id="cb172-168"><a href="regularpolygons.html#cb172-168"></a></span>
+<span id="cb172-169"><a href="regularpolygons.html#cb172-169"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb172-170"><a href="regularpolygons.html#cb172-170"></a>  abcg<span class="op">::</span>glGenVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb172-171"><a href="regularpolygons.html#cb172-171"></a></span>
+<span id="cb172-172"><a href="regularpolygons.html#cb172-172"></a>  <span class="co">// Bind vertex attributes to current VAO</span></span>
+<span id="cb172-173"><a href="regularpolygons.html#cb172-173"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb172-174"><a href="regularpolygons.html#cb172-174"></a></span>
+<span id="cb172-175"><a href="regularpolygons.html#cb172-175"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>positionAttribute<span class="op">);</span></span>
+<span id="cb172-176"><a href="regularpolygons.html#cb172-176"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb172-177"><a href="regularpolygons.html#cb172-177"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>positionAttribute<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb172-178"><a href="regularpolygons.html#cb172-178"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb172-179"><a href="regularpolygons.html#cb172-179"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb172-180"><a href="regularpolygons.html#cb172-180"></a></span>
+<span id="cb172-181"><a href="regularpolygons.html#cb172-181"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>colorAttribute<span class="op">);</span></span>
+<span id="cb172-182"><a href="regularpolygons.html#cb172-182"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb172-183"><a href="regularpolygons.html#cb172-183"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>colorAttribute<span class="op">,</span> <span class="dv">3</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb172-184"><a href="regularpolygons.html#cb172-184"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb172-185"><a href="regularpolygons.html#cb172-185"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb172-186"><a href="regularpolygons.html#cb172-186"></a></span>
+<span id="cb172-187"><a href="regularpolygons.html#cb172-187"></a>  <span class="co">// End of binding to current VAO</span></span>
+<span id="cb172-188"><a href="regularpolygons.html#cb172-188"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb172-189"><a href="regularpolygons.html#cb172-189"></a><span class="op">}</span></span></code></pre></div>
+<p>No início da função, os VBOs e o VAO são liberados caso tenham sido criados anteriormente:</p>
+<div class="sourceCode" id="cb173" startFrom="117"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 116;"><span id="cb173-117"><a href="regularpolygons.html#cb173-117"></a>  <span class="co">// Release previous resources, if any</span></span>
+<span id="cb173-118"><a href="regularpolygons.html#cb173-118"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb173-119"><a href="regularpolygons.html#cb173-119"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb173-120"><a href="regularpolygons.html#cb173-120"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span></code></pre></div>
+<p>Em seguida, temos o código que cria os vértices do polígono regular (arranjos <code>positions</code> e <code>colors</code>):</p>
+<div class="sourceCode" id="cb174" startFrom="122"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 121;"><span id="cb174-122"><a href="regularpolygons.html#cb174-122"></a>  <span class="co">// Select random colors for the radial gradient</span></span>
+<span id="cb174-123"><a href="regularpolygons.html#cb174-123"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd<span class="op">(</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb174-124"><a href="regularpolygons.html#cb174-124"></a>  glm<span class="op">::</span>vec3 <span class="at">const</span> color1<span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span></span>
+<span id="cb174-125"><a href="regularpolygons.html#cb174-125"></a>                         rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb174-126"><a href="regularpolygons.html#cb174-126"></a>  glm<span class="op">::</span>vec3 <span class="at">const</span> color2<span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span></span>
+<span id="cb174-127"><a href="regularpolygons.html#cb174-127"></a>                         rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb174-128"><a href="regularpolygons.html#cb174-128"></a></span>
+<span id="cb174-129"><a href="regularpolygons.html#cb174-129"></a>  <span class="co">// Minimum number of sides is 3</span></span>
+<span id="cb174-130"><a href="regularpolygons.html#cb174-130"></a>  sides <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span><span class="dv">3</span><span class="op">,</span> sides<span class="op">);</span></span>
+<span id="cb174-131"><a href="regularpolygons.html#cb174-131"></a></span>
+<span id="cb174-132"><a href="regularpolygons.html#cb174-132"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>glm<span class="op">::</span>vec2<span class="op">&gt;</span> positions<span class="op">;</span></span>
+<span id="cb174-133"><a href="regularpolygons.html#cb174-133"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>glm<span class="op">::</span>vec3<span class="op">&gt;</span> colors<span class="op">;</span></span>
+<span id="cb174-134"><a href="regularpolygons.html#cb174-134"></a></span>
+<span id="cb174-135"><a href="regularpolygons.html#cb174-135"></a>  <span class="co">// Polygon center</span></span>
+<span id="cb174-136"><a href="regularpolygons.html#cb174-136"></a>  positions<span class="op">.</span>emplace_back<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb174-137"><a href="regularpolygons.html#cb174-137"></a>  colors<span class="op">.</span>push_back<span class="op">(</span>color1<span class="op">);</span></span>
+<span id="cb174-138"><a href="regularpolygons.html#cb174-138"></a></span>
+<span id="cb174-139"><a href="regularpolygons.html#cb174-139"></a>  <span class="co">// Border vertices</span></span>
+<span id="cb174-140"><a href="regularpolygons.html#cb174-140"></a>  <span class="kw">auto</span> <span class="at">const</span> step<span class="op">{</span>M_PI <span class="op">*</span> <span class="dv">2</span> <span class="op">/</span> sides<span class="op">};</span></span>
+<span id="cb174-141"><a href="regularpolygons.html#cb174-141"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> angle <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="fl">0.0</span><span class="op">,</span> M_PI <span class="op">*</span> <span class="dv">2</span><span class="op">,</span> step<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb174-142"><a href="regularpolygons.html#cb174-142"></a>    positions<span class="op">.</span>emplace_back<span class="op">(</span><span class="bu">std::</span>cos<span class="op">(</span>angle<span class="op">),</span> <span class="bu">std::</span>sin<span class="op">(</span>angle<span class="op">));</span></span>
+<span id="cb174-143"><a href="regularpolygons.html#cb174-143"></a>    colors<span class="op">.</span>push_back<span class="op">(</span>color2<span class="op">);</span></span>
+<span id="cb174-144"><a href="regularpolygons.html#cb174-144"></a>  <span class="op">}</span></span>
+<span id="cb174-145"><a href="regularpolygons.html#cb174-145"></a></span>
+<span id="cb174-146"><a href="regularpolygons.html#cb174-146"></a>  <span class="co">// Duplicate second vertex</span></span>
+<span id="cb174-147"><a href="regularpolygons.html#cb174-147"></a>  positions<span class="op">.</span>push_back<span class="op">(</span>positions<span class="op">.</span>at<span class="op">(</span><span class="dv">1</span><span class="op">));</span></span>
+<span id="cb174-148"><a href="regularpolygons.html#cb174-148"></a>  colors<span class="op">.</span>push_back<span class="op">(</span>color2<span class="op">);</span></span></code></pre></div>
+<p>Duas cores RGB são sorteadas nas linhas 124 e 126. <code>color1</code> é utilizada na definição do vértice do centro (linhas 137), e <code>color2</code> é utilizada para os demais vértices (linha 143).</p>
+<p>Nas linhas 140 a 144, a posição dos vértices é calculada usando a equação paramétrica de um círculo unitário na origem:</p>
+<p><span class="math display">\[
+\begin{eqnarray}
+x&amp;=&amp;cos(t),\\
+y&amp;=&amp;sin(t),
+\end{eqnarray}
+\]</span></p>
+<p>onde <span class="math inline">\(t\)</span> é o ângulo (<code>angle</code>) que varia de <span class="math inline">\(0\)</span> a <span class="math inline">\(2\pi\)</span> usando um tamanho do passo (<code>step</code>) igual à divisão de <span class="math inline">\(2\pi\)</span> pelo número de lados do polígono.</p>
+<p>A definição dos VBOs é semelhante à forma utilizada no projeto anterior.</p>
+<p>Nas linhas 175 a 185 é definido como os dados dos VBOs serão mapeados para a entrada do vertex shader. Vamos nos concentrar na definição do mapeamento de <code>m_VBOPositions</code> (o mapeamento de <code>m_VBOColors</code> é similar):</p>
+<div class="sourceCode" id="cb175" startFrom="175"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 174;"><span id="cb175-175"><a href="regularpolygons.html#cb175-175"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>positionAttribute<span class="op">);</span></span>
+<span id="cb175-176"><a href="regularpolygons.html#cb175-176"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb175-177"><a href="regularpolygons.html#cb175-177"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>positionAttribute<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb175-178"><a href="regularpolygons.html#cb175-178"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb175-179"><a href="regularpolygons.html#cb175-179"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span></code></pre></div>
+<p>Na linha 175, <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glEnableVertexAttribArray.xhtml"><code>glEnableVertexAttribArray</code></a> habilita o atributo de posição do vértice (<code>inPosition</code>) para ser utilizado durante a renderização.</p>
+<p>Em seguida, <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBindBuffer.xhtml"><code>glBindBuffer</code></a> vincula o VBO <code>m_VBOPositions</code>, que contém os dados das posições dos vértices.</p>
+<p>Na linha 177, <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glVertexAttribPointer.xhtml"><code>glVertexAttribPointer</code></a> define como os dados do VBO serão mapeados para o atributo. Lembre-se que o VBO é apenas um arranjo linear de bytes copiados pela função <code>glBufferData</code>. Com <code>glVertexAttribPointer</code>, informamos ao OpenGL como esses bytes devem ser mapeados para uma variável de atributo de entrada do vertex shader. A assinatura de <code>glVertexAttribPointer</code> é a seguinte:</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb176-1"><a href="regularpolygons.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> glVertexAttribPointer<span class="op">(</span>GLuint index<span class="op">,</span> </span>
+<span id="cb176-2"><a href="regularpolygons.html#cb176-2" aria-hidden="true" tabindex="-1"></a>                           GLint size<span class="op">,</span></span>
+<span id="cb176-3"><a href="regularpolygons.html#cb176-3" aria-hidden="true" tabindex="-1"></a>                           GLenum type<span class="op">,</span></span>
+<span id="cb176-4"><a href="regularpolygons.html#cb176-4" aria-hidden="true" tabindex="-1"></a>                           GLboolean normalized<span class="op">,</span></span>
+<span id="cb176-5"><a href="regularpolygons.html#cb176-5" aria-hidden="true" tabindex="-1"></a>                           GLsizei stride<span class="op">,</span></span>
+<span id="cb176-6"><a href="regularpolygons.html#cb176-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">const</span> <span class="dt">void</span> <span class="op">*</span> pointer<span class="op">);</span></span></code></pre></div>
+<p>Os parâmetros são:</p>
+<ol style="list-style-type: decimal">
+<li><code>index</code>: índice do atributo que será modificado. No nosso caso (linha 175) é <code>positionAttribute</code>.</li>
+<li><code>size</code>: número de componentes do atributo. No nosso caso é <code>2</code> pois <code>inPosition</code> é um <code>vec2</code>, isto é, um atributo de dois componentes.</li>
+<li><code>type</code>: tipo de dado de cada valor do VBO. Usamos <code>GL_FLOAT</code> pois cada coordenada <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> do VBO de posições é um <code>float</code>.</li>
+<li><code>normalized</code>: flag que indica se valores inteiros devem ser normalizados para <span class="math inline">\([-1,1]\)</span> (para valores com sinal) ou <span class="math inline">\([0,1]\)</span> (para valores sem sinal) quando forem enviados ao atributo. Usamos <code>GL_FALSE</code> porque nossas coordenadas são valores do tipo <code>float</code>;</li>
+<li><code>stride</code>: é o número de bytes entre o início do atributo de um vértice e o início do atributo do próximo vértice no arranjo linear. O argumento <code>0</code> que utilizamos indica que não há bytes extras entre uma posição <span class="math inline">\((x,y)\)</span> e a posição <span class="math inline">\((x,y)\)</span> do vértice seguinte.</li>
+<li><code>pointer</code>: apesar do nome, não é um ponteiro, mas um deslocamento em bytes a partir do início do arranjo linear, e que corresponde à posição do primeiro componente do atributo. Usamos <code>nullptr</code>, que corresponde a zero, pois não há bytes extras no início do VBO antes da primeira posição <span class="math inline">\((x,y)\)</span>.</li>
+</ol>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Os parâmetros <code>stride</code> e <code>pointer</code> de <code>glVertexAttribPointer</code> podem ser utilizados para especificar o mapeamento de VBOs que contém <em>dados intercalados</em> (<em>interleaved data</em>).</p>
+<p>Nosso <code>m_VBOPositions</code> não usa dados intercalados. O arranjo contém apenas posições <span class="math inline">\((x,y)\)</span> em sequência. Assim, para um triângulo (três vértices), o VBO representa um arranjo no formato</p>
+<p><span class="math display">\[[\underline{x,\; y},\; \; x,\; y,\; \; x,\; y],\]</span></p>
+<p>onde cada grupo de <span class="math inline">\((x, y)\)</span> é a posição de um vértice, e tanto <span class="math inline">\(x\)</span> quanto <span class="math inline">\(y\)</span> são do tipo <code>float</code><a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>.</p>
+<p>Da mesma forma, <code>m_VBOColors</code> não usa dados intercalados. Para a definição das cores dos vértices de um triângulo, o arranjo tem o formato:</p>
+<p><span class="math display">\[[\underline{r,\; g,\; b},\; \; r,\; g,\; b,\; \; r,\; g,\; b],\]</span></p>
+<p>onde cada grupo de <span class="math inline">\((r,g,b)\)</span> define a cor de um vértice, e <span class="math inline">\(r\)</span>, <span class="math inline">\(g\)</span> e <span class="math inline">\(b\)</span> também são do tipo <code>float</code>.</p>
+<p>Quando os dados não são intercalados, podemos especificar <code>0</code> como argumento de <code>stride</code>, que é o que fizemos. Além disso, <code>pointer</code> também é <code>0</code>.</p>
+<p>Suponha agora que os dados tenham sido intercalados em um único VBO no seguinte formato:</p>
+<p><span class="math display">\[[\underline{x,\; y,\; r,\; g,\; b},\; \; x,\; y,\; r,\; g,\; b,\; \; x,\; y,\; r,\; g,\; b].\]</span></p>
+<p>Agora, o atributo de posição <span class="math inline">\((x,y)\)</span> tem um stride que corresponde à quantidade de bytes contida em <span class="math inline">\((x,y,r,g,b)\)</span>. Esse valor é 20 se cada <code>float</code> tiver 4 bytes (5 <span class="math inline">\(\times\)</span> 4 = 20 bytes). <code>pointer</code> continua sendo <code>0</code>, pois não há deslocamento no início do arranjo.</p>
+<p>O atributo de cor <span class="math inline">\((r,g,b)\)</span> também tem um stride de 20 bytes. Entretanto, <code>pointer</code> (deslocamento a partir do início) precisa ser <code>8</code>, pois <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> ocupam 8 bytes antes do início do primeiro grupo de <span class="math inline">\((r,g,b)\)</span>.</p>
+<p>Suponha agora um único VBO no formato a seguir:</p>
+<p><span class="math display">\[[\underline{x,\; y},\; \; x,\; y,\; \; x,\; y,\; \; \underline{r,\; g,\; b},\; \; r,\; g,\; b,\; \; r,\; g,\; b].\]</span></p>
+<p>Nesse VBO, o stride da posição pode ser <code>0</code>, pois após um grupo de <span class="math inline">\((x,y)\)</span> há imediatamente outro <span class="math inline">\((x,y)\)</span><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>. O stride da cor também pode ser <code>0</code> pelo mesmo raciocínio. Entretanto, o <code>pointer</code> para o atributo de cor precisa ser 24 (3 vértices <span class="math inline">\(\times\)</span> 8 bytes por vértices = 24 bytes), pois o primeiro grupo de <span class="math inline">\((r,g,b)\)</span> ocorre apenas depois de três grupos de <span class="math inline">\((x,y)\)</span>.</p>
+<p>Com todas essas opções de formatação de VBOs, não há uma forma mais certa ou mais recomendada de organizar os dados. É possível que algum driver use algum formato de forma mais eficiente, mas isso só pode ser determinado através de medição de tempo. Na prática, use o formato que melhor fizer sentido para o caso de uso.</p>
+<p>Para simplificar, fizemos as contas supondo 4 bytes por <code>float</code>, mas lembre-se sempre de usar <code>sizeof(float)</code> pois o tamanho de um <code>float</code> pode variar dependendo da arquitetura.</p>
+</div>
+<p>O código completo de <code>window.cpp</code> é mostrado a seguir:</p>
+<div class="sourceCode" id="cb177" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb177-1"><a href="regularpolygons.html#cb177-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb177-2"><a href="regularpolygons.html#cb177-2"></a></span>
+<span id="cb177-3"><a href="regularpolygons.html#cb177-3"></a><span class="dt">void</span> Window<span class="op">::</span>onCreate<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb177-4"><a href="regularpolygons.html#cb177-4"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">*</span>vertexShader<span class="op">{</span><span class="st">R&quot;gl(</span><span class="vs">#version 300 es</span></span>
+<span id="cb177-5"><a href="regularpolygons.html#cb177-5"></a></span>
+<span id="cb177-6"><a href="regularpolygons.html#cb177-6"></a><span class="vs">    layout(location = 0) in vec2 inPosition;</span></span>
+<span id="cb177-7"><a href="regularpolygons.html#cb177-7"></a><span class="vs">    layout(location = 1) in vec4 inColor;</span></span>
+<span id="cb177-8"><a href="regularpolygons.html#cb177-8"></a></span>
+<span id="cb177-9"><a href="regularpolygons.html#cb177-9"></a><span class="vs">    uniform vec2 translation;</span></span>
+<span id="cb177-10"><a href="regularpolygons.html#cb177-10"></a><span class="vs">    uniform float scale;</span></span>
+<span id="cb177-11"><a href="regularpolygons.html#cb177-11"></a></span>
+<span id="cb177-12"><a href="regularpolygons.html#cb177-12"></a><span class="vs">    out vec4 fragColor;</span></span>
+<span id="cb177-13"><a href="regularpolygons.html#cb177-13"></a></span>
+<span id="cb177-14"><a href="regularpolygons.html#cb177-14"></a><span class="vs">    void main() {</span></span>
+<span id="cb177-15"><a href="regularpolygons.html#cb177-15"></a><span class="vs">      vec2 newPosition = inPosition * scale + translation;</span></span>
+<span id="cb177-16"><a href="regularpolygons.html#cb177-16"></a><span class="vs">      gl_Position = vec4(newPosition, 0, 1);</span></span>
+<span id="cb177-17"><a href="regularpolygons.html#cb177-17"></a><span class="vs">      fragColor = inColor;</span></span>
+<span id="cb177-18"><a href="regularpolygons.html#cb177-18"></a><span class="vs">    }</span></span>
+<span id="cb177-19"><a href="regularpolygons.html#cb177-19"></a><span class="vs">  </span><span class="st">)gl&quot;</span><span class="op">};</span></span>
+<span id="cb177-20"><a href="regularpolygons.html#cb177-20"></a></span>
+<span id="cb177-21"><a href="regularpolygons.html#cb177-21"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">*</span>fragmentShader<span class="op">{</span><span class="st">R&quot;gl(</span><span class="vs">#version 300 es</span></span>
+<span id="cb177-22"><a href="regularpolygons.html#cb177-22"></a></span>
+<span id="cb177-23"><a href="regularpolygons.html#cb177-23"></a><span class="vs">    precision mediump float;  </span></span>
+<span id="cb177-24"><a href="regularpolygons.html#cb177-24"></a></span>
+<span id="cb177-25"><a href="regularpolygons.html#cb177-25"></a><span class="vs">    in vec4 fragColor;</span></span>
+<span id="cb177-26"><a href="regularpolygons.html#cb177-26"></a></span>
+<span id="cb177-27"><a href="regularpolygons.html#cb177-27"></a><span class="vs">    out vec4 outColor;</span></span>
+<span id="cb177-28"><a href="regularpolygons.html#cb177-28"></a></span>
+<span id="cb177-29"><a href="regularpolygons.html#cb177-29"></a><span class="vs">    void main() { outColor = fragColor; }</span></span>
+<span id="cb177-30"><a href="regularpolygons.html#cb177-30"></a><span class="vs">  </span><span class="st">)gl&quot;</span><span class="op">};</span></span>
+<span id="cb177-31"><a href="regularpolygons.html#cb177-31"></a></span>
+<span id="cb177-32"><a href="regularpolygons.html#cb177-32"></a>  <span class="va">m_program</span> <span class="op">=</span> abcg<span class="op">::</span>createOpenGLProgram<span class="op">(</span></span>
+<span id="cb177-33"><a href="regularpolygons.html#cb177-33"></a>      <span class="op">{{.</span>source <span class="op">=</span> vertexShader<span class="op">,</span> <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Vertex<span class="op">},</span></span>
+<span id="cb177-34"><a href="regularpolygons.html#cb177-34"></a>       <span class="op">{.</span>source <span class="op">=</span> fragmentShader<span class="op">,</span> <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Fragment<span class="op">}});</span></span>
+<span id="cb177-35"><a href="regularpolygons.html#cb177-35"></a></span>
+<span id="cb177-36"><a href="regularpolygons.html#cb177-36"></a>  abcg<span class="op">::</span>glClearColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb177-37"><a href="regularpolygons.html#cb177-37"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb177-38"><a href="regularpolygons.html#cb177-38"></a></span>
+<span id="cb177-39"><a href="regularpolygons.html#cb177-39"></a>  <span class="va">m_randomEngine</span><span class="op">.</span>seed<span class="op">(</span></span>
+<span id="cb177-40"><a href="regularpolygons.html#cb177-40"></a>      <span class="bu">std::</span>chrono<span class="bu">::</span>steady_clock<span class="bu">::</span>now<span class="op">().</span>time_since_epoch<span class="op">().</span>count<span class="op">());</span></span>
+<span id="cb177-41"><a href="regularpolygons.html#cb177-41"></a><span class="op">}</span></span>
+<span id="cb177-42"><a href="regularpolygons.html#cb177-42"></a></span>
+<span id="cb177-43"><a href="regularpolygons.html#cb177-43"></a><span class="dt">void</span> Window<span class="op">::</span>onPaint<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb177-44"><a href="regularpolygons.html#cb177-44"></a>  <span class="cf">if</span> <span class="op">(</span><span class="va">m_timer</span><span class="op">.</span>elapsed<span class="op">()</span> <span class="op">&lt;</span> <span class="va">m_delay</span> <span class="op">/</span> <span class="fl">1000.0</span><span class="op">)</span></span>
+<span id="cb177-45"><a href="regularpolygons.html#cb177-45"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb177-46"><a href="regularpolygons.html#cb177-46"></a>  <span class="va">m_timer</span><span class="op">.</span>restart<span class="op">();</span></span>
+<span id="cb177-47"><a href="regularpolygons.html#cb177-47"></a></span>
+<span id="cb177-48"><a href="regularpolygons.html#cb177-48"></a>  <span class="co">// Create a regular polygon with number of sides in the range [3,20]</span></span>
+<span id="cb177-49"><a href="regularpolygons.html#cb177-49"></a>  <span class="bu">std::</span>uniform_int_distribution<span class="op"> </span>intDist<span class="op">(</span><span class="dv">3</span><span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span>
+<span id="cb177-50"><a href="regularpolygons.html#cb177-50"></a>  <span class="kw">auto</span> <span class="at">const</span> sides<span class="op">{</span>intDist<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb177-51"><a href="regularpolygons.html#cb177-51"></a>  setupModel<span class="op">(</span>sides<span class="op">);</span></span>
+<span id="cb177-52"><a href="regularpolygons.html#cb177-52"></a></span>
+<span id="cb177-53"><a href="regularpolygons.html#cb177-53"></a>  abcg<span class="op">::</span>glViewport<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>x<span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb177-54"><a href="regularpolygons.html#cb177-54"></a></span>
+<span id="cb177-55"><a href="regularpolygons.html#cb177-55"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb177-56"><a href="regularpolygons.html#cb177-56"></a></span>
+<span id="cb177-57"><a href="regularpolygons.html#cb177-57"></a>  <span class="co">// Pick a random xy position from (-1,-1) to (1,1)</span></span>
+<span id="cb177-58"><a href="regularpolygons.html#cb177-58"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd1<span class="op">(-</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb177-59"><a href="regularpolygons.html#cb177-59"></a>  glm<span class="op">::</span>vec2 <span class="at">const</span> translation<span class="op">{</span>rd1<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd1<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb177-60"><a href="regularpolygons.html#cb177-60"></a>  <span class="kw">auto</span> <span class="at">const</span> translationLocation<span class="op">{</span></span>
+<span id="cb177-61"><a href="regularpolygons.html#cb177-61"></a>      abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;translation&quot;</span><span class="op">)};</span></span>
+<span id="cb177-62"><a href="regularpolygons.html#cb177-62"></a>  abcg<span class="op">::</span>glUniform2fv<span class="op">(</span>translationLocation<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span>translation<span class="op">.</span>x<span class="op">);</span></span>
+<span id="cb177-63"><a href="regularpolygons.html#cb177-63"></a></span>
+<span id="cb177-64"><a href="regularpolygons.html#cb177-64"></a>  <span class="co">// Pick a random scale factor (1% to 25%)</span></span>
+<span id="cb177-65"><a href="regularpolygons.html#cb177-65"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd2<span class="op">(</span><span class="fl">0.01</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.25</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb177-66"><a href="regularpolygons.html#cb177-66"></a>  <span class="kw">auto</span> <span class="at">const</span> scale<span class="op">{</span>rd2<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb177-67"><a href="regularpolygons.html#cb177-67"></a>  <span class="kw">auto</span> <span class="at">const</span> scaleLocation<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;scale&quot;</span><span class="op">)};</span></span>
+<span id="cb177-68"><a href="regularpolygons.html#cb177-68"></a>  abcg<span class="op">::</span>glUniform1f<span class="op">(</span>scaleLocation<span class="op">,</span> scale<span class="op">);</span></span>
+<span id="cb177-69"><a href="regularpolygons.html#cb177-69"></a></span>
+<span id="cb177-70"><a href="regularpolygons.html#cb177-70"></a>  <span class="co">// Render</span></span>
+<span id="cb177-71"><a href="regularpolygons.html#cb177-71"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb177-72"><a href="regularpolygons.html#cb177-72"></a>  abcg<span class="op">::</span>glDrawArrays<span class="op">(</span>GL_TRIANGLE_FAN<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> sides <span class="op">+</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb177-73"><a href="regularpolygons.html#cb177-73"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb177-74"><a href="regularpolygons.html#cb177-74"></a></span>
+<span id="cb177-75"><a href="regularpolygons.html#cb177-75"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb177-76"><a href="regularpolygons.html#cb177-76"></a><span class="op">}</span></span>
+<span id="cb177-77"><a href="regularpolygons.html#cb177-77"></a></span>
+<span id="cb177-78"><a href="regularpolygons.html#cb177-78"></a><span class="dt">void</span> Window<span class="op">::</span>onPaintUI<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb177-79"><a href="regularpolygons.html#cb177-79"></a>  abcg<span class="op">::</span>OpenGLWindow<span class="op">::</span>onPaintUI<span class="op">();</span></span>
+<span id="cb177-80"><a href="regularpolygons.html#cb177-80"></a></span>
+<span id="cb177-81"><a href="regularpolygons.html#cb177-81"></a>  <span class="op">{</span></span>
+<span id="cb177-82"><a href="regularpolygons.html#cb177-82"></a>    <span class="kw">auto</span> <span class="at">const</span> widgetSize<span class="op">{</span>ImVec2<span class="op">(</span><span class="dv">200</span><span class="op">,</span> <span class="dv">72</span><span class="op">)};</span></span>
+<span id="cb177-83"><a href="regularpolygons.html#cb177-83"></a>    ImGui<span class="op">::</span>SetNextWindowPos<span class="op">(</span>ImVec2<span class="op">(</span><span class="va">m_viewportSize</span><span class="op">.</span>x <span class="op">-</span> widgetSize<span class="op">.</span>x <span class="op">-</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb177-84"><a href="regularpolygons.html#cb177-84"></a>                                   <span class="va">m_viewportSize</span><span class="op">.</span>y <span class="op">-</span> widgetSize<span class="op">.</span>y <span class="op">-</span> <span class="dv">5</span><span class="op">));</span></span>
+<span id="cb177-85"><a href="regularpolygons.html#cb177-85"></a>    ImGui<span class="op">::</span>SetNextWindowSize<span class="op">(</span>widgetSize<span class="op">);</span></span>
+<span id="cb177-86"><a href="regularpolygons.html#cb177-86"></a>    <span class="kw">auto</span> <span class="at">const</span> windowFlags<span class="op">{</span>ImGuiWindowFlags_NoResize <span class="op">|</span></span>
+<span id="cb177-87"><a href="regularpolygons.html#cb177-87"></a>                           ImGuiWindowFlags_NoCollapse <span class="op">|</span></span>
+<span id="cb177-88"><a href="regularpolygons.html#cb177-88"></a>                           ImGuiWindowFlags_NoTitleBar<span class="op">};</span></span>
+<span id="cb177-89"><a href="regularpolygons.html#cb177-89"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> windowFlags<span class="op">);</span></span>
+<span id="cb177-90"><a href="regularpolygons.html#cb177-90"></a></span>
+<span id="cb177-91"><a href="regularpolygons.html#cb177-91"></a>    ImGui<span class="op">::</span>PushItemWidth<span class="op">(</span><span class="dv">140</span><span class="op">);</span></span>
+<span id="cb177-92"><a href="regularpolygons.html#cb177-92"></a>    ImGui<span class="op">::</span>SliderInt<span class="op">(</span><span class="st">&quot;Delay&quot;</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_delay</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">%d</span><span class="st"> ms&quot;</span><span class="op">);</span></span>
+<span id="cb177-93"><a href="regularpolygons.html#cb177-93"></a>    ImGui<span class="op">::</span>PopItemWidth<span class="op">();</span></span>
+<span id="cb177-94"><a href="regularpolygons.html#cb177-94"></a></span>
+<span id="cb177-95"><a href="regularpolygons.html#cb177-95"></a>    <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Button<span class="op">(</span><span class="st">&quot;Clear window&quot;</span><span class="op">,</span> ImVec2<span class="op">(-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">30</span><span class="op">)))</span> <span class="op">{</span></span>
+<span id="cb177-96"><a href="regularpolygons.html#cb177-96"></a>      abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb177-97"><a href="regularpolygons.html#cb177-97"></a>    <span class="op">}</span></span>
+<span id="cb177-98"><a href="regularpolygons.html#cb177-98"></a></span>
+<span id="cb177-99"><a href="regularpolygons.html#cb177-99"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb177-100"><a href="regularpolygons.html#cb177-100"></a>  <span class="op">}</span></span>
+<span id="cb177-101"><a href="regularpolygons.html#cb177-101"></a><span class="op">}</span></span>
+<span id="cb177-102"><a href="regularpolygons.html#cb177-102"></a></span>
+<span id="cb177-103"><a href="regularpolygons.html#cb177-103"></a><span class="dt">void</span> Window<span class="op">::</span>onResize<span class="op">(</span>glm<span class="op">::</span>ivec2 <span class="at">const</span> <span class="op">&amp;</span>size<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb177-104"><a href="regularpolygons.html#cb177-104"></a>  <span class="va">m_viewportSize</span> <span class="op">=</span> size<span class="op">;</span></span>
+<span id="cb177-105"><a href="regularpolygons.html#cb177-105"></a></span>
+<span id="cb177-106"><a href="regularpolygons.html#cb177-106"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb177-107"><a href="regularpolygons.html#cb177-107"></a><span class="op">}</span></span>
+<span id="cb177-108"><a href="regularpolygons.html#cb177-108"></a></span>
+<span id="cb177-109"><a href="regularpolygons.html#cb177-109"></a><span class="dt">void</span> Window<span class="op">::</span>onDestroy<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb177-110"><a href="regularpolygons.html#cb177-110"></a>  abcg<span class="op">::</span>glDeleteProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb177-111"><a href="regularpolygons.html#cb177-111"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb177-112"><a href="regularpolygons.html#cb177-112"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb177-113"><a href="regularpolygons.html#cb177-113"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb177-114"><a href="regularpolygons.html#cb177-114"></a><span class="op">}</span></span>
+<span id="cb177-115"><a href="regularpolygons.html#cb177-115"></a></span>
+<span id="cb177-116"><a href="regularpolygons.html#cb177-116"></a><span class="dt">void</span> Window<span class="op">::</span>setupModel<span class="op">(</span><span class="dt">int</span> sides<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb177-117"><a href="regularpolygons.html#cb177-117"></a>  <span class="co">// Release previous resources, if any</span></span>
+<span id="cb177-118"><a href="regularpolygons.html#cb177-118"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb177-119"><a href="regularpolygons.html#cb177-119"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb177-120"><a href="regularpolygons.html#cb177-120"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb177-121"><a href="regularpolygons.html#cb177-121"></a></span>
+<span id="cb177-122"><a href="regularpolygons.html#cb177-122"></a>  <span class="co">// Select random colors for the radial gradient</span></span>
+<span id="cb177-123"><a href="regularpolygons.html#cb177-123"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd<span class="op">(</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb177-124"><a href="regularpolygons.html#cb177-124"></a>  glm<span class="op">::</span>vec3 <span class="at">const</span> color1<span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span></span>
+<span id="cb177-125"><a href="regularpolygons.html#cb177-125"></a>                         rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb177-126"><a href="regularpolygons.html#cb177-126"></a>  glm<span class="op">::</span>vec3 <span class="at">const</span> color2<span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span></span>
+<span id="cb177-127"><a href="regularpolygons.html#cb177-127"></a>                         rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)};</span></span>
+<span id="cb177-128"><a href="regularpolygons.html#cb177-128"></a></span>
+<span id="cb177-129"><a href="regularpolygons.html#cb177-129"></a>  <span class="co">// Minimum number of sides is 3</span></span>
+<span id="cb177-130"><a href="regularpolygons.html#cb177-130"></a>  sides <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span><span class="dv">3</span><span class="op">,</span> sides<span class="op">);</span></span>
+<span id="cb177-131"><a href="regularpolygons.html#cb177-131"></a></span>
+<span id="cb177-132"><a href="regularpolygons.html#cb177-132"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>glm<span class="op">::</span>vec2<span class="op">&gt;</span> positions<span class="op">;</span></span>
+<span id="cb177-133"><a href="regularpolygons.html#cb177-133"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>glm<span class="op">::</span>vec3<span class="op">&gt;</span> colors<span class="op">;</span></span>
+<span id="cb177-134"><a href="regularpolygons.html#cb177-134"></a></span>
+<span id="cb177-135"><a href="regularpolygons.html#cb177-135"></a>  <span class="co">// Polygon center</span></span>
+<span id="cb177-136"><a href="regularpolygons.html#cb177-136"></a>  positions<span class="op">.</span>emplace_back<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb177-137"><a href="regularpolygons.html#cb177-137"></a>  colors<span class="op">.</span>push_back<span class="op">(</span>color1<span class="op">);</span></span>
+<span id="cb177-138"><a href="regularpolygons.html#cb177-138"></a></span>
+<span id="cb177-139"><a href="regularpolygons.html#cb177-139"></a>  <span class="co">// Border vertices</span></span>
+<span id="cb177-140"><a href="regularpolygons.html#cb177-140"></a>  <span class="kw">auto</span> <span class="at">const</span> step<span class="op">{</span>M_PI <span class="op">*</span> <span class="dv">2</span> <span class="op">/</span> sides<span class="op">};</span></span>
+<span id="cb177-141"><a href="regularpolygons.html#cb177-141"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> angle <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="fl">0.0</span><span class="op">,</span> M_PI <span class="op">*</span> <span class="dv">2</span><span class="op">,</span> step<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb177-142"><a href="regularpolygons.html#cb177-142"></a>    positions<span class="op">.</span>emplace_back<span class="op">(</span><span class="bu">std::</span>cos<span class="op">(</span>angle<span class="op">),</span> <span class="bu">std::</span>sin<span class="op">(</span>angle<span class="op">));</span></span>
+<span id="cb177-143"><a href="regularpolygons.html#cb177-143"></a>    colors<span class="op">.</span>push_back<span class="op">(</span>color2<span class="op">);</span></span>
+<span id="cb177-144"><a href="regularpolygons.html#cb177-144"></a>  <span class="op">}</span></span>
+<span id="cb177-145"><a href="regularpolygons.html#cb177-145"></a></span>
+<span id="cb177-146"><a href="regularpolygons.html#cb177-146"></a>  <span class="co">// Duplicate second vertex</span></span>
+<span id="cb177-147"><a href="regularpolygons.html#cb177-147"></a>  positions<span class="op">.</span>push_back<span class="op">(</span>positions<span class="op">.</span>at<span class="op">(</span><span class="dv">1</span><span class="op">));</span></span>
+<span id="cb177-148"><a href="regularpolygons.html#cb177-148"></a>  colors<span class="op">.</span>push_back<span class="op">(</span>color2<span class="op">);</span></span>
+<span id="cb177-149"><a href="regularpolygons.html#cb177-149"></a></span>
+<span id="cb177-150"><a href="regularpolygons.html#cb177-150"></a>  <span class="co">// Generate VBO of positions</span></span>
+<span id="cb177-151"><a href="regularpolygons.html#cb177-151"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb177-152"><a href="regularpolygons.html#cb177-152"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb177-153"><a href="regularpolygons.html#cb177-153"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> positions<span class="op">.</span>size<span class="op">()</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span>glm<span class="op">::</span>vec2<span class="op">),</span></span>
+<span id="cb177-154"><a href="regularpolygons.html#cb177-154"></a>                     positions<span class="op">.</span>data<span class="op">(),</span> GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb177-155"><a href="regularpolygons.html#cb177-155"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb177-156"><a href="regularpolygons.html#cb177-156"></a></span>
+<span id="cb177-157"><a href="regularpolygons.html#cb177-157"></a>  <span class="co">// Generate VBO of colors</span></span>
+<span id="cb177-158"><a href="regularpolygons.html#cb177-158"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb177-159"><a href="regularpolygons.html#cb177-159"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb177-160"><a href="regularpolygons.html#cb177-160"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> colors<span class="op">.</span>size<span class="op">()</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span>glm<span class="op">::</span>vec3<span class="op">),</span></span>
+<span id="cb177-161"><a href="regularpolygons.html#cb177-161"></a>                     colors<span class="op">.</span>data<span class="op">(),</span> GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb177-162"><a href="regularpolygons.html#cb177-162"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb177-163"><a href="regularpolygons.html#cb177-163"></a></span>
+<span id="cb177-164"><a href="regularpolygons.html#cb177-164"></a>  <span class="co">// Get location of attributes in the program</span></span>
+<span id="cb177-165"><a href="regularpolygons.html#cb177-165"></a>  <span class="kw">auto</span> <span class="at">const</span> positionAttribute<span class="op">{</span></span>
+<span id="cb177-166"><a href="regularpolygons.html#cb177-166"></a>      abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inPosition&quot;</span><span class="op">)};</span></span>
+<span id="cb177-167"><a href="regularpolygons.html#cb177-167"></a>  <span class="kw">auto</span> <span class="at">const</span> colorAttribute<span class="op">{</span>abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inColor&quot;</span><span class="op">)};</span></span>
+<span id="cb177-168"><a href="regularpolygons.html#cb177-168"></a></span>
+<span id="cb177-169"><a href="regularpolygons.html#cb177-169"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb177-170"><a href="regularpolygons.html#cb177-170"></a>  abcg<span class="op">::</span>glGenVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb177-171"><a href="regularpolygons.html#cb177-171"></a></span>
+<span id="cb177-172"><a href="regularpolygons.html#cb177-172"></a>  <span class="co">// Bind vertex attributes to current VAO</span></span>
+<span id="cb177-173"><a href="regularpolygons.html#cb177-173"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb177-174"><a href="regularpolygons.html#cb177-174"></a></span>
+<span id="cb177-175"><a href="regularpolygons.html#cb177-175"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>positionAttribute<span class="op">);</span></span>
+<span id="cb177-176"><a href="regularpolygons.html#cb177-176"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb177-177"><a href="regularpolygons.html#cb177-177"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>positionAttribute<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb177-178"><a href="regularpolygons.html#cb177-178"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb177-179"><a href="regularpolygons.html#cb177-179"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb177-180"><a href="regularpolygons.html#cb177-180"></a></span>
+<span id="cb177-181"><a href="regularpolygons.html#cb177-181"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>colorAttribute<span class="op">);</span></span>
+<span id="cb177-182"><a href="regularpolygons.html#cb177-182"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb177-183"><a href="regularpolygons.html#cb177-183"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>colorAttribute<span class="op">,</span> <span class="dv">3</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb177-184"><a href="regularpolygons.html#cb177-184"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb177-185"><a href="regularpolygons.html#cb177-185"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb177-186"><a href="regularpolygons.html#cb177-186"></a></span>
+<span id="cb177-187"><a href="regularpolygons.html#cb177-187"></a>  <span class="co">// End of binding to current VAO</span></span>
+<span id="cb177-188"><a href="regularpolygons.html#cb177-188"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb177-189"><a href="regularpolygons.html#cb177-189"></a><span class="op">}</span></span></code></pre></div>
+<p>O código completo do projeto pode ser baixado <a href="https://hbatagelo.github.io/abcgapps/src/regularpolygons.zip">deste link</a>.</p>
+<p>Agora que vimos como usar variáveis uniformes para fazer transformações geométricas no vertex shader e como organizar os dados de um VBO de diferentes maneiras, vamos ao jogo!</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="23">
+<li id="fn23"><p>Como veremos posteriomente, é possível reduzir esse número com o uso de geometria indexada, mas ainda assim o consumo de memória seria alto para este caso.<a href="regularpolygons.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>Os dados que correspondem ao primeiro vértice estão sublinhados para facilitar a visualização. Nos exemplos subsequentes, os dados do primeiro vértice também estarão sublinhados.<a href="regularpolygons.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p>Na verdade, o stride nesse caso também pode ser 8 bytes (4 bytes para <span class="math inline">\(x\)</span>, mais 4 para <span class="math inline">\(y\)</span>), mas o argumento <code>0</code> serve para indicar que os atributos estão agrupados de forma “apertada”.<a href="regularpolygons.html#fnref25" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="game.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="asteroids.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

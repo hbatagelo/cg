@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.4 Triângulos coloridos | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.4 Triângulos coloridos | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.4 Triângulos coloridos | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="glpipeline.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="coloredtriangles" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Triângulos coloridos<a href="coloredtriangles.html#coloredtriangles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Na seção <a href="sierpinski.html#sierpinski">3.5</a>, renderizamos pontos (<code>GL_POINTS</code>) para gerar o Triângulo de Sierpinski. Neste projeto, desenharemos triângulos (<code>GL_TRIANGLES</code>). Para cada quadro de exibição, renderizaremos um triângulo colorido com coordenadas 2D aleatórias dentro do viewport que ocupa toda a janela da aplicação. O resultado ficará como a seguir:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/coloredtriangles1/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<p>Durante o desenvolvimento desta atividade veremos com mais detalhes os comandos do OpenGL utilizados para especificar os dados gráficos e configurar o pipeline.</p>
+<div id="configuração-inicial-3" class="section level3 unnumbered hasAnchor">
+<h3>Configuração inicial<a href="coloredtriangles.html#configuração-inicial-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Repita a configuração inicial dos projetos anteriores e mude o nome do projeto para <code>coloredtriangles</code>.</p>
+<p>O arquivo <code>abcg/examples/CMakeLists.txt</code> ficará assim (com a compilação desabilitada para os projetos anteriores):</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb138-1"><a href="coloredtriangles.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add_subdirectory(helloworld)</span></span>
+<span id="cb138-2"><a href="coloredtriangles.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="co"># add_subdirectory(firstapp)</span></span>
+<span id="cb138-3"><a href="coloredtriangles.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add_subdirectory(tictactoe)</span></span>
+<span id="cb138-4"><a href="coloredtriangles.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add_subdirectory(sierpinski)</span></span>
+<span id="cb138-5"><a href="coloredtriangles.html#cb138-5" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(coloredtriangles)</span></code></pre></div>
+<p>O arquivo <code>abcg/examples/coloredtriangles/CMakeLists.txt</code> ficará assim:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb139-1"><a href="coloredtriangles.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(coloredtriangles)</span>
+<span id="cb139-2"><a href="coloredtriangles.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJECT_NAME}</span> <span class="bn">main.cpp</span> window.cpp)</span>
+<span id="cb139-3"><a href="coloredtriangles.html#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="fu">enable_abcg</span>(<span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div>
+<p>Como nos projetos anteriores, crie os arquivos <code>main.cpp</code>, <code>window.cpp</code> e <code>window.hpp</code> em <code>abcg/examples/coloredtriangles</code>. Vamos editá-los a seguir.</p>
+</div>
+<div id="main.cpp-3" class="section level3 unnumbered hasAnchor">
+<h3>main.cpp<a href="coloredtriangles.html#main.cpp-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O conteúdo de <code>main.cpp</code> é praticamente idêntico ao do projeto <code>sierpinski</code>:</p>
+<div class="sourceCode" id="cb140" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb140-1"><a href="coloredtriangles.html#cb140-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb140-2"><a href="coloredtriangles.html#cb140-2"></a></span>
+<span id="cb140-3"><a href="coloredtriangles.html#cb140-3"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb140-4"><a href="coloredtriangles.html#cb140-4"></a>  <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb140-5"><a href="coloredtriangles.html#cb140-5"></a>    abcg<span class="op">::</span>Application app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb140-6"><a href="coloredtriangles.html#cb140-6"></a></span>
+<span id="cb140-7"><a href="coloredtriangles.html#cb140-7"></a>    Window window<span class="op">;</span></span>
+<span id="cb140-8"><a href="coloredtriangles.html#cb140-8"></a>    window<span class="op">.</span>setOpenGLSettings<span class="op">(</span></span>
+<span id="cb140-9"><a href="coloredtriangles.html#cb140-9"></a>        <span class="op">{.</span>samples <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="op">.</span>doubleBuffering <span class="op">=</span> <span class="kw">false</span><span class="op">});</span></span>
+<span id="cb140-10"><a href="coloredtriangles.html#cb140-10"></a>    window<span class="op">.</span>setWindowSettings<span class="op">(</span></span>
+<span id="cb140-11"><a href="coloredtriangles.html#cb140-11"></a>        <span class="op">{.</span>width <span class="op">=</span> <span class="dv">600</span><span class="op">,</span> <span class="op">.</span>height <span class="op">=</span> <span class="dv">600</span><span class="op">,</span> <span class="op">.</span>title <span class="op">=</span> <span class="st">&quot;Colored Triangles&quot;</span><span class="op">});</span></span>
+<span id="cb140-12"><a href="coloredtriangles.html#cb140-12"></a></span>
+<span id="cb140-13"><a href="coloredtriangles.html#cb140-13"></a>    app<span class="op">.</span>run<span class="op">(</span>window<span class="op">);</span></span>
+<span id="cb140-14"><a href="coloredtriangles.html#cb140-14"></a>  <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">std::</span>exception<span class="op"> </span><span class="at">const</span> <span class="op">&amp;</span>exception<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb140-15"><a href="coloredtriangles.html#cb140-15"></a>    fmt<span class="op">::</span>print<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;</span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> exception<span class="op">.</span>what<span class="op">());</span></span>
+<span id="cb140-16"><a href="coloredtriangles.html#cb140-16"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb140-17"><a href="coloredtriangles.html#cb140-17"></a>  <span class="op">}</span></span>
+<span id="cb140-18"><a href="coloredtriangles.html#cb140-18"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb140-19"><a href="coloredtriangles.html#cb140-19"></a><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="window.hpp-3" class="section level3 unnumbered hasAnchor">
+<h3>window.hpp<a href="coloredtriangles.html#window.hpp-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A definição da classe <code>Window</code> também é parecida com a do projeto anterior:</p>
+<div class="sourceCode" id="cb141" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb141-1"><a href="coloredtriangles.html#cb141-1"></a><span class="pp">#ifndef WINDOW_HPP_</span></span>
+<span id="cb141-2"><a href="coloredtriangles.html#cb141-2"></a><span class="pp">#define WINDOW_HPP_</span></span>
+<span id="cb141-3"><a href="coloredtriangles.html#cb141-3"></a></span>
+<span id="cb141-4"><a href="coloredtriangles.html#cb141-4"></a><span class="pp">#include </span><span class="im">&lt;random&gt;</span></span>
+<span id="cb141-5"><a href="coloredtriangles.html#cb141-5"></a></span>
+<span id="cb141-6"><a href="coloredtriangles.html#cb141-6"></a><span class="pp">#include </span><span class="im">&quot;abcgOpenGL.hpp&quot;</span></span>
+<span id="cb141-7"><a href="coloredtriangles.html#cb141-7"></a></span>
+<span id="cb141-8"><a href="coloredtriangles.html#cb141-8"></a><span class="kw">class</span> Window <span class="op">:</span> <span class="kw">public</span> abcg<span class="op">::</span>OpenGLWindow <span class="op">{</span></span>
+<span id="cb141-9"><a href="coloredtriangles.html#cb141-9"></a><span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb141-10"><a href="coloredtriangles.html#cb141-10"></a>  <span class="dt">void</span> onCreate<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb141-11"><a href="coloredtriangles.html#cb141-11"></a>  <span class="dt">void</span> onPaint<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb141-12"><a href="coloredtriangles.html#cb141-12"></a>  <span class="dt">void</span> onPaintUI<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb141-13"><a href="coloredtriangles.html#cb141-13"></a>  <span class="dt">void</span> onResize<span class="op">(</span>glm<span class="op">::</span>ivec2 <span class="at">const</span> <span class="op">&amp;</span>size<span class="op">)</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb141-14"><a href="coloredtriangles.html#cb141-14"></a>  <span class="dt">void</span> onDestroy<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb141-15"><a href="coloredtriangles.html#cb141-15"></a></span>
+<span id="cb141-16"><a href="coloredtriangles.html#cb141-16"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb141-17"><a href="coloredtriangles.html#cb141-17"></a>  glm<span class="op">::</span>ivec2 <span class="va">m_viewportSize</span><span class="op">{};</span></span>
+<span id="cb141-18"><a href="coloredtriangles.html#cb141-18"></a></span>
+<span id="cb141-19"><a href="coloredtriangles.html#cb141-19"></a>  GLuint <span class="va">m_VAO</span><span class="op">{};</span></span>
+<span id="cb141-20"><a href="coloredtriangles.html#cb141-20"></a>  GLuint <span class="va">m_VBOPositions</span><span class="op">{};</span></span>
+<span id="cb141-21"><a href="coloredtriangles.html#cb141-21"></a>  GLuint <span class="va">m_VBOColors</span><span class="op">{};</span></span>
+<span id="cb141-22"><a href="coloredtriangles.html#cb141-22"></a>  GLuint <span class="va">m_program</span><span class="op">{};</span></span>
+<span id="cb141-23"><a href="coloredtriangles.html#cb141-23"></a></span>
+<span id="cb141-24"><a href="coloredtriangles.html#cb141-24"></a>  <span class="bu">std::</span>default_random_engine<span class="op"> </span><span class="va">m_randomEngine</span><span class="op">;</span></span>
+<span id="cb141-25"><a href="coloredtriangles.html#cb141-25"></a></span>
+<span id="cb141-26"><a href="coloredtriangles.html#cb141-26"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span>glm<span class="op">::</span>vec4<span class="op">,</span> <span class="dv">3</span><span class="op">&gt;</span> <span class="va">m_colors</span><span class="op">{{{</span><span class="fl">0.36</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.83</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.00</span><span class="bu">f</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span></span>
+<span id="cb141-27"><a href="coloredtriangles.html#cb141-27"></a>                                     <span class="op">{</span><span class="fl">0.63</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.00</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.61</span><span class="bu">f</span><span class="op">,</span> <span class="dv">1</span><span class="op">},</span></span>
+<span id="cb141-28"><a href="coloredtriangles.html#cb141-28"></a>                                     <span class="op">{</span><span class="fl">1.00</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.69</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.30</span><span class="bu">f</span><span class="op">,</span> <span class="dv">1</span><span class="op">}}};</span></span>
+<span id="cb141-29"><a href="coloredtriangles.html#cb141-29"></a></span>
+<span id="cb141-30"><a href="coloredtriangles.html#cb141-30"></a>  <span class="dt">void</span> setupModel<span class="op">();</span></span>
+<span id="cb141-31"><a href="coloredtriangles.html#cb141-31"></a><span class="op">};</span></span>
+<span id="cb141-32"><a href="coloredtriangles.html#cb141-32"></a></span>
+<span id="cb141-33"><a href="coloredtriangles.html#cb141-33"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>No projeto <code>sierpinski</code> utilizamos apenas um VBO (<code>m_VBOVertices</code>). Dessa vez usaremos dois VBOs: um para a posição dos vértices (<code>m_VBOPositions</code>) e outro para as cores (<code>m_VOBColors</code>).</p>
+<p>O arranjo <code>m_vertexColors</code> contém as cores RGBA que serão copiadas para <code>m_VBOColors</code>. São três cores, uma para cada vértice do triângulo.</p>
+</div>
+<div id="window.cpp-3" class="section level3 unnumbered hasAnchor">
+<h3>window.cpp<a href="coloredtriangles.html#window.cpp-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vamos primeiro incluir o cabeçalho <code>window.hpp</code> e a definição de <code>Window::onCreate</code>:</p>
+<div class="sourceCode" id="cb142" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb142-1"><a href="coloredtriangles.html#cb142-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb142-2"><a href="coloredtriangles.html#cb142-2"></a></span>
+<span id="cb142-3"><a href="coloredtriangles.html#cb142-3"></a><span class="dt">void</span> Window<span class="op">::</span>onCreate<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb142-4"><a href="coloredtriangles.html#cb142-4"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">*</span>vertexShader<span class="op">{</span><span class="st">R&quot;gl(</span><span class="vs">#version 300 es</span></span>
+<span id="cb142-5"><a href="coloredtriangles.html#cb142-5"></a><span class="vs">                                   </span></span>
+<span id="cb142-6"><a href="coloredtriangles.html#cb142-6"></a><span class="vs">    layout(location = 0) in vec2 inPosition;</span></span>
+<span id="cb142-7"><a href="coloredtriangles.html#cb142-7"></a><span class="vs">    layout(location = 1) in vec4 inColor;</span></span>
+<span id="cb142-8"><a href="coloredtriangles.html#cb142-8"></a></span>
+<span id="cb142-9"><a href="coloredtriangles.html#cb142-9"></a><span class="vs">    out vec4 fragColor;</span></span>
+<span id="cb142-10"><a href="coloredtriangles.html#cb142-10"></a></span>
+<span id="cb142-11"><a href="coloredtriangles.html#cb142-11"></a><span class="vs">    void main() { </span></span>
+<span id="cb142-12"><a href="coloredtriangles.html#cb142-12"></a><span class="vs">      gl_Position = vec4(inPosition, 0, 1);</span></span>
+<span id="cb142-13"><a href="coloredtriangles.html#cb142-13"></a><span class="vs">      fragColor = inColor;</span></span>
+<span id="cb142-14"><a href="coloredtriangles.html#cb142-14"></a><span class="vs">    }</span></span>
+<span id="cb142-15"><a href="coloredtriangles.html#cb142-15"></a><span class="vs">  </span><span class="st">)gl&quot;</span><span class="op">};</span></span>
+<span id="cb142-16"><a href="coloredtriangles.html#cb142-16"></a></span>
+<span id="cb142-17"><a href="coloredtriangles.html#cb142-17"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">*</span>fragmentShader<span class="op">{</span><span class="st">R&quot;gl(</span><span class="vs">#version 300 es</span></span>
+<span id="cb142-18"><a href="coloredtriangles.html#cb142-18"></a><span class="vs">                                     </span></span>
+<span id="cb142-19"><a href="coloredtriangles.html#cb142-19"></a><span class="vs">    precision mediump float;</span></span>
+<span id="cb142-20"><a href="coloredtriangles.html#cb142-20"></a></span>
+<span id="cb142-21"><a href="coloredtriangles.html#cb142-21"></a><span class="vs">    in vec4 fragColor;</span></span>
+<span id="cb142-22"><a href="coloredtriangles.html#cb142-22"></a></span>
+<span id="cb142-23"><a href="coloredtriangles.html#cb142-23"></a><span class="vs">    out vec4 outColor;</span></span>
+<span id="cb142-24"><a href="coloredtriangles.html#cb142-24"></a></span>
+<span id="cb142-25"><a href="coloredtriangles.html#cb142-25"></a><span class="vs">    void main() { outColor = fragColor; }</span></span>
+<span id="cb142-26"><a href="coloredtriangles.html#cb142-26"></a><span class="vs">  </span><span class="st">)gl&quot;</span><span class="op">};</span></span>
+<span id="cb142-27"><a href="coloredtriangles.html#cb142-27"></a></span>
+<span id="cb142-28"><a href="coloredtriangles.html#cb142-28"></a>  <span class="va">m_program</span> <span class="op">=</span> abcg<span class="op">::</span>createOpenGLProgram<span class="op">(</span></span>
+<span id="cb142-29"><a href="coloredtriangles.html#cb142-29"></a>      <span class="op">{{.</span>source <span class="op">=</span> vertexShader<span class="op">,</span> <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Vertex<span class="op">},</span></span>
+<span id="cb142-30"><a href="coloredtriangles.html#cb142-30"></a>       <span class="op">{.</span>source <span class="op">=</span> fragmentShader<span class="op">,</span> <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Fragment<span class="op">}});</span></span>
+<span id="cb142-31"><a href="coloredtriangles.html#cb142-31"></a></span>
+<span id="cb142-32"><a href="coloredtriangles.html#cb142-32"></a>  abcg<span class="op">::</span>glClearColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb142-33"><a href="coloredtriangles.html#cb142-33"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb142-34"><a href="coloredtriangles.html#cb142-34"></a></span>
+<span id="cb142-35"><a href="coloredtriangles.html#cb142-35"></a>  <span class="kw">auto</span> <span class="at">const</span> seed<span class="op">{</span><span class="bu">std::</span>chrono<span class="bu">::</span>steady_clock<span class="bu">::</span>now<span class="op">().</span>time_since_epoch<span class="op">().</span>count<span class="op">()};</span></span>
+<span id="cb142-36"><a href="coloredtriangles.html#cb142-36"></a>  <span class="va">m_randomEngine</span><span class="op">.</span>seed<span class="op">(</span>seed<span class="op">);</span></span>
+<span id="cb142-37"><a href="coloredtriangles.html#cb142-37"></a><span class="op">}</span></span></code></pre></div>
+<p>O código é praticamente idêntico ao do projeto anterior.</p>
+<p>Observe o conteúdo da string em <code>vertexShader</code>. A string é inicializada com um <a href="https://en.cppreference.com/w/cpp/language/string_literal"><em>raw string literal</em></a>. O código do shader é o texto que está entre <code>R"gl(</code> e <code>)gl"</code>:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb143-1"><a href="coloredtriangles.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#version 300 es</span></span>
+<span id="cb143-2"><a href="coloredtriangles.html#cb143-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb143-3"><a href="coloredtriangles.html#cb143-3" aria-hidden="true" tabindex="-1"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">0</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec2</span> inPosition<span class="op">;</span></span>
+<span id="cb143-4"><a href="coloredtriangles.html#cb143-4" aria-hidden="true" tabindex="-1"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">1</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec4</span> inColor<span class="op">;</span></span>
+<span id="cb143-5"><a href="coloredtriangles.html#cb143-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb143-6"><a href="coloredtriangles.html#cb143-6" aria-hidden="true" tabindex="-1"></a><span class="dt">out</span> <span class="dt">vec4</span> fragColor<span class="op">;</span></span>
+<span id="cb143-7"><a href="coloredtriangles.html#cb143-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb143-8"><a href="coloredtriangles.html#cb143-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span> </span>
+<span id="cb143-9"><a href="coloredtriangles.html#cb143-9" aria-hidden="true" tabindex="-1"></a>  <span class="bu">gl_Position</span> <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>inPosition<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb143-10"><a href="coloredtriangles.html#cb143-10" aria-hidden="true" tabindex="-1"></a>  fragColor <span class="op">=</span> inColor<span class="op">;</span></span>
+<span id="cb143-11"><a href="coloredtriangles.html#cb143-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Este vertex shader define dois atributos de entrada: <code>inPosition</code>, que recebe a posição 2D do vértice, e <code>inColor</code> que recebe a cor do vértice em formato RGBA. A saída, <code>fragColor</code>, é também uma cor RGBA. Na função <code>main</code>, a posição <span class="math inline">\((x,y)\)</span> do vértice é repassada sem modificações para <code>gl_Position</code>. A conversão de <span class="math inline">\((x,y)\)</span> em coordenadas cartesianas para <span class="math inline">\((x,y,0,1)\)</span> em coordenadas homogêneas preserva a geometria do triângulo<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. A cor do atributo de entrada também é repassada sem modificações para o atributo de saída.</p>
+<p>Vejamos agora o fragment shader:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb144-1"><a href="coloredtriangles.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#version 300 es</span></span>
+<span id="cb144-2"><a href="coloredtriangles.html#cb144-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-3"><a href="coloredtriangles.html#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="dt">precision</span> <span class="dt">mediump</span> <span class="dt">float</span><span class="op">;</span></span>
+<span id="cb144-4"><a href="coloredtriangles.html#cb144-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-5"><a href="coloredtriangles.html#cb144-5" aria-hidden="true" tabindex="-1"></a><span class="dt">in</span> <span class="dt">vec4</span> fragColor<span class="op">;</span></span>
+<span id="cb144-6"><a href="coloredtriangles.html#cb144-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-7"><a href="coloredtriangles.html#cb144-7" aria-hidden="true" tabindex="-1"></a><span class="dt">out</span> <span class="dt">vec4</span> outColor<span class="op">;</span></span>
+<span id="cb144-8"><a href="coloredtriangles.html#cb144-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-9"><a href="coloredtriangles.html#cb144-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span> outColor <span class="op">=</span> fragColor<span class="op">;</span> <span class="op">}</span></span></code></pre></div>
+<p>O fragment shader é mais simples. O atributo de entrada (<code>fragColor</code>) é copiado sem modificações para o atributo de saída (<code>outColor</code>).</p>
+<p>A compilação e ligação dos shaders é feita pela chamada a <code>abcg::createOpenGLProgram</code> na linha 26. O resultado é <code>m_program</code>, um número inteiro que identifica o programa de shader composto pelo par de vertex/fragment shader. Para ativar o programa no pipeline, devemos chamar <code>glUseProgram(m_program)</code>. Para desativá-lo, podemos ativar outro programa (se existir) ou chamar <code>glUseProgram(0)</code>.</p>
+<p>A função <code>Window::onPaint</code> é definida assim:</p>
+<div class="sourceCode" id="cb145" startFrom="39"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 38;"><span id="cb145-39"><a href="coloredtriangles.html#cb145-39"></a><span class="dt">void</span> Window<span class="op">::</span>onPaint<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb145-40"><a href="coloredtriangles.html#cb145-40"></a>  setupModel<span class="op">();</span></span>
+<span id="cb145-41"><a href="coloredtriangles.html#cb145-41"></a></span>
+<span id="cb145-42"><a href="coloredtriangles.html#cb145-42"></a>  abcg<span class="op">::</span>glViewport<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>x<span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb145-43"><a href="coloredtriangles.html#cb145-43"></a></span>
+<span id="cb145-44"><a href="coloredtriangles.html#cb145-44"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb145-45"><a href="coloredtriangles.html#cb145-45"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb145-46"><a href="coloredtriangles.html#cb145-46"></a></span>
+<span id="cb145-47"><a href="coloredtriangles.html#cb145-47"></a>  abcg<span class="op">::</span>glDrawArrays<span class="op">(</span>GL_TRIANGLES<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb145-48"><a href="coloredtriangles.html#cb145-48"></a></span>
+<span id="cb145-49"><a href="coloredtriangles.html#cb145-49"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb145-50"><a href="coloredtriangles.html#cb145-50"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb145-51"><a href="coloredtriangles.html#cb145-51"></a><span class="op">}</span></span></code></pre></div>
+<p>Novamente, o código é similar ao utilizado no projeto <code>sierpinski</code>. O comando de renderização, <code>glDrawArrays</code>, dessa vez usa <code>GL_TRIANGLES</code> e <code>3</code> vértices, sendo que o índice inicial dos vértices no arranjo é <code>0</code>. Isso significa que o pipeline desenhará apenas um triângulo.</p>
+<p>Em <code>Window::onPaintUI</code>, usaremos controles de UI da ImGui para criar uma pequena janela de edição das três cores dos vértices:</p>
+<div class="sourceCode" id="cb146" startFrom="58"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 57;"><span id="cb146-58"><a href="coloredtriangles.html#cb146-58"></a><span class="dt">void</span> Window<span class="op">::</span>onPaintUI<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb146-59"><a href="coloredtriangles.html#cb146-59"></a>  abcg<span class="op">::</span>OpenGLWindow<span class="op">::</span>onPaintUI<span class="op">();</span></span>
+<span id="cb146-60"><a href="coloredtriangles.html#cb146-60"></a></span>
+<span id="cb146-61"><a href="coloredtriangles.html#cb146-61"></a>  <span class="op">{</span></span>
+<span id="cb146-62"><a href="coloredtriangles.html#cb146-62"></a>    <span class="kw">auto</span> <span class="at">const</span> widgetSize<span class="op">{</span>ImVec2<span class="op">(</span><span class="dv">250</span><span class="op">,</span> <span class="dv">90</span><span class="op">)};</span></span>
+<span id="cb146-63"><a href="coloredtriangles.html#cb146-63"></a>    ImGui<span class="op">::</span>SetNextWindowPos<span class="op">(</span>ImVec2<span class="op">(</span><span class="va">m_viewportSize</span><span class="op">.</span>x <span class="op">-</span> widgetSize<span class="op">.</span>x <span class="op">-</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb146-64"><a href="coloredtriangles.html#cb146-64"></a>                                   <span class="va">m_viewportSize</span><span class="op">.</span>y <span class="op">-</span> widgetSize<span class="op">.</span>y <span class="op">-</span> <span class="dv">5</span><span class="op">));</span></span>
+<span id="cb146-65"><a href="coloredtriangles.html#cb146-65"></a>    ImGui<span class="op">::</span>SetNextWindowSize<span class="op">(</span>widgetSize<span class="op">);</span></span>
+<span id="cb146-66"><a href="coloredtriangles.html#cb146-66"></a>    <span class="kw">auto</span> windowFlags<span class="op">{</span>ImGuiWindowFlags_NoResize <span class="op">|</span> ImGuiWindowFlags_NoTitleBar<span class="op">};</span></span>
+<span id="cb146-67"><a href="coloredtriangles.html#cb146-67"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> windowFlags<span class="op">);</span></span>
+<span id="cb146-68"><a href="coloredtriangles.html#cb146-68"></a></span>
+<span id="cb146-69"><a href="coloredtriangles.html#cb146-69"></a>    <span class="co">// Edit vertex colors</span></span>
+<span id="cb146-70"><a href="coloredtriangles.html#cb146-70"></a>    <span class="kw">auto</span> colorEditFlags<span class="op">{</span>ImGuiColorEditFlags_NoTooltip <span class="op">|</span></span>
+<span id="cb146-71"><a href="coloredtriangles.html#cb146-71"></a>                        ImGuiColorEditFlags_NoPicker<span class="op">};</span></span>
+<span id="cb146-72"><a href="coloredtriangles.html#cb146-72"></a>    ImGui<span class="op">::</span>PushItemWidth<span class="op">(</span><span class="dv">215</span><span class="op">);</span></span>
+<span id="cb146-73"><a href="coloredtriangles.html#cb146-73"></a>    ImGui<span class="op">::</span>ColorEdit3<span class="op">(</span><span class="st">&quot;v0&quot;</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_colors</span><span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">).</span>x<span class="op">,</span> colorEditFlags<span class="op">);</span></span>
+<span id="cb146-74"><a href="coloredtriangles.html#cb146-74"></a>    ImGui<span class="op">::</span>ColorEdit3<span class="op">(</span><span class="st">&quot;v1&quot;</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_colors</span><span class="op">.</span>at<span class="op">(</span><span class="dv">1</span><span class="op">).</span>x<span class="op">,</span> colorEditFlags<span class="op">);</span></span>
+<span id="cb146-75"><a href="coloredtriangles.html#cb146-75"></a>    ImGui<span class="op">::</span>ColorEdit3<span class="op">(</span><span class="st">&quot;v2&quot;</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_colors</span><span class="op">.</span>at<span class="op">(</span><span class="dv">2</span><span class="op">).</span>x<span class="op">,</span> colorEditFlags<span class="op">);</span></span>
+<span id="cb146-76"><a href="coloredtriangles.html#cb146-76"></a>    ImGui<span class="op">::</span>PopItemWidth<span class="op">();</span></span>
+<span id="cb146-77"><a href="coloredtriangles.html#cb146-77"></a></span>
+<span id="cb146-78"><a href="coloredtriangles.html#cb146-78"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb146-79"><a href="coloredtriangles.html#cb146-79"></a>  <span class="op">}</span></span>
+<span id="cb146-80"><a href="coloredtriangles.html#cb146-80"></a><span class="op">}</span></span></code></pre></div>
+<p>As funções <code>ImGui::SetNextWindowPos</code> e <code>ImGui::SetNextWindowSize</code> definem a posição e tamanho da janela da ImGui que está prestes a ser criada na linha 70. A janela é inicializada com alguns flags para que ela não possa ser redimensionada (<code>ImGuiWindowFlags_NoResize</code>) e não tenha a barra de título (<code>ImGuiWindowFlags_NoTitleBar</code>). Os controles <code>ImGui::ColorEdit3</code> também são criados com flags para desabilitar o <em>color picker</em> (<code>ImGuiColorEditFlags_NoPicker</code>) e os <em>tooltips</em> (<code>ImGuiColorEditFlags_NoTooltip</code>), pois eles podem atrapalhar o desenho dos triângulos.</p>
+<p>A definição de <code>Window::onResize</code> é idêntica à do projeto <code>sierpinski</code>. A definição de <code>Window::onDestroy</code> também é bem semelhante e libera os recursos do pipeline:</p>
+<div class="sourceCode" id="cb147" startFrom="82"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 81;"><span id="cb147-82"><a href="coloredtriangles.html#cb147-82"></a><span class="dt">void</span> Window<span class="op">::</span>onResize<span class="op">(</span>glm<span class="op">::</span>ivec2 <span class="at">const</span> <span class="op">&amp;</span>size<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb147-83"><a href="coloredtriangles.html#cb147-83"></a>  <span class="va">m_viewportSize</span> <span class="op">=</span> size<span class="op">;</span></span>
+<span id="cb147-84"><a href="coloredtriangles.html#cb147-84"></a></span>
+<span id="cb147-85"><a href="coloredtriangles.html#cb147-85"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb147-86"><a href="coloredtriangles.html#cb147-86"></a><span class="op">}</span></span>
+<span id="cb147-87"><a href="coloredtriangles.html#cb147-87"></a></span>
+<span id="cb147-88"><a href="coloredtriangles.html#cb147-88"></a><span class="dt">void</span> Window<span class="op">::</span>onDestroy<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb147-89"><a href="coloredtriangles.html#cb147-89"></a>  abcg<span class="op">::</span>glDeleteProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb147-90"><a href="coloredtriangles.html#cb147-90"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb147-91"><a href="coloredtriangles.html#cb147-91"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb147-92"><a href="coloredtriangles.html#cb147-92"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb147-93"><a href="coloredtriangles.html#cb147-93"></a><span class="op">}</span></span></code></pre></div>
+<p>Vamos agora à função <code>Window::setupModel</code>. A definição completa é dada a seguir. Em seguida faremos uma análise detalhada de cada trecho:</p>
+<div class="sourceCode" id="cb148" startFrom="95"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 94;"><span id="cb148-95"><a href="coloredtriangles.html#cb148-95"></a><span class="dt">void</span> Window<span class="op">::</span>setupModel<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb148-96"><a href="coloredtriangles.html#cb148-96"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb148-97"><a href="coloredtriangles.html#cb148-97"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb148-98"><a href="coloredtriangles.html#cb148-98"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb148-99"><a href="coloredtriangles.html#cb148-99"></a></span>
+<span id="cb148-100"><a href="coloredtriangles.html#cb148-100"></a>  <span class="co">// Create array of random vertex positions</span></span>
+<span id="cb148-101"><a href="coloredtriangles.html#cb148-101"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd<span class="op">(-</span><span class="fl">1.5</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.5</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb148-102"><a href="coloredtriangles.html#cb148-102"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span>glm<span class="op">::</span>vec2<span class="op">,</span> <span class="dv">3</span><span class="op">&gt;</span> <span class="at">const</span> positions<span class="op">{</span></span>
+<span id="cb148-103"><a href="coloredtriangles.html#cb148-103"></a>      <span class="op">{{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)},</span></span>
+<span id="cb148-104"><a href="coloredtriangles.html#cb148-104"></a>       <span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)},</span></span>
+<span id="cb148-105"><a href="coloredtriangles.html#cb148-105"></a>       <span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)}}};</span></span>
+<span id="cb148-106"><a href="coloredtriangles.html#cb148-106"></a></span>
+<span id="cb148-107"><a href="coloredtriangles.html#cb148-107"></a>  <span class="co">// Generate VBO of positions</span></span>
+<span id="cb148-108"><a href="coloredtriangles.html#cb148-108"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb148-109"><a href="coloredtriangles.html#cb148-109"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb148-110"><a href="coloredtriangles.html#cb148-110"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>positions<span class="op">),</span> positions<span class="op">.</span>data<span class="op">(),</span></span>
+<span id="cb148-111"><a href="coloredtriangles.html#cb148-111"></a>                     GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb148-112"><a href="coloredtriangles.html#cb148-112"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb148-113"><a href="coloredtriangles.html#cb148-113"></a></span>
+<span id="cb148-114"><a href="coloredtriangles.html#cb148-114"></a>  <span class="co">// Generate VBO of colors</span></span>
+<span id="cb148-115"><a href="coloredtriangles.html#cb148-115"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb148-116"><a href="coloredtriangles.html#cb148-116"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb148-117"><a href="coloredtriangles.html#cb148-117"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="va">m_colors</span><span class="op">),</span> <span class="va">m_colors</span><span class="op">.</span>data<span class="op">(),</span></span>
+<span id="cb148-118"><a href="coloredtriangles.html#cb148-118"></a>                     GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb148-119"><a href="coloredtriangles.html#cb148-119"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb148-120"><a href="coloredtriangles.html#cb148-120"></a></span>
+<span id="cb148-121"><a href="coloredtriangles.html#cb148-121"></a>  <span class="co">// Get location of attributes in the program</span></span>
+<span id="cb148-122"><a href="coloredtriangles.html#cb148-122"></a>  <span class="kw">auto</span> <span class="at">const</span> positionAttribute<span class="op">{</span></span>
+<span id="cb148-123"><a href="coloredtriangles.html#cb148-123"></a>      abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inPosition&quot;</span><span class="op">)};</span></span>
+<span id="cb148-124"><a href="coloredtriangles.html#cb148-124"></a>  <span class="kw">auto</span> <span class="at">const</span> colorAttribute<span class="op">{</span>abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inColor&quot;</span><span class="op">)};</span></span>
+<span id="cb148-125"><a href="coloredtriangles.html#cb148-125"></a></span>
+<span id="cb148-126"><a href="coloredtriangles.html#cb148-126"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb148-127"><a href="coloredtriangles.html#cb148-127"></a>  abcg<span class="op">::</span>glGenVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb148-128"><a href="coloredtriangles.html#cb148-128"></a></span>
+<span id="cb148-129"><a href="coloredtriangles.html#cb148-129"></a>  <span class="co">// Bind vertex attributes to current VAO</span></span>
+<span id="cb148-130"><a href="coloredtriangles.html#cb148-130"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb148-131"><a href="coloredtriangles.html#cb148-131"></a></span>
+<span id="cb148-132"><a href="coloredtriangles.html#cb148-132"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>positionAttribute<span class="op">);</span></span>
+<span id="cb148-133"><a href="coloredtriangles.html#cb148-133"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb148-134"><a href="coloredtriangles.html#cb148-134"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>positionAttribute<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb148-135"><a href="coloredtriangles.html#cb148-135"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb148-136"><a href="coloredtriangles.html#cb148-136"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb148-137"><a href="coloredtriangles.html#cb148-137"></a></span>
+<span id="cb148-138"><a href="coloredtriangles.html#cb148-138"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>colorAttribute<span class="op">);</span></span>
+<span id="cb148-139"><a href="coloredtriangles.html#cb148-139"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb148-140"><a href="coloredtriangles.html#cb148-140"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>colorAttribute<span class="op">,</span> <span class="dv">4</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb148-141"><a href="coloredtriangles.html#cb148-141"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb148-142"><a href="coloredtriangles.html#cb148-142"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb148-143"><a href="coloredtriangles.html#cb148-143"></a></span>
+<span id="cb148-144"><a href="coloredtriangles.html#cb148-144"></a>  <span class="co">// End of binding to current VAO</span></span>
+<span id="cb148-145"><a href="coloredtriangles.html#cb148-145"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb148-146"><a href="coloredtriangles.html#cb148-146"></a><span class="op">}</span></span></code></pre></div>
+<p>As linhas 96 a 98 liberam os VBOs e o VAO, caso tenham sido criados anteriormente:</p>
+<div class="sourceCode" id="cb149" startFrom="94"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 93;"><span id="cb149-94"><a href="coloredtriangles.html#cb149-94"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb149-95"><a href="coloredtriangles.html#cb149-95"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb149-96"><a href="coloredtriangles.html#cb149-96"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span></code></pre></div>
+<p>É importante fazer isso, pois a função <code>Window::setupModel</code> é chamada continuamente em <code>Window::onPaint</code>. Se não liberarmos os recursos, em algum momento eles consumirão toda a memória da GPU e CPU<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>.</p>
+<p>As linhas 100 a 105 criam um arranjo com as posições dos vértices. Esse arranjo será copiado para o VBO <code>m_VBOPositions</code>. Também precisamos copiar as cores para <code>m_VBOColors</code>, mas nesse caso não precisamos criar um novo arranjo pois já temos <code>m_colors</code> definido como membro de <code>Window</code>:</p>
+<div class="sourceCode" id="cb150" startFrom="100"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 99;"><span id="cb150-100"><a href="coloredtriangles.html#cb150-100"></a>  <span class="co">// Create array of random vertex positions</span></span>
+<span id="cb150-101"><a href="coloredtriangles.html#cb150-101"></a>  <span class="bu">std::</span>uniform_real_distribution<span class="op"> </span>rd<span class="op">(-</span><span class="fl">1.5</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.5</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb150-102"><a href="coloredtriangles.html#cb150-102"></a>  <span class="bu">std::</span>array<span class="op">&lt;</span>glm<span class="op">::</span>vec2<span class="op">,</span> <span class="dv">3</span><span class="op">&gt;</span> <span class="at">const</span> positions<span class="op">{</span></span>
+<span id="cb150-103"><a href="coloredtriangles.html#cb150-103"></a>      <span class="op">{{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)},</span></span>
+<span id="cb150-104"><a href="coloredtriangles.html#cb150-104"></a>       <span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)},</span></span>
+<span id="cb150-105"><a href="coloredtriangles.html#cb150-105"></a>       <span class="op">{</span>rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">),</span> rd<span class="op">(</span><span class="va">m_randomEngine</span><span class="op">)}}};</span></span></code></pre></div>
+<p>As coordenadas das posições dos vértices são valores <code>float</code> pseudoaleatórios no intervalo <span class="math inline">\([-1.5, 1.5)\)</span>. Vimos no projeto anterior que, para uma primitiva ser vista no viewport, ela precisa ser especificada entre <span class="math inline">\([-1, -1]\)</span> e <span class="math inline">\([1, 1]\)</span>. Logo, nossos triângulos terão partes que ficarão para fora da janela. O pipeline se encarregará de recortar os triângulos e mostrar apenas os fragmentos que estão dentro do viewport.</p>
+<p>Nas linhas 107 a 119 são criados os VBOs (um para as posições 2D, outro para as cores RGBA):</p>
+<div class="sourceCode" id="cb151" startFrom="107"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 106;"><span id="cb151-107"><a href="coloredtriangles.html#cb151-107"></a>  <span class="co">// Generate VBO of positions</span></span>
+<span id="cb151-108"><a href="coloredtriangles.html#cb151-108"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb151-109"><a href="coloredtriangles.html#cb151-109"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb151-110"><a href="coloredtriangles.html#cb151-110"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>positions<span class="op">),</span> positions<span class="op">.</span>data<span class="op">(),</span></span>
+<span id="cb151-111"><a href="coloredtriangles.html#cb151-111"></a>                     GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb151-112"><a href="coloredtriangles.html#cb151-112"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb151-113"><a href="coloredtriangles.html#cb151-113"></a></span>
+<span id="cb151-114"><a href="coloredtriangles.html#cb151-114"></a>  <span class="co">// Generate VBO of colors</span></span>
+<span id="cb151-115"><a href="coloredtriangles.html#cb151-115"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb151-116"><a href="coloredtriangles.html#cb151-116"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb151-117"><a href="coloredtriangles.html#cb151-117"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="va">m_colors</span><span class="op">),</span> <span class="va">m_colors</span><span class="op">.</span>data<span class="op">(),</span></span>
+<span id="cb151-118"><a href="coloredtriangles.html#cb151-118"></a>                     GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb151-119"><a href="coloredtriangles.html#cb151-119"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span></code></pre></div>
+<ul>
+<li><p><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGenBuffers.xhtml"><code>glGenBuffers</code></a> cria o identificador de um <em>objeto de buffer</em> (<em>buffer object</em>). Um objeto de buffer é um arranjo de dados alocado pelo OpenGL, geralmente na memória da GPU.</p></li>
+<li><p><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBindBuffer.xhtml"><code>glBindBuffer</code></a> com o argumento <code>GL_ARRAY_BUFFER</code> vincula o objeto de buffer a um buffer de atributos de vértices. Isso define o objeto de buffer como um objeto de buffer de vértice (VBO). O objeto de buffer pode ser desvinculado com <code>glBindBuffer(0)</code>, ou vinculando outro objeto de buffer.</p></li>
+<li><p><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferData.xhtml"><code>glBufferData</code></a> aloca a memória e inicializa o buffer com o conteúdo copiado de um ponteiro alocado na CPU. O primeiro parâmetro indica o tipo de objeto de buffer utilizado. O segundo parâmetro é o tamanho do buffer em bytes. O terceiro parâmetro é um ponteiro para o primeiro elemento do arranjo contendo os dados que serão copiados. O quarto parâmetro é uma “dica” fornecida ao driver de como o buffer será utilizado. Essas dicas podem ser:</p>
+<ul>
+<li><code>GL_STATIC_DRAW</code> significa que o buffer será modificado apenas uma vez, mas utilizado muitas vezes.</li>
+<li><code>GL_STREAM_DRAW</code> significa que o buffer será modificado apenas uma vez e utilizado algumas poucas vezes.</li>
+<li><code>GL_DYNAMIC_DRAW</code> significa que o buffer será modificado repetidamente, e utilizado também muitas vezes. As modificações do buffer podem ser feitas com comandos como <a href="https://registry.khronos.org/OpenGL-Refpages/gl4/html/glBufferData.xhtml"><code>glBufferData</code></a>, <a href="https://registry.khronos.org/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml"><code>glBufferSubData</code></a> e <a href="https://registry.khronos.org/OpenGL-Refpages/gl4/html/glMapBuffer.xhtml"><code>glMapBuffer</code></a>.</li>
+</ul>
+<p>O sufixo <code>DRAW</code> nesses identificadores significa que os dados são escritos pela aplicação e utilizados em um comando de desenho. Além do <code>DRAW</code> é possível usar o sufixo <code>READ</code> (os dados são escritos pela GPU e lidos pela aplicação) e <code>COPY</code> (os dados são escritos pela GPU e utilizados em um comando de desenho).</p></li>
+</ul>
+<p>Após a cópia dos dados com o <code>glBufferData</code>, o arranjo do qual os dados foram copiados não é mais necessário e pode ser destruído. No nosso código, <code>positions</code> é um arranjo alocado na pilha e portanto é liberado no fim do escopo da função.</p>
+<p>As linhas 121 a 124 usam <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGetAttribLocation.xhtml"><code>glGetAttribLocation</code></a> para obter o número de localização de cada atributo de entrada do vertex shader de <code>m_program</code>:</p>
+<div class="sourceCode" id="cb152" startFrom="121"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 120;"><span id="cb152-121"><a href="coloredtriangles.html#cb152-121"></a>  <span class="co">// Get location of attributes in the program</span></span>
+<span id="cb152-122"><a href="coloredtriangles.html#cb152-122"></a>  <span class="kw">auto</span> <span class="at">const</span> positionAttribute<span class="op">{</span></span>
+<span id="cb152-123"><a href="coloredtriangles.html#cb152-123"></a>      abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inPosition&quot;</span><span class="op">)};</span></span>
+<span id="cb152-124"><a href="coloredtriangles.html#cb152-124"></a>  <span class="kw">auto</span> <span class="at">const</span> colorAttribute<span class="op">{</span>abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inColor&quot;</span><span class="op">)};</span></span></code></pre></div>
+<p>O resultado de <code>positionAttribute</code> será 0, pois o vertex shader define <code>inPosition</code> com <code>layout(location = 0)</code>. Da mesma forma, <code>colorAttribute</code> será 1, pois o vertex shader define <code>inColor</code> com <code>layout(location = 1)</code>. Poderíamos omitir esse código e escrever os valores 0 e 1 diretamente no código como valores <em>hard-coded</em>, mas é recomendável fazer a consulta da localização com <code>glGetAttribLocation</code>.</p>
+<p>Agora que sabemos a localização dos atributos <code>inPosition</code> e <code>inColor</code> no vertex shader, podemos especificar como os dados de cada VBO serão mapeados para esses atributos. Isso é feito nas linhas 126 a 145 a seguir:</p>
+<div class="sourceCode" id="cb153" startFrom="126"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 125;"><span id="cb153-126"><a href="coloredtriangles.html#cb153-126"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb153-127"><a href="coloredtriangles.html#cb153-127"></a>  abcg<span class="op">::</span>glGenVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb153-128"><a href="coloredtriangles.html#cb153-128"></a></span>
+<span id="cb153-129"><a href="coloredtriangles.html#cb153-129"></a>  <span class="co">// Bind vertex attributes to current VAO</span></span>
+<span id="cb153-130"><a href="coloredtriangles.html#cb153-130"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb153-131"><a href="coloredtriangles.html#cb153-131"></a></span>
+<span id="cb153-132"><a href="coloredtriangles.html#cb153-132"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>positionAttribute<span class="op">);</span></span>
+<span id="cb153-133"><a href="coloredtriangles.html#cb153-133"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOPositions</span><span class="op">);</span></span>
+<span id="cb153-134"><a href="coloredtriangles.html#cb153-134"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>positionAttribute<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb153-135"><a href="coloredtriangles.html#cb153-135"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb153-136"><a href="coloredtriangles.html#cb153-136"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb153-137"><a href="coloredtriangles.html#cb153-137"></a></span>
+<span id="cb153-138"><a href="coloredtriangles.html#cb153-138"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>colorAttribute<span class="op">);</span></span>
+<span id="cb153-139"><a href="coloredtriangles.html#cb153-139"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBOColors</span><span class="op">);</span></span>
+<span id="cb153-140"><a href="coloredtriangles.html#cb153-140"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>colorAttribute<span class="op">,</span> <span class="dv">4</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb153-141"><a href="coloredtriangles.html#cb153-141"></a>                              <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb153-142"><a href="coloredtriangles.html#cb153-142"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb153-143"><a href="coloredtriangles.html#cb153-143"></a></span>
+<span id="cb153-144"><a href="coloredtriangles.html#cb153-144"></a>  <span class="co">// End of binding to current VAO</span></span>
+<span id="cb153-145"><a href="coloredtriangles.html#cb153-145"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span></code></pre></div>
+<p>Na linha 127, <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGenVertexArrays.xhtml"><code>glGenVertexArray</code></a> cria um VAO que, como vimos no projeto <code>sierpinski</code>, armazena o estado da especificação de vinculação dos VBOs com o vertex shader. Neste projeto, essa especificação é feita nas linhas 132 a 142.</p>
+<p>Em <code>Window::onPaint</code>, quando vinculamos esse VAO com <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBindVertexArray.xhtml"><code>glBindVertexArray</code></a>, o estado da configuração dos VBOs com o programa de shader é recuperado automaticamente (isto é, a configuração feita nas linhas 132 a 142). Na nossa aplicação isso não é incrivelmente útil: as linhas 132 a 142 já são executadas para todo quadro de exibição, pois chamamos <code>Window::setupModel</code> logo antes de <code>glDrawArrays</code>. Mas, em aplicações futuras, chamaremos <code>Window::setupModel</code> apenas uma vez (por exemplo, em <code>Window::onCreate</code>). Geralmente, o modelo geométrico é definido apenas uma vez e nunca mais é alterado (ou é raramente alterado). Nesse caso, o VAO é útil para que não tenhamos de configurar manualmente a ligação dos VBOs com os atributos do vertex shader para todo quadro de exibição.</p>
+</div>
+<div id="ajustando-a-taxa-de-atualização" class="section level3 unnumbered hasAnchor">
+<h3>Ajustando a taxa de atualização<a href="coloredtriangles.html#ajustando-a-taxa-de-atualização" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Neste momento, se compilarmos e executarmos a aplicação, perceberemos que os triângulos coloridos estão sendo gerados muito rapidamente. Isso ocorre porque um novo triângulo é desenhado a cada chamada a <code>Window::onPaint</code>, na maior taxa possível que a GPU consegue suportar. Geralmente isso é muito acima da taxa de atualização do monitor. Uma tentativa de solucionar isso é habilitar o modo Vsync (sincronização vertical) através da seguinte modificação em <code>main.cpp</code>:</p>
+<div class="sourceCode" id="cb154" startFrom="8"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 7;"><span id="cb154-8"><a href="coloredtriangles.html#cb154-8"></a>    window<span class="op">.</span>setOpenGLSettings<span class="op">(</span></span>
+<span id="cb154-9"><a href="coloredtriangles.html#cb154-9"></a>        <span class="op">{.</span>samples <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="op">.</span>vSync <span class="op">=</span> <span class="kw">true</span><span class="op">,</span> <span class="op">.</span>doubleBuffering <span class="op">=</span> <span class="kw">false</span><span class="op">});</span></span></code></pre></div>
+<p>Com a sincronização vertical ativada, as chamadas de <code>Window::onPaint</code> serão sincronizadas com a taxa de atualização do monitor, geralmente 60 Hz. O problema é que essa solução muito provavelmente não funcionará em nossa aplicação. Muitos drivers de vídeo só permitem habilitar o modo Vsync quando o double buffering está habilitado, o que não é nosso caso. Precisamos de outra estratégia para ajustar a velocidade da geração de novos triângulos. Uma solução é usar um temporizador e desenhar um novo triângulo apenas se um intervalo de tempo tiver decorrido desde o desenho do último triângulo. É isso que faremos a seguir.</p>
+<p>Adicione <code>abcg::Timer m_timer</code> como variável membro de <code>Window</code>. <code>abcg::Timer</code> é uma classe da ABCg que implementa um temporizador usando <a href="https://en.cppreference.com/w/cpp/chrono"><code>std::chrono</code></a>, da biblioteca padrão do C++. Quando o objeto <code>m_timer</code> é criado, o horário de sua inicialização é armazenado internamente. Podemos chamar <code>m_timer.elapsed()</code> sempre que quisermos saber quantos segundos se passaram desde o início do temporizador. Podemos também chamar <code>m_timer.restart()</code> para reiniciar o temporizador.</p>
+<p>Modifique <code>Window::onPaint</code> com o seguinte código:</p>
+<div class="sourceCode" id="cb155" startFrom="39"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 38;"><span id="cb155-39"><a href="coloredtriangles.html#cb155-39"></a><span class="dt">void</span> Window<span class="op">::</span>onPaint<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb155-40"><a href="coloredtriangles.html#cb155-40"></a>  <span class="co">// Check whether to render the next triangle</span></span>
+<span id="cb155-41"><a href="coloredtriangles.html#cb155-41"></a>  <span class="cf">if</span> <span class="op">(</span><span class="va">m_timer</span><span class="op">.</span>elapsed<span class="op">()</span> <span class="op">&lt;</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dv">20</span><span class="op">)</span></span>
+<span id="cb155-42"><a href="coloredtriangles.html#cb155-42"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb155-43"><a href="coloredtriangles.html#cb155-43"></a>  <span class="va">m_timer</span><span class="op">.</span>restart<span class="op">();</span></span>
+<span id="cb155-44"><a href="coloredtriangles.html#cb155-44"></a></span>
+<span id="cb155-45"><a href="coloredtriangles.html#cb155-45"></a>  setupModel<span class="op">();</span></span>
+<span id="cb155-46"><a href="coloredtriangles.html#cb155-46"></a></span>
+<span id="cb155-47"><a href="coloredtriangles.html#cb155-47"></a>  abcg<span class="op">::</span>glViewport<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>x<span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb155-48"><a href="coloredtriangles.html#cb155-48"></a></span>
+<span id="cb155-49"><a href="coloredtriangles.html#cb155-49"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb155-50"><a href="coloredtriangles.html#cb155-50"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb155-51"><a href="coloredtriangles.html#cb155-51"></a></span>
+<span id="cb155-52"><a href="coloredtriangles.html#cb155-52"></a>  abcg<span class="op">::</span>glDrawArrays<span class="op">(</span>GL_TRIANGLES<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb155-53"><a href="coloredtriangles.html#cb155-53"></a></span>
+<span id="cb155-54"><a href="coloredtriangles.html#cb155-54"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb155-55"><a href="coloredtriangles.html#cb155-55"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb155-56"><a href="coloredtriangles.html#cb155-56"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linha 41, verificamos se o temporizador já passou de 0.05 segundos (<code>1.0 / 20</code>). Se ainda não, precisamos aguardar mais algum tempo antes de desenhar um novo triângulo, e por isso retornamos na linha 42. Em algum momento, depois de algumas chamadas de <code>Window::onPaint</code>, o temporizador terá passado 0.05 segundos. Neste caso, reiniciamos o temporizador na linha 43 e continuamos com a execução das instruções do restante do código para desenhar um novo triângulo. Desse modo, a taxa de geração de triângulos será fixada em 20 por segundo.</p>
+<p>Execute o código novamente e veja o resultado.</p>
+<p>O projeto completo pode ser baixado <a href="https://hbatagelo.github.io/abcgapps/src/coloredtriangles.zip">deste link</a>.</p>
+<div class="questionbox">
+<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1.4em;width:1.57em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M519.442 288.651c-41.519 0-59.5 31.593-82.058 31.593C377.409 320.244 432 144 432 144s-196.288 80-196.288-3.297c0-35.827 36.288-46.25 36.288-85.985C272 19.216 243.885 0 210.539 0c-34.654 0-66.366 18.891-66.366 56.346 0 41.364 31.711 59.277 31.711 81.75C175.885 207.719 0 166.758 0 166.758v333.237s178.635 41.047 178.635-28.662c0-22.473-40-40.107-40-81.471 0-37.456 29.25-56.346 63.577-56.346 33.673 0 61.788 19.216 61.788 54.717 0 39.735-36.288 50.158-36.288 85.985 0 60.803 129.675 25.73 181.23 25.73 0 0-34.725-120.101 25.827-120.101 35.962 0 46.423 36.152 86.308 36.152C556.712 416 576 387.99 576 354.443c0-34.199-18.962-65.792-56.558-65.792z"/></svg>
+<div class="questionboxtitle">
+Exercício
+</div>
+<p>Habilite o modo de mistura de cor usando o código mostrado na seção <a href="glpipeline.html#glpipeline">4.3</a>. Inclua o código a seguir em <code>Window::onCreate</code>:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb156-1"><a href="coloredtriangles.html#cb156-1" aria-hidden="true" tabindex="-1"></a>abcg<span class="op">::</span>glEnable<span class="op">(</span>GL_BLEND<span class="op">);</span></span>
+<span id="cb156-2"><a href="coloredtriangles.html#cb156-2" aria-hidden="true" tabindex="-1"></a>abcg<span class="op">::</span>glBlendEquation<span class="op">(</span>GL_FUNC_ADD<span class="op">);</span></span>
+<span id="cb156-3"><a href="coloredtriangles.html#cb156-3" aria-hidden="true" tabindex="-1"></a>abcg<span class="op">::</span>glBlendFunc<span class="op">(</span>GL_SRC_ALPHA<span class="op">,</span> GL_ONE_MINUS_SRC_ALPHA<span class="op">);</span> </span></code></pre></div>
+<p>Além disso, mude a componente A (alpha) das cores RGBA de <code>m_colors</code>. Por exemplo, com a definição a seguir, os triângulos ficarão 50% transparentes:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb157-1"><a href="coloredtriangles.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>array<span class="op">&lt;</span>glm<span class="op">::</span>vec4<span class="op">,</span> <span class="dv">3</span><span class="op">&gt;</span> <span class="va">m_colors</span><span class="op">{{{</span><span class="fl">0.36</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.83</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.00</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.5</span><span class="bu">f</span><span class="op">},</span></span>
+<span id="cb157-2"><a href="coloredtriangles.html#cb157-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="op">{</span><span class="fl">0.63</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.00</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.61</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.5</span><span class="bu">f</span><span class="op">},</span></span>
+<span id="cb157-3"><a href="coloredtriangles.html#cb157-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="op">{</span><span class="fl">1.00</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.69</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.30</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.5</span><span class="bu">f</span><span class="op">}}};</span></span></code></pre></div>
+</div>
+<div class="questionbox">
+<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1.4em;width:1.57em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M519.442 288.651c-41.519 0-59.5 31.593-82.058 31.593C377.409 320.244 432 144 432 144s-196.288 80-196.288-3.297c0-35.827 36.288-46.25 36.288-85.985C272 19.216 243.885 0 210.539 0c-34.654 0-66.366 18.891-66.366 56.346 0 41.364 31.711 59.277 31.711 81.75C175.885 207.719 0 166.758 0 166.758v333.237s178.635 41.047 178.635-28.662c0-22.473-40-40.107-40-81.471 0-37.456 29.25-56.346 63.577-56.346 33.673 0 61.788 19.216 61.788 54.717 0 39.735-36.288 50.158-36.288 85.985 0 60.803 129.675 25.73 181.23 25.73 0 0-34.725-120.101 25.827-120.101 35.962 0 46.423 36.152 86.308 36.152C556.712 416 576 387.99 576 354.443c0-34.199-18.962-65.792-56.558-65.792z"/></svg>
+<div class="questionboxtitle">
+Exercício
+</div>
+<p>Modifique o projeto <code>coloredtriangles</code> para suportar novas funcionalidades:</p>
+<ul>
+<li>Geração de cores aleatórias nos vértices;</li>
+<li>Possibilidade de desenhar cada triângulo com uma cor sólida;</li>
+<li>Ajuste do intervalo de tempo entre a renderização de cada triângulo.</li>
+</ul>
+<p>Um exemplo é dado a seguir:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/coloredtriangles2/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="635"
+  ></iframe>
+</div>
+
+</div>
+</div>
+<!-- </div> -->
+<div class="footnotes">
+<hr />
+<ol start="20">
+<li id="fn20"><p>O conceito de coordenadas homogêneas será abordado futuramente, quando trabalharmos com transformações geométricas 3D.<a href="coloredtriangles.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>Em geral, destruir e criar os VBOs a cada quadro de exibição não é muito eficiente. É preferível criar o VBO apenas uma vez e, se necessário, modificá-lo com <code>glBufferData</code> a cada quadro. Em nossa aplicação, optamos por chamar <code>setupModel</code> a cada <code>Window::onPaint</code> apenas para manter o código mais simples.<a href="coloredtriangles.html#fnref21" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="glpipeline.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

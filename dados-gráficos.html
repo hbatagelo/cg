@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.4 Framebuffer | MCTA008-17 Computação Gráfica</title>
+  <title>4.1 Dados gráficos | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.4 Framebuffer | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="4.1 Dados gráficos | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.4 Framebuffer | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="4.1 Dados gráficos | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="es.html"/>
-<link rel="next" href="sierpinski.html"/>
+<link rel="prev" href="pipeline.html"/>
+<link rel="next" href="ray-casting-x-rasterização.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -287,60 +287,39 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="framebuffer" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Framebuffer<a href="framebuffer.html#framebuffer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O framebuffer é uma área contígua de memória de vídeo utilizada para armazenar a imagem que será mostrada no dispositivo de exibição. O hardware gráfico lê continuamente o conteúdo do framebuffer e atualiza o dispositivo de exibição, tipicamente a uma taxa entre 60 e 240 Hz nos monitores de LCD.</p>
-<p>Nos primeiros PCs e em sistemas gráficos mais antigos, o framebuffer fazia parte da memória do sistema que poderia ser acessada diretamente pela CPU. Nos PCs do início da década de 1990, o framebuffer podia ser acessado com um simples ponteiro para o endereço <code>0xA000</code> no chamado <a href="https://en.wikipedia.org/wiki/Mode_13h">“modo 13h”</a> do controlador VGA (um modo gráfico de cores indexadas de 8 bits com resolução de 320x200). Atualmente, o framebuffer é acessado através da GPU e, em GPUs dedicadas, está localizado na memória RAM da placa gráfica.</p>
-<p>Em hardware compatível com OpenGL (o que inclui todas as GPUs atuais), o framebuffer pode ser composto por diversos buffers. Pelo menos um deles é um <em>color buffer</em> (buffer de cor) no qual cada pixel contém uma informação de cor, geralmente no formato RGB (24 bits) ou RGBA (32 bits).</p>
-<p>Um framebuffer pode ter vários buffers de cor associados. Por exemplo, em implementações que suportam visão estereoscópica, podemos ter um buffer de cor para a tela da visão esquerda e outro para a tela da visão direita. Na técnica de <em>double buffering</em> (descrita no fim da seção), são utilizados dois buffers de cor: o <em>backbuffer</em>, que é um buffer <em>off-screen</em> no qual a imagem é renderizada antes de ser exibida na tela, e o <em>frontbuffer</em>, que recebe o conteúdo do backbuffer ao fim da renderização para exibição na tela. Em renderização estéreo, cada lado esquerdo e direito pode ter o seu backbuffer e frontbuffer (ou outros buffers mais). Cada buffer de cor do framebuffer também pode ser associado a:</p>
+<div id="dados-gráficos" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Dados gráficos<a href="dados-gráficos.html#dados-gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O processamento de um pipeline gráfico começa com a definição dos dados gráficos pela aplicação. Esses dados são frequentemente representações de objetos – abstrações de objetos do mundo real – dispostos em uma cena virtual tridimensional. Uma cena é tipicamente composta por:</p>
 <ul>
-<li>Um <em>depth buffer</em> (buffer de profundidade), no qual cada pixel contém uma informação de profundidade utilizada no <a href="https://www.khronos.org/opengl/wiki/Depth_Test"><em>teste de profundidade</em></a>. O teste de profundidade faz parte da implementação da técnica de Z-buffering de determinação de superfícies visíveis. A informação de profundidade pode ser um inteiro ou ponto flutuante de 16, 24 ou 32 bits (geralmente 24 bits).</li>
-<li>Um <em>stencil buffer</em> (buffer de estêncil), utilizado no <a href="https://www.khronos.org/opengl/wiki/Stencil_Test"><em>teste de estêncil</em></a> para operações de mascaramento e composição de imagens. No buffer estêncil, cada pixel contém um inteiro sem sinal, de 1, 4, 8 ou 16 bits (geralmente 8 bits).</li>
+<li><strong>Objetos</strong> com superfícies descritas através de modelos geométricos tais como malhas de triângulos, nuvens de pontos, equações paramétricas ou equações implícitas.</li>
+<li><strong>Propriedades dos materiais</strong> que compõem as superfícies dos objetos. Essas propriedades descrevem a forma como uma luz incidente na superfície é refletida, absorvida e/ou transmitida.</li>
+<li><strong>Fontes de luz</strong> descritas por informações como intensidade, direção de propagação da luz e fatores de atenuação. Alternativamente, uma fonte de luz pode ser um objeto com superfície de material emissivo.</li>
+<li><strong>Uma câmera virtual</strong> descrita por informações que permitem definir um ponto de vista na cena, tais como posição da câmera, orientação e campo de visão.</li>
 </ul>
-<div id="screen-tearing" class="section level3 unnumbered hasAnchor">
-<h3>Screen tearing<a href="framebuffer.html#screen-tearing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A taxa de atualização do dispositivo de exibição (chamada de <em>vertical refresh rate</em>) é controlada pelo hardware gráfico. Entretanto, a taxa em que a GPU atualiza o framebuffer pode ser bem maior que a taxa de atualização do dispositivo. Essa taxa é o número de quadros por segundo (FPS) que o processador gráfico é capaz de renderizar. Se o framebuffer for atualizado muito rapidamente, o hardware gráfico pode começar a atualizar o dispositivo de exibição com o conteúdo de um quadro de exibição e terminar com o conteúdo de outro, mais recente. Essa quebra entre os quadros de exibição gera um defeito na imagem conhecido como <em>screen tearing</em>, ou simplesmente <em>tearing</em> (figura <a href="framebuffer.html#fig:screentearing">3.39</a>).</p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:screentearing"></span>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Tearing_%28simulated%29.jpg/797px-Tearing_%28simulated%29.jpg" alt="Screen tearing. ([fonte](https://commons.wikimedia.org/wiki/File:Tearing_(simulated).jpg))." width="100%" />
+<p>A câmera virtual é uma abstração de uma câmera ou observador do mundo real. Em uma câmera de verdade, a imagem é formada a partir da energia luminosa que atravessa as lentes e é captada pelo filme ou sensor durante um tempo de exposição. Poderíamos tentar simular de forma precisa o comportamento de uma câmera real, calculando a intensidade de luz de cada comprimento de onda que adentra a abertura da câmera vindo de diferentes direções, atravessa o sistema de lentes e então incide em cada subpixel RGB do sensor da câmera durante um tempo de exposição. Entretanto, uma simulação com esse grau de precisão seria extremamente custosa e inviável mesmo em hardware gráfico atual. Precisamos simplificar de forma significativa este processo, especialmente para aplicações de síntese de imagens em tempo real. Em muitas aplicações, essa aproximação pode ser até mesmo fisicamente incorreta, e a produção da percepção de sombreamento (<em>shading</em>) dos objetos pode ser suficiente.</p>
+<p>Para a maioria das aplicações, é comum considerar que a câmera virtual é uma <strong>câmera <em>pinhole</em> ideal</strong> (figura <a href="dados-gráficos.html#fig:pinhole1">4.2</a>). A câmera pinhole é uma câmera que não possui lentes. A luz passa por um pequeno furo (chamado de <em>centro de projeção</em>) e incide sobre um filme ou sensor localizado no fundo da câmera (o <em>plano de imagem</em>). A abertura do campo de visão pode ser ajustada mudando a distância focal, que é a distância entre o centro de projeção e o plano de imagem. Na câmera pinhole ideal, a abertura do furo é infinitamente pequena e as imagens formadas são perfeitamente nítidas (isto é, em foco). Efeitos de difração são ignorados nesse modelo.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pinhole1"></span>
+<img src="images/04_pinhole1.svg" alt="Camera pinhole ideal." width="95%" />
 <p class="caption">
-Figura 3.39: Screen tearing. (<a href="https://commons.wikimedia.org/wiki/File:Tearing_(simulated).jpg">fonte</a>).
+Figura 4.2: Camera pinhole ideal.
 </p>
 </div>
-</div>
-<div id="vsync" class="section level3 unnumbered hasAnchor">
-<h3>Vsync<a href="framebuffer.html#vsync" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Para reduzir o problema de tearing, a GPU pode sincronizar o desenho do framebuffer com o tempo de apagamento vertical (VBI), que é o intervalo de tempo definido entre o fim da varredura de um quadro de exibição e o início da varredura do quadro seguinte. Essa sincronização efetivamente limita o número de FPS à frequência do monitor em Hz. Esse processo de sincronização é chamado de sincronização vertical ou <em>Vsync</em> (<em>vertical synchronization</em>). Em monitores mais recentes, compatíveis com as tecnologias <a href="https://www.nvidia.com/en-us/geforce/products/g-sync-monitors/">G-SYNC</a> da NVIDIA, e <a href="https://www.amd.com/en/technologies/free-sync">FreeSync</a> da AMD, é possível fazer a sincronização na direção contrária: a frequência do monitor é ajustada pela GPU de acordo com a taxa de FPS.</p>
-</div>
-<div id="multiple-buffering" class="section level3 unnumbered hasAnchor">
-<h3>Multiple buffering<a href="framebuffer.html#multiple-buffering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>O uso de <em>VSync</em> resolve o problema do tearing quando os quadros são renderizados em uma frequência mais alta que a frequência do monitor. Porém, quando a taxa de atualização do framebuffer é menor que a frequência do monitor, o conteúdo parcial do novo quadro pode ser misturado com o conteúdo do quadro anterior, gerando tearing. Uma solução para esse caso é usar a técnica de <em>double buffering</em>.</p>
-<p>Double buffering consiste em utilizar dois framebuffers: o <strong>backbuffer</strong> e o <strong>frontbuffer</strong> (figura <a href="framebuffer.html#fig:framebuffer1">3.40</a>). A GPU renderiza os gráficos apenas no backbuffer. Enquanto isso, o hardware gráfico atualiza o dispositivo de exibição com o conteúdo do frontbuffer. No próximo VBI, se a renderização no backbuffer ainda não tiver terminado, o mesmo frontbuffer é exibido novamente. Caso contrário, o backbuffer e o frontbuffer trocam de lugar, e agora o frontbuffer torna-se o backbuffer, e vice-versa. Desse modo, o hardware gráfico terá agora no frontbuffer um quadro completo para ser exibido na tela.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:framebuffer1"></span>
-<img src="images/03_framebuffer1.svg" alt="Double buffering." width="100%" />
+<p>Para evitar ter de lidar com a imagem invertida formada no plano de imagem da câmera pinhole, podemos considerar que o plano de imagem está localizado na frente do centro de projeção, o que seria impossível de fazer numa câmera real. Podemos também ajustar arbitrariamente a distância focal sem preocupação com limitações físicas. A distância focal pode até mesmo ser infinita, se desejarmos uma projeção paralela. Por fim, podemos considerar que o plano de imagem é o framebuffer. Nessa configuração, é comum considerar que o centro de projeção corresponde ao olho do observador, como mostra a figura (figura <a href="dados-gráficos.html#fig:pinhole2">4.3</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pinhole2"></span>
+<img src="images/04_pinhole2.svg" alt="Câmera virtual com plano de imagem na frente do centro de projeção." width="95%" />
 <p class="caption">
-Figura 3.40: Double buffering.
+Figura 4.3: Câmera virtual com plano de imagem na frente do centro de projeção.
 </p>
 </div>
-<p>Os casos em que a GPU precisa usar o mesmo frontbuffer (porque o backbuffer ainda está sendo desenhado) não são desejáveis pois podem ser percebidos como travamentos da imagem (<em>stuttering</em>), e resultam em uma diminuição da média de quadros por segundo. Isso pode ser melhorado com a adição de mais um backbuffer, no chamado <em>triple buffering</em>. O resultado é uma espécie de fila circular de buffers chamada de <em>swapchain</em> (figura <a href="framebuffer.html#fig:framebuffer2">3.41</a>). No triple buffering, dois quadros consecutivos são desenhados nos backbuffers. No próximo intervalo de apagamento vertical, a fila avança e o backbuffer mais antigo toma o lugar do frontbuffer, que por sua vez torna-se um backbuffer. Esse princípio de uso de múltiplos backbuffers (<em>multiple buffering</em>) pode ser estendido para ainda mais buffers. Entretanto, quanto maior o número de backbuffers, maior o atraso (<em>lag</em>) entre o quadro mais novo renderizado e o quadro que está sendo exibido na tela.</p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:framebuffer2"></span>
-<img src="images/03_framebuffer2.svg" alt="Triple buffering." width="100%" />
-<p class="caption">
-Figura 3.41: Triple buffering.
-</p>
-</div>
-</div>
+<p>Para determinar a cor de cada pixel do framebuffer para um determinado ponto de vista da câmera virtual, podemos considerar duas abordagens de renderização: <strong>ray casting</strong> e <strong>rasterização</strong>. Essas abordagens são apresentadas na seção a seguir.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="es.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sierpinski.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pipeline.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ray-casting-x-rasterização.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
