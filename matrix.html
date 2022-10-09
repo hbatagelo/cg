@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7.1 Matrizes | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7.1 Matrizes | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7.1 Matrizes | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="transformations.html"/>
+<link rel="next" href="homogeneous.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.hpp-6"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação"><i class="fa fa-check"></i>Transformação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.hpp-7"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.cpp-7"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-9"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="matrix" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Matrizes<a href="matrix.html#matrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Uma <strong>matriz</strong> é um arranjo de <span class="math inline">\(n \times m\)</span> escalares, onde <span class="math inline">\(n\)</span> é o número de linhas e <span class="math inline">\(m\)</span> é o número de colunas.</p>
+<p>No exemplo a seguir, <span class="math inline">\(\mathbf{A}\)</span> é uma matriz de tamanho <span class="math inline">\(3 \times 4\)</span>, isto é, é uma matriz de 3 linhas e 4 colunas:</p>
+<p><span class="math display">\[
+\mathbf{A}=
+\begin{bmatrix}
+  \phantom{-.1}9 &amp; \phantom{-}2 &amp; \phantom{.2} 10 &amp; \phantom{.2} 4 \\
+  \phantom{-.1}4 &amp;           -2 &amp; 0.25            &amp; \phantom{.2} 1 \\
+            -8.1 &amp; \phantom{-}6 &amp; \phantom{.2} 42 &amp; \phantom{.2} 0 \\
+\end{bmatrix}.
+\]</span>
+Cada elemento de <span class="math inline">\(\mathbf{A}\)</span> é denotado por <span class="math inline">\(a_{ij}\)</span>, onde <span class="math inline">\(i\)</span> é a linha, e <span class="math inline">\(j\)</span> é a coluna do elemento da matriz:</p>
+<p><span class="math display">\[
+\mathbf{A}=
+\begin{bmatrix}
+    a_{11} &amp; a_{12} &amp; a_{13} &amp; \dots  &amp; a_{1m} \\
+    a_{21} &amp; a_{22} &amp; a_{23} &amp; \dots  &amp; a_{2m} \\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    a_{n1} &amp; a_{n2} &amp; a_{n3} &amp; \dots  &amp; a_{nm}
+\end{bmatrix}.
+\]</span></p>
+<div id="matriz-transposta" class="section level3 unnumbered hasAnchor">
+<h3>Matriz transposta<a href="matrix.html#matriz-transposta" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>transposta</strong> de uma matriz <span class="math inline">\(\mathbf{A}\)</span> de tamanho <span class="math inline">\(n \times m\)</span>, denotada por <span class="math inline">\(\mathbf{A}^T\)</span>, é uma matriz de tamanho <span class="math inline">\(m \times n\)</span> obtida <strong>trocando as linhas pelas colunas</strong>.</p>
+<p>Por exemplo, se</p>
+<p><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+   1 &amp;  2 &amp; 3 \\
+   4 &amp;  5 &amp; 6 \\
+\end{bmatrix},
+\]</span></p>
+<p>então</p>
+<p><span class="math display">\[
+\mathbf{A}^T =
+\begin{bmatrix}
+   1 &amp; 4 \\
+   2 &amp; 5 \\
+   3 &amp; 6
+\end{bmatrix}.
+\]</span></p>
+<p>A transposta da transposta é a matriz original, isto é,</p>
+<p><span class="math display">\[{(\mathbf{A}^T)}^T = \mathbf{A}.\]</span></p>
+</div>
+<div id="matriz-quadrada" class="section level3 unnumbered hasAnchor">
+<h3>Matriz quadrada<a href="matrix.html#matriz-quadrada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uma <strong>matriz quadrada</strong> é uma matriz na qual o número de linhas é igual ao número de colunas (<span class="math inline">\(n=m\)</span>).</p>
+<p>Se <span class="math inline">\(\mathbf{A}\)</span> é uma matriz quadrada de <span class="math inline">\(n\)</span> linhas e colunas, dizemos que <span class="math inline">\(\mathbf{A}\)</span> é uma matriz de <strong>ordem <span class="math inline">\(n\)</span></strong>.</p>
+<p>Por exemplo,</p>
+<p><span class="math display">\[
+\mathbf{A}=
+\begin{bmatrix}
+5 &amp; 1 &amp; 4 \\
+7 &amp; 0 &amp; 2 \\
+3 &amp; 3 &amp; 9 \\
+\end{bmatrix}
+\]</span></p>
+<p>é uma matriz de ordem 3.</p>
+</div>
+<div id="matriz-linhacoluna" class="section level3 unnumbered hasAnchor">
+<h3>Matriz linha/coluna<a href="matrix.html#matriz-linhacoluna" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uma tupla de <span class="math inline">\(n\)</span> elementos pode ser representada por uma matriz <span class="math inline">\(1 \times n\)</span> (<strong>matriz linha</strong>) ou <span class="math inline">\(n \times 1\)</span> (<strong>matriz coluna</strong>).</p>
+<p>Para matrizes linha e matrizes coluna, usaremos a notação de letra minúscula em negrito <span class="math inline">\((\mathbf{a}, \mathbf{b}, \dots)\)</span>, como na notação de vetor.</p>
+<p>Para trabalharmos com transformações matriciais, usaremos matrizes coluna para escrever a representação de vetores em uma base conhecida.</p>
+<p>Por exemplo, a representação de um vetor no <span class="math inline">\(\mathbb{R}^3\)</span> pode ser escrita pela matriz de componentes</p>
+<p><span class="math display">\[
+\mathbf{v} =
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+\]</span>
+sendo que</p>
+<p><span class="math display">\[\mathbf{v}=x\hat{\mathbf{i}} + y\hat{\mathbf{j}} + z\hat{\mathbf{k}}.\]</span></p>
+</div>
+<div id="matriz-identidade" class="section level3 unnumbered hasAnchor">
+<h3>Matriz identidade<a href="matrix.html#matriz-identidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>matriz identidade</strong>, denotada por <span class="math inline">\(\mathbf{I}\)</span>, é uma matriz quadrada na qual todos os elementos de uma das diagonais – elementos <span class="math inline">\(a_{ij}\)</span> em que <span class="math inline">\(i=j\)</span>, chamada de <strong>diagonal principal</strong> – são <span class="math inline">\(1\)</span>, e todos os outros elementos são <span class="math inline">\(0\)</span>.</p>
+<p><span class="math display">\[
+\mathbf{I}=
+\begin{bmatrix}
+    1 &amp; 0 &amp; 0 &amp; \dots  &amp; 0 \\
+    0 &amp; 1 &amp; 0 &amp; \dots  &amp; 0 \\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    0 &amp; 0 &amp; 0 &amp; \dots &amp; 1
+\end{bmatrix}.
+\]</span></p>
+<p>Por exemplo, a matriz identidade de ordem 3 é a matriz</p>
+<p><span class="math display">\[
+\mathbf{I}=
+\begin{bmatrix}
+    1 &amp; 0 &amp; 0 \\
+    0 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 1
+\end{bmatrix}.
+\]</span>
+A matriz identidade é o elemento neutro da multiplicação entre matrizes:</p>
+<p><span class="math display">\[
+\mathbf{A}\mathbf{I} = \mathbf{I}\mathbf{A} = \mathbf{A}.
+\]</span></p>
+</div>
+<div id="operações" class="section level3 unnumbered hasAnchor">
+<h3>Operações<a href="matrix.html#operações" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Há três operações básicas com matrizes:</p>
+<ul>
+<li><p><strong>Adição de matriz com matriz:</strong></p>
+<p><span class="math display">\[\mathbf{A} + \mathbf{B}\]</span></p>
+<p>tem como resultado uma matriz que contém a soma elemento a elemento de <span class="math inline">\(\mathbf{A}\)</span> e <span class="math inline">\(\mathbf{B}\)</span>, sendo que <span class="math inline">\(\mathbf{A}\)</span> e <span class="math inline">\(\mathbf{B}\)</span> precisam ter o mesmo tamanho.</p>
+<p>Por exemplo, se</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{A} &amp;=
+\begin{bmatrix}
+\phantom{-}1 &amp;            -2 &amp; \phantom{-}3 \\
+           -4 &amp;  \phantom{-}5 &amp; \phantom{-}6 \\
+\end{bmatrix},\\
+\mathbf{B} &amp;=
+\begin{bmatrix}
+           -1 &amp;            -3 &amp; \phantom{-}6 \\
+\phantom{-}0 &amp;  \phantom{-}5 &amp; \phantom{-}2 \\
+\end{bmatrix},
+\end{align}
+\]</span></p>
+<p>então</p>
+<p><span class="math display">\[
+\mathbf{A}+\mathbf{B} =
+\begin{bmatrix}
+   \phantom{-}0 &amp;  -5 &amp; \phantom{-}9 \\
+   -4           &amp;  10 &amp; \phantom{-}8 \\
+\end{bmatrix}.  
+\]</span></p>
+<p>Essa operação é comutativa e associativa:</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{A}+\mathbf{B} &amp;= \mathbf{B}+\mathbf{A},\\
+\mathbf{A}+(\mathbf{B}+\mathbf{C}) &amp;= (\mathbf{A}+\mathbf{B})+\mathbf{C}.
+\end{align}
+\]</span></p></li>
+<li><p><strong>Multiplicação de escalar com matriz:</strong></p>
+<p><span class="math display">\[a\mathbf{A}\]</span></p>
+<p>tem como resultado uma matriz na qual cada elemento da matriz <span class="math inline">\(\mathbf{A}\)</span> é multiplicado pelo escalar <span class="math inline">\(a\)</span>.</p>
+<p>Por exemplo, se</p>
+<p><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+   1 &amp;  2 &amp; 3 \\
+   4 &amp;  5 &amp; 6 \\
+\end{bmatrix},
+\]</span></p>
+<p>então</p>
+<p><span class="math display">\[
+2\mathbf{A} =
+\begin{bmatrix}
+   2 &amp;  4 &amp; 6 \\
+   8 &amp;  10 &amp; 12 \\
+\end{bmatrix}.
+\]</span></p>
+<p>Essa operação é distributiva e associativa:</p>
+<p><span class="math display">\[
+\begin{align}
+a(\mathbf{A}+\mathbf{B}) &amp;= a\mathbf{A}+a\mathbf{B},\\
+(a+b)\mathbf{A} &amp;= a\mathbf{A}+b\mathbf{A},\\
+a(b\mathbf{A}) &amp;= (ab)\mathbf{A},\\
+ab\mathbf{A} &amp;= ba\mathbf{A}.
+\end{align}
+\]</span></p></li>
+<li><p><strong>Multiplicação de matriz com matriz:</strong></p>
+<p><span class="math display">\[\mathbf{A}\mathbf{B}\]</span>
+ou</p>
+<p><span class="math display">\[\mathbf{A}.\mathbf{B}\]</span></p>
+<p>é definida apenas quando o número de colunas de <span class="math inline">\(\mathbf{A}\)</span> é igual ao número de linhas de <span class="math inline">\(\mathbf{B}\)</span>.</p>
+<p>Se <span class="math inline">\(\mathbf{A}\)</span> é uma matriz <span class="math inline">\(n \times l\)</span>, e <span class="math inline">\(\mathbf{B}\)</span> é uma matriz <span class="math inline">\(l \times m\)</span>, então <span class="math inline">\(\mathbf{C} = \mathbf{A}\mathbf{B}\)</span> é uma matriz de tamanho <span class="math inline">\(n \times m\)</span> tal que</p>
+<p><span class="math display">\[
+c_{ij}=\sum_{k=1}^l a_{ik}b_{kj}.
+\]</span>
+Desse modo, o elemento <span class="math inline">\(c_{ij}\)</span> (elemento da <span class="math inline">\(i\)</span>-ésima linha e <span class="math inline">\(j\)</span>-ésima coluna de <span class="math inline">\(\mathbf{C}\)</span>) será o somatório da multiplicação elemento a elemento da <span class="math inline">\(i\)</span>-ésima linha de <span class="math inline">\(\mathbf{A}\)</span> com a <span class="math inline">\(j\)</span>-ésima coluna de <span class="math inline">\(\mathbf{B}\)</span>.</p>
+<p>Por exemplo, se</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{A} &amp;=
+\begin{bmatrix}
+   1 &amp; 2 &amp; 3 \\
+   4 &amp; 5 &amp; 6
+\end{bmatrix},\\
+\mathbf{B} &amp;=
+\left[
+\begin{array}{rr}
+  -1 &amp; 0 \\
+  -3 &amp; 5 \\
+   6 &amp; 2
+\end{array}
+\right],
+\end{align}
+\]</span></p>
+<p>então</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{C} &amp;=\mathbf{A}\mathbf{B} \\
+&amp;=
+\left[
+\begin{array}{rrr}
+   1 &amp; 2 &amp; 3 \\
+   4 &amp; 5 &amp; 6 \\
+\end{array}
+\right]
+\left[
+\begin{array}{rr}
+  -1 &amp; 0 \\
+  -3 &amp; 5 \\
+   6 &amp; 2
+\end{array}
+\right]\\
+&amp;=
+\left[
+\begin{array}{rr}
+  (1 \times -1)+(2 \times -3)+(3 \times 6) &amp; (1 \times 0)+(2 \times 5)+(3 \times 2) \\
+  (4 \times -1)+(5 \times -3)+(6 \times 6) &amp; (4 \times 0)+(5 \times 5)+(6 \times 2)
+\end{array}
+\right]\\  
+&amp;=
+\left[
+\begin{array}{rr}
+  11 &amp; 16 \\
+  17 &amp; 37
+\end{array}
+\right].
+\end{align}
+\]</span></p>
+<p>Embora a multiplicação entre matrizes seja associativa,</p>
+<p><span class="math display">\[
+\mathbf{A}(\mathbf{B}\mathbf{C}) = (\mathbf{A}\mathbf{B})\mathbf{C},
+\]</span>
+na maioria das vezes <strong>não é comutativa</strong>, isto é,</p>
+<p><span class="math display">\[
+\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}.
+\]</span></p>
+<p>Os casos em que <span class="math inline">\(\mathbf{A}\mathbf{B} = \mathbf{B}\mathbf{A}\)</span> são casos especiais como, por exemplo, quando <span class="math inline">\(\mathbf{A}\mathbf{B} = \mathbf{I}\)</span> (veja definição de matriz inversa a seguir), ou quando a matriz é multiplicada pela identidade.</p>
+<p>Se <span class="math inline">\(\mathbf{a}\)</span> e <span class="math inline">\(\mathbf{b}\)</span> são representações de vetores</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{a} = \left[
+\begin{array}{}
+   a_1 \\ a_2 \\ \vdots \\ a_n
+\end{array}
+\right],\qquad
+\mathbf{b} = \left[
+\begin{array}{}
+   b_1 \\ b_2 \\ \vdots \\ b_n
+\end{array}
+\right],
+\end{align}
+\]</span></p>
+<p>a multiplicação da transposta de <span class="math inline">\(\mathbf{a}\)</span> por <span class="math inline">\(\mathbf{b}\)</span> tem como resultado o produto escalar entre os vetores:</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{a}^T\mathbf{b} &amp;=
+\left[
+\begin{array}{}
+   a_1 &amp; a_2 &amp; \dots &amp; a_n
+\end{array}
+\right]
+\left[
+\begin{array}{}
+   b_1 \\ b_2 \\ \vdots \\ a_n
+\end{array}  
+\right]\\
+&amp;=
+a_1b_1 + a_2b_2 + \dots + a_nb_n\\
+&amp;= \mathbf{a} \cdot \mathbf{b}.
+\end{align}
+\]</span></p>
+<p>Da mesma forma, podemos definir a norma euclidiana de <span class="math inline">\(\mathbf{a}\)</span> como</p>
+<p><span class="math display">\[
+\begin{align}
+  |\mathbf{a}| &amp;= \sqrt{\mathbf{a}^T \mathbf{a}}
+\end{align}.
+\]</span></p></li>
+</ul>
+</div>
+<div id="matriz-inversa" class="section level3 unnumbered hasAnchor">
+<h3>Matriz inversa<a href="matrix.html#matriz-inversa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se, para uma dada matriz quadrada <span class="math inline">\(\mathbf{A}\)</span>, existir uma matriz <span class="math inline">\(\mathbf{B}\)</span> tal que <span class="math inline">\(\mathbf{A}\mathbf{B} = \mathbf{B}\mathbf{A} = \mathbf{I}\)</span>, então <span class="math inline">\(\mathbf{B}\)</span> é a <strong>inversa</strong> de <span class="math inline">\(\mathbf{A}\)</span>, denotada por <span class="math inline">\(\mathbf{A}^{-1}\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{A}\mathbf{A}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}.
+\]</span>
+A inversa da inversa é a matriz original, isto é,</p>
+<p><span class="math display">\[{(\mathbf{A}^{-1})}^{-1} = \mathbf{A}.\]</span></p>
+<p>Se uma matriz possui uma inversa, dizemos que a matriz é <strong>inversível</strong> ou <strong>não singular</strong>. Caso contrário, dizemos que a matriz é <strong>singular</strong>.</p>
+<p>Uma matriz <span class="math inline">\(\mathbf{A}\)</span> é inversível apenas se seu <strong>determinante</strong>, denotado por <span class="math inline">\(|\mathbf{A}|\)</span> ou <span class="math inline">\(\det(\mathbf{A}),\)</span> for diferente de zero.</p>
+<p>O determinante de uma matriz de ordem <span class="math inline">\(n\)</span> pode ser definido recursivamente como uma soma ponderada de <span class="math inline">\(n\)</span> determinantes de submatrizes de ordem <span class="math inline">\(n-1\)</span> (teorema de Laplace):</p>
+<p><span class="math display">\[
+|\mathbf{A}|=\sum^n_{i=1}(-1)^{i+j}a_{ij}M_{ij},
+\]</span></p>
+<p>onde <span class="math inline">\(M_{ij}\)</span>, chamado de <em>determinante menor</em> de <span class="math inline">\(\mathbf{A}\)</span>, é o determinante da matriz de ordem <span class="math inline">\(n-1\)</span> obtida através da remoção da linha <span class="math inline">\(i\)</span> e coluna <span class="math inline">\(j\)</span> de <span class="math inline">\(\mathbf{A}\)</span>. Nessa expressão, <span class="math inline">\((-1)^{i+j}M_{ij}\)</span> é chamado de <em>cofator</em> do elemento <span class="math inline">\(a_{ij}\)</span> e é denotado por <span class="math inline">\(C_{ij}\)</span>. Para matrizes de ordem 2 e 3, o procedimento é suficientemente simples e é mostrado a seguir:</p>
+<ul>
+<li><p>Para uma matriz de ordem 2,</p>
+<p><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix},
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+|\mathbf{A}| &amp;=
+\begin{vmatrix}
+a &amp; b \\
+c &amp; d
+\end{vmatrix}\\ &amp;=
+ad - bc.
+\end{align}
+\]</span></p></li>
+<li><p>Para uma matriz de ordem 3,</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{A} =
+\begin{bmatrix}
+a &amp; b &amp; c \\
+d &amp; e &amp; f \\
+g &amp; h &amp; i
+\end{bmatrix},
+\end{align}
+\]</span>
+<span class="math display">\[
+\begin{align}
+|\mathbf{A}| &amp;=
+\begin{vmatrix}
+a &amp; b &amp; c \\
+d &amp; e &amp; f \\
+g &amp; h &amp; i
+\end{vmatrix}\\ &amp;=
+a
+\begin{vmatrix}
+e &amp; f \\
+h &amp; i
+\end{vmatrix}
+-b
+\begin{vmatrix}
+d &amp; f \\
+g &amp; i
+\end{vmatrix}
++c
+\begin{vmatrix}
+d &amp; e \\
+g &amp; h
+\end{vmatrix}\\
+&amp;= aei + bfg + cdh - ceg -bdi - afh.
+\end{align}
+\]</span></p></li>
+</ul>
+<p>A complexidade de tempo para calcular o determinante por este método é <span class="math inline">\(O(n!)\)</span>. Isso só é rápido para matrizes de ordem até 5. Há soluções mais eficientes para matrizes de ordem mais elevada, como o uso de <em>decomposição LU</em> ou <em>eliminação de Gauss</em>, com complexidade <span class="math inline">\(O(n^3)\)</span>. Entretanto, como usaremos matrizes de ordem até 4, o método anterior é suficiente.</p>
+<p>A matriz inversa de uma matriz <span class="math inline">\(\mathbf{A}\)</span> inversível pode ser calculada como</p>
+<p><span class="math display">\[
+\mathbf{A}^{-1}=\frac{1}{|\mathbf{A}|} . \textrm{adj}(\mathbf{A}),
+\]</span></p>
+<p>onde <span class="math inline">\(\textrm{adj}(\mathbf{A})\)</span>, chamada de <em>matriz adjunta</em> de <span class="math inline">\(\mathbf{A}\)</span>, é a transposta da matriz de cofatores de <span class="math inline">\(\mathbf{A}\)</span>. Isto é,</p>
+<p><span class="math display">\[
+\textrm{adj}(\mathbf{A})=
+\begin{bmatrix}
+C_{ij}
+\end{bmatrix}^T.
+\]</span></p>
+<p>Em computação gráfica, frequentemente podemos evitar o uso de métodos numéricos de inversão de matrizes pois muitas matrizes representam transformações inversíveis através de um raciocínio geométrico. Por exemplo:</p>
+<ul>
+<li>Se uma matriz representa uma rotação de <span class="math inline">\(45\)</span> graus em torno do eixo <span class="math inline">\(x\)</span>, então sua inversa é uma matriz que representa uma rotação de <span class="math inline">\(-45\)</span> graus em torno do eixo <span class="math inline">\(x\)</span>;</li>
+<li>Se uma matriz representa uma translação pelo vetor <span class="math inline">\((x,y,z)\)</span>, então sua inversa é uma matriz que representa uma translação pelo vetor <span class="math inline">\((-x,-y,-z)\)</span>.</li>
+<li>Se uma matriz representa uma mudança de escala por um fator <span class="math inline">\(s \neq 0\)</span>, então sua inversa é uma matriz de mudança de escala por um fator <span class="math inline">\(1/s\)</span>.</li>
+</ul>
+<p>Abordaremos essas e outras <strong>matrizes de transformação</strong> na seção <a href="transforms.html#transforms">7.4</a>.</p>
+</div>
+<div id="matriz-ortogonal" class="section level3 unnumbered hasAnchor">
+<h3>Matriz ortogonal<a href="matrix.html#matriz-ortogonal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uma matriz <span class="math inline">\(\mathbf{A}\)</span> é <strong>ortogonal</strong> se</p>
+<p><span class="math display">\[\mathbf{A}\mathbf{A}^T=\mathbf{A}^T\mathbf{A}=\mathbf{I},\]</span></p>
+<p>isto é, sua transposta é também a sua inversa:</p>
+<p><span class="math display">\[\mathbf{A}^T=\mathbf{A}^{-1}.\]</span></p>
+<p>As linhas e colunas de uma matriz ortogonal formam uma base ortonormal.</p>
+<p>Por exemplo, as matrizes</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{A} &amp;=
+  \begin{bmatrix}
+     \hat{\mathbf{i}} &amp;  \phantom{-}\hat{\mathbf{j}} &amp;  \phantom{-}\hat{\mathbf{k}} \\
+  \end{bmatrix},\\
+\mathbf{B} &amp;=
+  \begin{bmatrix}
+     \hat{\mathbf{i}} &amp; -\hat{\mathbf{j}} &amp;  \phantom{-}\hat{\mathbf{k}} \\
+  \end{bmatrix},\\
+\mathbf{C} &amp;=
+  \begin{bmatrix}
+     \hat{\mathbf{k}} &amp; \phantom{k}\hat{\mathbf{i}} &amp; \phantom{-.}\hat{\mathbf{j}} \\
+  \end{bmatrix},
+\end{align}
+\]</span></p>
+<p>com colunas formadas pelos seguintes vetores da base padrão do <span class="math inline">\(\mathbb{R}^3\)</span>,</p>
+<p><span class="math display">\[
+\begin{align}
+\hat{\mathbf{i}} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix},\qquad
+\hat{\mathbf{j}} = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix},\qquad
+\hat{\mathbf{k}} = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix},
+\end{align}
+\]</span></p>
+<p>são matrizes ortogonais.</p>
+<p>o determinante de uma matriz ortogonal é sempre <span class="math inline">\(1\)</span> ou <span class="math inline">\(-1\)</span>.</p>
+</div>
+<div id="propriedades" class="section level3 unnumbered hasAnchor">
+<h3>Propriedades<a href="matrix.html#propriedades" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As seguintes propriedades se aplicam:</p>
+<ul>
+<li><p><span class="math inline">\((\mathbf{A}+\mathbf{B})^T=\mathbf{A}^T + \mathbf{B}^T\)</span>.</p></li>
+<li><p><span class="math inline">\((\mathbf{A}^T)^{-1}=(\mathbf{A}^{-1})^T\)</span>.</p></li>
+<li><p><span class="math inline">\((\mathbf{A}\mathbf{B})^T=\mathbf{B}^T\mathbf{A}^T\)</span>.</p>
+<p>Observe como a ordem dos fatores é trocada. No caso geral,</p>
+<p><span class="math inline">\((\mathbf{A}_1\mathbf{A}_2\dots\mathbf{A}_k)^T=\mathbf{A}_k^T\dots\mathbf{A}_2^T\mathbf{A}_1^T\)</span>.</p></li>
+<li><p><span class="math inline">\((\mathbf{A}\mathbf{B})^{-1}=\mathbf{B}^{-1}\mathbf{A}^{-1}\)</span>.</p>
+<p>No caso geral, para um conjunto <span class="math inline">\(\{\mathbf{A}_i\}\)</span> de matrizes inversíveis,</p>
+<p><span class="math inline">\((\mathbf{A}_1\mathbf{A}_2\dots\mathbf{A}_k)^{-1}=\mathbf{A}_k^{-1}\dots\mathbf{A}_2^{-1}\mathbf{A}_1^{-1}\)</span>.</p></li>
+</ul>
+</div>
+<div id="transformação" class="section level3 unnumbered hasAnchor">
+<h3>Transformação<a href="matrix.html#transformação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Seja <span class="math inline">\(\mathbf{v}\)</span> uma matriz coluna que representa um vetor no <span class="math inline">\(\mathbb{R}^n\)</span>. A <strong>transformação</strong> <span class="math inline">\(T(\mathbf{v})\)</span>, que transforma <span class="math inline">\(\mathbf{v}\)</span> em uma nova representação <span class="math inline">\(\mathbf{v}&#39;\)</span>, pode ser escrita como</p>
+<p><span class="math display">\[\mathbf{v}&#39;=\mathbf{A}\mathbf{v},\]</span></p>
+<p>onde <span class="math inline">\(\mathbf{A}\)</span> é uma matriz quadrada de ordem <span class="math inline">\(n\)</span> chamada de <strong>matriz de transformação</strong>.</p>
+<p>Toda matriz de transformação de ordem <span class="math inline">\(n\)</span> representa uma <strong>transformação linear</strong> em <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<p>Uma transformação linear é um mapeamento entre dois espaços vetoriais de tal modo que as operações de <strong>adição de vetor com vetor</strong> e <strong>multiplicação de vetor com escalar</strong> são preservadas, isto é,</p>
+<p><span class="math display">\[
+T(a\mathbf{u}+b\mathbf{v})=aT(\mathbf{u})+bT(\mathbf{v})
+\]</span></p>
+<p>para quaisquer vetores <span class="math inline">\(\mathbf{u}, \mathbf{v} \in V\)</span>, e quaisquer escalares <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>. Como resultado, a transformação do vetor representado por <span class="math inline">\(\mathbf{v}\)</span> é equivalente à combinação linear da transformação da base do vetor:</p>
+<p><span class="math display">\[\mathbf{v}&#39;=T(\mathbf{v})=v_1T(\mathbf{e}_1) + v_2T(\mathbf{e}_2) + \cdots + v_nT(\mathbf{e}_n).\]</span></p>
+<p>Se <span class="math inline">\(\mathbf{v} \in \mathbb{R}^3\)</span>, temos</p>
+<p><span class="math display">\[\mathbf{v}&#39;=T(\mathbf{v})=xT(\hat{\mathbf{i}}) + yT(\hat{\mathbf{j}}) + zT(\hat{\mathbf{k}}).\]</span></p>
+<p>Essa expressão pode ser representada na forma matricial:</p>
+<p><span class="math display">\[
+\mathbf{v}&#39;=\mathbf{A}\mathbf{v}\\
+\begin{bmatrix}x&#39;\\y&#39;\\z&#39;\end{bmatrix}=
+\begin{bmatrix}
+T(\hat{\mathbf{i}}) &amp; T(\hat{\mathbf{j}}) &amp; T(\hat{\mathbf{k}})
+\end{bmatrix}
+\begin{bmatrix}x\\y\\z\end{bmatrix}.
+\]</span></p>
+<p>Logo, a matriz que transforma</p>
+<center>
+<span class="math inline">\(\mathbf{v}\)</span>, da base <span class="math inline">\(\{\hat{\mathbf{i}}, \hat{\mathbf{j}}, \hat{\mathbf{k}}\}\)</span>,
+</center>
+<p>para</p>
+<center>
+<span class="math inline">\(\mathbf{v}&#39;\)</span>, da base <span class="math inline">\(\{T(\hat{\mathbf{i})}, T(\hat{\mathbf{j})}, T(\hat{\mathbf{k}})\}\)</span>,
+</center>
+<p><br></p>
+<p>é uma <strong>matriz de mudança de base</strong>, e é construída fazendo com que suas <strong>colunas sejam os vetores da base transformada</strong>.</p>
+<p><br></p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Transformações lineares e matrizes
+</div>
+<p>O vídeo a seguir, do canal <a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw">3Blue1Brown</a> do Youtube, apresenta de forma visual o conceito de transformação linear e sua relação com a operação matricial. O áudio está em inglês, mas há legendas em português.</p>
+<iframe width="100%" height="400"
+  src="https://www.youtube.com/embed/kYB8IZa5AuE"
+  frameborder="0" allow="autoplay; encrypted-media"
+  allowfullscreen></iframe>
+<p></p>
+<p>Este vídeo faz parte de uma excelente <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">série de vídeos</a> sobre fundamentos de álgebra linear. O conteúdo permite compreender de forma intuitiva os principais conceitos vistos até agora. A maioria dos vídeos possui legendas em português.</p>
+</div>
+<p><br>
+Além de transformações lineares, matrizes podem representar também outras transformações, tais como:</p>
+<ul>
+<li><strong>Transformação afim</strong>: para a translação de pontos;</li>
+<li><strong>Transformação projetiva</strong>: para projeção perspectiva.</li>
+</ul>
+<p>Essas transformações podem ser representadas por transformações lineares em um espaço de dimensão adicional. Por exemplo, uma transformação afim no <span class="math inline">\(\mathbb{R}^3\)</span> pode ser representada por uma matriz de transformação linear no <span class="math inline">\(\mathbb{R}^4\)</span>. Veremos como fazer isso na seção <a href="homogeneous.html#homogeneous">7.2</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="transformations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="homogeneous.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

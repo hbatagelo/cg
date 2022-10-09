@@ -78,6 +78,16 @@ fig:04rasterization
 fig:glpipeline
 fig:glprimitives
 fig:helloworldtriangle
+fig:regularpolygons1
+fig:regularpolygons2
+fig:regularpolygons3
+fig:regularpolygons4
+fig:asteroids1
+fig:asteroids2
+fig:ship1
+fig:stars1
+fig:stars2
+fig:collision1
 config
 linux
 macos
@@ -100,3 +110,7 @@ dados-gráficos
 ray-casting-x-rasterização
 glpipeline
 coloredtriangles
+game
+regularpolygons
+asteroids
+notas-de-aula

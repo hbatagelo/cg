@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.4 Lendo um modelo 3D | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.4 Lendo um modelo 3D | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.4 Lendo um modelo 3D | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="euclidean.html"/>
+<link rel="next" href="transformations.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.hpp-6"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação"><i class="fa fa-check"></i>Transformação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.hpp-7"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.cpp-7"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-9"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="objmodel" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Lendo um modelo 3D<a href="objmodel.html#objmodel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/loadmodel/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<p>Nos capítulos anteriores vimos como usar o pipeline gráfico do OpenGL para renderizar primitivas formadas a partir de arranjos ordenados de vértices. Em particular, conseguimos representar diferentes formas no plano através de malhas de triângulos. Tomemos, como exemplo, o polígono da figura <a href="objmodel.html#fig:polygon1">6.22</a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:polygon1"></span>
+<img src="images/06_polygon1.svg" alt="Um polígono de seis lados." width="50%" />
+<p class="caption">
+Figura 6.22: Um polígono de seis lados.
+</p>
+</div>
+<p>O polígono pode ser convertido em uma malha de triângulos através de uma triangulação. Uma possível triangulação é mostrada na figura <a href="objmodel.html#fig:polygon2">6.23</a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:polygon2"></span>
+<img src="images/06_polygon2.svg" alt="Triangulação de um polígono de seis lados." width="50%" />
+<p class="caption">
+Figura 6.23: Triangulação de um polígono de seis lados.
+</p>
+</div>
+<p>Os triângulos <span class="math inline">\(T_1\)</span> a <span class="math inline">\(T_4\)</span> podem ser renderizados com <code>glDrawArrays(GL_TRIANGLES, ...)</code> usando um VBO formado por um arranjo de posições de vértices:</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb240-1"><a href="objmodel.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>array<span class="op"> </span>positions<span class="op">{</span><span class="co">// Triângulo T_1</span></span>
+<span id="cb240-2"><a href="objmodel.html#cb240-2" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span><span class="op">},</span></span>
+<span id="cb240-3"><a href="objmodel.html#cb240-3" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{-</span><span class="dv">4</span><span class="op">,-</span><span class="dv">2</span><span class="op">},</span>  </span>
+<span id="cb240-4"><a href="objmodel.html#cb240-4" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">1</span><span class="op">,-</span><span class="dv">4</span><span class="op">},</span></span>
+<span id="cb240-5"><a href="objmodel.html#cb240-5" aria-hidden="true" tabindex="-1"></a>                     <span class="co">// Triângulo T_2</span></span>
+<span id="cb240-6"><a href="objmodel.html#cb240-6" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span><span class="op">},</span>  </span>
+<span id="cb240-7"><a href="objmodel.html#cb240-7" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">1</span><span class="op">,-</span><span class="dv">4</span><span class="op">},</span>  </span>
+<span id="cb240-8"><a href="objmodel.html#cb240-8" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">4</span><span class="op">,-</span><span class="dv">1</span><span class="op">},</span></span>
+<span id="cb240-9"><a href="objmodel.html#cb240-9" aria-hidden="true" tabindex="-1"></a>                     <span class="co">// Triângulo T_3</span></span>
+<span id="cb240-10"><a href="objmodel.html#cb240-10" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span><span class="op">},</span></span>
+<span id="cb240-11"><a href="objmodel.html#cb240-11" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">4</span><span class="op">,-</span><span class="dv">1</span><span class="op">},</span>  </span>
+<span id="cb240-12"><a href="objmodel.html#cb240-12" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">},</span></span>
+<span id="cb240-13"><a href="objmodel.html#cb240-13" aria-hidden="true" tabindex="-1"></a>                     <span class="co">// Triângulo T_4</span></span>
+<span id="cb240-14"><a href="objmodel.html#cb240-14" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span><span class="op">},</span></span>
+<span id="cb240-15"><a href="objmodel.html#cb240-15" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">},</span>  </span>
+<span id="cb240-16"><a href="objmodel.html#cb240-16" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="op">}};</span></span>
+<span id="cb240-17"><a href="objmodel.html#cb240-17" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
+<span id="cb240-18"><a href="objmodel.html#cb240-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-19"><a href="objmodel.html#cb240-19" aria-hidden="true" tabindex="-1"></a>glDrawArrays<span class="op">(</span>GL_TRIANGLES<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">12</span><span class="op">);</span></span></code></pre></div>
+<p>Uma desvantagem dessa representação é que há repetição de coordenadas. Por exemplo, a coordenada <span class="math inline">\((-3,3)\)</span> é repetida quatro vezes, uma para cada triângulo. Felizmente, como a triangulação forma um leque, podemos usar <code>GL_TRIANGLE_FAN</code> com um arranjo mais compacto:</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb241-1"><a href="objmodel.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>array<span class="op"> </span>positions<span class="op">{</span>glm<span class="op">::</span>vec2<span class="op">{-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span><span class="op">},</span></span>
+<span id="cb241-2"><a href="objmodel.html#cb241-2" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{-</span><span class="dv">4</span><span class="op">,-</span><span class="dv">2</span><span class="op">},</span>  </span>
+<span id="cb241-3"><a href="objmodel.html#cb241-3" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">1</span><span class="op">,-</span><span class="dv">4</span><span class="op">},</span></span>
+<span id="cb241-4"><a href="objmodel.html#cb241-4" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">4</span><span class="op">,-</span><span class="dv">1</span><span class="op">},</span></span>
+<span id="cb241-5"><a href="objmodel.html#cb241-5" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">},</span></span>
+<span id="cb241-6"><a href="objmodel.html#cb241-6" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="op">}};</span></span>
+<span id="cb241-7"><a href="objmodel.html#cb241-7" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
+<span id="cb241-8"><a href="objmodel.html#cb241-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-9"><a href="objmodel.html#cb241-9" aria-hidden="true" tabindex="-1"></a>glDrawArrays<span class="op">(</span>GL_TRIANGLE_FAN<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">6</span><span class="op">);</span></span></code></pre></div>
+<p>Outra possibilidade é usar geometria indexada. A figura <a href="objmodel.html#fig:polygon3">6.24</a> mostra uma possível indexação dos vértices do polígono da figura <a href="objmodel.html#fig:polygon2">6.23</a>. Os índices são numerados de 0 a 5:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:polygon3"></span>
+<img src="images/06_polygon3.svg" alt="Geometria indexada." width="70%" />
+<p class="caption">
+Figura 6.24: Geometria indexada.
+</p>
+</div>
+<p>Na geometria indexada, um arranjo ordenado de posições de vértices é armazenado no VBO, e um arranjo de números inteiros que representam os índices para esses vértices é armazenado no EBO:</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb242-1"><a href="objmodel.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>array<span class="op"> </span>positions<span class="op">{</span>glm<span class="op">::</span>vec2<span class="op">{-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span><span class="op">},</span>  <span class="co">// Vértice 0</span></span>
+<span id="cb242-2"><a href="objmodel.html#cb242-2" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{-</span><span class="dv">4</span><span class="op">,-</span><span class="dv">2</span><span class="op">},</span>  <span class="co">// Vértice 1</span></span>
+<span id="cb242-3"><a href="objmodel.html#cb242-3" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">1</span><span class="op">,-</span><span class="dv">4</span><span class="op">},</span>  <span class="co">// Vértice 2</span></span>
+<span id="cb242-4"><a href="objmodel.html#cb242-4" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">4</span><span class="op">,-</span><span class="dv">1</span><span class="op">},</span>  <span class="co">// Vértice 3</span></span>
+<span id="cb242-5"><a href="objmodel.html#cb242-5" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">},</span>  <span class="co">// Vértice 4</span></span>
+<span id="cb242-6"><a href="objmodel.html#cb242-6" aria-hidden="true" tabindex="-1"></a>                     glm<span class="op">::</span>vec2<span class="op">{</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="op">}};</span> <span class="co">// Vértice 5</span></span>
+<span id="cb242-7"><a href="objmodel.html#cb242-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-8"><a href="objmodel.html#cb242-8" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>array<span class="op"> </span>indices<span class="op">{</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span>  <span class="co">// Triângulo T_1</span></span>
+<span id="cb242-9"><a href="objmodel.html#cb242-9" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">0</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span>  <span class="co">// Triângulo T_2</span></span>
+<span id="cb242-10"><a href="objmodel.html#cb242-10" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">0</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span>  <span class="co">// Triângulo T_3</span></span>
+<span id="cb242-11"><a href="objmodel.html#cb242-11" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">0</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">};</span> <span class="co">// Triângulo T_4</span></span>
+<span id="cb242-12"><a href="objmodel.html#cb242-12" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
+<span id="cb242-13"><a href="objmodel.html#cb242-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb242-14"><a href="objmodel.html#cb242-14" aria-hidden="true" tabindex="-1"></a>glDrawElements<span class="op">(</span>GL_TRIANGLES<span class="op">,</span> <span class="dv">12</span><span class="op">,</span> GL_UNSIGNED_INT<span class="op">,</span> <span class="kw">nullptr</span><span class="op">);</span></span></code></pre></div>
+<p>A geometria indexada é o formato mais utilizado para descrever malhas de triângulos. É, por exemplo, o formato utilizado nos modelos OBJ que utilizaremos nas atividades da disciplina.</p>
+<p>Até agora, só utilizamos formas no plano. Entretanto, não há qualquer limitação no OpenGL que nos impeça de representar geometria no espaço. Basta especificarmos a posição dos vértices como coordenadas <span class="math inline">\((x,y,z)\)</span> do espaço euclidiano usando tuplas de três elementos com <code>glm::vec3</code>.</p>
+<p>Nesta seção descreveremos um passo a passo de construção de uma aplicação de leitura de modelos 3D no formato OBJ. Neste formato, os dados são gravados em formato texto e são fáceis de serem lidos. Veja a seguir o conteúdo de um arquivo OBJ contendo a definição de um cubo unitário centralizado na origem. Observe que há inicialmente a definição dos 8 vértices do cubo, e então a definição dos índices das 12 faces. Neste arquivo, cada face é um triângulo (o cubo tem seis 6 lados e cada lado é formado por 2 faces coplanares).</p>
+<pre><code># object Box
+
+v  -0.5000 -0.5000  0.5000
+v  -0.5000 -0.5000 -0.5000
+v   0.5000 -0.5000 -0.5000
+v   0.5000 -0.5000  0.5000
+v  -0.5000  0.5000  0.5000
+v   0.5000  0.5000  0.5000
+v   0.5000  0.5000 -0.5000
+v  -0.5000  0.5000 -0.5000
+# 8 vertices
+
+o Box
+g Box
+f 1 3 2 
+f 3 1 4 
+f 5 7 6 
+f 7 5 8 
+f 1 6 4 
+f 6 1 5 
+f 4 7 3 
+f 7 4 6 
+f 3 8 2 
+f 8 3 7 
+f 2 5 1 
+f 5 2 8 
+# 12 faces</code></pre>
+<p>Antes de iniciarmos o passo a passo de leitura do modelo 3D, veremos o conceito de <strong>orientação</strong> de triângulos e como isso pode afetar a renderização. Se os triângulos de um modelo 3D estiverem com orientação diferente do esperado, o modelo pode ser renderizado de forma incorreta.</p>
+<div id="orientação-e-face-culling" class="section level3 unnumbered hasAnchor">
+<h3>Orientação e face culling<a href="objmodel.html#orientação-e-face-culling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A direção do vetor normal pode ser utilizada para definir a <strong>orientação</strong> de uma superfície, isto é, qual é o <strong>“lado da frente”</strong> da superfície. Entretanto, reservaremos o uso dos vetores normais apenas para o cálculo da iluminação de superfícies. Há uma forma mais simples de determinar a orientação de uma superfície quando polígonos são utilizados, que é o caso do pipeline do OpenGL.</p>
+<p>No OpenGL, a orientação de um triângulo é definida pela ordem em que seus vértices estão ordenados no arranjo de vértices quando o triângulo é visto de frente. Só há duas orientações possíveis (figura <a href="objmodel.html#fig:orientation">6.25</a>):</p>
+<ul>
+<li><p><strong>Sentido horário</strong> (<em>clockwise</em> ou CW): os vértices estão orientados no sentido horário quando o triângulo é visto de frente;</p></li>
+<li><p><strong>Sentido anti-horário</strong> (<em>counterclockwise</em> ou CCW): os vértices estão orientados no sentido anti-horário quando o triângulo é visto de frente.</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:orientation"></span>
+<img src="images/06_vectors22.svg" alt="Sentidos de orientação de um triângulo." width="85%" />
+<p class="caption">
+Figura 6.25: Sentidos de orientação de um triângulo.
+</p>
+</div>
+<p>Volte a observar o exemplo anterior de geometria indexada (figura <a href="objmodel.html#fig:polygon3">6.24</a>) e veja como os índices de cada triângulo <span class="math inline">\(T_1\)</span> a <span class="math inline">\(T_4\)</span> estão ordenados no sentido anti-horário (CCW).</p>
+<p>Por padrão, o OpenGL considera que o lado da frente é o lado orientado no sentido anti-horário (CCW). Isso pode ser modificado com a função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glFrontFace.xhtml"><code>glFrontFace</code></a>, usando o argumento <code>GL_CW</code> ou <code>GL_CCW</code>, como a seguir:</p>
+<ul>
+<li><p><code>glFrontFace(GL_CW)</code>: para indicar que o lado da frente tem vértices no sentido horário;</p></li>
+<li><p><code>glFrontFace(GL_CCW)</code>: para indicar que o lado da frente tem vértices no sentido anti-horário (padrão).</p>
+<p>CCW é a orientação padrão do OpenGL porque essa é também a orientação padrão utilizada na matemática. Por exemplo, os ângulos medidos no plano cartesiano são medidos no sentido anti-horário e seguem a regra da mão direita (figura <a href="objmodel.html#fig:griprule">6.26</a>):</p>
+<ul>
+<li><span class="math inline">\(0\)</span> radianos (<span class="math inline">\(0^{\circ}\)</span>) aponta para o eixo <span class="math inline">\(x\)</span> positivo (para a direita);</li>
+<li><span class="math inline">\(\frac{\pi}{2}\)</span> radianos (<span class="math inline">\(90^{\circ}\)</span>) aponta para o eixo <span class="math inline">\(y\)</span> positivo (para cima);</li>
+<li><span class="math inline">\(\pi\)</span> radianos (<span class="math inline">\(180^{\circ}\)</span>) aponta para o eixo <span class="math inline">\(x\)</span> negativo (para a esquerda).</li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:griprule"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Right-hand_grip_rule.svg" alt="Direção convencional dos ângulos em um eixo de rotação ([fonte](https://en.wikipedia.org/wiki/File:Right-hand_grip_rule.svg))." width="35%" />
+<p class="caption">
+Figura 6.26: Direção convencional dos ângulos em um eixo de rotação (<a href="https://en.wikipedia.org/wiki/File:Right-hand_grip_rule.svg">fonte</a>).
+</p>
+</div>
+<p>Há algumas vantagens em saber qual é o lado da frente de um triângulo:</p>
+<ul>
+<li>Podemos desenhar cada lado com uma cor ou efeito diferente. No fragment shader, a variável embutida <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_FrontFacing.xhtml"><code>gl_FrontFacing</code></a> é uma variável booleana que é <code>true</code> sempre que o fragmento pertencer a um triângulo virado de frente, e <code>false</code> caso contrário.</li>
+<li>Podemos fazer uso da técnica de <em>face culling</em>, também chamada de <em>back-face culling</em>.</li>
+</ul>
+<div id="face-culling" class="section level4 unnumbered hasAnchor">
+<h4>Face culling<a href="objmodel.html#face-culling" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Face culling é uma técnica que consiste em descartar todas as faces (triângulos no OpenGL) que não estão de frente para a câmera. O uso de face culling pode aumentar de forma considerável a eficiência da renderização, pois os triângulos podem ser removidos antes da rasterização.</p>
+<p>Se a malha de triângulos formar um sólido opaco e fechado, então o face culling pode remover cerca de metade dos triângulos. Esse é o caso da malha de triângulos que aproxima uma esfera. Na figura <a href="objmodel.html#fig:backface">6.27</a>, parte das faces da frente da malha foram deslocadas para revelar as faces voltadas para trás, em vermelho. Essas faces em vermelho podem ser removidas completamente se a esfera estiver fechada.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:backface"></span>
+<img src="images/06_vectors23.svg" alt="Faces voltadas para trás (em vermelho)." width="85%" />
+<p class="caption">
+Figura 6.27: Faces voltadas para trás (em vermelho).
+</p>
+</div>
+<p>O descarte de primitivas usando face culling pode ser feito automaticamente pelo pipeline gráfico do OpenGL, após a etapa de recorte de primitivas, e imediatamente antes da rasterização. Podemos ativar o face culling através de <code>glEnable(GL_CULL_FACE)</code> e desativá-lo através de <code>glDisable(GL_CULL_FACE)</code>.</p>
+<p><strong>Por padrão, o face culling está desativado</strong>.</p>
+<p>A função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glCullFace.xhtml"><code>glCullFace</code></a> pode ser utilizada para especificar qual lado deve ser descartado quando o face culling estiver habilitado. Por exemplo:</p>
+<ul>
+<li><code>glCullFace(GL_FRONT)</code>: para descartar os triângulos que estão de frente quando projetados no viewport;</li>
+<li><code>glCullFace(GL_BACK)</code>: para descartar os triângulos que estão voltados para trás quando projetados no viewport (padrão).</li>
+<li><code>glCullFace(GL_FRONT_AND_BACK)</code>: para descartar todos os triângulos, mas ainda renderizar pontos e segmentos.</li>
+</ul>
+</div>
+</div>
+<div id="configuração-inicial-6" class="section level3 unnumbered hasAnchor">
+<h3>Configuração inicial<a href="objmodel.html#configuração-inicial-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A configuração inicial do nosso leitor de arquivos OBJ é semelhante a dos projetos anteriores.</p>
+<ul>
+<li><p>No arquivo <code>abcg/examples/CMakeLists.txt</code>, inclua a linha:</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb244-1"><a href="objmodel.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(loadmodel)</span></code></pre></div></li>
+<li><p>Crie o subdiretório <code>abcg/examples/loadmodel</code> e o arquivo <code>abcg/examples/loadmodel/CMakeLists.txt</code>, que ficará assim:</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb245-1"><a href="objmodel.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(loadmodel)</span>
+<span id="cb245-2"><a href="objmodel.html#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJECT_NAME}</span> <span class="bn">main.cpp</span> window.cpp)</span>
+<span id="cb245-3"><a href="objmodel.html#cb245-3" aria-hidden="true" tabindex="-1"></a><span class="fu">enable_abcg</span>(<span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div></li>
+<li><p>Crie os arquivos <code>main.cpp</code>, <code>window.cpp</code> e <code>window.hpp</code>.</p></li>
+<li><p>Crie o subdiretório <code>abcg/examples/loadmodel/assets</code>. Dentro dele, crie os arquivos <code>loadmodel.frag</code> e <code>loadmodel.vert</code>.</p>
+<p>Baixe o arquivo <a href="https://hbatagelo.github.io/abcgapps/data/bunny.zip"><code>bunny.zip</code></a> e descompacte-o em <code>assets</code>. O conteúdo é o arquivo <code>bunny.obj</code> que contém o modelo 3D de um coelho: o <a href="http://graphics.stanford.edu/data/3Dscanrep/">Stanford Bunny</a> (figura <a href="objmodel.html#fig:stanfordbunny">6.28</a>) processado e simplificado no <a href="https://www.meshlab.net/">MeshLab</a>.</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:stanfordbunny"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Computer_generated_render_of_the_%22Stanford_Bunny%22.jpg" alt="Renderização do &quot;Stanford Bunny&quot; ([fonte](https://commons.wikimedia.org/wiki/File:Computer_generated_render_of_the_%22Stanford_Bunny%22.jpg))." width="60%" />
+<p class="caption">
+Figura 6.28: Renderização do “Stanford Bunny” (<a href="https://commons.wikimedia.org/wiki/File:Computer_generated_render_of_the_%22Stanford_Bunny%22.jpg">fonte</a>).
+</p>
+</div>
+<p>O conteúdo de <code>abcg/examples/loadmodel</code> ficará com a seguinte estrutura:</p>
+<pre><code>loadmodel/
+│   CMakeLists.txt
+│   main.cpp
+│   window.hpp
+│   window.cpp
+│
+└───assets/
+    │   bunny.obj
+    │   loadmodel.frag    
+    └   loadmodel.vert</code></pre>
+</div>
+<div id="main.cpp-6" class="section level3 unnumbered hasAnchor">
+<h3>main.cpp<a href="objmodel.html#main.cpp-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O conteúdo de <code>main.cpp</code> é bem similar ao dos projetos anteriores. Não há nada de realmente novo aqui, exceto pelo fato de agora deixarmos o double buffering ativado (configuração padrão):</p>
+<div class="sourceCode" id="cb247" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb247-1"><a href="objmodel.html#cb247-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb247-2"><a href="objmodel.html#cb247-2"></a></span>
+<span id="cb247-3"><a href="objmodel.html#cb247-3"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb247-4"><a href="objmodel.html#cb247-4"></a>  <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb247-5"><a href="objmodel.html#cb247-5"></a>    abcg<span class="op">::</span>Application app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb247-6"><a href="objmodel.html#cb247-6"></a></span>
+<span id="cb247-7"><a href="objmodel.html#cb247-7"></a>    Window window<span class="op">;</span></span>
+<span id="cb247-8"><a href="objmodel.html#cb247-8"></a>    window<span class="op">.</span>setOpenGLSettings<span class="op">({.</span>samples <span class="op">=</span> <span class="dv">4</span><span class="op">});</span></span>
+<span id="cb247-9"><a href="objmodel.html#cb247-9"></a>    window<span class="op">.</span>setWindowSettings<span class="op">({</span></span>
+<span id="cb247-10"><a href="objmodel.html#cb247-10"></a>        <span class="op">.</span>width <span class="op">=</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb247-11"><a href="objmodel.html#cb247-11"></a>        <span class="op">.</span>height <span class="op">=</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb247-12"><a href="objmodel.html#cb247-12"></a>        <span class="op">.</span>title <span class="op">=</span> <span class="st">&quot;Load Model&quot;</span><span class="op">,</span></span>
+<span id="cb247-13"><a href="objmodel.html#cb247-13"></a>    <span class="op">});</span></span>
+<span id="cb247-14"><a href="objmodel.html#cb247-14"></a></span>
+<span id="cb247-15"><a href="objmodel.html#cb247-15"></a>    app<span class="op">.</span>run<span class="op">(</span>window<span class="op">);</span></span>
+<span id="cb247-16"><a href="objmodel.html#cb247-16"></a>  <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">std::</span>exception<span class="op"> </span><span class="at">const</span> <span class="op">&amp;</span>exception<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb247-17"><a href="objmodel.html#cb247-17"></a>    fmt<span class="op">::</span>print<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;</span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> exception<span class="op">.</span>what<span class="op">());</span></span>
+<span id="cb247-18"><a href="objmodel.html#cb247-18"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb247-19"><a href="objmodel.html#cb247-19"></a>  <span class="op">}</span></span>
+<span id="cb247-20"><a href="objmodel.html#cb247-20"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb247-21"><a href="objmodel.html#cb247-21"></a><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="loadmodel.vert" class="section level3 unnumbered hasAnchor">
+<h3>loadmodel.vert<a href="objmodel.html#loadmodel.vert" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O vertex shader ficará como a seguir:</p>
+<div class="sourceCode" id="cb248" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb248-1"><a href="objmodel.html#cb248-1"></a><span class="pp">#version 300 es</span></span>
+<span id="cb248-2"><a href="objmodel.html#cb248-2"></a></span>
+<span id="cb248-3"><a href="objmodel.html#cb248-3"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">0</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec3</span> inPosition<span class="op">;</span></span>
+<span id="cb248-4"><a href="objmodel.html#cb248-4"></a></span>
+<span id="cb248-5"><a href="objmodel.html#cb248-5"></a><span class="kw">uniform</span> <span class="dt">float</span> angle<span class="op">;</span></span>
+<span id="cb248-6"><a href="objmodel.html#cb248-6"></a></span>
+<span id="cb248-7"><a href="objmodel.html#cb248-7"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb248-8"><a href="objmodel.html#cb248-8"></a>  <span class="dt">float</span> sinAngle <span class="op">=</span> <span class="bu">sin</span><span class="op">(</span>angle<span class="op">);</span></span>
+<span id="cb248-9"><a href="objmodel.html#cb248-9"></a>  <span class="dt">float</span> cosAngle <span class="op">=</span> <span class="bu">cos</span><span class="op">(</span>angle<span class="op">);</span></span>
+<span id="cb248-10"><a href="objmodel.html#cb248-10"></a></span>
+<span id="cb248-11"><a href="objmodel.html#cb248-11"></a>  <span class="bu">gl_Position</span> <span class="op">=</span></span>
+<span id="cb248-12"><a href="objmodel.html#cb248-12"></a>      <span class="dt">vec4</span><span class="op">(</span>inPosition<span class="op">.</span><span class="fu">x</span> <span class="op">*</span> cosAngle <span class="op">+</span> inPosition<span class="op">.</span><span class="fu">z</span> <span class="op">*</span> sinAngle<span class="op">,</span> inPosition<span class="op">.</span><span class="fu">y</span><span class="op">,</span></span>
+<span id="cb248-13"><a href="objmodel.html#cb248-13"></a>           inPosition<span class="op">.</span><span class="fu">z</span> <span class="op">*</span> cosAngle <span class="op">-</span> inPosition<span class="op">.</span><span class="fu">x</span> <span class="op">*</span> sinAngle<span class="op">,</span> <span class="fl">1.0</span><span class="op">);</span></span>
+<span id="cb248-14"><a href="objmodel.html#cb248-14"></a><span class="op">}</span></span></code></pre></div>
+<p>Só há um atributo de entrada, <code>inPosition</code>, que é a posição <span class="math inline">\((x,y,z)\)</span> do vértice.</p>
+<p>Observe que não há atributo de saída. A cor dos fragmentos será determinada unicamente no fragment shader.</p>
+<p>A variável uniforme <code>angle</code> (linha 5) é um ângulo em radianos que será incrementado continuamente para produzir uma animação de rotação.</p>
+<p>No código de <code>main</code>, <code>gl_Position</code> recebe <code>inPosition</code> transformado através de uma operação de rotação em torno do eixo <span class="math inline">\(y\)</span> pelo ângulo <code>angle</code>. A transformação de <code>inPosition</code> (posição <span class="math inline">\(x,y,z\)</span>) para <code>gl_Position</code> (posição <span class="math inline">\(x&#39;,y&#39;,z&#39;,1\)</span>) é como segue:</p>
+<p><span class="math display">\[
+\begin{align}
+x&#39; &amp;= x \cos(\theta) + z \sin(\theta),\\
+y&#39; &amp;= y,\\
+z&#39; &amp;= z \cos(\theta) - x \sin(\theta).
+\end{align}
+\]</span></p>
+<p>A derivação da transformação de rotação será vista no próximo capítulo. Veremos também que poderemos simplificar esse código através do uso de matrizes de transformação.</p>
+</div>
+<div id="loadmodel.frag" class="section level3 unnumbered hasAnchor">
+<h3>loadmodel.frag<a href="objmodel.html#loadmodel.frag" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O conteúdo do fragment shader ficará assim:</p>
+<div class="sourceCode" id="cb249" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb249-1"><a href="objmodel.html#cb249-1"></a><span class="pp">#version 300 es</span></span>
+<span id="cb249-2"><a href="objmodel.html#cb249-2"></a></span>
+<span id="cb249-3"><a href="objmodel.html#cb249-3"></a><span class="dt">precision</span> <span class="dt">mediump</span> <span class="dt">float</span><span class="op">;</span></span>
+<span id="cb249-4"><a href="objmodel.html#cb249-4"></a></span>
+<span id="cb249-5"><a href="objmodel.html#cb249-5"></a><span class="dt">out</span> <span class="dt">vec4</span> outColor<span class="op">;</span></span>
+<span id="cb249-6"><a href="objmodel.html#cb249-6"></a></span>
+<span id="cb249-7"><a href="objmodel.html#cb249-7"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb249-8"><a href="objmodel.html#cb249-8"></a>  <span class="dt">float</span> i <span class="op">=</span> <span class="fl">1.0</span> <span class="op">-</span> <span class="bu">gl_FragCoord</span><span class="op">.</span><span class="fu">z</span><span class="op">;</span></span>
+<span id="cb249-9"><a href="objmodel.html#cb249-9"></a></span>
+<span id="cb249-10"><a href="objmodel.html#cb249-10"></a>  <span class="kw">if</span> <span class="op">(</span><span class="bu">gl_FrontFacing</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb249-11"><a href="objmodel.html#cb249-11"></a>    outColor <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>i<span class="op">,</span> i<span class="op">,</span> i<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb249-12"><a href="objmodel.html#cb249-12"></a>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span id="cb249-13"><a href="objmodel.html#cb249-13"></a>    outColor <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>i<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb249-14"><a href="objmodel.html#cb249-14"></a>  <span class="op">}</span></span>
+<span id="cb249-15"><a href="objmodel.html#cb249-15"></a><span class="op">}</span></span></code></pre></div>
+<p>A variável <code>i</code> é um valor de intensidade de cor, calculado a partir da componente <code>z</code> da variável embutida <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_FragCoord.xhtml"><code>gl_FragCoord</code></a>.</p>
+<p><code>gl_FragCoord</code> é um <code>vec4</code> que contém a posição do fragmento no espaço da janela. As componentes <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> são a posição do fragmento na janela, em pixels. A componente <span class="math inline">\(z\)</span> é a “profundidade” do fragmento, que varia de 0 (mais perto) a 1 (mais distante). Lembre-se que esse é o valor <span class="math inline">\(z\)</span> que estava no intervalo <span class="math inline">\([-1, 1]\)</span> em coordenadas normalizadas do dispositivo (NDC) e que, após a rasterização, foi mapeado para <span class="math inline">\([0, 1]\)</span> no espaço da janela (o mapeamento pode ser controlado com <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glDepthRange.xhtml"><code>glDepthRange</code></a>).</p>
+<p>A cor de saída depende do valor da variável embutida <code>gl_FrontFacing</code>, que indica se o fragmento pertence a uma face de frente ou de trás. Se é <code>true</code> (frente), a cor de saída é um tom de cinza dado pelo valor de <code>i</code>. Caso contrário (trás), a cor de saída é um tom de vermelho.</p>
+<p>O resultado será um modelo renderizado em tons de cinza (frente) ou vermelho (trás). Quanto maior for a profundidade do fragmento, menor será sua intensidade. Com isso conseguiremos distinguir melhor a forma e o volume do objeto.</p>
+</div>
+<div id="window.hpp-6" class="section level3 unnumbered hasAnchor">
+<h3>window.hpp<a href="objmodel.html#window.hpp-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A definição da classe <code>Window</code> ficará assim:</p>
+<div class="sourceCode" id="cb250" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb250-1"><a href="objmodel.html#cb250-1"></a><span class="pp">#ifndef WINDOW_HPP_</span></span>
+<span id="cb250-2"><a href="objmodel.html#cb250-2"></a><span class="pp">#define WINDOW_HPP_</span></span>
+<span id="cb250-3"><a href="objmodel.html#cb250-3"></a></span>
+<span id="cb250-4"><a href="objmodel.html#cb250-4"></a><span class="pp">#include </span><span class="im">&quot;abcgOpenGL.hpp&quot;</span></span>
+<span id="cb250-5"><a href="objmodel.html#cb250-5"></a></span>
+<span id="cb250-6"><a href="objmodel.html#cb250-6"></a><span class="kw">struct</span> Vertex <span class="op">{</span></span>
+<span id="cb250-7"><a href="objmodel.html#cb250-7"></a>  glm<span class="op">::</span>vec3 position<span class="op">{};</span></span>
+<span id="cb250-8"><a href="objmodel.html#cb250-8"></a></span>
+<span id="cb250-9"><a href="objmodel.html#cb250-9"></a>  <span class="dt">bool</span> <span class="kw">operator</span><span class="op">==(</span><span class="at">const</span> Vertex <span class="op">&amp;</span>other<span class="op">)</span> <span class="at">const</span> <span class="op">{</span></span>
+<span id="cb250-10"><a href="objmodel.html#cb250-10"></a>    <span class="cf">return</span> position <span class="op">==</span> other<span class="op">.</span>position<span class="op">;</span></span>
+<span id="cb250-11"><a href="objmodel.html#cb250-11"></a>  <span class="op">}</span></span>
+<span id="cb250-12"><a href="objmodel.html#cb250-12"></a><span class="op">};</span></span>
+<span id="cb250-13"><a href="objmodel.html#cb250-13"></a></span>
+<span id="cb250-14"><a href="objmodel.html#cb250-14"></a><span class="kw">class</span> Window <span class="op">:</span> <span class="kw">public</span> abcg<span class="op">::</span>OpenGLWindow <span class="op">{</span></span>
+<span id="cb250-15"><a href="objmodel.html#cb250-15"></a><span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb250-16"><a href="objmodel.html#cb250-16"></a>  <span class="dt">void</span> onCreate<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb250-17"><a href="objmodel.html#cb250-17"></a>  <span class="dt">void</span> onPaint<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb250-18"><a href="objmodel.html#cb250-18"></a>  <span class="dt">void</span> onPaintUI<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb250-19"><a href="objmodel.html#cb250-19"></a>  <span class="dt">void</span> onResize<span class="op">(</span>glm<span class="op">::</span>ivec2 <span class="at">const</span> <span class="op">&amp;</span>size<span class="op">)</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb250-20"><a href="objmodel.html#cb250-20"></a>  <span class="dt">void</span> onDestroy<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb250-21"><a href="objmodel.html#cb250-21"></a></span>
+<span id="cb250-22"><a href="objmodel.html#cb250-22"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb250-23"><a href="objmodel.html#cb250-23"></a>  glm<span class="op">::</span>ivec2 <span class="va">m_viewportSize</span><span class="op">{};</span></span>
+<span id="cb250-24"><a href="objmodel.html#cb250-24"></a></span>
+<span id="cb250-25"><a href="objmodel.html#cb250-25"></a>  GLuint <span class="va">m_VAO</span><span class="op">{};</span></span>
+<span id="cb250-26"><a href="objmodel.html#cb250-26"></a>  GLuint <span class="va">m_VBO</span><span class="op">{};</span></span>
+<span id="cb250-27"><a href="objmodel.html#cb250-27"></a>  GLuint <span class="va">m_EBO</span><span class="op">{};</span></span>
+<span id="cb250-28"><a href="objmodel.html#cb250-28"></a>  GLuint <span class="va">m_program</span><span class="op">{};</span></span>
+<span id="cb250-29"><a href="objmodel.html#cb250-29"></a></span>
+<span id="cb250-30"><a href="objmodel.html#cb250-30"></a>  <span class="dt">float</span> <span class="va">m_angle</span><span class="op">{};</span></span>
+<span id="cb250-31"><a href="objmodel.html#cb250-31"></a>  <span class="dt">int</span> <span class="va">m_verticesToDraw</span><span class="op">{};</span></span>
+<span id="cb250-32"><a href="objmodel.html#cb250-32"></a></span>
+<span id="cb250-33"><a href="objmodel.html#cb250-33"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>Vertex<span class="op">&gt;</span> <span class="va">m_vertices</span><span class="op">;</span></span>
+<span id="cb250-34"><a href="objmodel.html#cb250-34"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>GLuint<span class="op">&gt;</span> <span class="va">m_indices</span><span class="op">;</span></span>
+<span id="cb250-35"><a href="objmodel.html#cb250-35"></a></span>
+<span id="cb250-36"><a href="objmodel.html#cb250-36"></a>  <span class="dt">void</span> loadModelFromFile<span class="op">(</span><span class="bu">std::</span>string_view<span class="op"> </span>path<span class="op">);</span></span>
+<span id="cb250-37"><a href="objmodel.html#cb250-37"></a>  <span class="dt">void</span> standardize<span class="op">();</span></span>
+<span id="cb250-38"><a href="objmodel.html#cb250-38"></a><span class="op">};</span></span>
+<span id="cb250-39"><a href="objmodel.html#cb250-39"></a></span>
+<span id="cb250-40"><a href="objmodel.html#cb250-40"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>Primeiro, observe a estrutura <code>Vertex</code> definida nas linhas 6 a 12:</p>
+<div class="sourceCode" id="cb251" startFrom="8"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 7;"><span id="cb251-8"><a href="objmodel.html#cb251-8"></a><span class="kw">struct</span> Vertex <span class="op">{</span></span>
+<span id="cb251-9"><a href="objmodel.html#cb251-9"></a>  glm<span class="op">::</span>vec3 position<span class="op">{};</span></span>
+<span id="cb251-10"><a href="objmodel.html#cb251-10"></a></span>
+<span id="cb251-11"><a href="objmodel.html#cb251-11"></a>  <span class="dt">bool</span> <span class="kw">operator</span><span class="op">==(</span><span class="at">const</span> Vertex <span class="op">&amp;</span>other<span class="op">)</span> <span class="at">const</span> <span class="op">{</span></span>
+<span id="cb251-12"><a href="objmodel.html#cb251-12"></a>    <span class="cf">return</span> position <span class="op">==</span> other<span class="op">.</span>position<span class="op">;</span></span>
+<span id="cb251-13"><a href="objmodel.html#cb251-13"></a>  <span class="op">}</span></span>
+<span id="cb251-14"><a href="objmodel.html#cb251-14"></a><span class="op">};</span></span></code></pre></div>
+<p>Essa estrutura define os atributos que compõem um vértice. Há apenas uma posição <span class="math inline">\((x,y,z)\)</span> e a definição de um operador de igualdade (<code>==</code>) que verifica se um dado vértice <code>other</code> é igual ao vértice atual.</p>
+<p>As instâncias dessa estrutura serão os elementos de uma tabela hash implementada com <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a>. Durante a leitura do modelo OBJ, a tabela hash será utilizada para verificar se há algum vértice com posição repetida (por isso o operador de igualdade). Através disso conseguiremos criar uma geometria indexada o mais compacta possível. Veremos mais sobre isso na implementação da função de leitura do modelo OBJ.</p>
+<p>A variável <code>m_angle</code> (linha 30) é o ângulo de rotação que será enviado à variável uniforme do vertex shader.</p>
+<p>A variável <code>m_verticesToDraw</code> (linha 31) é a quantidade de vértices do VBO que será processada pela função de renderização, <code>glDrawElements</code>. O valor de <code>m_verticesToDraw</code> será controlado por um slider da ImGui. Assim conseguiremos controlar quantos triângulos queremos renderizar.</p>
+<p>Nas linhas 33 e 34, <code>m_vertices</code> e <code>m_indices</code> são os arranjos de vértices e índices lidos do arquivo OBJ. Esses são os dados que serão enviados ao VBO (<code>m_VBO</code>) e EBO (<code>m_EBO</code>).</p>
+<p>O carregamento do arquivo OBJ será feito pela função <code>Window::loadModelFromFile</code> (linha 36).</p>
+<p>A função <code>Window::standardize</code> (linha 37 será chamada após <code>Window::loadModelFromFile</code> e servirá para centralizar o modelo na origem e normalizar as coordenadas de todos os vértices no intervalo <span class="math inline">\([-1, 1]\)</span>.</p>
+</div>
+<div id="window.cpp-6" class="section level3 unnumbered hasAnchor">
+<h3>window.cpp<a href="objmodel.html#window.cpp-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O início de <code>window.cpp</code> começa como a seguir:</p>
+<div class="sourceCode" id="cb252" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb252-1"><a href="objmodel.html#cb252-1"></a><span class="pp">#include </span><span class="im">&quot;window.hpp&quot;</span></span>
+<span id="cb252-2"><a href="objmodel.html#cb252-2"></a></span>
+<span id="cb252-3"><a href="objmodel.html#cb252-3"></a><span class="pp">#include </span><span class="im">&lt;glm/gtx/fast_trigonometry.hpp&gt;</span></span>
+<span id="cb252-4"><a href="objmodel.html#cb252-4"></a><span class="pp">#include </span><span class="im">&lt;unordered_map&gt;</span></span>
+<span id="cb252-5"><a href="objmodel.html#cb252-5"></a></span>
+<span id="cb252-6"><a href="objmodel.html#cb252-6"></a><span class="co">// Explicit specialization of std::hash for Vertex</span></span>
+<span id="cb252-7"><a href="objmodel.html#cb252-7"></a><span class="kw">template</span> <span class="op">&lt;&gt;</span> <span class="kw">struct</span> <span class="bu">std::</span>hash<span class="op">&lt;</span>Vertex<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb252-8"><a href="objmodel.html#cb252-8"></a>  <span class="dt">size_t</span> <span class="kw">operator</span><span class="op">()(</span>Vertex <span class="at">const</span> <span class="op">&amp;</span>vertex<span class="op">)</span> <span class="at">const</span> <span class="kw">noexcept</span> <span class="op">{</span></span>
+<span id="cb252-9"><a href="objmodel.html#cb252-9"></a>    <span class="kw">auto</span> <span class="at">const</span> h1<span class="op">{</span><span class="bu">std::</span>hash<span class="op">&lt;</span>glm<span class="op">::</span>vec3<span class="op">&gt;()(</span>vertex<span class="op">.</span>position<span class="op">)};</span></span>
+<span id="cb252-10"><a href="objmodel.html#cb252-10"></a>    <span class="cf">return</span> h1<span class="op">;</span></span>
+<span id="cb252-11"><a href="objmodel.html#cb252-11"></a>  <span class="op">}</span></span>
+<span id="cb252-12"><a href="objmodel.html#cb252-12"></a><span class="op">};</span></span></code></pre></div>
+<p>Nas linhas 7 a 12 há uma <a href="https://en.cppreference.com/w/cpp/language/template_specialization">especialização explícita</a> de <a href="https://en.cppreference.com/w/cpp/utility/hash"><code>std::hash</code></a> para a nossa estrutura <code>Vertex</code>. Isso é necessário para que possamos usar <code>Vertex</code> como chave de uma tabela hash (como <code>std::unordered_map</code>).</p>
+<p>Geralmente, uma tabela hash utiliza tipos de dados mais simples como chave, como <code>char</code>, <code>int</code> e <code>float</code>. Internamente esses dados são convertidos para um valor de hashing do tipo <a href="https://en.cppreference.com/w/cpp/types/size_t"><code>std::size_t</code></a>. Como queremos usar um <code>Vertex</code>, precisamos definir como o valor de hashing será gerado. Isso é feito através da sobrecarga do operador de chamada de função <code>()</code> na linha 8. O valor de hashing é o <code>h1</code> da linha 11, gerado a partir da posição do vértice. A biblioteca GLM implementa sua própria especialização de <code>std::hash</code> para <code>glm::vec3</code> (definido no cabeçalho <code>glm/gtx/hash.cpp</code>). Na verdade, para este projeto poderíamos ter usado <code>glm::vec3</code> diretamente no lugar de <code>Vertex</code>. Entretanto, em projetos futuros ampliaremos o número de atributos de <code>Vertex</code> e nossas chaves serão mais complexas. Essa código será reutilizado e ficará maior nos próximos projetos.</p>
+<p>Vamos agora à definição de <code>Window::onCreate</code>:</p>
+<div class="sourceCode" id="cb253" startFrom="14"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 13;"><span id="cb253-14"><a href="objmodel.html#cb253-14"></a><span class="dt">void</span> Window<span class="op">::</span>onCreate<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb253-15"><a href="objmodel.html#cb253-15"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>assetsPath<span class="op">{</span>abcg<span class="op">::</span>Application<span class="op">::</span>getAssetsPath<span class="op">()};</span></span>
+<span id="cb253-16"><a href="objmodel.html#cb253-16"></a></span>
+<span id="cb253-17"><a href="objmodel.html#cb253-17"></a>  abcg<span class="op">::</span>glClearColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb253-18"><a href="objmodel.html#cb253-18"></a></span>
+<span id="cb253-19"><a href="objmodel.html#cb253-19"></a>  <span class="co">// Enable depth buffering</span></span>
+<span id="cb253-20"><a href="objmodel.html#cb253-20"></a>  abcg<span class="op">::</span>glEnable<span class="op">(</span>GL_DEPTH_TEST<span class="op">);</span></span>
+<span id="cb253-21"><a href="objmodel.html#cb253-21"></a></span>
+<span id="cb253-22"><a href="objmodel.html#cb253-22"></a>  <span class="co">// Create program</span></span>
+<span id="cb253-23"><a href="objmodel.html#cb253-23"></a>  <span class="va">m_program</span> <span class="op">=</span></span>
+<span id="cb253-24"><a href="objmodel.html#cb253-24"></a>      abcg<span class="op">::</span>createOpenGLProgram<span class="op">({{.</span>source <span class="op">=</span> assetsPath <span class="op">+</span> <span class="st">&quot;loadmodel.vert&quot;</span><span class="op">,</span></span>
+<span id="cb253-25"><a href="objmodel.html#cb253-25"></a>                                  <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Vertex<span class="op">},</span></span>
+<span id="cb253-26"><a href="objmodel.html#cb253-26"></a>                                 <span class="op">{.</span>source <span class="op">=</span> assetsPath <span class="op">+</span> <span class="st">&quot;loadmodel.frag&quot;</span><span class="op">,</span></span>
+<span id="cb253-27"><a href="objmodel.html#cb253-27"></a>                                  <span class="op">.</span>stage <span class="op">=</span> abcg<span class="op">::</span>ShaderStage<span class="op">::</span>Fragment<span class="op">}});</span></span>
+<span id="cb253-28"><a href="objmodel.html#cb253-28"></a></span>
+<span id="cb253-29"><a href="objmodel.html#cb253-29"></a>  <span class="co">// Load model</span></span>
+<span id="cb253-30"><a href="objmodel.html#cb253-30"></a>  loadModelFromFile<span class="op">(</span>assetsPath <span class="op">+</span> <span class="st">&quot;bunny.obj&quot;</span><span class="op">);</span></span>
+<span id="cb253-31"><a href="objmodel.html#cb253-31"></a>  standardize<span class="op">();</span></span>
+<span id="cb253-32"><a href="objmodel.html#cb253-32"></a></span>
+<span id="cb253-33"><a href="objmodel.html#cb253-33"></a>  <span class="va">m_verticesToDraw</span> <span class="op">=</span> <span class="va">m_indices</span><span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb253-34"><a href="objmodel.html#cb253-34"></a></span>
+<span id="cb253-35"><a href="objmodel.html#cb253-35"></a>  <span class="co">// Generate VBO</span></span>
+<span id="cb253-36"><a href="objmodel.html#cb253-36"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBO</span><span class="op">);</span></span>
+<span id="cb253-37"><a href="objmodel.html#cb253-37"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBO</span><span class="op">);</span></span>
+<span id="cb253-38"><a href="objmodel.html#cb253-38"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span></span>
+<span id="cb253-39"><a href="objmodel.html#cb253-39"></a>                     <span class="kw">sizeof</span><span class="op">(</span><span class="va">m_vertices</span><span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">))</span> <span class="op">*</span> <span class="va">m_vertices</span><span class="op">.</span>size<span class="op">(),</span></span>
+<span id="cb253-40"><a href="objmodel.html#cb253-40"></a>                     <span class="va">m_vertices</span><span class="op">.</span>data<span class="op">(),</span> GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb253-41"><a href="objmodel.html#cb253-41"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb253-42"><a href="objmodel.html#cb253-42"></a></span>
+<span id="cb253-43"><a href="objmodel.html#cb253-43"></a>  <span class="co">// Generate EBO</span></span>
+<span id="cb253-44"><a href="objmodel.html#cb253-44"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_EBO</span><span class="op">);</span></span>
+<span id="cb253-45"><a href="objmodel.html#cb253-45"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ELEMENT_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_EBO</span><span class="op">);</span></span>
+<span id="cb253-46"><a href="objmodel.html#cb253-46"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ELEMENT_ARRAY_BUFFER<span class="op">,</span></span>
+<span id="cb253-47"><a href="objmodel.html#cb253-47"></a>                     <span class="kw">sizeof</span><span class="op">(</span><span class="va">m_indices</span><span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">))</span> <span class="op">*</span> <span class="va">m_indices</span><span class="op">.</span>size<span class="op">(),</span></span>
+<span id="cb253-48"><a href="objmodel.html#cb253-48"></a>                     <span class="va">m_indices</span><span class="op">.</span>data<span class="op">(),</span> GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb253-49"><a href="objmodel.html#cb253-49"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ELEMENT_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb253-50"><a href="objmodel.html#cb253-50"></a></span>
+<span id="cb253-51"><a href="objmodel.html#cb253-51"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb253-52"><a href="objmodel.html#cb253-52"></a>  abcg<span class="op">::</span>glGenVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb253-53"><a href="objmodel.html#cb253-53"></a></span>
+<span id="cb253-54"><a href="objmodel.html#cb253-54"></a>  <span class="co">// Bind vertex attributes to current VAO</span></span>
+<span id="cb253-55"><a href="objmodel.html#cb253-55"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb253-56"><a href="objmodel.html#cb253-56"></a></span>
+<span id="cb253-57"><a href="objmodel.html#cb253-57"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBO</span><span class="op">);</span></span>
+<span id="cb253-58"><a href="objmodel.html#cb253-58"></a>  <span class="kw">auto</span> <span class="at">const</span> positionAttribute<span class="op">{</span></span>
+<span id="cb253-59"><a href="objmodel.html#cb253-59"></a>      abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;inPosition&quot;</span><span class="op">)};</span></span>
+<span id="cb253-60"><a href="objmodel.html#cb253-60"></a>  abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>positionAttribute<span class="op">);</span></span>
+<span id="cb253-61"><a href="objmodel.html#cb253-61"></a>  abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>positionAttribute<span class="op">,</span> <span class="dv">3</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span></span>
+<span id="cb253-62"><a href="objmodel.html#cb253-62"></a>                              <span class="kw">sizeof</span><span class="op">(</span>Vertex<span class="op">),</span> <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb253-63"><a href="objmodel.html#cb253-63"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb253-64"><a href="objmodel.html#cb253-64"></a></span>
+<span id="cb253-65"><a href="objmodel.html#cb253-65"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ELEMENT_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_EBO</span><span class="op">);</span></span>
+<span id="cb253-66"><a href="objmodel.html#cb253-66"></a></span>
+<span id="cb253-67"><a href="objmodel.html#cb253-67"></a>  <span class="co">// End of binding to current VAO</span></span>
+<span id="cb253-68"><a href="objmodel.html#cb253-68"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb253-69"><a href="objmodel.html#cb253-69"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linha 20, o teste de profundidade é habilitado. Isso faz com que os fragmentos sejam descartados durante a renderização com base na comparação de sua profundidade com o valor atual do buffer de profundidade. Precisamos usar o teste de profundidade pois, em cenas 3D, geralmente é inviável ordenar e renderizar os triângulos do mais distante para o mais próximo, como fizemos com os objetos do projeto <code>asteroids</code> (seção <a href="asteroids.html#asteroids">5.2</a>) usando o “algoritmo do pintor”.</p>
+<p>Na linha 30 carregamos o arquivo <code>bunny.obj</code>. Internamente, <code>OpenGLWindow::loadModelFromFile</code> armazena os vértices e índices em <code>m_vertices</code> e <code>m_indices</code>. Na linha 31, <code>Window::standardize</code> modifica esses dados para fazer com que a geometria caiba no volume de visão do pipeline gráfico, que é o cubo de tamanho <span class="math inline">\(2 \times 2 \times 2\)</span> centralizado em <span class="math inline">\((0,0,0)\)</span> no espaço normalizado do dispositivo (figura <a href="objmodel.html#fig:ndc">6.29</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ndc"></span>
+<img src="images/06_vectors24.svg" alt="Volume de visão em coordenadas normalizadas do dispositivo." width="65%" />
+<p class="caption">
+Figura 6.29: Volume de visão em coordenadas normalizadas do dispositivo.
+</p>
+</div>
+<p>O restante do código de <code>Window::onCreate</code> contém a criação do VAO, VBO e EBO usando os dados de <code>m_vertices</code> e <code>m_indices</code>.</p>
+<p>A definição de <code>Window::loadModelFromFile</code> será como a seguir:</p>
+<div class="sourceCode" id="cb254" startFrom="71"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 70;"><span id="cb254-71"><a href="objmodel.html#cb254-71"></a><span class="dt">void</span> Window<span class="op">::</span>loadModelFromFile<span class="op">(</span><span class="bu">std::</span>string_view<span class="op"> </span>path<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb254-72"><a href="objmodel.html#cb254-72"></a>  tinyobj<span class="op">::</span>ObjReader reader<span class="op">;</span></span>
+<span id="cb254-73"><a href="objmodel.html#cb254-73"></a></span>
+<span id="cb254-74"><a href="objmodel.html#cb254-74"></a>  <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>ParseFromFile<span class="op">(</span>path<span class="op">.</span>data<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb254-75"><a href="objmodel.html#cb254-75"></a>    <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>Error<span class="op">().</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb254-76"><a href="objmodel.html#cb254-76"></a>      <span class="cf">throw</span> abcg<span class="op">::</span>RuntimeError<span class="op">(</span></span>
+<span id="cb254-77"><a href="objmodel.html#cb254-77"></a>          fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st"> (</span><span class="sc">{}</span><span class="st">)&quot;</span><span class="op">,</span> path<span class="op">,</span> reader<span class="op">.</span>Error<span class="op">()));</span></span>
+<span id="cb254-78"><a href="objmodel.html#cb254-78"></a>    <span class="op">}</span></span>
+<span id="cb254-79"><a href="objmodel.html#cb254-79"></a>    <span class="cf">throw</span> abcg<span class="op">::</span>RuntimeError<span class="op">(</span>fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st">&quot;</span><span class="op">,</span> path<span class="op">));</span></span>
+<span id="cb254-80"><a href="objmodel.html#cb254-80"></a>  <span class="op">}</span></span>
+<span id="cb254-81"><a href="objmodel.html#cb254-81"></a></span>
+<span id="cb254-82"><a href="objmodel.html#cb254-82"></a>  <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>Warning<span class="op">().</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb254-83"><a href="objmodel.html#cb254-83"></a>    fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;Warning: </span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> reader<span class="op">.</span>Warning<span class="op">());</span></span>
+<span id="cb254-84"><a href="objmodel.html#cb254-84"></a>  <span class="op">}</span></span>
+<span id="cb254-85"><a href="objmodel.html#cb254-85"></a></span>
+<span id="cb254-86"><a href="objmodel.html#cb254-86"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>attributes<span class="op">{</span>reader<span class="op">.</span>GetAttrib<span class="op">()};</span></span>
+<span id="cb254-87"><a href="objmodel.html#cb254-87"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>shapes<span class="op">{</span>reader<span class="op">.</span>GetShapes<span class="op">()};</span></span>
+<span id="cb254-88"><a href="objmodel.html#cb254-88"></a></span>
+<span id="cb254-89"><a href="objmodel.html#cb254-89"></a>  <span class="va">m_vertices</span><span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb254-90"><a href="objmodel.html#cb254-90"></a>  <span class="va">m_indices</span><span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb254-91"><a href="objmodel.html#cb254-91"></a></span>
+<span id="cb254-92"><a href="objmodel.html#cb254-92"></a>  <span class="co">// A key:value map with key=Vertex and value=index</span></span>
+<span id="cb254-93"><a href="objmodel.html#cb254-93"></a>  <span class="bu">std::</span>unordered_map<span class="op">&lt;</span>Vertex<span class="op">,</span> GLuint<span class="op">&gt;</span> hash<span class="op">{};</span></span>
+<span id="cb254-94"><a href="objmodel.html#cb254-94"></a></span>
+<span id="cb254-95"><a href="objmodel.html#cb254-95"></a>  <span class="co">// Loop over shapes</span></span>
+<span id="cb254-96"><a href="objmodel.html#cb254-96"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>shape <span class="op">:</span> shapes<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb254-97"><a href="objmodel.html#cb254-97"></a>    <span class="co">// Loop over indices</span></span>
+<span id="cb254-98"><a href="objmodel.html#cb254-98"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> offset <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span>shape<span class="op">.</span>mesh<span class="op">.</span>indices<span class="op">.</span>size<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb254-99"><a href="objmodel.html#cb254-99"></a>      <span class="co">// Access to vertex</span></span>
+<span id="cb254-100"><a href="objmodel.html#cb254-100"></a>      <span class="kw">auto</span> <span class="at">const</span> index<span class="op">{</span>shape<span class="op">.</span>mesh<span class="op">.</span>indices<span class="op">.</span>at<span class="op">(</span>offset<span class="op">)};</span></span>
+<span id="cb254-101"><a href="objmodel.html#cb254-101"></a></span>
+<span id="cb254-102"><a href="objmodel.html#cb254-102"></a>      <span class="co">// Vertex position</span></span>
+<span id="cb254-103"><a href="objmodel.html#cb254-103"></a>      <span class="kw">auto</span> <span class="at">const</span> startIndex<span class="op">{</span><span class="dv">3</span> <span class="op">*</span> index<span class="op">.</span>vertex_index<span class="op">};</span></span>
+<span id="cb254-104"><a href="objmodel.html#cb254-104"></a>      <span class="kw">auto</span> <span class="at">const</span> vx<span class="op">{</span>attributes<span class="op">.</span>vertices<span class="op">.</span>at<span class="op">(</span>startIndex <span class="op">+</span> <span class="dv">0</span><span class="op">)};</span></span>
+<span id="cb254-105"><a href="objmodel.html#cb254-105"></a>      <span class="kw">auto</span> <span class="at">const</span> vy<span class="op">{</span>attributes<span class="op">.</span>vertices<span class="op">.</span>at<span class="op">(</span>startIndex <span class="op">+</span> <span class="dv">1</span><span class="op">)};</span></span>
+<span id="cb254-106"><a href="objmodel.html#cb254-106"></a>      <span class="kw">auto</span> <span class="at">const</span> vz<span class="op">{</span>attributes<span class="op">.</span>vertices<span class="op">.</span>at<span class="op">(</span>startIndex <span class="op">+</span> <span class="dv">2</span><span class="op">)};</span></span>
+<span id="cb254-107"><a href="objmodel.html#cb254-107"></a></span>
+<span id="cb254-108"><a href="objmodel.html#cb254-108"></a>      Vertex <span class="at">const</span> vertex<span class="op">{.</span>position <span class="op">=</span> <span class="op">{</span>vx<span class="op">,</span> vy<span class="op">,</span> vz<span class="op">}};</span></span>
+<span id="cb254-109"><a href="objmodel.html#cb254-109"></a></span>
+<span id="cb254-110"><a href="objmodel.html#cb254-110"></a>      <span class="co">// If map doesn&#39;t contain this vertex</span></span>
+<span id="cb254-111"><a href="objmodel.html#cb254-111"></a>      <span class="cf">if</span> <span class="op">(!</span>hash<span class="op">.</span>contains<span class="op">(</span>vertex<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb254-112"><a href="objmodel.html#cb254-112"></a>        <span class="co">// Add this index (size of m_vertices)</span></span>
+<span id="cb254-113"><a href="objmodel.html#cb254-113"></a>        hash<span class="op">[</span>vertex<span class="op">]</span> <span class="op">=</span> <span class="va">m_vertices</span><span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb254-114"><a href="objmodel.html#cb254-114"></a>        <span class="co">// Add this vertex</span></span>
+<span id="cb254-115"><a href="objmodel.html#cb254-115"></a>        <span class="va">m_vertices</span><span class="op">.</span>push_back<span class="op">(</span>vertex<span class="op">);</span></span>
+<span id="cb254-116"><a href="objmodel.html#cb254-116"></a>      <span class="op">}</span></span>
+<span id="cb254-117"><a href="objmodel.html#cb254-117"></a></span>
+<span id="cb254-118"><a href="objmodel.html#cb254-118"></a>      <span class="va">m_indices</span><span class="op">.</span>push_back<span class="op">(</span>hash<span class="op">[</span>vertex<span class="op">]);</span></span>
+<span id="cb254-119"><a href="objmodel.html#cb254-119"></a>    <span class="op">}</span></span>
+<span id="cb254-120"><a href="objmodel.html#cb254-120"></a>  <span class="op">}</span></span>
+<span id="cb254-121"><a href="objmodel.html#cb254-121"></a><span class="op">}</span></span></code></pre></div>
+<p>A variável <code>reader</code> (linha 72) é um objeto da classe <code>tinyobj::ObjReader</code>, da biblioteca <a href="https://github.com/tinyobjloader/tinyobjloader">TinyObjLoader</a>, responsável pela leitura e parsing do arquivo. O resultado é um conjunto de malhas (<code>shapes</code>) e um conjunto de atributos de vértices (<code>attributes</code>).</p>
+<p>Cada malha pode ser um objeto, ou apenas parte de um objeto. No nosso caso, trataremos todas as malhas como um único objeto. Para mais detalhes sobre a estrutura utilizada pelo TinyObjLoader, consulte a <a href="https://github.com/tinyobjloader/tinyobjloader">documentação</a>.</p>
+<p>Na linha 92 definimos a tabela hash que será utilizada para fazer a consulta de vértices não repetidos.</p>
+<p>Embora o formato OBJ utilize geometria indexada, durante a leitura do modelo é possível que tenhamos vértices em uma mesma posição, embora com índices diferentes. Isso acontece porque os vértices podem diferir em relação a outros atributos além da posição. Por exemplo, dois vértices podem ter a mesma posição no espaço, mas cada um pode ter uma cor diferente. Neste projeto, cada vértice só contém o atributo de posição. Podemos então simplificar o modelo mantendo apenas um índice para cada posição de vértice.</p>
+<p>Cada vértice lido do modelo OBJ será inserido na tabela hash usando a <strong>posição <span class="math inline">\((x,y,z)\)</span> como chave</strong>, e a ordem de leitura do vértice como <strong>valor associado à chave</strong>. Se em algum momento verificarmos que um vértice de mesma posição já existe na tabela hash, usaremos o valor da chave como índice do vértice. No fim, teremos uma lista de vértices não repetidos (em <code>m_vertices</code>), que será o nosso VBO, e uma lista de índices (em <code>m_indices</code>), que será o EBO.</p>
+<p>No laço da linha 96, o conjunto de malhas (<code>shapes</code>) é iterado para ler todos os triângulos e vértices.</p>
+<p>A posição de cada vértice é lida nas linhas 104 a 106, nas variáveis <code>vx</code>, <code>vy</code> e <code>vz</code>, e utilizada para criar o vértice <code>vertex</code> na linha 108.</p>
+<p>Na linha 111 verificamos se o vértice atual existe na tabela hash. Se não existir, ele é incluído na tabela e em <code>m_vertices</code>.</p>
+<p>Na linha 118, o índice do vértice atual é inserido em <code>m_indices</code>. O índice é o valor da tabela hash para a chave de <code>vertex</code>.</p>
+<p>A definição da função <code>Window::standardize</code> é dada a seguir:</p>
+<div class="sourceCode" id="cb255" startFrom="123"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 122;"><span id="cb255-123"><a href="objmodel.html#cb255-123"></a><span class="dt">void</span> Window<span class="op">::</span>standardize<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb255-124"><a href="objmodel.html#cb255-124"></a>  <span class="co">// Center to origin and normalize largest bound to [-1, 1]</span></span>
+<span id="cb255-125"><a href="objmodel.html#cb255-125"></a></span>
+<span id="cb255-126"><a href="objmodel.html#cb255-126"></a>  <span class="co">// Get bounds</span></span>
+<span id="cb255-127"><a href="objmodel.html#cb255-127"></a>  glm<span class="op">::</span>vec3 max<span class="op">(</span><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;::</span>lowest<span class="op">());</span></span>
+<span id="cb255-128"><a href="objmodel.html#cb255-128"></a>  glm<span class="op">::</span>vec3 min<span class="op">(</span><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;::</span>max<span class="op">());</span></span>
+<span id="cb255-129"><a href="objmodel.html#cb255-129"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>vertex <span class="op">:</span> <span class="va">m_vertices</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb255-130"><a href="objmodel.html#cb255-130"></a>    max<span class="op">.</span>x <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>max<span class="op">.</span>x<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>x<span class="op">);</span></span>
+<span id="cb255-131"><a href="objmodel.html#cb255-131"></a>    max<span class="op">.</span>y <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>max<span class="op">.</span>y<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb255-132"><a href="objmodel.html#cb255-132"></a>    max<span class="op">.</span>z <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>max<span class="op">.</span>z<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>z<span class="op">);</span></span>
+<span id="cb255-133"><a href="objmodel.html#cb255-133"></a>    min<span class="op">.</span>x <span class="op">=</span> <span class="bu">std::</span>min<span class="op">(</span>min<span class="op">.</span>x<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>x<span class="op">);</span></span>
+<span id="cb255-134"><a href="objmodel.html#cb255-134"></a>    min<span class="op">.</span>y <span class="op">=</span> <span class="bu">std::</span>min<span class="op">(</span>min<span class="op">.</span>y<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb255-135"><a href="objmodel.html#cb255-135"></a>    min<span class="op">.</span>z <span class="op">=</span> <span class="bu">std::</span>min<span class="op">(</span>min<span class="op">.</span>z<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>z<span class="op">);</span></span>
+<span id="cb255-136"><a href="objmodel.html#cb255-136"></a>  <span class="op">}</span></span>
+<span id="cb255-137"><a href="objmodel.html#cb255-137"></a></span>
+<span id="cb255-138"><a href="objmodel.html#cb255-138"></a>  <span class="co">// Center and scale</span></span>
+<span id="cb255-139"><a href="objmodel.html#cb255-139"></a>  <span class="kw">auto</span> <span class="at">const</span> center<span class="op">{(</span>min <span class="op">+</span> max<span class="op">)</span> <span class="op">/</span> <span class="fl">2.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb255-140"><a href="objmodel.html#cb255-140"></a>  <span class="kw">auto</span> <span class="at">const</span> scaling<span class="op">{</span><span class="fl">2.0</span><span class="bu">f</span> <span class="op">/</span> glm<span class="op">::</span>length<span class="op">(</span>max <span class="op">-</span> min<span class="op">)};</span></span>
+<span id="cb255-141"><a href="objmodel.html#cb255-141"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">&amp;</span>vertex <span class="op">:</span> <span class="va">m_vertices</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb255-142"><a href="objmodel.html#cb255-142"></a>    vertex<span class="op">.</span>position <span class="op">=</span> <span class="op">(</span>vertex<span class="op">.</span>position <span class="op">-</span> center<span class="op">)</span> <span class="op">*</span> scaling<span class="op">;</span></span>
+<span id="cb255-143"><a href="objmodel.html#cb255-143"></a>  <span class="op">}</span></span>
+<span id="cb255-144"><a href="objmodel.html#cb255-144"></a><span class="op">}</span></span></code></pre></div>
+<p>As maiores e menores coordenadas <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> e <span class="math inline">\(z\)</span> dos vértices são calculadas no laço da linha 129. Esses valores determinam os limites de uma caixa delimitante do modelo geométrico. O centro dessa caixa é calculado na linha 139. Na linha 140 é calculado um fator de escala que reduz o comprimento da maior dimensão da caixa para o comprimento 2. No laço da linha 141, essas variáveis são utilizadas para centralizar o modelo na origem e mudar sua escala de modo que o modelo caiba no volume de visão em NDC, isto é, todos os vértices terão coordenadas no intervalo <span class="math inline">\([-1, 1]\)</span>.</p>
+<p>Definiremos <code>Window::onPaint</code> como a seguir:</p>
+<div class="sourceCode" id="cb256" startFrom="146"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 145;"><span id="cb256-146"><a href="objmodel.html#cb256-146"></a><span class="dt">void</span> Window<span class="op">::</span>onPaint<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb256-147"><a href="objmodel.html#cb256-147"></a>  <span class="co">// Animate angle by 15 degrees per second</span></span>
+<span id="cb256-148"><a href="objmodel.html#cb256-148"></a>  <span class="kw">auto</span> <span class="at">const</span> deltaTime<span class="op">{</span>gsl<span class="op">::</span>narrow_cast<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;(</span>getDeltaTime<span class="op">())};</span></span>
+<span id="cb256-149"><a href="objmodel.html#cb256-149"></a>  <span class="va">m_angle</span> <span class="op">=</span> glm<span class="op">::</span>wrapAngle<span class="op">(</span><span class="va">m_angle</span> <span class="op">+</span> glm<span class="op">::</span>radians<span class="op">(</span><span class="fl">15.0</span><span class="bu">f</span><span class="op">)</span> <span class="op">*</span> deltaTime<span class="op">);</span></span>
+<span id="cb256-150"><a href="objmodel.html#cb256-150"></a></span>
+<span id="cb256-151"><a href="objmodel.html#cb256-151"></a>  <span class="co">// Clear color buffer and depth buffer</span></span>
+<span id="cb256-152"><a href="objmodel.html#cb256-152"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT <span class="op">|</span> GL_DEPTH_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb256-153"><a href="objmodel.html#cb256-153"></a></span>
+<span id="cb256-154"><a href="objmodel.html#cb256-154"></a>  abcg<span class="op">::</span>glViewport<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>x<span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb256-155"><a href="objmodel.html#cb256-155"></a></span>
+<span id="cb256-156"><a href="objmodel.html#cb256-156"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb256-157"><a href="objmodel.html#cb256-157"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb256-158"><a href="objmodel.html#cb256-158"></a></span>
+<span id="cb256-159"><a href="objmodel.html#cb256-159"></a>  <span class="co">// Update uniform variable</span></span>
+<span id="cb256-160"><a href="objmodel.html#cb256-160"></a>  <span class="kw">auto</span> <span class="at">const</span> angleLocation<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;angle&quot;</span><span class="op">)};</span></span>
+<span id="cb256-161"><a href="objmodel.html#cb256-161"></a>  abcg<span class="op">::</span>glUniform1f<span class="op">(</span>angleLocation<span class="op">,</span> <span class="va">m_angle</span><span class="op">);</span></span>
+<span id="cb256-162"><a href="objmodel.html#cb256-162"></a></span>
+<span id="cb256-163"><a href="objmodel.html#cb256-163"></a>  <span class="co">// Draw triangles</span></span>
+<span id="cb256-164"><a href="objmodel.html#cb256-164"></a>  abcg<span class="op">::</span>glDrawElements<span class="op">(</span>GL_TRIANGLES<span class="op">,</span> <span class="va">m_verticesToDraw</span><span class="op">,</span> GL_UNSIGNED_INT<span class="op">,</span></span>
+<span id="cb256-165"><a href="objmodel.html#cb256-165"></a>                       <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb256-166"><a href="objmodel.html#cb256-166"></a></span>
+<span id="cb256-167"><a href="objmodel.html#cb256-167"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb256-168"><a href="objmodel.html#cb256-168"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb256-169"><a href="objmodel.html#cb256-169"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linha 149, o valor de <code>m_angle</code> é incrementado a uma taxa de 15 graus por segundo (veja que o ângulo é convertido para radianos).</p>
+<p>Observe, na linha 152, que <code>glClear</code> agora usa <code>GL_DEPTH_BUFFER_BIT</code> além de <code>GL_COLOR_BUFFER_BIT</code>. Isso é necessário para limpar o buffer de profundidade antes de renderizar o quadro atual.</p>
+<p>O restante do código é similar ao que já usamos em projetos anteriores.</p>
+<p>Vamos agora à definição de <code>Window::onPaintUI</code>:</p>
+<div class="sourceCode" id="cb257" startFrom="171"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 170;"><span id="cb257-171"><a href="objmodel.html#cb257-171"></a><span class="dt">void</span> Window<span class="op">::</span>onPaintUI<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb257-172"><a href="objmodel.html#cb257-172"></a>  abcg<span class="op">::</span>OpenGLWindow<span class="op">::</span>onPaintUI<span class="op">();</span></span>
+<span id="cb257-173"><a href="objmodel.html#cb257-173"></a></span>
+<span id="cb257-174"><a href="objmodel.html#cb257-174"></a>  <span class="co">// Create window for slider</span></span>
+<span id="cb257-175"><a href="objmodel.html#cb257-175"></a>  <span class="op">{</span></span>
+<span id="cb257-176"><a href="objmodel.html#cb257-176"></a>    ImGui<span class="op">::</span>SetNextWindowPos<span class="op">(</span>ImVec2<span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="va">m_viewportSize</span><span class="op">.</span>y <span class="op">-</span> <span class="dv">94</span><span class="op">));</span></span>
+<span id="cb257-177"><a href="objmodel.html#cb257-177"></a>    ImGui<span class="op">::</span>SetNextWindowSize<span class="op">(</span>ImVec2<span class="op">(</span><span class="va">m_viewportSize</span><span class="op">.</span>x <span class="op">-</span> <span class="dv">10</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">));</span></span>
+<span id="cb257-178"><a href="objmodel.html#cb257-178"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot;Slider window&quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> ImGuiWindowFlags_NoDecoration<span class="op">);</span></span>
+<span id="cb257-179"><a href="objmodel.html#cb257-179"></a></span>
+<span id="cb257-180"><a href="objmodel.html#cb257-180"></a>    <span class="co">// Create a slider to control the number of rendered triangles</span></span>
+<span id="cb257-181"><a href="objmodel.html#cb257-181"></a>    <span class="op">{</span></span>
+<span id="cb257-182"><a href="objmodel.html#cb257-182"></a>      <span class="co">// Slider will fill the space of the window</span></span>
+<span id="cb257-183"><a href="objmodel.html#cb257-183"></a>      ImGui<span class="op">::</span>PushItemWidth<span class="op">(</span><span class="va">m_viewportSize</span><span class="op">.</span>x <span class="op">-</span> <span class="dv">25</span><span class="op">);</span></span>
+<span id="cb257-184"><a href="objmodel.html#cb257-184"></a></span>
+<span id="cb257-185"><a href="objmodel.html#cb257-185"></a>      <span class="at">static</span> <span class="kw">auto</span> n<span class="op">{</span><span class="va">m_verticesToDraw</span> <span class="op">/</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb257-186"><a href="objmodel.html#cb257-186"></a>      ImGui<span class="op">::</span>SliderInt<span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">,</span> <span class="op">&amp;</span>n<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_indices</span><span class="op">.</span>size<span class="op">()</span> <span class="op">/</span> <span class="dv">3</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">%d</span><span class="st"> triangles&quot;</span><span class="op">);</span></span>
+<span id="cb257-187"><a href="objmodel.html#cb257-187"></a>      <span class="va">m_verticesToDraw</span> <span class="op">=</span> n <span class="op">*</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb257-188"><a href="objmodel.html#cb257-188"></a></span>
+<span id="cb257-189"><a href="objmodel.html#cb257-189"></a>      ImGui<span class="op">::</span>PopItemWidth<span class="op">();</span></span>
+<span id="cb257-190"><a href="objmodel.html#cb257-190"></a>    <span class="op">}</span></span>
+<span id="cb257-191"><a href="objmodel.html#cb257-191"></a></span>
+<span id="cb257-192"><a href="objmodel.html#cb257-192"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb257-193"><a href="objmodel.html#cb257-193"></a>  <span class="op">}</span></span>
+<span id="cb257-194"><a href="objmodel.html#cb257-194"></a></span>
+<span id="cb257-195"><a href="objmodel.html#cb257-195"></a>  <span class="co">// Create a window for the other widgets</span></span>
+<span id="cb257-196"><a href="objmodel.html#cb257-196"></a>  <span class="op">{</span></span>
+<span id="cb257-197"><a href="objmodel.html#cb257-197"></a>    <span class="kw">auto</span> <span class="at">const</span> widgetSize<span class="op">{</span>ImVec2<span class="op">(</span><span class="dv">172</span><span class="op">,</span> <span class="dv">62</span><span class="op">)};</span></span>
+<span id="cb257-198"><a href="objmodel.html#cb257-198"></a>    ImGui<span class="op">::</span>SetNextWindowPos<span class="op">(</span>ImVec2<span class="op">(</span><span class="va">m_viewportSize</span><span class="op">.</span>x <span class="op">-</span> widgetSize<span class="op">.</span>x <span class="op">-</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">5</span><span class="op">));</span></span>
+<span id="cb257-199"><a href="objmodel.html#cb257-199"></a>    ImGui<span class="op">::</span>SetNextWindowSize<span class="op">(</span>widgetSize<span class="op">);</span></span>
+<span id="cb257-200"><a href="objmodel.html#cb257-200"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot;Widget window&quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> ImGuiWindowFlags_NoDecoration<span class="op">);</span></span>
+<span id="cb257-201"><a href="objmodel.html#cb257-201"></a></span>
+<span id="cb257-202"><a href="objmodel.html#cb257-202"></a>    <span class="at">static</span> <span class="dt">bool</span> faceCulling<span class="op">{};</span></span>
+<span id="cb257-203"><a href="objmodel.html#cb257-203"></a>    ImGui<span class="op">::</span>Checkbox<span class="op">(</span><span class="st">&quot;Back-face culling&quot;</span><span class="op">,</span> <span class="op">&amp;</span>faceCulling<span class="op">);</span></span>
+<span id="cb257-204"><a href="objmodel.html#cb257-204"></a></span>
+<span id="cb257-205"><a href="objmodel.html#cb257-205"></a>    <span class="cf">if</span> <span class="op">(</span>faceCulling<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb257-206"><a href="objmodel.html#cb257-206"></a>      abcg<span class="op">::</span>glEnable<span class="op">(</span>GL_CULL_FACE<span class="op">);</span></span>
+<span id="cb257-207"><a href="objmodel.html#cb257-207"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb257-208"><a href="objmodel.html#cb257-208"></a>      abcg<span class="op">::</span>glDisable<span class="op">(</span>GL_CULL_FACE<span class="op">);</span></span>
+<span id="cb257-209"><a href="objmodel.html#cb257-209"></a>    <span class="op">}</span></span>
+<span id="cb257-210"><a href="objmodel.html#cb257-210"></a></span>
+<span id="cb257-211"><a href="objmodel.html#cb257-211"></a>    <span class="co">// CW/CCW combo box</span></span>
+<span id="cb257-212"><a href="objmodel.html#cb257-212"></a>    <span class="op">{</span></span>
+<span id="cb257-213"><a href="objmodel.html#cb257-213"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t<span class="op"> </span>currentIndex<span class="op">{};</span></span>
+<span id="cb257-214"><a href="objmodel.html#cb257-214"></a>      <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>string<span class="op">&gt;</span> <span class="at">const</span> comboItems<span class="op">{</span><span class="st">&quot;CW&quot;</span><span class="op">,</span> <span class="st">&quot;CCW&quot;</span><span class="op">};</span></span>
+<span id="cb257-215"><a href="objmodel.html#cb257-215"></a></span>
+<span id="cb257-216"><a href="objmodel.html#cb257-216"></a>      ImGui<span class="op">::</span>PushItemWidth<span class="op">(</span><span class="dv">70</span><span class="op">);</span></span>
+<span id="cb257-217"><a href="objmodel.html#cb257-217"></a>      <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginCombo<span class="op">(</span><span class="st">&quot;Front face&quot;</span><span class="op">,</span></span>
+<span id="cb257-218"><a href="objmodel.html#cb257-218"></a>                            comboItems<span class="op">.</span>at<span class="op">(</span>currentIndex<span class="op">).</span>c_str<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb257-219"><a href="objmodel.html#cb257-219"></a>        <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> index <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span>comboItems<span class="op">.</span>size<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb257-220"><a href="objmodel.html#cb257-220"></a>          <span class="kw">auto</span> <span class="at">const</span> isSelected<span class="op">{</span>currentIndex <span class="op">==</span> index<span class="op">};</span></span>
+<span id="cb257-221"><a href="objmodel.html#cb257-221"></a>          <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Selectable<span class="op">(</span>comboItems<span class="op">.</span>at<span class="op">(</span>index<span class="op">).</span>c_str<span class="op">(),</span> isSelected<span class="op">))</span></span>
+<span id="cb257-222"><a href="objmodel.html#cb257-222"></a>            currentIndex <span class="op">=</span> index<span class="op">;</span></span>
+<span id="cb257-223"><a href="objmodel.html#cb257-223"></a>          <span class="cf">if</span> <span class="op">(</span>isSelected<span class="op">)</span></span>
+<span id="cb257-224"><a href="objmodel.html#cb257-224"></a>            ImGui<span class="op">::</span>SetItemDefaultFocus<span class="op">();</span></span>
+<span id="cb257-225"><a href="objmodel.html#cb257-225"></a>        <span class="op">}</span></span>
+<span id="cb257-226"><a href="objmodel.html#cb257-226"></a>        ImGui<span class="op">::</span>EndCombo<span class="op">();</span></span>
+<span id="cb257-227"><a href="objmodel.html#cb257-227"></a>      <span class="op">}</span></span>
+<span id="cb257-228"><a href="objmodel.html#cb257-228"></a>      ImGui<span class="op">::</span>PopItemWidth<span class="op">();</span></span>
+<span id="cb257-229"><a href="objmodel.html#cb257-229"></a></span>
+<span id="cb257-230"><a href="objmodel.html#cb257-230"></a>      <span class="cf">if</span> <span class="op">(</span>currentIndex <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb257-231"><a href="objmodel.html#cb257-231"></a>        abcg<span class="op">::</span>glFrontFace<span class="op">(</span>GL_CW<span class="op">);</span></span>
+<span id="cb257-232"><a href="objmodel.html#cb257-232"></a>      <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb257-233"><a href="objmodel.html#cb257-233"></a>        abcg<span class="op">::</span>glFrontFace<span class="op">(</span>GL_CCW<span class="op">);</span></span>
+<span id="cb257-234"><a href="objmodel.html#cb257-234"></a>      <span class="op">}</span></span>
+<span id="cb257-235"><a href="objmodel.html#cb257-235"></a>    <span class="op">}</span></span>
+<span id="cb257-236"><a href="objmodel.html#cb257-236"></a></span>
+<span id="cb257-237"><a href="objmodel.html#cb257-237"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb257-238"><a href="objmodel.html#cb257-238"></a>  <span class="op">}</span></span>
+<span id="cb257-239"><a href="objmodel.html#cb257-239"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linhas 181 a 190 é definido o slider que controla o número de triângulos que será renderizado.</p>
+<p>Na linha 203 é criada uma caixa de seleção (checkbox) de ativação do back-face culling (estamos usando o padrão do <code>glCullFace</code>, que é <code>GL_BACK</code>). O resultado da variável booleana <code>faceCulling</code> é utilizado para ativar ou desativar o face culling nas linhas 206 e 208.</p>
+<p>Uma caixa de combinação (combo box) com as opções <code>CW</code> e <code>CCW</code> é definida no escopo a partir da linha 211. Nas linhas 231 e 233, a função <code>glFrontFace</code> é chamada com <code>GL_CW</code> ou <code>GL_CCW</code> de acordo com o que foi selecionado pelo usuário. Como a opção <code>CW</code> é a primeira opção da caixa, a aplicação iniciará com <code>GL_CW</code>.</p>
+<p>O conteúdo restante de <code>window.cpp</code> é similar ao utilizado nos projetos anteriores:</p>
+<div class="sourceCode" id="cb258" startFrom="241"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 240;"><span id="cb258-241"><a href="objmodel.html#cb258-241"></a><span class="dt">void</span> Window<span class="op">::</span>onResize<span class="op">(</span>glm<span class="op">::</span>ivec2 <span class="at">const</span> <span class="op">&amp;</span>size<span class="op">)</span> <span class="op">{</span> <span class="va">m_viewportSize</span> <span class="op">=</span> size<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb258-242"><a href="objmodel.html#cb258-242"></a></span>
+<span id="cb258-243"><a href="objmodel.html#cb258-243"></a><span class="dt">void</span> Window<span class="op">::</span>onDestroy<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb258-244"><a href="objmodel.html#cb258-244"></a>  abcg<span class="op">::</span>glDeleteProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb258-245"><a href="objmodel.html#cb258-245"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_EBO</span><span class="op">);</span></span>
+<span id="cb258-246"><a href="objmodel.html#cb258-246"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBO</span><span class="op">);</span></span>
+<span id="cb258-247"><a href="objmodel.html#cb258-247"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb258-248"><a href="objmodel.html#cb258-248"></a><span class="op">}</span></span></code></pre></div>
+<p>Baixe o código completo do projeto a partir <a href="https://hbatagelo.github.io/abcgapps/src/loadmodel.zip">deste link</a>.</p>
+<p>Outros modelos OBJ estão disponíveis <a href="https://hbatagelo.github.io/abcgapps/data/objmodels.zip">neste link</a>.</p>
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="euclidean.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="transformations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

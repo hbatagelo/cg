@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.4 Visualizador 3D | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.4 Visualizador 3D | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.4 Visualizador 3D | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="vtrackball1.html"/>
+<link rel="next" href="starfield.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.hpp-6"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação"><i class="fa fa-check"></i>Transformação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.hpp-7"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.cpp-7"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-9"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="viewer1" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Visualizador 3D<a href="viewer1.html#viewer1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nesta seção, seguiremos o passo a passo de implementação de um visualizador de modelos geométricos 3D que permite a interação através do trackball virtual.</p>
+<p>Esta será apenas a primeira de uma série de versões do visualizador 3D. Nos próximos capítulos, faremos aprimoramentos em relação aos shaders e modelos suportados.</p>
+<p>Por enquanto, nossa primeira versão do visualizador usa um único objeto pré-carregado que, para variar, é o Stanford Bunny. Além disso, só é utilizado um par de shaders (vertex/fragment shader), que é o mesmo já utilizado no projeto <code>lookat</code> (seção <a href="lookatproject.html#lookatproject">7.7</a>).</p>
+<p>O resultado ficará como a seguir.</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/viewer1/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<p>Use o mouse para interagir com o objeto. Clique e arraste para rodá-lo. Use o botão de rolagem para aproximar ou distanciar a câmera do objeto. Se a câmera estiver muito próxima, o objeto será recortado pelo plano de recorte próximo (near clipping plane) e será possível ver o interior do objeto.</p>
+<div id="configuração-inicial-8" class="section level3 unnumbered hasAnchor">
+<h3>Configuração inicial<a href="viewer1.html#configuração-inicial-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>No arquivo <code>abcg/examples/CMakeLists.txt</code>, inclua a linha:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb303-1"><a href="viewer1.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="kw">add_subdirectory</span>(viewer1)</span></code></pre></div></li>
+<li><p>Crie o subdiretório <code>abcg/examples/viewer1</code> e o arquivo <code>abcg/examples/viewer1/CMakeLists.txt</code> com o seguinte conteúdo:</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb304-1"><a href="viewer1.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(viewer1)</span>
+<span id="cb304-2"><a href="viewer1.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJECT_NAME}</span> <span class="bn">main.cpp</span> model.cpp openglwindow.cpp </span>
+<span id="cb304-3"><a href="viewer1.html#cb304-3" aria-hidden="true" tabindex="-1"></a>                               trackball.cpp)</span>
+<span id="cb304-4"><a href="viewer1.html#cb304-4" aria-hidden="true" tabindex="-1"></a><span class="fu">enable_abcg</span>(<span class="dv">${PROJECT_NAME}</span>)</span></code></pre></div></li>
+<li><p>Crie os seguintes arquivos vazios:</p>
+<ul>
+<li><code>main.cpp</code>;</li>
+<li><code>model.cpp</code> e <code>model.hpp</code>;</li>
+<li><code>openglwindow.cpp</code> e <code>openglwindow.hpp</code>;</li>
+<li><code>trackball.cpp</code> e <code>trackball.hpp</code>.</li>
+</ul></li>
+<li><p>Crie o subdiretório <code>abcg/examples/viewer1/assets</code>. Dentro dele, crie os arquivos vazios <code>depth.frag</code> e <code>depth.vert</code>. Além disso, baixe o arquivo <a href="https://hbatagelo.github.io/abcgapps/data/bunny.zip"><code>bunny.zip</code></a> e descompacte-o em <code>assets</code>.</p></li>
+</ul>
+<p>A estrutura de <code>abcg/examples/viewer1</code> ficará assim:</p>
+<pre><code>viewer1/
+│   CMakeLists.txt
+│   main.cpp
+│   model.hpp
+│   model.cpp
+│   openglwindow.hpp
+│   openglwindow.cpp
+│   trackball.hpp
+│   trackball.cpp
+│
+└───assets/
+    │   bunny.obj
+    │   depth.frag    
+    └   depth.vert</code></pre>
+</div>
+<div id="main.cpp-8" class="section level3 unnumbered hasAnchor">
+<h3>main.cpp<a href="viewer1.html#main.cpp-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O conteúdo é o mesmo do projeto anterior. Só vamos mudar o título da janela:</p>
+<div class="sourceCode" id="cb306" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb306-1"><a href="viewer1.html#cb306-1"></a><span class="pp">#include </span><span class="im">&lt;fmt/core.h&gt;</span></span>
+<span id="cb306-2"><a href="viewer1.html#cb306-2"></a></span>
+<span id="cb306-3"><a href="viewer1.html#cb306-3"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
+<span id="cb306-4"><a href="viewer1.html#cb306-4"></a><span class="pp">#include </span><span class="im">&quot;openglwindow.hpp&quot;</span></span>
+<span id="cb306-5"><a href="viewer1.html#cb306-5"></a></span>
+<span id="cb306-6"><a href="viewer1.html#cb306-6"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb306-7"><a href="viewer1.html#cb306-7"></a>  <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb306-8"><a href="viewer1.html#cb306-8"></a>    abcg<span class="op">::</span>Application app<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb306-9"><a href="viewer1.html#cb306-9"></a></span>
+<span id="cb306-10"><a href="viewer1.html#cb306-10"></a>    <span class="kw">auto</span> window<span class="op">{</span><span class="bu">std::</span>make_unique<span class="op">&lt;</span>OpenGLWindow<span class="op">&gt;()};</span></span>
+<span id="cb306-11"><a href="viewer1.html#cb306-11"></a>    window<span class="op">-&gt;</span>setOpenGLSettings<span class="op">({.</span>samples <span class="op">=</span> <span class="dv">4</span><span class="op">});</span></span>
+<span id="cb306-12"><a href="viewer1.html#cb306-12"></a>    window<span class="op">-&gt;</span>setWindowSettings<span class="op">(</span></span>
+<span id="cb306-13"><a href="viewer1.html#cb306-13"></a>        <span class="op">{.</span>width <span class="op">=</span> <span class="dv">600</span><span class="op">,</span> <span class="op">.</span>height <span class="op">=</span> <span class="dv">600</span><span class="op">,</span> <span class="op">.</span>title <span class="op">=</span> <span class="st">&quot;Model Viewer (version 1)&quot;</span><span class="op">});</span></span>
+<span id="cb306-14"><a href="viewer1.html#cb306-14"></a></span>
+<span id="cb306-15"><a href="viewer1.html#cb306-15"></a>    app<span class="op">.</span>run<span class="op">(</span><span class="bu">std::</span>move<span class="op">(</span>window<span class="op">));</span></span>
+<span id="cb306-16"><a href="viewer1.html#cb306-16"></a>  <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="at">const</span> abcg<span class="op">::</span>Exception <span class="op">&amp;</span>exception<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb306-17"><a href="viewer1.html#cb306-17"></a>    fmt<span class="op">::</span>print<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;</span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> exception<span class="op">.</span>what<span class="op">());</span></span>
+<span id="cb306-18"><a href="viewer1.html#cb306-18"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb306-19"><a href="viewer1.html#cb306-19"></a>  <span class="op">}</span></span>
+<span id="cb306-20"><a href="viewer1.html#cb306-20"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb306-21"><a href="viewer1.html#cb306-21"></a><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="depth.vert" class="section level3 unnumbered hasAnchor">
+<h3>depth.vert<a href="viewer1.html#depth.vert" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Este também é praticamente o mesmo vertex shader utilizado no projeto <code>lookat</code>:</p>
+<div class="sourceCode" id="cb307" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb307-1"><a href="viewer1.html#cb307-1"></a><span class="pp">#version 410</span></span>
+<span id="cb307-2"><a href="viewer1.html#cb307-2"></a></span>
+<span id="cb307-3"><a href="viewer1.html#cb307-3"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">0</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec3</span> inPosition<span class="op">;</span></span>
+<span id="cb307-4"><a href="viewer1.html#cb307-4"></a></span>
+<span id="cb307-5"><a href="viewer1.html#cb307-5"></a><span class="kw">uniform</span> <span class="dt">vec4</span> color<span class="op">;</span></span>
+<span id="cb307-6"><a href="viewer1.html#cb307-6"></a><span class="kw">uniform</span> <span class="dt">mat4</span> modelMatrix<span class="op">;</span></span>
+<span id="cb307-7"><a href="viewer1.html#cb307-7"></a><span class="kw">uniform</span> <span class="dt">mat4</span> viewMatrix<span class="op">;</span></span>
+<span id="cb307-8"><a href="viewer1.html#cb307-8"></a><span class="kw">uniform</span> <span class="dt">mat4</span> projMatrix<span class="op">;</span></span>
+<span id="cb307-9"><a href="viewer1.html#cb307-9"></a></span>
+<span id="cb307-10"><a href="viewer1.html#cb307-10"></a><span class="dt">out</span> <span class="dt">vec4</span> fragColor<span class="op">;</span></span>
+<span id="cb307-11"><a href="viewer1.html#cb307-11"></a></span>
+<span id="cb307-12"><a href="viewer1.html#cb307-12"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb307-13"><a href="viewer1.html#cb307-13"></a>  <span class="dt">vec4</span> posEyeSpace <span class="op">=</span> viewMatrix <span class="op">*</span> modelMatrix <span class="op">*</span> <span class="dt">vec4</span><span class="op">(</span>inPosition<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb307-14"><a href="viewer1.html#cb307-14"></a></span>
+<span id="cb307-15"><a href="viewer1.html#cb307-15"></a>  <span class="dt">float</span> i <span class="op">=</span> <span class="fl">1.0</span> <span class="op">-</span> <span class="op">(-</span>posEyeSpace<span class="op">.</span><span class="fu">z</span> <span class="op">/</span> <span class="fl">3.0</span><span class="op">);</span></span>
+<span id="cb307-16"><a href="viewer1.html#cb307-16"></a>  fragColor <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>i<span class="op">,</span> i<span class="op">,</span> i<span class="op">,</span> <span class="dv">1</span><span class="op">)</span> <span class="op">*</span> color<span class="op">;</span></span>
+<span id="cb307-17"><a href="viewer1.html#cb307-17"></a></span>
+<span id="cb307-18"><a href="viewer1.html#cb307-18"></a>  <span class="bu">gl_Position</span> <span class="op">=</span> projMatrix <span class="op">*</span> posEyeSpace<span class="op">;</span></span>
+<span id="cb307-19"><a href="viewer1.html#cb307-19"></a><span class="op">}</span></span></code></pre></div>
+<p>A única diferença está na linha 15. No cálculo da intensidade <code>i</code>, dividimos <code>posEyeSpace.z</code> por <code>3.0</code> e não por <code>5.0</code>.</p>
+<p>Lembre-se que o shader faz com que a cor em cada vértice (<code>fragColor</code>) tenha uma intensidade inversamente proporcional à distância do vértice ao longo de <span class="math inline">\(z\)</span> negativo no espaço da câmera. Quanto mais longe o vértice, menor será sua intensidade. Neste caso, a intensidade será zero quando <span class="math inline">\(z\leq-3\)</span>.</p>
+</div>
+<div id="depth.frag" class="section level3 unnumbered hasAnchor">
+<h3>depth.frag<a href="viewer1.html#depth.frag" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O conteúdo do fragment shader ficará assim:</p>
+<div class="sourceCode" id="cb308" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb308-1"><a href="viewer1.html#cb308-1"></a><span class="pp">#version 410</span></span>
+<span id="cb308-2"><a href="viewer1.html#cb308-2"></a></span>
+<span id="cb308-3"><a href="viewer1.html#cb308-3"></a><span class="dt">in</span> <span class="dt">vec4</span> fragColor<span class="op">;</span></span>
+<span id="cb308-4"><a href="viewer1.html#cb308-4"></a><span class="dt">out</span> <span class="dt">vec4</span> outColor<span class="op">;</span></span>
+<span id="cb308-5"><a href="viewer1.html#cb308-5"></a></span>
+<span id="cb308-6"><a href="viewer1.html#cb308-6"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb308-7"><a href="viewer1.html#cb308-7"></a>  <span class="kw">if</span> <span class="op">(</span><span class="bu">gl_FrontFacing</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb308-8"><a href="viewer1.html#cb308-8"></a>    outColor <span class="op">=</span> fragColor<span class="op">;</span></span>
+<span id="cb308-9"><a href="viewer1.html#cb308-9"></a>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span id="cb308-10"><a href="viewer1.html#cb308-10"></a>    outColor <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>fragColor<span class="op">.</span><span class="fu">r</span> <span class="op">*</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> fragColor<span class="op">.</span><span class="fu">a</span><span class="op">);</span></span>
+<span id="cb308-11"><a href="viewer1.html#cb308-11"></a>  <span class="op">}</span></span>
+<span id="cb308-12"><a href="viewer1.html#cb308-12"></a><span class="op">}</span></span></code></pre></div>
+<p>Se o triângulo estiver orientado de frente para a câmera, a cor final do fragmento será a cor de entrada (<code>fragColor</code>). Caso contrário, a cor será vermelha.</p>
+</div>
+<div id="model.hpp" class="section level3 unnumbered hasAnchor">
+<h3>model.hpp<a href="viewer1.html#model.hpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Neste arquivo definiremos a classe <code>Model</code>, responsável por gerenciar o VBO, EBO e VAO do modelo geométrico lido do arquivo OBJ:</p>
+<div class="sourceCode" id="cb309" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb309-1"><a href="viewer1.html#cb309-1"></a><span class="pp">#ifndef MODEL_HPP_</span></span>
+<span id="cb309-2"><a href="viewer1.html#cb309-2"></a><span class="pp">#define MODEL_HPP_</span></span>
+<span id="cb309-3"><a href="viewer1.html#cb309-3"></a></span>
+<span id="cb309-4"><a href="viewer1.html#cb309-4"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb309-5"><a href="viewer1.html#cb309-5"></a></span>
+<span id="cb309-6"><a href="viewer1.html#cb309-6"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
+<span id="cb309-7"><a href="viewer1.html#cb309-7"></a></span>
+<span id="cb309-8"><a href="viewer1.html#cb309-8"></a><span class="kw">struct</span> Vertex <span class="op">{</span></span>
+<span id="cb309-9"><a href="viewer1.html#cb309-9"></a>  glm<span class="op">::</span>vec3 position<span class="op">{};</span></span>
+<span id="cb309-10"><a href="viewer1.html#cb309-10"></a></span>
+<span id="cb309-11"><a href="viewer1.html#cb309-11"></a>  <span class="dt">bool</span> <span class="kw">operator</span><span class="op">==(</span><span class="at">const</span> Vertex<span class="op">&amp;</span> other<span class="op">)</span> <span class="at">const</span> <span class="kw">noexcept</span> <span class="op">{</span></span>
+<span id="cb309-12"><a href="viewer1.html#cb309-12"></a>    <span class="cf">return</span> position <span class="op">==</span> other<span class="op">.</span>position<span class="op">;</span></span>
+<span id="cb309-13"><a href="viewer1.html#cb309-13"></a>  <span class="op">}</span></span>
+<span id="cb309-14"><a href="viewer1.html#cb309-14"></a><span class="op">};</span></span>
+<span id="cb309-15"><a href="viewer1.html#cb309-15"></a></span>
+<span id="cb309-16"><a href="viewer1.html#cb309-16"></a><span class="kw">class</span> Model <span class="op">{</span></span>
+<span id="cb309-17"><a href="viewer1.html#cb309-17"></a> <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb309-18"><a href="viewer1.html#cb309-18"></a>  <span class="dt">void</span> loadObj<span class="op">(</span><span class="bu">std::</span>string_view<span class="op"> </span>path<span class="op">,</span> <span class="dt">bool</span> standardize <span class="op">=</span> <span class="kw">true</span><span class="op">);</span></span>
+<span id="cb309-19"><a href="viewer1.html#cb309-19"></a>  <span class="dt">void</span> render<span class="op">(</span><span class="dt">int</span> numTriangles <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="at">const</span><span class="op">;</span></span>
+<span id="cb309-20"><a href="viewer1.html#cb309-20"></a>  <span class="dt">void</span> setupVAO<span class="op">(</span>GLuint program<span class="op">);</span></span>
+<span id="cb309-21"><a href="viewer1.html#cb309-21"></a>  <span class="dt">void</span> terminateGL<span class="op">();</span></span>
+<span id="cb309-22"><a href="viewer1.html#cb309-22"></a></span>
+<span id="cb309-23"><a href="viewer1.html#cb309-23"></a>  <span class="op">[[</span><span class="at">nodiscard</span><span class="op">]]</span> <span class="dt">int</span> getNumTriangles<span class="op">()</span> <span class="at">const</span> <span class="op">{</span></span>
+<span id="cb309-24"><a href="viewer1.html#cb309-24"></a>    <span class="cf">return</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;(</span><span class="va">m_indices</span><span class="op">.</span>size<span class="op">())</span> <span class="op">/</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb309-25"><a href="viewer1.html#cb309-25"></a>  <span class="op">}</span></span>
+<span id="cb309-26"><a href="viewer1.html#cb309-26"></a></span>
+<span id="cb309-27"><a href="viewer1.html#cb309-27"></a> <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb309-28"><a href="viewer1.html#cb309-28"></a>  GLuint <span class="va">m_VAO</span><span class="op">{};</span></span>
+<span id="cb309-29"><a href="viewer1.html#cb309-29"></a>  GLuint <span class="va">m_VBO</span><span class="op">{};</span></span>
+<span id="cb309-30"><a href="viewer1.html#cb309-30"></a>  GLuint <span class="va">m_EBO</span><span class="op">{};</span></span>
+<span id="cb309-31"><a href="viewer1.html#cb309-31"></a></span>
+<span id="cb309-32"><a href="viewer1.html#cb309-32"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>Vertex<span class="op">&gt;</span> <span class="va">m_vertices</span><span class="op">;</span></span>
+<span id="cb309-33"><a href="viewer1.html#cb309-33"></a>  <span class="bu">std::</span>vector<span class="op">&lt;</span>GLuint<span class="op">&gt;</span> <span class="va">m_indices</span><span class="op">;</span></span>
+<span id="cb309-34"><a href="viewer1.html#cb309-34"></a></span>
+<span id="cb309-35"><a href="viewer1.html#cb309-35"></a>  <span class="dt">void</span> createBuffers<span class="op">();</span></span>
+<span id="cb309-36"><a href="viewer1.html#cb309-36"></a>  <span class="dt">void</span> standardize<span class="op">();</span></span>
+<span id="cb309-37"><a href="viewer1.html#cb309-37"></a><span class="op">};</span></span>
+<span id="cb309-38"><a href="viewer1.html#cb309-38"></a></span>
+<span id="cb309-39"><a href="viewer1.html#cb309-39"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>Nas linhas 8 a 14 está definida a estrutura <code>Vertex</code> que temos utilizado para descrever os atributos de um vértice. Como nos projetos anteriores, cada vértice só possui um atributo, que é a posição 3D.</p>
+<p>A classe contém as seguintes funções membro:</p>
+<ul>
+<li><p><code>void loadObj(std::string_view path, bool standardize = true)</code>.</p>
+<p>O conteúdo desta função é o mesmo da função <code>loadModelFromFile</code> utilizada nos projetos anteriores para carregar um arquivo OBJ. Dessa vez, incluímos um parâmetro booleano <code>standardize</code> que indica se o modelo deve ter o tamanho normalizado e centralizado na origem após o carregamento. O comportamento padrão é normalizar o objeto.</p></li>
+<li><p><code>void render(int numTriangles = -1) const</code>.</p>
+<p>Esta é a função que deve ser chamada em <code>OpenGLWindow::paintGL</code> para renderizar o objeto. A função aceita um parâmetro <code>numTriangles</code> para indicar quantos triângulos devem ser renderizados. O padrão é <code>-1</code> e significa que todos os triângulos devem ser processados.</p></li>
+<li><p><code>void setupVAO(GLuint program)</code>.</p>
+<p>Esta função deve ser chamada para configurar o VAO do modelo de acordo com o programa de shader atualmente utilizado. O identificador do programa de shader deve ser passado no parâmetro <code>program</code>.</p></li>
+<li><p><code>void terminateGL()</code>.</p>
+<p>Esta função deve ser chamada em <code>OpenGLWindow::terminateGL</code> para liberar os recursos do OpenGL gerenciados pela classe.</p></li>
+<li><p><code>int getNumTriangles() const</code>.</p>
+<p>Esta função retorna o número de triângulos do modelo. Como usamos <code>GL_TRIANGLES</code> com geometria indexada, esse número é o número de índices dividido por 3.</p></li>
+</ul>
+<p>Observe que a classe não contém a matriz de modelo. A matriz de modelo será mantida em <code>OpenGLWindow</code>. Neste visualizador, a classe <code>Model</code> representa apenas o VBO, EBO e VAO do objeto. Vimos no projeto <code>lookat</code> que uma cena 3D pode ter diferentes instâncias de um mesmo objeto, e que cada instância precisa ter sua própria matriz de modelo. Então, é uma boa decisão de projeto manter os dados geométricos originais em uma classe, e manter os dados da instância (matriz de modelo) em outra classe.</p>
+<p>Como nosso visualizador só mostra uma instância do objeto, a escolha de deixar <code>Model</code> sem a matriz de modelo não vai fazer muita diferença. Entretanto, essa classe pode ser reutilizada em outros projetos para compor cenas mais complexas (faremos isso no projeto <code>starfield</code>!). Nesse caso, é recomendável criar uma outra classe ou estrutura só para manter a matriz de modelo e outros dados específicos de cada instância. Se cada instância usar um shader diferente, é recomendável também desacoplar o VAO e deixar apenas o VBO/EBO em <code>Model</code>.</p>
+</div>
+<div id="model.cpp" class="section level3 unnumbered hasAnchor">
+<h3>model.cpp<a href="viewer1.html#model.cpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A definição das funções membro de <code>Model</code> ficará como a seguir:</p>
+<div class="sourceCode" id="cb310" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb310-1"><a href="viewer1.html#cb310-1"></a><span class="pp">#include </span><span class="im">&quot;model.hpp&quot;</span></span>
+<span id="cb310-2"><a href="viewer1.html#cb310-2"></a></span>
+<span id="cb310-3"><a href="viewer1.html#cb310-3"></a><span class="pp">#include </span><span class="im">&lt;fmt/core.h&gt;</span></span>
+<span id="cb310-4"><a href="viewer1.html#cb310-4"></a><span class="pp">#include </span><span class="im">&lt;tiny_obj_loader.h&gt;</span></span>
+<span id="cb310-5"><a href="viewer1.html#cb310-5"></a></span>
+<span id="cb310-6"><a href="viewer1.html#cb310-6"></a><span class="pp">#include </span><span class="im">&lt;cppitertools/itertools.hpp&gt;</span></span>
+<span id="cb310-7"><a href="viewer1.html#cb310-7"></a><span class="pp">#include </span><span class="im">&lt;glm/gtx/hash.hpp&gt;</span></span>
+<span id="cb310-8"><a href="viewer1.html#cb310-8"></a><span class="pp">#include </span><span class="im">&lt;unordered_map&gt;</span></span>
+<span id="cb310-9"><a href="viewer1.html#cb310-9"></a></span>
+<span id="cb310-10"><a href="viewer1.html#cb310-10"></a><span class="co">// Explicit specialization of std::hash for Vertex</span></span>
+<span id="cb310-11"><a href="viewer1.html#cb310-11"></a><span class="kw">namespace</span> std <span class="op">{</span></span>
+<span id="cb310-12"><a href="viewer1.html#cb310-12"></a><span class="kw">template</span> <span class="op">&lt;&gt;</span></span>
+<span id="cb310-13"><a href="viewer1.html#cb310-13"></a><span class="kw">struct</span> hash<span class="op">&lt;</span>Vertex<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb310-14"><a href="viewer1.html#cb310-14"></a>  <span class="dt">size_t</span> <span class="kw">operator</span><span class="op">()(</span>Vertex <span class="at">const</span><span class="op">&amp;</span> vertex<span class="op">)</span> <span class="at">const</span> <span class="kw">noexcept</span> <span class="op">{</span></span>
+<span id="cb310-15"><a href="viewer1.html#cb310-15"></a>    <span class="at">const</span> <span class="bu">std::</span>size_t<span class="op"> </span>h1<span class="op">{</span><span class="bu">std::</span>hash<span class="op">&lt;</span>glm<span class="op">::</span>vec3<span class="op">&gt;()(</span>vertex<span class="op">.</span>position<span class="op">)};</span></span>
+<span id="cb310-16"><a href="viewer1.html#cb310-16"></a>    <span class="cf">return</span> h1<span class="op">;</span></span>
+<span id="cb310-17"><a href="viewer1.html#cb310-17"></a>  <span class="op">}</span></span>
+<span id="cb310-18"><a href="viewer1.html#cb310-18"></a><span class="op">};</span></span>
+<span id="cb310-19"><a href="viewer1.html#cb310-19"></a><span class="op">}</span>  <span class="co">// namespace std</span></span>
+<span id="cb310-20"><a href="viewer1.html#cb310-20"></a></span>
+<span id="cb310-21"><a href="viewer1.html#cb310-21"></a><span class="dt">void</span> Model<span class="op">::</span>createBuffers<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb310-22"><a href="viewer1.html#cb310-22"></a>  <span class="co">// Delete previous buffers</span></span>
+<span id="cb310-23"><a href="viewer1.html#cb310-23"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_EBO</span><span class="op">);</span></span>
+<span id="cb310-24"><a href="viewer1.html#cb310-24"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBO</span><span class="op">);</span></span>
+<span id="cb310-25"><a href="viewer1.html#cb310-25"></a></span>
+<span id="cb310-26"><a href="viewer1.html#cb310-26"></a>  <span class="co">// VBO</span></span>
+<span id="cb310-27"><a href="viewer1.html#cb310-27"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBO</span><span class="op">);</span></span>
+<span id="cb310-28"><a href="viewer1.html#cb310-28"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBO</span><span class="op">);</span></span>
+<span id="cb310-29"><a href="viewer1.html#cb310-29"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="va">m_vertices</span><span class="op">[</span><span class="dv">0</span><span class="op">])</span> <span class="op">*</span> <span class="va">m_vertices</span><span class="op">.</span>size<span class="op">(),</span></span>
+<span id="cb310-30"><a href="viewer1.html#cb310-30"></a>                     <span class="va">m_vertices</span><span class="op">.</span>data<span class="op">(),</span> GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb310-31"><a href="viewer1.html#cb310-31"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb310-32"><a href="viewer1.html#cb310-32"></a></span>
+<span id="cb310-33"><a href="viewer1.html#cb310-33"></a>  <span class="co">// EBO</span></span>
+<span id="cb310-34"><a href="viewer1.html#cb310-34"></a>  abcg<span class="op">::</span>glGenBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_EBO</span><span class="op">);</span></span>
+<span id="cb310-35"><a href="viewer1.html#cb310-35"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ELEMENT_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_EBO</span><span class="op">);</span></span>
+<span id="cb310-36"><a href="viewer1.html#cb310-36"></a>  abcg<span class="op">::</span>glBufferData<span class="op">(</span>GL_ELEMENT_ARRAY_BUFFER<span class="op">,</span></span>
+<span id="cb310-37"><a href="viewer1.html#cb310-37"></a>                     <span class="kw">sizeof</span><span class="op">(</span><span class="va">m_indices</span><span class="op">[</span><span class="dv">0</span><span class="op">])</span> <span class="op">*</span> <span class="va">m_indices</span><span class="op">.</span>size<span class="op">(),</span> <span class="va">m_indices</span><span class="op">.</span>data<span class="op">(),</span></span>
+<span id="cb310-38"><a href="viewer1.html#cb310-38"></a>                     GL_STATIC_DRAW<span class="op">);</span></span>
+<span id="cb310-39"><a href="viewer1.html#cb310-39"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ELEMENT_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb310-40"><a href="viewer1.html#cb310-40"></a><span class="op">}</span></span>
+<span id="cb310-41"><a href="viewer1.html#cb310-41"></a></span>
+<span id="cb310-42"><a href="viewer1.html#cb310-42"></a><span class="dt">void</span> Model<span class="op">::</span>loadObj<span class="op">(</span><span class="bu">std::</span>string_view<span class="op"> </span>path<span class="op">,</span> <span class="dt">bool</span> standardize<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb310-43"><a href="viewer1.html#cb310-43"></a>  tinyobj<span class="op">::</span>ObjReader reader<span class="op">;</span></span>
+<span id="cb310-44"><a href="viewer1.html#cb310-44"></a></span>
+<span id="cb310-45"><a href="viewer1.html#cb310-45"></a>  <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>ParseFromFile<span class="op">(</span>path<span class="op">.</span>data<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb310-46"><a href="viewer1.html#cb310-46"></a>    <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>Error<span class="op">().</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb310-47"><a href="viewer1.html#cb310-47"></a>      <span class="cf">throw</span> abcg<span class="op">::</span>Exception<span class="op">{</span>abcg<span class="op">::</span>Exception<span class="op">::</span>Runtime<span class="op">(</span></span>
+<span id="cb310-48"><a href="viewer1.html#cb310-48"></a>          fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st"> (</span><span class="sc">{}</span><span class="st">)&quot;</span><span class="op">,</span> path<span class="op">,</span> reader<span class="op">.</span>Error<span class="op">()))};</span></span>
+<span id="cb310-49"><a href="viewer1.html#cb310-49"></a>    <span class="op">}</span></span>
+<span id="cb310-50"><a href="viewer1.html#cb310-50"></a>    <span class="cf">throw</span> abcg<span class="op">::</span>Exception<span class="op">{</span></span>
+<span id="cb310-51"><a href="viewer1.html#cb310-51"></a>        abcg<span class="op">::</span>Exception<span class="op">::</span>Runtime<span class="op">(</span>fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st">&quot;</span><span class="op">,</span> path<span class="op">))};</span></span>
+<span id="cb310-52"><a href="viewer1.html#cb310-52"></a>  <span class="op">}</span></span>
+<span id="cb310-53"><a href="viewer1.html#cb310-53"></a></span>
+<span id="cb310-54"><a href="viewer1.html#cb310-54"></a>  <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>Warning<span class="op">().</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb310-55"><a href="viewer1.html#cb310-55"></a>    fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;Warning: </span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> reader<span class="op">.</span>Warning<span class="op">());</span></span>
+<span id="cb310-56"><a href="viewer1.html#cb310-56"></a>  <span class="op">}</span></span>
+<span id="cb310-57"><a href="viewer1.html#cb310-57"></a></span>
+<span id="cb310-58"><a href="viewer1.html#cb310-58"></a>  <span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> attrib<span class="op">{</span>reader<span class="op">.</span>GetAttrib<span class="op">()};</span></span>
+<span id="cb310-59"><a href="viewer1.html#cb310-59"></a>  <span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> shapes<span class="op">{</span>reader<span class="op">.</span>GetShapes<span class="op">()};</span></span>
+<span id="cb310-60"><a href="viewer1.html#cb310-60"></a></span>
+<span id="cb310-61"><a href="viewer1.html#cb310-61"></a>  <span class="va">m_vertices</span><span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb310-62"><a href="viewer1.html#cb310-62"></a>  <span class="va">m_indices</span><span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb310-63"><a href="viewer1.html#cb310-63"></a></span>
+<span id="cb310-64"><a href="viewer1.html#cb310-64"></a>  <span class="co">// A key:value map with key=Vertex and value=index</span></span>
+<span id="cb310-65"><a href="viewer1.html#cb310-65"></a>  <span class="bu">std::</span>unordered_map<span class="op">&lt;</span>Vertex<span class="op">,</span> GLuint<span class="op">&gt;</span> hash<span class="op">{};</span></span>
+<span id="cb310-66"><a href="viewer1.html#cb310-66"></a></span>
+<span id="cb310-67"><a href="viewer1.html#cb310-67"></a>  <span class="co">// Loop over shapes</span></span>
+<span id="cb310-68"><a href="viewer1.html#cb310-68"></a>  <span class="cf">for</span> <span class="op">(</span><span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> shape <span class="op">:</span> shapes<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb310-69"><a href="viewer1.html#cb310-69"></a>    <span class="co">// Loop over indices</span></span>
+<span id="cb310-70"><a href="viewer1.html#cb310-70"></a>    <span class="cf">for</span> <span class="op">(</span><span class="at">const</span> <span class="kw">auto</span> offset <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span>shape<span class="op">.</span>mesh<span class="op">.</span>indices<span class="op">.</span>size<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb310-71"><a href="viewer1.html#cb310-71"></a>      <span class="co">// Access to vertex</span></span>
+<span id="cb310-72"><a href="viewer1.html#cb310-72"></a>      <span class="at">const</span> tinyobj<span class="op">::</span><span class="dt">index_t</span> index<span class="op">{</span>shape<span class="op">.</span>mesh<span class="op">.</span>indices<span class="op">.</span>at<span class="op">(</span>offset<span class="op">)};</span></span>
+<span id="cb310-73"><a href="viewer1.html#cb310-73"></a></span>
+<span id="cb310-74"><a href="viewer1.html#cb310-74"></a>      <span class="co">// Vertex position</span></span>
+<span id="cb310-75"><a href="viewer1.html#cb310-75"></a>      <span class="at">const</span> <span class="dt">int</span> startIndex<span class="op">{</span><span class="dv">3</span> <span class="op">*</span> index<span class="op">.</span>vertex_index<span class="op">};</span></span>
+<span id="cb310-76"><a href="viewer1.html#cb310-76"></a>      <span class="at">const</span> <span class="dt">float</span> vx<span class="op">{</span>attrib<span class="op">.</span>vertices<span class="op">.</span>at<span class="op">(</span>startIndex <span class="op">+</span> <span class="dv">0</span><span class="op">)};</span></span>
+<span id="cb310-77"><a href="viewer1.html#cb310-77"></a>      <span class="at">const</span> <span class="dt">float</span> vy<span class="op">{</span>attrib<span class="op">.</span>vertices<span class="op">.</span>at<span class="op">(</span>startIndex <span class="op">+</span> <span class="dv">1</span><span class="op">)};</span></span>
+<span id="cb310-78"><a href="viewer1.html#cb310-78"></a>      <span class="at">const</span> <span class="dt">float</span> vz<span class="op">{</span>attrib<span class="op">.</span>vertices<span class="op">.</span>at<span class="op">(</span>startIndex <span class="op">+</span> <span class="dv">2</span><span class="op">)};</span></span>
+<span id="cb310-79"><a href="viewer1.html#cb310-79"></a></span>
+<span id="cb310-80"><a href="viewer1.html#cb310-80"></a>      Vertex vertex<span class="op">{};</span></span>
+<span id="cb310-81"><a href="viewer1.html#cb310-81"></a>      vertex<span class="op">.</span>position <span class="op">=</span> <span class="op">{</span>vx<span class="op">,</span> vy<span class="op">,</span> vz<span class="op">};</span></span>
+<span id="cb310-82"><a href="viewer1.html#cb310-82"></a></span>
+<span id="cb310-83"><a href="viewer1.html#cb310-83"></a>      <span class="co">// If hash doesn&#39;t contain this vertex</span></span>
+<span id="cb310-84"><a href="viewer1.html#cb310-84"></a>      <span class="cf">if</span> <span class="op">(</span>hash<span class="op">.</span>count<span class="op">(</span>vertex<span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb310-85"><a href="viewer1.html#cb310-85"></a>        <span class="co">// Add this index (size of m_vertices)</span></span>
+<span id="cb310-86"><a href="viewer1.html#cb310-86"></a>        hash<span class="op">[</span>vertex<span class="op">]</span> <span class="op">=</span> <span class="va">m_vertices</span><span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb310-87"><a href="viewer1.html#cb310-87"></a>        <span class="co">// Add this vertex</span></span>
+<span id="cb310-88"><a href="viewer1.html#cb310-88"></a>        <span class="va">m_vertices</span><span class="op">.</span>push_back<span class="op">(</span>vertex<span class="op">);</span></span>
+<span id="cb310-89"><a href="viewer1.html#cb310-89"></a>      <span class="op">}</span></span>
+<span id="cb310-90"><a href="viewer1.html#cb310-90"></a></span>
+<span id="cb310-91"><a href="viewer1.html#cb310-91"></a>      <span class="va">m_indices</span><span class="op">.</span>push_back<span class="op">(</span>hash<span class="op">[</span>vertex<span class="op">]);</span></span>
+<span id="cb310-92"><a href="viewer1.html#cb310-92"></a>    <span class="op">}</span></span>
+<span id="cb310-93"><a href="viewer1.html#cb310-93"></a>  <span class="op">}</span></span>
+<span id="cb310-94"><a href="viewer1.html#cb310-94"></a></span>
+<span id="cb310-95"><a href="viewer1.html#cb310-95"></a>  <span class="cf">if</span> <span class="op">(</span>standardize<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb310-96"><a href="viewer1.html#cb310-96"></a>    <span class="kw">this</span><span class="op">-&gt;</span>standardize<span class="op">();</span></span>
+<span id="cb310-97"><a href="viewer1.html#cb310-97"></a>  <span class="op">}</span></span>
+<span id="cb310-98"><a href="viewer1.html#cb310-98"></a></span>
+<span id="cb310-99"><a href="viewer1.html#cb310-99"></a>  createBuffers<span class="op">();</span></span>
+<span id="cb310-100"><a href="viewer1.html#cb310-100"></a><span class="op">}</span></span>
+<span id="cb310-101"><a href="viewer1.html#cb310-101"></a></span>
+<span id="cb310-102"><a href="viewer1.html#cb310-102"></a><span class="dt">void</span> Model<span class="op">::</span>render<span class="op">(</span><span class="dt">int</span> numTriangles<span class="op">)</span> <span class="at">const</span> <span class="op">{</span></span>
+<span id="cb310-103"><a href="viewer1.html#cb310-103"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb310-104"><a href="viewer1.html#cb310-104"></a></span>
+<span id="cb310-105"><a href="viewer1.html#cb310-105"></a>  <span class="at">const</span> <span class="kw">auto</span> numIndices<span class="op">{(</span>numTriangles <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">?</span> <span class="va">m_indices</span><span class="op">.</span>size<span class="op">()</span></span>
+<span id="cb310-106"><a href="viewer1.html#cb310-106"></a>                                           <span class="op">:</span> numTriangles <span class="op">*</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb310-107"><a href="viewer1.html#cb310-107"></a></span>
+<span id="cb310-108"><a href="viewer1.html#cb310-108"></a>  abcg<span class="op">::</span>glDrawElements<span class="op">(</span>GL_TRIANGLES<span class="op">,</span> <span class="kw">static_cast</span><span class="op">&lt;</span>GLsizei<span class="op">&gt;(</span>numIndices<span class="op">),</span></span>
+<span id="cb310-109"><a href="viewer1.html#cb310-109"></a>                       GL_UNSIGNED_INT<span class="op">,</span> <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb310-110"><a href="viewer1.html#cb310-110"></a></span>
+<span id="cb310-111"><a href="viewer1.html#cb310-111"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb310-112"><a href="viewer1.html#cb310-112"></a><span class="op">}</span></span>
+<span id="cb310-113"><a href="viewer1.html#cb310-113"></a></span>
+<span id="cb310-114"><a href="viewer1.html#cb310-114"></a><span class="dt">void</span> Model<span class="op">::</span>setupVAO<span class="op">(</span>GLuint program<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb310-115"><a href="viewer1.html#cb310-115"></a>  <span class="co">// Release previous VAO</span></span>
+<span id="cb310-116"><a href="viewer1.html#cb310-116"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb310-117"><a href="viewer1.html#cb310-117"></a></span>
+<span id="cb310-118"><a href="viewer1.html#cb310-118"></a>  <span class="co">// Create VAO</span></span>
+<span id="cb310-119"><a href="viewer1.html#cb310-119"></a>  abcg<span class="op">::</span>glGenVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb310-120"><a href="viewer1.html#cb310-120"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb310-121"><a href="viewer1.html#cb310-121"></a></span>
+<span id="cb310-122"><a href="viewer1.html#cb310-122"></a>  <span class="co">// Bind EBO and VBO</span></span>
+<span id="cb310-123"><a href="viewer1.html#cb310-123"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ELEMENT_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_EBO</span><span class="op">);</span></span>
+<span id="cb310-124"><a href="viewer1.html#cb310-124"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="va">m_VBO</span><span class="op">);</span></span>
+<span id="cb310-125"><a href="viewer1.html#cb310-125"></a></span>
+<span id="cb310-126"><a href="viewer1.html#cb310-126"></a>  <span class="co">// Bind vertex attributes</span></span>
+<span id="cb310-127"><a href="viewer1.html#cb310-127"></a>  <span class="at">const</span> GLint positionAttribute<span class="op">{</span></span>
+<span id="cb310-128"><a href="viewer1.html#cb310-128"></a>      abcg<span class="op">::</span>glGetAttribLocation<span class="op">(</span>program<span class="op">,</span> <span class="st">&quot;inPosition&quot;</span><span class="op">)};</span></span>
+<span id="cb310-129"><a href="viewer1.html#cb310-129"></a>  <span class="cf">if</span> <span class="op">(</span>positionAttribute <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb310-130"><a href="viewer1.html#cb310-130"></a>    abcg<span class="op">::</span>glEnableVertexAttribArray<span class="op">(</span>positionAttribute<span class="op">);</span></span>
+<span id="cb310-131"><a href="viewer1.html#cb310-131"></a>    abcg<span class="op">::</span>glVertexAttribPointer<span class="op">(</span>positionAttribute<span class="op">,</span> <span class="dv">3</span><span class="op">,</span> GL_FLOAT<span class="op">,</span> GL_FALSE<span class="op">,</span></span>
+<span id="cb310-132"><a href="viewer1.html#cb310-132"></a>                                <span class="kw">sizeof</span><span class="op">(</span>Vertex<span class="op">),</span> <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb310-133"><a href="viewer1.html#cb310-133"></a>  <span class="op">}</span></span>
+<span id="cb310-134"><a href="viewer1.html#cb310-134"></a></span>
+<span id="cb310-135"><a href="viewer1.html#cb310-135"></a>  <span class="co">// End of binding</span></span>
+<span id="cb310-136"><a href="viewer1.html#cb310-136"></a>  abcg<span class="op">::</span>glBindBuffer<span class="op">(</span>GL_ARRAY_BUFFER<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb310-137"><a href="viewer1.html#cb310-137"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb310-138"><a href="viewer1.html#cb310-138"></a><span class="op">}</span></span>
+<span id="cb310-139"><a href="viewer1.html#cb310-139"></a></span>
+<span id="cb310-140"><a href="viewer1.html#cb310-140"></a><span class="dt">void</span> Model<span class="op">::</span>standardize<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb310-141"><a href="viewer1.html#cb310-141"></a>  <span class="co">// Center to origin and normalize largest bound to [-1, 1]</span></span>
+<span id="cb310-142"><a href="viewer1.html#cb310-142"></a></span>
+<span id="cb310-143"><a href="viewer1.html#cb310-143"></a>  <span class="co">// Get bounds</span></span>
+<span id="cb310-144"><a href="viewer1.html#cb310-144"></a>  glm<span class="op">::</span>vec3 max<span class="op">(</span><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;::</span>lowest<span class="op">());</span></span>
+<span id="cb310-145"><a href="viewer1.html#cb310-145"></a>  glm<span class="op">::</span>vec3 min<span class="op">(</span><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;::</span>max<span class="op">());</span></span>
+<span id="cb310-146"><a href="viewer1.html#cb310-146"></a>  <span class="cf">for</span> <span class="op">(</span><span class="at">const</span> <span class="kw">auto</span><span class="op">&amp;</span> vertex <span class="op">:</span> <span class="va">m_vertices</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb310-147"><a href="viewer1.html#cb310-147"></a>    max<span class="op">.</span>x <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>max<span class="op">.</span>x<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>x<span class="op">);</span></span>
+<span id="cb310-148"><a href="viewer1.html#cb310-148"></a>    max<span class="op">.</span>y <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>max<span class="op">.</span>y<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb310-149"><a href="viewer1.html#cb310-149"></a>    max<span class="op">.</span>z <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>max<span class="op">.</span>z<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>z<span class="op">);</span></span>
+<span id="cb310-150"><a href="viewer1.html#cb310-150"></a>    min<span class="op">.</span>x <span class="op">=</span> <span class="bu">std::</span>min<span class="op">(</span>min<span class="op">.</span>x<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>x<span class="op">);</span></span>
+<span id="cb310-151"><a href="viewer1.html#cb310-151"></a>    min<span class="op">.</span>y <span class="op">=</span> <span class="bu">std::</span>min<span class="op">(</span>min<span class="op">.</span>y<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb310-152"><a href="viewer1.html#cb310-152"></a>    min<span class="op">.</span>z <span class="op">=</span> <span class="bu">std::</span>min<span class="op">(</span>min<span class="op">.</span>z<span class="op">,</span> vertex<span class="op">.</span>position<span class="op">.</span>z<span class="op">);</span></span>
+<span id="cb310-153"><a href="viewer1.html#cb310-153"></a>  <span class="op">}</span></span>
+<span id="cb310-154"><a href="viewer1.html#cb310-154"></a></span>
+<span id="cb310-155"><a href="viewer1.html#cb310-155"></a>  <span class="co">// Center and scale</span></span>
+<span id="cb310-156"><a href="viewer1.html#cb310-156"></a>  <span class="at">const</span> <span class="kw">auto</span> center<span class="op">{(</span>min <span class="op">+</span> max<span class="op">)</span> <span class="op">/</span> <span class="fl">2.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb310-157"><a href="viewer1.html#cb310-157"></a>  <span class="at">const</span> <span class="kw">auto</span> scaling<span class="op">{</span><span class="fl">2.0</span><span class="bu">f</span> <span class="op">/</span> glm<span class="op">::</span>length<span class="op">(</span>max <span class="op">-</span> min<span class="op">)};</span></span>
+<span id="cb310-158"><a href="viewer1.html#cb310-158"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span><span class="op">&amp;</span> vertex <span class="op">:</span> <span class="va">m_vertices</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb310-159"><a href="viewer1.html#cb310-159"></a>    vertex<span class="op">.</span>position <span class="op">=</span> <span class="op">(</span>vertex<span class="op">.</span>position <span class="op">-</span> center<span class="op">)</span> <span class="op">*</span> scaling<span class="op">;</span></span>
+<span id="cb310-160"><a href="viewer1.html#cb310-160"></a>  <span class="op">}</span></span>
+<span id="cb310-161"><a href="viewer1.html#cb310-161"></a><span class="op">}</span></span>
+<span id="cb310-162"><a href="viewer1.html#cb310-162"></a></span>
+<span id="cb310-163"><a href="viewer1.html#cb310-163"></a><span class="dt">void</span> Model<span class="op">::</span>terminateGL<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb310-164"><a href="viewer1.html#cb310-164"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_EBO</span><span class="op">);</span></span>
+<span id="cb310-165"><a href="viewer1.html#cb310-165"></a>  abcg<span class="op">::</span>glDeleteBuffers<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VBO</span><span class="op">);</span></span>
+<span id="cb310-166"><a href="viewer1.html#cb310-166"></a>  abcg<span class="op">::</span>glDeleteVertexArrays<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb310-167"><a href="viewer1.html#cb310-167"></a><span class="op">}</span></span></code></pre></div>
+<p>Não há nada de realmente novo na definição das funções de <code>Model</code>. O código foi quase todo reaproveitado dos projetos <code>loadmodel</code> e <code>lookat</code>.</p>
+</div>
+<div id="trackball.hpp" class="section level3 unnumbered hasAnchor">
+<h3>trackball.hpp<a href="viewer1.html#trackball.hpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Essa é a classe que implementa o trackball virtual:</p>
+<div class="sourceCode" id="cb311" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb311-1"><a href="viewer1.html#cb311-1"></a><span class="pp">#ifndef TRACKBALL_HPP_</span></span>
+<span id="cb311-2"><a href="viewer1.html#cb311-2"></a><span class="pp">#define TRACKBALL_HPP_</span></span>
+<span id="cb311-3"><a href="viewer1.html#cb311-3"></a></span>
+<span id="cb311-4"><a href="viewer1.html#cb311-4"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
+<span id="cb311-5"><a href="viewer1.html#cb311-5"></a></span>
+<span id="cb311-6"><a href="viewer1.html#cb311-6"></a><span class="kw">class</span> TrackBall <span class="op">{</span></span>
+<span id="cb311-7"><a href="viewer1.html#cb311-7"></a> <span class="kw">public</span><span class="op">:</span></span>
+<span id="cb311-8"><a href="viewer1.html#cb311-8"></a>  <span class="dt">void</span> mouseMove<span class="op">(</span><span class="at">const</span> glm<span class="op">::</span>ivec2<span class="op">&amp;</span> mousePosition<span class="op">);</span></span>
+<span id="cb311-9"><a href="viewer1.html#cb311-9"></a>  <span class="dt">void</span> mousePress<span class="op">(</span><span class="at">const</span> glm<span class="op">::</span>ivec2<span class="op">&amp;</span> mousePosition<span class="op">);</span></span>
+<span id="cb311-10"><a href="viewer1.html#cb311-10"></a>  <span class="dt">void</span> mouseRelease<span class="op">(</span><span class="at">const</span> glm<span class="op">::</span>ivec2<span class="op">&amp;</span> mousePosition<span class="op">);</span></span>
+<span id="cb311-11"><a href="viewer1.html#cb311-11"></a>  <span class="dt">void</span> resizeViewport<span class="op">(</span><span class="dt">int</span> width<span class="op">,</span> <span class="dt">int</span> height<span class="op">);</span></span>
+<span id="cb311-12"><a href="viewer1.html#cb311-12"></a></span>
+<span id="cb311-13"><a href="viewer1.html#cb311-13"></a>  <span class="op">[[</span><span class="at">nodiscard</span><span class="op">]]</span> glm<span class="op">::</span>mat4 getRotation<span class="op">();</span></span>
+<span id="cb311-14"><a href="viewer1.html#cb311-14"></a></span>
+<span id="cb311-15"><a href="viewer1.html#cb311-15"></a> <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb311-16"><a href="viewer1.html#cb311-16"></a>  <span class="at">const</span> <span class="dt">float</span> <span class="va">m_maxVelocity</span><span class="op">{</span>glm<span class="op">::</span>radians<span class="op">(</span><span class="fl">720.0</span><span class="bu">f</span> <span class="op">/</span> <span class="fl">1000.0</span><span class="bu">f</span><span class="op">)};</span></span>
+<span id="cb311-17"><a href="viewer1.html#cb311-17"></a></span>
+<span id="cb311-18"><a href="viewer1.html#cb311-18"></a>  glm<span class="op">::</span>vec3 <span class="va">m_axis</span><span class="op">{</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb311-19"><a href="viewer1.html#cb311-19"></a>  <span class="dt">float</span> <span class="va">m_velocity</span><span class="op">{};</span></span>
+<span id="cb311-20"><a href="viewer1.html#cb311-20"></a>  glm<span class="op">::</span>mat4 <span class="va">m_rotation</span><span class="op">{</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb311-21"><a href="viewer1.html#cb311-21"></a></span>
+<span id="cb311-22"><a href="viewer1.html#cb311-22"></a>  glm<span class="op">::</span>vec3 <span class="va">m_lastPosition</span><span class="op">{};</span></span>
+<span id="cb311-23"><a href="viewer1.html#cb311-23"></a>  abcg<span class="op">::</span>ElapsedTimer <span class="va">m_lastTime</span><span class="op">{};</span></span>
+<span id="cb311-24"><a href="viewer1.html#cb311-24"></a>  <span class="dt">bool</span> <span class="va">m_mouseTracking</span><span class="op">{};</span></span>
+<span id="cb311-25"><a href="viewer1.html#cb311-25"></a></span>
+<span id="cb311-26"><a href="viewer1.html#cb311-26"></a>  <span class="dt">float</span> <span class="va">m_viewportWidth</span><span class="op">{};</span></span>
+<span id="cb311-27"><a href="viewer1.html#cb311-27"></a>  <span class="dt">float</span> <span class="va">m_viewportHeight</span><span class="op">{};</span></span>
+<span id="cb311-28"><a href="viewer1.html#cb311-28"></a></span>
+<span id="cb311-29"><a href="viewer1.html#cb311-29"></a>  <span class="op">[[</span><span class="at">nodiscard</span><span class="op">]]</span> glm<span class="op">::</span>vec3 project<span class="op">(</span><span class="at">const</span> glm<span class="op">::</span>vec2<span class="op">&amp;</span> mousePosition<span class="op">)</span> <span class="at">const</span><span class="op">;</span></span>
+<span id="cb311-30"><a href="viewer1.html#cb311-30"></a><span class="op">};</span></span>
+<span id="cb311-31"><a href="viewer1.html#cb311-31"></a></span>
+<span id="cb311-32"><a href="viewer1.html#cb311-32"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>A classe contém as seguintes funções membro:</p>
+<ul>
+<li><p><code>void mouseMove(const glm::ivec2&amp; mousePosition)</code>.</p>
+<p><code>void mousePress(const glm::ivec2&amp; mousePosition)</code>.</p>
+<p><code>void mouseRelease(const glm::ivec2&amp; mousePosition)</code>.</p>
+<p>Essas são as funções que devem ser chamadas em <code>OpenGLWindow::handleEvent</code> sempre que ocorrer um evento de movimentação do mouse, pressionamento ou liberação do botão (usaremos o botão esquerdo). A posição do mouse em coordenadas do espaço da janela deve ser passada como parâmetro.</p></li>
+<li><p><code>void resizeViewport(int width, int height)</code>.</p>
+<p>Esta função deve ser chamada sempre o tamanho do viewport for modificado. O tamanho do viewport é necessário para que possamos fazer a conversão das coordenadas de um ponto no espaço da janela para coordenadas no intervalo <span class="math inline">\([-1,1]\)</span> e assim fazer a projeção sobre o trackball virtual.</p></li>
+<li><p><code>glm::mat4 getRotation()</code>.</p>
+<p>Esta é a função que retorna a atual matriz de rotação do trackball. Podemos utilizar a matriz diretamente como matriz de modelo do objeto que está sendo manipulado.</p></li>
+<li><p><code>glm::vec3 project(const glm::vec2&amp; mousePosition) const</code>.</p>
+<p>Esta função recebe uma posição do mouse no espaço da janela e retorna a posição 3D correspondente sobre o trackball. É utilizada internamente para atualizar a posição do cursor sobre o hemisfério sempre que o mouse se mover (<code>TrackBall::mouseMove</code>) ou quando um botão for pressionado (<code>TrackBall::mousePress</code>).</p></li>
+</ul>
+<p>As variáveis membro da classe são as seguintes:</p>
+<ul>
+<li><p><code>glm::vec3 m_axis</code>: atual eixo de rotação.</p></li>
+<li><p><code>glm::mat4 m_rotation</code>: atual matriz de rotação.</p></li>
+<li><p><code>glm::vec3 m_lastPosition</code>: corresponde à posição projetada do ponto <span class="math inline">\(P_1\)</span> visto na seção <a href="vtrackball1.html#vtrackball1">8.3</a>. Essa posição é utilizada com a posição <span class="math inline">\(P_2\)</span> do evento mais recente do mouse de modo a calcular os dois vetores necessários para gerar o vetor <code>m_axis</code>.</p></li>
+<li><p><code>abcg::ElapsedTimer m_lastTime</code>: é um temporizador que mede o tempo entre <span class="math inline">\(P_1\)</span> e <span class="math inline">\(P_2\)</span>, isto é, o tempo entre os últimos dois eventos do mouse.</p></li>
+<li><p><code>float m_velocity</code>: velocidade de rotação, em radianos por segundo. É o ângulo de rotação, mas multiplicado por <code>m_lastTime</code>.</p>
+<p>Sempre que o usuário soltar o botão do mouse, o objeto continuará sendo rodado por <code>m_velocity</code>, simulando um objeto sem inércia rotacional. A velocidade será zero somente se o usuário soltar o botão com o mouse parado, pois assim <span class="math inline">\(P_1=P_2\)</span> e o ângulo de rotação será zero. Caso contrário, a velocidade será proporcional à velocidade de arrasto no momento da liberação do botão.</p></li>
+<li><p><code>bool m_mouseTracking</code>: é <code>true</code> se o usuário está segurando o botão do mouse, e <code>false</code> caso contrário.</p></li>
+<li><p><code>float m_viewportWidth</code> e <code>float m_viewportHeight</code> são as dimensões do viewport informadas em <code>TrackBall::resizeViewport</code>.</p></li>
+</ul>
+</div>
+<div id="trackball.cpp" class="section level3 unnumbered hasAnchor">
+<h3>trackball.cpp<a href="viewer1.html#trackball.cpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A definição das funções membro de <code>TrackBall</code> ficará como a seguir:</p>
+<div class="sourceCode" id="cb312" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb312-1"><a href="viewer1.html#cb312-1"></a><span class="pp">#include </span><span class="im">&quot;trackball.hpp&quot;</span></span>
+<span id="cb312-2"><a href="viewer1.html#cb312-2"></a></span>
+<span id="cb312-3"><a href="viewer1.html#cb312-3"></a><span class="pp">#include </span><span class="im">&lt;glm/gtc/epsilon.hpp&gt;</span></span>
+<span id="cb312-4"><a href="viewer1.html#cb312-4"></a><span class="pp">#include </span><span class="im">&lt;limits&gt;</span></span>
+<span id="cb312-5"><a href="viewer1.html#cb312-5"></a></span>
+<span id="cb312-6"><a href="viewer1.html#cb312-6"></a><span class="at">const</span> <span class="kw">auto</span> epsilon<span class="op">{</span><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;::</span>epsilon<span class="op">()};</span></span>
+<span id="cb312-7"><a href="viewer1.html#cb312-7"></a></span>
+<span id="cb312-8"><a href="viewer1.html#cb312-8"></a><span class="dt">void</span> TrackBall<span class="op">::</span>mouseMove<span class="op">(</span><span class="at">const</span> glm<span class="op">::</span>ivec2 <span class="op">&amp;</span>position<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb312-9"><a href="viewer1.html#cb312-9"></a>  <span class="cf">if</span> <span class="op">(!</span><span class="va">m_mouseTracking</span><span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb312-10"><a href="viewer1.html#cb312-10"></a></span>
+<span id="cb312-11"><a href="viewer1.html#cb312-11"></a>  <span class="at">const</span> <span class="kw">auto</span> msecs<span class="op">{</span><span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;(</span><span class="va">m_lastTime</span><span class="op">.</span>restart<span class="op">())</span> <span class="op">*</span> <span class="fl">1000.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb312-12"><a href="viewer1.html#cb312-12"></a></span>
+<span id="cb312-13"><a href="viewer1.html#cb312-13"></a>  <span class="co">// Return if mouse cursor hasn&#39;t moved wrt last position</span></span>
+<span id="cb312-14"><a href="viewer1.html#cb312-14"></a>  <span class="at">const</span> <span class="kw">auto</span> currentPosition<span class="op">{</span>project<span class="op">(</span>position<span class="op">)};</span></span>
+<span id="cb312-15"><a href="viewer1.html#cb312-15"></a>  <span class="cf">if</span> <span class="op">(</span>glm<span class="op">::</span>all<span class="op">(</span>glm<span class="op">::</span>epsilonEqual<span class="op">(</span><span class="va">m_lastPosition</span><span class="op">,</span> currentPosition<span class="op">,</span> epsilon<span class="op">)))</span></span>
+<span id="cb312-16"><a href="viewer1.html#cb312-16"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb312-17"><a href="viewer1.html#cb312-17"></a></span>
+<span id="cb312-18"><a href="viewer1.html#cb312-18"></a>  <span class="co">// Rotation axis</span></span>
+<span id="cb312-19"><a href="viewer1.html#cb312-19"></a>  <span class="va">m_axis</span> <span class="op">=</span> glm<span class="op">::</span>cross<span class="op">(</span><span class="va">m_lastPosition</span><span class="op">,</span> currentPosition<span class="op">);</span></span>
+<span id="cb312-20"><a href="viewer1.html#cb312-20"></a></span>
+<span id="cb312-21"><a href="viewer1.html#cb312-21"></a>  <span class="co">// Rotation angle</span></span>
+<span id="cb312-22"><a href="viewer1.html#cb312-22"></a>  <span class="at">const</span> <span class="kw">auto</span> angle<span class="op">{</span>glm<span class="op">::</span>length<span class="op">(</span><span class="va">m_axis</span><span class="op">)};</span></span>
+<span id="cb312-23"><a href="viewer1.html#cb312-23"></a></span>
+<span id="cb312-24"><a href="viewer1.html#cb312-24"></a>  <span class="va">m_axis</span> <span class="op">=</span> glm<span class="op">::</span>normalize<span class="op">(</span><span class="va">m_axis</span><span class="op">);</span></span>
+<span id="cb312-25"><a href="viewer1.html#cb312-25"></a></span>
+<span id="cb312-26"><a href="viewer1.html#cb312-26"></a>  <span class="co">// Compute an angle velocity that will be used as a constant rotation angle</span></span>
+<span id="cb312-27"><a href="viewer1.html#cb312-27"></a>  <span class="co">// when the mouse is not being tracked.</span></span>
+<span id="cb312-28"><a href="viewer1.html#cb312-28"></a>  <span class="va">m_velocity</span> <span class="op">=</span> angle <span class="op">/</span> <span class="op">(</span>msecs <span class="op">+</span> epsilon<span class="op">);</span></span>
+<span id="cb312-29"><a href="viewer1.html#cb312-29"></a>  <span class="va">m_velocity</span> <span class="op">=</span> glm<span class="op">::</span>clamp<span class="op">(</span><span class="va">m_velocity</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="va">m_maxVelocity</span><span class="op">);</span></span>
+<span id="cb312-30"><a href="viewer1.html#cb312-30"></a></span>
+<span id="cb312-31"><a href="viewer1.html#cb312-31"></a>  <span class="co">// Concatenate the rotation: R_old = R_new * R_old</span></span>
+<span id="cb312-32"><a href="viewer1.html#cb312-32"></a>  <span class="va">m_rotation</span> <span class="op">=</span> glm<span class="op">::</span>rotate<span class="op">(</span>glm<span class="op">::</span>mat4<span class="op">(</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">),</span> angle<span class="op">,</span> <span class="va">m_axis</span><span class="op">)</span> <span class="op">*</span> <span class="va">m_rotation</span><span class="op">;</span></span>
+<span id="cb312-33"><a href="viewer1.html#cb312-33"></a></span>
+<span id="cb312-34"><a href="viewer1.html#cb312-34"></a>  <span class="va">m_lastPosition</span> <span class="op">=</span> currentPosition<span class="op">;</span></span>
+<span id="cb312-35"><a href="viewer1.html#cb312-35"></a><span class="op">}</span></span>
+<span id="cb312-36"><a href="viewer1.html#cb312-36"></a></span>
+<span id="cb312-37"><a href="viewer1.html#cb312-37"></a><span class="dt">void</span> TrackBall<span class="op">::</span>mousePress<span class="op">(</span><span class="at">const</span> glm<span class="op">::</span>ivec2 <span class="op">&amp;</span>position<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb312-38"><a href="viewer1.html#cb312-38"></a>  <span class="va">m_rotation</span> <span class="op">=</span> getRotation<span class="op">();</span></span>
+<span id="cb312-39"><a href="viewer1.html#cb312-39"></a>  <span class="va">m_mouseTracking</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb312-40"><a href="viewer1.html#cb312-40"></a></span>
+<span id="cb312-41"><a href="viewer1.html#cb312-41"></a>  <span class="va">m_lastTime</span><span class="op">.</span>restart<span class="op">();</span></span>
+<span id="cb312-42"><a href="viewer1.html#cb312-42"></a></span>
+<span id="cb312-43"><a href="viewer1.html#cb312-43"></a>  <span class="va">m_lastPosition</span> <span class="op">=</span> project<span class="op">(</span>position<span class="op">);</span></span>
+<span id="cb312-44"><a href="viewer1.html#cb312-44"></a></span>
+<span id="cb312-45"><a href="viewer1.html#cb312-45"></a>  <span class="va">m_velocity</span> <span class="op">=</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb312-46"><a href="viewer1.html#cb312-46"></a><span class="op">}</span></span>
+<span id="cb312-47"><a href="viewer1.html#cb312-47"></a></span>
+<span id="cb312-48"><a href="viewer1.html#cb312-48"></a><span class="dt">void</span> TrackBall<span class="op">::</span>mouseRelease<span class="op">(</span><span class="at">const</span> glm<span class="op">::</span>ivec2 <span class="op">&amp;</span>position<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb312-49"><a href="viewer1.html#cb312-49"></a>  mouseMove<span class="op">(</span>position<span class="op">);</span></span>
+<span id="cb312-50"><a href="viewer1.html#cb312-50"></a>  <span class="va">m_mouseTracking</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb312-51"><a href="viewer1.html#cb312-51"></a><span class="op">}</span></span>
+<span id="cb312-52"><a href="viewer1.html#cb312-52"></a></span>
+<span id="cb312-53"><a href="viewer1.html#cb312-53"></a><span class="dt">void</span> TrackBall<span class="op">::</span>resizeViewport<span class="op">(</span><span class="dt">int</span> width<span class="op">,</span> <span class="dt">int</span> height<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb312-54"><a href="viewer1.html#cb312-54"></a>  <span class="va">m_viewportWidth</span> <span class="op">=</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;(</span>width<span class="op">);</span></span>
+<span id="cb312-55"><a href="viewer1.html#cb312-55"></a>  <span class="va">m_viewportHeight</span> <span class="op">=</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;(</span>height<span class="op">);</span></span>
+<span id="cb312-56"><a href="viewer1.html#cb312-56"></a><span class="op">}</span></span>
+<span id="cb312-57"><a href="viewer1.html#cb312-57"></a></span>
+<span id="cb312-58"><a href="viewer1.html#cb312-58"></a>glm<span class="op">::</span>mat4 TrackBall<span class="op">::</span>getRotation<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb312-59"><a href="viewer1.html#cb312-59"></a>  <span class="cf">if</span> <span class="op">(</span><span class="va">m_mouseTracking</span><span class="op">)</span> <span class="cf">return</span> <span class="va">m_rotation</span><span class="op">;</span></span>
+<span id="cb312-60"><a href="viewer1.html#cb312-60"></a></span>
+<span id="cb312-61"><a href="viewer1.html#cb312-61"></a>  <span class="co">// If not tracking, rotate by velocity. This will simulate</span></span>
+<span id="cb312-62"><a href="viewer1.html#cb312-62"></a>  <span class="co">// an inertia-free rotation.</span></span>
+<span id="cb312-63"><a href="viewer1.html#cb312-63"></a>  <span class="at">const</span> <span class="kw">auto</span> angle<span class="op">{</span><span class="va">m_velocity</span> <span class="op">*</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;(</span><span class="va">m_lastTime</span><span class="op">.</span>elapsed<span class="op">())</span> <span class="op">*</span></span>
+<span id="cb312-64"><a href="viewer1.html#cb312-64"></a>                   <span class="fl">1000.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb312-65"><a href="viewer1.html#cb312-65"></a></span>
+<span id="cb312-66"><a href="viewer1.html#cb312-66"></a>  <span class="cf">return</span> glm<span class="op">::</span>rotate<span class="op">(</span>glm<span class="op">::</span>mat4<span class="op">(</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">),</span> angle<span class="op">,</span> <span class="va">m_axis</span><span class="op">)</span> <span class="op">*</span> <span class="va">m_rotation</span><span class="op">;</span></span>
+<span id="cb312-67"><a href="viewer1.html#cb312-67"></a><span class="op">}</span></span>
+<span id="cb312-68"><a href="viewer1.html#cb312-68"></a></span>
+<span id="cb312-69"><a href="viewer1.html#cb312-69"></a>glm<span class="op">::</span>vec3 TrackBall<span class="op">::</span>project<span class="op">(</span><span class="at">const</span> glm<span class="op">::</span>vec2 <span class="op">&amp;</span>position<span class="op">)</span> <span class="at">const</span> <span class="op">{</span></span>
+<span id="cb312-70"><a href="viewer1.html#cb312-70"></a>  <span class="co">// Convert from window coordinates to NDC</span></span>
+<span id="cb312-71"><a href="viewer1.html#cb312-71"></a>  <span class="kw">auto</span> v<span class="op">{</span>glm<span class="op">::</span>vec3<span class="op">(</span><span class="fl">2.0</span><span class="bu">f</span> <span class="op">*</span> position<span class="op">.</span>x <span class="op">/</span> <span class="va">m_viewportWidth</span> <span class="op">-</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span></span>
+<span id="cb312-72"><a href="viewer1.html#cb312-72"></a>                   <span class="fl">1.0</span><span class="bu">f</span> <span class="op">-</span> <span class="fl">2.0</span><span class="bu">f</span> <span class="op">*</span> position<span class="op">.</span>y <span class="op">/</span> <span class="va">m_viewportHeight</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">)};</span></span>
+<span id="cb312-73"><a href="viewer1.html#cb312-73"></a></span>
+<span id="cb312-74"><a href="viewer1.html#cb312-74"></a>  <span class="co">// Project to centered unit hemisphere</span></span>
+<span id="cb312-75"><a href="viewer1.html#cb312-75"></a>  <span class="at">const</span> <span class="kw">auto</span> squaredLength<span class="op">{</span>glm<span class="op">::</span>length2<span class="op">(</span>v<span class="op">)};</span></span>
+<span id="cb312-76"><a href="viewer1.html#cb312-76"></a>  <span class="cf">if</span> <span class="op">(</span>squaredLength <span class="op">&gt;=</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb312-77"><a href="viewer1.html#cb312-77"></a>    <span class="co">// Outside sphere</span></span>
+<span id="cb312-78"><a href="viewer1.html#cb312-78"></a>    v <span class="op">=</span> glm<span class="op">::</span>normalize<span class="op">(</span>v<span class="op">);</span></span>
+<span id="cb312-79"><a href="viewer1.html#cb312-79"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb312-80"><a href="viewer1.html#cb312-80"></a>    <span class="co">// Inside sphere</span></span>
+<span id="cb312-81"><a href="viewer1.html#cb312-81"></a>    v<span class="op">.</span>z <span class="op">=</span> <span class="bu">std::</span>sqrt<span class="op">(</span><span class="fl">1.0</span><span class="bu">f</span> <span class="op">-</span> squaredLength<span class="op">);</span></span>
+<span id="cb312-82"><a href="viewer1.html#cb312-82"></a>  <span class="op">}</span></span>
+<span id="cb312-83"><a href="viewer1.html#cb312-83"></a></span>
+<span id="cb312-84"><a href="viewer1.html#cb312-84"></a>  <span class="cf">return</span> v<span class="op">;</span></span>
+<span id="cb312-85"><a href="viewer1.html#cb312-85"></a><span class="op">}</span></span></code></pre></div>
+<p>A implementação segue a abordagem descrita na seção <a href="vtrackball1.html#vtrackball1">8.3</a>.</p>
+<p>É interessante observar como é atualizada a matriz de rotação durante o arrasto do mouse, neste trecho de <code>TrackBall::mouseMove</code>:</p>
+<div class="sourceCode" id="cb313" startFrom="31"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 30;"><span id="cb313-31"><a href="viewer1.html#cb313-31"></a><span class="co">// Concatenate the rotation: R_old = R_new * R_old</span></span>
+<span id="cb313-32"><a href="viewer1.html#cb313-32"></a><span class="va">m_rotation</span> <span class="op">=</span> glm<span class="op">::</span>rotate<span class="op">(</span>glm<span class="op">::</span>mat4<span class="op">(</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">),</span> angle<span class="op">,</span> <span class="va">m_axis</span><span class="op">)</span> <span class="op">*</span> <span class="va">m_rotation</span><span class="op">;</span></span></code></pre></div>
+<p>A cada evento de movimentação do mouse, a matriz de rotação (<code>m_rotation</code>) torna-se uma composição da rotação mais recente (<code>glm::rotate</code>) com as rotações anteriores (<code>m_rotation</code>). Assim, <code>m_rotation</code> é uma concatenação</p>
+<p><span class="math display">\[
+\mathbf{R}=\mathbf{R}_k\dots\mathbf{R}_3\mathbf{R}_2\mathbf{R}_1,
+\]</span></p>
+<p>onde <span class="math inline">\(\mathbf{R}_1\)</span> é a matriz que representa a rotação em torno do eixo gerado a partir do ponto <span class="math inline">\(P_1\)</span>, quando o usuário pressionou o botão do mouse pela primeira vez, e o ponto <span class="math inline">\(P_2\)</span>, do primeiro evento de movimentação do mouse. A matriz <span class="math inline">\(\mathbf{R}_2\)</span> representa a rotação em torno do eixo gerado a partir do ponto <span class="math inline">\(P_2\)</span> e o ponto <span class="math inline">\(P_3\)</span> do segundo evento de movimentação do mouse. Isso é repetido continuamente, até <span class="math inline">\(\mathbf{R}_k\)</span>, que representa a rotação em torno do eixo gerado pelas duas últimas posições do mouse.</p>
+<p>Quando o botão do mouse é liberado, <code>m_rotation</code> continua sendo concatenada consigo mesma na forma</p>
+<p><span class="math display">\[
+\mathbf{R}=\mathbf{R}_n\mathbf{R},
+\]</span></p>
+<p>onde <span class="math inline">\(\mathbf{R}_n\)</span> é a rotação em torno do eixo gerado pelas duas últimas posições do mouse enquanto o botão ainda estava sendo pressionado.</p>
+</div>
+<div id="openglwindow.hpp" class="section level3 unnumbered hasAnchor">
+<h3>openglwindow.hpp<a href="viewer1.html#openglwindow.hpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A definição da classe <code>OpenGLWindow</code> ficará assim:</p>
+<div class="sourceCode" id="cb314" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb314-1"><a href="viewer1.html#cb314-1"></a><span class="pp">#ifndef OPENGLWINDOW_HPP_</span></span>
+<span id="cb314-2"><a href="viewer1.html#cb314-2"></a><span class="pp">#define OPENGLWINDOW_HPP_</span></span>
+<span id="cb314-3"><a href="viewer1.html#cb314-3"></a></span>
+<span id="cb314-4"><a href="viewer1.html#cb314-4"></a><span class="pp">#include </span><span class="im">&quot;abcg.hpp&quot;</span></span>
+<span id="cb314-5"><a href="viewer1.html#cb314-5"></a><span class="pp">#include </span><span class="im">&quot;model.hpp&quot;</span></span>
+<span id="cb314-6"><a href="viewer1.html#cb314-6"></a><span class="pp">#include </span><span class="im">&quot;trackball.hpp&quot;</span></span>
+<span id="cb314-7"><a href="viewer1.html#cb314-7"></a></span>
+<span id="cb314-8"><a href="viewer1.html#cb314-8"></a><span class="kw">class</span> OpenGLWindow <span class="op">:</span> <span class="kw">public</span> abcg<span class="op">::</span>OpenGLWindow <span class="op">{</span></span>
+<span id="cb314-9"><a href="viewer1.html#cb314-9"></a> <span class="kw">protected</span><span class="op">:</span></span>
+<span id="cb314-10"><a href="viewer1.html#cb314-10"></a>  <span class="dt">void</span> handleEvent<span class="op">(</span>SDL_Event<span class="op">&amp;</span> ev<span class="op">)</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb314-11"><a href="viewer1.html#cb314-11"></a>  <span class="dt">void</span> initializeGL<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb314-12"><a href="viewer1.html#cb314-12"></a>  <span class="dt">void</span> paintGL<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb314-13"><a href="viewer1.html#cb314-13"></a>  <span class="dt">void</span> paintUI<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb314-14"><a href="viewer1.html#cb314-14"></a>  <span class="dt">void</span> resizeGL<span class="op">(</span><span class="dt">int</span> width<span class="op">,</span> <span class="dt">int</span> height<span class="op">)</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb314-15"><a href="viewer1.html#cb314-15"></a>  <span class="dt">void</span> terminateGL<span class="op">()</span> <span class="kw">override</span><span class="op">;</span></span>
+<span id="cb314-16"><a href="viewer1.html#cb314-16"></a></span>
+<span id="cb314-17"><a href="viewer1.html#cb314-17"></a> <span class="kw">private</span><span class="op">:</span></span>
+<span id="cb314-18"><a href="viewer1.html#cb314-18"></a>  GLuint <span class="va">m_program</span><span class="op">{};</span></span>
+<span id="cb314-19"><a href="viewer1.html#cb314-19"></a></span>
+<span id="cb314-20"><a href="viewer1.html#cb314-20"></a>  <span class="dt">int</span> <span class="va">m_viewportWidth</span><span class="op">{};</span></span>
+<span id="cb314-21"><a href="viewer1.html#cb314-21"></a>  <span class="dt">int</span> <span class="va">m_viewportHeight</span><span class="op">{};</span></span>
+<span id="cb314-22"><a href="viewer1.html#cb314-22"></a></span>
+<span id="cb314-23"><a href="viewer1.html#cb314-23"></a>  Model <span class="va">m_model</span><span class="op">;</span></span>
+<span id="cb314-24"><a href="viewer1.html#cb314-24"></a>  <span class="dt">int</span> <span class="va">m_trianglesToDraw</span><span class="op">{};</span></span>
+<span id="cb314-25"><a href="viewer1.html#cb314-25"></a></span>
+<span id="cb314-26"><a href="viewer1.html#cb314-26"></a>  TrackBall <span class="va">m_trackBall</span><span class="op">;</span></span>
+<span id="cb314-27"><a href="viewer1.html#cb314-27"></a>  <span class="dt">float</span> <span class="va">m_zoom</span><span class="op">{};</span></span>
+<span id="cb314-28"><a href="viewer1.html#cb314-28"></a></span>
+<span id="cb314-29"><a href="viewer1.html#cb314-29"></a>  glm<span class="op">::</span>mat4 <span class="va">m_modelMatrix</span><span class="op">{</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb314-30"><a href="viewer1.html#cb314-30"></a>  glm<span class="op">::</span>mat4 <span class="va">m_viewMatrix</span><span class="op">{</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb314-31"><a href="viewer1.html#cb314-31"></a>  glm<span class="op">::</span>mat4 <span class="va">m_projMatrix</span><span class="op">{</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb314-32"><a href="viewer1.html#cb314-32"></a></span>
+<span id="cb314-33"><a href="viewer1.html#cb314-33"></a>  <span class="dt">void</span> update<span class="op">();</span></span>
+<span id="cb314-34"><a href="viewer1.html#cb314-34"></a><span class="op">};</span></span>
+<span id="cb314-35"><a href="viewer1.html#cb314-35"></a></span>
+<span id="cb314-36"><a href="viewer1.html#cb314-36"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>Veja que há uma instância da classe <code>Model</code> (linha 23) e <code>TrackBall</code> (linha 26). Também temos uma variável <code>m_zoom</code> para controlar o tamanho do objeto quando o usuário rolar o botão de rolagem do mouse.</p>
+<p>Nas linhas 29 a 31 temos as matrizes de modelo (<code>m_modelMatrix</code>), visão (<code>m_viewMatrix</code>) e projeção (<code>m_projMatrix</code>).</p>
+</div>
+<div id="openglwindow.cpp" class="section level3 unnumbered hasAnchor">
+<h3>openglwindow.cpp<a href="viewer1.html#openglwindow.cpp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No início de <code>openglwindow.cpp</code> definimos <code>OpenGLWindow::handleEvent</code>:</p>
+<div class="sourceCode" id="cb315" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb315-1"><a href="viewer1.html#cb315-1"></a><span class="pp">#include </span><span class="im">&quot;openglwindow.hpp&quot;</span></span>
+<span id="cb315-2"><a href="viewer1.html#cb315-2"></a></span>
+<span id="cb315-3"><a href="viewer1.html#cb315-3"></a><span class="pp">#include </span><span class="im">&lt;imgui.h&gt;</span></span>
+<span id="cb315-4"><a href="viewer1.html#cb315-4"></a></span>
+<span id="cb315-5"><a href="viewer1.html#cb315-5"></a><span class="pp">#include </span><span class="im">&lt;cppitertools/itertools.hpp&gt;</span></span>
+<span id="cb315-6"><a href="viewer1.html#cb315-6"></a></span>
+<span id="cb315-7"><a href="viewer1.html#cb315-7"></a><span class="dt">void</span> OpenGLWindow<span class="op">::</span>handleEvent<span class="op">(</span>SDL_Event<span class="op">&amp;</span> event<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb315-8"><a href="viewer1.html#cb315-8"></a>  glm<span class="op">::</span>ivec2 mousePosition<span class="op">;</span></span>
+<span id="cb315-9"><a href="viewer1.html#cb315-9"></a>  SDL_GetMouseState<span class="op">(&amp;</span>mousePosition<span class="op">.</span>x<span class="op">,</span> <span class="op">&amp;</span>mousePosition<span class="op">.</span>y<span class="op">);</span></span>
+<span id="cb315-10"><a href="viewer1.html#cb315-10"></a></span>
+<span id="cb315-11"><a href="viewer1.html#cb315-11"></a>  <span class="cf">if</span> <span class="op">(</span>event<span class="op">.</span>type <span class="op">==</span> SDL_MOUSEMOTION<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb315-12"><a href="viewer1.html#cb315-12"></a>    <span class="va">m_trackBall</span><span class="op">.</span>mouseMove<span class="op">(</span>mousePosition<span class="op">);</span></span>
+<span id="cb315-13"><a href="viewer1.html#cb315-13"></a>  <span class="op">}</span></span>
+<span id="cb315-14"><a href="viewer1.html#cb315-14"></a>  <span class="cf">if</span> <span class="op">(</span>event<span class="op">.</span>type <span class="op">==</span> SDL_MOUSEBUTTONDOWN <span class="op">&amp;&amp;</span></span>
+<span id="cb315-15"><a href="viewer1.html#cb315-15"></a>      event<span class="op">.</span>button<span class="op">.</span>button <span class="op">==</span> SDL_BUTTON_LEFT<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb315-16"><a href="viewer1.html#cb315-16"></a>    <span class="va">m_trackBall</span><span class="op">.</span>mousePress<span class="op">(</span>mousePosition<span class="op">);</span></span>
+<span id="cb315-17"><a href="viewer1.html#cb315-17"></a>  <span class="op">}</span></span>
+<span id="cb315-18"><a href="viewer1.html#cb315-18"></a>  <span class="cf">if</span> <span class="op">(</span>event<span class="op">.</span>type <span class="op">==</span> SDL_MOUSEBUTTONUP <span class="op">&amp;&amp;</span></span>
+<span id="cb315-19"><a href="viewer1.html#cb315-19"></a>      event<span class="op">.</span>button<span class="op">.</span>button <span class="op">==</span> SDL_BUTTON_LEFT<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb315-20"><a href="viewer1.html#cb315-20"></a>    <span class="va">m_trackBall</span><span class="op">.</span>mouseRelease<span class="op">(</span>mousePosition<span class="op">);</span></span>
+<span id="cb315-21"><a href="viewer1.html#cb315-21"></a>  <span class="op">}</span></span>
+<span id="cb315-22"><a href="viewer1.html#cb315-22"></a>  <span class="cf">if</span> <span class="op">(</span>event<span class="op">.</span>type <span class="op">==</span> SDL_MOUSEWHEEL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb315-23"><a href="viewer1.html#cb315-23"></a>    <span class="va">m_zoom</span> <span class="op">+=</span> <span class="op">(</span>event<span class="op">.</span>wheel<span class="op">.</span>y <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="fl">1.0</span><span class="bu">f</span> <span class="op">:</span> <span class="op">-</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">)</span> <span class="op">/</span> <span class="fl">5.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb315-24"><a href="viewer1.html#cb315-24"></a>    <span class="va">m_zoom</span> <span class="op">=</span> glm<span class="op">::</span>clamp<span class="op">(</span><span class="va">m_zoom</span><span class="op">,</span> <span class="op">-</span><span class="fl">1.5</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb315-25"><a href="viewer1.html#cb315-25"></a>  <span class="op">}</span></span>
+<span id="cb315-26"><a href="viewer1.html#cb315-26"></a><span class="op">}</span></span></code></pre></div>
+<p>Veja que as funções de <code>TrackBall</code> são chamadas de acordo com os eventos do mouse, e a variável <code>m_zoom</code> é modificada de acordo com o botão de rolagem.</p>
+<p><code>m_zoom</code> é um valor de translação que é utilizado para posicionar a câmera LookAt ao longo do eixo <span class="math inline">\(z\)</span> do espaço do mundo. Na posição inicial, a câmera está em <span class="math inline">\(P_{\textrm{eye}}=(0,0,2)\)</span>, olhando para <span class="math inline">\(P_{\textrm{at}}=(0,0,0)\)</span>. <code>m_zoom</code> é apenas um valor somado à coordenada <span class="math inline">\(z\)</span> de <span class="math inline">\(P_{\textrm{eye}}\)</span>, aproximando ou distanciando a câmera da origem.</p>
+<p>Vamos agora à definição de <code>OpenGLWindow::initializeOpenGL</code>:</p>
+<div class="sourceCode" id="cb316" startFrom="28"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 27;"><span id="cb316-28"><a href="viewer1.html#cb316-28"></a><span class="dt">void</span> OpenGLWindow<span class="op">::</span>initializeGL<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb316-29"><a href="viewer1.html#cb316-29"></a>  abcg<span class="op">::</span>glClearColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb316-30"><a href="viewer1.html#cb316-30"></a></span>
+<span id="cb316-31"><a href="viewer1.html#cb316-31"></a>  <span class="co">// Enable depth buffering</span></span>
+<span id="cb316-32"><a href="viewer1.html#cb316-32"></a>  abcg<span class="op">::</span>glEnable<span class="op">(</span>GL_DEPTH_TEST<span class="op">);</span></span>
+<span id="cb316-33"><a href="viewer1.html#cb316-33"></a></span>
+<span id="cb316-34"><a href="viewer1.html#cb316-34"></a>  <span class="co">// Create program</span></span>
+<span id="cb316-35"><a href="viewer1.html#cb316-35"></a>  <span class="va">m_program</span> <span class="op">=</span> createProgramFromFile<span class="op">(</span>getAssetsPath<span class="op">()</span> <span class="op">+</span> <span class="st">&quot;depth.vert&quot;</span><span class="op">,</span></span>
+<span id="cb316-36"><a href="viewer1.html#cb316-36"></a>                                    getAssetsPath<span class="op">()</span> <span class="op">+</span> <span class="st">&quot;depth.frag&quot;</span><span class="op">);</span></span>
+<span id="cb316-37"><a href="viewer1.html#cb316-37"></a></span>
+<span id="cb316-38"><a href="viewer1.html#cb316-38"></a>  <span class="co">// Load model</span></span>
+<span id="cb316-39"><a href="viewer1.html#cb316-39"></a>  <span class="va">m_model</span><span class="op">.</span>loadObj<span class="op">(</span>getAssetsPath<span class="op">()</span> <span class="op">+</span> <span class="st">&quot;bunny.obj&quot;</span><span class="op">);</span></span>
+<span id="cb316-40"><a href="viewer1.html#cb316-40"></a></span>
+<span id="cb316-41"><a href="viewer1.html#cb316-41"></a>  <span class="va">m_model</span><span class="op">.</span>setupVAO<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb316-42"><a href="viewer1.html#cb316-42"></a></span>
+<span id="cb316-43"><a href="viewer1.html#cb316-43"></a>  <span class="va">m_trianglesToDraw</span> <span class="op">=</span> <span class="va">m_model</span><span class="op">.</span>getNumTriangles<span class="op">();</span></span>
+<span id="cb316-44"><a href="viewer1.html#cb316-44"></a><span class="op">}</span></span></code></pre></div>
+<p>Todo o trabalho de carregamento do modelo foi transferido para a classe <code>Model</code>. Só precisamos chamar <code>Model::loadObj</code> e chamar <code>Model::setupVAO</code> com o identificador do programa de shader.</p>
+<p>Vamos à definição de <code>OpenGLWindow::paintGL</code>:</p>
+<div class="sourceCode" id="cb317" startFrom="46"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 45;"><span id="cb317-46"><a href="viewer1.html#cb317-46"></a><span class="dt">void</span> OpenGLWindow<span class="op">::</span>paintGL<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb317-47"><a href="viewer1.html#cb317-47"></a>  update<span class="op">();</span></span>
+<span id="cb317-48"><a href="viewer1.html#cb317-48"></a></span>
+<span id="cb317-49"><a href="viewer1.html#cb317-49"></a>  <span class="co">// Clear color buffer and depth buffer</span></span>
+<span id="cb317-50"><a href="viewer1.html#cb317-50"></a>  abcg<span class="op">::</span>glClear<span class="op">(</span>GL_COLOR_BUFFER_BIT <span class="op">|</span> GL_DEPTH_BUFFER_BIT<span class="op">);</span></span>
+<span id="cb317-51"><a href="viewer1.html#cb317-51"></a></span>
+<span id="cb317-52"><a href="viewer1.html#cb317-52"></a>  abcg<span class="op">::</span>glViewport<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_viewportWidth</span><span class="op">,</span> <span class="va">m_viewportHeight</span><span class="op">);</span></span>
+<span id="cb317-53"><a href="viewer1.html#cb317-53"></a></span>
+<span id="cb317-54"><a href="viewer1.html#cb317-54"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb317-55"><a href="viewer1.html#cb317-55"></a></span>
+<span id="cb317-56"><a href="viewer1.html#cb317-56"></a>  <span class="co">// Get location of uniform variables (could be precomputed)</span></span>
+<span id="cb317-57"><a href="viewer1.html#cb317-57"></a>  <span class="at">const</span> GLint viewMatrixLoc<span class="op">{</span></span>
+<span id="cb317-58"><a href="viewer1.html#cb317-58"></a>      abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;viewMatrix&quot;</span><span class="op">)};</span></span>
+<span id="cb317-59"><a href="viewer1.html#cb317-59"></a>  <span class="at">const</span> GLint projMatrixLoc<span class="op">{</span></span>
+<span id="cb317-60"><a href="viewer1.html#cb317-60"></a>      abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;projMatrix&quot;</span><span class="op">)};</span></span>
+<span id="cb317-61"><a href="viewer1.html#cb317-61"></a>  <span class="at">const</span> GLint modelMatrixLoc<span class="op">{</span></span>
+<span id="cb317-62"><a href="viewer1.html#cb317-62"></a>      abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;modelMatrix&quot;</span><span class="op">)};</span></span>
+<span id="cb317-63"><a href="viewer1.html#cb317-63"></a>  <span class="at">const</span> GLint colorLoc<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span><span class="va">m_program</span><span class="op">,</span> <span class="st">&quot;color&quot;</span><span class="op">)};</span></span>
+<span id="cb317-64"><a href="viewer1.html#cb317-64"></a></span>
+<span id="cb317-65"><a href="viewer1.html#cb317-65"></a>  <span class="co">// Set uniform variables used by every scene object</span></span>
+<span id="cb317-66"><a href="viewer1.html#cb317-66"></a>  abcg<span class="op">::</span>glUniformMatrix4fv<span class="op">(</span>viewMatrixLoc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="op">&amp;</span><span class="va">m_viewMatrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb317-67"><a href="viewer1.html#cb317-67"></a>  abcg<span class="op">::</span>glUniformMatrix4fv<span class="op">(</span>projMatrixLoc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="op">&amp;</span><span class="va">m_projMatrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb317-68"><a href="viewer1.html#cb317-68"></a></span>
+<span id="cb317-69"><a href="viewer1.html#cb317-69"></a>  <span class="co">// Set uniform variables of the current object</span></span>
+<span id="cb317-70"><a href="viewer1.html#cb317-70"></a>  abcg<span class="op">::</span>glUniformMatrix4fv<span class="op">(</span>modelMatrixLoc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="op">&amp;</span><span class="va">m_modelMatrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb317-71"><a href="viewer1.html#cb317-71"></a>  abcg<span class="op">::</span>glUniform4f<span class="op">(</span>colorLoc<span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">);</span>  <span class="co">// White</span></span>
+<span id="cb317-72"><a href="viewer1.html#cb317-72"></a></span>
+<span id="cb317-73"><a href="viewer1.html#cb317-73"></a>  <span class="va">m_model</span><span class="op">.</span>render<span class="op">(</span><span class="va">m_trianglesToDraw</span><span class="op">);</span></span>
+<span id="cb317-74"><a href="viewer1.html#cb317-74"></a></span>
+<span id="cb317-75"><a href="viewer1.html#cb317-75"></a>  abcg<span class="op">::</span>glUseProgram<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb317-76"><a href="viewer1.html#cb317-76"></a><span class="op">}</span></span></code></pre></div>
+<p>O código é semelhante ao utilizado no projeto anterior, mas agora está mais simples pois a chamada a <code>glDrawElements</code> é feita em <code>Model::render</code>.</p>
+<p>Em <code>OpenGLWindow::paintUI</code> definimos os controles de interface da ImGui:</p>
+<div class="sourceCode" id="cb318" startFrom="78"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 77;"><span id="cb318-78"><a href="viewer1.html#cb318-78"></a><span class="dt">void</span> OpenGLWindow<span class="op">::</span>paintUI<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb318-79"><a href="viewer1.html#cb318-79"></a>  abcg<span class="op">::</span>OpenGLWindow<span class="op">::</span>paintUI<span class="op">();</span></span>
+<span id="cb318-80"><a href="viewer1.html#cb318-80"></a></span>
+<span id="cb318-81"><a href="viewer1.html#cb318-81"></a>  <span class="co">// Create window for slider</span></span>
+<span id="cb318-82"><a href="viewer1.html#cb318-82"></a>  <span class="op">{</span></span>
+<span id="cb318-83"><a href="viewer1.html#cb318-83"></a>    ImGui<span class="op">::</span>SetNextWindowPos<span class="op">(</span>ImVec2<span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="va">m_viewportHeight</span> <span class="op">-</span> <span class="dv">94</span><span class="op">));</span></span>
+<span id="cb318-84"><a href="viewer1.html#cb318-84"></a>    ImGui<span class="op">::</span>SetNextWindowSize<span class="op">(</span>ImVec2<span class="op">(</span><span class="va">m_viewportWidth</span> <span class="op">-</span> <span class="dv">10</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">));</span></span>
+<span id="cb318-85"><a href="viewer1.html#cb318-85"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot;Slider window&quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> ImGuiWindowFlags_NoDecoration<span class="op">);</span></span>
+<span id="cb318-86"><a href="viewer1.html#cb318-86"></a></span>
+<span id="cb318-87"><a href="viewer1.html#cb318-87"></a>    <span class="co">// Create a slider to control the number of rendered triangles</span></span>
+<span id="cb318-88"><a href="viewer1.html#cb318-88"></a>    <span class="op">{</span></span>
+<span id="cb318-89"><a href="viewer1.html#cb318-89"></a>      <span class="co">// Slider will fill the space of the window</span></span>
+<span id="cb318-90"><a href="viewer1.html#cb318-90"></a>      ImGui<span class="op">::</span>PushItemWidth<span class="op">(</span><span class="va">m_viewportWidth</span> <span class="op">-</span> <span class="dv">25</span><span class="op">);</span></span>
+<span id="cb318-91"><a href="viewer1.html#cb318-91"></a></span>
+<span id="cb318-92"><a href="viewer1.html#cb318-92"></a>      ImGui<span class="op">::</span>SliderInt<span class="op">(</span><span class="st">&quot;&quot;</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_trianglesToDraw</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_model</span><span class="op">.</span>getNumTriangles<span class="op">(),</span></span>
+<span id="cb318-93"><a href="viewer1.html#cb318-93"></a>                       <span class="st">&quot;</span><span class="sc">%d</span><span class="st"> triangles&quot;</span><span class="op">);</span></span>
+<span id="cb318-94"><a href="viewer1.html#cb318-94"></a></span>
+<span id="cb318-95"><a href="viewer1.html#cb318-95"></a>      ImGui<span class="op">::</span>PopItemWidth<span class="op">();</span></span>
+<span id="cb318-96"><a href="viewer1.html#cb318-96"></a>    <span class="op">}</span></span>
+<span id="cb318-97"><a href="viewer1.html#cb318-97"></a></span>
+<span id="cb318-98"><a href="viewer1.html#cb318-98"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb318-99"><a href="viewer1.html#cb318-99"></a>  <span class="op">}</span></span>
+<span id="cb318-100"><a href="viewer1.html#cb318-100"></a></span>
+<span id="cb318-101"><a href="viewer1.html#cb318-101"></a>  <span class="co">// Create a window for the other widgets</span></span>
+<span id="cb318-102"><a href="viewer1.html#cb318-102"></a>  <span class="op">{</span></span>
+<span id="cb318-103"><a href="viewer1.html#cb318-103"></a>    <span class="at">const</span> <span class="kw">auto</span> widgetSize<span class="op">{</span>ImVec2<span class="op">(</span><span class="dv">222</span><span class="op">,</span> <span class="dv">90</span><span class="op">)};</span></span>
+<span id="cb318-104"><a href="viewer1.html#cb318-104"></a>    ImGui<span class="op">::</span>SetNextWindowPos<span class="op">(</span>ImVec2<span class="op">(</span><span class="va">m_viewportWidth</span> <span class="op">-</span> widgetSize<span class="op">.</span>x <span class="op">-</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">5</span><span class="op">));</span></span>
+<span id="cb318-105"><a href="viewer1.html#cb318-105"></a>    ImGui<span class="op">::</span>SetNextWindowSize<span class="op">(</span>widgetSize<span class="op">);</span></span>
+<span id="cb318-106"><a href="viewer1.html#cb318-106"></a>    ImGui<span class="op">::</span>Begin<span class="op">(</span><span class="st">&quot;Widget window&quot;</span><span class="op">,</span> <span class="kw">nullptr</span><span class="op">,</span> ImGuiWindowFlags_NoDecoration<span class="op">);</span></span>
+<span id="cb318-107"><a href="viewer1.html#cb318-107"></a></span>
+<span id="cb318-108"><a href="viewer1.html#cb318-108"></a>    <span class="at">static</span> <span class="dt">bool</span> faceCulling<span class="op">{};</span></span>
+<span id="cb318-109"><a href="viewer1.html#cb318-109"></a>    ImGui<span class="op">::</span>Checkbox<span class="op">(</span><span class="st">&quot;Back-face culling&quot;</span><span class="op">,</span> <span class="op">&amp;</span>faceCulling<span class="op">);</span></span>
+<span id="cb318-110"><a href="viewer1.html#cb318-110"></a></span>
+<span id="cb318-111"><a href="viewer1.html#cb318-111"></a>    <span class="cf">if</span> <span class="op">(</span>faceCulling<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb318-112"><a href="viewer1.html#cb318-112"></a>      abcg<span class="op">::</span>glEnable<span class="op">(</span>GL_CULL_FACE<span class="op">);</span></span>
+<span id="cb318-113"><a href="viewer1.html#cb318-113"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb318-114"><a href="viewer1.html#cb318-114"></a>      abcg<span class="op">::</span>glDisable<span class="op">(</span>GL_CULL_FACE<span class="op">);</span></span>
+<span id="cb318-115"><a href="viewer1.html#cb318-115"></a>    <span class="op">}</span></span>
+<span id="cb318-116"><a href="viewer1.html#cb318-116"></a></span>
+<span id="cb318-117"><a href="viewer1.html#cb318-117"></a>    <span class="co">// CW/CCW combo box</span></span>
+<span id="cb318-118"><a href="viewer1.html#cb318-118"></a>    <span class="op">{</span></span>
+<span id="cb318-119"><a href="viewer1.html#cb318-119"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t<span class="op"> </span>currentIndex<span class="op">{};</span></span>
+<span id="cb318-120"><a href="viewer1.html#cb318-120"></a>      <span class="at">const</span> <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>string<span class="op">&gt;</span> comboItems<span class="op">{</span><span class="st">&quot;CCW&quot;</span><span class="op">,</span> <span class="st">&quot;CW&quot;</span><span class="op">};</span></span>
+<span id="cb318-121"><a href="viewer1.html#cb318-121"></a></span>
+<span id="cb318-122"><a href="viewer1.html#cb318-122"></a>      ImGui<span class="op">::</span>PushItemWidth<span class="op">(</span><span class="dv">120</span><span class="op">);</span></span>
+<span id="cb318-123"><a href="viewer1.html#cb318-123"></a>      <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginCombo<span class="op">(</span><span class="st">&quot;Front face&quot;</span><span class="op">,</span></span>
+<span id="cb318-124"><a href="viewer1.html#cb318-124"></a>                            comboItems<span class="op">.</span>at<span class="op">(</span>currentIndex<span class="op">).</span>c_str<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb318-125"><a href="viewer1.html#cb318-125"></a>        <span class="cf">for</span> <span class="op">(</span><span class="at">const</span> <span class="kw">auto</span> index <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span>comboItems<span class="op">.</span>size<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb318-126"><a href="viewer1.html#cb318-126"></a>          <span class="at">const</span> <span class="dt">bool</span> isSelected<span class="op">{</span>currentIndex <span class="op">==</span> index<span class="op">};</span></span>
+<span id="cb318-127"><a href="viewer1.html#cb318-127"></a>          <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Selectable<span class="op">(</span>comboItems<span class="op">.</span>at<span class="op">(</span>index<span class="op">).</span>c_str<span class="op">(),</span> isSelected<span class="op">))</span></span>
+<span id="cb318-128"><a href="viewer1.html#cb318-128"></a>            currentIndex <span class="op">=</span> index<span class="op">;</span></span>
+<span id="cb318-129"><a href="viewer1.html#cb318-129"></a>          <span class="cf">if</span> <span class="op">(</span>isSelected<span class="op">)</span> ImGui<span class="op">::</span>SetItemDefaultFocus<span class="op">();</span></span>
+<span id="cb318-130"><a href="viewer1.html#cb318-130"></a>        <span class="op">}</span></span>
+<span id="cb318-131"><a href="viewer1.html#cb318-131"></a>        ImGui<span class="op">::</span>EndCombo<span class="op">();</span></span>
+<span id="cb318-132"><a href="viewer1.html#cb318-132"></a>      <span class="op">}</span></span>
+<span id="cb318-133"><a href="viewer1.html#cb318-133"></a>      ImGui<span class="op">::</span>PopItemWidth<span class="op">();</span></span>
+<span id="cb318-134"><a href="viewer1.html#cb318-134"></a></span>
+<span id="cb318-135"><a href="viewer1.html#cb318-135"></a>      <span class="cf">if</span> <span class="op">(</span>currentIndex <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb318-136"><a href="viewer1.html#cb318-136"></a>        abcg<span class="op">::</span>glFrontFace<span class="op">(</span>GL_CCW<span class="op">);</span></span>
+<span id="cb318-137"><a href="viewer1.html#cb318-137"></a>      <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb318-138"><a href="viewer1.html#cb318-138"></a>        abcg<span class="op">::</span>glFrontFace<span class="op">(</span>GL_CW<span class="op">);</span></span>
+<span id="cb318-139"><a href="viewer1.html#cb318-139"></a>      <span class="op">}</span></span>
+<span id="cb318-140"><a href="viewer1.html#cb318-140"></a>    <span class="op">}</span></span>
+<span id="cb318-141"><a href="viewer1.html#cb318-141"></a></span>
+<span id="cb318-142"><a href="viewer1.html#cb318-142"></a>    <span class="co">// Projection combo box</span></span>
+<span id="cb318-143"><a href="viewer1.html#cb318-143"></a>    <span class="op">{</span></span>
+<span id="cb318-144"><a href="viewer1.html#cb318-144"></a>      <span class="at">static</span> <span class="bu">std::</span>size_t<span class="op"> </span>currentIndex<span class="op">{};</span></span>
+<span id="cb318-145"><a href="viewer1.html#cb318-145"></a>      <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>string<span class="op">&gt;</span> comboItems<span class="op">{</span><span class="st">&quot;Perspective&quot;</span><span class="op">,</span> <span class="st">&quot;Orthographic&quot;</span><span class="op">};</span></span>
+<span id="cb318-146"><a href="viewer1.html#cb318-146"></a></span>
+<span id="cb318-147"><a href="viewer1.html#cb318-147"></a>      ImGui<span class="op">::</span>PushItemWidth<span class="op">(</span><span class="dv">120</span><span class="op">);</span></span>
+<span id="cb318-148"><a href="viewer1.html#cb318-148"></a>      <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>BeginCombo<span class="op">(</span><span class="st">&quot;Projection&quot;</span><span class="op">,</span></span>
+<span id="cb318-149"><a href="viewer1.html#cb318-149"></a>                            comboItems<span class="op">.</span>at<span class="op">(</span>currentIndex<span class="op">).</span>c_str<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb318-150"><a href="viewer1.html#cb318-150"></a>        <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> index <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span>comboItems<span class="op">.</span>size<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb318-151"><a href="viewer1.html#cb318-151"></a>          <span class="at">const</span> <span class="dt">bool</span> isSelected<span class="op">{</span>currentIndex <span class="op">==</span> index<span class="op">};</span></span>
+<span id="cb318-152"><a href="viewer1.html#cb318-152"></a>          <span class="cf">if</span> <span class="op">(</span>ImGui<span class="op">::</span>Selectable<span class="op">(</span>comboItems<span class="op">.</span>at<span class="op">(</span>index<span class="op">).</span>c_str<span class="op">(),</span> isSelected<span class="op">))</span></span>
+<span id="cb318-153"><a href="viewer1.html#cb318-153"></a>            currentIndex <span class="op">=</span> index<span class="op">;</span></span>
+<span id="cb318-154"><a href="viewer1.html#cb318-154"></a>          <span class="cf">if</span> <span class="op">(</span>isSelected<span class="op">)</span> ImGui<span class="op">::</span>SetItemDefaultFocus<span class="op">();</span></span>
+<span id="cb318-155"><a href="viewer1.html#cb318-155"></a>        <span class="op">}</span></span>
+<span id="cb318-156"><a href="viewer1.html#cb318-156"></a>        ImGui<span class="op">::</span>EndCombo<span class="op">();</span></span>
+<span id="cb318-157"><a href="viewer1.html#cb318-157"></a>      <span class="op">}</span></span>
+<span id="cb318-158"><a href="viewer1.html#cb318-158"></a>      ImGui<span class="op">::</span>PopItemWidth<span class="op">();</span></span>
+<span id="cb318-159"><a href="viewer1.html#cb318-159"></a></span>
+<span id="cb318-160"><a href="viewer1.html#cb318-160"></a>      <span class="cf">if</span> <span class="op">(</span>currentIndex <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb318-161"><a href="viewer1.html#cb318-161"></a>        <span class="at">const</span> <span class="kw">auto</span> aspect<span class="op">{</span><span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;(</span><span class="va">m_viewportWidth</span><span class="op">)</span> <span class="op">/</span></span>
+<span id="cb318-162"><a href="viewer1.html#cb318-162"></a>                          <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;(</span><span class="va">m_viewportHeight</span><span class="op">)};</span></span>
+<span id="cb318-163"><a href="viewer1.html#cb318-163"></a>        <span class="va">m_projMatrix</span> <span class="op">=</span></span>
+<span id="cb318-164"><a href="viewer1.html#cb318-164"></a>            glm<span class="op">::</span>perspective<span class="op">(</span>glm<span class="op">::</span>radians<span class="op">(</span><span class="fl">45.0</span><span class="bu">f</span><span class="op">),</span> aspect<span class="op">,</span> <span class="fl">0.1</span><span class="bu">f</span><span class="op">,</span> <span class="fl">5.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb318-165"><a href="viewer1.html#cb318-165"></a>      <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb318-166"><a href="viewer1.html#cb318-166"></a>        <span class="va">m_projMatrix</span> <span class="op">=</span> glm<span class="op">::</span>ortho<span class="op">(-</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="op">-</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.1</span><span class="bu">f</span><span class="op">,</span> <span class="fl">5.0</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb318-167"><a href="viewer1.html#cb318-167"></a>      <span class="op">}</span></span>
+<span id="cb318-168"><a href="viewer1.html#cb318-168"></a>    <span class="op">}</span></span>
+<span id="cb318-169"><a href="viewer1.html#cb318-169"></a></span>
+<span id="cb318-170"><a href="viewer1.html#cb318-170"></a>    ImGui<span class="op">::</span>End<span class="op">();</span></span>
+<span id="cb318-171"><a href="viewer1.html#cb318-171"></a>  <span class="op">}</span></span>
+<span id="cb318-172"><a href="viewer1.html#cb318-172"></a><span class="op">}</span></span></code></pre></div>
+<p>Observe, na estrutura condicional das linhas 160 a 167, como a matriz de projeção é criada com <code>glm::perspective</code> ou <code>glm::ortho</code>, dependendo da escolha do usuário.</p>
+<p>O restante de <code>openglwindow.cpp</code> ficará assim:</p>
+<div class="sourceCode" id="cb319" startFrom="174"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 173;"><span id="cb319-174"><a href="viewer1.html#cb319-174"></a><span class="dt">void</span> OpenGLWindow<span class="op">::</span>resizeGL<span class="op">(</span><span class="dt">int</span> width<span class="op">,</span> <span class="dt">int</span> height<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb319-175"><a href="viewer1.html#cb319-175"></a>  <span class="va">m_viewportWidth</span> <span class="op">=</span> width<span class="op">;</span></span>
+<span id="cb319-176"><a href="viewer1.html#cb319-176"></a>  <span class="va">m_viewportHeight</span> <span class="op">=</span> height<span class="op">;</span></span>
+<span id="cb319-177"><a href="viewer1.html#cb319-177"></a></span>
+<span id="cb319-178"><a href="viewer1.html#cb319-178"></a>  <span class="va">m_trackBall</span><span class="op">.</span>resizeViewport<span class="op">(</span>width<span class="op">,</span> height<span class="op">);</span></span>
+<span id="cb319-179"><a href="viewer1.html#cb319-179"></a><span class="op">}</span></span>
+<span id="cb319-180"><a href="viewer1.html#cb319-180"></a></span>
+<span id="cb319-181"><a href="viewer1.html#cb319-181"></a><span class="dt">void</span> OpenGLWindow<span class="op">::</span>terminateGL<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb319-182"><a href="viewer1.html#cb319-182"></a>  <span class="va">m_model</span><span class="op">.</span>terminateGL<span class="op">();</span></span>
+<span id="cb319-183"><a href="viewer1.html#cb319-183"></a>  abcg<span class="op">::</span>glDeleteProgram<span class="op">(</span><span class="va">m_program</span><span class="op">);</span></span>
+<span id="cb319-184"><a href="viewer1.html#cb319-184"></a><span class="op">}</span></span>
+<span id="cb319-185"><a href="viewer1.html#cb319-185"></a></span>
+<span id="cb319-186"><a href="viewer1.html#cb319-186"></a><span class="dt">void</span> OpenGLWindow<span class="op">::</span>update<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb319-187"><a href="viewer1.html#cb319-187"></a>  <span class="va">m_modelMatrix</span> <span class="op">=</span> <span class="va">m_trackBall</span><span class="op">.</span>getRotation<span class="op">();</span></span>
+<span id="cb319-188"><a href="viewer1.html#cb319-188"></a></span>
+<span id="cb319-189"><a href="viewer1.html#cb319-189"></a>  <span class="va">m_viewMatrix</span> <span class="op">=</span></span>
+<span id="cb319-190"><a href="viewer1.html#cb319-190"></a>      glm<span class="op">::</span>lookAt<span class="op">(</span>glm<span class="op">::</span>vec3<span class="op">(</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">2.0</span><span class="bu">f</span> <span class="op">+</span> <span class="va">m_zoom</span><span class="op">),</span></span>
+<span id="cb319-191"><a href="viewer1.html#cb319-191"></a>                  glm<span class="op">::</span>vec3<span class="op">(</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">),</span> glm<span class="op">::</span>vec3<span class="op">(</span><span class="fl">0.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">));</span></span>
+<span id="cb319-192"><a href="viewer1.html#cb319-192"></a><span class="op">}</span></span></code></pre></div>
+<p>Em <code>OpenGLWindow::resizeGL</code>, chamamos <code>TrackBall::resizeViewport</code> (linha 178) para atualizar as dimensões da janela ao trackball.</p>
+<p>Em <code>OpenGLWindow::updateGL</code>, fazemos com que a matriz de modelo seja a própria matriz de rotação do trackball (linha 187). É também nesta função que calculamos a matriz de visão usando a câmera LookAt. Note como <code>m_zoom</code> altera a posição <span class="math inline">\(z\)</span> da câmera.</p>
+<p>Isso é tudo. Baixe o código completo do projeto a partir <a href="https://hbatagelo.github.io/abcgapps/src/viewer1.zip">deste link</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="vtrackball1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="starfield.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

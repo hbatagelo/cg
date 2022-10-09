@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.1 Projeção ortográfica | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.1 Projeção ortográfica | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.1 Projeção ortográfica | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="projections.html"/>
+<link rel="next" href="perspective.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.hpp-6"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação"><i class="fa fa-check"></i>Transformação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.hpp-7"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.cpp-7"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.hpp"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#openglwindow.cpp"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-9"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.hpp-1"><i class="fa fa-check"></i>openglwindow.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#openglwindow.cpp-1"><i class="fa fa-check"></i>openglwindow.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ortho" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Projeção ortográfica<a href="ortho.html#ortho" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Por padrão, o pipeline do OpenGL produz uma projeção ortográfica das primitivas contidas no volume de visão, como se as coordenadas <span class="math inline">\(z\)</span> de todos os pontos dentro do volume de visão fossem descartadas para formar figuras no plano de imagem.</p>
+<p>Lembre-se que o volume de visão é um cubo <span class="math inline">\(2 \times 2 \times 2\)</span> centralizado na origem no espaço normalizado do dispositivo (NDC). Logo antes da rasterização, o pipeline converte automaticamente as coordenadas do NDC para o espaço da janela, em pixels.</p>
+<p>Na configuração padrão de <code>glViewport(x, y, w, h)</code> e <code>glDepthRange(n, f)</code>, o canto inferior esquerdo da janela é a origem do espaço da janela (<span class="math inline">\(x=y=0\)</span>), e o canto superior direito é a coordenada <span class="math inline">\((w,h)\)</span> onde <span class="math inline">\(w\)</span> e <span class="math inline">\(h\)</span> correspondem respectivamente à largura e altura da janela em pixels<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>. Assim, o seguinte mapeamento é feito internamente pelo pipeline:</p>
+<ul>
+<li><span class="math inline">\(x_{\textrm{ndc}} \in [-1,1]\)</span> em NDC torna-se <span class="math inline">\(x_w \in [x,w]\)</span> no espaço da janela.</li>
+<li><span class="math inline">\(y_{\textrm{ndc}} \in [-1,1]\)</span> em NDC torna-se <span class="math inline">\(y_w \in [y,h]\)</span> no espaço da janela.</li>
+<li><span class="math inline">\(z_{\textrm{ndc}} \in [-1,1]\)</span> em NDC torna-se <span class="math inline">\(z_w \in [n,f]\)</span> no espaço da janela.</li>
+</ul>
+<p>O mapeamento pode ser representado pela seguinte <strong>matriz de viewport</strong>:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+x_w\\[0.5em] y_w \\[0.5em] z_w
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{w}{2} &amp; 0 &amp; 0 &amp; x+\frac{w}{2}\\
+0 &amp; \frac{h}{2} &amp; 0 &amp; y+\frac{h}{2}\\
+0 &amp; 0 &amp; \frac{f-n}{2} &amp; \frac{f+n}{2}
+\end{bmatrix}
+\begin{bmatrix}
+x_{\textrm{ndc}}\\ y_{\textrm{ndc}}\\ z_{\textrm{ndc}}\\ 1
+\end{bmatrix}.
+\]</span>
+Por padrão, <span class="math inline">\(n=0\)</span> e <span class="math inline">\(f=1\)</span> (configuração padrão de <code>glDepthRange</code>).</p>
+<p>Após o mapeamento para o espaço da janela, as primitivas são rasterizadas. Se mais de um fragmento for mapeado para o mesmo pixel no framebuffer, o teste de profundidade pode ser utilizado para manter apenas o fragmento de menor valor <span class="math inline">\(z_w\)</span>.</p>
+<p>A figura <a href="ortho.html#fig:orthoproj2">8.5</a> mostra um exemplo no qual o espaço NDC contém 8 cubos posicionados em <span class="math inline">\((\pm0.5, \pm0.5, \pm0.5)\)</span>, alinhados aos eixos principais. Após a rasterização com o teste de profundidade habilitado na configuração padrão, o conteúdo rasterizado no espaço da janela exibirá apenas a face da frente dos 4 cubos de menor valor <span class="math inline">\(z\)</span>, como ocorreria numa projeção ortográfica sobre o plano <span class="math inline">\(z=-1\)</span> em NDC. A figura também mostra que a origem do espaço NDC (<span class="math inline">\(O_{\textrm{ndc}}\)</span>) é mapeada para o centro da janela.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:orthoproj2"></span>
+<img src="images/08_projection4.svg" alt="Objetos em NDC e conteúdo correspondente no espaço da janela." width="100%" />
+<p class="caption">
+Figura 8.5: Objetos em NDC e conteúdo correspondente no espaço da janela.
+</p>
+</div>
+<p>Uma vez que o pipeline do OpenGL usa a projeção ortográfica como padrão, podemos supor inicialmente que nossa matriz de projeção é a matriz identidade, isto é, nenhuma transformação adicional precisa ser feita para produzir a projeção ortográfica. Assim, no vertex shader, as coordenadas serão modificadas apenas pelas matrizes de modelo e visão (<span class="math inline">\(\mathbf{M}_{\textrm{view}}\mathbf{M}_{\textrm{model}}\)</span>), gerando pontos no espaço da câmera. Relembre que, no espaço da câmera, a posição da câmera é o ponto de referência do frame, e a direção de visão é a direção do eixo <span class="math inline">\(z\)</span> negativo.</p>
+<p>A matriz de projeção é responsável por converter coordenadas do espaço da câmera para o espaço de recorte. Entretanto, como estamos supondo que a matriz de projeção é a matriz identidade, o espaço de recorte é, neste caso, idêntico ao espaço da câmera. Então, os pontos no espaço da câmera podem ser enviados diretamente à variável embutida <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_Position.xhtml"><code>gl_Position</code></a>.</p>
+<p>Internamente, o pipeline supõe que, no espaço de recorte, todas as primitivas com coordenadas menores que <span class="math inline">\(-w\)</span> e maiores que <span class="math inline">\(+w\)</span> devem ser recortadas. Uma vez que <span class="math inline">\(w=1\)</span> para todos os pontos, são recortadas todas as primitivas que estiverem fora do cubo que vai de <span class="math inline">\((-1,-1,-1)\)</span> até <span class="math inline">\((1,1,1)\)</span>. Após o recorte, as coordenadas são divididas por <span class="math inline">\(w\)</span> para converter coordenadas do espaço de recorte para coordenadas normalizadas do dispositivo. Mas, como <span class="math inline">\(w=1\)</span>, as coordenadas continuam com o mesmo valor. Então, neste caso, o espaço NDC é idêntico ao espaço de recorte projetado, que por sua vez é idêntico ao espaço da câmera.</p>
+<p>Há um problema em usar a matriz identidade como matriz de projeção: consideramos até agora que os modelos geométricos são representados em um sistema que segue a regra da mão direita. Entretanto, as coordenadas normalizadas do dispositivo seguem a regra da mão esquerda. Isso faz com que orientação dos triângulos fique invertida (CW vira CCW e vice-versa). Felizmente, é fácil construir uma transformação que converte as coordenadas para a regra da mão direita: basta negarmos a coordenada <span class="math inline">\(z\)</span> de cada ponto. Essa transformação pode ser feita por uma matriz de projeção ligeiramente diferente de uma matriz identidade:</p>
+<p><span class="math display">\[
+\mathbf{M}_{\textrm{orth}}=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; -1 &amp; 0\\  
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}.
+\]</span></p>
+<p>Agora, no vertex shader, <code>gl_Position</code> receberá os pontos transformados por <span class="math inline">\(\mathbf{M}_{\textrm{proj}}\mathbf{M}_{\textrm{view}}\mathbf{M}_{\textrm{view}}\)</span>, onde <span class="math inline">\(\mathbf{M}_{\textrm{proj}}=\mathbf{M}_{\textrm{orth}}\)</span>.</p>
+<p>Com a matriz <span class="math inline">\(\mathbf{M}_{\textrm{orth}}\)</span> conseguimos consertar a inversão de orientação das primitivas. No entanto, há ainda outro problema: como a câmera está na origem em NDC, só conseguimos enxergar na tela a geometria que estiver contida no cubo de tamanho 2 em torno da câmera (isto é, a geometria após o recorte). Esse tamanho é muito limitante para a maioria das cenas. Além disso, a posição da câmera no centro do cubo não parece ser algo muito intuitivo. Na câmera LookAt, a direção de visão é a direção de <span class="math inline">\(z\)</span> negativo. Logo, não deveríamos ser capazes de enxergar algo que está com <span class="math inline">\(z\)</span> positivo (isto é, atrás da câmera, ainda que dentro do cubo de tamanho de 2). Para resolver isso, vamos criar uma nova matriz de projeção que supõe que o volume de visão está sempre situado em algum lugar do espaço da câmera com <span class="math inline">\(z&lt;0\)</span>, como ilustra a figura <a href="ortho.html#fig:orthoproj3">8.6</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:orthoproj3"></span>
+<img src="images/08_projection5.svg" alt="Volume de visão genérico para projeção ortográfica." width="85%" />
+<p class="caption">
+Figura 8.6: Volume de visão genérico para projeção ortográfica.
+</p>
+</div>
+<p>Nessa figura, o lado mais perto do volume de visão está a uma distância <span class="math inline">\(n\)</span> da câmera, medida ao longo de sua linha de visão (eixo <span class="math inline">\(z\)</span> negativo). Esse lado mais próximo em relação à posição da câmera é chamado de <em>plano de recorte próximo</em> ou <em>near clipping plane</em>. O lado mais distante do volume de visão está a uma distância <span class="math inline">\(f\)</span> da câmera, e é chamado de <em>plano de recorte distante</em> ou <em>far clipping plane</em>.</p>
+<p>Na definição desse novo volume de visão, usaremos parâmetros <span class="math inline">\(l\)</span> (<em>left</em>), <span class="math inline">\(r\)</span> (<em>right</em>), <span class="math inline">\(b\)</span> (<em>bottom</em>), <span class="math inline">\(t\)</span> (<em>top</em>) para especificar a posição dos lados esquerdo e direito, de baixo e de cima do volume. Desse modo, o volume não precisará ser mais um cubo de tamanho 2 em cada direção. Podemos obter essa configuração através da modificação da matriz de projeção.</p>
+<p>É interessante notar que a matriz de projeção ortográfica é simplesmente uma <strong>matriz que transforma o volume de visão, do espaço da câmera, para o volume de visão em NDC</strong>, como mostra a figura <a href="ortho.html#fig:orthoproj4">8.7</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:orthoproj4"></span>
+<img src="images/08_projection6.svg" alt="A matriz de projeção ortográfica representa a transformação do volume de visão do espaço da câmera para o volume de visão em NDC." width="85%" />
+<p class="caption">
+Figura 8.7: A matriz de projeção ortográfica representa a transformação do volume de visão do espaço da câmera para o volume de visão em NDC.
+</p>
+</div>
+<p>Esse mapeamento da transformação de projeção consiste em fazer com que os pontos <span class="math inline">\((l,b,-n)\)</span> e <span class="math inline">\((r,t,-f)\)</span> no espaço da câmera tornem-se respectivamente os pontos <span class="math inline">\((-1,-1,-1)\)</span> e <span class="math inline">\((1,1,1)\)</span> em NDC. Tal processo é chamado de <strong>normalização do volume de visão</strong>. Podemos fazer a normalização em três etapas:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Translação</strong> do volume de visão de modo a centralizá-lo na origem.</li>
+<li><strong>Escala</strong> do volume de visão de modo a deixá-lo com tamanho 2 em cada direção.</li>
+<li><strong>Reflexão</strong> para inverter a coordenada <span class="math inline">\(z\)</span>.</li>
+</ol>
+<p>Como a reflexão é uma escala com inversão de sinal, as etapas 2 e 3 podem ser feitas em conjunto, como veremos a seguir.</p>
+<div id="translação-1" class="section level3 unnumbered hasAnchor">
+<h3>Translação<a href="ortho.html#translação-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O centroide <span class="math inline">\(C=(c_x,c_y,c_z)\)</span> do volume de visão no espaço da câmera é</p>
+<p><span class="math display">\[
+c_x = \frac{r+l}{2},\qquad
+c_y = \frac{t+b}{2},\qquad
+c_z = -\frac{f+n}{2}.
+\]</span></p>
+<p>Logo, a matriz de translação que desloca o volume de visão para a origem é a matriz de translação por <span class="math inline">\(-C\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{T}=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2}\\
+0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2}\\
+0 &amp; 0 &amp; 1 &amp; \frac{f+n}{2} \\  
+0 &amp; 0 &amp; 0 &amp;                1
+\end{bmatrix}.
+\]</span></p>
+</div>
+<div id="escala-e-reflexão" class="section level3 unnumbered hasAnchor">
+<h3>Escala e reflexão<a href="ortho.html#escala-e-reflexão" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Os fatores de escala <span class="math inline">\(S=(s_x, s_y, s_z)\)</span> para redimensionar o volume de visão em um cubo com tamanho 2 em cada direção são:</p>
+<p><span class="math display">\[
+s_x = \frac{2}{r-l},\qquad
+s_y = \frac{2}{t-b},\qquad
+s_z = \frac{2}{f-n}.
+\]</span>
+Entretanto, precisamos refletir o cubo na direção <span class="math inline">\(z\)</span> para a conversão da regra da mão direita para mão esquerda. Assim, precisamos inverter o sinal de <span class="math inline">\(s_z\)</span>:</p>
+<p><span class="math display">\[
+s_z = -\frac{2}{f-n}.
+\]</span>
+A matriz de escala ficará como a seguir:</p>
+<p><span class="math display">\[
+\mathbf{S}=
+\begin{bmatrix}
+\frac{2}{r-l} &amp;             0 &amp;              0 &amp; 0\\
+            0 &amp; \frac{2}{t-b} &amp;              0 &amp; 0\\
+            0 &amp;             0 &amp; -\frac{2}{f-n} &amp; 0\\  
+            0 &amp;             0 &amp;              0 &amp; 1
+\end{bmatrix}.
+\]</span></p>
+</div>
+<div id="matriz-de-projeção" class="section level3 unnumbered hasAnchor">
+<h3>Matriz de projeção<a href="ortho.html#matriz-de-projeção" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Concatenando as transformações de translação, escala e reflexão, obtemos a nova matriz de projeção ortográfica:</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf{M}_{\textrm{orth}}=\mathbf{S}\mathbf{T}&amp;=
+\begin{bmatrix}
+\frac{2}{r-l} &amp;             0 &amp;              0 &amp; 0\\
+            0 &amp; \frac{2}{t-b} &amp;              0 &amp; 0\\
+            0 &amp;             0 &amp; -\frac{2}{f-n} &amp; 0\\  
+            0 &amp;             0 &amp;              0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2}\\
+0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2}\\
+0 &amp; 0 &amp; 1 &amp; \frac{f+n}{2} \\  
+0 &amp; 0 &amp; 0 &amp;                1
+\end{bmatrix},\\
+\mathbf{M}_{\textrm{orth}}&amp;=
+\begin{bmatrix}
+\frac{2}{r-l} &amp;             0 &amp;              0 &amp; -\frac{r+l}{r-l}\\
+            0 &amp; \frac{2}{t-b} &amp;              0 &amp; -\frac{t+b}{t-b}\\
+            0 &amp;             0 &amp; -\frac{2}{f-n} &amp; -\frac{f+n}{f-n}\\  
+            0 &amp;             0 &amp;              0 &amp;                1
+\end{bmatrix}.
+\end{align}
+\]</span></p>
+<p>Na biblioteca <a href="https://github.com/g-truc/glm">GLM</a>, tal matriz pode ser criada com a função <code>glm::ortho</code>, definida em <code>glm/gtc/matrix_transform.hpp</code>:</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb299-1"><a href="ortho.html#cb299-1" aria-hidden="true" tabindex="-1"></a>glm<span class="op">::</span>mat4 glm<span class="op">::</span>ortho<span class="op">(</span><span class="dt">float</span> left<span class="op">,</span> <span class="dt">float</span> right<span class="op">,</span> <span class="dt">float</span> bottom<span class="op">,</span> <span class="dt">float</span> top<span class="op">,</span> <span class="dt">float</span> zNear<span class="op">,</span> <span class="dt">float</span> zFar<span class="op">);</span></span>
+<span id="cb299-2"><a href="ortho.html#cb299-2" aria-hidden="true" tabindex="-1"></a>glm<span class="op">::</span>dmat4 glm<span class="op">::</span>ortho<span class="op">(</span><span class="dt">double</span> left<span class="op">,</span> <span class="dt">double</span> right<span class="op">,</span> <span class="dt">double</span> bottom<span class="op">,</span> <span class="dt">double</span> top<span class="op">,</span> <span class="dt">double</span> zNear<span class="op">,</span> <span class="dt">double</span> zFar<span class="op">);</span></span></code></pre></div>
+<p>onde <code>left</code>, <code>right</code>, <code>bottom</code>, <code>top</code>, <code>zNear</code> e <code>zFar</code> correspondem respectivamente aos valores <span class="math inline">\(l\)</span>, <span class="math inline">\(r\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(t\)</span>, <span class="math inline">\(n\)</span> e <span class="math inline">\(f\)</span>.</p>
+<p>Na maioria das aplicações, trabalhamos com volumes simétricos nas direções <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span>. Nesse caso, os pontos <span class="math inline">\((0,0,z)\)</span> em NDC são projetados no centro do viewport. Em um volume simétrico,</p>
+<p><span class="math display">\[
+r = -l,\\
+t = -b.
+\]</span></p>
+<p>Com isso, os termos da matriz anterior podem ser simplificados como segue:</p>
+<p><span class="math display">\[
+\begin{align}
+r+l&amp;=0,\\
+r-l&amp;=2r,\\
+t+b&amp;=0,\\
+t-b&amp;=2t,\\
+\end{align}
+\]</span></p>
+<p>e a matriz assume o fomato</p>
+<p><span class="math display">\[
+\mathbf{M}_{\textrm{orth}}=
+\begin{bmatrix}
+\frac{1}{r} &amp;           0 &amp;              0 &amp;                0\\
+          0 &amp; \frac{1}{t} &amp;              0 &amp;                0\\
+          0 &amp;           0 &amp; -\frac{2}{f-n} &amp; -\frac{f+n}{f-n}\\  
+          0 &amp;           0 &amp;              0 &amp;                1
+\end{bmatrix}.
+\]</span></p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="29">
+<li id="fn29"><p>A configuração padrão é a configuração utilizada em todos os projetos da ABCg feitos até agora.<a href="ortho.html#fnref29" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="projections.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="perspective.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Desenvolvendo um jogo 2D | MCTA008-17 Computação Gráfica</title>
+  <title>6 Desenvolvendo um jogo 2D | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Desenvolvendo um jogo 2D | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="6 Desenvolvendo um jogo 2D | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Desenvolvendo um jogo 2D | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="6 Desenvolvendo um jogo 2D | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -99,28 +99,6 @@ code span.pp { font-weight: bold; } /* Preprocessor */
 code span.wa { font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -138,7 +116,7 @@ div.csl-indent {
 <li><a href="./">Computação Gráfica</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> | Notas de aula</a>
 <ul>
 <li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
 <ul>
@@ -146,25 +124,25 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<li class="chapter" data-level="2" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>2</b> Configuração do ambiente</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<li class="chapter" data-level="2.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>2.1</b> Linux</a>
 <ul>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<li class="chapter" data-level="2.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>2.2</b> macOS</a>
 <ul>
 <li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<li class="chapter" data-level="2.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>2.3</b> Windows</a>
 <ul>
 <li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
-<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<li class="chapter" data-level="2.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>2.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="2.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>2.5</b> ABCg</a>
 <ul>
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
@@ -174,10 +152,10 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introdução</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
-<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<li class="chapter" data-level="3.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>3.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="3.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>3.2</b> Linha do tempo</a>
 <ul>
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
@@ -188,7 +166,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<li class="chapter" data-level="3.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>3.3</b> Primeiro programa</a>
 <ul>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -196,7 +174,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<li class="chapter" data-level="3.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>3.4</b> Jogo da Velha</a>
 <ul>
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -204,31 +182,31 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<li class="chapter" data-level="4" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>4</b> Sistemas gráficos</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<li class="chapter" data-level="4.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>4.1</b> Luz e cor</a>
 <ul>
 <li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
 <li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
 <li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<li class="chapter" data-level="4.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>4.2</b> Vetorial <em>x</em> matricial</a>
 <ul>
 <li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
 <li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<li class="chapter" data-level="4.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>4.3</b> Dispositivos de E/S</a>
 <ul>
 <li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
 <li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<li class="chapter" data-level="4.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>4.4</b> Framebuffer</a>
 <ul>
 <li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
 <li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
 <li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<li class="chapter" data-level="4.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>4.5</b> Triângulo de Sierpinski</a>
 <ul>
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -236,15 +214,15 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<li class="chapter" data-level="5" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>5</b> Pipeline gráfico</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
-<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<li class="chapter" data-level="5.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>5.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="5.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>5.2</b> Ray casting <em>x</em> rasterização</a>
 <ul>
 <li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
 <li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<li class="chapter" data-level="5.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>5.3</b> Pipeline do OpenGL</a>
 <ul>
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
@@ -254,7 +232,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<li class="chapter" data-level="5.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>5.4</b> Triângulos coloridos</a>
 <ul>
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -263,16 +241,16 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<li class="chapter" data-level="6" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>6</b> Desenvolvendo um jogo 2D</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<li class="chapter" data-level="6.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>6.1</b> Polígonos regulares</a>
 <ul>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<li class="chapter" data-level="6.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>6.2</b> Asteroids</a>
 <ul>
 <li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
 <li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
@@ -306,15 +284,15 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="game" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Desenvolvendo um jogo 2D<a href="game.html#game" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="game" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Desenvolvendo um jogo 2D<a href="game.html#game" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Neste capítulo, usaremos o pipeline gráfico do OpenGL e funções das bibliotecas auxiliares da ABCg (GLM, ImGui, SDL) para desenvolver um jogo com gráficos 2D. Veremos como especificar a geometria de objetos de cena usando diferentes formatos de <em>Vertex Buffer Objects</em> (VBOs), como trabalhar com mais de um par de vertex/fragment shaders, e como usar <em>variáveis uniformes</em> (<em>uniform variables</em>) para modificar a cor, posição e orientação dos objetos sem precisar reconstruir os VBOs. Também trabalharemos com aspectos não relacionados ao pipeline, mas que são necessários para dar animação e interação ao jogo:</p>
 <ul>
 <li>Como responder a eventos do mouse e teclado;</li>
 <li>Como calcular a colisão entre os objetos do jogo;</li>
 <li>Como usar temporizadores para animar os objetos.</li>
 </ul>
-<p>O resultado será um jogo estilo <a href="https://en.wikipedia.org/wiki/Asteroids_(video_game)">Asteroids</a>, como mostrado a seguir. Para simplificar, o jogo não terá efeitos sonoros<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>.</p>
+<p>O resultado será um jogo estilo <a href="https://en.wikipedia.org/wiki/Asteroids_(video_game)">Asteroids</a>, como mostrado a seguir. Para simplificar, o jogo não terá efeitos sonoros<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <iframe
   src="https://hbatagelo.github.io/abcgapps/asteroids/index.html"
   allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
@@ -332,12 +310,12 @@ Observação
 </div>
 <p>Como a página do jogo está embutida neste livro online, só é possível controlar a nave pelo mouse. Para a aplicação ter o foco do teclado, abra o <a href="https://hbatagelo.github.io/abcgapps/asteroids/index.html">link original</a>.</p>
 </div>
-<p>Antes de começar a desenvolver o jogo, acompanharemos na seção <a href="regularpolygons.html#regularpolygons">5.1</a> o passo a passo de desenvolvimento de um projeto mais simples, que desenha polígonos regulares coloridos em posições aleatórias da janela. O projeto explora conceitos que serão aplicados no jogo. Em particular, os polígonos regulares servirão de base para criarmos os asteroides e os tiros da espaçonave. Também usaremos temporizadores e variáveis uniformes de forma muito parecida com o que veremos nesse primeiro projeto.</p>
+<p>Antes de começar a desenvolver o jogo, acompanharemos na seção <a href="regularpolygons.html#regularpolygons">6.1</a> o passo a passo de desenvolvimento de um projeto mais simples, que desenha polígonos regulares coloridos em posições aleatórias da janela. O projeto explora conceitos que serão aplicados no jogo. Em particular, os polígonos regulares servirão de base para criarmos os asteroides e os tiros da espaçonave. Também usaremos temporizadores e variáveis uniformes de forma muito parecida com o que veremos nesse primeiro projeto.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="22">
-<li id="fn22"><p>É possível incluir sons usando as funções de áudio da SDL, mas neste curso não utilizaremos tais funcionalidades.<a href="game.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<ol start="1">
+<li id="fn1"><p>É possível incluir sons usando as funções de áudio da SDL, mas neste curso não utilizaremos tais funcionalidades.<a href="game.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
