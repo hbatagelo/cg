@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9.2 Modelo de reflexão de Phong | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9.2 Modelo de reflexão de Phong | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9.2 Modelo de reflexão de Phong | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="renderingequation.html"/>
+<link rel="next" href="blinnphongmodel.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.hpp-6"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação-linear"><i class="fa fa-check"></i>Transformação linear</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#mudança-de-base"><i class="fa fa-check"></i>Mudança de base</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.hpp-7"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.cpp-7"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.hpp-8"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.cpp-8"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-9"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.hpp-9"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.cpp-9"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>9</b> Iluminação</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>9.1</b> Equação de renderização</a></li>
+<li class="chapter" data-level="9.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>9.2</b> Modelo de reflexão de Phong</a>
+<ul>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>9.3</b> Modelo de Blinn–Phong</a></li>
+<li class="chapter" data-level="9.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>9.4</b> Sombreamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>9.5</b> Normais como cores</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-10"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#window.hpp-10"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#window.cpp-10"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#depth.vert-2"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>9.6</b> Iluminação na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="phongmodel" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Modelo de reflexão de Phong<a href="phongmodel.html#phongmodel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O modelo de reflexão de Phong <span class="citation">(<a href="#ref-phong1973" role="doc-biblioref">Phong 1973</a>)</span> modela de forma empírica a quantidade de luz refletida de um ponto <span class="math inline">\(P\)</span> de uma superfície em uma direção <span class="math inline">\(\hat{\mathbf{v}}\)</span> até a câmera. O modelo não é baseado na física e, por exemplo, não respeita a lei de conservação de energia. Entretanto, é capaz de produzir a percepção de superfícies iluminadas de uma forma muito eficiente.</p>
+<p>A figura <a href="phongmodel.html#fig:lighting7">9.5</a> ilustra a geometria do modelo de reflexão de Phong considerando apenas uma fonte de luz.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting7"></span>
+<img src="images/09_lighting7.svg" alt="Geometria do modelo de reflexão de Phong." width="55%" />
+<p class="caption">
+Figura 9.5: Geometria do modelo de reflexão de Phong.
+</p>
+</div>
+<p>Nessa figura, <span class="math inline">\(P\)</span> é o ponto de uma superfície, e <span class="math inline">\(\hat{\mathbf{n}}\)</span> é o vetor normal unitário correspondente.</p>
+<p>A luz que incide sobre <span class="math inline">\(P\)</span> vem de uma direção <span class="math inline">\(-\hat{\mathbf{l}}\)</span>, onde</p>
+<p><span class="math display">\[\hat{\mathbf{l}}=\frac{L-P}{|L-P|}\]</span></p>
+<p>é o vetor que vai de <span class="math inline">\(P\)</span> até a fonte de luz situada em um ponto <span class="math inline">\(L\)</span>, mas normalizado para se transformar em um vetor unitário.</p>
+<p>Parte da luz incidente em <span class="math inline">\(P\)</span> é refletida na direção do vetor</p>
+<p><span class="math display">\[\hat{\mathbf{v}}=\frac{E-P}{|E-P|},\]</span></p>
+<p>que é o vetor normalizado de <span class="math inline">\(P\)</span> até a câmera posicionada em um ponto <span class="math inline">\(E\)</span>.</p>
+<p>A intensidade da luz refletida na direção <span class="math inline">\(\hat{\mathbf{v}}\)</span> é calculada como a soma de três componentes de reflexão: <strong>ambiente</strong> (<span class="math inline">\(\mathbf{I}_a\)</span>), <strong>difusa</strong> (<span class="math inline">\(\mathbf{I}_d\)</span>) e <strong>especular</strong> (<span class="math inline">\(\mathbf{I}_s\)</span>):</p>
+<p><span class="math display">\[
+\mathbf{I}=\mathbf{I}_a + \mathbf{I}_d + \mathbf{I}_s.
+\]</span></p>
+<p>A figura <a href="phongmodel.html#fig:lighting5">9.6</a> mostra um exemplo da contribuição de cada componente para a formação da renderização do modelo Stanford Bunny.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting5"></span>
+<img src="images/09_lighting5.png" alt="Soma das componentes de reflexão ambiente, difusa e especular."  />
+<p class="caption">
+Figura 9.6: Soma das componentes de reflexão ambiente, difusa e especular.
+</p>
+</div>
+<p>Nessa imagem, o coelho está centralizado na origem do espaço do mundo. A câmera está em <span class="math inline">\(E=(0,0,2)\)</span> olhando da direção de <span class="math inline">\(z\)</span> negativo, e a fonte de luz está localizada em <span class="math inline">\(L=(100,100,100)\)</span> (acima, à direita e à frente do coelho).</p>
+<p>O aspecto de material feito de plástico é característico de superfícies iluminadas com o modelo de reflexão de Phong.</p>
+<p>Em geral, uma cena possui mais de uma fonte de luz. Nesse caso, as componentes <span class="math inline">\(\mathbf{I}_d\)</span> e <span class="math inline">\(\mathbf{I}_s\)</span> devem ser calculadas para cada fonte de luz e então somadas. Se a cena tiver <span class="math inline">\(m\)</span> fontes de luz (figura <a href="phongmodel.html#fig:lighting8">9.7</a>), então a reflexão deverá ser calculada como</p>
+<p><span class="math display">\[
+\mathbf{I}=\mathbf{I}_a + \sum_{i=1}^m \left( \mathbf{I}_{d_i} + \mathbf{I}_{s_i} \right).
+\]</span></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting8"></span>
+<img src="images/09_lighting8.svg" alt="Geometria do modelo de reflexão de Phong para a interação com várias fontes de luz." width="55%" />
+<p class="caption">
+Figura 9.7: Geometria do modelo de reflexão de Phong para a interação com várias fontes de luz.
+</p>
+</div>
+<p>A seguir, detalharemos as componentes de reflexão ambiente, difusa e especular.</p>
+<div id="reflexão-ambiente" class="section level3 unnumbered hasAnchor">
+<h3>Reflexão ambiente<a href="phongmodel.html#reflexão-ambiente" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A componente de reflexão ambiente é uma constante que procura aproximar a iluminação indireta resultante das interreflexões de luz entre as superfícies. A componente não depende da posição de <span class="math inline">\(P\)</span>, da posição da câmera <span class="math inline">\(E\)</span> ou das fontes de luz <span class="math inline">\(L_1, L_2, \dots, L_m\)</span>, e é computada simplesmente como</p>
+<p><span class="math display">\[\mathbf{I}_a=\kappa_a \iota_a,\]</span></p>
+<p>onde</p>
+<ul>
+<li><span class="math inline">\(\kappa_a\)</span> é a <strong>constante de reflexão ambiente</strong> que determina o quanto o material reflete a luz ambiente.</li>
+<li><span class="math inline">\(\iota_a\)</span> é a <strong>intensidade de luz ambiente</strong> incidente em <span class="math inline">\(P\)</span>.</li>
+</ul>
+<p>Uma vez que <span class="math inline">\(\mathbf{I}_a\)</span> é constante para todos os pontos de um objeto, esse valor pode ser pré-calculado e reutilizado em todos os pontos.</p>
+<p>Na maioria das aplicações, <span class="math inline">\(\mathbf{I}_a\)</span> é um valor bastante baixo. A figura <a href="phongmodel.html#fig:lighting11">9.8</a> mostra o resultado da renderização usando apenas a componente de reflexão ambiente, com <span class="math inline">\(\kappa_a=1.0\)</span> e <span class="math inline">\(\iota_a=0.1\)</span>. O objeto é desenhado com um tom de cinza, que neste caso é a cor RGB <span class="math inline">\((0.1, 0.1, 0.1)\)</span>, isto é, cada componente de cor é o próprio valor <span class="math inline">\(\mathbf{I}_a\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting11"></span>
+<img src="images/09_lighting11.png" alt="Renderização usando apenas a componente ambiente."  />
+<p class="caption">
+Figura 9.8: Renderização usando apenas a componente ambiente.
+</p>
+</div>
+<p>Mais adiante descreveremos como estender o cálculo de reflexão para gerar cores em vez de tons de cinza.</p>
+</div>
+<div id="reflexão-difusa" class="section level3 unnumbered hasAnchor">
+<h3>Reflexão difusa<a href="phongmodel.html#reflexão-difusa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A componente de reflexão difusa <span class="math inline">\(\mathbf{I}_d\)</span> representa a luz que é refletida supondo que <span class="math inline">\(P\)</span> faz parte de uma <strong>superfície difusa ideal</strong>, também chamada de <strong>superfície lambertiana</strong> em homenagem ao matemático e físico suíço Johann Heinrich Lambert (1728–1777), que introduziu tal conceito.</p>
+<p>Não há superfícies idealmente difusas no mundo físico. Entretanto, aproximações incluem, por exemplo, paredes de gesso e argamassa, e superfícies em geral que possuem aspecto fosco. Superfícies difusas são aquelas que não possuem brilho especular.</p>
+<p>Em uma superfície lambertiana, a luz que incide sobre <span class="math inline">\(P\)</span> é refletida igualmente em todas as direções, como ilustra a figura <a href="phongmodel.html#fig:lighting9">9.9</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting9"></span>
+<img src="images/09_lighting9.svg" alt="Reflexão difusa ideal." width="55%" />
+<p class="caption">
+Figura 9.9: Reflexão difusa ideal.
+</p>
+</div>
+<p>A intensidade da luz refletida é proporcional ao cosseno do ângulo entre <span class="math inline">\(\hat{\mathbf{l}}\)</span> e <span class="math inline">\(\hat{\mathbf{n}}\)</span> (relação chamada de <strong>lei do cosseno de Lambert</strong>), que é o mesmo que o produto escalar entre os vetores unitários:</p>
+<p><span class="math display">\[\cos \theta = \hat{\mathbf{l}} \cdot \hat{\mathbf{n}}.\]</span></p>
+<p>Observe que esse valor é também a projeção escalar de <span class="math inline">\(\hat{\mathbf{l}}\)</span> sobre <span class="math inline">\(\hat{\mathbf{n}}\)</span>.</p>
+<p>Quanto maior o ângulo entre <span class="math inline">\(\hat{\mathbf{l}}\)</span> e <span class="math inline">\(\hat{\mathbf{n}}\)</span>, menor a intensidade da reflexão difusa. A intensidade é mínima quando os vetores são perpendiculares, pois <span class="math inline">\(\cos(\pi/2) = 0\)</span>, e máxima quando paralelos, pois <span class="math inline">\(\cos(0)=1\)</span>. Isso ocorre porque a energia luminosa que incide sobre uma área da superfície é mais concentrada quanto mais perpendicular a luz estiver em relação à superfície (figura <a href="phongmodel.html#fig:lighting10">9.10</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting10"></span>
+<img src="images/09_lighting10.svg" alt="A concentração da luz em uma superfície depende da orientação da luz em relação à superfície." width="65%" />
+<p class="caption">
+Figura 9.10: A concentração da luz em uma superfície depende da orientação da luz em relação à superfície.
+</p>
+</div>
+<p>Esse fator de atenuação da reflexão da luz está presente na equação de renderização, através do termo <span class="math inline">\(\cos \theta_i\)</span> da integral:</p>
+<p><span class="math display">\[
+I(\mathbf x, \omega_{\text{o}}) = I_{\text{e}}(\mathbf x, \omega_{\text{o}}) \ + \int_{\Omega} f_{\text{r}}(\omega_{\text{i}}, \omega_{\text{o}}) I(\mathbf x, \omega_{\text{i}}) \cos \theta_i \;\mathrm{d} \omega_{\text{i}}.
+\]</span></p>
+<p>Em uma superfície idealmente difusa, a BRDF é uma constante, isto é, <span class="math inline">\(f_r(\omega_i,\omega_o)=\kappa_d\)</span>. Logo, a equação de renderização torna-se</p>
+<p><span class="math display">\[
+\begin{align}
+I(\mathbf x, \omega_{\text{o}}) &amp;= I_{\text{e}}(\mathbf x, \omega_{\text{o}}) \ + \int_{\Omega} \kappa_d I(\mathbf x, \omega_{\text{i}}) \cos \theta_i \;\mathrm{d} \omega_{\text{i}}\\
+&amp;= I_{\text{e}}(\mathbf x, \omega_{\text{o}}) \ + \kappa_d \int_{\Omega} I(\mathbf x, \omega_{\text{i}}) \cos \theta_i \;\mathrm{d} \omega_{\text{i}}.
+\end{align}
+\]</span></p>
+<p>O modelo de reflexão de Phong aproxima isso calculando a componente difusa como</p>
+<p><span class="math display">\[
+\mathbf{I}_d = \kappa_d \iota_{d} (\hat{\mathbf{l}} \cdot \hat{\mathbf{n}}),
+\]</span></p>
+<p>onde</p>
+<ul>
+<li><span class="math inline">\(\kappa_d\)</span> é a <strong>constante de reflexão difusa</strong> que determina o quanto o material reflete a luz difusa.</li>
+<li><span class="math inline">\(\iota_d\)</span> é a <strong>intensidade de luz difusa</strong> incidente em <span class="math inline">\(P\)</span>.</li>
+<li><span class="math inline">\(\hat{\mathbf{l}} \cdot \hat{\mathbf{n}}\)</span> é o fator de atenuação relacionado à lei de cosseno de Lambert. São válidos apenas os valores no intervalo <span class="math inline">\([0,1]\)</span>.</li>
+</ul>
+<p>A figura <a href="phongmodel.html#fig:lighting12">9.11</a> mostra o resultado da renderização usando apenas a componente de reflexão difusa, com <span class="math inline">\(\kappa_d=0.7\)</span> e <span class="math inline">\(\iota_d=1.0\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting12"></span>
+<img src="images/09_lighting12.png" alt="Renderização usando apenas a componente difusa."  />
+<p class="caption">
+Figura 9.11: Renderização usando apenas a componente difusa.
+</p>
+</div>
+<p>Se tivermos <span class="math inline">\(m&gt;1\)</span> fontes de luz, cada fonte de luz terá seu próprio vetor <span class="math inline">\(\hat{\mathbf{l}}\)</span> e sua própria intensidade <span class="math inline">\(\iota_{d}\)</span>. A componente <span class="math inline">\(\mathbf{I}_d\)</span> deverá levar em conta a soma de todas essas intensidades:</p>
+<p><span class="math display">\[
+\mathbf{I}_d = \kappa_d \sum_{i=1}^m \iota_{d_i} (\hat{\mathbf{l}}_i \cdot \hat{\mathbf{n}}).
+\]</span></p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<ul>
+<li><p>Note a semelhança entre <span class="math inline">\(\mathbf{I}_d\)</span> e a integral da equação de renderização com BRDF constante:</p>
+<p><span class="math display">\[\kappa_d \sum_{i=1}^m \iota_{d_i} (\hat{\mathbf{l}}_i \cdot \hat{\mathbf{n}}) \approx \kappa_d \int_{\Omega} I(\mathbf x, \omega_{\text{i}}) \cos \theta_i \;\mathrm{d} \omega_{\text{i}}.\]</span></p>
+<ul>
+<li>A integral é substituída pelo somatório, pois as fontes de luz podem ser consideradas como pontos discretos no espaço;</li>
+<li><span class="math inline">\(\iota_{d_i}\)</span> é uma aproximação de <span class="math inline">\(I(\mathbf x, \omega_{\text{i}})\)</span> para a incidência da luz da <span class="math inline">\(i\)</span>-ésima fonte de luz;</li>
+<li><span class="math inline">\(\hat{\mathbf{l}}_i \cdot \hat{\mathbf{n}}\)</span> é <span class="math inline">\(\cos \theta_i\)</span>.
+<p></li>
+</ul></li>
+<li><p>Note também que <span class="math inline">\(\mathbf{I}_d\)</span> não usa o vetor <span class="math inline">\(\hat{\mathbf{v}}\)</span>, que é o vetor de direção até a câmera. Isso significa que a componente de reflexão difusa não depende da posição da câmera.</p>
+<p>Se a cena é estática, isto é, se os objetos e as fontes de luz não se movem, a componente de reflexão difusa de cada ponto pode ser pré-calculada. Essa característica é explorada na técnica de radiosidade <span class="citation">(<a href="#ref-greenberg1986" role="doc-biblioref">Greenberg, Cohen, and Torrance 1986</a>)</span>. A técnica considera que todas as superfícies da cena são lambertianas. Desse modo, a solução da equação de renderização pode ser pré-computada e a intensidade de reflexão difusa pode ser gravada como a “cor” de cada vértice. A cena pode então ser visualizada por uma câmera LookAt em tempo real.</p></li>
+</ul>
+</div>
+</div>
+<div id="reflexão-especular" class="section level3 unnumbered hasAnchor">
+<h3>Reflexão especular<a href="phongmodel.html#reflexão-especular" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uma <strong>superfície idealmente especular</strong> é um espelho ideal. A luz que incide em <span class="math inline">\(P\)</span> é refletida apenas na direção reflexa <span class="math inline">\(\hat{\mathbf{r}}\)</span> do vetor <span class="math inline">\(\hat{\mathbf{l}}\)</span> em torno de <span class="math inline">\(\hat{\mathbf{n}}\)</span>, como mostra a figura <a href="phongmodel.html#fig:lighting14">9.12</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting14"></span>
+<img src="images/09_lighting14.svg" alt="Reflexão especular ideal." width="55%" />
+<p class="caption">
+Figura 9.12: Reflexão especular ideal.
+</p>
+</div>
+<p>O vetor <span class="math inline">\(\hat{\mathbf{r}}\)</span> de reflexão ideal é calculado como</p>
+<p><span class="math display">\[
+\hat{\mathbf{r}} = 2(\hat{\mathbf{l}} \cdot \hat{\mathbf{n}})\hat{\mathbf{n}} - \hat{\mathbf{l}}.
+\]</span></p>
+<p>A figura <a href="phongmodel.html#fig:lighting15">9.13</a> mostra uma interpretação geométrica desssa expressão.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting15"></span>
+<img src="images/09_lighting15.svg" alt="Calculando o vetor de reflexão especular." width="55%" />
+<p class="caption">
+Figura 9.13: Calculando o vetor de reflexão especular.
+</p>
+</div>
+<p>No modelo de reflexão de Phong, a reflexão especular <span class="math inline">\(\mathbf{I}_s\)</span> é um valor que varia de acordo com o ângulo formado entre <span class="math inline">\(\hat{\mathbf{r}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{I}_s= \kappa_s \iota_{s} (\hat{\mathbf{r}} \cdot \hat{\mathbf{v}})^\alpha,
+\]</span></p>
+<p>onde</p>
+<ul>
+<li><p><span class="math inline">\(\kappa_s\)</span> é a <strong>constante de reflexão especular</strong> que determina o quanto o material reflete a luz especular.</p></li>
+<li><p><span class="math inline">\(\iota_s\)</span> é a <strong>intensidade de luz especular</strong> incidente em <span class="math inline">\(P\)</span>.</p></li>
+<li><p><span class="math inline">\(\alpha \geq 0\)</span> é uma constante que determina o espalhamento do brilho especular. É uma propriedade do material.</p>
+<p>Quanto maior é o valor de <span class="math inline">\(\alpha\)</span>, mais concentrado será o brilho especular. Desse modo, <span class="math inline">\(\alpha\)</span> define o quão “lustro” é o material. Se <span class="math inline">\(\alpha=\infty\)</span>, o resultado é um superfície especular ideal (espelho ideal).</p></li>
+<li><p><span class="math inline">\(\hat{\mathbf{r}} \cdot \hat{\mathbf{v}}\)</span> é o cosseno do ângulo entre <span class="math inline">\(\hat{\mathbf{r}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span>. São válidos apenas os valores no intervalo <span class="math inline">\([0,1]\)</span>.</p>
+<p>O brilho especular é máximo (<span class="math inline">\(\hat{\mathbf{r}} \cdot \hat{\mathbf{v}}=1\)</span>) se <span class="math inline">\(\hat{\mathbf{r}}=\hat{\mathbf{v}}\)</span>.</p>
+<p>O brilho especular é mínimo (<span class="math inline">\(\hat{\mathbf{r}} \cdot \hat{\mathbf{v}}=0\)</span>) se <span class="math inline">\(\hat{\mathbf{r}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span> são perpendiculares.</p></li>
+</ul>
+<p>A figura <a href="phongmodel.html#fig:lighting16">9.14</a> mostra o resultado da variação do brilho especular para diferentes valores de <span class="math inline">\(\alpha\)</span> e ilustra a variação correspondente de <span class="math inline">\(\hat{\mathbf{r}} \cdot \hat{\mathbf{v}}\)</span>. As renderizações consideram os valores de intensidade ambiente e difusa mostrados nas figuras <a href="phongmodel.html#fig:lighting11">9.8</a> e <a href="phongmodel.html#fig:lighting12">9.11</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting16"></span>
+<img src="images/09_lighting16.png" alt="Renderização usando diferentes valores de brilho especular."  />
+<p class="caption">
+Figura 9.14: Renderização usando diferentes valores de brilho especular.
+</p>
+</div>
+<p>A figura <a href="phongmodel.html#fig:lighting13">9.15</a> mostra o resultado da renderização usando apenas a componente de reflexão especular, com <span class="math inline">\(\kappa_s=0.7\)</span> e <span class="math inline">\(\iota_s=1.0\)</span> e <span class="math inline">\(\alpha=50\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting13"></span>
+<img src="images/09_lighting13.png" alt="Renderização usando apenas a componente especular."  />
+<p class="caption">
+Figura 9.15: Renderização usando apenas a componente especular.
+</p>
+</div>
+<p>Se tivermos <span class="math inline">\(m&gt;1\)</span> fontes de luz, cada fonte de luz terá seu próprio vetor <span class="math inline">\(\hat{\mathbf{r}}\)</span> e sua própria intensidade <span class="math inline">\(\iota_{s}\)</span>. A componente <span class="math inline">\(\mathbf{I}_s\)</span> deverá levar em conta a soma de todas essas intensidades:</p>
+<p><span class="math display">\[
+\mathbf{I}_s = \kappa_s \sum_{i=1}^m \iota_{s_i} (\hat{\mathbf{r}}_i \cdot \hat{\mathbf{v}})^\alpha.
+\]</span></p>
+</div>
+<div id="modelo-completo" class="section level3 unnumbered hasAnchor">
+<h3>Modelo completo<a href="phongmodel.html#modelo-completo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Combinando as componentes ambiente, difusa e especular, temos a equação completa</p>
+<p><span class="math display">\[
+\mathbf{I}=\kappa_a \iota_a + \sum_{i=1}^m \left(\kappa_d \iota_{d_i} (\hat{\mathbf{l}}_i \cdot \hat{\mathbf{n}}) + \kappa_s \iota_{s_i} (\hat{\mathbf{r}}_i \cdot \hat{\mathbf{v}})^\alpha\right).
+\]</span></p>
+<p>A equação pode ser avaliada em um vertex shader ou fragment shader, pois podemos armazenar as seguintes informações como variáveis uniformes (<code>uniform</code>):</p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> (constante de espalhamento de brilho especular).</li>
+<li><span class="math inline">\(m\)</span> (número de fontes de luz).</li>
+<li><span class="math inline">\(\kappa_a\)</span>, <span class="math inline">\(\kappa_d\)</span>, <span class="math inline">\(\kappa_s\)</span> (coeficientes de reflexão do material).</li>
+<li><span class="math inline">\(\iota_d\)</span>, <span class="math inline">\(\iota_s\)</span> (intensidades de luz difusa e especular, em um arranjo de <span class="math inline">\(m\)</span> elementos, um para cada fonte de luz).</li>
+<li><span class="math inline">\(\iota_a\)</span> (intensidade de luz ambiente).</li>
+</ul>
+<p>Além disso, <span class="math inline">\(\hat{\mathbf{n}}\)</span> pode ser pré-calculado como um atributo do vértice, isto é, como um VBO de vetores normais de vértices.</p>
+<p>Podemos calcular <span class="math inline">\(\hat{\mathbf{l}}\)</span> como</p>
+<p><span class="math display">\[\hat{\mathbf{l}}=\frac{L-P}{|L-P|},\]</span></p>
+<p>onde <span class="math inline">\(L\)</span> é a posição da fonte de luz, que também pode ser armazenada como uma variável uniforme, e <span class="math inline">\(P\)</span> é o atributo de posição do vértice atual (caso a equação seja avaliada no vertex shader) ou fragmento atual (caso a equação seja avaliada no fragment shader).</p>
+<p>Podemos calcular <span class="math inline">\(\hat{\mathbf{v}}\)</span> como</p>
+<p><span class="math display">\[\hat{\mathbf{v}}=\frac{E-P}{|E-P|},\]</span>
+onde <span class="math inline">\(E\)</span> é a posição da câmera. Se considerarmos que <span class="math inline">\(P\)</span> está no espaço da câmera, então a posição da câmera é a origem:</p>
+<p><span class="math display">\[E=(0,0,0)\]</span>
+e assim não é necessário enviar <span class="math inline">\(E\)</span> ao shader como uma variável uniforme.</p>
+<p>Como já vimos, <span class="math inline">\(\hat{\mathbf{r}}\)</span> pode ser calculado como</p>
+<p><span class="math display">\[\hat{\mathbf{r}} = 2(\hat{\mathbf{l}} \cdot \hat{\mathbf{n}})\hat{\mathbf{n}} - \hat{\mathbf{l}}.\]</span></p>
+<p>Enfim, temos tudo o que é preciso para implementar o modelo de reflexão de Phong no pipeline gráfico. Faremos isso em um passo a passo de implementação nas seções <a href="viewer2.html#viewer2">9.5</a> e <a href="viewer3.html#viewer3">9.6</a>.</p>
+</div>
+<div id="iluminação-colorida" class="section level3 unnumbered hasAnchor">
+<h3>Iluminação colorida<a href="phongmodel.html#iluminação-colorida" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Até agora só consideramos fontes de luz e materiais monocromáticos. Se quisermos representar fontes de luz coloridas ou materiais coloridos, devemos calcular <span class="math inline">\(\mathbf{I}\)</span> para cada uma das componentes RGB. Assim, as constantes de material (<span class="math inline">\(\kappa_a\)</span>, <span class="math inline">\(\kappa_d\)</span>, <span class="math inline">\(\kappa_s\)</span>) e as intensidades (<span class="math inline">\(\iota_a\)</span>, <span class="math inline">\(\iota_d\)</span>, <span class="math inline">\(\iota_s\)</span>) deverão ser tuplas de três elementos:</p>
+<p><span class="math display">\[
+\kappa_a=(\kappa_{a,r}, \kappa_{a,g}, \kappa_{a,b}),\\ \kappa_d=(\kappa_{d,r}, \kappa_{d,g}, \kappa_{d,b}),\\ \kappa_s=(\kappa_{s,r}, \kappa_{s,g}, \kappa_{s,b}),
+\]</span></p>
+<p>e</p>
+<p><span class="math display">\[
+\iota_a=(\iota_{a,r}, \iota_{a,g}, \iota_{a,b}),\\ \iota_d=(\iota_{d,r}, \iota_{d,g}, \iota_{d,b}),\\ \iota_s=(\iota_{s,r}, \iota_{s,g}, \iota_{s,b}).
+\]</span></p>
+<p>Os elementos dessas tuplas correspondem a cores RGB. Por exemplo, um objeto de cor vermelha poderá ser especificado com um material com constante de reflexão difusa</p>
+<p><span class="math display">\[
+\kappa_d=(1,0,0).
+\]</span></p>
+<p>Isso significa que o material reflete toda luz vermelha (<span class="math inline">\(\kappa_{d,r}=1\)</span>) e absorve completamente as outras cores (<span class="math inline">\(\kappa_{d,g}=\kappa_{d,b}=0\)</span>) das fontes de luz.</p>
+<p>Alguns exemplos de materiais são mostrados na figura <a href="phongmodel.html#fig:lighting19">9.16</a>. Todos esses materiais estão sendo iluminados por uma fonte de luz branca, <span class="math inline">\(\iota_d=\iota_s=(1,1,1)\)</span>. A luz ambiente também é branca com intensidade máxima (<span class="math inline">\(\iota_a=(1,1,1)\)</span>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting19"></span>
+<img src="images/09_lighting19.png" alt="Diferentes materiais no modelo de Phong."  />
+<p class="caption">
+Figura 9.16: Diferentes materiais no modelo de Phong.
+</p>
+</div>
+<p>Como regra geral, se o material não é um metal, <span class="math inline">\(\kappa_s\)</span> deve ter o mesmo valor para cada componente RGB, pois a cor do brilho especular deve ser a cor da fonte de luz. Se o material é um metal, <span class="math inline">\(\kappa_s\)</span> deve ser a cor do material. Por exemplo, em um objeto feito de ouro, a cor especular deve ser amarelada.</p>
+<p>A cor de uma fonte de luz pode ser especificada através da intensidade de luz difusa. Por exemplo, uma luz verde é definida com</p>
+<p><span class="math display">\[
+\iota_d=(0,1,0).
+\]</span></p>
+<p>Suponha que a luz verde ilumine um material vermelho com <span class="math inline">\(\kappa_d=(1,0,0)\)</span>. O resultado de <span class="math inline">\(\kappa_d\iota_d\)</span> (multiplicação elemento a elemento) será a cor preta</p>
+<p><span class="math display">\[
+\kappa_d\iota_d = (0,0,0).
+\]</span></p>
+<p>Isso faz sentido pois, de fato, um objeto vermelho têm a aparência de um objeto preto quanto iluminado por uma luz verde.</p>
+</div>
+<div id="fontes-de-luz" class="section level3 unnumbered hasAnchor">
+<h3>Fontes de luz<a href="phongmodel.html#fontes-de-luz" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Até agora, consideramos que cada fonte de luz do modelo de reflexão de Phong é um ponto <span class="math inline">\(L\)</span> no espaço. Essa é a definição de uma fonte de <strong>luz pontual</strong>.</p>
+<p>Além da luz pontual, também é comum o uso de <strong>luz direcional</strong>. A seguir, definiremos a luz direcional e revisitaremos a definição de luz pontual com a introdução do conceito adicional de atenuação espacial.</p>
+<div id="luz-pontual" class="section level4 unnumbered hasAnchor">
+<h4>Luz pontual<a href="phongmodel.html#luz-pontual" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Uma fonte de luz pontual é definida por um ponto que emite luz em igual intensidade em todas as direções, como uma lâmpada tradicional de bulbo.</p>
+<p>Se <span class="math inline">\(L\)</span> é a posição da luz, então o vetor <span class="math inline">\(\hat{\mathbf{l}}\)</span> do modelo de reflexão é definido como</p>
+<p><span class="math display">\[\hat{\mathbf{l}}=\frac{L-P}{|L-P|}.\]</span></p>
+<p>Podemos simular um efeito de <strong>atenuação da luz</strong>, isto é, diminuição da intensidade da fonte de luz de acordo com a distância do ponto <span class="math inline">\(L\)</span> em relação ao ponto <span class="math inline">\(P\)</span>.</p>
+<p>As intensidades que devem ser atenuadas são as contantes <span class="math inline">\(\iota_d\)</span> (intensidade difusa) e <span class="math inline">\(\iota_s\)</span> (intensidade especular). Opcionalmente, podemos atenuar <span class="math inline">\(\iota_a\)</span> (intensidade ambiente) caso consideremos que a fonte de luz em questão contribui para a intensidade ambiente.</p>
+<p>No mundo físico, a intensidade da luz trasmitida no vácuo é proporcional ao inverso da distância ao quadrado. Entretanto, podemos obter um maior controle artístico se considerarmos que o fator de atenuação é definido de forma mais geral como:</p>
+<p><span class="math display">\[
+F_{\textrm{att}}=\frac{1}{k_c+k_ld+k_qd^2}.
+\]</span></p>
+<p>onde</p>
+<ul>
+<li><span class="math inline">\(d\)</span> é a <strong>distância</strong>, isto é, <span class="math inline">\(|L-P|\)</span>.</li>
+<li><span class="math inline">\(k_c\)</span>, <span class="math inline">\(k_l\)</span> e <span class="math inline">\(k_q\)</span> são, respectivamente, os termos <strong>constante</strong>, <strong>linear</strong> e <strong>quadrático</strong> da atenuação. Esses valores devem estar no intervalo <span class="math inline">\([0,1]\)</span>.</li>
+</ul>
+<p>Em geral, <span class="math inline">\(k_c=1\)</span> para evitar que o valor de atenuação seja maior que <span class="math inline">\(1\)</span>.</p>
+<p>Geralmente, <span class="math inline">\(k_l\leq 1\)</span> e <span class="math inline">\(k_q \leq 1\)</span>, mas a escolha dos valores dependerá do efeito desejado. Um bom ponto de partida é começar com <span class="math inline">\(k_l=k_q=0.2\)</span>. Isso faz com que a fonte de luz ilumine objetos até aproximadamente <span class="math inline">\(d=20\)</span>. Quanto menor o valor de <span class="math inline">\(k_l\)</span> e <span class="math inline">\(k_q\)</span>, maior a distância coberta pela fonte de luz.</p>
+<p>Se considerarmos que todas as fontes de luz são pontuais e atenuadas, podemos reformular o modelo de reflexão como a seguir:</p>
+<p><span class="math display">\[
+\mathbf{I}=\kappa_a \iota_a + \sum_{i=1}^m F_{\textrm{att}_i}\left(\kappa_d \iota_{d_i} (\hat{\mathbf{l}}_i \cdot \hat{\mathbf{n}}) + \kappa_s \iota_{s_i} (\hat{\mathbf{r}}_i \cdot \hat{\mathbf{v}})^\alpha\right),
+\]</span></p>
+<p>onde <span class="math inline">\(F_{\textrm{att}_i}\)</span> é o fator de atenuação da <span class="math inline">\(i\)</span>-ésima fonte de luz.</p>
+</div>
+<div id="luz-direcional" class="section level4 unnumbered hasAnchor">
+<h4>Luz direcional<a href="phongmodel.html#luz-direcional" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A fonte de luz direcional simula o comportamento de uma fonte de luz pontual infinitamente distante, de tal modo que os raios de luz que chegam à superfície são paralelos entre si. No mundo físico, uma aproximação de fonte de luz direcional é a luz do sol.</p>
+<p>A luz direcional é definida simplesmente por um vetor <span class="math inline">\(\mathbf{u}\)</span> de direção da luz. Como não há posição do espaço, não há como calcular a atenuação.</p>
+<p>Dada uma direção <span class="math inline">\(\mathbf{u}\)</span> de luz direcional, o vetor <span class="math inline">\(\hat{\mathbf{l}}\)</span> do modelo de reflexão de Phong é definido como</p>
+<p><span class="math display">\[\hat{\mathbf{l}}=-\frac{\mathbf{u}}{|\mathbf{u}|}.\]</span></p>
+</div>
+<div id="luz-spot" class="section level4 unnumbered hasAnchor">
+<h4>Luz spot<a href="phongmodel.html#luz-spot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Uma luz do tipo spot (<em>spotlight</em>) é um tipo de luz pontual na qual a luz é emitida apenas em um facho cônico de luz em torno de uma direção central. A luz spot é definida pelos seguintes parâmetros (figura <a href="phongmodel.html#fig:lightingspot">9.17</a>):</p>
+<ul>
+<li>Uma posição <span class="math inline">\(L\)</span>, como na luz pontual.</li>
+<li>Uma direção <span class="math inline">\(\hat{\mathbf{u}}\)</span> que corresponde à direção (normalizada) do centro do facho de luz.</li>
+<li>Um ângulo de corte <span class="math inline">\(\phi \in [0, \pi]\)</span> que corresponde ao ângulo entre a direção <span class="math inline">\(\mathbf{u}\)</span> e a borda do cone.</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lightingspot"></span>
+<img src="images/09_lighting_spot.svg" alt="Parâmetros de uma fonte de luz spot."  />
+<p class="caption">
+Figura 9.17: Parâmetros de uma fonte de luz spot.
+</p>
+</div>
+<p>Se <span class="math inline">\(P\)</span> é um ponto na superfície, então</p>
+<p><span class="math display">\[\hat{\mathbf{l}}=\frac{L-P}{|L-P|},\]</span>
+e <span class="math inline">\(P\)</span> está iluminado pela luz spot se</p>
+<p><span class="math display">\[\cos{\theta} &gt; \cos{\phi},\]</span>
+onde
+<span class="math display">\[\cos{\theta}=\hat{\mathbf{u}} \cdot -\hat{\mathbf{l}}.\]</span></p>
+<p>Se <span class="math inline">\(P\)</span> está iluminado, a intensidade de luz em <span class="math inline">\(P\)</span> é calculada como no caso da luz pontual. Se <span class="math inline">\(P\)</span> não está iluminado, a intensidade de luz em <span class="math inline">\(P\)</span> será nula para esta fonte de luz.</p>
+</div>
+</div>
+</div>
+<h3>Referências<a href="referências.html#referências" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-greenberg1986" class="csl-entry">
+Greenberg, Donald P., Michael F. Cohen, and Kenneth E. Torrance. 1986. <span>“Radiosity: A Method for Computing Global Illumination.”</span> <em>The Visual Computer</em> 2 (5): 291–97. <a href="https://doi.org/10.1007/BF02020429">https://doi.org/10.1007/BF02020429</a>.
+</div>
+<div id="ref-phong1973" class="csl-entry">
+Phong, Bui Tuong. 1973. <span>“Illumination of Computer-Generated Images.”</span> Technical Report UTEC-CSs-73-129. University of Utah.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="renderingequation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="blinnphongmodel.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

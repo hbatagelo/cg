@@ -408,6 +408,43 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.cpp-9"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>9</b> Iluminação</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>9.1</b> Equação de renderização</a></li>
+<li class="chapter" data-level="9.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>9.2</b> Modelo de reflexão de Phong</a>
+<ul>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>9.3</b> Modelo de Blinn–Phong</a></li>
+<li class="chapter" data-level="9.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>9.4</b> Sombreamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>9.5</b> Normais como cores</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-10"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#window.hpp-10"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#window.cpp-10"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#depth.vert-2"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>9.6</b> Iluminação na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -1063,7 +1100,7 @@ div.csl-indent {
 <span id="cb319-87"><a href="viewer1.html#cb319-87"></a>    <span class="op">{</span></span>
 <span id="cb319-88"><a href="viewer1.html#cb319-88"></a>      <span class="co">// Slider will fill the space of the window</span></span>
 <span id="cb319-89"><a href="viewer1.html#cb319-89"></a>      ImGui<span class="op">::</span>PushItemWidth<span class="op">(</span><span class="va">m_viewportSize</span><span class="op">.</span>x <span class="op">-</span> <span class="dv">25</span><span class="op">);</span></span>
-<span id="cb319-90"><a href="viewer1.html#cb319-90"></a>      ImGui<span class="op">::</span>SliderInt<span class="op">(</span><span class="st">&quot;&quot;</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_trianglesToDraw</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_model</span><span class="op">.</span>getNumTriangles<span class="op">(),</span></span>
+<span id="cb319-90"><a href="viewer1.html#cb319-90"></a>      ImGui<span class="op">::</span>SliderInt<span class="op">(</span><span class="st">&quot; &quot;</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_trianglesToDraw</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">m_model</span><span class="op">.</span>getNumTriangles<span class="op">(),</span></span>
 <span id="cb319-91"><a href="viewer1.html#cb319-91"></a>                       <span class="st">&quot;</span><span class="sc">%d</span><span class="st"> triangles&quot;</span><span class="op">);</span></span>
 <span id="cb319-92"><a href="viewer1.html#cb319-92"></a>      ImGui<span class="op">::</span>PopItemWidth<span class="op">();</span></span>
 <span id="cb319-93"><a href="viewer1.html#cb319-93"></a>    <span class="op">}</span></span>
