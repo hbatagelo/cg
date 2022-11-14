@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11.4 Texturização na prática | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11.4 Texturização na prática | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11.4 Texturização na prática | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="texfiltering.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> | Notas de aula</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>2</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>2.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>2.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>2.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>2.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="2.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>2.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>3.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="3.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>3.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>3.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>3.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>4</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>4.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>4.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>4.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>4.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>4.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>5</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>5.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="5.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>5.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>5.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>5.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>6</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>6.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>6.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>7</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>7.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>7.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>7.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>7.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.hpp-6"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>8</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>8.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação-linear"><i class="fa fa-check"></i>Transformação linear</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#mudança-de-base"><i class="fa fa-check"></i>Mudança de base</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>8.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="8.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>8.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="8.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>8.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>8.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>8.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>8.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.hpp-7"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.cpp-7"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>9</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>9.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>9.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>9.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>9.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.hpp-8"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.cpp-8"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>9.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-9"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.hpp-9"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.cpp-9"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>10</b> Iluminação</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>10.1</b> Equação de renderização</a></li>
+<li class="chapter" data-level="10.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>10.2</b> Modelo de reflexão de Phong</a>
+<ul>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>10.3</b> Modelo de Blinn–Phong</a></li>
+<li class="chapter" data-level="10.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>10.4</b> Sombreamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>10.5</b> Normais como cores</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-10"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#window.hpp-10"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#window.cpp-10"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#depth.vert-2"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>10.6</b> Iluminação na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="texturing.html"><a href="texturing.html"><i class="fa fa-check"></i><b>11</b> Texturização</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="texmapping.html"><a href="texmapping.html"><i class="fa fa-check"></i><b>11.1</b> Mapeamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-planar"><i class="fa fa-check"></i>Mapeamento planar</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-cilíndrico"><i class="fa fa-check"></i>Mapeamento cilíndrico</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-esférico"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-uv-unwrap"><i class="fa fa-check"></i>Mapeamento UV unwrap</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="texwrapping.html"><a href="texwrapping.html"><i class="fa fa-check"></i><b>11.2</b> Empacotamento</a></li>
+<li class="chapter" data-level="11.3" data-path="texfiltering.html"><a href="texfiltering.html"><i class="fa fa-check"></i><b>11.3</b> Filtragem</a>
+<ul>
+<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#magnificação"><i class="fa fa-check"></i>Magnificação</a></li>
+<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#minificação"><i class="fa fa-check"></i>Minificação</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="viewer4.html"><a href="viewer4.html"><i class="fa fa-check"></i><b>11.4</b> Texturização na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-texturas"><i class="fa fa-check"></i>Carregando texturas</a></li>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="viewer4" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Texturização na prática<a href="viewer4.html#viewer4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nesta seção, daremos continuidade ao projeto do visualizador de modelos 3D apresentado na seção <a href="viewer3.html#viewer3">10.6</a>.</p>
+<p>Esta será a versão 4 do visualizador (<code>viewer4</code>) e terá um shader que usa uma textura para modificar as propriedades de reflexão difusa (<span class="math inline">\(\kappa_d\)</span>) e ambiente (<span class="math inline">\(\kappa_a\)</span>) do material utilizado no modelo de reflexão de Blinn–Phong.</p>
+<p>Se o objeto lido do arquivo OBJ já vier com coordenadas de textura definidas em seus vértices (mapeamento UV unwrap), o visualizador usará essas coordenadas para amostrar a textura. Entretanto, também poderemos selecionar, através da interface da ImGui, um mapeamento pré-definido: triplanar, cilíndrico ou esférico.</p>
+<p>Nesta nova versão, o botão “Load 3D Model” será transformado em um item do menu “File”. Há também uma opção de menu para carregar uma textura como um arquivo de imagem no formato PNG ou JPEG.</p>
+<p>O resultado ficará como a seguir:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/viewer4/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<p>Como o código dessa versão contém apenas mudanças incrementais em relação ao anterior, nosso foco será apenas nessas mudanças.</p>
+<p>Baixe o código completo <a href="https://hbatagelo.github.io/abcgapps/src/viewer4.zip">deste link</a>.</p>
+<div id="carregando-texturas" class="section level3 unnumbered hasAnchor">
+<h3>Carregando texturas<a href="viewer4.html#carregando-texturas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para carregar uma textura no OpenGL, primeiro devemos chamar a função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGenTextures.xhtml"><code>glGenTextures</code></a> que cria um ou mais recursos de textura. Por exemplo, para criar apenas uma textura, podemos fazer</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="viewer4.html#cb7-1" aria-hidden="true" tabindex="-1"></a>glGenTextures<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span>textureID<span class="op">);</span></span></code></pre></div>
+<p>onde <code>textureID</code> é uma variável do tipo <code>GLuint</code> que será preenchida com o identificador do recurso de textura criado pelo OpenGL.</p>
+<p>Em seguida, ligamos o recurso de textura a um “alvo de textura”, que é <code>GL_TEXTURE_2D</code> para texturas 2D:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="viewer4.html#cb8-1" aria-hidden="true" tabindex="-1"></a>glBindTexture<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> textureID<span class="op">);</span></span></code></pre></div>
+<p>Neste momento, a textura ainda está vazia. Para definir seu conteúdo, devemos ter um mapa de bits. Podemos carregar o conteúdo do mapa de bits através da função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexImage2D.xhtml"><code>glTexImage2D</code></a>. Por exemplo, considere o código a seguir:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="viewer4.html#cb9-1" aria-hidden="true" tabindex="-1"></a>glTexImage2D<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> GL_RGBA<span class="op">,</span> <span class="dv">800</span><span class="op">,</span> <span class="dv">600</span><span class="op">,</span> </span>
+<span id="cb9-2"><a href="viewer4.html#cb9-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">0</span><span class="op">,</span> GL_RGBA<span class="op">,</span> GL_UNSIGNED_BYTE<span class="op">,</span> pixels<span class="op">);</span></span></code></pre></div>
+<p><code>glTexImage2D</code> copia o mapa de bits contido no ponteiro <code>pixels</code>, supondo que o mapa é um arranjo de <span class="math inline">\(800 \times 600\)</span> pixels. A função considera que cada pixel é uma tupla de valores RGBA (<code>GL_RGBA</code>), e que cada componente de cor é um byte sem sinal (<code>GL_UNSIGNED_BYTE</code>).</p>
+<p>Na ABCg podemos usar a função auxiliar <code>abcg::loadOpenGLTexture</code>. Essa função recebe uma estrutura <code>abcg::OpenGLTextureCreateInfo</code> com informações sobre a criação da textura, tal como o nome de um arquivo de imagem. O valor de retorno é o identificar da textura criada. Internamente, a função usa funções da SDL para carregar o mapa de bits, e em seguida chama as funções do OpenGL para criar o recurso de textura. Assim, para criar uma textura a partir de um arquivo <code>imagem.png</code>, podemos fazer simplesmente:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="viewer4.html#cb10-1" aria-hidden="true" tabindex="-1"></a>textureID <span class="op">=</span> abcg<span class="op">::</span>loadOpenGLTexture<span class="op">({.</span>path <span class="op">=</span> <span class="st">&quot;imagem.png&quot;</span><span class="op">});</span></span></code></pre></div>
+<p>Por padrão, <code>abcg::loadOpenGLTexture</code> cria também o mipmap da textura e usa o filtro de minificação <code>GL_LINEAR_MIPMAP_LINEAR</code>. Se quisermos que o mipmap não seja gerado, basta mudar o valor de <code>OpenGLTextureCreateInfo::generateMipmaps</code> para <code>false</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="viewer4.html#cb11-1" aria-hidden="true" tabindex="-1"></a>textureID <span class="op">=</span> abcg<span class="op">::</span>opengl<span class="op">::</span>loadTexture<span class="op">({.</span>path <span class="op">=</span> <span class="st">&quot;imagem.png&quot;</span><span class="op">,</span> <span class="op">.</span>generateMipmaps <span class="op">=</span> <span class="kw">false</span><span class="op">});</span></span></code></pre></div>
+<p>Para destruir a textura e liberar seus recursos, devemos chamar manualmente <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glDeleteTextures.xhtml"><code>glDeleteTextures</code></a>. Por exemplo, o seguinte código libera a textura <code>textureID</code> criada com <code>glGenTextures</code> ou <code>abcg::loadOpenGLTexture</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb12-1"><a href="viewer4.html#cb12-1" aria-hidden="true" tabindex="-1"></a>glDeleteTextures<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span>textureID<span class="op">);</span></span></code></pre></div>
+<p>Nessa nova versão do visualizador, a classe <code>Model</code> implementa a função membro <code>Model::loadDiffuseTexture</code>, que carrega um arquivo de imagem e gera um identificador de recurso de textura difusa na variável <code>m_diffuseTexture</code>. A função é definida como a seguir (em <code>model.cpp</code>):</p>
+<div class="sourceCode" id="cb13" startFrom="70"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 69;"><span id="cb13-70"><a href="viewer4.html#cb13-70"></a><span class="dt">void</span> Model<span class="op">::</span>loadDiffuseTexture<span class="op">(</span><span class="bu">std::</span>string_view<span class="op"> </span>path<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-71"><a href="viewer4.html#cb13-71"></a>  <span class="cf">if</span> <span class="op">(!</span><span class="bu">std::</span>filesystem<span class="bu">::</span>exists<span class="op">(</span>path<span class="op">))</span></span>
+<span id="cb13-72"><a href="viewer4.html#cb13-72"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb13-73"><a href="viewer4.html#cb13-73"></a></span>
+<span id="cb13-74"><a href="viewer4.html#cb13-74"></a>  abcg<span class="op">::</span>glDeleteTextures<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_diffuseTexture</span><span class="op">);</span></span>
+<span id="cb13-75"><a href="viewer4.html#cb13-75"></a>  <span class="va">m_diffuseTexture</span> <span class="op">=</span> abcg<span class="op">::</span>loadOpenGLTexture<span class="op">({.</span>path <span class="op">=</span> path<span class="op">});</span></span>
+<span id="cb13-76"><a href="viewer4.html#cb13-76"></a><span class="op">}</span></span></code></pre></div>
+<p>A função recebe em <code>path</code> o caminho contendo o nome do arquivo de imagem PNG ou JPEG. Se o arquivo não existir, a função simplesmente retorna (linha 72). Caso contrário, o recurso de textura anterior é liberado, e <code>abcg::loadOpenGLTexture</code> é chamada para criar a nova textura.</p>
+</div>
+<div id="carregando-modelos-com-textura" class="section level3 unnumbered hasAnchor">
+<h3>Carregando modelos com textura<a href="viewer4.html#carregando-modelos-com-textura" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Um arquivo OBJ pode vir acompanhado de um arquivo <code>.mtl</code> opcional que contém a descrição das propriedades dos materiais de cada objeto<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Por exemplo, o arquivo <code>roman_lamp.obj</code> (lâmpada romana da figura <a href="texmapping.html#fig:texturing7">11.11</a>) vem acompanhado do arquivo <code>roman_lamp.mtl</code> que tem o seguinte conteúdo:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb14-1"><a href="viewer4.html#cb14-1" aria-hidden="true" tabindex="-1"></a>newmtl roman_lamp</span>
+<span id="cb14-2"><a href="viewer4.html#cb14-2" aria-hidden="true" tabindex="-1"></a>    Ns 25.0000</span>
+<span id="cb14-3"><a href="viewer4.html#cb14-3" aria-hidden="true" tabindex="-1"></a>    Ni 1.5000</span>
+<span id="cb14-4"><a href="viewer4.html#cb14-4" aria-hidden="true" tabindex="-1"></a>    Tr 0.0000</span>
+<span id="cb14-5"><a href="viewer4.html#cb14-5" aria-hidden="true" tabindex="-1"></a>    Tf 1.0000 1.0000 1.0000 </span>
+<span id="cb14-6"><a href="viewer4.html#cb14-6" aria-hidden="true" tabindex="-1"></a>    illum 2</span>
+<span id="cb14-7"><a href="viewer4.html#cb14-7" aria-hidden="true" tabindex="-1"></a>    Ka 0.2000 0.2000 0.2000</span>
+<span id="cb14-8"><a href="viewer4.html#cb14-8" aria-hidden="true" tabindex="-1"></a>    Kd 1.0000 1.0000 1.0000</span>
+<span id="cb14-9"><a href="viewer4.html#cb14-9" aria-hidden="true" tabindex="-1"></a>    Ks 0.6000 0.6000 0.6000</span>
+<span id="cb14-10"><a href="viewer4.html#cb14-10" aria-hidden="true" tabindex="-1"></a>    Ke 0.0000 0.0000 0.0000</span>
+<span id="cb14-11"><a href="viewer4.html#cb14-11" aria-hidden="true" tabindex="-1"></a>    map_Ka maps/roman_lamp_diffuse.jpg</span>
+<span id="cb14-12"><a href="viewer4.html#cb14-12" aria-hidden="true" tabindex="-1"></a>    map_Kd maps/roman_lamp_diffuse.jpg</span>
+<span id="cb14-13"><a href="viewer4.html#cb14-13" aria-hidden="true" tabindex="-1"></a>    map_bump maps/roman_lamp_normal.jpg</span>
+<span id="cb14-14"><a href="viewer4.html#cb14-14" aria-hidden="true" tabindex="-1"></a>    bump maps/roman_lamp_normal.jpg</span></code></pre></div>
+<p>Entre outras coisas, o arquivo contém o valor do expoente de brilho especular (<code>Ns</code>) e as propriedades de reflexão ambiente (<code>Ka</code>), difusa (<code>Kd</code>) e especular (<code>Ks</code>). Além disso, o arquivo contém o nome do mapa de textura que deve ser utilizado para modificar a reflexão ambiente (<code>map_Ka</code>) e reflexão difusa (<code>map_Kd</code>). Há outras propriedades, mas elas não serão utilizadas no momento.</p>
+<p>Nossa implementação de <code>Model::loadObj</code>, que utiliza funções da <a href="https://github.com/tinyobjloader/tinyobjloader"><code>TinyObjLoader</code></a>, carrega automaticamente a textura difusa, se ela existir. A definição completa dessa versão atualizada de <code>Model::loadObj</code> é mostrada seguir (arquivo <code>model.cpp</code>).</p>
+<div class="sourceCode" id="cb15" startFrom="78"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 77;"><span id="cb15-78"><a href="viewer4.html#cb15-78"></a><span class="dt">void</span> Model<span class="op">::</span>loadObj<span class="op">(</span><span class="bu">std::</span>string_view<span class="op"> </span>path<span class="op">,</span> <span class="dt">bool</span> standardize<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-79"><a href="viewer4.html#cb15-79"></a>  <span class="kw">auto</span> <span class="at">const</span> basePath<span class="op">{</span><span class="bu">std::</span>filesystem<span class="bu">::</span>path<span class="op">{</span>path<span class="op">}.</span>parent_path<span class="op">().</span>string<span class="op">()</span> <span class="op">+</span> <span class="st">&quot;/&quot;</span><span class="op">};</span></span>
+<span id="cb15-80"><a href="viewer4.html#cb15-80"></a></span>
+<span id="cb15-81"><a href="viewer4.html#cb15-81"></a>  tinyobj<span class="op">::</span>ObjReaderConfig readerConfig<span class="op">;</span></span>
+<span id="cb15-82"><a href="viewer4.html#cb15-82"></a>  readerConfig<span class="op">.</span>mtl_search_path <span class="op">=</span> basePath<span class="op">;</span> <span class="co">// Path to material files</span></span>
+<span id="cb15-83"><a href="viewer4.html#cb15-83"></a></span>
+<span id="cb15-84"><a href="viewer4.html#cb15-84"></a>  tinyobj<span class="op">::</span>ObjReader reader<span class="op">;</span></span>
+<span id="cb15-85"><a href="viewer4.html#cb15-85"></a></span>
+<span id="cb15-86"><a href="viewer4.html#cb15-86"></a>  <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>ParseFromFile<span class="op">(</span>path<span class="op">.</span>data<span class="op">(),</span> readerConfig<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb15-87"><a href="viewer4.html#cb15-87"></a>    <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>Error<span class="op">().</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb15-88"><a href="viewer4.html#cb15-88"></a>      <span class="cf">throw</span> abcg<span class="op">::</span>RuntimeError<span class="op">(</span></span>
+<span id="cb15-89"><a href="viewer4.html#cb15-89"></a>          fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st"> (</span><span class="sc">{}</span><span class="st">)&quot;</span><span class="op">,</span> path<span class="op">,</span> reader<span class="op">.</span>Error<span class="op">()));</span></span>
+<span id="cb15-90"><a href="viewer4.html#cb15-90"></a>    <span class="op">}</span></span>
+<span id="cb15-91"><a href="viewer4.html#cb15-91"></a>    <span class="cf">throw</span> abcg<span class="op">::</span>RuntimeError<span class="op">(</span>fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st">&quot;</span><span class="op">,</span> path<span class="op">));</span></span>
+<span id="cb15-92"><a href="viewer4.html#cb15-92"></a>  <span class="op">}</span></span>
+<span id="cb15-93"><a href="viewer4.html#cb15-93"></a></span>
+<span id="cb15-94"><a href="viewer4.html#cb15-94"></a>  <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>Warning<span class="op">().</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb15-95"><a href="viewer4.html#cb15-95"></a>    fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;Warning: </span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> reader<span class="op">.</span>Warning<span class="op">());</span></span>
+<span id="cb15-96"><a href="viewer4.html#cb15-96"></a>  <span class="op">}</span></span>
+<span id="cb15-97"><a href="viewer4.html#cb15-97"></a></span>
+<span id="cb15-98"><a href="viewer4.html#cb15-98"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>attrib<span class="op">{</span>reader<span class="op">.</span>GetAttrib<span class="op">()};</span></span>
+<span id="cb15-99"><a href="viewer4.html#cb15-99"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>shapes<span class="op">{</span>reader<span class="op">.</span>GetShapes<span class="op">()};</span></span>
+<span id="cb15-100"><a href="viewer4.html#cb15-100"></a>  <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>materials<span class="op">{</span>reader<span class="op">.</span>GetMaterials<span class="op">()};</span></span>
+<span id="cb15-101"><a href="viewer4.html#cb15-101"></a></span>
+<span id="cb15-102"><a href="viewer4.html#cb15-102"></a>  <span class="va">m_vertices</span><span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb15-103"><a href="viewer4.html#cb15-103"></a>  <span class="va">m_indices</span><span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb15-104"><a href="viewer4.html#cb15-104"></a></span>
+<span id="cb15-105"><a href="viewer4.html#cb15-105"></a>  <span class="va">m_hasNormals</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb15-106"><a href="viewer4.html#cb15-106"></a>  <span class="va">m_hasTexCoords</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb15-107"><a href="viewer4.html#cb15-107"></a></span>
+<span id="cb15-108"><a href="viewer4.html#cb15-108"></a>  <span class="co">// A key:value map with key=Vertex and value=index</span></span>
+<span id="cb15-109"><a href="viewer4.html#cb15-109"></a>  <span class="bu">std::</span>unordered_map<span class="op">&lt;</span>Vertex<span class="op">,</span> GLuint<span class="op">&gt;</span> hash<span class="op">{};</span></span>
+<span id="cb15-110"><a href="viewer4.html#cb15-110"></a></span>
+<span id="cb15-111"><a href="viewer4.html#cb15-111"></a>  <span class="co">// Loop over shapes</span></span>
+<span id="cb15-112"><a href="viewer4.html#cb15-112"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>shape <span class="op">:</span> shapes<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-113"><a href="viewer4.html#cb15-113"></a>    <span class="co">// Loop over indices</span></span>
+<span id="cb15-114"><a href="viewer4.html#cb15-114"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> offset <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span>shape<span class="op">.</span>mesh<span class="op">.</span>indices<span class="op">.</span>size<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb15-115"><a href="viewer4.html#cb15-115"></a>      <span class="co">// Access to vertex</span></span>
+<span id="cb15-116"><a href="viewer4.html#cb15-116"></a>      <span class="kw">auto</span> <span class="at">const</span> index<span class="op">{</span>shape<span class="op">.</span>mesh<span class="op">.</span>indices<span class="op">.</span>at<span class="op">(</span>offset<span class="op">)};</span></span>
+<span id="cb15-117"><a href="viewer4.html#cb15-117"></a></span>
+<span id="cb15-118"><a href="viewer4.html#cb15-118"></a>      <span class="co">// Position</span></span>
+<span id="cb15-119"><a href="viewer4.html#cb15-119"></a>      <span class="kw">auto</span> <span class="at">const</span> startIndex<span class="op">{</span><span class="dv">3</span> <span class="op">*</span> index<span class="op">.</span>vertex_index<span class="op">};</span></span>
+<span id="cb15-120"><a href="viewer4.html#cb15-120"></a>      glm<span class="op">::</span>vec3 position<span class="op">{</span>attrib<span class="op">.</span>vertices<span class="op">.</span>at<span class="op">(</span>startIndex <span class="op">+</span> <span class="dv">0</span><span class="op">),</span></span>
+<span id="cb15-121"><a href="viewer4.html#cb15-121"></a>                         attrib<span class="op">.</span>vertices<span class="op">.</span>at<span class="op">(</span>startIndex <span class="op">+</span> <span class="dv">1</span><span class="op">),</span></span>
+<span id="cb15-122"><a href="viewer4.html#cb15-122"></a>                         attrib<span class="op">.</span>vertices<span class="op">.</span>at<span class="op">(</span>startIndex <span class="op">+</span> <span class="dv">2</span><span class="op">)};</span></span>
+<span id="cb15-123"><a href="viewer4.html#cb15-123"></a></span>
+<span id="cb15-124"><a href="viewer4.html#cb15-124"></a>      <span class="co">// Normal</span></span>
+<span id="cb15-125"><a href="viewer4.html#cb15-125"></a>      glm<span class="op">::</span>vec3 normal<span class="op">{};</span></span>
+<span id="cb15-126"><a href="viewer4.html#cb15-126"></a>      <span class="cf">if</span> <span class="op">(</span>index<span class="op">.</span>normal_index <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-127"><a href="viewer4.html#cb15-127"></a>        <span class="va">m_hasNormals</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb15-128"><a href="viewer4.html#cb15-128"></a>        <span class="kw">auto</span> <span class="at">const</span> normalStartIndex<span class="op">{</span><span class="dv">3</span> <span class="op">*</span> index<span class="op">.</span>normal_index<span class="op">};</span></span>
+<span id="cb15-129"><a href="viewer4.html#cb15-129"></a>        normal <span class="op">=</span> <span class="op">{</span>attrib<span class="op">.</span>normals<span class="op">.</span>at<span class="op">(</span>normalStartIndex <span class="op">+</span> <span class="dv">0</span><span class="op">),</span></span>
+<span id="cb15-130"><a href="viewer4.html#cb15-130"></a>                  attrib<span class="op">.</span>normals<span class="op">.</span>at<span class="op">(</span>normalStartIndex <span class="op">+</span> <span class="dv">1</span><span class="op">),</span></span>
+<span id="cb15-131"><a href="viewer4.html#cb15-131"></a>                  attrib<span class="op">.</span>normals<span class="op">.</span>at<span class="op">(</span>normalStartIndex <span class="op">+</span> <span class="dv">2</span><span class="op">)};</span></span>
+<span id="cb15-132"><a href="viewer4.html#cb15-132"></a>      <span class="op">}</span></span>
+<span id="cb15-133"><a href="viewer4.html#cb15-133"></a></span>
+<span id="cb15-134"><a href="viewer4.html#cb15-134"></a>      <span class="co">// Texture coordinates</span></span>
+<span id="cb15-135"><a href="viewer4.html#cb15-135"></a>      glm<span class="op">::</span>vec2 texCoord<span class="op">{};</span></span>
+<span id="cb15-136"><a href="viewer4.html#cb15-136"></a>      <span class="cf">if</span> <span class="op">(</span>index<span class="op">.</span>texcoord_index <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-137"><a href="viewer4.html#cb15-137"></a>        <span class="va">m_hasTexCoords</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb15-138"><a href="viewer4.html#cb15-138"></a>        <span class="kw">auto</span> <span class="at">const</span> texCoordsStartIndex<span class="op">{</span><span class="dv">2</span> <span class="op">*</span> index<span class="op">.</span>texcoord_index<span class="op">};</span></span>
+<span id="cb15-139"><a href="viewer4.html#cb15-139"></a>        texCoord <span class="op">=</span> <span class="op">{</span>attrib<span class="op">.</span>texcoords<span class="op">.</span>at<span class="op">(</span>texCoordsStartIndex <span class="op">+</span> <span class="dv">0</span><span class="op">),</span></span>
+<span id="cb15-140"><a href="viewer4.html#cb15-140"></a>                    attrib<span class="op">.</span>texcoords<span class="op">.</span>at<span class="op">(</span>texCoordsStartIndex <span class="op">+</span> <span class="dv">1</span><span class="op">)};</span></span>
+<span id="cb15-141"><a href="viewer4.html#cb15-141"></a>      <span class="op">}</span></span>
+<span id="cb15-142"><a href="viewer4.html#cb15-142"></a></span>
+<span id="cb15-143"><a href="viewer4.html#cb15-143"></a>      Vertex <span class="at">const</span> vertex<span class="op">{</span></span>
+<span id="cb15-144"><a href="viewer4.html#cb15-144"></a>          <span class="op">.</span>position <span class="op">=</span> position<span class="op">,</span> <span class="op">.</span>normal <span class="op">=</span> normal<span class="op">,</span> <span class="op">.</span>texCoord <span class="op">=</span> texCoord<span class="op">};</span></span>
+<span id="cb15-145"><a href="viewer4.html#cb15-145"></a></span>
+<span id="cb15-146"><a href="viewer4.html#cb15-146"></a>      <span class="co">// If hash doesn&#39;t contain this vertex</span></span>
+<span id="cb15-147"><a href="viewer4.html#cb15-147"></a>      <span class="cf">if</span> <span class="op">(!</span>hash<span class="op">.</span>contains<span class="op">(</span>vertex<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb15-148"><a href="viewer4.html#cb15-148"></a>        <span class="co">// Add this index (size of m_vertices)</span></span>
+<span id="cb15-149"><a href="viewer4.html#cb15-149"></a>        hash<span class="op">[</span>vertex<span class="op">]</span> <span class="op">=</span> <span class="va">m_vertices</span><span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb15-150"><a href="viewer4.html#cb15-150"></a>        <span class="co">// Add this vertex</span></span>
+<span id="cb15-151"><a href="viewer4.html#cb15-151"></a>        <span class="va">m_vertices</span><span class="op">.</span>push_back<span class="op">(</span>vertex<span class="op">);</span></span>
+<span id="cb15-152"><a href="viewer4.html#cb15-152"></a>      <span class="op">}</span></span>
+<span id="cb15-153"><a href="viewer4.html#cb15-153"></a></span>
+<span id="cb15-154"><a href="viewer4.html#cb15-154"></a>      <span class="va">m_indices</span><span class="op">.</span>push_back<span class="op">(</span>hash<span class="op">[</span>vertex<span class="op">]);</span></span>
+<span id="cb15-155"><a href="viewer4.html#cb15-155"></a>    <span class="op">}</span></span>
+<span id="cb15-156"><a href="viewer4.html#cb15-156"></a>  <span class="op">}</span></span>
+<span id="cb15-157"><a href="viewer4.html#cb15-157"></a></span>
+<span id="cb15-158"><a href="viewer4.html#cb15-158"></a>  <span class="co">// Use properties of first material, if available</span></span>
+<span id="cb15-159"><a href="viewer4.html#cb15-159"></a>  <span class="cf">if</span> <span class="op">(!</span>materials<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb15-160"><a href="viewer4.html#cb15-160"></a>    <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>mat<span class="op">{</span>materials<span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">)};</span> <span class="co">// First material</span></span>
+<span id="cb15-161"><a href="viewer4.html#cb15-161"></a>    <span class="va">m_Ka</span> <span class="op">=</span> <span class="op">{</span>mat<span class="op">.</span>ambient<span class="op">[</span><span class="dv">0</span><span class="op">],</span> mat<span class="op">.</span>ambient<span class="op">[</span><span class="dv">1</span><span class="op">],</span> mat<span class="op">.</span>ambient<span class="op">[</span><span class="dv">2</span><span class="op">],</span> <span class="dv">1</span><span class="op">};</span></span>
+<span id="cb15-162"><a href="viewer4.html#cb15-162"></a>    <span class="va">m_Kd</span> <span class="op">=</span> <span class="op">{</span>mat<span class="op">.</span>diffuse<span class="op">[</span><span class="dv">0</span><span class="op">],</span> mat<span class="op">.</span>diffuse<span class="op">[</span><span class="dv">1</span><span class="op">],</span> mat<span class="op">.</span>diffuse<span class="op">[</span><span class="dv">2</span><span class="op">],</span> <span class="dv">1</span><span class="op">};</span></span>
+<span id="cb15-163"><a href="viewer4.html#cb15-163"></a>    <span class="va">m_Ks</span> <span class="op">=</span> <span class="op">{</span>mat<span class="op">.</span>specular<span class="op">[</span><span class="dv">0</span><span class="op">],</span> mat<span class="op">.</span>specular<span class="op">[</span><span class="dv">1</span><span class="op">],</span> mat<span class="op">.</span>specular<span class="op">[</span><span class="dv">2</span><span class="op">],</span> <span class="dv">1</span><span class="op">};</span></span>
+<span id="cb15-164"><a href="viewer4.html#cb15-164"></a>    <span class="va">m_shininess</span> <span class="op">=</span> mat<span class="op">.</span>shininess<span class="op">;</span></span>
+<span id="cb15-165"><a href="viewer4.html#cb15-165"></a></span>
+<span id="cb15-166"><a href="viewer4.html#cb15-166"></a>    <span class="cf">if</span> <span class="op">(!</span>mat<span class="op">.</span>diffuse_texname<span class="op">.</span>empty<span class="op">())</span></span>
+<span id="cb15-167"><a href="viewer4.html#cb15-167"></a>      loadDiffuseTexture<span class="op">(</span>basePath <span class="op">+</span> mat<span class="op">.</span>diffuse_texname<span class="op">);</span></span>
+<span id="cb15-168"><a href="viewer4.html#cb15-168"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb15-169"><a href="viewer4.html#cb15-169"></a>    <span class="co">// Default values</span></span>
+<span id="cb15-170"><a href="viewer4.html#cb15-170"></a>    <span class="va">m_Ka</span> <span class="op">=</span> <span class="op">{</span><span class="fl">0.1</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.1</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.1</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb15-171"><a href="viewer4.html#cb15-171"></a>    <span class="va">m_Kd</span> <span class="op">=</span> <span class="op">{</span><span class="fl">0.7</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.7</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.7</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb15-172"><a href="viewer4.html#cb15-172"></a>    <span class="va">m_Ks</span> <span class="op">=</span> <span class="op">{</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb15-173"><a href="viewer4.html#cb15-173"></a>    <span class="va">m_shininess</span> <span class="op">=</span> <span class="fl">25.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb15-174"><a href="viewer4.html#cb15-174"></a>  <span class="op">}</span></span>
+<span id="cb15-175"><a href="viewer4.html#cb15-175"></a></span>
+<span id="cb15-176"><a href="viewer4.html#cb15-176"></a>  <span class="cf">if</span> <span class="op">(</span>standardize<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-177"><a href="viewer4.html#cb15-177"></a>    Model<span class="op">::</span>standardize<span class="op">();</span></span>
+<span id="cb15-178"><a href="viewer4.html#cb15-178"></a>  <span class="op">}</span></span>
+<span id="cb15-179"><a href="viewer4.html#cb15-179"></a></span>
+<span id="cb15-180"><a href="viewer4.html#cb15-180"></a>  <span class="cf">if</span> <span class="op">(!</span><span class="va">m_hasNormals</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-181"><a href="viewer4.html#cb15-181"></a>    computeNormals<span class="op">();</span></span>
+<span id="cb15-182"><a href="viewer4.html#cb15-182"></a>  <span class="op">}</span></span>
+<span id="cb15-183"><a href="viewer4.html#cb15-183"></a></span>
+<span id="cb15-184"><a href="viewer4.html#cb15-184"></a>  createBuffers<span class="op">();</span></span>
+<span id="cb15-185"><a href="viewer4.html#cb15-185"></a><span class="op">}</span></span></code></pre></div>
+<p>Note que, logo no início da função, definimos um objeto <code>readerConfig</code> (linha 81) que é utilizado como argumento de <code>ObjReader::ParseFromFile</code> da TinyObjLoader (linha 86) para informar o diretório onde estão os arquivos de materiais. Por padrão, esse caminho é o mesmo diretório onde está o arquivo OBJ:</p>
+<div class="sourceCode" id="cb16" startFrom="78"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 77;"><span id="cb16-78"><a href="viewer4.html#cb16-78"></a><span class="dt">void</span> Model<span class="op">::</span>loadObj<span class="op">(</span><span class="bu">std::</span>string_view<span class="op"> </span>path<span class="op">,</span> <span class="dt">bool</span> standardize<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-79"><a href="viewer4.html#cb16-79"></a>  <span class="kw">auto</span> <span class="at">const</span> basePath<span class="op">{</span><span class="bu">std::</span>filesystem<span class="bu">::</span>path<span class="op">{</span>path<span class="op">}.</span>parent_path<span class="op">().</span>string<span class="op">()</span> <span class="op">+</span> <span class="st">&quot;/&quot;</span><span class="op">};</span></span>
+<span id="cb16-80"><a href="viewer4.html#cb16-80"></a></span>
+<span id="cb16-81"><a href="viewer4.html#cb16-81"></a>  tinyobj<span class="op">::</span>ObjReaderConfig readerConfig<span class="op">;</span></span>
+<span id="cb16-82"><a href="viewer4.html#cb16-82"></a>  readerConfig<span class="op">.</span>mtl_search_path <span class="op">=</span> basePath<span class="op">;</span> <span class="co">// Path to material files</span></span>
+<span id="cb16-83"><a href="viewer4.html#cb16-83"></a></span>
+<span id="cb16-84"><a href="viewer4.html#cb16-84"></a>  tinyobj<span class="op">::</span>ObjReader reader<span class="op">;</span></span>
+<span id="cb16-85"><a href="viewer4.html#cb16-85"></a></span>
+<span id="cb16-86"><a href="viewer4.html#cb16-86"></a>  <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>ParseFromFile<span class="op">(</span>path<span class="op">.</span>data<span class="op">(),</span> readerConfig<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb16-87"><a href="viewer4.html#cb16-87"></a>    <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>Error<span class="op">().</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb16-88"><a href="viewer4.html#cb16-88"></a>      <span class="cf">throw</span> abcg<span class="op">::</span>RuntimeError<span class="op">(</span></span>
+<span id="cb16-89"><a href="viewer4.html#cb16-89"></a>          fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st"> (</span><span class="sc">{}</span><span class="st">)&quot;</span><span class="op">,</span> path<span class="op">,</span> reader<span class="op">.</span>Error<span class="op">()));</span></span>
+<span id="cb16-90"><a href="viewer4.html#cb16-90"></a>    <span class="op">}</span></span>
+<span id="cb16-91"><a href="viewer4.html#cb16-91"></a>    <span class="cf">throw</span> abcg<span class="op">::</span>RuntimeError<span class="op">(</span>fmt<span class="op">::</span>format<span class="op">(</span><span class="st">&quot;Failed to load model </span><span class="sc">{}</span><span class="st">&quot;</span><span class="op">,</span> path<span class="op">));</span></span>
+<span id="cb16-92"><a href="viewer4.html#cb16-92"></a>  <span class="op">}</span></span>
+<span id="cb16-93"><a href="viewer4.html#cb16-93"></a></span>
+<span id="cb16-94"><a href="viewer4.html#cb16-94"></a>  <span class="cf">if</span> <span class="op">(!</span>reader<span class="op">.</span>Warning<span class="op">().</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb16-95"><a href="viewer4.html#cb16-95"></a>    fmt<span class="op">::</span>print<span class="op">(</span><span class="st">&quot;Warning: </span><span class="sc">{}\n</span><span class="st">&quot;</span><span class="op">,</span> reader<span class="op">.</span>Warning<span class="op">());</span></span>
+<span id="cb16-96"><a href="viewer4.html#cb16-96"></a>  <span class="op">}</span></span></code></pre></div>
+<p>Nas linhas 158 a 174, as propriedades do primeiro material são utilizadas. Se não houver nenhum material, valores padrão são utilizados:</p>
+<div class="sourceCode" id="cb17" startFrom="158"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 157;"><span id="cb17-158"><a href="viewer4.html#cb17-158"></a>  <span class="co">// Use properties of first material, if available</span></span>
+<span id="cb17-159"><a href="viewer4.html#cb17-159"></a>  <span class="cf">if</span> <span class="op">(!</span>materials<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb17-160"><a href="viewer4.html#cb17-160"></a>    <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>mat<span class="op">{</span>materials<span class="op">.</span>at<span class="op">(</span><span class="dv">0</span><span class="op">)};</span> <span class="co">// First material</span></span>
+<span id="cb17-161"><a href="viewer4.html#cb17-161"></a>    <span class="va">m_Ka</span> <span class="op">=</span> <span class="op">{</span>mat<span class="op">.</span>ambient<span class="op">[</span><span class="dv">0</span><span class="op">],</span> mat<span class="op">.</span>ambient<span class="op">[</span><span class="dv">1</span><span class="op">],</span> mat<span class="op">.</span>ambient<span class="op">[</span><span class="dv">2</span><span class="op">],</span> <span class="dv">1</span><span class="op">};</span></span>
+<span id="cb17-162"><a href="viewer4.html#cb17-162"></a>    <span class="va">m_Kd</span> <span class="op">=</span> <span class="op">{</span>mat<span class="op">.</span>diffuse<span class="op">[</span><span class="dv">0</span><span class="op">],</span> mat<span class="op">.</span>diffuse<span class="op">[</span><span class="dv">1</span><span class="op">],</span> mat<span class="op">.</span>diffuse<span class="op">[</span><span class="dv">2</span><span class="op">],</span> <span class="dv">1</span><span class="op">};</span></span>
+<span id="cb17-163"><a href="viewer4.html#cb17-163"></a>    <span class="va">m_Ks</span> <span class="op">=</span> <span class="op">{</span>mat<span class="op">.</span>specular<span class="op">[</span><span class="dv">0</span><span class="op">],</span> mat<span class="op">.</span>specular<span class="op">[</span><span class="dv">1</span><span class="op">],</span> mat<span class="op">.</span>specular<span class="op">[</span><span class="dv">2</span><span class="op">],</span> <span class="dv">1</span><span class="op">};</span></span>
+<span id="cb17-164"><a href="viewer4.html#cb17-164"></a>    <span class="va">m_shininess</span> <span class="op">=</span> mat<span class="op">.</span>shininess<span class="op">;</span></span>
+<span id="cb17-165"><a href="viewer4.html#cb17-165"></a></span>
+<span id="cb17-166"><a href="viewer4.html#cb17-166"></a>    <span class="cf">if</span> <span class="op">(!</span>mat<span class="op">.</span>diffuse_texname<span class="op">.</span>empty<span class="op">())</span></span>
+<span id="cb17-167"><a href="viewer4.html#cb17-167"></a>      loadDiffuseTexture<span class="op">(</span>basePath <span class="op">+</span> mat<span class="op">.</span>diffuse_texname<span class="op">);</span></span>
+<span id="cb17-168"><a href="viewer4.html#cb17-168"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb17-169"><a href="viewer4.html#cb17-169"></a>    <span class="co">// Default values</span></span>
+<span id="cb17-170"><a href="viewer4.html#cb17-170"></a>    <span class="va">m_Ka</span> <span class="op">=</span> <span class="op">{</span><span class="fl">0.1</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.1</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.1</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb17-171"><a href="viewer4.html#cb17-171"></a>    <span class="va">m_Kd</span> <span class="op">=</span> <span class="op">{</span><span class="fl">0.7</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.7</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.7</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb17-172"><a href="viewer4.html#cb17-172"></a>    <span class="va">m_Ks</span> <span class="op">=</span> <span class="op">{</span><span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">,</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">};</span></span>
+<span id="cb17-173"><a href="viewer4.html#cb17-173"></a>    <span class="va">m_shininess</span> <span class="op">=</span> <span class="fl">25.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb17-174"><a href="viewer4.html#cb17-174"></a>  <span class="op">}</span></span></code></pre></div>
+<p>Durante a leitura dos atributos dos vértices, <code>Model::loadObj</code> também verifica se a malha contém coordenadas de textura. Isso é feito nas linhas 134 a 141:</p>
+<div class="sourceCode" id="cb18" startFrom="134"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 133;"><span id="cb18-134"><a href="viewer4.html#cb18-134"></a>      <span class="co">// Texture coordinates</span></span>
+<span id="cb18-135"><a href="viewer4.html#cb18-135"></a>      glm<span class="op">::</span>vec2 texCoord<span class="op">{};</span></span>
+<span id="cb18-136"><a href="viewer4.html#cb18-136"></a>      <span class="cf">if</span> <span class="op">(</span>index<span class="op">.</span>texcoord_index <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-137"><a href="viewer4.html#cb18-137"></a>        <span class="va">m_hasTexCoords</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb18-138"><a href="viewer4.html#cb18-138"></a>        <span class="kw">auto</span> <span class="at">const</span> texCoordsStartIndex<span class="op">{</span><span class="dv">2</span> <span class="op">*</span> index<span class="op">.</span>texcoord_index<span class="op">};</span></span>
+<span id="cb18-139"><a href="viewer4.html#cb18-139"></a>        texCoord <span class="op">=</span> <span class="op">{</span>attrib<span class="op">.</span>texcoords<span class="op">.</span>at<span class="op">(</span>texCoordsStartIndex <span class="op">+</span> <span class="dv">0</span><span class="op">),</span></span>
+<span id="cb18-140"><a href="viewer4.html#cb18-140"></a>                    attrib<span class="op">.</span>texcoords<span class="op">.</span>at<span class="op">(</span>texCoordsStartIndex <span class="op">+</span> <span class="dv">1</span><span class="op">)};</span></span>
+<span id="cb18-141"><a href="viewer4.html#cb18-141"></a>      <span class="op">}</span></span></code></pre></div>
+<p>Se o vértice contém coordenadas de textura (linha 136), o flag <code>m_hasTexCoords</code> é definido como <code>true</code> e as coordenadas são carregadas em <code>texCoord</code>. Se o arquivo OBJ não tiver coordenadas de textura, <code>texCoord</code> será <code>(0, 0)</code> para todos os vértices.</p>
+<p>A estrutura <code>Vertex</code> é criada com o novo atributo de coordenadas de textura:</p>
+<div class="sourceCode" id="cb19" startFrom="143"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 142;"><span id="cb19-143"><a href="viewer4.html#cb19-143"></a>      Vertex <span class="at">const</span> vertex<span class="op">{</span></span>
+<span id="cb19-144"><a href="viewer4.html#cb19-144"></a>          <span class="op">.</span>position <span class="op">=</span> position<span class="op">,</span> <span class="op">.</span>normal <span class="op">=</span> normal<span class="op">,</span> <span class="op">.</span>texCoord <span class="op">=</span> texCoord<span class="op">};</span></span></code></pre></div>
+<p><code>texCoord</code> é um novo atributo de <code>Vertex</code> (um <code>glm::vec2</code>), criado de forma semelhante ao modo como criamos o atributo <code>normal</code> no projeto <code>viewer2</code> (seção <a href="viewer2.html#viewer2">10.5</a>), isto é, usamos o atributo como chave de hash e carregamos seus dados no formato de um VBO de dados intercalados.</p>
+</div>
+<div id="renderizando" class="section level3 unnumbered hasAnchor">
+<h3>Renderizando<a href="viewer4.html#renderizando" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Em <code>Model::render</code> (chamado em <code>Window::onPaint</code>), incluímos a ativação da textura no pipeline. A definição completa ficará como a seguir:</p>
+<div class="sourceCode" id="cb20" startFrom="187"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 186;"><span id="cb20-187"><a href="viewer4.html#cb20-187"></a><span class="dt">void</span> Model<span class="op">::</span>render<span class="op">(</span><span class="dt">int</span> numTriangles<span class="op">)</span> <span class="at">const</span> <span class="op">{</span></span>
+<span id="cb20-188"><a href="viewer4.html#cb20-188"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="va">m_VAO</span><span class="op">);</span></span>
+<span id="cb20-189"><a href="viewer4.html#cb20-189"></a></span>
+<span id="cb20-190"><a href="viewer4.html#cb20-190"></a>  abcg<span class="op">::</span>glActiveTexture<span class="op">(</span>GL_TEXTURE0<span class="op">);</span></span>
+<span id="cb20-191"><a href="viewer4.html#cb20-191"></a>  abcg<span class="op">::</span>glBindTexture<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> <span class="va">m_diffuseTexture</span><span class="op">);</span></span>
+<span id="cb20-192"><a href="viewer4.html#cb20-192"></a></span>
+<span id="cb20-193"><a href="viewer4.html#cb20-193"></a>  <span class="co">// Set minification and magnification parameters</span></span>
+<span id="cb20-194"><a href="viewer4.html#cb20-194"></a>  abcg<span class="op">::</span>glTexParameteri<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> GL_TEXTURE_MIN_FILTER<span class="op">,</span> GL_LINEAR<span class="op">);</span></span>
+<span id="cb20-195"><a href="viewer4.html#cb20-195"></a>  abcg<span class="op">::</span>glTexParameteri<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> GL_TEXTURE_MAG_FILTER<span class="op">,</span> GL_LINEAR<span class="op">);</span></span>
+<span id="cb20-196"><a href="viewer4.html#cb20-196"></a></span>
+<span id="cb20-197"><a href="viewer4.html#cb20-197"></a>  <span class="co">// Set texture wrapping parameters</span></span>
+<span id="cb20-198"><a href="viewer4.html#cb20-198"></a>  abcg<span class="op">::</span>glTexParameteri<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> GL_TEXTURE_WRAP_S<span class="op">,</span> GL_REPEAT<span class="op">);</span></span>
+<span id="cb20-199"><a href="viewer4.html#cb20-199"></a>  abcg<span class="op">::</span>glTexParameteri<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> GL_TEXTURE_WRAP_T<span class="op">,</span> GL_REPEAT<span class="op">);</span></span>
+<span id="cb20-200"><a href="viewer4.html#cb20-200"></a></span>
+<span id="cb20-201"><a href="viewer4.html#cb20-201"></a>  <span class="kw">auto</span> <span class="at">const</span> numIndices<span class="op">{(</span>numTriangles <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">?</span> <span class="va">m_indices</span><span class="op">.</span>size<span class="op">()</span></span>
+<span id="cb20-202"><a href="viewer4.html#cb20-202"></a>                                           <span class="op">:</span> numTriangles <span class="op">*</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb20-203"><a href="viewer4.html#cb20-203"></a></span>
+<span id="cb20-204"><a href="viewer4.html#cb20-204"></a>  abcg<span class="op">::</span>glDrawElements<span class="op">(</span>GL_TRIANGLES<span class="op">,</span> numIndices<span class="op">,</span> GL_UNSIGNED_INT<span class="op">,</span> <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb20-205"><a href="viewer4.html#cb20-205"></a></span>
+<span id="cb20-206"><a href="viewer4.html#cb20-206"></a>  abcg<span class="op">::</span>glBindVertexArray<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb20-207"><a href="viewer4.html#cb20-207"></a><span class="op">}</span></span></code></pre></div>
+<p>Na linha 190, a função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glActiveTexture.xhtml"><code>glActiveTexture</code></a> é chamada para ativar a primeira “unidade de textura” (<code>GL_TEXTURE0</code>). O número de unidades de textura ativas corresponde ao número de texturas diferentes que podem ser utilizadas ao mesmo tempo em um programa de shader. Para cada estágio de shader (por exemplo, para o vertex shader, ou para o fragment shader) é possível acessar pelo menos 16 unidades de textura ao mesmo tempo. Esse número pode ser maior dependendo da implementação do driver. Se considerarmos todas os estágios de shaders disponíveis, então podemos ativar pelo menos 32 texturas ao mesmo tempo no OpenGL ES (16 para o vertex shader, mais 16 para o fragment shader), e 80 no OpenGL para desktop (16 para cada um dos 5 estágios de shaders). Como queremos manter as coisas simples, nosso visualizador por enquanto só utilizará uma unidade de textura. Nas próximas versões veremos como usar mais unidades.</p>
+<p>Após a ativação da unidade de textura, a função <code>glBindTexture</code> é chamada para ligar o identificar de textura à unidade recém ativada.</p>
+<p>Nas linha 193 a 199, a função <code>glTexParameteri</code> é chamada para configurar os filtros de textura e modos de empacotamento. Os valores aqui utilizados são os valores padrão do OpenGL.</p>
+<p>Isso é tudo para configurar a texturização. O restante agora é feito nos shaders. O projeto <code>viewer4</code> define dois novos shaders com suporte a texturas: <code>texture.vert</code> e <code>texture.frag</code>. Esses shaders são bem similares aos shaders do modelo de Blinn–Phong.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Para o conteúdo de <code>assets</code> ficar mais organizado, a partir desta versão do visualizador, as texturas ficarão armazenadas em <code>assets/maps</code>, e os shaders ficarão armazenados em <code>assets/shaders</code>. Os arquivos <code>.obj</code> continuam na pasta <code>assets</code>, agora junto também com os arquivos <code>.mtl</code>.</p>
+</div>
+<div id="texture.vert" class="section level4 unnumbered hasAnchor">
+<h4>texture.vert<a href="viewer4.html#texture.vert" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O código completo do shader é mostrado a seguir:</p>
+<div class="sourceCode" id="cb21" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb21-1"><a href="viewer4.html#cb21-1"></a><span class="pp">#version 300 es</span></span>
+<span id="cb21-2"><a href="viewer4.html#cb21-2"></a></span>
+<span id="cb21-3"><a href="viewer4.html#cb21-3"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">0</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec3</span> inPosition<span class="op">;</span></span>
+<span id="cb21-4"><a href="viewer4.html#cb21-4"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">1</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec3</span> inNormal<span class="op">;</span></span>
+<span id="cb21-5"><a href="viewer4.html#cb21-5"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">2</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec2</span> inTexCoord<span class="op">;</span></span>
+<span id="cb21-6"><a href="viewer4.html#cb21-6"></a></span>
+<span id="cb21-7"><a href="viewer4.html#cb21-7"></a><span class="kw">uniform</span> <span class="dt">mat4</span> modelMatrix<span class="op">;</span></span>
+<span id="cb21-8"><a href="viewer4.html#cb21-8"></a><span class="kw">uniform</span> <span class="dt">mat4</span> viewMatrix<span class="op">;</span></span>
+<span id="cb21-9"><a href="viewer4.html#cb21-9"></a><span class="kw">uniform</span> <span class="dt">mat4</span> projMatrix<span class="op">;</span></span>
+<span id="cb21-10"><a href="viewer4.html#cb21-10"></a><span class="kw">uniform</span> <span class="dt">mat3</span> normalMatrix<span class="op">;</span></span>
+<span id="cb21-11"><a href="viewer4.html#cb21-11"></a></span>
+<span id="cb21-12"><a href="viewer4.html#cb21-12"></a><span class="kw">uniform</span> <span class="dt">vec4</span> lightDirWorldSpace<span class="op">;</span></span>
+<span id="cb21-13"><a href="viewer4.html#cb21-13"></a></span>
+<span id="cb21-14"><a href="viewer4.html#cb21-14"></a><span class="dt">out</span> <span class="dt">vec3</span> fragV<span class="op">;</span></span>
+<span id="cb21-15"><a href="viewer4.html#cb21-15"></a><span class="dt">out</span> <span class="dt">vec3</span> fragL<span class="op">;</span></span>
+<span id="cb21-16"><a href="viewer4.html#cb21-16"></a><span class="dt">out</span> <span class="dt">vec3</span> fragN<span class="op">;</span></span>
+<span id="cb21-17"><a href="viewer4.html#cb21-17"></a><span class="dt">out</span> <span class="dt">vec2</span> fragTexCoord<span class="op">;</span></span>
+<span id="cb21-18"><a href="viewer4.html#cb21-18"></a><span class="dt">out</span> <span class="dt">vec3</span> fragPObj<span class="op">;</span></span>
+<span id="cb21-19"><a href="viewer4.html#cb21-19"></a><span class="dt">out</span> <span class="dt">vec3</span> fragNObj<span class="op">;</span></span>
+<span id="cb21-20"><a href="viewer4.html#cb21-20"></a></span>
+<span id="cb21-21"><a href="viewer4.html#cb21-21"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb21-22"><a href="viewer4.html#cb21-22"></a>  <span class="dt">vec3</span> P <span class="op">=</span> <span class="op">(</span>viewMatrix <span class="op">*</span> modelMatrix <span class="op">*</span> <span class="dt">vec4</span><span class="op">(</span>inPosition<span class="op">,</span> <span class="fl">1.0</span><span class="op">)).</span><span class="fu">xyz</span><span class="op">;</span></span>
+<span id="cb21-23"><a href="viewer4.html#cb21-23"></a>  <span class="dt">vec3</span> N <span class="op">=</span> normalMatrix <span class="op">*</span> inNormal<span class="op">;</span></span>
+<span id="cb21-24"><a href="viewer4.html#cb21-24"></a>  <span class="dt">vec3</span> L <span class="op">=</span> <span class="op">-(</span>viewMatrix <span class="op">*</span> lightDirWorldSpace<span class="op">).</span><span class="fu">xyz</span><span class="op">;</span></span>
+<span id="cb21-25"><a href="viewer4.html#cb21-25"></a></span>
+<span id="cb21-26"><a href="viewer4.html#cb21-26"></a>  fragL <span class="op">=</span> L<span class="op">;</span></span>
+<span id="cb21-27"><a href="viewer4.html#cb21-27"></a>  fragV <span class="op">=</span> <span class="op">-</span>P<span class="op">;</span></span>
+<span id="cb21-28"><a href="viewer4.html#cb21-28"></a>  fragN <span class="op">=</span> N<span class="op">;</span></span>
+<span id="cb21-29"><a href="viewer4.html#cb21-29"></a>  fragTexCoord <span class="op">=</span> inTexCoord<span class="op">;</span></span>
+<span id="cb21-30"><a href="viewer4.html#cb21-30"></a>  fragPObj <span class="op">=</span> inPosition<span class="op">;</span></span>
+<span id="cb21-31"><a href="viewer4.html#cb21-31"></a>  fragNObj <span class="op">=</span> inNormal<span class="op">;</span></span>
+<span id="cb21-32"><a href="viewer4.html#cb21-32"></a></span>
+<span id="cb21-33"><a href="viewer4.html#cb21-33"></a>  <span class="bu">gl_Position</span> <span class="op">=</span> projMatrix <span class="op">*</span> <span class="dt">vec4</span><span class="op">(</span>P<span class="op">,</span> <span class="fl">1.0</span><span class="op">);</span></span>
+<span id="cb21-34"><a href="viewer4.html#cb21-34"></a><span class="op">}</span></span></code></pre></div>
+<p>Esse código contém algumas poucas modificações em relação ao conteúdo de <code>blinnphong.vert</code>.</p>
+<p>Observe como agora temos o atributo de entrada <code>inTexCoord</code> (linha 5) contendo as coordenadas de textura lidas do arquivo OBJ.</p>
+<p>O vertex shader não faz nenhum processamento com as coordenadas de textura e simplesmente passa-as adiante para o fragment shader através do atributo de saída <code>fragTexCoord</code> (linha 17).</p>
+<p>O vertex shader também possui dois outros atributos adicionais de saída:</p>
+<ul>
+<li><code>fragPObj</code> (linha 18) é a posição do vértice no espaço do objeto (isto é, uma cópia de <code>inPosition</code>);</li>
+<li><code>fragNObj</code> (linha 19) é o vetor normal no espaço do objeto (isto é, uma cópia de <code>inNormal</code>).</li>
+</ul>
+<p>Esses atributos são utilizados para calcular, no fragment shader, as coordenadas de textura do mapeamento triplanar, cilíndrico ou esférico (o vetor normal só é utilizado no mapeamento triplanar). Se o mapeamento utilizado é aquele fornecido pelo arquivo OBJ, isto é, o mapeamento determinado pelas coordenada de textura de <code>inTexCoord</code>, então os atributos <code>fragPObj</code> e <code>fragNObj</code> não são utilizados.</p>
+</div>
+<div id="texture.frag" class="section level4 unnumbered hasAnchor">
+<h4>texture.frag<a href="viewer4.html#texture.frag" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O código completo do shader é mostrado a seguir:</p>
+<div class="sourceCode" id="cb22" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb22-1"><a href="viewer4.html#cb22-1"></a><span class="pp">#version 300 es</span></span>
+<span id="cb22-2"><a href="viewer4.html#cb22-2"></a></span>
+<span id="cb22-3"><a href="viewer4.html#cb22-3"></a><span class="dt">precision</span> <span class="dt">mediump</span> <span class="dt">float</span><span class="op">;</span></span>
+<span id="cb22-4"><a href="viewer4.html#cb22-4"></a></span>
+<span id="cb22-5"><a href="viewer4.html#cb22-5"></a><span class="dt">in</span> <span class="dt">vec3</span> fragN<span class="op">;</span></span>
+<span id="cb22-6"><a href="viewer4.html#cb22-6"></a><span class="dt">in</span> <span class="dt">vec3</span> fragL<span class="op">;</span></span>
+<span id="cb22-7"><a href="viewer4.html#cb22-7"></a><span class="dt">in</span> <span class="dt">vec3</span> fragV<span class="op">;</span></span>
+<span id="cb22-8"><a href="viewer4.html#cb22-8"></a><span class="dt">in</span> <span class="dt">vec2</span> fragTexCoord<span class="op">;</span></span>
+<span id="cb22-9"><a href="viewer4.html#cb22-9"></a><span class="dt">in</span> <span class="dt">vec3</span> fragPObj<span class="op">;</span></span>
+<span id="cb22-10"><a href="viewer4.html#cb22-10"></a><span class="dt">in</span> <span class="dt">vec3</span> fragNObj<span class="op">;</span></span>
+<span id="cb22-11"><a href="viewer4.html#cb22-11"></a></span>
+<span id="cb22-12"><a href="viewer4.html#cb22-12"></a><span class="co">// Light properties</span></span>
+<span id="cb22-13"><a href="viewer4.html#cb22-13"></a><span class="kw">uniform</span> <span class="dt">vec4</span> Ia<span class="op">,</span> Id<span class="op">,</span> Is<span class="op">;</span></span>
+<span id="cb22-14"><a href="viewer4.html#cb22-14"></a></span>
+<span id="cb22-15"><a href="viewer4.html#cb22-15"></a><span class="co">// Material properties</span></span>
+<span id="cb22-16"><a href="viewer4.html#cb22-16"></a><span class="kw">uniform</span> <span class="dt">vec4</span> Ka<span class="op">,</span> Kd<span class="op">,</span> Ks<span class="op">;</span></span>
+<span id="cb22-17"><a href="viewer4.html#cb22-17"></a><span class="kw">uniform</span> <span class="dt">float</span> shininess<span class="op">;</span></span>
+<span id="cb22-18"><a href="viewer4.html#cb22-18"></a></span>
+<span id="cb22-19"><a href="viewer4.html#cb22-19"></a><span class="co">// Diffuse texture sampler</span></span>
+<span id="cb22-20"><a href="viewer4.html#cb22-20"></a><span class="kw">uniform</span> <span class="dt">sampler2D</span> diffuseTex<span class="op">;</span></span>
+<span id="cb22-21"><a href="viewer4.html#cb22-21"></a></span>
+<span id="cb22-22"><a href="viewer4.html#cb22-22"></a><span class="co">// Mapping mode</span></span>
+<span id="cb22-23"><a href="viewer4.html#cb22-23"></a><span class="co">// 0: triplanar; 1: cylindrical; 2: spherical; 3: from mesh</span></span>
+<span id="cb22-24"><a href="viewer4.html#cb22-24"></a><span class="kw">uniform</span> <span class="dt">int</span> mappingMode<span class="op">;</span></span>
+<span id="cb22-25"><a href="viewer4.html#cb22-25"></a></span>
+<span id="cb22-26"><a href="viewer4.html#cb22-26"></a><span class="dt">out</span> <span class="dt">vec4</span> outColor<span class="op">;</span></span>
+<span id="cb22-27"><a href="viewer4.html#cb22-27"></a></span>
+<span id="cb22-28"><a href="viewer4.html#cb22-28"></a><span class="co">// Blinn-Phong reflection model</span></span>
+<span id="cb22-29"><a href="viewer4.html#cb22-29"></a><span class="dt">vec4</span> <span class="fu">BlinnPhong</span><span class="op">(</span><span class="dt">vec3</span> N<span class="op">,</span> <span class="dt">vec3</span> L<span class="op">,</span> <span class="dt">vec3</span> V<span class="op">,</span> <span class="dt">vec2</span> texCoord<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-30"><a href="viewer4.html#cb22-30"></a>  N <span class="op">=</span> <span class="bu">normalize</span><span class="op">(</span>N<span class="op">);</span></span>
+<span id="cb22-31"><a href="viewer4.html#cb22-31"></a>  L <span class="op">=</span> <span class="bu">normalize</span><span class="op">(</span>L<span class="op">);</span></span>
+<span id="cb22-32"><a href="viewer4.html#cb22-32"></a></span>
+<span id="cb22-33"><a href="viewer4.html#cb22-33"></a>  <span class="co">// Compute lambertian term</span></span>
+<span id="cb22-34"><a href="viewer4.html#cb22-34"></a>  <span class="dt">float</span> lambertian <span class="op">=</span> <span class="bu">max</span><span class="op">(</span><span class="bu">dot</span><span class="op">(</span>N<span class="op">,</span> L<span class="op">),</span> <span class="fl">0.0</span><span class="op">);</span></span>
+<span id="cb22-35"><a href="viewer4.html#cb22-35"></a></span>
+<span id="cb22-36"><a href="viewer4.html#cb22-36"></a>  <span class="co">// Compute specular term</span></span>
+<span id="cb22-37"><a href="viewer4.html#cb22-37"></a>  <span class="dt">float</span> specular <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb22-38"><a href="viewer4.html#cb22-38"></a>  <span class="kw">if</span> <span class="op">(</span>lambertian <span class="op">&gt;</span> <span class="fl">0.0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-39"><a href="viewer4.html#cb22-39"></a>    V <span class="op">=</span> <span class="bu">normalize</span><span class="op">(</span>V<span class="op">);</span></span>
+<span id="cb22-40"><a href="viewer4.html#cb22-40"></a>    <span class="dt">vec3</span> H <span class="op">=</span> <span class="bu">normalize</span><span class="op">(</span>L <span class="op">+</span> V<span class="op">);</span></span>
+<span id="cb22-41"><a href="viewer4.html#cb22-41"></a>    <span class="dt">float</span> angle <span class="op">=</span> <span class="bu">max</span><span class="op">(</span><span class="bu">dot</span><span class="op">(</span>H<span class="op">,</span> N<span class="op">),</span> <span class="fl">0.0</span><span class="op">);</span></span>
+<span id="cb22-42"><a href="viewer4.html#cb22-42"></a>    specular <span class="op">=</span> <span class="bu">pow</span><span class="op">(</span>angle<span class="op">,</span> shininess<span class="op">);</span></span>
+<span id="cb22-43"><a href="viewer4.html#cb22-43"></a>  <span class="op">}</span></span>
+<span id="cb22-44"><a href="viewer4.html#cb22-44"></a></span>
+<span id="cb22-45"><a href="viewer4.html#cb22-45"></a>  <span class="dt">vec4</span> map_Kd <span class="op">=</span> <span class="bu">texture</span><span class="op">(</span>diffuseTex<span class="op">,</span> texCoord<span class="op">);</span></span>
+<span id="cb22-46"><a href="viewer4.html#cb22-46"></a>  <span class="dt">vec4</span> map_Ka <span class="op">=</span> map_Kd<span class="op">;</span></span>
+<span id="cb22-47"><a href="viewer4.html#cb22-47"></a></span>
+<span id="cb22-48"><a href="viewer4.html#cb22-48"></a>  <span class="dt">vec4</span> diffuseColor <span class="op">=</span> map_Kd <span class="op">*</span> Kd <span class="op">*</span> Id <span class="op">*</span> lambertian<span class="op">;</span></span>
+<span id="cb22-49"><a href="viewer4.html#cb22-49"></a>  <span class="dt">vec4</span> specularColor <span class="op">=</span> Ks <span class="op">*</span> Is <span class="op">*</span> specular<span class="op">;</span></span>
+<span id="cb22-50"><a href="viewer4.html#cb22-50"></a>  <span class="dt">vec4</span> ambientColor <span class="op">=</span> map_Ka <span class="op">*</span> Ka <span class="op">*</span> Ia<span class="op">;</span></span>
+<span id="cb22-51"><a href="viewer4.html#cb22-51"></a></span>
+<span id="cb22-52"><a href="viewer4.html#cb22-52"></a>  <span class="kw">return</span> ambientColor <span class="op">+</span> diffuseColor <span class="op">+</span> specularColor<span class="op">;</span></span>
+<span id="cb22-53"><a href="viewer4.html#cb22-53"></a><span class="op">}</span></span>
+<span id="cb22-54"><a href="viewer4.html#cb22-54"></a></span>
+<span id="cb22-55"><a href="viewer4.html#cb22-55"></a><span class="co">// Planar mapping</span></span>
+<span id="cb22-56"><a href="viewer4.html#cb22-56"></a><span class="dt">vec2</span> <span class="fu">PlanarMappingX</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span> <span class="kw">return</span> <span class="dt">vec2</span><span class="op">(</span><span class="fl">1.0</span> <span class="op">-</span> P<span class="op">.</span><span class="fu">z</span><span class="op">,</span> P<span class="op">.</span><span class="fu">y</span><span class="op">);</span> <span class="op">}</span></span>
+<span id="cb22-57"><a href="viewer4.html#cb22-57"></a><span class="dt">vec2</span> <span class="fu">PlanarMappingY</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span> <span class="kw">return</span> <span class="dt">vec2</span><span class="op">(</span>P<span class="op">.</span><span class="fu">x</span><span class="op">,</span> <span class="fl">1.0</span> <span class="op">-</span> P<span class="op">.</span><span class="fu">z</span><span class="op">);</span> <span class="op">}</span></span>
+<span id="cb22-58"><a href="viewer4.html#cb22-58"></a><span class="dt">vec2</span> <span class="fu">PlanarMappingZ</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span> <span class="kw">return</span> P<span class="op">.</span><span class="fu">xy</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb22-59"><a href="viewer4.html#cb22-59"></a></span>
+<span id="cb22-60"><a href="viewer4.html#cb22-60"></a><span class="pp">#define PI 3.14159265358979323846</span></span>
+<span id="cb22-61"><a href="viewer4.html#cb22-61"></a></span>
+<span id="cb22-62"><a href="viewer4.html#cb22-62"></a><span class="co">// Cylindrical mapping</span></span>
+<span id="cb22-63"><a href="viewer4.html#cb22-63"></a><span class="dt">vec2</span> <span class="fu">CylindricalMapping</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-64"><a href="viewer4.html#cb22-64"></a>  <span class="dt">float</span> longitude <span class="op">=</span> <span class="bu">atan</span><span class="op">(</span>P<span class="op">.</span><span class="fu">x</span><span class="op">,</span> P<span class="op">.</span><span class="fu">z</span><span class="op">);</span></span>
+<span id="cb22-65"><a href="viewer4.html#cb22-65"></a>  <span class="dt">float</span> height <span class="op">=</span> P<span class="op">.</span><span class="fu">y</span><span class="op">;</span></span>
+<span id="cb22-66"><a href="viewer4.html#cb22-66"></a></span>
+<span id="cb22-67"><a href="viewer4.html#cb22-67"></a>  <span class="dt">float</span> u <span class="op">=</span> longitude <span class="op">/</span> <span class="op">(</span><span class="fl">2.0</span> <span class="op">*</span> PI<span class="op">)</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">;</span>  <span class="co">// From [-pi, pi] to [0, 1]</span></span>
+<span id="cb22-68"><a href="viewer4.html#cb22-68"></a>  <span class="dt">float</span> v <span class="op">=</span> height <span class="op">-</span> <span class="fl">0.5</span><span class="op">;</span>                  <span class="co">// Base at y = -0.5</span></span>
+<span id="cb22-69"><a href="viewer4.html#cb22-69"></a></span>
+<span id="cb22-70"><a href="viewer4.html#cb22-70"></a>  <span class="kw">return</span> <span class="dt">vec2</span><span class="op">(</span>u<span class="op">,</span> v<span class="op">);</span></span>
+<span id="cb22-71"><a href="viewer4.html#cb22-71"></a><span class="op">}</span></span>
+<span id="cb22-72"><a href="viewer4.html#cb22-72"></a></span>
+<span id="cb22-73"><a href="viewer4.html#cb22-73"></a><span class="co">// Spherical mapping</span></span>
+<span id="cb22-74"><a href="viewer4.html#cb22-74"></a><span class="dt">vec2</span> <span class="fu">SphericalMapping</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-75"><a href="viewer4.html#cb22-75"></a>  <span class="dt">float</span> longitude <span class="op">=</span> <span class="bu">atan</span><span class="op">(</span>P<span class="op">.</span><span class="fu">x</span><span class="op">,</span> P<span class="op">.</span><span class="fu">z</span><span class="op">);</span></span>
+<span id="cb22-76"><a href="viewer4.html#cb22-76"></a>  <span class="dt">float</span> latitude <span class="op">=</span> <span class="bu">asin</span><span class="op">(</span>P<span class="op">.</span><span class="fu">y</span> <span class="op">/</span> <span class="bu">length</span><span class="op">(</span>P<span class="op">));</span></span>
+<span id="cb22-77"><a href="viewer4.html#cb22-77"></a></span>
+<span id="cb22-78"><a href="viewer4.html#cb22-78"></a>  <span class="dt">float</span> u <span class="op">=</span> longitude <span class="op">/</span> <span class="op">(</span><span class="fl">2.0</span> <span class="op">*</span> PI<span class="op">)</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">;</span>  <span class="co">// From [-pi, pi] to [0, 1]</span></span>
+<span id="cb22-79"><a href="viewer4.html#cb22-79"></a>  <span class="dt">float</span> v <span class="op">=</span> latitude <span class="op">/</span> PI <span class="op">+</span> <span class="fl">0.5</span><span class="op">;</span>           <span class="co">// From [-pi/2, pi/2] to [0, 1]</span></span>
+<span id="cb22-80"><a href="viewer4.html#cb22-80"></a></span>
+<span id="cb22-81"><a href="viewer4.html#cb22-81"></a>  <span class="kw">return</span> <span class="dt">vec2</span><span class="op">(</span>u<span class="op">,</span> v<span class="op">);</span></span>
+<span id="cb22-82"><a href="viewer4.html#cb22-82"></a><span class="op">}</span></span>
+<span id="cb22-83"><a href="viewer4.html#cb22-83"></a></span>
+<span id="cb22-84"><a href="viewer4.html#cb22-84"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb22-85"><a href="viewer4.html#cb22-85"></a>  <span class="dt">vec4</span> color<span class="op">;</span></span>
+<span id="cb22-86"><a href="viewer4.html#cb22-86"></a></span>
+<span id="cb22-87"><a href="viewer4.html#cb22-87"></a>  <span class="kw">if</span> <span class="op">(</span>mappingMode <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-88"><a href="viewer4.html#cb22-88"></a>    <span class="co">// Triplanar mapping</span></span>
+<span id="cb22-89"><a href="viewer4.html#cb22-89"></a></span>
+<span id="cb22-90"><a href="viewer4.html#cb22-90"></a>    <span class="co">// Sample with x planar mapping</span></span>
+<span id="cb22-91"><a href="viewer4.html#cb22-91"></a>    <span class="dt">vec2</span> texCoord1 <span class="op">=</span> <span class="fu">PlanarMappingX</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb22-92"><a href="viewer4.html#cb22-92"></a>    <span class="dt">vec4</span> color1 <span class="op">=</span> <span class="fu">BlinnPhong</span><span class="op">(</span>fragN<span class="op">,</span> fragL<span class="op">,</span> fragV<span class="op">,</span> texCoord1<span class="op">);</span></span>
+<span id="cb22-93"><a href="viewer4.html#cb22-93"></a></span>
+<span id="cb22-94"><a href="viewer4.html#cb22-94"></a>    <span class="co">// Sample with y planar mapping</span></span>
+<span id="cb22-95"><a href="viewer4.html#cb22-95"></a>    <span class="dt">vec2</span> texCoord2 <span class="op">=</span> <span class="fu">PlanarMappingY</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb22-96"><a href="viewer4.html#cb22-96"></a>    <span class="dt">vec4</span> color2 <span class="op">=</span> <span class="fu">BlinnPhong</span><span class="op">(</span>fragN<span class="op">,</span> fragL<span class="op">,</span> fragV<span class="op">,</span> texCoord2<span class="op">);</span></span>
+<span id="cb22-97"><a href="viewer4.html#cb22-97"></a></span>
+<span id="cb22-98"><a href="viewer4.html#cb22-98"></a>    <span class="co">// Sample with z planar mapping</span></span>
+<span id="cb22-99"><a href="viewer4.html#cb22-99"></a>    <span class="dt">vec2</span> texCoord3 <span class="op">=</span> <span class="fu">PlanarMappingZ</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb22-100"><a href="viewer4.html#cb22-100"></a>    <span class="dt">vec4</span> color3 <span class="op">=</span> <span class="fu">BlinnPhong</span><span class="op">(</span>fragN<span class="op">,</span> fragL<span class="op">,</span> fragV<span class="op">,</span> texCoord3<span class="op">);</span></span>
+<span id="cb22-101"><a href="viewer4.html#cb22-101"></a></span>
+<span id="cb22-102"><a href="viewer4.html#cb22-102"></a>    <span class="co">// Compute average based on normal</span></span>
+<span id="cb22-103"><a href="viewer4.html#cb22-103"></a>    <span class="dt">vec3</span> weight <span class="op">=</span> <span class="bu">abs</span><span class="op">(</span><span class="bu">normalize</span><span class="op">(</span>fragNObj<span class="op">));</span></span>
+<span id="cb22-104"><a href="viewer4.html#cb22-104"></a>    color <span class="op">=</span> color1 <span class="op">*</span> weight<span class="op">.</span><span class="fu">x</span> <span class="op">+</span> color2 <span class="op">*</span> weight<span class="op">.</span><span class="fu">y</span> <span class="op">+</span> color3 <span class="op">*</span> weight<span class="op">.</span><span class="fu">z</span><span class="op">;</span></span>
+<span id="cb22-105"><a href="viewer4.html#cb22-105"></a>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span id="cb22-106"><a href="viewer4.html#cb22-106"></a>    <span class="dt">vec2</span> texCoord<span class="op">;</span></span>
+<span id="cb22-107"><a href="viewer4.html#cb22-107"></a>    <span class="kw">if</span> <span class="op">(</span>mappingMode <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-108"><a href="viewer4.html#cb22-108"></a>      <span class="co">// Cylindrical mapping</span></span>
+<span id="cb22-109"><a href="viewer4.html#cb22-109"></a>      texCoord <span class="op">=</span> <span class="fu">CylindricalMapping</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb22-110"><a href="viewer4.html#cb22-110"></a>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span>mappingMode <span class="op">==</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-111"><a href="viewer4.html#cb22-111"></a>      <span class="co">// Spherical mapping</span></span>
+<span id="cb22-112"><a href="viewer4.html#cb22-112"></a>      texCoord <span class="op">=</span> <span class="fu">SphericalMapping</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb22-113"><a href="viewer4.html#cb22-113"></a>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span>mappingMode <span class="op">==</span> <span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-114"><a href="viewer4.html#cb22-114"></a>      <span class="co">// From mesh</span></span>
+<span id="cb22-115"><a href="viewer4.html#cb22-115"></a>      texCoord <span class="op">=</span> fragTexCoord<span class="op">;</span></span>
+<span id="cb22-116"><a href="viewer4.html#cb22-116"></a>    <span class="op">}</span></span>
+<span id="cb22-117"><a href="viewer4.html#cb22-117"></a>    color <span class="op">=</span> <span class="fu">BlinnPhong</span><span class="op">(</span>fragN<span class="op">,</span> fragL<span class="op">,</span> fragV<span class="op">,</span> texCoord<span class="op">);</span></span>
+<span id="cb22-118"><a href="viewer4.html#cb22-118"></a>  <span class="op">}</span></span>
+<span id="cb22-119"><a href="viewer4.html#cb22-119"></a></span>
+<span id="cb22-120"><a href="viewer4.html#cb22-120"></a>  <span class="kw">if</span> <span class="op">(</span><span class="bu">gl_FrontFacing</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-121"><a href="viewer4.html#cb22-121"></a>    outColor <span class="op">=</span> color<span class="op">;</span></span>
+<span id="cb22-122"><a href="viewer4.html#cb22-122"></a>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span id="cb22-123"><a href="viewer4.html#cb22-123"></a>    <span class="dt">float</span> i <span class="op">=</span> <span class="op">(</span>color<span class="op">.</span><span class="fu">r</span> <span class="op">+</span> color<span class="op">.</span><span class="fu">g</span> <span class="op">+</span> color<span class="op">.</span><span class="fu">b</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3.0</span><span class="op">;</span></span>
+<span id="cb22-124"><a href="viewer4.html#cb22-124"></a>    outColor <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>i<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="fl">1.0</span><span class="op">);</span></span>
+<span id="cb22-125"><a href="viewer4.html#cb22-125"></a>  <span class="op">}</span></span>
+<span id="cb22-126"><a href="viewer4.html#cb22-126"></a><span class="op">}</span></span></code></pre></div>
+<p>A primeira mudança em relação ao shader <code>blinnphong.frag</code> é o número de atributos de entrada, que agora inclui os atributos <code>fragTexCoord</code>, <code>fragPObj</code> e <code>fragNObj</code> da saída do vertex shader:</p>
+<div class="sourceCode" id="cb23" startFrom="5"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl" style="counter-reset: source-line 4;"><span id="cb23-5"><a href="viewer4.html#cb23-5"></a><span class="dt">in</span> <span class="dt">vec3</span> fragN<span class="op">;</span></span>
+<span id="cb23-6"><a href="viewer4.html#cb23-6"></a><span class="dt">in</span> <span class="dt">vec3</span> fragL<span class="op">;</span></span>
+<span id="cb23-7"><a href="viewer4.html#cb23-7"></a><span class="dt">in</span> <span class="dt">vec3</span> fragV<span class="op">;</span></span>
+<span id="cb23-8"><a href="viewer4.html#cb23-8"></a><span class="dt">in</span> <span class="dt">vec2</span> fragTexCoord<span class="op">;</span></span>
+<span id="cb23-9"><a href="viewer4.html#cb23-9"></a><span class="dt">in</span> <span class="dt">vec3</span> fragPObj<span class="op">;</span></span>
+<span id="cb23-10"><a href="viewer4.html#cb23-10"></a><span class="dt">in</span> <span class="dt">vec3</span> fragNObj<span class="op">;</span></span></code></pre></div>
+<p>Há também duas novas variáveis uniformes:</p>
+<div class="sourceCode" id="cb24" startFrom="19"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl" style="counter-reset: source-line 18;"><span id="cb24-19"><a href="viewer4.html#cb24-19"></a><span class="co">// Diffuse texture sampler</span></span>
+<span id="cb24-20"><a href="viewer4.html#cb24-20"></a><span class="kw">uniform</span> <span class="dt">sampler2D</span> diffuseTex<span class="op">;</span></span>
+<span id="cb24-21"><a href="viewer4.html#cb24-21"></a></span>
+<span id="cb24-22"><a href="viewer4.html#cb24-22"></a><span class="co">// Mapping mode</span></span>
+<span id="cb24-23"><a href="viewer4.html#cb24-23"></a><span class="co">// 0: triplanar; 1: cylindrical; 2: spherical; 3: from mesh</span></span>
+<span id="cb24-24"><a href="viewer4.html#cb24-24"></a><span class="kw">uniform</span> <span class="dt">int</span> mappingMode<span class="op">;</span></span></code></pre></div>
+<ul>
+<li><code>diffuseTex</code> é um <strong>amostrador de textura 2D</strong> (<code>sampler2D</code>) que acessa a primeira unidade de textura (<code>GL_TEXTURE0</code>) ativada com <code>glActiveTexture</code> em <code>Model::render</code>. É através desse amostrador que conseguiremos acessar os texels da textura difusa.</li>
+<li><code>mappingMode</code> é um inteiro que identifica o modo de mapeamento escolhido pelo usuário. Esse valor é determinado pelo índice da caixa de combinação “UV mapping” da ImGui. O padrão é <code>3</code> para arquivos OBJ que possuem coordenadas de textura, e <code>0</code> quando as coordenadas de textura não foram encontradas.</li>
+</ul>
+<div class="notebox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
+<div class="noteboxtitle">
+Importante
+</div>
+<p>O pipeline associa <code>diffuseTex</code> à unidade de textura <code>GL_TEXTURE0</code> pois o valor dessa variável uniforme é definido como <code>0</code> no código em C++. Isso é feito na linha 106 de <code>Window::onPaint</code> junto com a definição das outras variáveis uniformes:</p>
+<div class="sourceCode" id="cb25" startFrom="100"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 99;"><span id="cb25-100"><a href="viewer4.html#cb25-100"></a>  <span class="kw">auto</span> <span class="at">const</span> diffuseTexLoc<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span>program<span class="op">,</span> <span class="st">&quot;diffuseTex&quot;</span><span class="op">)};</span></span>
+<span id="cb25-101"><a href="viewer4.html#cb25-101"></a>  <span class="kw">auto</span> <span class="at">const</span> mappingModeLoc<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span>program<span class="op">,</span> <span class="st">&quot;mappingMode&quot;</span><span class="op">)};</span></span>
+<span id="cb25-102"><a href="viewer4.html#cb25-102"></a></span>
+<span id="cb25-103"><a href="viewer4.html#cb25-103"></a>  <span class="co">// Set uniform variables that have the same value for every model</span></span>
+<span id="cb25-104"><a href="viewer4.html#cb25-104"></a>  abcg<span class="op">::</span>glUniformMatrix4fv<span class="op">(</span>viewMatrixLoc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="op">&amp;</span><span class="va">m_viewMatrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb25-105"><a href="viewer4.html#cb25-105"></a>  abcg<span class="op">::</span>glUniformMatrix4fv<span class="op">(</span>projMatrixLoc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="op">&amp;</span><span class="va">m_projMatrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb25-106"><a href="viewer4.html#cb25-106"></a>  abcg<span class="op">::</span>glUniform1i<span class="op">(</span>diffuseTexLoc<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb25-107"><a href="viewer4.html#cb25-107"></a>  abcg<span class="op">::</span>glUniform1i<span class="op">(</span>mappingModeLoc<span class="op">,</span> <span class="va">m_mappingMode</span><span class="op">);</span></span></code></pre></div>
+</div>
+<p>A definição da função <code>BlinnPhong</code> é ligeiramente diferente daquela do shader <code>blinnphong.frag</code>:</p>
+<div class="sourceCode" id="cb26" startFrom="28"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl" style="counter-reset: source-line 27;"><span id="cb26-28"><a href="viewer4.html#cb26-28"></a><span class="co">// Blinn-Phong reflection model</span></span>
+<span id="cb26-29"><a href="viewer4.html#cb26-29"></a><span class="dt">vec4</span> <span class="fu">BlinnPhong</span><span class="op">(</span><span class="dt">vec3</span> N<span class="op">,</span> <span class="dt">vec3</span> L<span class="op">,</span> <span class="dt">vec3</span> V<span class="op">,</span> <span class="dt">vec2</span> texCoord<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb26-30"><a href="viewer4.html#cb26-30"></a>  N <span class="op">=</span> <span class="bu">normalize</span><span class="op">(</span>N<span class="op">);</span></span>
+<span id="cb26-31"><a href="viewer4.html#cb26-31"></a>  L <span class="op">=</span> <span class="bu">normalize</span><span class="op">(</span>L<span class="op">);</span></span>
+<span id="cb26-32"><a href="viewer4.html#cb26-32"></a></span>
+<span id="cb26-33"><a href="viewer4.html#cb26-33"></a>  <span class="co">// Compute lambertian term</span></span>
+<span id="cb26-34"><a href="viewer4.html#cb26-34"></a>  <span class="dt">float</span> lambertian <span class="op">=</span> <span class="bu">max</span><span class="op">(</span><span class="bu">dot</span><span class="op">(</span>N<span class="op">,</span> L<span class="op">),</span> <span class="fl">0.0</span><span class="op">);</span></span>
+<span id="cb26-35"><a href="viewer4.html#cb26-35"></a></span>
+<span id="cb26-36"><a href="viewer4.html#cb26-36"></a>  <span class="co">// Compute specular term</span></span>
+<span id="cb26-37"><a href="viewer4.html#cb26-37"></a>  <span class="dt">float</span> specular <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb26-38"><a href="viewer4.html#cb26-38"></a>  <span class="kw">if</span> <span class="op">(</span>lambertian <span class="op">&gt;</span> <span class="fl">0.0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb26-39"><a href="viewer4.html#cb26-39"></a>    V <span class="op">=</span> <span class="bu">normalize</span><span class="op">(</span>V<span class="op">);</span></span>
+<span id="cb26-40"><a href="viewer4.html#cb26-40"></a>    <span class="dt">vec3</span> H <span class="op">=</span> <span class="bu">normalize</span><span class="op">(</span>L <span class="op">+</span> V<span class="op">);</span></span>
+<span id="cb26-41"><a href="viewer4.html#cb26-41"></a>    <span class="dt">float</span> angle <span class="op">=</span> <span class="bu">max</span><span class="op">(</span><span class="bu">dot</span><span class="op">(</span>H<span class="op">,</span> N<span class="op">),</span> <span class="fl">0.0</span><span class="op">);</span></span>
+<span id="cb26-42"><a href="viewer4.html#cb26-42"></a>    specular <span class="op">=</span> <span class="bu">pow</span><span class="op">(</span>angle<span class="op">,</span> shininess<span class="op">);</span></span>
+<span id="cb26-43"><a href="viewer4.html#cb26-43"></a>  <span class="op">}</span></span>
+<span id="cb26-44"><a href="viewer4.html#cb26-44"></a></span>
+<span id="cb26-45"><a href="viewer4.html#cb26-45"></a>  <span class="dt">vec4</span> map_Kd <span class="op">=</span> <span class="bu">texture</span><span class="op">(</span>diffuseTex<span class="op">,</span> texCoord<span class="op">);</span></span>
+<span id="cb26-46"><a href="viewer4.html#cb26-46"></a>  <span class="dt">vec4</span> map_Ka <span class="op">=</span> map_Kd<span class="op">;</span></span>
+<span id="cb26-47"><a href="viewer4.html#cb26-47"></a></span>
+<span id="cb26-48"><a href="viewer4.html#cb26-48"></a>  <span class="dt">vec4</span> diffuseColor <span class="op">=</span> map_Kd <span class="op">*</span> Kd <span class="op">*</span> Id <span class="op">*</span> lambertian<span class="op">;</span></span>
+<span id="cb26-49"><a href="viewer4.html#cb26-49"></a>  <span class="dt">vec4</span> specularColor <span class="op">=</span> Ks <span class="op">*</span> Is <span class="op">*</span> specular<span class="op">;</span></span>
+<span id="cb26-50"><a href="viewer4.html#cb26-50"></a>  <span class="dt">vec4</span> ambientColor <span class="op">=</span> map_Ka <span class="op">*</span> Ka <span class="op">*</span> Ia<span class="op">;</span></span>
+<span id="cb26-51"><a href="viewer4.html#cb26-51"></a></span>
+<span id="cb26-52"><a href="viewer4.html#cb26-52"></a>  <span class="kw">return</span> ambientColor <span class="op">+</span> diffuseColor <span class="op">+</span> specularColor<span class="op">;</span></span>
+<span id="cb26-53"><a href="viewer4.html#cb26-53"></a><span class="op">}</span></span></code></pre></div>
+<p>Agora, a função tem o parâmetro adicional de coordenadas de textura <code>texCoord</code> (linha 29).</p>
+<p>Até a linha 43, o código é igual ao anterior.</p>
+<p>A linha 45 contém o código utilizado para amostrar a textura difusa. A função <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/texture.xhtml"><code>texture</code></a> recebe como argumentos o amostrador de textura (<code>diffuseTex</code>) e as coordenadas de textura (<code>texCoord</code>). O resultado é a cor RGBA amostrada na posição dada, usando o modo de filtragem e modo de empacotamento definidos pelo código C++ antes da renderização.</p>
+<p>Como estamos amostrando uma textura difusa, a cor da textura (<code>map_Kd</code>) é multiplicada por <code>Kd * Id * lambertian</code> para compor a componente difusa final (linha 48).</p>
+<p>Também criamos uma cor ambiente <code>map_Ka</code> (linha 46) que multiplica as componentes de reflexão ambiente (linha 50). Nesse caso, consideramos que <code>map_Ka</code> é igual a <code>map_Kd</code>, pois geralmente é esse o caso (a textura difusa é também a textura ambiente). Entretanto, é possível que um material defina uma textura diferente para a componente ambiente. Nesse caso teríamos de mudar o shader para incluir um outro amostrador específico para <code>map_Ka</code>.</p>
+<p>Além da função <code>BlinnPhong</code>, o shader também define as funções de geração de coordenadas de textura usando mapeamento planar (<code>PlanarMappingX</code>, <code>PlanarMappingY</code>, <code>PlanarMappingZ</code>), cilíndrico (<code>CylindricalMapping</code>) e esférico (<code>SphericalMapping</code>):</p>
+<div class="sourceCode" id="cb27" startFrom="55"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl" style="counter-reset: source-line 54;"><span id="cb27-55"><a href="viewer4.html#cb27-55"></a><span class="co">// Planar mapping</span></span>
+<span id="cb27-56"><a href="viewer4.html#cb27-56"></a><span class="dt">vec2</span> <span class="fu">PlanarMappingX</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span> <span class="kw">return</span> <span class="dt">vec2</span><span class="op">(</span><span class="fl">1.0</span> <span class="op">-</span> P<span class="op">.</span><span class="fu">z</span><span class="op">,</span> P<span class="op">.</span><span class="fu">y</span><span class="op">);</span> <span class="op">}</span></span>
+<span id="cb27-57"><a href="viewer4.html#cb27-57"></a><span class="dt">vec2</span> <span class="fu">PlanarMappingY</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span> <span class="kw">return</span> <span class="dt">vec2</span><span class="op">(</span>P<span class="op">.</span><span class="fu">x</span><span class="op">,</span> <span class="fl">1.0</span> <span class="op">-</span> P<span class="op">.</span><span class="fu">z</span><span class="op">);</span> <span class="op">}</span></span>
+<span id="cb27-58"><a href="viewer4.html#cb27-58"></a><span class="dt">vec2</span> <span class="fu">PlanarMappingZ</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span> <span class="kw">return</span> P<span class="op">.</span><span class="fu">xy</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb27-59"><a href="viewer4.html#cb27-59"></a></span>
+<span id="cb27-60"><a href="viewer4.html#cb27-60"></a><span class="pp">#define PI 3.14159265358979323846</span></span>
+<span id="cb27-61"><a href="viewer4.html#cb27-61"></a></span>
+<span id="cb27-62"><a href="viewer4.html#cb27-62"></a><span class="co">// Cylindrical mapping</span></span>
+<span id="cb27-63"><a href="viewer4.html#cb27-63"></a><span class="dt">vec2</span> <span class="fu">CylindricalMapping</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-64"><a href="viewer4.html#cb27-64"></a>  <span class="dt">float</span> longitude <span class="op">=</span> <span class="bu">atan</span><span class="op">(</span>P<span class="op">.</span><span class="fu">x</span><span class="op">,</span> P<span class="op">.</span><span class="fu">z</span><span class="op">);</span></span>
+<span id="cb27-65"><a href="viewer4.html#cb27-65"></a>  <span class="dt">float</span> height <span class="op">=</span> P<span class="op">.</span><span class="fu">y</span><span class="op">;</span></span>
+<span id="cb27-66"><a href="viewer4.html#cb27-66"></a></span>
+<span id="cb27-67"><a href="viewer4.html#cb27-67"></a>  <span class="dt">float</span> u <span class="op">=</span> longitude <span class="op">/</span> <span class="op">(</span><span class="fl">2.0</span> <span class="op">*</span> PI<span class="op">)</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">;</span>  <span class="co">// From [-pi, pi] to [0, 1]</span></span>
+<span id="cb27-68"><a href="viewer4.html#cb27-68"></a>  <span class="dt">float</span> v <span class="op">=</span> height <span class="op">-</span> <span class="fl">0.5</span><span class="op">;</span>                  <span class="co">// Base at y = -0.5</span></span>
+<span id="cb27-69"><a href="viewer4.html#cb27-69"></a></span>
+<span id="cb27-70"><a href="viewer4.html#cb27-70"></a>  <span class="kw">return</span> <span class="dt">vec2</span><span class="op">(</span>u<span class="op">,</span> v<span class="op">);</span></span>
+<span id="cb27-71"><a href="viewer4.html#cb27-71"></a><span class="op">}</span></span>
+<span id="cb27-72"><a href="viewer4.html#cb27-72"></a></span>
+<span id="cb27-73"><a href="viewer4.html#cb27-73"></a><span class="co">// Spherical mapping</span></span>
+<span id="cb27-74"><a href="viewer4.html#cb27-74"></a><span class="dt">vec2</span> <span class="fu">SphericalMapping</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-75"><a href="viewer4.html#cb27-75"></a>  <span class="dt">float</span> longitude <span class="op">=</span> <span class="bu">atan</span><span class="op">(</span>P<span class="op">.</span><span class="fu">x</span><span class="op">,</span> P<span class="op">.</span><span class="fu">z</span><span class="op">);</span></span>
+<span id="cb27-76"><a href="viewer4.html#cb27-76"></a>  <span class="dt">float</span> latitude <span class="op">=</span> <span class="bu">asin</span><span class="op">(</span>P<span class="op">.</span><span class="fu">y</span> <span class="op">/</span> <span class="bu">length</span><span class="op">(</span>P<span class="op">));</span></span>
+<span id="cb27-77"><a href="viewer4.html#cb27-77"></a></span>
+<span id="cb27-78"><a href="viewer4.html#cb27-78"></a>  <span class="dt">float</span> u <span class="op">=</span> longitude <span class="op">/</span> <span class="op">(</span><span class="fl">2.0</span> <span class="op">*</span> PI<span class="op">)</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">;</span>  <span class="co">// From [-pi, pi] to [0, 1]</span></span>
+<span id="cb27-79"><a href="viewer4.html#cb27-79"></a>  <span class="dt">float</span> v <span class="op">=</span> latitude <span class="op">/</span> PI <span class="op">+</span> <span class="fl">0.5</span><span class="op">;</span>           <span class="co">// From [-pi/2, pi/2] to [0, 1]</span></span>
+<span id="cb27-80"><a href="viewer4.html#cb27-80"></a></span>
+<span id="cb27-81"><a href="viewer4.html#cb27-81"></a>  <span class="kw">return</span> <span class="dt">vec2</span><span class="op">(</span>u<span class="op">,</span> v<span class="op">);</span></span>
+<span id="cb27-82"><a href="viewer4.html#cb27-82"></a><span class="op">}</span></span></code></pre></div>
+<p>Todas as funções recebem como parâmetro a posição do ponto (<code>P</code>) e retornam as coordenadas de textura correspondentes ao mapeamento. O código reproduz as equações descritas na seção <a href="texmapping.html#texmapping">11.1</a>. A única exceção é o cálculo da componente <span class="math inline">\(v\)</span> do mapeamento cilíndrico (linha 68), que aqui é deslocada para fazer com que o cilindro tenha base em <span class="math inline">\(-0.5\)</span> em vez de <span class="math inline">\(0\)</span>. Assim, a textura fica centralizada verticalmente em objetos de raio unitário centralizados na origem, que é o nosso caso pois usamos a função <code>Model::standardize</code> após a leitura do arquivo OBJ.</p>
+<p>As funções de geração de coordenadas de textura são chamadas em <code>main</code> de acordo com o valor de <code>mappingMode</code>:</p>
+<div class="sourceCode" id="cb28" startFrom="84"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl" style="counter-reset: source-line 83;"><span id="cb28-84"><a href="viewer4.html#cb28-84"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb28-85"><a href="viewer4.html#cb28-85"></a>  <span class="dt">vec4</span> color<span class="op">;</span></span>
+<span id="cb28-86"><a href="viewer4.html#cb28-86"></a></span>
+<span id="cb28-87"><a href="viewer4.html#cb28-87"></a>  <span class="kw">if</span> <span class="op">(</span>mappingMode <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb28-88"><a href="viewer4.html#cb28-88"></a>    <span class="co">// Triplanar mapping</span></span>
+<span id="cb28-89"><a href="viewer4.html#cb28-89"></a></span>
+<span id="cb28-90"><a href="viewer4.html#cb28-90"></a>    <span class="co">// Sample with x planar mapping</span></span>
+<span id="cb28-91"><a href="viewer4.html#cb28-91"></a>    <span class="dt">vec2</span> texCoord1 <span class="op">=</span> <span class="fu">PlanarMappingX</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb28-92"><a href="viewer4.html#cb28-92"></a>    <span class="dt">vec4</span> color1 <span class="op">=</span> <span class="fu">BlinnPhong</span><span class="op">(</span>fragN<span class="op">,</span> fragL<span class="op">,</span> fragV<span class="op">,</span> texCoord1<span class="op">);</span></span>
+<span id="cb28-93"><a href="viewer4.html#cb28-93"></a></span>
+<span id="cb28-94"><a href="viewer4.html#cb28-94"></a>    <span class="co">// Sample with y planar mapping</span></span>
+<span id="cb28-95"><a href="viewer4.html#cb28-95"></a>    <span class="dt">vec2</span> texCoord2 <span class="op">=</span> <span class="fu">PlanarMappingY</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb28-96"><a href="viewer4.html#cb28-96"></a>    <span class="dt">vec4</span> color2 <span class="op">=</span> <span class="fu">BlinnPhong</span><span class="op">(</span>fragN<span class="op">,</span> fragL<span class="op">,</span> fragV<span class="op">,</span> texCoord2<span class="op">);</span></span>
+<span id="cb28-97"><a href="viewer4.html#cb28-97"></a></span>
+<span id="cb28-98"><a href="viewer4.html#cb28-98"></a>    <span class="co">// Sample with z planar mapping</span></span>
+<span id="cb28-99"><a href="viewer4.html#cb28-99"></a>    <span class="dt">vec2</span> texCoord3 <span class="op">=</span> <span class="fu">PlanarMappingZ</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb28-100"><a href="viewer4.html#cb28-100"></a>    <span class="dt">vec4</span> color3 <span class="op">=</span> <span class="fu">BlinnPhong</span><span class="op">(</span>fragN<span class="op">,</span> fragL<span class="op">,</span> fragV<span class="op">,</span> texCoord3<span class="op">);</span></span>
+<span id="cb28-101"><a href="viewer4.html#cb28-101"></a></span>
+<span id="cb28-102"><a href="viewer4.html#cb28-102"></a>    <span class="co">// Compute average based on normal</span></span>
+<span id="cb28-103"><a href="viewer4.html#cb28-103"></a>    <span class="dt">vec3</span> weight <span class="op">=</span> <span class="bu">abs</span><span class="op">(</span><span class="bu">normalize</span><span class="op">(</span>fragNObj<span class="op">));</span></span>
+<span id="cb28-104"><a href="viewer4.html#cb28-104"></a>    color <span class="op">=</span> color1 <span class="op">*</span> weight<span class="op">.</span><span class="fu">x</span> <span class="op">+</span> color2 <span class="op">*</span> weight<span class="op">.</span><span class="fu">y</span> <span class="op">+</span> color3 <span class="op">*</span> weight<span class="op">.</span><span class="fu">z</span><span class="op">;</span></span>
+<span id="cb28-105"><a href="viewer4.html#cb28-105"></a>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span id="cb28-106"><a href="viewer4.html#cb28-106"></a>    <span class="dt">vec2</span> texCoord<span class="op">;</span></span>
+<span id="cb28-107"><a href="viewer4.html#cb28-107"></a>    <span class="kw">if</span> <span class="op">(</span>mappingMode <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb28-108"><a href="viewer4.html#cb28-108"></a>      <span class="co">// Cylindrical mapping</span></span>
+<span id="cb28-109"><a href="viewer4.html#cb28-109"></a>      texCoord <span class="op">=</span> <span class="fu">CylindricalMapping</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb28-110"><a href="viewer4.html#cb28-110"></a>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span>mappingMode <span class="op">==</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb28-111"><a href="viewer4.html#cb28-111"></a>      <span class="co">// Spherical mapping</span></span>
+<span id="cb28-112"><a href="viewer4.html#cb28-112"></a>      texCoord <span class="op">=</span> <span class="fu">SphericalMapping</span><span class="op">(</span>fragPObj<span class="op">);</span></span>
+<span id="cb28-113"><a href="viewer4.html#cb28-113"></a>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span>mappingMode <span class="op">==</span> <span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb28-114"><a href="viewer4.html#cb28-114"></a>      <span class="co">// From mesh</span></span>
+<span id="cb28-115"><a href="viewer4.html#cb28-115"></a>      texCoord <span class="op">=</span> fragTexCoord<span class="op">;</span></span>
+<span id="cb28-116"><a href="viewer4.html#cb28-116"></a>    <span class="op">}</span></span>
+<span id="cb28-117"><a href="viewer4.html#cb28-117"></a>    color <span class="op">=</span> <span class="fu">BlinnPhong</span><span class="op">(</span>fragN<span class="op">,</span> fragL<span class="op">,</span> fragV<span class="op">,</span> texCoord<span class="op">);</span></span>
+<span id="cb28-118"><a href="viewer4.html#cb28-118"></a>  <span class="op">}</span></span>
+<span id="cb28-119"><a href="viewer4.html#cb28-119"></a></span>
+<span id="cb28-120"><a href="viewer4.html#cb28-120"></a>  <span class="kw">if</span> <span class="op">(</span><span class="bu">gl_FrontFacing</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb28-121"><a href="viewer4.html#cb28-121"></a>    outColor <span class="op">=</span> color<span class="op">;</span></span>
+<span id="cb28-122"><a href="viewer4.html#cb28-122"></a>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span id="cb28-123"><a href="viewer4.html#cb28-123"></a>    <span class="dt">float</span> i <span class="op">=</span> <span class="op">(</span>color<span class="op">.</span><span class="fu">r</span> <span class="op">+</span> color<span class="op">.</span><span class="fu">g</span> <span class="op">+</span> color<span class="op">.</span><span class="fu">b</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3.0</span><span class="op">;</span></span>
+<span id="cb28-124"><a href="viewer4.html#cb28-124"></a>    outColor <span class="op">=</span> <span class="dt">vec4</span><span class="op">(</span>i<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="fl">1.0</span><span class="op">);</span></span>
+<span id="cb28-125"><a href="viewer4.html#cb28-125"></a>  <span class="op">}</span></span>
+<span id="cb28-126"><a href="viewer4.html#cb28-126"></a><span class="op">}</span></span></code></pre></div>
+<p>Observe, no mapeamento triplanar (linhas 88–104), como a textura é amostrada três vezes (linhas 90–100) e as cores amostrada são combinadas em uma média ponderada pelo valor absoluto das componentes do vetor normal (linhas 103–104).</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Observe que, no mapeamento triplanar, não seria necessário chamar <code>BlinnPhong</code> três vezes. Afinal, a iluminação sem a textura é a mesma nas três chamadas.</p>
+<p>O código ficaria mais eficiente se <code>BlinnPhong</code> retornasse uma estrutura contendo as componentes ambiente, difusa e especular separadas. Poderíamos então criar uma outra função só para fazer a amostragem da textura difusa e compor a cor final.</p>
+</div>
+<p>Se <code>mappingMode</code> é <code>3</code>, então nenhuma função de mapeamento é chamada e as coordenadas de textura utilizadas em <code>BlinnPhong</code> são aquelas contidas em <code>fragTexCoord</code>, pois essas são as coordenadas de textura interpoladas a partir das coordenadas definidas nos vértices.</p>
+<p>Isso resume as modificações necessárias para habilitar a texturização. O restante do código contém modificações complementares relacionadas a conceitos que já foram abordados em projetos anteriores, como a mudança da interface da ImGui e a determinação de um ângulo e eixo de rotação inicial para o trackball virtual.</p>
+
+</div>
+</div>
+</div>
+<!-- </div> -->
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Nosso visualizador suporta apenas um objeto por arquivo OBJ e, portanto, suporta apenas um material. Por isso, todos os arquivos OBJ que utilizaremos devem ter apenas um objeto e um material.<a href="viewer4.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="texfiltering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

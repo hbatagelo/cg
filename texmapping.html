@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.1 Espaço vetorial | MCTA008-17 Computação Gráfica</title>
+  <title>11.1 Mapeamento | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.1 Espaço vetorial | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="11.1 Mapeamento | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.1 Espaço vetorial | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="11.1 Mapeamento | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="geometry.html"/>
-<link rel="next" href="affine.html"/>
+<link rel="prev" href="texturing.html"/>
+<link rel="next" href="texwrapping.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -99,28 +99,6 @@ code span.pp { font-weight: bold; } /* Preprocessor */
 code span.wa { font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -138,7 +116,7 @@ div.csl-indent {
 <li><a href="./">Computação Gráfica</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> | Notas de aula</a>
 <ul>
 <li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
 <ul>
@@ -146,25 +124,25 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<li class="chapter" data-level="2" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>2</b> Configuração do ambiente</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<li class="chapter" data-level="2.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>2.1</b> Linux</a>
 <ul>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<li class="chapter" data-level="2.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>2.2</b> macOS</a>
 <ul>
 <li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<li class="chapter" data-level="2.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>2.3</b> Windows</a>
 <ul>
 <li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
-<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<li class="chapter" data-level="2.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>2.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="2.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>2.5</b> ABCg</a>
 <ul>
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
@@ -174,10 +152,10 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introdução</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
-<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<li class="chapter" data-level="3.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>3.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="3.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>3.2</b> Linha do tempo</a>
 <ul>
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
@@ -188,7 +166,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<li class="chapter" data-level="3.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>3.3</b> Primeiro programa</a>
 <ul>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -196,7 +174,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<li class="chapter" data-level="3.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>3.4</b> Jogo da Velha</a>
 <ul>
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -204,31 +182,31 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<li class="chapter" data-level="4" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>4</b> Sistemas gráficos</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<li class="chapter" data-level="4.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>4.1</b> Luz e cor</a>
 <ul>
 <li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
 <li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
 <li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<li class="chapter" data-level="4.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>4.2</b> Vetorial <em>x</em> matricial</a>
 <ul>
 <li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
 <li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<li class="chapter" data-level="4.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>4.3</b> Dispositivos de E/S</a>
 <ul>
 <li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
 <li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<li class="chapter" data-level="4.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>4.4</b> Framebuffer</a>
 <ul>
 <li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
 <li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
 <li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<li class="chapter" data-level="4.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>4.5</b> Triângulo de Sierpinski</a>
 <ul>
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -236,15 +214,15 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<li class="chapter" data-level="5" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>5</b> Pipeline gráfico</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
-<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<li class="chapter" data-level="5.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>5.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="5.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>5.2</b> Ray casting <em>x</em> rasterização</a>
 <ul>
 <li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
 <li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<li class="chapter" data-level="5.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>5.3</b> Pipeline do OpenGL</a>
 <ul>
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
@@ -254,7 +232,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<li class="chapter" data-level="5.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>5.4</b> Triângulos coloridos</a>
 <ul>
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -263,16 +241,16 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<li class="chapter" data-level="6" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>6</b> Desenvolvendo um jogo 2D</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<li class="chapter" data-level="6.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>6.1</b> Polígonos regulares</a>
 <ul>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<li class="chapter" data-level="6.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>6.2</b> Asteroids</a>
 <ul>
 <li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
 <li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
@@ -282,19 +260,19 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<li class="chapter" data-level="7" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>7</b> Espaços e geometria</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<li class="chapter" data-level="7.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>7.1</b> Espaço vetorial</a>
 <ul>
 <li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
 <li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
 <li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<li class="chapter" data-level="7.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>7.2</b> Espaço afim</a>
 <ul>
 <li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<li class="chapter" data-level="7.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>7.3</b> Espaço euclidiano</a>
 <ul>
 <li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
 <li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
@@ -306,7 +284,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
 <li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<li class="chapter" data-level="7.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>7.4</b> Lendo um modelo 3D</a>
 <ul>
 <li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
 <li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
@@ -317,9 +295,9 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
+<li class="chapter" data-level="8" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>8</b> Matrizes e transformações</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
+<li class="chapter" data-level="8.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>8.1</b> Matrizes</a>
 <ul>
 <li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
 <li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
@@ -332,30 +310,30 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação-linear"><i class="fa fa-check"></i>Transformação linear</a></li>
 <li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#mudança-de-base"><i class="fa fa-check"></i>Mudança de base</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
-<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
-<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
+<li class="chapter" data-level="8.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>8.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="8.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>8.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="8.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>8.4</b> Transformações</a>
 <ul>
 <li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
 <li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
 <li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
 <li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
+<li class="chapter" data-level="8.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>8.5</b> Espaços do OpenGL</a>
 <ul>
 <li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
 <li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
 <li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
 <li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
+<li class="chapter" data-level="8.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>8.6</b> Câmera LookAt</a>
 <ul>
 <li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
 <li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
 <li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
 <li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
+<li class="chapter" data-level="8.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>8.7</b> LookAt na prática</a>
 <ul>
 <li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -369,23 +347,23 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
+<li class="chapter" data-level="9" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>9</b> Projeções e trackball virtual</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
+<li class="chapter" data-level="9.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>9.1</b> Projeção ortográfica</a>
 <ul>
 <li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
 <li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
 <li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
+<li class="chapter" data-level="9.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>9.2</b> Projeção perspectiva</a>
 <ul>
 <li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
+<li class="chapter" data-level="9.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>9.3</b> Trackball virtual</a>
 <ul>
 <li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
+<li class="chapter" data-level="9.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>9.4</b> Visualizador 3D</a>
 <ul>
 <li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -398,7 +376,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.hpp-8"><i class="fa fa-check"></i>window.hpp</a></li>
 <li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.cpp-8"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
+<li class="chapter" data-level="9.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>9.5</b> Efeito starfield</a>
 <ul>
 <li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-9"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -408,10 +386,10 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.cpp-9"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>9</b> Iluminação</a>
+<li class="chapter" data-level="10" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>10</b> Iluminação</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>9.1</b> Equação de renderização</a></li>
-<li class="chapter" data-level="9.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>9.2</b> Modelo de reflexão de Phong</a>
+<li class="chapter" data-level="10.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>10.1</b> Equação de renderização</a></li>
+<li class="chapter" data-level="10.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>10.2</b> Modelo de reflexão de Phong</a>
 <ul>
 <li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
 <li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
@@ -420,14 +398,14 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
 <li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>9.3</b> Modelo de Blinn–Phong</a></li>
-<li class="chapter" data-level="9.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>9.4</b> Sombreamento</a>
+<li class="chapter" data-level="10.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>10.3</b> Modelo de Blinn–Phong</a></li>
+<li class="chapter" data-level="10.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>10.4</b> Sombreamento</a>
 <ul>
 <li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
 <li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
 <li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>9.5</b> Normais como cores</a>
+<li class="chapter" data-level="10.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>10.5</b> Normais como cores</a>
 <ul>
 <li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-10"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
@@ -438,29 +416,29 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
 <li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>9.6</b> Iluminação na prática</a>
+<li class="chapter" data-level="10.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>10.6</b> Iluminação na prática</a>
 <ul>
 <li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
 <li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
 <li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="texturing.html"><a href="texturing.html"><i class="fa fa-check"></i><b>10</b> Texturização</a>
+<li class="chapter" data-level="11" data-path="texturing.html"><a href="texturing.html"><i class="fa fa-check"></i><b>11</b> Texturização</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="texmapping.html"><a href="texmapping.html"><i class="fa fa-check"></i><b>10.1</b> Mapeamento</a>
+<li class="chapter" data-level="11.1" data-path="texmapping.html"><a href="texmapping.html"><i class="fa fa-check"></i><b>11.1</b> Mapeamento</a>
 <ul>
 <li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-planar"><i class="fa fa-check"></i>Mapeamento planar</a></li>
 <li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-cilíndrico"><i class="fa fa-check"></i>Mapeamento cilíndrico</a></li>
 <li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-esférico"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
 <li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-uv-unwrap"><i class="fa fa-check"></i>Mapeamento UV unwrap</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="texwrapping.html"><a href="texwrapping.html"><i class="fa fa-check"></i><b>10.2</b> Empacotamento</a></li>
-<li class="chapter" data-level="10.3" data-path="texfiltering.html"><a href="texfiltering.html"><i class="fa fa-check"></i><b>10.3</b> Filtragem</a>
+<li class="chapter" data-level="11.2" data-path="texwrapping.html"><a href="texwrapping.html"><i class="fa fa-check"></i><b>11.2</b> Empacotamento</a></li>
+<li class="chapter" data-level="11.3" data-path="texfiltering.html"><a href="texfiltering.html"><i class="fa fa-check"></i><b>11.3</b> Filtragem</a>
 <ul>
 <li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#magnificação"><i class="fa fa-check"></i>Magnificação</a></li>
 <li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#minificação"><i class="fa fa-check"></i>Minificação</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="viewer4.html"><a href="viewer4.html"><i class="fa fa-check"></i><b>10.4</b> Texturização na prática</a>
+<li class="chapter" data-level="11.4" data-path="viewer4.html"><a href="viewer4.html"><i class="fa fa-check"></i><b>11.4</b> Texturização na prática</a>
 <ul>
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-texturas"><i class="fa fa-check"></i>Carregando texturas</a></li>
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
@@ -491,101 +469,190 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="vector" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Espaço vetorial<a href="vector.html#vector" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Um espaço vetorial contém um conjunto de escalares e um conjunto de vetores. Usaremos letras minúsculas <span class="math inline">\((a, b, \dots)\)</span> para denotar escalares, e letras em negrito <span class="math inline">\((\mathbf{u}, \mathbf{v}, \dots)\)</span> para denotar vetores.</p>
-<p>Um <strong>escalar</strong> é um número real ou complexo que representa uma quantidade ou medida.</p>
-<p>Um <strong>vetor</strong> é um objeto abstrato de um conjunto <span class="math inline">\(V\)</span> fechado para as seguintes operações:</p>
-<ul>
-<li><p><strong>Adição de vetor com vetor</strong>:</p>
-<p><span class="math display">\[
-  \mathbf{u}+\mathbf{v}.
-  \]</span></p>
-<p>Essa operação é comutativa e associativa:</p>
-<p><span class="math display">\[
-  \begin{align}
-  \mathbf{u}+\mathbf{v} &amp;= \mathbf{v}+\mathbf{u},\\
-  \mathbf{u}+(\mathbf{v}+\mathbf{w}) &amp;= (\mathbf{u} + \mathbf{v}) + \mathbf{w}.
-  \end{align}
-  \]</span></p>
-<p>Podemos definir a subtração de dois vetores através da adição:</p>
-<p><span class="math display">\[
-  \begin{align}
-  \mathbf{u}-\mathbf{v} &amp;= \mathbf{u}+(-1)\mathbf{v}.
-  \end{align}
-  \]</span></p></li>
-<li><p><strong>Multiplicação de escalar com vetor</strong>:</p>
-<p><span class="math display">\[
-  a \mathbf{v}.
-  \]</span></p>
-<p>Essa operação é distributiva e associativa:</p>
-<p><span class="math display">\[
-  \begin{align}
-  a (\mathbf{u} + \mathbf{v}) &amp;= a \mathbf{u} + a \mathbf{v},\\
-  (a + b) \mathbf{u} &amp;= a \mathbf{u} + b \mathbf{u},\\
-  a(b \mathbf{u}) &amp;= (a b) \mathbf{u},\\
-  ab\mathbf{u} &amp;= ba\mathbf{u}.
-  \end{align}
-  \]</span></p></li>
-</ul>
-<p>No espaço vetorial há um <strong>vetor nulo</strong> denotado por <span class="math inline">\(\mathbf{0}\)</span>. O vetor nulo é o elemento neutro na adição de vetor com vetor:</p>
+<div id="texmapping" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Mapeamento<a href="texmapping.html#texmapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nesta seção, veremos algumas das funções de mapeamento mais utilizadas para mapear coordenadas <span class="math inline">\((x,y,z)\)</span> do espaço 3D para coordenadas <span class="math inline">\((u,v)\)</span> do espaço 2D de um mapa de textura: o <strong>mapeamento planar</strong>, o <strong>mapeamento cilíndrico</strong> e o <strong>mapeamento esférico</strong>. Além desses, abordaremos também o <strong>mapeamento UV <em>unwrap</em></strong>, também chamado de <strong>desdobramento UV</strong>, muito utilizado em programas de modelagem 3D e jogos.</p>
+<p>Para simplificar, vamos considerar nesta seção que as coordenadas de textura estão restritas ao intervalo <span class="math inline">\([0,1]\)</span>. Entretanto, isso não é uma limitação rígida. Coordenadas fora desse intervalo podem ser tratadas de acordo com as abordagens descritas na seção <a href="texwrapping.html#texwrapping">11.2</a>.</p>
+<div id="mapeamento-planar" class="section level3 unnumbered hasAnchor">
+<h3>Mapeamento planar<a href="texmapping.html#mapeamento-planar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O mapeamento planar consiste em uma projeção linear e paralela dos pontos do espaço 3D para o plano do espaço de textura 2D. Geralmente a projeção é feita na direção de algum eixo principal do espaço 3D. Por exemplo, um <strong>mapeamento planar na direção do eixo <span class="math inline">\(x\)</span></strong> pode ser definido como:</p>
 <p><span class="math display">\[
 \begin{align}
-\mathbf{v}+\mathbf{0} &amp;= \mathbf{v}, \quad \forall \mathbf{v} \in V.
+u&amp;=1-z,\\
+v&amp;=y.
 \end{align}
 \]</span></p>
-<p>Todo vetor possui um elemento inverso aditivo <span class="math inline">\((-1)\mathbf{v}\)</span>, denotado por <span class="math inline">\(-\mathbf{v}\)</span>, de modo que:</p>
-<p><span class="math display">\[\mathbf{v}+(-\mathbf{v}) = \mathbf{0}.\]</span></p>
-<p>Além disso,</p>
-<p><span class="math display">\[0\mathbf{v} = \mathbf{0}.\]</span></p>
-<div id="combinação-e-independência-linear" class="section level3 unnumbered hasAnchor">
-<h3>Combinação e independência linear<a href="vector.html#combinação-e-independência-linear" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Uma <strong>combinação linear</strong> de <span class="math inline">\(n\)</span> vetores <span class="math inline">\(\{\mathbf{v}_1, \dots, \mathbf{v}_n\}\)</span> é um vetor na forma</p>
-<p><span class="math display">\[\mathbf{v}=a_1 \mathbf{v}_1 + a_2 \mathbf{v}_2 + \cdots + a_n\mathbf{v}_n.\]</span></p>
-<p>Em uma combinação linear, os vetores <span class="math inline">\(\{\mathbf{v}_i\}\)</span> são <strong>linearmente independentes</strong> se</p>
-<p><span class="math display">\[a_1 \mathbf{v}_1 + a_2 \mathbf{v}_2 + \cdots + a_n\mathbf{v}_n = \mathbf{0}\]</span></p>
-<p>se e somente se</p>
-<p><span class="math display">\[a_1 = a_2 = \cdots = a_n = 0.\]</span></p>
-</div>
-<div id="dimensão-e-base" class="section level3 unnumbered hasAnchor">
-<h3>Dimensão e base<a href="vector.html#dimensão-e-base" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A <strong>dimensão</strong> de um espaço vetorial corresponde ao maior número de vetores linearmente independentes encontrados naquele espaço.</p>
-<p>Em um espaço vetorial de dimensão <span class="math inline">\(n\)</span>, qualquer conjunto de <span class="math inline">\(n\)</span> vetores linearmente independentes forma uma <strong>base</strong>.</p>
-<p>Seja <span class="math inline">\(\{\mathbf{v}_i\}\)</span> uma base em <span class="math inline">\(V\)</span>. Então, qualquer vetor <span class="math inline">\(\mathbf{v} \in V\)</span> pode ser expresso unicamente como uma combinação linear</p>
-<p><span class="math display">\[\mathbf{v}=a_1\mathbf{v_1} + a_2\mathbf{v_2} + \dots + a_n\mathbf{v_n}.\]</span>
-Os escalares <span class="math inline">\(\{a_i\}\)</span> formam uma representação de <span class="math inline">\(\mathbf{v}\)</span> com relação à base <span class="math inline">\(\{\mathbf{v}_i\}\)</span>.</p>
-</div>
-<div id="vetores-geométricos" class="section level3 unnumbered hasAnchor">
-<h3>Vetores geométricos<a href="vector.html#vetores-geométricos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Até agora, definimos vetores apenas como entidades abstratas do espaço vetorial. Em computação gráfica, estamos geralmente interessados em vetores geométricos, isto é, vetores que representam uma direção e uma magnitude (comprimento) e que podem ser representados visualmente como segmentos direcionados em um espaço coordenado de números reais como no <span class="math inline">\(\mathbb{R}^2\)</span> (figura <a href="vector.html#fig:vectors1">6.1</a>).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vectors1"></span>
-<img src="images/06_vectors1.svg" alt="Vetores como segmentos direcionados." width="35%" />
+<p>Considere o mapa de textura difusa mostrado na figura <a href="texmapping.html#fig:texturing14">11.2</a>. Usando mapeamento planar na direção de <span class="math inline">\(x\)</span>, um cubo unitário de <span class="math inline">\((0,0,0)\)</span> a <span class="math inline">\((1,1,1)\)</span> mapeado com essa textura terá a aparência mostrada na figura <a href="texmapping.html#fig:texturing11">11.3</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing14"></span>
+<img src="images/10_texturing14.png" alt="Textura difusa com padrão de teste."  />
 <p class="caption">
-Figura 6.1: Vetores como segmentos direcionados.
+Figura 11.2: Textura difusa com padrão de teste.
 </p>
 </div>
-<p>Nessa representação em que vetor é sinônimo de segmento direcionado, a <strong>adição de vetor com vetor</strong> (<span class="math inline">\(\mathbf{u}+\mathbf{v}\)</span>) pode ser feita graficamente pela chamada “regra do polígono” como mostra a figura <a href="vector.html#fig:vectors2">6.2</a>: desenhamos <span class="math inline">\(\mathbf{v}\)</span> partindo do fim de <span class="math inline">\(\mathbf{u}\)</span>, e obtemos a soma traçando o segmento que parte do início de <span class="math inline">\(\mathbf{u}\)</span> e vai até o fim de <span class="math inline">\(\mathbf{v}\)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vectors2"></span>
-<img src="images/06_vectors2.svg" alt="Adição entre vetores geométricos." width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing11"></span>
+<img src="images/10_texturing11.png" alt="Mapeamento planar na direção x sobre um cubo unitário."  />
 <p class="caption">
-Figura 6.2: Adição entre vetores geométricos.
+Figura 11.3: Mapeamento planar na direção x sobre um cubo unitário.
 </p>
 </div>
-<p>A <strong>multiplicação de escalar com vetor</strong> também tem uma interpretação geométrica. O comprimento de <span class="math inline">\(a\mathbf{u}\)</span> (<span class="math inline">\(a \neq 0\)</span>, <span class="math inline">\(\mathbf{u}\neq\mathbf{0}\)</span>) é igual ao comprimento de <span class="math inline">\(\mathbf{u}\)</span> multiplicado pelo módulo de <span class="math inline">\(a\)</span>. Assim, se <span class="math inline">\(|a| \in (0, 1)\)</span>, o vetor diminui de comprimento. Se <span class="math inline">\(|a|=1\)</span>, o comprimento se mantém. Se <span class="math inline">\(|a|&gt;1\)</span>, o comprimento aumenta. Em todos os casos, se o sinal do escalar é negativo, o vetor muda de sentido. A figura <a href="vector.html#fig:vectors3">6.3</a> ilustra a multiplicação de escalar com vetor para um exemplo com <span class="math inline">\(a&gt;1\)</span> e <span class="math inline">\(a=-1\)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vectors3"></span>
-<img src="images/06_vectors3.svg" alt="Multiplicação de escalar com vetor geométrico." width="35%" />
+<p>Observe como o lado de cima e lado esquerdo do cubo repetem, respectivamente, a cor dos texels com <span class="math inline">\(v=1\)</span> e <span class="math inline">\(u=0\)</span> (a mudança de tom é resultado da iluminação). Isso acontece porque todos os pontos ao longo de uma reta na direção <span class="math inline">\(x\)</span> são mapeados para um mesmo texel.</p>
+<p>Um <strong>mapeamento planar na direção do eixo <span class="math inline">\(y\)</span></strong> pode ser definido como:</p>
+<p><span class="math display">\[
+\begin{align}
+u&amp;=x,\\
+v&amp;=1-z.
+\end{align}
+\]</span>
+A figura <a href="texmapping.html#fig:texturing12">11.4</a> mostra o resultado desse mapeamento sobre o cubo unitário.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing12"></span>
+<img src="images/10_texturing12.png" alt="Mapeamento planar na direção y sobre um cubo unitário."  />
 <p class="caption">
-Figura 6.3: Multiplicação de escalar com vetor geométrico.
+Figura 11.4: Mapeamento planar na direção y sobre um cubo unitário.
 </p>
 </div>
-<p>Frequentemente, precisaremos usar vetores para representar deslocamentos de um ponto a outro do espaço. Entretanto, no espaço vetorial não existe o conceito de “ponto no espaço”. Sem essa noção de localização, os vetores agrupados no lado esquerdo da figura <a href="vector.html#fig:vectors5">6.4</a> são indistinguíveis dos vetores exibidos no lado direito. Os vetores são os mesmos, pois são caracterizados unicamente por sua direção e comprimento.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vectors5"></span>
-<img src="images/06_vectors5.svg" alt="Vetores idênticos no espaço vetorial." width="80%" />
+<p>Um <strong>mapeamento planar na direção do eixo <span class="math inline">\(z\)</span></strong> pode ser definido como:</p>
+<p><span class="math display">\[
+\begin{align}
+u&amp;=x,\\
+v&amp;=y.
+\end{align}
+\]</span></p>
+<p>A figura <a href="texmapping.html#fig:texturing13">11.5</a> mostra o resultado desse mapeamento sobre o cubo unitário.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing13"></span>
+<img src="images/10_texturing13.png" alt="Mapeamento planar na direção z sobre um cubo unitário."  />
 <p class="caption">
-Figura 6.4: Vetores idênticos no espaço vetorial.
+Figura 11.5: Mapeamento planar na direção z sobre um cubo unitário.
 </p>
 </div>
-<p>Para representarmos um vetor como um deslocamento a partir de um ponto no espaço, precisamos de um <strong>espaço afim</strong>. Além disso, para podermos usar o conceito de comprimento ou distância, precisamos de um espaço afim que use uma estrutura métrica, como o <strong>espaço euclidiano</strong>.</p>
+<p>Os mapeamentos planares nas direções <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> e <span class="math inline">\(z\)</span> podem ser combinados para formar um <strong>mapeamento triplanar</strong>. A ideia consiste em calcular três pares de coordenadas <span class="math inline">\((u,v)\)</span>, um para cada mapeamento planar,</p>
+<p><span class="math display">\[
+(u_x,v_x),\qquad(u_y,v_y),\qquad(u_z,v_z),
+\]</span></p>
+<p>e então combinar o valor dos texels amostrados com essas coordenadas de acordo com algum critério. Um critério simples é calcular uma média ponderada dos texels. Os pesos da média podem ser as coordenadas <span class="math inline">\((n_x, n_y, n_z)\)</span> do vetor normal normalizado, em valor absoluto. Por exemplo, se <span class="math inline">\(T(u,v)\)</span> é o texel amostrado na posição <span class="math inline">\((u,v)\)</span> do espaço de textura, a combinação do mapeamento triplanar pode ser calculada como</p>
+<p><span class="math display">\[
+T(u_x, v_x)|n_x| + T(u_y, v_y)|n_y| + T(u_z, v_z)|n_z|.
+\]</span></p>
+<p>Na renderização do cubo unitário, o resultado será semelhante ao exibido na figura <a href="texmapping.html#fig:texturing17">11.6</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing17"></span>
+<img src="images/10_texturing17.png" alt="Mapeamento triplanar sobre um cubo unitário."  />
+<p class="caption">
+Figura 11.6: Mapeamento triplanar sobre um cubo unitário.
+</p>
+</div>
+</div>
+<div id="mapeamento-cilíndrico" class="section level3 unnumbered hasAnchor">
+<h3>Mapeamento cilíndrico<a href="texmapping.html#mapeamento-cilíndrico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No mapeamento cilíndrico, a textura é mapeada de tal forma que, se o objeto renderizado é um cilindro, o resultado será equivalente a envolver a área lateral do cilindro com a textura.</p>
+<p>A figura <a href="texmapping.html#fig:texturing15">11.7</a> ilustra um exemplo de mapeamento cilíndrico mostrando a visão de frente e de trás do cilindro. Neste caso, consideramos que o cilindro é unitário, alinhado e centralizado com o eixo <span class="math inline">\(y\)</span>, com base em <span class="math inline">\(y=0\)</span>. Observe como os lados esquerdo (<span class="math inline">\(u=0\)</span>) e direito (<span class="math inline">\(u=1\)</span>) da textura se unem na parte de trás do cilindro.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing15"></span>
+<img src="images/10_texturing15.png" alt="Mapeamento cilíndrico em um cilindro unitário."  />
+<p class="caption">
+Figura 11.7: Mapeamento cilíndrico em um cilindro unitário.
+</p>
+</div>
+<p>Seja <span class="math inline">\(\mathbf{p}=\begin{bmatrix}p_x &amp; p_y &amp; p_z\end{bmatrix}^T\)</span> um ponto do espaço euclidiano. O mapeamento cilíndrico para o cilindro da figura <a href="texmapping.html#fig:texturing15">11.7</a> é definido a partir do ângulo <span class="math inline">\(\theta\)</span> que <span class="math inline">\(\mathbf{p}\)</span> forma em torno do eixo <span class="math inline">\(y\)</span>, e a elevação <span class="math inline">\(p_y\)</span> (figura <a href="texmapping.html#fig:texturing10">11.8</a>):</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing10"></span>
+<img src="images/10_texturing10.svg" alt="Geometria do mapeamento cilíndrico." width="67%" />
+<p class="caption">
+Figura 11.8: Geometria do mapeamento cilíndrico.
+</p>
+</div>
+<ul>
+<li>O ângulo <span class="math inline">\(\theta \in [-\pi, \pi]\)</span> é mapeado para <span class="math inline">\(u \in [0,1]\)</span>.</li>
+<li>A altura <span class="math inline">\(y\)</span> é mapeada diretamente para <span class="math inline">\(v\)</span>, isto é, <span class="math inline">\(v=p_y\)</span>.</li>
+</ul>
+<p>Observe que</p>
+<p><span class="math display">\[
+\tan{\theta}=\frac{p_x}{p_z}.
+\]</span>
+Logo,</p>
+<p><span class="math display">\[
+\theta=\arctan\left({\frac{p_x}{p_z}}\right).
+\]</span></p>
+<p>O ângulo é calculado corretamente para <span class="math inline">\(p_z&gt;0\)</span>. Entretanto, a imagem da função arco tangente está restrita ao intervalo <span class="math inline">\(\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)\)</span>. Para que <span class="math inline">\(\theta\)</span> seja um ângulo em um intervalo de 360 graus, precisamos ajustar o intervalo da função arco tangente de acordo com o sinal de <span class="math inline">\(p_x\)</span> e <span class="math inline">\(p_z\)</span>. Como já vimos, isso pode ser obtido através da função <code>atan2</code> Essa função está presente nas bibliotecas matemáticas das principais linguagens de programação. Por exemplo, na biblioteca padrão do C++, a função é implementada por <a href="https://en.cppreference.com/w/cpp/numeric/math/atan2"><code>std::atan2</code></a>. Em GLSL, o nome da função é <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/atan.xhtml"><code>atan</code></a> e recebe dois parâmetros (a função com um parâmetro é a função arco tangente convencional).</p>
+<p>A conversão de <span class="math inline">\(\theta \in [-\pi, \pi]\)</span> para <span class="math inline">\(u \in [0,1]\)</span> é obtida com o simples mapeamento linear:</p>
+<p><span class="math display">\[
+u = \frac{\theta}{2\pi}+0.5.
+\]</span></p>
+<p>Logo, o mapeamento cilíndrico é definido como</p>
+<p><span class="math display">\[
+\begin{align}
+u&amp;=\frac{\textrm{arctan2}\left(p_x, p_z\right)}{2\pi}+0.5,\\
+v&amp;=p_y,
+\end{align}
+\]</span></p>
+</div>
+<div id="mapeamento-esférico" class="section level3 unnumbered hasAnchor">
+<h3>Mapeamento esférico<a href="texmapping.html#mapeamento-esférico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No mapeamento esférico, a textura é mapeada de tal forma que, se o objeto renderizado é uma esfera centralizada na origem, o resultado será equivalente a envolver a esfera fazendo com que <span class="math inline">\(u\)</span> e <span class="math inline">\(v\)</span> sejam, respectivamente, a longitude e a latitude, como em uma projeção cilíndrica equidistante usada em cartografia. Vamos considerar que os polos estão alinhados ao eixo <span class="math inline">\(y\)</span>. Desse modo:</p>
+<ul>
+<li>Os texels da linha <span class="math inline">\(v=0\)</span> e <span class="math inline">\(v=1\)</span> serão mapeados, respectivamente, para o polo sul e polo norte;</li>
+<li>Os texels com <span class="math inline">\(v=0.5\)</span> serão mapeados para o equador da esfera, que neste caso é o plano <span class="math inline">\(y=0\)</span>;</li>
+<li>Os texels com <span class="math inline">\(u=0\)</span> e <span class="math inline">\(u=1\)</span> serão mapeados para o meridiano central no plano <span class="math inline">\(yz\)</span> com <span class="math inline">\(z&lt;0\)</span>.</li>
+</ul>
+<p>A figura <a href="texmapping.html#fig:texturing16">11.9</a> mostra um exemplo de esfera texturizada com mapeamento esférico, visto de frente e de cima (polo norte).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing16"></span>
+<img src="images/10_texturing16.png" alt="Mapeamento esférico em uma esfera unitária."  />
+<p class="caption">
+Figura 11.9: Mapeamento esférico em uma esfera unitária.
+</p>
+</div>
+<p>Seja <span class="math inline">\(\mathbf{p}=\begin{bmatrix}p_x &amp; p_y &amp; p_z\end{bmatrix}^T\)</span> um ponto do espaço euclidiano. O mapeamento cilíndrico é definido a partir do ângulo <span class="math inline">\(\theta\)</span> (longitude) e <span class="math inline">\(\phi\)</span> (latitude) da esfera que contém <span class="math inline">\(\mathbf{p}\)</span>, como mostra a geometria da figura <a href="texmapping.html#fig:texturing9">11.10</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing9"></span>
+<img src="images/10_texturing9.svg" alt="Geometria do mapeamento esférico." width="67%" />
+<p class="caption">
+Figura 11.10: Geometria do mapeamento esférico.
+</p>
+</div>
+<p>A coordenada <span class="math inline">\(u\)</span> é calculada como no mapeamento cilíndrico:</p>
+<p><span class="math display">\[
+u=\frac{\textrm{arctan2}\left(p_x, p_z\right)}{2\pi}+0.5.
+\]</span></p>
+<p>Para determinar <span class="math inline">\(v\)</span>, observe, na figura <a href="texmapping.html#fig:texturing9">11.10</a>, que</p>
+<p><span class="math display">\[
+\begin{align}
+\sin \phi = \frac{p_y}{|\mathbf{p}|}.\\
+\end{align}
+\]</span></p>
+<p>Logo,</p>
+<p><span class="math display">\[
+\phi = \arcsin \left( \frac{p_y}{|\mathbf{p}|} \right),
+\]</span></p>
+<p>onde</p>
+<p><span class="math display">\[
+|\mathbf{p}|=\sqrt{x^2+y^2+z^2}.
+\]</span></p>
+<p>A conversão de <span class="math inline">\(\phi \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]\)</span> para <span class="math inline">\(v \in [0,1]\)</span> é obtida com o mapeamento linear:</p>
+<p><span class="math display">\[
+v = \frac{\phi}{\pi}+0.5.
+\]</span></p>
+<p>Logo, o mapeamento esférico é definido como</p>
+<p><span class="math display">\[
+\begin{align}
+u&amp;=\frac{\textrm{arctan2}\left(p_x, p_z\right)}{2\pi}+0.5,\\
+v&amp;=\frac{\arcsin\left(\dfrac{p_y}{|\mathbf{p}|}\right)}{\pi}+0.5,
+\end{align}
+\]</span></p>
+</div>
+<div id="mapeamento-uv-unwrap" class="section level3 unnumbered hasAnchor">
+<h3>Mapeamento UV unwrap<a href="texmapping.html#mapeamento-uv-unwrap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Em vez de usar as funções anteriores de mapeamento de textura, podemos definir diretamente quais são as coordenadas <span class="math inline">\((u,v)\)</span> de cada vértice da malha geométrica. Isso pode ser feito através da inclusão de um atributo adicional de vértice, de forma semelhante como fizemos para a definição de cores nos vértices ou normais de vértices. Durante a rasterização, as coordenadas de textura definidas nos vértices são interpoladas para cada fragmento da primitiva. Assim, cada fragmento terá coordenadas de textura interpoladas, e a textura pode então ser amostrada no fragment shader.</p>
+<p>Para determinar as coordenadas <span class="math inline">\((u,v)\)</span> de cada vértice de uma malha poligonal, técnicas de modelagem geométrica podem ser utilizadas para “desdobrar” a malha sobre o plano da textura, em um processo chamado de <strong>UV unwrap</strong> ou <strong>desdobramento UV</strong>.</p>
+<p>A figura <a href="texmapping.html#fig:texturing7">11.11</a> mostra um exemplo de objeto 3D renderizado com mapeamento UV unwrap. O objeto é uma <a href="https://www.britishmuseum.org/collection/object/G_1856-1226-472">lâmpada à óleo romana</a> do acervo do <a href="https://www.britishmuseum.org">Museu Britânico</a>. O <a href="https://sketchfab.com/3d-models/lamp-roman-27b4f79643cb40ae8cdde5d5a9adebf1">modelo original</a> tem 500 mil triângulos e foi obtido através de varredura por um scanner 3D. Aqui, o modelo exibido tem apenas 10 mil triângulos para facilitar a visualização do mapeamento no sistema de coordenadas de textura. Observe, no mapa UV, como a malha é recortada em diferentes pedaços para ser desdobrada sem sobreposições sobre o plano. O mapeamento procura manter a proporção entre a área dos polígonos originais de modo que a densidade dos texels amostrados na superfície seja a mais uniforme possível.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing7"></span>
+<img src="images/10_texturing7.png" alt="Mapeamento UV."  />
+<p class="caption">
+Figura 11.11: Mapeamento UV.
+</p>
+</div>
+<p>Como referência, a figura <a href="texmapping.html#fig:texturing8">11.12</a> mostra o mapa de textura utilizado e o objeto sem texturização.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:texturing8"></span>
+<img src="images/10_texturing8.png" alt="Mapa de textura da lâmpada romana, e objeto sem textura."  />
+<p class="caption">
+Figura 11.12: Mapa de textura da lâmpada romana, e objeto sem textura.
+</p>
+</div>
+<p>O desdobramento UV é a técnica mais utilizada de mapeamento de texturas em programas de modelagem e renderização, como o <a href="https://www.blender.org/">Blender</a>. O formato OBJ suporta modelos com coordenadas de textura por vértice definidas através de desdobramento UV.</p>
 </div>
 </div>
             </section>
@@ -593,8 +660,8 @@ Figura 6.4: Vetores idênticos no espaço vetorial.
           </div>
         </div>
       </div>
-<a href="geometry.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="affine.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="texturing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="texwrapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
