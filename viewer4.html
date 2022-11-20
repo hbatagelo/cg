@@ -29,7 +29,7 @@
   
   
 <link rel="prev" href="texfiltering.html"/>
-<link rel="next" href="referências.html"/>
+<link rel="next" href="normalmapping.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -99,6 +99,28 @@ code span.pp { font-weight: bold; } /* Preprocessor */
 code span.wa { font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -443,6 +465,13 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-texturas"><i class="fa fa-check"></i>Carregando texturas</a></li>
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
 <li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="normalmapping.html"><a href="normalmapping.html"><i class="fa fa-check"></i><b>11.5</b> Mapeamento de normais</a>
+<ul>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#espaço-tangente"><i class="fa fa-check"></i>Espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#transformação-para-o-espaço-tangente"><i class="fa fa-check"></i>Transformação para o espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
@@ -1050,11 +1079,9 @@ Observação
 </div>
 <p>Se <code>mappingMode</code> é <code>3</code>, então nenhuma função de mapeamento é chamada e as coordenadas de textura utilizadas em <code>BlinnPhong</code> são aquelas contidas em <code>fragTexCoord</code>, pois essas são as coordenadas de textura interpoladas a partir das coordenadas definidas nos vértices.</p>
 <p>Isso resume as modificações necessárias para habilitar a texturização. O restante do código contém modificações complementares relacionadas a conceitos que já foram abordados em projetos anteriores, como a mudança da interface da ImGui e a determinação de um ângulo e eixo de rotação inicial para o trackball virtual.</p>
-
 </div>
 </div>
 </div>
-<!-- </div> -->
 <div class="footnotes">
 <hr />
 <ol start="1">
@@ -1067,7 +1094,7 @@ Observação
         </div>
       </div>
 <a href="texfiltering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="normalmapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

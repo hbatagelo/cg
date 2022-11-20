@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11.5 Mapeamento de normais | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11.5 Mapeamento de normais | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11.5 Mapeamento de normais | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="viewer4.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> | Notas de aula</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>2</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>2.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>2.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>2.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>2.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="2.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>2.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>3.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="3.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>3.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>3.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>3.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>4</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>4.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>4.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>4.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>4.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>4.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>5</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>5.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="5.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>5.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>5.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>5.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>6</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>6.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>6.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>7</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>7.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>7.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>7.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>7.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.hpp-6"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>8</b> Matrizes e transformações</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>8.1</b> Matrizes</a>
+<ul>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-linhacoluna"><i class="fa fa-check"></i>Matriz linha/coluna</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-identidade"><i class="fa fa-check"></i>Matriz identidade</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#operações"><i class="fa fa-check"></i>Operações</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-inversa"><i class="fa fa-check"></i>Matriz inversa</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-ortogonal"><i class="fa fa-check"></i>Matriz ortogonal</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#propriedades"><i class="fa fa-check"></i>Propriedades</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação-linear"><i class="fa fa-check"></i>Transformação linear</a></li>
+<li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#mudança-de-base"><i class="fa fa-check"></i>Mudança de base</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>8.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="8.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>8.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="8.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>8.4</b> Transformações</a>
+<ul>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
+<li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>8.5</b> Espaços do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
+<li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>8.6</b> Câmera LookAt</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
+<li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>8.7</b> LookAt na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.vert"><i class="fa fa-check"></i>lookat.vert</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#lookat.frag"><i class="fa fa-check"></i>lookat.frag</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.hpp"><i class="fa fa-check"></i>camera.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#camera.cpp"><i class="fa fa-check"></i>camera.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.hpp-7"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.cpp-7"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
+<li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>9</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>9.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>9.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>9.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>9.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.hpp-8"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.cpp-8"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>9.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-9"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.hpp-9"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.cpp-9"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="lighting.html"><a href="lighting.html"><i class="fa fa-check"></i><b>10</b> Iluminação</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="renderingequation.html"><a href="renderingequation.html"><i class="fa fa-check"></i><b>10.1</b> Equação de renderização</a></li>
+<li class="chapter" data-level="10.2" data-path="phongmodel.html"><a href="phongmodel.html"><i class="fa fa-check"></i><b>10.2</b> Modelo de reflexão de Phong</a>
+<ul>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-ambiente"><i class="fa fa-check"></i>Reflexão ambiente</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-difusa"><i class="fa fa-check"></i>Reflexão difusa</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#reflexão-especular"><i class="fa fa-check"></i>Reflexão especular</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#modelo-completo"><i class="fa fa-check"></i>Modelo completo</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#iluminação-colorida"><i class="fa fa-check"></i>Iluminação colorida</a></li>
+<li class="chapter" data-level="" data-path="phongmodel.html"><a href="phongmodel.html#fontes-de-luz"><i class="fa fa-check"></i>Fontes de luz</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="blinnphongmodel.html"><a href="blinnphongmodel.html"><i class="fa fa-check"></i><b>10.3</b> Modelo de Blinn–Phong</a></li>
+<li class="chapter" data-level="10.4" data-path="shading.html"><a href="shading.html"><i class="fa fa-check"></i><b>10.4</b> Sombreamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#flat"><i class="fa fa-check"></i>Flat</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#gouraud"><i class="fa fa-check"></i>Gouraud</a></li>
+<li class="chapter" data-level="" data-path="shading.html"><a href="shading.html#phong"><i class="fa fa-check"></i>Phong</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="viewer2.html"><a href="viewer2.html"><i class="fa fa-check"></i><b>10.5</b> Normais como cores</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#configuração-inicial-10"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.hpp-1"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#model.cpp-1"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#window.hpp-10"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#window.cpp-10"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#depth.vert-2"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.frag"><i class="fa fa-check"></i>normal.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer2.html"><a href="viewer2.html#normal.vert"><i class="fa fa-check"></i>normal.vert</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="viewer3.html"><a href="viewer3.html"><i class="fa fa-check"></i><b>10.6</b> Iluminação na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-gouraud"><i class="fa fa-check"></i>Phong com sombreamento de Gouraud</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Phong com sombreamento de Phong</a></li>
+<li class="chapter" data-level="" data-path="viewer3.html"><a href="viewer3.html#blinn-phong-com-sombreamento-de-phong"><i class="fa fa-check"></i>Blinn-Phong com sombreamento de Phong</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="texturing.html"><a href="texturing.html"><i class="fa fa-check"></i><b>11</b> Texturização</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="texmapping.html"><a href="texmapping.html"><i class="fa fa-check"></i><b>11.1</b> Mapeamento</a>
+<ul>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-planar"><i class="fa fa-check"></i>Mapeamento planar</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-cilíndrico"><i class="fa fa-check"></i>Mapeamento cilíndrico</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-esférico"><i class="fa fa-check"></i>Mapeamento esférico</a></li>
+<li class="chapter" data-level="" data-path="texmapping.html"><a href="texmapping.html#mapeamento-uv-unwrap"><i class="fa fa-check"></i>Mapeamento UV unwrap</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="texwrapping.html"><a href="texwrapping.html"><i class="fa fa-check"></i><b>11.2</b> Empacotamento</a></li>
+<li class="chapter" data-level="11.3" data-path="texfiltering.html"><a href="texfiltering.html"><i class="fa fa-check"></i><b>11.3</b> Filtragem</a>
+<ul>
+<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#magnificação"><i class="fa fa-check"></i>Magnificação</a></li>
+<li class="chapter" data-level="" data-path="texfiltering.html"><a href="texfiltering.html#minificação"><i class="fa fa-check"></i>Minificação</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="viewer4.html"><a href="viewer4.html"><i class="fa fa-check"></i><b>11.4</b> Texturização na prática</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-texturas"><i class="fa fa-check"></i>Carregando texturas</a></li>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#carregando-modelos-com-textura"><i class="fa fa-check"></i>Carregando modelos com textura</a></li>
+<li class="chapter" data-level="" data-path="viewer4.html"><a href="viewer4.html#renderizando"><i class="fa fa-check"></i>Renderizando</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="normalmapping.html"><a href="normalmapping.html"><i class="fa fa-check"></i><b>11.5</b> Mapeamento de normais</a>
+<ul>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#espaço-tangente"><i class="fa fa-check"></i>Espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#transformação-para-o-espaço-tangente"><i class="fa fa-check"></i>Transformação para o espaço tangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#vetor-tangente-e-bitangente"><i class="fa fa-check"></i>Vetor tangente e bitangente</a></li>
+<li class="chapter" data-level="" data-path="normalmapping.html"><a href="normalmapping.html#mapeamento-de-normais-na-prática"><i class="fa fa-check"></i>Mapeamento de normais na prática</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="normalmapping" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Mapeamento de normais<a href="normalmapping.html#normalmapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mapeamento de normais (<em>normal mapping</em>) é uma técnica de melhoramento da percepção da iluminação de detalhes de uma superfície.</p>
+<p>Assim como a textura difusa é utilizada para modificar o atributo de reflexão difusa (componente <span class="math inline">\(\kappa_d\)</span> do modelo de reflexão) de cada ponto de uma superfície, o mapeamento de normais usa uma <strong>textura de normais</strong> (ou <strong>mapa de normais</strong>, do inglês <em>normal map</em>) para determinar o valor do vetor normal (vetor <span class="math inline">\(\hat{\mathbf{n}}\)</span>) utilizado na avaliação da equação do modelo de reflexão.</p>
+<p>Observe, na figura <a href="normalmapping.html#fig:normalmap1">11.19</a>, como o uso de mapeamento de normais melhora a percepção de detalhes da lâmpada romana apresentada originalmente na figura <a href="texmapping.html#fig:texturing7">11.11</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalmap1"></span>
+<img src="images/10_normalmap1.png" alt="Melhoramento da percepção de detalhes usando mapeamento de normais."  />
+<p class="caption">
+Figura 11.19: Melhoramento da percepção de detalhes usando mapeamento de normais.
+</p>
+</div>
+<p>O exemplo interativo a seguir permite habilitar e desabilitar o mapeamento de normais sobre um cubo texturizado com um padrão de tijolos:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/normalmap/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="530" scrolling="no"
+  ></iframe>
+<p>Os mapas de textura utilizados na renderização do cubo são mostrados na figura <a href="normalmapping.html#fig:normalmap5">11.20</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalmap5"></span>
+<img src="images/10_normalmap5.png" alt="Mapa de textura difusa e mapa de normais."  />
+<p class="caption">
+Figura 11.20: Mapa de textura difusa e mapa de normais.
+</p>
+</div>
+<p>Na textura de normais, cada texel corresponde às coordenadas de um vetor normal convertidas em uma cor RGB. O critério de conversão de uma tupla <span class="math inline">\((x,y,z)\)</span> para <span class="math inline">\((r, g, b)\)</span> é o mesmo que utilizamos no projeto <code>viewer2</code> (seção <a href="viewer2.html#viewer2">10.5</a>) para exibir as normais como cores:</p>
+<p><span class="math display">\[
+r = \frac{x+1}{2}, \qquad g = \frac{y+1}{2}, \qquad b = \frac{z+1}{2}.
+\]</span></p>
+<p>Assim, quando a textura de normais é amostrada, as coordenadas do vetor normal podem ser obtidas pelo mapeamento inverso:</p>
+<p><span class="math display">\[
+x = 2r-1, \qquad y = 2g-1, \qquad z = 2b-1.
+\]</span></p>
+<div id="espaço-tangente" class="section level3 unnumbered hasAnchor">
+<h3>Espaço tangente<a href="normalmapping.html#espaço-tangente" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Os vetores normais do mapa de normais estão representados em um <strong>espaço tangente</strong> ao plano sobre o qual a textura é aplicada. A figura <a href="normalmapping.html#fig:normalmap3">11.21</a> mostra uma ilustração dos vetores que formam a base de um espaço tangente em um triângulo. O eixo <span class="math inline">\(z\)</span> do espaço tangente aponta na direção do vetor normal <span class="math inline">\(\hat{\mathbf{n}}\)</span>. Isso significa que, no espaço tangente, o vetor normal do triângulo é o vetor <span class="math inline">\(\hat{\mathbf{n}}=(0,0,1)\)</span>. Os eixos <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> apontam na direção de dois vetores tangentes ao plano, chamados respectivamente de <strong>vetor tangente</strong> (<span class="math inline">\(\hat{\mathbf{t}}\)</span>) e <strong>vetor bitangente</strong> (<span class="math inline">\(\hat{\mathbf{b}}\)</span>). Os vetores tangente e bitangente são calculados de forma a ficarem alinhados, respectivamente, às direções das coordenadas <span class="math inline">\(u\)</span> e <span class="math inline">\(v\)</span> da textura de normais.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalmap3"></span>
+<img src="images/10_normalmap3.svg" alt="Espaço tangente de um triângulo." width="50%" />
+<p class="caption">
+Figura 11.21: Espaço tangente de um triângulo.
+</p>
+</div>
+<p>Se a textura de normais for mapeada para um quadrilátero como mostra a figura <a href="normalmapping.html#fig:normalmap6">11.22</a>, o vetor tangente apontará na direção do eixo <span class="math inline">\(u\)</span>, e o vetor bitangente apontará na direção do eixo <span class="math inline">\(v\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalmap6"></span>
+<img src="images/10_normalmap6.svg" alt="Espaço tangente em relação ao espaço da textura." width="65%" />
+<p class="caption">
+Figura 11.22: Espaço tangente em relação ao espaço da textura.
+</p>
+</div>
+<p>Os texels da textura de normais representam direções do vetor normal no espaço tangente. Assim, a textura pode ser usada para alterar localmente o valor do vetor normal após a rasterização. Essas alterações locais do vetor normal são mais pronunciadas quanto mais rugosa for a textura que queremos aplicar. No caso da textura de muro de tijolinhos, a cor é azulada na superfície de cada tijolo pois o vetor normal nesses pontos é próximo de <span class="math inline">\((0,0,1)\)</span> em relação ao espaço tangente, que é o vetor normal do triângulo em relação ao espaço do mundo. A cor é ligeiramente avermelhada no lado direito dos tijolos, pois nesses pontos o vetor normal desvia para um valor mais próximo de <span class="math inline">\((1,0,0)\)</span> no espaço tangente. De forma semelhante, a cor é esverdeada no lado de cima dos tijolos, pois nesses pontos o vetor normal está apontando em uma direção mais próxima de <span class="math inline">\((0,1,0)\)</span> no espaço tangente.</p>
+<p>Se o vetor normal da textura de normais for utilizado na equação do modelo de reflexão, a iluminação será calculada como se a superfície tivesse sido deformada localmente, criando a ilusão de uma superfície com mais detalhes.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Uma forma alternativa e mais antiga de aumentar o detalhe de superfícies é o <strong>bump mapping</strong> <span class="citation">(<a href="#ref-blinn1978" role="doc-biblioref">Blinn 1978</a>)</span>. A técnica de bump mapping utiliza um <strong>mapa de deslocamento</strong> (<em>displacement map</em>) como o mostrado na figura <a href="normalmapping.html#fig:normalmap8">11.23</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalmap8"></span>
+<img src="images/10_normalmap8.jpg" alt="Mapa de deslocamento." width="45%" />
+<p class="caption">
+Figura 11.23: Mapa de deslocamento.
+</p>
+</div>
+<p>A intensidade de cada texel do mapa de deslocamento determina a altura da superfície texturizada em relação à altura da superfície sem textura. Entretanto, assim como no mapeamento de normais, bump mapping não modifica a geometria do objeto 3D, mas apenas os vetores normais utilizados no modelo de reflexão. Mapeamento de normais é simplemente uma variação do bump mapping na qual os vetores normais já estão pré-calculados e representados em um espaço tangente à superfície. No bump mapping original, os vetores normais são calculados no espaço do objeto a partir da variação da intensidade dos texels do mapa de deslocamento (método de diferenças finitas).</p>
+<p>O mapa de deslocamento também pode ser empregado na técnica de <strong>displacement mapping</strong>. Nessa técnica, a malha de triângulos é refinada de tal modo que cada texel do mapa de deslocamento corresponda a um vértice da malha. Cada vértice é então deslocado ao longo de seu vetor normal usando o valor do texel como magnitude do deslocamento. Ao contrário do mapeamento de normais e do bump mapping, displacement mapping altera a geometria do objeto. Nas GPUs atuais, o refinamento da malha pode ser feito nos <a href="https://www.khronos.org/opengl/wiki/Tessellation">estágios de tesselação</a>, a partir do VBO original (não refinado). Ainda assim, displacement mapping é um processo computacionalmente intensivo pois aumenta o número de primitivas que devem ser rasterizadas.</p>
+</div>
+</div>
+<div id="transformação-para-o-espaço-tangente" class="section level3 unnumbered hasAnchor">
+<h3>Transformação para o espaço tangente<a href="normalmapping.html#transformação-para-o-espaço-tangente" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Na avaliação da equação do modelo de reflexão, é importante que todos os vetores envolvidos estejam representados em um mesmo espaço.</p>
+<p>Em nossos projetos até agora, avaliamos o modelo de Phong e Blinn–Phong usando os vetores <span class="math inline">\(\hat{\mathbf{n}}\)</span> (vetor normal), <span class="math inline">\(\hat{\mathbf{l}}\)</span> (vetor de direção à fonte de luz) e <span class="math inline">\(\hat{\mathbf{v}}\)</span> (vetor de direção à câmera) no <strong>espaço da câmera</strong>. No mapeamento de normais, o vetor normal <span class="math inline">\(\hat{\mathbf{n}}\)</span> amostrado da textura de normais está no <strong>espaço tangente</strong>. Para que todos os vetores estejam em um mesmo espaço, temos duas opções: ou convertemos esse vetor normal para o espaço da câmera, ou primeiro convertemos <span class="math inline">\(\hat{\mathbf{l}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span> para o espaço tangente, e então calculamos a iluminação nesse novo espaço tangente. Esta última opção é a mais utilizada, pois a conversão de <span class="math inline">\(\hat{\mathbf{l}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span> pode ser feita no vertex shader.</p>
+<p>Para converter <span class="math inline">\(\hat{\mathbf{l}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span> do espaço da câmera para o espaço tangente, precisamos criar uma nova matriz de mudança de base. Isso pode feito desde que tenhamos os vetores <span class="math inline">\(\hat{\mathbf{t}}=(t_x, t_y, t_z)\)</span>, <span class="math inline">\(\hat{\mathbf{b}}=(b_x, b_y, b_z)\)</span> e <span class="math inline">\(\hat{\mathbf{n}}=(n_x, n_y, n_z)\)</span> que formam uma base do espaço tangente. Suponha que temos tais vetores de base, e que esses vetores estão representados em relação ao espaço do objeto (mais adiante veremos como calcular <span class="math inline">\(\hat{\mathbf{t}}\)</span> e <span class="math inline">\(\hat{\mathbf{b}}\)</span>). Então, a matriz</p>
+<p><span class="math display">\[
+\mathbf{M}_{\mathrm{tan}\rightarrow\mathrm{obj}}=
+\begin{bmatrix}
+t_x &amp; b_x &amp; n_x \\
+t_y &amp; b_y &amp; n_y \\
+t_z &amp; b_z &amp; n_z
+\end{bmatrix}
+\]</span></p>
+<p>transforma vetores do <strong>espaço tangente</strong> para vetores do <strong>espaço do objeto</strong>. Para a transformação no sentido oposto, devemos calcular a inversa da matriz. Como a matriz é ortogonal, a inversa é a própria transposta. Assim,</p>
+<p><span class="math display">\[
+\mathbf{M}_{\mathrm{obj}\rightarrow\mathrm{tan}}=
+\begin{bmatrix}
+t_x &amp; t_y &amp; t_z \\
+b_x &amp; b_y &amp; b_z \\
+n_x &amp; n_y &amp; n_z
+\end{bmatrix}
+\]</span></p>
+<p>é a matriz que transforma vetores do <strong>espaço do objeto</strong> para vetores do <strong>espaço tangente</strong>.</p>
+<p>Na verdade, o que queremos é uma matriz que seja capaz de transformar do <strong>espaço da câmera</strong> para o <strong>espaço tangente</strong>. Para isso precisamos transformar primeiro os vetores de base (<span class="math inline">\(\hat{\mathbf{t}}\)</span>, <span class="math inline">\(\hat{\mathbf{b}}\)</span> e <span class="math inline">\(\hat{\mathbf{n}}\)</span>) do espaço do objeto para o espaço da câmera.</p>
+<p>Já sabemos como transformar um vetor normal do espaço do objeto para o espaço da câmera: basta multiplicarmos a matriz <span class="math inline">\(M_{\mathrm{normal}}=(\mathbf{M_{\textrm{modelview}}}^{-1})^T\)</span> pela normal de vértice <span class="math inline">\(\hat{\mathbf{n}}\)</span> (atributo de entrada do vertex shader) como vimos na seção <a href="viewer2.html#viewer2">10.5</a>. Os vetores tangente e bitangente podem ser transformados da mesma forma. Logo, se tivermos os vetores no espaço da câmera</p>
+<p><span class="math display">\[
+\hat{\mathbf{n}}&#39;=M_{\mathrm{normal}}.\hat{\mathbf{n}},\\
+\hat{\mathbf{t}}&#39;=M_{\mathrm{normal}}.\hat{\mathbf{t}},\\
+\hat{\mathbf{b}}&#39;=M_{\mathrm{normal}}.\hat{\mathbf{b}},
+\]</span>
+então</p>
+<p><span class="math display">\[
+\mathbf{M}_{\mathrm{eye}\rightarrow\mathrm{tan}}=
+\begin{bmatrix}
+t&#39;_x &amp; t&#39;_y &amp; t&#39;_z \\
+b&#39;_x &amp; b&#39;_y &amp; b&#39;_z \\
+n&#39;_x &amp; n&#39;_y &amp; n&#39;_z
+\end{bmatrix}
+\]</span></p>
+<p>é a matriz que transforma vetores do <strong>espaço da câmera</strong> para o <strong>espaço tangente</strong>. Uma vez calculada a matriz, podemos transformar <span class="math inline">\(\hat{\mathbf{l}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span>. Em seguida, podemos avaliar a equação do modelo de reflexão no espaço tangente usando <span class="math inline">\(\hat{\mathbf{n}}\)</span> amostrado da textura de normais.</p>
+</div>
+<div id="vetor-tangente-e-bitangente" class="section level3 unnumbered hasAnchor">
+<h3>Vetor tangente e bitangente<a href="normalmapping.html#vetor-tangente-e-bitangente" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A figura <a href="normalmapping.html#fig:normalmap4">11.24</a> ilustra um triângulo <span class="math inline">\(\triangle ABC\)</span> no espaço do objeto (esquerda) e mapeado no espaço tangente (direita).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalmap4"></span>
+<img src="images/10_normalmap4.svg" alt="Mapeamento de um triângulo no espaço tangente, e geometria do cálculo do vetor tangente e bitangente." width="100%" />
+<p class="caption">
+Figura 11.24: Mapeamento de um triângulo no espaço tangente, e geometria do cálculo do vetor tangente e bitangente.
+</p>
+</div>
+<p>Nessa figura, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> e <span class="math inline">\(C\)</span> são pontos no espaço do objeto, e <span class="math inline">\(\mathbf{e}_1\)</span> e <span class="math inline">\(\mathbf{e}_2\)</span> são vetores formados por dois lados do triângulo:</p>
+<p><span class="math display">\[
+\mathbf{e}_{1}=(e_{1x}, e_{1y}, e_{1z})=B-A,\\
+\mathbf{e}_{2}=(e_{2x}, e_{2y}, e_{2z})=C-A.
+\]</span></p>
+<p>Primeiro calculamos as diferenças entre as coordenadas de textura dos lados <span class="math inline">\(\mathbf{e}_{1}\)</span> e <span class="math inline">\(\mathbf{e}_{2}\)</span>:</p>
+<p><span class="math display">\[
+\Delta u_1=B_u-A_u,\qquad\Delta v_1=B_v-A_v,\\
+\Delta u_2=C_u-A_u,\qquad\Delta v_2=C_v-A_v.
+\]</span></p>
+<p>Observe que, no espaço tangente, os vetores tangente e bitangente são os vetores</p>
+<p><span class="math display">\[
+\hat{\mathbf{t}}_{\mathrm{uv}}=(1,0,0),\\
+\hat{\mathbf{b}}_{\mathrm{uv}}=(0,1,0).
+\]</span></p>
+<p>Logo, os vetores <span class="math inline">\(\mathbf{e}_{1}\)</span> e <span class="math inline">\(\mathbf{e}_{2}\)</span> podem ser representados no espaço tangente como uma combinação linear:</p>
+<p><span class="math display">\[
+\mathbf{e}_{1uv}=\Delta u_1 \hat{\mathbf{t}}_{\mathrm{uv}} + \Delta v_1 \hat{\mathbf{b}}_{\mathrm{uv}},\\
+\mathbf{e}_{2uv}=\Delta u_2 \hat{\mathbf{t}}_{\mathrm{uv}} + \Delta v_2 \hat{\mathbf{b}}_{\mathrm{uv}}.
+\]</span></p>
+<p>Entretanto, precisamos calcular <span class="math inline">\(\hat{\mathbf{t}}=(t_x, t_y, t_z)\)</span> e <span class="math inline">\(\hat{\mathbf{b}}=(b_x, b_y, b_z)\)</span> no espaço do objeto.</p>
+<p>No espaço do objeto, os vetores <span class="math inline">\(\mathbf{e}_{1}\)</span> e <span class="math inline">\(\mathbf{e}_{2}\)</span> podem ser escritos como</p>
+<p><span class="math display">\[
+\mathbf{e}_1=\Delta u_1 \hat{\mathbf{t}} + \Delta v_1 \hat{\mathbf{b}},\\
+\mathbf{e}_2=\Delta u_2 \hat{\mathbf{t}} + \Delta v_2 \hat{\mathbf{b}},
+\]</span></p>
+<p>que é o mesmo que</p>
+<p><span class="math display">\[
+(e_{1x}, e_{1y}, e_{1z})=\Delta u_1 (t_x, t_y, t_z) + \Delta v_1 (b_x, b_y, b_z),\\
+(e_{2x}, e_{2y}, e_{2z})=\Delta u_2 (t_x, t_y, t_z) + \Delta v_2 (b_x, b_y, b_z).
+\]</span></p>
+<p>Em notação matricial,</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+e_{1x} &amp; e_{1y} &amp; e_{1z}\\
+e_{2x} &amp; e_{2y} &amp; e_{2z}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\Delta u_1 &amp; \Delta v_1\\
+\Delta u_2 &amp; \Delta v_2
+\end{bmatrix}
+\begin{bmatrix}
+t_x &amp; t_y &amp; t_z\\
+b_x &amp; b_y &amp; b_z
+\end{bmatrix}.
+\]</span></p>
+<p>Para determinarmos os valores de <span class="math inline">\((t_x, t_y, t_z)\)</span> e <span class="math inline">\((b_x, b_y, b_z)\)</span>, multiplicamos à esquerda os dois lados da equação pela inversa da matriz dos deltas:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+\Delta u_1 &amp; \Delta v_1\\
+\Delta u_2 &amp; \Delta v_2
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+e_{1x} &amp; e_{1y} &amp; e_{1z}\\
+e_{2x} &amp; e_{2y} &amp; e_{2z}
+\end{bmatrix}
+=
+\begin{bmatrix}
+t_x &amp; t_y &amp; t_z\\
+b_x &amp; b_y &amp; b_z
+\end{bmatrix}.
+\]</span></p>
+<p>Como a matriz dos deltas é uma matriz de ordem 2, podemos calcular explicitamente a inversa através do valor recíproco do determinante multiplicado pela matriz adjunta:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+t_x &amp; t_y &amp; t_z\\
+b_x &amp; b_y &amp; b_z
+\end{bmatrix}=
+\frac{1}{\Delta u_1\Delta v_2 - \Delta u_2\Delta v_1}
+\begin{bmatrix}
+\phantom{-}\Delta v_2 &amp; -\Delta v_1\\
+-\Delta u_2 &amp; \phantom{-}\Delta u_1
+\end{bmatrix}
+\begin{bmatrix}
+e_{1x} &amp; e_{1y} &amp; e_{1z}\\
+e_{2x} &amp; e_{2y} &amp; e_{2z}
+\end{bmatrix}
+.
+\]</span></p>
+<p>Com isso obtemos <span class="math inline">\(\hat{\mathbf{t}}\)</span> e <span class="math inline">\(\hat{\mathbf{b}}\)</span> para cada triângulo. Entretanto, se a malha aproximar uma superfície suave, precisamos de um passo a mais para calcular vetores tangente e bitangente para cada vértice.</p>
+<p>Para calcular vetores tangente e bitangente para cada vértice, podemos seguir a mesma estratégia que utilizamos para calcular os vetores normais em uma malha indexada. Primeiro calculamos os vetores tangente e bitangente de cada triângulo. Em seguida, acumulamos esses vetores nos vértices da malha indexada. Por fim, normalizamos os vetores acumulados. O resultado será uma média dos vetores dos triângulos adjacentes. Assim, junto com as <strong>normais de vértices</strong>, teremos também <strong>tangentes de vértices</strong> e <strong>bitangentes de vértices</strong> que podem ser armazenados como atributos dos vértices.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Ao calcular a média dos vetores tangente e bitangente, é possível que os vetores resultantes não sejam mais ortogonais entre si. Para corrigir isso podemos usar o processo de <strong>ortogonalização de Gram-Schmidt</strong> descrito a seguir e ilustrado na figura <a href="normalmapping.html#fig:normalmap7">11.25</a>.</p>
+<p>Para fazer com que <span class="math inline">\(\hat{\mathbf{t}}\)</span> volte a ser ortogonal a <span class="math inline">\(\hat{\mathbf{n}}\)</span>, primeiro projetamos <span class="math inline">\(\hat{\mathbf{t}}\)</span> sobre <span class="math inline">\(\hat{\mathbf{n}}\)</span>:</p>
+<p><span class="math display">\[
+a\hat{\mathbf{n}}=(\hat{\mathbf{t}} \cdot \hat{\mathbf{n}})\hat{\mathbf{n}}.
+\]</span></p>
+<p>Em seguida, calculamos <span class="math inline">\(\hat{\mathbf{t}}&#39;\)</span> como</p>
+<p><span class="math display">\[
+\mathbf{t}&#39;=\hat{\mathbf{t}}-a\hat{\mathbf{n}}.
+\]</span></p>
+<p><span class="math inline">\(\mathbf{t}&#39;\)</span> é ortogonal a <span class="math inline">\(\hat{\mathbf{n}}\)</span>, mas não tem tamanho unitário. Então, como passo final, normalizamos <span class="math inline">\(\mathbf{t}&#39;\)</span>:</p>
+<p><span class="math display">\[
+\hat{\mathbf{t}}&#39;=\frac{\mathbf{t}&#39;}{|\mathbf{t}&#39;|}.
+\]</span></p>
+<p>Logo, <span class="math inline">\(\hat{\mathbf{t}}&#39;\)</span> é o vetor <span class="math inline">\(\hat{\mathbf{t}}\)</span> ortogonalizado.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalmap7"></span>
+<img src="images/10_normalmap7.svg" alt="Ortogonalização do vetor tangente." width="40%" />
+<p class="caption">
+Figura 11.25: Ortogonalização do vetor tangente.
+</p>
+</div>
+<p>Para fazer com que <span class="math inline">\(\hat{\mathbf{b}}\)</span> volte a ser ortogonal a <span class="math inline">\(\hat{\mathbf{t}}\)</span> e <span class="math inline">\(\hat{\mathbf{n}}\)</span>, basta calcular o produto vetorial <span class="math inline">\(\hat{\mathbf{n}} \times \hat{\mathbf{t}}&#39;\)</span> ou <span class="math inline">\(\hat{\mathbf{t}}&#39; \times \hat{\mathbf{n}}\)</span>. A ordem dependerá de qual vetor tem o menor ângulo quando comparado com o vetor <span class="math inline">\(\hat{\mathbf{b}}\)</span> original:</p>
+<p><span class="math display">\[
+\hat{\mathbf{b}}&#39; =
+\begin{cases}
+\hat{\mathbf{n}}  \times \hat{\mathbf{t}}&#39; &amp;\text{se } (\hat{\mathbf{n}}  \times \hat{\mathbf{t}}&#39;) \cdot \hat{\mathbf{b}} \geq 0, \\
+\hat{\mathbf{t}}&#39; \times \hat{\mathbf{n}}  &amp;\text{caso contrário}.
+\end{cases}
+\]</span></p>
+</div>
+</div>
+<div id="mapeamento-de-normais-na-prática" class="section level3 unnumbered hasAnchor">
+<h3>Mapeamento de normais na prática<a href="normalmapping.html#mapeamento-de-normais-na-prática" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vamos agora implementar o mapeamento de normais no visualizador de modelos 3D apresentado na seção <a href="viewer4.html#viewer4">11.4</a>.</p>
+<p>Esta será a versão 5 do visualizador (<code>viewer5</code>) e terá os shaders <code>normalmapping.vert</code> e <code>normalmapping.frag</code> modificados a partir dos shaders <code>texture.vert</code> e <code>texture.frag</code> do projeto anterior.</p>
+<p>Nesta nova versão, o menu “File” terá a opção de carregar uma textura difusa (“Load Diffuse Map”) e carregar uma textura de normais (“Load Normal Map”). Se o arquivo <code>.mtl</code> tiver a descrição de uma textura de normais (como no arquivo <code>roman_lamp.mtl</code>), a textura será carregada automaticamente.</p>
+<p>O resultado ficará como a seguir:</p>
+<iframe
+  src="https://hbatagelo.github.io/abcgapps/viewer5/index.html"
+  allow="gamepad" frameborder="0" allowfullscreen="true" allowtransparency="true" emscriptenheight="740"
+  ></iframe>
+<p>Baixe o código completo <a href="https://hbatagelo.github.io/abcgapps/src/viewer5.zip">deste link</a>.</p>
+<p>Experimente usar as texturas <code>brick_base.jpg</code> (textura difusa) e <code>brick_normal.jpg</code> (textura de normais) com diferentes mapeamentos (triplanar, cilíndrico e esférico) nos modelos <code>chamferbox.obj</code> e <code>teapot.obj</code>.</p>
+<div id="carregando-a-textura-de-normais" class="section level4 unnumbered hasAnchor">
+<h4>Carregando a textura de normais<a href="normalmapping.html#carregando-a-textura-de-normais" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>No projeto anterior, utilizamos a função <code>Model::loadDiffuseTexture</code> para carregar um arquivo de imagem e criar um identificador de textura difusa em uma variável <code>m_diffuseTexture</code>. Agora, incluiremos a função <code>Model::loadNormalTexture</code> para carregar a textura de normais em uma variável <code>m_normalTexture</code>. O código é praticamente o mesmo de <code>Model::loadDiffuseTexture</code>. A definição ficará como a seguir:</p>
+<div class="sourceCode" id="cb29" startFrom="139"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 138;"><span id="cb29-139"><a href="normalmapping.html#cb29-139"></a><span class="dt">void</span> Model<span class="op">::</span>loadNormalTexture<span class="op">(</span><span class="bu">std::</span>string_view<span class="op"> </span>path<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb29-140"><a href="normalmapping.html#cb29-140"></a>  <span class="cf">if</span> <span class="op">(!</span><span class="bu">std::</span>filesystem<span class="bu">::</span>exists<span class="op">(</span>path<span class="op">))</span></span>
+<span id="cb29-141"><a href="normalmapping.html#cb29-141"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb29-142"><a href="normalmapping.html#cb29-142"></a></span>
+<span id="cb29-143"><a href="normalmapping.html#cb29-143"></a>  abcg<span class="op">::</span>glDeleteTextures<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span><span class="va">m_normalTexture</span><span class="op">);</span></span>
+<span id="cb29-144"><a href="normalmapping.html#cb29-144"></a>  <span class="va">m_normalTexture</span> <span class="op">=</span> abcg<span class="op">::</span>loadOpenGLTexture<span class="op">({.</span>path <span class="op">=</span> path<span class="op">});</span></span>
+<span id="cb29-145"><a href="normalmapping.html#cb29-145"></a><span class="op">}</span></span></code></pre></div>
+<p>Essa função é chamada em <code>Model::loadObj</code> junto com o trecho de código que chama <code>Model::loadDiffuseTexture</code>. A textura de normais é carregada apenas se o arquivo <code>.mtl</code> fornecer um nome de textura de normais (em <code>mat.normal_texname</code> ou <code>mat.bump_texname</code>):</p>
+<div class="sourceCode" id="cb30" startFrom="235"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 234;"><span id="cb30-235"><a href="normalmapping.html#cb30-235"></a>    <span class="cf">if</span> <span class="op">(!</span>mat<span class="op">.</span>diffuse_texname<span class="op">.</span>empty<span class="op">())</span></span>
+<span id="cb30-236"><a href="normalmapping.html#cb30-236"></a>      loadDiffuseTexture<span class="op">(</span>basePath <span class="op">+</span> mat<span class="op">.</span>diffuse_texname<span class="op">);</span></span>
+<span id="cb30-237"><a href="normalmapping.html#cb30-237"></a></span>
+<span id="cb30-238"><a href="normalmapping.html#cb30-238"></a>    <span class="cf">if</span> <span class="op">(!</span>mat<span class="op">.</span>normal_texname<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb30-239"><a href="normalmapping.html#cb30-239"></a>      loadNormalTexture<span class="op">(</span>basePath <span class="op">+</span> mat<span class="op">.</span>normal_texname<span class="op">);</span></span>
+<span id="cb30-240"><a href="normalmapping.html#cb30-240"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(!</span>mat<span class="op">.</span>bump_texname<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb30-241"><a href="normalmapping.html#cb30-241"></a>      loadNormalTexture<span class="op">(</span>basePath <span class="op">+</span> mat<span class="op">.</span>bump_texname<span class="op">);</span></span>
+<span id="cb30-242"><a href="normalmapping.html#cb30-242"></a>    <span class="op">}</span></span></code></pre></div>
+<p>Em <code>Model::render</code>, precisamos habilitar a unidade de textura que utilizará a textura de normais. No projeto anterior (<code>viewer4</code>), ativamos apenas a primeira unidade de textura (<code>GL_TEXTURE0</code>) com a textura difusa:</p>
+<div class="sourceCode" id="cb31" startFrom="269"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 268;"><span id="cb31-269"><a href="normalmapping.html#cb31-269"></a>  abcg<span class="op">::</span>glActiveTexture<span class="op">(</span>GL_TEXTURE0<span class="op">);</span></span>
+<span id="cb31-270"><a href="normalmapping.html#cb31-270"></a>  abcg<span class="op">::</span>glBindTexture<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> <span class="va">m_diffuseTexture</span><span class="op">);</span></span></code></pre></div>
+<p>Agora, ativaremos também a segunda unidade de textura (<code>GL_TEXTURE1</code>), usando <code>m_normalTexture</code>:</p>
+<div class="sourceCode" id="cb32" startFrom="269"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 268;"><span id="cb32-269"><a href="normalmapping.html#cb32-269"></a>  abcg<span class="op">::</span>glActiveTexture<span class="op">(</span>GL_TEXTURE0<span class="op">);</span></span>
+<span id="cb32-270"><a href="normalmapping.html#cb32-270"></a>  abcg<span class="op">::</span>glBindTexture<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> <span class="va">m_diffuseTexture</span><span class="op">);</span></span>
+<span id="cb32-271"><a href="normalmapping.html#cb32-271"></a></span>
+<span id="cb32-272"><a href="normalmapping.html#cb32-272"></a>  abcg<span class="op">::</span>glActiveTexture<span class="op">(</span>GL_TEXTURE1<span class="op">);</span></span>
+<span id="cb32-273"><a href="normalmapping.html#cb32-273"></a>  abcg<span class="op">::</span>glBindTexture<span class="op">(</span>GL_TEXTURE_2D<span class="op">,</span> <span class="va">m_normalTexture</span><span class="op">);</span></span></code></pre></div>
+<p>Desse modo, no fragment shader poderemos usar dois amostradores de textura definidos por variáveis uniformes. O nome dessas variáveis uniformes será <code>diffuseTex</code> (como no projeto anterior) e <code>normalTex</code>.</p>
+<p>Há ainda mais um passo necessário para habilitar o uso da textura no shader. Em <code>Window::onPaint</code>, precisamos definir o valor da variável uniforme <code>normalTex</code>. Esse valor deve ser <code>1</code> pois queremos que essa variável use a unidade de textura <code>GL_TEXTURE1</code>. Assim, em <code>Window::onPaint</code> teremos o seguinte trecho de código atualizado:</p>
+<div class="sourceCode" id="cb33" startFrom="101"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 100;"><span id="cb33-101"><a href="normalmapping.html#cb33-101"></a>  <span class="kw">auto</span> <span class="at">const</span> diffuseTexLoc<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span>program<span class="op">,</span> <span class="st">&quot;diffuseTex&quot;</span><span class="op">)};</span></span>
+<span id="cb33-102"><a href="normalmapping.html#cb33-102"></a>  <span class="kw">auto</span> <span class="at">const</span> normalTexLoc<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span>program<span class="op">,</span> <span class="st">&quot;normalTex&quot;</span><span class="op">)};</span></span>
+<span id="cb33-103"><a href="normalmapping.html#cb33-103"></a>  <span class="kw">auto</span> <span class="at">const</span> mappingModeLoc<span class="op">{</span>abcg<span class="op">::</span>glGetUniformLocation<span class="op">(</span>program<span class="op">,</span> <span class="st">&quot;mappingMode&quot;</span><span class="op">)};</span></span>
+<span id="cb33-104"><a href="normalmapping.html#cb33-104"></a></span>
+<span id="cb33-105"><a href="normalmapping.html#cb33-105"></a>  <span class="co">// Set uniform variables that have the same value for every model</span></span>
+<span id="cb33-106"><a href="normalmapping.html#cb33-106"></a>  abcg<span class="op">::</span>glUniformMatrix4fv<span class="op">(</span>viewMatrixLoc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="op">&amp;</span><span class="va">m_viewMatrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb33-107"><a href="normalmapping.html#cb33-107"></a>  abcg<span class="op">::</span>glUniformMatrix4fv<span class="op">(</span>projMatrixLoc<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> GL_FALSE<span class="op">,</span> <span class="op">&amp;</span><span class="va">m_projMatrix</span><span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb33-108"><a href="normalmapping.html#cb33-108"></a>  abcg<span class="op">::</span>glUniform1i<span class="op">(</span>diffuseTexLoc<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb33-109"><a href="normalmapping.html#cb33-109"></a>  abcg<span class="op">::</span>glUniform1i<span class="op">(</span>normalTexLoc<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb33-110"><a href="normalmapping.html#cb33-110"></a>  abcg<span class="op">::</span>glUniform1i<span class="op">(</span>mappingModeLoc<span class="op">,</span> <span class="va">m_mappingMode</span><span class="op">);</span></span></code></pre></div>
+</div>
+<div id="calculando-os-vetores-tangente-e-bitangente" class="section level4 unnumbered hasAnchor">
+<h4>Calculando os vetores tangente e bitangente<a href="normalmapping.html#calculando-os-vetores-tangente-e-bitangente" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Na classe <code>Model</code> é definida uma função <code>Model::computeTangents</code> para calcular, para cada vértice, os vetores tangente e bitangente a partir das coordenadas de textura definidas no arquivo OBJ. Se o arquivo não fornecer coordenadas de textura, <code>Model::computeTangents</code> não será chamada e precisaremos calcular os vetores tangente e bitangente diretamente no shader, da mesma forma como geramos as coordenadas de textura usando o mapeamento planar, cilíndrico ou esférico.</p>
+<p>Por enquanto, vamos considerar que o objeto tem coordenadas de textura. No final de <code>Model::loadObj</code>, temos o seguinte código atualizado:</p>
+<div class="sourceCode" id="cb34" startFrom="251"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 250;"><span id="cb34-251"><a href="normalmapping.html#cb34-251"></a>  <span class="cf">if</span> <span class="op">(</span>standardize<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb34-252"><a href="normalmapping.html#cb34-252"></a>    Model<span class="op">::</span>standardize<span class="op">();</span></span>
+<span id="cb34-253"><a href="normalmapping.html#cb34-253"></a>  <span class="op">}</span></span>
+<span id="cb34-254"><a href="normalmapping.html#cb34-254"></a></span>
+<span id="cb34-255"><a href="normalmapping.html#cb34-255"></a>  <span class="cf">if</span> <span class="op">(!</span><span class="va">m_hasNormals</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb34-256"><a href="normalmapping.html#cb34-256"></a>    computeNormals<span class="op">();</span></span>
+<span id="cb34-257"><a href="normalmapping.html#cb34-257"></a>  <span class="op">}</span></span>
+<span id="cb34-258"><a href="normalmapping.html#cb34-258"></a></span>
+<span id="cb34-259"><a href="normalmapping.html#cb34-259"></a>  <span class="cf">if</span> <span class="op">(</span><span class="va">m_hasTexCoords</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb34-260"><a href="normalmapping.html#cb34-260"></a>    computeTangents<span class="op">();</span></span>
+<span id="cb34-261"><a href="normalmapping.html#cb34-261"></a>  <span class="op">}</span></span>
+<span id="cb34-262"><a href="normalmapping.html#cb34-262"></a></span>
+<span id="cb34-263"><a href="normalmapping.html#cb34-263"></a>  createBuffers<span class="op">();</span></span></code></pre></div>
+<p>Note que <code>Model::computeTangents</code> é chamada depois de <code>Model::computeNormals</code>, pois os vetores normais também são necessários para o cálculo dos vetores tangente e bitangente.</p>
+<p>Em <code>model.hpp</code>, a estrutura <code>Vertex</code> é atualizada para armazenar o vetor tangente que será calculado:</p>
+<div class="sourceCode" id="cb35" startFrom="6"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 5;"><span id="cb35-6"><a href="normalmapping.html#cb35-6"></a><span class="kw">struct</span> Vertex <span class="op">{</span></span>
+<span id="cb35-7"><a href="normalmapping.html#cb35-7"></a>  glm<span class="op">::</span>vec3 position<span class="op">{};</span></span>
+<span id="cb35-8"><a href="normalmapping.html#cb35-8"></a>  glm<span class="op">::</span>vec3 normal<span class="op">{};</span></span>
+<span id="cb35-9"><a href="normalmapping.html#cb35-9"></a>  glm<span class="op">::</span>vec2 texCoord<span class="op">{};</span></span>
+<span id="cb35-10"><a href="normalmapping.html#cb35-10"></a>  glm<span class="op">::</span>vec4 tangent<span class="op">{};</span></span>
+<span id="cb35-11"><a href="normalmapping.html#cb35-11"></a></span>
+<span id="cb35-12"><a href="normalmapping.html#cb35-12"></a>  <span class="kw">friend</span> <span class="dt">bool</span> <span class="kw">operator</span><span class="op">==(</span>Vertex <span class="at">const</span> <span class="op">&amp;,</span> Vertex <span class="at">const</span> <span class="op">&amp;)</span> <span class="op">=</span> <span class="cf">default</span><span class="op">;</span></span>
+<span id="cb35-13"><a href="normalmapping.html#cb35-13"></a><span class="op">};</span></span></code></pre></div>
+<p>Observe que agora temos o atributo de vetor tangente (<code>tangent</code>), mas não temos o atributo de vetor bitangente.</p>
+<p>O vetor bitangente não precisa ser armazenado como um atributo de vértice, pois pode ser calculado diretamente no shader como <span class="math inline">\(\hat{\mathbf{n}} \times \hat{\mathbf{t}}\)</span> ou <span class="math inline">\(\hat{\mathbf{t}} \times \hat{\mathbf{n}}\)</span> (sendo que <span class="math inline">\(\hat{\mathbf{n}}\)</span> é <code>normal</code>, e <span class="math inline">\(\hat{\mathbf{t}}\)</span> é <code>tangent</code>). Fazendo isso economizamos memória no VBO. Só precisamos saber a ordem dos operandos do produto vetorial.</p>
+<p>Note que <code>tangent</code> é um <code>glm::vec4</code> em vez de <code>glm::vec3</code>. A coordenada <span class="math inline">\(w\)</span> é utilizada para armazenar um escalar que multiplica o resultado do produto vetorial de <span class="math inline">\(\hat{\mathbf{n}} \times \hat{\mathbf{t}}\)</span>. Se <span class="math inline">\(w=1\)</span>, então o vetor bitangente será <span class="math inline">\(\hat{\mathbf{n}} \times \hat{\mathbf{t}}\)</span>. Se <span class="math inline">\(w=-1\)</span>, o vetor bitangente será <span class="math inline">\(-(\hat{\mathbf{n}} \times \hat{\mathbf{t}})\)</span>, que é o mesmo que <span class="math inline">\(\hat{\mathbf{t}} \times \hat{\mathbf{n}}\)</span>.</p>
+<p>Vamos à definição de <code>Model::computeTangents</code>:</p>
+<div class="sourceCode" id="cb36" startFrom="48"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp" style="counter-reset: source-line 47;"><span id="cb36-48"><a href="normalmapping.html#cb36-48"></a><span class="dt">void</span> Model<span class="op">::</span>computeTangents<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb36-49"><a href="normalmapping.html#cb36-49"></a>  <span class="co">// Reserve space for bitangents</span></span>
+<span id="cb36-50"><a href="normalmapping.html#cb36-50"></a>  <span class="bu">std::</span>vector<span class="op"> </span>bitangents<span class="op">(</span><span class="va">m_vertices</span><span class="op">.</span>size<span class="op">(),</span> glm<span class="op">::</span>vec3<span class="op">(</span><span class="dv">0</span><span class="op">));</span></span>
+<span id="cb36-51"><a href="normalmapping.html#cb36-51"></a></span>
+<span id="cb36-52"><a href="normalmapping.html#cb36-52"></a>  <span class="co">// Compute face tangents and bitangents</span></span>
+<span id="cb36-53"><a href="normalmapping.html#cb36-53"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="at">const</span> offset <span class="op">:</span> iter<span class="op">::</span>range<span class="op">(</span><span class="dv">0</span><span class="bu">UL</span><span class="op">,</span> <span class="va">m_indices</span><span class="op">.</span>size<span class="op">(),</span> <span class="dv">3</span><span class="bu">UL</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb36-54"><a href="normalmapping.html#cb36-54"></a>    <span class="co">// Get face indices</span></span>
+<span id="cb36-55"><a href="normalmapping.html#cb36-55"></a>    <span class="kw">auto</span> <span class="at">const</span> i1<span class="op">{</span><span class="va">m_indices</span><span class="op">.</span>at<span class="op">(</span>offset <span class="op">+</span> <span class="dv">0</span><span class="op">)};</span></span>
+<span id="cb36-56"><a href="normalmapping.html#cb36-56"></a>    <span class="kw">auto</span> <span class="at">const</span> i2<span class="op">{</span><span class="va">m_indices</span><span class="op">.</span>at<span class="op">(</span>offset <span class="op">+</span> <span class="dv">1</span><span class="op">)};</span></span>
+<span id="cb36-57"><a href="normalmapping.html#cb36-57"></a>    <span class="kw">auto</span> <span class="at">const</span> i3<span class="op">{</span><span class="va">m_indices</span><span class="op">.</span>at<span class="op">(</span>offset <span class="op">+</span> <span class="dv">2</span><span class="op">)};</span></span>
+<span id="cb36-58"><a href="normalmapping.html#cb36-58"></a></span>
+<span id="cb36-59"><a href="normalmapping.html#cb36-59"></a>    <span class="co">// Get face vertices</span></span>
+<span id="cb36-60"><a href="normalmapping.html#cb36-60"></a>    <span class="kw">auto</span> <span class="op">&amp;</span>v1<span class="op">{</span><span class="va">m_vertices</span><span class="op">.</span>at<span class="op">(</span>i1<span class="op">)};</span></span>
+<span id="cb36-61"><a href="normalmapping.html#cb36-61"></a>    <span class="kw">auto</span> <span class="op">&amp;</span>v2<span class="op">{</span><span class="va">m_vertices</span><span class="op">.</span>at<span class="op">(</span>i2<span class="op">)};</span></span>
+<span id="cb36-62"><a href="normalmapping.html#cb36-62"></a>    <span class="kw">auto</span> <span class="op">&amp;</span>v3<span class="op">{</span><span class="va">m_vertices</span><span class="op">.</span>at<span class="op">(</span>i3<span class="op">)};</span></span>
+<span id="cb36-63"><a href="normalmapping.html#cb36-63"></a></span>
+<span id="cb36-64"><a href="normalmapping.html#cb36-64"></a>    <span class="kw">auto</span> <span class="at">const</span> e1<span class="op">{</span>v2<span class="op">.</span>position <span class="op">-</span> v1<span class="op">.</span>position<span class="op">};</span></span>
+<span id="cb36-65"><a href="normalmapping.html#cb36-65"></a>    <span class="kw">auto</span> <span class="at">const</span> e2<span class="op">{</span>v3<span class="op">.</span>position <span class="op">-</span> v1<span class="op">.</span>position<span class="op">};</span></span>
+<span id="cb36-66"><a href="normalmapping.html#cb36-66"></a>    <span class="kw">auto</span> <span class="at">const</span> delta1<span class="op">{</span>v2<span class="op">.</span>texCoord <span class="op">-</span> v1<span class="op">.</span>texCoord<span class="op">};</span></span>
+<span id="cb36-67"><a href="normalmapping.html#cb36-67"></a>    <span class="kw">auto</span> <span class="at">const</span> delta2<span class="op">{</span>v3<span class="op">.</span>texCoord <span class="op">-</span> v1<span class="op">.</span>texCoord<span class="op">};</span></span>
+<span id="cb36-68"><a href="normalmapping.html#cb36-68"></a></span>
+<span id="cb36-69"><a href="normalmapping.html#cb36-69"></a>    glm<span class="op">::</span>mat2 M<span class="op">;</span></span>
+<span id="cb36-70"><a href="normalmapping.html#cb36-70"></a>    M<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> delta2<span class="op">.</span>t<span class="op">;</span></span>
+<span id="cb36-71"><a href="normalmapping.html#cb36-71"></a>    M<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="op">-</span>delta1<span class="op">.</span>t<span class="op">;</span></span>
+<span id="cb36-72"><a href="normalmapping.html#cb36-72"></a>    M<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="op">-</span>delta2<span class="op">.</span>s<span class="op">;</span></span>
+<span id="cb36-73"><a href="normalmapping.html#cb36-73"></a>    M<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> delta1<span class="op">.</span>s<span class="op">;</span></span>
+<span id="cb36-74"><a href="normalmapping.html#cb36-74"></a>    M <span class="op">*=</span> <span class="op">(</span><span class="fl">1.0</span><span class="bu">f</span> <span class="op">/</span> <span class="op">(</span>delta1<span class="op">.</span>s <span class="op">*</span> delta2<span class="op">.</span>t <span class="op">-</span> delta2<span class="op">.</span>s <span class="op">*</span> delta1<span class="op">.</span>t<span class="op">));</span></span>
+<span id="cb36-75"><a href="normalmapping.html#cb36-75"></a></span>
+<span id="cb36-76"><a href="normalmapping.html#cb36-76"></a>    <span class="kw">auto</span> <span class="at">const</span> tangent<span class="op">{</span>glm<span class="op">::</span>vec4<span class="op">(</span>M<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">*</span> e1<span class="op">.</span>x <span class="op">+</span> M<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">*</span> e2<span class="op">.</span>x<span class="op">,</span></span>
+<span id="cb36-77"><a href="normalmapping.html#cb36-77"></a>                                 M<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">*</span> e1<span class="op">.</span>y <span class="op">+</span> M<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">*</span> e2<span class="op">.</span>y<span class="op">,</span></span>
+<span id="cb36-78"><a href="normalmapping.html#cb36-78"></a>                                 M<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">*</span> e1<span class="op">.</span>z <span class="op">+</span> M<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">*</span> e2<span class="op">.</span>z<span class="op">,</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">)};</span></span>
+<span id="cb36-79"><a href="normalmapping.html#cb36-79"></a></span>
+<span id="cb36-80"><a href="normalmapping.html#cb36-80"></a>    <span class="kw">auto</span> <span class="at">const</span> bitangent<span class="op">{</span>glm<span class="op">::</span>vec3<span class="op">(</span>M<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">*</span> e1<span class="op">.</span>x <span class="op">+</span> M<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">*</span> e2<span class="op">.</span>x<span class="op">,</span></span>
+<span id="cb36-81"><a href="normalmapping.html#cb36-81"></a>                                   M<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">*</span> e1<span class="op">.</span>y <span class="op">+</span> M<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">*</span> e2<span class="op">.</span>y<span class="op">,</span></span>
+<span id="cb36-82"><a href="normalmapping.html#cb36-82"></a>                                   M<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">*</span> e1<span class="op">.</span>z <span class="op">+</span> M<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">*</span> e2<span class="op">.</span>z<span class="op">)};</span></span>
+<span id="cb36-83"><a href="normalmapping.html#cb36-83"></a></span>
+<span id="cb36-84"><a href="normalmapping.html#cb36-84"></a>    <span class="co">// Accumulate on vertices</span></span>
+<span id="cb36-85"><a href="normalmapping.html#cb36-85"></a>    v1<span class="op">.</span>tangent <span class="op">+=</span> tangent<span class="op">;</span></span>
+<span id="cb36-86"><a href="normalmapping.html#cb36-86"></a>    v2<span class="op">.</span>tangent <span class="op">+=</span> tangent<span class="op">;</span></span>
+<span id="cb36-87"><a href="normalmapping.html#cb36-87"></a>    v3<span class="op">.</span>tangent <span class="op">+=</span> tangent<span class="op">;</span></span>
+<span id="cb36-88"><a href="normalmapping.html#cb36-88"></a></span>
+<span id="cb36-89"><a href="normalmapping.html#cb36-89"></a>    bitangents<span class="op">.</span>at<span class="op">(</span>i1<span class="op">)</span> <span class="op">+=</span> bitangent<span class="op">;</span></span>
+<span id="cb36-90"><a href="normalmapping.html#cb36-90"></a>    bitangents<span class="op">.</span>at<span class="op">(</span>i2<span class="op">)</span> <span class="op">+=</span> bitangent<span class="op">;</span></span>
+<span id="cb36-91"><a href="normalmapping.html#cb36-91"></a>    bitangents<span class="op">.</span>at<span class="op">(</span>i3<span class="op">)</span> <span class="op">+=</span> bitangent<span class="op">;</span></span>
+<span id="cb36-92"><a href="normalmapping.html#cb36-92"></a>  <span class="op">}</span></span>
+<span id="cb36-93"><a href="normalmapping.html#cb36-93"></a></span>
+<span id="cb36-94"><a href="normalmapping.html#cb36-94"></a>  <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">&amp;&amp;[</span>i<span class="op">,</span> vertex<span class="op">]</span> <span class="op">:</span> iter<span class="op">::</span>enumerate<span class="op">(</span><span class="va">m_vertices</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb36-95"><a href="normalmapping.html#cb36-95"></a>    <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>n<span class="op">{</span>vertex<span class="op">.</span>normal<span class="op">};</span></span>
+<span id="cb36-96"><a href="normalmapping.html#cb36-96"></a>    <span class="kw">auto</span> <span class="at">const</span> <span class="op">&amp;</span>t<span class="op">{</span>glm<span class="op">::</span>vec3<span class="op">(</span>vertex<span class="op">.</span>tangent<span class="op">)};</span></span>
+<span id="cb36-97"><a href="normalmapping.html#cb36-97"></a></span>
+<span id="cb36-98"><a href="normalmapping.html#cb36-98"></a>    <span class="co">// Orthogonalize t with respect to n</span></span>
+<span id="cb36-99"><a href="normalmapping.html#cb36-99"></a>    <span class="kw">auto</span> <span class="at">const</span> tangent<span class="op">{</span>t <span class="op">-</span> n <span class="op">*</span> glm<span class="op">::</span>dot<span class="op">(</span>n<span class="op">,</span> t<span class="op">)};</span></span>
+<span id="cb36-100"><a href="normalmapping.html#cb36-100"></a>    vertex<span class="op">.</span>tangent <span class="op">=</span> glm<span class="op">::</span>vec4<span class="op">(</span>glm<span class="op">::</span>normalize<span class="op">(</span>tangent<span class="op">),</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb36-101"><a href="normalmapping.html#cb36-101"></a></span>
+<span id="cb36-102"><a href="normalmapping.html#cb36-102"></a>    <span class="co">// Compute handedness of re-orthogonalized basis</span></span>
+<span id="cb36-103"><a href="normalmapping.html#cb36-103"></a>    <span class="kw">auto</span> <span class="at">const</span> b<span class="op">{</span>glm<span class="op">::</span>cross<span class="op">(</span>n<span class="op">,</span> t<span class="op">)};</span></span>
+<span id="cb36-104"><a href="normalmapping.html#cb36-104"></a>    <span class="kw">auto</span> <span class="at">const</span> handedness<span class="op">{</span>glm<span class="op">::</span>dot<span class="op">(</span>b<span class="op">,</span> bitangents<span class="op">.</span>at<span class="op">(</span>i<span class="op">))};</span></span>
+<span id="cb36-105"><a href="normalmapping.html#cb36-105"></a>    vertex<span class="op">.</span>tangent<span class="op">.</span>w <span class="op">=</span> <span class="op">(</span>handedness <span class="op">&lt;</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">)</span> <span class="op">?</span> <span class="op">-</span><span class="fl">1.0</span><span class="bu">f</span> <span class="op">:</span> <span class="fl">1.0</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb36-106"><a href="normalmapping.html#cb36-106"></a>  <span class="op">}</span></span>
+<span id="cb36-107"><a href="normalmapping.html#cb36-107"></a><span class="op">}</span></span></code></pre></div>
+<p>Esta função adota uma estratégia parecida com aquela que utilizamos no código de <code>Model::computeNormals</code>.</p>
+<p>Primeiramente, os vetores tangente e bitangente são calculados para cada triângulo (laço da linha 53). O resultado é acumulado nos vértices da malha indexada: o vetor tangente é acumulado no atributo <code>tangent</code> (linhas 85 a 87), e o vetor bitangente é acumulado em um arranjo <code>bitangents</code> temporário (linhas 89 a 91), uma vez que os vértices não têm um atributo <code>bitangent</code>.</p>
+<p>Após a acumulação dos vetores tangente e bitangente nos vértices, o laço da linha 94 itera sobre os vértices e usa o método de Gram-Schmidt para ortogonalizar os vetores tangente em relação às normais de vértice (linhas 99 a 100). Em seguida (linhas 103 a 105), o valor <span class="math inline">\(w\)</span> de <code>tangent</code> é calculado comparando o resultado do produto vetorial <span class="math inline">\(\hat{\mathbf{n}} \times \hat{\mathbf{t}}\)</span> com <code>bitangents</code> (vetor bitangente acumulado).</p>
+</div>
+<div id="shaders" class="section level4 unnumbered hasAnchor">
+<h4>Shaders<a href="normalmapping.html#shaders" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Os shaders de mapeamento de normais são adaptados de <code>texture.vert</code> e <code>texture.frag</code> do projeto anterior.</p>
+<div id="normalmapping.vert" class="section level5 unnumbered hasAnchor">
+<h5>normalmapping.vert<a href="normalmapping.html#normalmapping.vert" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>O código completo do vertex shader é mostrado a seguir:</p>
+<div class="sourceCode" id="cb37" startFrom="1"><pre class="sourceCode numberSource glsl numberLines"><code class="sourceCode glsl"><span id="cb37-1"><a href="normalmapping.html#cb37-1"></a><span class="pp">#version 300 es</span></span>
+<span id="cb37-2"><a href="normalmapping.html#cb37-2"></a></span>
+<span id="cb37-3"><a href="normalmapping.html#cb37-3"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">0</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec3</span> inPosition<span class="op">;</span></span>
+<span id="cb37-4"><a href="normalmapping.html#cb37-4"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">1</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec3</span> inNormal<span class="op">;</span></span>
+<span id="cb37-5"><a href="normalmapping.html#cb37-5"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">2</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec2</span> inTexCoord<span class="op">;</span></span>
+<span id="cb37-6"><a href="normalmapping.html#cb37-6"></a><span class="kw">layout</span><span class="op">(</span><span class="dt">location</span> <span class="op">=</span> <span class="dv">3</span><span class="op">)</span> <span class="dt">in</span> <span class="dt">vec4</span> inTangent<span class="op">;</span></span>
+<span id="cb37-7"><a href="normalmapping.html#cb37-7"></a></span>
+<span id="cb37-8"><a href="normalmapping.html#cb37-8"></a><span class="kw">uniform</span> <span class="dt">mat4</span> modelMatrix<span class="op">;</span></span>
+<span id="cb37-9"><a href="normalmapping.html#cb37-9"></a><span class="kw">uniform</span> <span class="dt">mat4</span> viewMatrix<span class="op">;</span></span>
+<span id="cb37-10"><a href="normalmapping.html#cb37-10"></a><span class="kw">uniform</span> <span class="dt">mat4</span> projMatrix<span class="op">;</span></span>
+<span id="cb37-11"><a href="normalmapping.html#cb37-11"></a></span>
+<span id="cb37-12"><a href="normalmapping.html#cb37-12"></a><span class="kw">uniform</span> <span class="dt">vec4</span> lightDirWorldSpace<span class="op">;</span></span>
+<span id="cb37-13"><a href="normalmapping.html#cb37-13"></a></span>
+<span id="cb37-14"><a href="normalmapping.html#cb37-14"></a><span class="dt">out</span> <span class="dt">vec2</span> fragTexCoord<span class="op">;</span></span>
+<span id="cb37-15"><a href="normalmapping.html#cb37-15"></a><span class="dt">out</span> <span class="dt">vec3</span> fragPObj<span class="op">;</span></span>
+<span id="cb37-16"><a href="normalmapping.html#cb37-16"></a><span class="dt">out</span> <span class="dt">vec3</span> fragTObj<span class="op">;</span></span>
+<span id="cb37-17"><a href="normalmapping.html#cb37-17"></a><span class="dt">out</span> <span class="dt">vec3</span> fragBObj<span class="op">;</span></span>
+<span id="cb37-18"><a href="normalmapping.html#cb37-18"></a><span class="dt">out</span> <span class="dt">vec3</span> fragNObj<span class="op">;</span></span>
+<span id="cb37-19"><a href="normalmapping.html#cb37-19"></a><span class="dt">out</span> <span class="dt">vec3</span> fragLEye<span class="op">;</span></span>
+<span id="cb37-20"><a href="normalmapping.html#cb37-20"></a><span class="dt">out</span> <span class="dt">vec3</span> fragVEye<span class="op">;</span></span>
+<span id="cb37-21"><a href="normalmapping.html#cb37-21"></a></span>
+<span id="cb37-22"><a href="normalmapping.html#cb37-22"></a><span class="dt">void</span> <span class="fu">main</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb37-23"><a href="normalmapping.html#cb37-23"></a>  <span class="dt">vec3</span> PEye <span class="op">=</span> <span class="op">(</span>viewMatrix <span class="op">*</span> modelMatrix <span class="op">*</span> <span class="dt">vec4</span><span class="op">(</span>inPosition<span class="op">,</span> <span class="fl">1.0</span><span class="op">)).</span><span class="fu">xyz</span><span class="op">;</span></span>
+<span id="cb37-24"><a href="normalmapping.html#cb37-24"></a>  <span class="dt">vec3</span> LEye <span class="op">=</span> <span class="op">-(</span>viewMatrix <span class="op">*</span> lightDirWorldSpace<span class="op">).</span><span class="fu">xyz</span><span class="op">;</span></span>
+<span id="cb37-25"><a href="normalmapping.html#cb37-25"></a></span>
+<span id="cb37-26"><a href="normalmapping.html#cb37-26"></a>  fragTexCoord <span class="op">=</span> inTexCoord<span class="op">;</span></span>
+<span id="cb37-27"><a href="normalmapping.html#cb37-27"></a></span>
+<span id="cb37-28"><a href="normalmapping.html#cb37-28"></a>  fragPObj <span class="op">=</span> inPosition<span class="op">;</span></span>
+<span id="cb37-29"><a href="normalmapping.html#cb37-29"></a>  fragTObj <span class="op">=</span> inTangent<span class="op">.</span><span class="fu">xyz</span><span class="op">;</span></span>
+<span id="cb37-30"><a href="normalmapping.html#cb37-30"></a>  fragBObj <span class="op">=</span> inTangent<span class="op">.</span><span class="fu">w</span> <span class="op">*</span> <span class="bu">cross</span><span class="op">(</span>inNormal<span class="op">,</span> inTangent<span class="op">.</span><span class="fu">xyz</span><span class="op">);</span></span>
+<span id="cb37-31"><a href="normalmapping.html#cb37-31"></a>  fragNObj <span class="op">=</span> inNormal<span class="op">;</span></span>
+<span id="cb37-32"><a href="normalmapping.html#cb37-32"></a></span>
+<span id="cb37-33"><a href="normalmapping.html#cb37-33"></a>  fragLEye <span class="op">=</span> LEye<span class="op">;</span></span>
+<span id="cb37-34"><a href="normalmapping.html#cb37-34"></a>  fragVEye <span class="op">=</span> <span class="op">-</span>PEye<span class="op">;</span></span>
+<span id="cb37-35"><a href="normalmapping.html#cb37-35"></a></span>
+<span id="cb37-36"><a href="normalmapping.html#cb37-36"></a>  <span class="bu">gl_Position</span> <span class="op">=</span> projMatrix <span class="op">*</span> <span class="dt">vec4</span><span class="op">(</span>PEye<span class="op">,</span> <span class="fl">1.0</span><span class="op">);</span></span>
+<span id="cb37-37"><a href="normalmapping.html#cb37-37"></a><span class="op">}</span></span></code></pre></div>
+<p>Em comparação com o código de <code>texture.vert</code>, temos agora o atributo de entrada <code>inTangent</code> (linha 6) e alguns novos atributos de saída:</p>
+<ul>
+<li><code>fragTObj</code> é o vetor tangente no espaço do objeto.</li>
+<li><code>fragBObj</code> é o vetor bitangente no espaço do objeto.</li>
+<li><code>fragNObj</code> é o vetor normal no espaço do objeto.</li>
+</ul>
+<p>Com esses atributos podemos criar a matriz de mudança de base para transformar vetores do espaço do objeto para o espaço tangente.</p>
+<p>As variáveis <code>fragV</code> e <code>fragL</code> de <code>texture.vert</code> foram renomeadas para <code>fragVEye</code> e <code>fragLEye</code> para deixar explícito que são vetores no espaço da câmera (<em>eye space</em>). A variável <code>fragN</code> foi removida pois o vetor normal utilizado na equação do modelo de Blinn–Phong é lido diretamente da textura de normais.</p>
+<p>Observe que não temos mais a variável uniforme <code>normalMatrix</code>. Ela foi movida para o fragment shader. No fragment shader, <code>fragTObj</code>, <code>fragBObj</code> e <code>fragNObj</code> são transformados por <code>normalMatrix</code> para obter vetores no espaço da câmera. Com isso é possível construir a matriz que transforma os vetores <code>fragLEye</code> e <code>fragVEye</code> do espaço da câmera para o espaço tangente.</p>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>A matriz que transforma vetores do espaço da câmera para vetores do espaço tangente pode ser criada no vertex shader. Assim, podemos enviar ao fragment shader os vetores <span class="math inline">\(\hat{\mathbf{l}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span> já no espaço tangente (o vetor <span class="math inline">\(\hat{\mathbf{n}}\)</span> é obtido da textura de normais). Isso deixa o código mais eficiente, pois é mais custoso transformar os vetores para cada fragmento do que para cada vértice.</p>
+<p>Entretanto, nesta versão do visualizador optamos por calcular a matriz no fragment shader para manter a compatibilidade com objetos que usam o mapeamento planar, cilíndrico e esférico no fragment shader. Quando usamos esses mapeamentos, precisamos calcular manualmente os vetores tangente e bitangente. Nesse caso, a matriz só pode ser construída no fragment shader.</p>
+</div>
+</div>
+<div id="normalmapping.frag" class="section level5 unnumbered hasAnchor">
+<h5>normalmapping.frag<a href="normalmapping.html#normalmapping.frag" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>A maior parte do processamento do mapeamento de normais é feita no fragment shader.</p>
+<p>Primeiramente, definimos uma função <code>ComputeTBN</code> que retorna a matriz que será utilizada para transformar vetores no espaço da câmera para vetores no espaço tangente:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb38-1"><a href="normalmapping.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Compute matrix to transform from camera space to tangent space</span></span>
+<span id="cb38-2"><a href="normalmapping.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="dt">mat3</span> <span class="fu">ComputeTBN</span><span class="op">(</span><span class="dt">vec3</span> TObj<span class="op">,</span> <span class="dt">vec3</span> BObj<span class="op">,</span> <span class="dt">vec3</span> NObj<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb38-3"><a href="normalmapping.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> TEye <span class="op">=</span> normalMatrix <span class="op">*</span> <span class="bu">normalize</span><span class="op">(</span>TObj<span class="op">);</span></span>
+<span id="cb38-4"><a href="normalmapping.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> BEye <span class="op">=</span> normalMatrix <span class="op">*</span> <span class="bu">normalize</span><span class="op">(</span>BObj<span class="op">);</span></span>
+<span id="cb38-5"><a href="normalmapping.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> NEye <span class="op">=</span> normalMatrix <span class="op">*</span> <span class="bu">normalize</span><span class="op">(</span>NObj<span class="op">);</span></span>
+<span id="cb38-6"><a href="normalmapping.html#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">return</span> <span class="dt">mat3</span><span class="op">(</span>TEye<span class="op">.</span><span class="fu">x</span><span class="op">,</span> BEye<span class="op">.</span><span class="fu">x</span><span class="op">,</span> NEye<span class="op">.</span><span class="fu">x</span><span class="op">,</span> </span>
+<span id="cb38-7"><a href="normalmapping.html#cb38-7" aria-hidden="true" tabindex="-1"></a>              TEye<span class="op">.</span><span class="fu">y</span><span class="op">,</span> BEye<span class="op">.</span><span class="fu">y</span><span class="op">,</span> NEye<span class="op">.</span><span class="fu">y</span><span class="op">,</span> </span>
+<span id="cb38-8"><a href="normalmapping.html#cb38-8" aria-hidden="true" tabindex="-1"></a>              TEye<span class="op">.</span><span class="fu">z</span><span class="op">,</span> BEye<span class="op">.</span><span class="fu">z</span><span class="op">,</span> NEye<span class="op">.</span><span class="fu">z</span><span class="op">);</span></span>
+<span id="cb38-9"><a href="normalmapping.html#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>A matriz recebe vetores no espaço do objeto e transforma-os para o espaço da câmera usando <code>normalMatrix</code>. O resultado é utilizado para criar a matriz <span class="math inline">\(\mathbf{M}_{\mathrm{eye}\rightarrow\mathrm{tan}}\)</span>.</p>
+<div class="notebox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#1f5386;overflow:visible;position:relative;"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
+<div class="noteboxtitle">
+Importante
+</div>
+<p>Em GLSL, as matrizes são armazenadas na ordem “column-major”. Isso significa que, na matriz construída com o código a seguir, os três primeiros argumentos (<code>TEye.x</code>, <code>BEye.x</code>, <code>NEye.x</code>) definem os elementos da primeira coluna da matriz, e não os elementos da primeira linha!</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb39-1"><a href="normalmapping.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dt">mat3</span><span class="op">(</span>TEye<span class="op">.</span><span class="fu">x</span><span class="op">,</span> BEye<span class="op">.</span><span class="fu">x</span><span class="op">,</span> NEye<span class="op">.</span><span class="fu">x</span><span class="op">,</span> </span>
+<span id="cb39-2"><a href="normalmapping.html#cb39-2" aria-hidden="true" tabindex="-1"></a>     TEye<span class="op">.</span><span class="fu">y</span><span class="op">,</span> BEye<span class="op">.</span><span class="fu">y</span><span class="op">,</span> NEye<span class="op">.</span><span class="fu">y</span><span class="op">,</span> </span>
+<span id="cb39-3"><a href="normalmapping.html#cb39-3" aria-hidden="true" tabindex="-1"></a>     TEye<span class="op">.</span><span class="fu">z</span><span class="op">,</span> BEye<span class="op">.</span><span class="fu">z</span><span class="op">,</span> NEye<span class="op">.</span><span class="fu">z</span><span class="op">);</span></span></code></pre></div>
+<p>Logo, a matriz resultante é a matriz</p>
+<p><span class="math display">\[
+\mathbf{M}_{\mathrm{eye}\rightarrow\mathrm{tan}}=
+\begin{bmatrix}
+t&#39;_x &amp; t&#39;_y &amp; t&#39;_z \\
+b&#39;_x &amp; b&#39;_y &amp; b&#39;_z \\
+n&#39;_x &amp; n&#39;_y &amp; n&#39;_z
+\end{bmatrix}.
+\]</span>
+onde <span class="math inline">\(\hat{\mathbf{t}}&#39;\)</span>, <span class="math inline">\(\hat{\mathbf{b}}&#39;\)</span>, <span class="math inline">\(\hat{\mathbf{n}}&#39;\)</span> são, respectivamente, os vetores tangente, bitangente e normal no espaço da câmera.</p>
+</div>
+<p>Com a função <code>ComputeTBN</code> definida, podemos criar a matriz <code>TBN</code> a partir dos vetores <code>fragTObj</code>, <code>fragBObj</code> e <code>fragNObj</code> recebidos do vertex shader:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb40-1"><a href="normalmapping.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="dt">mat3</span> TBN <span class="op">=</span> <span class="fu">ComputeTBN</span><span class="op">(</span>fragTObj<span class="op">,</span> fragBObj<span class="op">,</span> fragNObj<span class="op">);</span></span></code></pre></div>
+<p>Em seguida, usamos <code>TBN</code> para transformar <code>fragLEye</code> e <code>fragVEye</code> para o espaço tangente:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb41-1"><a href="normalmapping.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="dt">vec3</span> LTan <span class="op">=</span> TBN <span class="op">*</span> <span class="bu">normalize</span><span class="op">(</span>fragLEye<span class="op">);</span></span>
+<span id="cb41-2"><a href="normalmapping.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="dt">vec3</span> VTan <span class="op">=</span> TBN <span class="op">*</span> <span class="bu">normalize</span><span class="op">(</span>fragVEye<span class="op">);</span></span></code></pre></div>
+<p>O vetor normal no espaço tangente é lido da textura de normais usando o amostrador <code>normalTex</code>:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb42-1"><a href="normalmapping.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="dt">vec3</span> NTan <span class="op">=</span> <span class="bu">texture</span><span class="op">(</span>normalTex<span class="op">,</span> fragTexCoord<span class="op">).</span><span class="fu">xyz</span><span class="op">;</span></span>
+<span id="cb42-2"><a href="normalmapping.html#cb42-2" aria-hidden="true" tabindex="-1"></a>NTan <span class="op">=</span> <span class="bu">normalize</span><span class="op">(</span>NTan <span class="op">*</span> <span class="fl">2.0</span> <span class="op">-</span> <span class="fl">1.0</span><span class="op">);</span>  <span class="co">// From [0, 1] to [-1, 1]</span></span></code></pre></div>
+<p>Agora, basta chamarmos <code>BlinnPhong</code> com os vetores calculados:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb43-1"><a href="normalmapping.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="dt">vec4</span> color <span class="op">=</span> <span class="fu">BlinnPhong</span><span class="op">(</span>NTan<span class="op">,</span> LTan<span class="op">,</span> VTan<span class="op">,</span> fragTexCoord<span class="op">);</span></span></code></pre></div>
+<div class="infobox">
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1.4em;width:1.4em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#555;overflow:visible;position:relative;"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></svg>
+<div class="infoboxtitle">
+Observação
+</div>
+<p>Se o objeto renderizado não tiver coordenadas de textura fornecidas pelo arquivo OBJ, também não terá vetores tangentes e bitangentes. Então, a estratégia anterior não poderá ser utilizada. No projeto <code>viewer4</code>, deixamos a possibilidade do usuário escolher entre o mapeamento triplanar, cilíndrico ou esférico para esses objetos. Para esses casos, as coordenadas de textura foram calculadas no fragment shader pelas funções:</p>
+<ul>
+<li><code>PlanarMappingX</code>, <code>PlanarMappingY</code> e <code>PlanarMappingZ</code> para o mapeamento triplanar;</li>
+<li><code>CylindricalMapping</code> para o mapeamento cilíndrico;</li>
+<li><code>SphericalMapping</code> para o mapeamento esférico.</li>
+</ul>
+<p>Para usar mapeamento de normais, precisamos criar igualmente funções que calculem o vetor tangente e bitangente.</p>
+<p>Em <code>normalmapping.frag</code>, definiremos as seguintes funções adicionais que retornam a matriz <code>TBN</code> correspondente a cada mapeamento:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode glsl"><code class="sourceCode glsl"><span id="cb44-1"><a href="normalmapping.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="dt">mat3</span> <span class="fu">PlanarMappingXTBN</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb44-2"><a href="normalmapping.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> T <span class="op">=</span> <span class="dt">vec3</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb44-3"><a href="normalmapping.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> N <span class="op">=</span> fragNObj<span class="op">;</span></span>
+<span id="cb44-4"><a href="normalmapping.html#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> B <span class="op">=</span> <span class="bu">cross</span><span class="op">(</span>N<span class="op">,</span> T<span class="op">);</span></span>
+<span id="cb44-5"><a href="normalmapping.html#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">return</span> <span class="fu">ComputeTBN</span><span class="op">(</span>T<span class="op">,</span> B<span class="op">,</span> N<span class="op">);</span></span>
+<span id="cb44-6"><a href="normalmapping.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb44-7"><a href="normalmapping.html#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="normalmapping.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="dt">mat3</span> <span class="fu">PlanarMappingYTBN</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb44-9"><a href="normalmapping.html#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> T <span class="op">=</span> <span class="dt">vec3</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb44-10"><a href="normalmapping.html#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> N <span class="op">=</span> fragNObj<span class="op">;</span></span>
+<span id="cb44-11"><a href="normalmapping.html#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> B <span class="op">=</span> <span class="bu">cross</span><span class="op">(</span>N<span class="op">,</span> T<span class="op">);</span></span>
+<span id="cb44-12"><a href="normalmapping.html#cb44-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">return</span> <span class="fu">ComputeTBN</span><span class="op">(</span>T<span class="op">,</span> B<span class="op">,</span> N<span class="op">);</span></span>
+<span id="cb44-13"><a href="normalmapping.html#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb44-14"><a href="normalmapping.html#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="normalmapping.html#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="dt">mat3</span> <span class="fu">PlanarMappingZTBN</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb44-16"><a href="normalmapping.html#cb44-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> T <span class="op">=</span> <span class="dt">vec3</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb44-17"><a href="normalmapping.html#cb44-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> N <span class="op">=</span> fragNObj<span class="op">;</span></span>
+<span id="cb44-18"><a href="normalmapping.html#cb44-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> B <span class="op">=</span> <span class="bu">cross</span><span class="op">(</span>N<span class="op">,</span> T<span class="op">);</span></span>
+<span id="cb44-19"><a href="normalmapping.html#cb44-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">return</span> <span class="fu">ComputeTBN</span><span class="op">(</span>T<span class="op">,</span> B<span class="op">,</span> N<span class="op">);</span></span>
+<span id="cb44-20"><a href="normalmapping.html#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb44-21"><a href="normalmapping.html#cb44-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-22"><a href="normalmapping.html#cb44-22" aria-hidden="true" tabindex="-1"></a><span class="dt">mat3</span> <span class="fu">CylindricalTBN</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb44-23"><a href="normalmapping.html#cb44-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> T <span class="op">=</span> <span class="dt">vec3</span><span class="op">(</span>P<span class="op">.</span><span class="fu">z</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span>P<span class="op">.</span><span class="fu">x</span><span class="op">);</span></span>
+<span id="cb44-24"><a href="normalmapping.html#cb44-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> N <span class="op">=</span> fragNObj<span class="op">;</span></span>
+<span id="cb44-25"><a href="normalmapping.html#cb44-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> B <span class="op">=</span> <span class="bu">cross</span><span class="op">(</span>N<span class="op">,</span> T<span class="op">);</span></span>
+<span id="cb44-26"><a href="normalmapping.html#cb44-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">return</span> <span class="fu">ComputeTBN</span><span class="op">(</span>T<span class="op">,</span> B<span class="op">,</span> N<span class="op">);</span></span>
+<span id="cb44-27"><a href="normalmapping.html#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb44-28"><a href="normalmapping.html#cb44-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-29"><a href="normalmapping.html#cb44-29" aria-hidden="true" tabindex="-1"></a><span class="dt">mat3</span> <span class="fu">SphericalTBN</span><span class="op">(</span><span class="dt">vec3</span> P<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb44-30"><a href="normalmapping.html#cb44-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> T <span class="op">=</span> <span class="dt">vec3</span><span class="op">(</span>P<span class="op">.</span><span class="fu">z</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span>P<span class="op">.</span><span class="fu">x</span><span class="op">);</span></span>
+<span id="cb44-31"><a href="normalmapping.html#cb44-31" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> N <span class="op">=</span> fragNObj<span class="op">;</span></span>
+<span id="cb44-32"><a href="normalmapping.html#cb44-32" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vec3</span> B <span class="op">=</span> <span class="bu">cross</span><span class="op">(</span>N<span class="op">,</span> T<span class="op">);</span></span>
+<span id="cb44-33"><a href="normalmapping.html#cb44-33" aria-hidden="true" tabindex="-1"></a>  <span class="kw">return</span> <span class="fu">ComputeTBN</span><span class="op">(</span>T<span class="op">,</span> B<span class="op">,</span> N<span class="op">);</span></span>
+<span id="cb44-34"><a href="normalmapping.html#cb44-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Observe como o vetor <code>T</code> é construído explicitamente em cada mapeamento. Por exemplo, no mapeamento planar na direção <span class="math inline">\(y\)</span>, o vetor tangente é sempre o vetor <span class="math inline">\((1,0,0)\)</span> (direção <span class="math inline">\(x\)</span>). No mapeamento cilíndrico ou esférico, o vetor tangente é o vetor que tangencia o círculo no plano <span class="math inline">\(y=0\)</span>.</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<!-- </div> -->
+<h3>Referências<a href="referências.html#referências" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-blinn1978" class="csl-entry">
+Blinn, James F. 1978. <span>“Simulation of Wrinkled Surfaces.”</span> <em>SIGGRAPH Comput. Graph.</em> 12 (3): 286–92.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="viewer4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
