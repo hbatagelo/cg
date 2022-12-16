@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.3 Modelo de Blinn–Phong | MCTA008-17 Computação Gráfica</title>
+  <title>Trabalhos finais | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.3 Modelo de Blinn–Phong | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="Trabalhos finais | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.3 Modelo de Blinn–Phong | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="Trabalhos finais | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="phongmodel.html"/>
-<link rel="next" href="shading.html"/>
+<link rel="prev" href="envmapping.html"/>
+<link rel="next" href="referências.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -506,60 +506,36 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="blinnphongmodel" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Modelo de Blinn–Phong<a href="blinnphongmodel.html#blinnphongmodel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O modelo de Blinn–Phong <span class="citation">(<a href="#ref-blinn1977" role="doc-biblioref">Blinn 1977</a>)</span> é uma modificação do modelo de reflexão de Phong. A reflexão especular <span class="math inline">\(\mathbf{I}_s\)</span> para uma fonte de luz é calculada como</p>
-<p><span class="math display">\[
-\mathbf{I}_s=\kappa_s \iota_{s}(\hat{\mathbf{n}} \cdot \hat{\mathbf{h}})^\alpha,
-\]</span></p>
-<p>onde</p>
-<p><span class="math display">\[
-\hat{\mathbf{h}}=\frac{\hat{\mathbf{l}} + \hat{\mathbf{v}}}{|\hat{\mathbf{l}} + \hat{\mathbf{v}}|}.
-\]</span></p>
-<p>O vetor <span class="math inline">\(\hat{\mathbf{h}}\)</span> é chamado de <em>halfway vector</em> e está na metade do caminho entre os vetores <span class="math inline">\(\hat{\mathbf{l}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span> (figura <a href="blinnphongmodel.html#fig:lighting17">9.18</a>).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting17"></span>
-<img src="images/09_lighting17.svg" alt="Geometria do halfway vector." width="55%" />
-<p class="caption">
-Figura 9.18: Geometria do halfway vector.
-</p>
-</div>
-<p>Ao usar o cosseno do ângulo entre <span class="math inline">\(\hat{\mathbf{n}}\)</span> e <span class="math inline">\(\hat{\mathbf{h}}\)</span> no lugar do cosseno do ângulo entre <span class="math inline">\(\hat{\mathbf{r}}\)</span> e <span class="math inline">\(\hat{\mathbf{v}}\)</span>, o modelo de Blinn-Phong consegue reproduzir melhor o comportamento da reflexão especular.</p>
-<p>No modelo de Phong, o brilho especular é sempre redondo em uma superfície plana. No modelo de Blinn–Phong, o brilho especular é redondo quando a superfície é vista de frente, e alongado verticalmente quando a direção de visão e a direção à fonte de luz estão rentes à superfície. A figura <a href="blinnphongmodel.html#fig:lighting18">9.19</a> compara o formato do brilho especular sobre o lado plano de um objeto visto nessa configuração.</p>
-<p>No mundo físico, o alongamento do brilho especular pode ser observado, por exemplo, no brilho da luz do sol sobre o mar quando o sol está próximo do horizonte, ou no reflexo da luz sobre um chão molhado, quando a luz é gerada por um poste distante ou pelos faróis de um carro.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting18"></span>
-<img src="images/09_lighting18.png" alt="Diferença entre o formato do brilho especular nos modelos de Phong e Blinn--Phong."  />
-<p class="caption">
-Figura 9.19: Diferença entre o formato do brilho especular nos modelos de Phong e Blinn–Phong.
-</p>
-</div>
-<p>O modelo de Blinn–Phong também pode ser mais eficiente que o modelo de Phong. Se a projeção utilizada for ortográfica e a fonte de luz estiver infinitamente longe do objeto iluminado (como na fonte de luz direcional), então <span class="math inline">\(\hat{\mathbf{h}}\)</span> só precisa ser calculado uma vez e pode ser reutilizado para todos os pontos do objeto. O vetor só precisa ser atualizado se a direção de visão ou a direção da fonte de luz for modificada.</p>
-<p>A possibilidade de otimização do modelo de Blinn–Phong é pouco explorada atualmente, uma vez que a maior parte das aplicações usa projeção perspectiva ou usa câmeras ou fontes de luz dinâmicas. Entretanto, esse aspecto foi uma vantagem importante nos limitados sistemas gráficos da década de 1980 e início da década de 1990.</p>
-<p>A equação completa do modelo de Blinn–Phong é a seguinte:</p>
-<p><span class="math display">\[
-\mathbf{I}=\kappa_a \iota_a + \sum_{i=1}^m \left(\kappa_d \iota_{d_i} (\hat{\mathbf{l}}_i \cdot \hat{\mathbf{n}}) + \kappa_s \iota_{s_i} (\hat{\mathbf{n}} \cdot \hat{\mathbf{h}})^\alpha\right),
-\]</span>
-As constantes utilizadas são as mesmas do modelo de Phong. Entretanto, um mesmo valor da constante <span class="math inline">\(\alpha\)</span> produzirá um brilho especular maior no modelo de Blinn–Phong, como mostra a figura <a href="blinnphongmodel.html#fig:lighting6">9.20</a>. Essa alteração do brilho pode ser compensada aumentando o valor da constante.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lighting6"></span>
-<img src="images/09_lighting6.png" alt="Tamanho do brilho especular nos modelos de Phong e Blinn--Phong usando o mesmo expoente de brilho."  />
-<p class="caption">
-Figura 9.20: Tamanho do brilho especular nos modelos de Phong e Blinn–Phong usando o mesmo expoente de brilho.
-</p>
-</div>
-<p>Pela sua simplicidade e melhor fidelidade de reprodução de brilhos especulares, o modelo de Blinn–Phong é mais utilizado que o modelo de Phong em síntese de imagens em tempo real.</p>
-</div>
-<h3>Referências<a href="referências.html#referências" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-blinn1977" class="csl-entry">
-Blinn, James F. 1977. <span>“Models of Light Reflection for Computer Synthesized Pictures.”</span> <em>SIGGRAPH Comput. Graph.</em> 11 (2): 192–98. <a href="https://doi.org/10.1145/965141.563893">https://doi.org/10.1145/965141.563893</a>.
-</div>
+<div id="trabalhos-finais" class="section level1 unnumbered hasAnchor">
+<h1>Trabalhos finais<a href="trabalhos-finais.html#trabalhos-finais" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li><strong>Boid Simulator</strong>, por Gabriel Jorge Menezes e Rodrigo Cabrera Castaldoni (<a href="https://gab-menezes.github.io/abcg/public/boids.html">WebAssembly</a>, <a href="https://github.com/Gab-Menezes/abcg/tree/main/examples/boids">GitHub</a>).</li>
+<li><strong>BorgCube Game</strong>, por Aline Conquista de Almeida Ferreira e Lucca Segantim Jacomassi (<a href="https://lulcca.github.io/abcg/borgcube/">WebAssembly</a>, <a href="https://github.com/lulcca/abcg/tree/main/examples/borgcube">GitHub</a>).</li>
+<li><strong>Cidade - Vista Aérea</strong>, por Sérgio Maracajá Junior e Vinícius Lacerda Gonsalez (<a href="https://maracaja.github.io/AtividadeFinal/helloworld.html">WebAssembly</a>, <a href="https://github.com/maracaja/AtividadeFinal">GitHub</a>).</li>
+<li><strong>Cube</strong>, por Lucas Guimarães Miranda (<a href="https://lucasgm22.github.io/cg/cube/">WebAssembly</a>, <a href="https://github.com/Lucasgm22/abcg/tree/main/examples/cube">GitHub</a>).</li>
+<li><strong>Earth Visualization</strong>, por Heberton Miranda Rodrigues da Silva (<a href="https://hebertonmiranda.github.io/comp_graf/Atividade_4/public/">WebAssembly</a>, <a href="https://github.com/hebertonmiranda/comp_graf/tree/master/Atividade_4">GitHub</a>).</li>
+<li><strong>Galaxy Explorer</strong>, por Gustavo Gualberto Rocha de Lemos (<a href="https://grdelemos.github.io/atividade4/">WebAssembly</a>, <a href="https://github.com/grdelemos/atividade4">GitHub</a>).</li>
+<li><strong>Golf C++</strong>, por Jairo da Silva Freitas Júnior (<a href="https://jairojuunior.github.io/wordle_project_cpp/golf/">WebAssembly</a>, <a href="https://github.com/jairojuunior/wordle_project_cpp">GitHub</a>).</li>
+<li><strong>Roll The Ball 2</strong>, por Vitor Costa de Farias (<a href="https://vitorcostaf.github.io/CompGraf2022-3/rolltheball2/">WebAssembly</a>, <a href="https://github.com/VitorCostaF/CompGraf2022-3/tree/main/examples/rolltheball2">GitHub</a>).</li>
+<li><strong>RollerCoaster</strong>, por Diego Sousa Santos (<a href="https://diego-ss.github.io/cg-2022.3-UFABC/rollercoaster/">WebAssembly</a>, <a href="https://github.com/diego-ss/cg-2022.3-UFABC">GitHub</a>).</li>
+<li><strong>Simulação de Construção Aleatória de Terreno</strong>, por Henrique Augusto Santos Batista e Paulo Henrique Eiji Hayashida (<a href="https://paulo-hayashida.github.io/a4TexTerrain3D">WebAssembly</a>, <a href="https://github.com/HenriqueASB/abcg/tree/main/examples/atividade4">GitHub</a>).</li>
+<li><strong>Simulação de jogo de plataforma em primeira pessoa</strong>, por Daniel Fusimoto Pires (<a href="https://fusidaniel.github.io/CG-Atv4/public/full_window.html">WebAssembly</a>, <a href="https://github.com/FusiDaniel/CG-Atv4">GitHub</a>).</li>
+<li><strong>Sistema Solar</strong>, por Beatriz Favini Chicaroni e Thais Amorim Souza (<a href="https://bfchicaroni.github.io/cg_atividades/sistemaSolar_v2/">WebAssembly</a>, <a href="https://github.com/bfchicaroni/solarSystem">GitHub</a>).</li>
+<li><strong>Sistema Solar</strong>, por Kaio Vinicius Souza Santos e Mateus Flosi Molero (<a href="https://mateusflosi.github.io/cg-ufabc-2022.3/pages/SystemaSolar/">WebAssembly</a>, (<a href="https://github.com/mateusflosi/cg-ufabc-2022.3">GitHub</a>).</li>
+<li><strong>Sistema Solar</strong>, por Rafael Correia de Lima e Renan Gonçalves Miranda (<a href="https://cg-2022q3.github.io/abcg/projects/atividade04/">WebAssembly</a>, <a href="https://github.com/cg-2022q3/abcg/tree/main/examples/solarsystem2">GitHub</a>).</li>
+<li><strong>Solar System Final</strong>, por Thaina Abade Siemerink (<a href="https://thainasmk.github.io/CG-UFABC-abcg/solar_system_final/">WebAssembly</a>, <a href="https://github.com/ThainaSmk/CG-UFABC-abcg">GitHub</a>).</li>
+<li><strong>Storm Cube</strong>, por Lucas Zanoni de Oliveira (<a href="https://zzanoni.github.io/computacao_grafica/atividade4/abcg/public/index.html">WebAssembly</a>, <a href="https://github.com/Zzanoni/computacao_grafica/tree/main/atividade4/abcg">GitHub</a>).</li>
+<li><strong>Taz Maluco</strong>, por Henrique Augusto de Oliveira e Jefferson Leite Rodrigues Dantas (<a href="https://hadeoliveira.github.io/Projeto4ABCG/">WebAssembly</a>, <a href="https://github.com/JeffersonRodrigues7/TazMaluco">GitHub</a>).</li>
+</ul>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="phongmodel.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="shading.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="envmapping.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
