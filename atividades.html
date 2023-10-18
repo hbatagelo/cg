@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Atividades | MCTA008-17 Computação Gráfica</title>
+  <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Atividades | MCTA008-17 Computação Gráfica" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  <meta name="github-repo" content="hbatagelo/cgbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Atividades | MCTA008-17 Computação Gráfica" />
+  
+  <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="objmodel.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { font-weight: bold; } /* Alert */
+code span.an { font-style: italic; } /* Annotation */
+code span.cf { font-weight: bold; } /* ControlFlow */
+code span.co { font-style: italic; } /* Comment */
+code span.cv { font-style: italic; } /* CommentVar */
+code span.do { font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.er { font-weight: bold; } /* Error */
+code span.in { font-style: italic; } /* Information */
+code span.kw { font-weight: bold; } /* Keyword */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.wa { font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computação Gráfica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#atividades-práticas"><i class="fa fa-check"></i>Atividades práticas</a></li>
+<li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
+<ul>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
+<li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
+<ul>
+<li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
+<ul>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
+<li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
+<ul>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-no-vs-code"><i class="fa fa-check"></i>Compilando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#depurando-no-vs-code"><i class="fa fa-check"></i>Depurando no VS Code</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-para-wasm"><i class="fa fa-check"></i>Compilando para WASM</a></li>
+<li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
+<ul>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-2"><i class="fa fa-check"></i>1970</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-3"><i class="fa fa-check"></i>1980</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-4"><i class="fa fa-check"></i>1990</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-5"><i class="fa fa-check"></i>2000</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
+<li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
+<ul>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.hpp"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
+<ul>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.hpp-1"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
+<ul>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
+<li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
+<li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
+<ul>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
+<li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
+<ul>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
+<li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
+<ul>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.hpp-2"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
+<ul>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
+<li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
+<ul>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#montagem-de-primitivas"><i class="fa fa-check"></i>Montagem de primitivas</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#recorte"><i class="fa fa-check"></i>Recorte</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#rasterização-1"><i class="fa fa-check"></i>Rasterização</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
+<li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
+<ul>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.hpp-3"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#window.cpp-3"><i class="fa fa-check"></i>window.cpp</a></li>
+<li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
+<ul>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
+<ul>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#nave"><i class="fa fa-check"></i>Nave</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#estrelas"><i class="fa fa-check"></i>Estrelas</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#asteroides"><i class="fa fa-check"></i>Asteroides</a></li>
+<li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
+<ul>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
+<li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
+<ul>
+<li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
+<ul>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ortogonalidade"><i class="fa fa-check"></i>Ortogonalidade</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#comprimento-e-distância"><i class="fa fa-check"></i>Comprimento e distância</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#normalização"><i class="fa fa-check"></i>Normalização</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#ângulo-entre-vetores"><i class="fa fa-check"></i>Ângulo entre vetores</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#projeção-ortogonal"><i class="fa fa-check"></i>Projeção ortogonal</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
+<li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#main.cpp-6"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.vert"><i class="fa fa-check"></i>loadmodel.vert</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#loadmodel.frag"><i class="fa fa-check"></i>loadmodel.frag</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.hpp-6"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html"><i class="fa fa-check"></i>Atividades</a>
+<ul>
+<li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html#atividade-1-aplicação-interativa-com-gráficos-2d"><i class="fa fa-check"></i>Atividade 1 (Aplicação interativa com gráficos 2D)</a></li>
+<li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html#atividade-final"><i class="fa fa-check"></i>Atividade final</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li>
+<a href="https://github.com/hbatagelo/abcg" target="blank">ABCg no GitHub</a>
+<br>
+</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MCTA008-17 Computação Gráfica</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="atividades" class="section level1 unnumbered hasAnchor">
+<h1>Atividades<a href="atividades.html#atividades" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="atividade-1-aplicação-interativa-com-gráficos-2d" class="section level3 unnumbered hasAnchor">
+<h3>Atividade 1 (Aplicação interativa com gráficos 2D)<a href="atividades.html#atividade-1-aplicação-interativa-com-gráficos-2d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Roteiro da apresentação:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Abrir a página web da aplicação.</li>
+<li>Mostrar o conteúdo do README.md e explicar o código-fonte.</li>
+</ol>
+<p><strong>Observação:</strong> concentre-se em explicar os aspectos originais do código e o atendimento aos requisitos da atividade (uso de gráficos 2D com primitivas do OpenGL e interação com o teclado e/ou mouse).</p>
+<div id="turma-a-noturno---2023.3" class="section level4 unnumbered hasAnchor">
+<h4>Turma A noturno - 2023.3<a href="atividades.html#turma-a-noturno---2023.3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>Jogo de Memória</strong>, por Ana Luiza Ferreira Figueiredo (<a href="https://github.com/analuizaff/comp-grafica-projeto-01">GitHub</a>).</li>
+<li><strong>Pong Game</strong>, por Anderson Couto Cardoso (<a href="https://anderson-couto.github.io/cg-2d-game/public/index.html">WebAssembly</a>, <a href="https://github.com/Anderson-Couto/cg-2d-game">GitHub</a>).</li>
+<li><strong>Labyrinth</strong>, por Andre Omine e Daniel Byoung Koo Jung (<a href="https://aomine-27.github.io/">WebAssembly</a>, <a href="https://github.com/AOmine-27/cg1-labyrinth">GitHub</a>).</li>
+<li><strong>Jogo da Memória</strong>, por Ananda de Oliveira Gonçalves Antenor e Caio Cezar Veronezi Macedo (<a href="https://github.com/caiocvmacedo/atividade_1_computacao_grafica/tree/main">WebAssembly</a>, <a href="https://github.com/caiocvmacedo/atividade_1_computacao_grafica/tree/main">GitHub</a>).</li>
+<li><strong>SpaceRunners</strong>, por Claudio Yaitiro Sakamoto Mantovani (<a href="https://botpaja.github.io/abcg/spacerunners/">WebAssembly</a>, <a href="https://github.com/botpaja/abcg/tree/main/examples/spacerunners">GitHub</a>).</li>
+<li><strong>Mandelbrot</strong>, por Fabio dos Santos de Souza (<a href="https://github.com/FabioSantosSouza/FabioSantosSouza.github.io">WebAssembly</a>, <a href="https://github.com/FabioSantosSouza/abcg">GitHub</a>).</li>
+<li><strong>Snake</strong>, por Gabriel Lima Zambianco Barros e Fabricio Expedito Albano Gaeta (<a href="https://fabrigaeta.github.io/snake.github.io/">WebAssembly</a>, <a href="https://github.com/FabriGaeta/Snake">GitHub</a>).</li>
+<li><strong>Tela de Descanso</strong>, por Gabriel Sponda Freitas Bettarello e João Vitor Arruda de Bartolo (<a href="https://gabrielsponda.github.io/abcg/public/">WebAssembly</a>, <a href="https://github.com/gabrielsponda/abcg/tree/main/examples/screensaver">GitHub</a>).</li>
+<li><strong>Bubbles</strong>, por Henrique Ramos Rissardo Werneck e Mauricio Araujo Romano (<a href="https://hwerneck.github.io/cg/project1/">WebAssembly</a>, <a href="https://github.com/HWerneck/hwerneck.github.io/tree/master/cg/project1/">GitHub</a>).</li>
+<li><strong>Hipociclóide</strong>, por Humberto Turioni Marinho e Pedro Moreno Silva (<a href="https://humberto-marinho.github.io/Projeto1PedroHumberto/public/index">WebAssembly</a>, <a href="https://github.com/humberto-marinho/Projeto1PedroHumberto">GitHub</a>).</li>
+<li><strong>Aquário</strong>, por Isabela Lima Sigaki e Julia Oliveira Costa (<a href="https://juliaoc.github.io/index.html">WebAssembly</a>, <a href="https://github.com/xxxmerakixxx/abcg">GitHub</a>).</li>
+<li><strong>Geometry generator</strong>, por Lucas Prado Santos e Karine da Silva Sobrinho (<a href="https://pradolucas.github.io/abcg/geometry_generator/">WebAssembly</a>, <a href="https://github.com/pradolucas/abcg">GitHub</a>).</li>
+<li><strong>Ball</strong>, por Larissa Copel Rothman e Vinicius Teixeira Fantaccini (<a href="https://drive.google.com/file/d/15f_aBi_0IosZ4GK3vQZaGQATR5mCOfbT/view?usp=share_link">Vídeo</a>, <a href="https://github.com/larissacopel/abcg/tree/main/examples/ball">GitHub</a>).</li>
+<li><strong>Turtler</strong>, por Lucas Dantas Lima da Silva e Rodrigo Hisashi Takeuti (<a href="https://rodrigohisashi.github.io/projeto-1-cg-ufabc/turtler/">WebAssembly</a>, <a href="https://github.com/rodrigohisashi/projeto-1-cg-ufabc">GitHub</a>).</li>
+<li><strong>Atividade 01</strong>, por Lucas Colonna Romano da Silva e Caique Rodrigues do Nascimento (<a href="https://lucascolonna.github.io/abcgProjetoFinal/public/atividade01.html">WebAssembly</a>, <a href="https://github.com/lucascolonna/abcgProjetoFinal">GitHub</a>).</li>
+<li><strong>Brain-Check</strong>, por Luiz Paulo Nambu e Danilo Shinki Yoshizato (<a href="https://github.com/luiznambu/abcg-braincheck/tree/main">GitHub</a>).</li>
+<li><strong>JumpingSquare</strong>, por Matheus Fama Machado de Sousa (<a href="https://matheusfama.github.io/CG.github.io/public/jumpingsquare.html">WebAssembly</a>, <a href="https://github.com/MatheusFama/CG.github.io">GitHub</a>).</li>
+<li><strong>Space Invaders</strong>, por Pedro de Souza Tunin (<a href="https://pedrotunin.github.io/CG/spaceinvaders/">WebAssembly</a>, <a href="https://github.com/pedrotunin/CG/tree/main/abcg/examples/spaceinvaders">GitHub</a>).</li>
+<li><strong>Breakout</strong>, por Victor Hugo Zaninette Bernardino e Guilherme Cesario Scagnolato (<a href="https://victorhugozb.github.io/">WebAssembly</a>, <a href="https://github.com/VictorHugoZB/victorhugozb.github.io">GitHub</a>).</li>
+<li><strong>Colorindo</strong>, por Fernando Schroder Rodrigues e Gabriel Yuto Munakata (<a href="https://gabrielyuto.github.io/computacao-grafica-atividade-1/atividade-1/index.html">WebAssembly</a>, <a href="https://github.com/gabrielyuto/computacao-grafica-atividade-1/tree/main">GitHub</a>).</li>
+</ul>
+</div>
+<div id="turma-b-noturno---2023.3" class="section level4 unnumbered hasAnchor">
+<h4>Turma B noturno - 2023.3<a href="atividades.html#turma-b-noturno---2023.3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>Hipociclóide</strong>, por Humberto Turioni Marinho e Pedro Moreno Silva (<a href="https://humberto-marinho.github.io/Projeto1PedroHumberto/public/index">WebAssembly</a>, <a href="https://github.com/humberto-marinho/Projeto1PedroHumberto">GitHub</a>).</li>
+<li><strong>Campo Minado</strong>, por Bruno Borghese (<a href="https://brunoborghese.github.io/abcg/minefield/">WebAssembly</a>, <a href="https://github.com/brunoborghese/abcg">GitHub</a>).</li>
+<li><strong>Símbolo UFABC</strong>, por Bruno Valem Aranha (<a href="https://brunovaranha.github.io/UfabcOpenGL/">WebAssembly</a>, <a href="https://github.com/BrunoVAranha/UfabcOpenGL/tree/web">GitHub</a>).</li>
+<li><strong>Circle</strong>, por Caio Argentino de Oliveira (<a href="https://caioarg.github.io/cg/circle/">WebAssembly</a>, <a href="https://github.com/CaioArg/cg">GitHub</a>).</li>
+<li><strong>Protetor de tela</strong>, por Felipe Ponsano Franke e Beatriz de Castro Moreira Farkas (<a href="https://majrnyik.github.io/AtividadesCompGrafica/">WebAssembly</a>, <a href="https://github.com/majrnyik/AtividadesCompGrafica/tree/main">GitHub</a>).</li>
+<li><strong>Colorindo</strong>, por Fernando Schroder Rodrigues e Gabriel Yuto Munakata (<a href="https://gabrielyuto.github.io/computacao-grafica-atividade-1/atividade-1/index.html">WebAssembly</a>, <a href="https://github.com/gabrielyuto/computacao-grafica-atividade-1/tree/main">GitHub</a>).</li>
+<li><strong>Projeto de Computação Gráfica</strong>, por Gabriel de Sousa Dias (<a href="https://sdias22.github.io/CG_3Q23_Ativ1/">WebAssembly</a>, <a href="https://github.com/sdias22/CG_3Q23_Ativ1">GitHub</a>).</li>
+<li><strong>UFABC_RACING</strong>, por Giovana Silva Reis e Bruno Bertolini Rabello (<a href="https://giovana-s-reis.github.io/ATV1_CG/">WebAssembly</a>, <a href="https://github.com/Giovana-S-Reis/ATV1_CG.git">GitHub</a>).</li>
+<li><strong>Connect 4</strong>, por Guilherme Ferreira Galdino (<a href="https://guifg.github.io/abcg/connect4/">WebAssembly</a>, <a href="https://github.com/GuiFG/abcg">GitHub</a>).</li>
+<li><strong>Espiral</strong>, por João Augusto Zanardo de Lima e Guilherme Klinkerfuss Guimarães Pereira (<a href="https://jozanardo.github.io/Aplicacao-interativa-com-graficos-2D/">WebAssembly</a>, <a href="https://github.com/jozanardo/Aplicacao-interativa-com-graficos-2D">GitHub</a>).</li>
+<li><strong>Lousa Mágica</strong>, por Kevin Sakaguti Porto (<a href="https://kevin-sakaguti.github.io/UFABC-COMPGRA-2023/projeto1/">WebAssembly</a>, <a href="https://github.com/Kevin-Sakaguti/UFABC-COMPGRA-2023/tree/main">GitHub</a>).</li>
+<li><strong>Infinity Run</strong>, por Lucas Venancio de Almeida (<a href="https://lucasvalmeida.github.io/abcgatv1/">WebAssembly</a>, <a href="https://github.com/lucasvalmeida/abcgatv1">GitHub</a>).</li>
+<li><strong>Flappy Bird</strong>, por Lucas Ribeiro da Silva e Guilherme Melo Ramos Amaro (<a href="https://github.com/Lucas-R-Silva/abcg/tree/main/examples/flappybird">GitHub</a>).</li>
+<li><strong>Ping Pong</strong>, por Lucca Ianaguivara Kisanucki (<a href="https://luccaki.github.io/ping-pong/">WebAssembly</a>, <a href="https://github.com/luccaki/ping-pong">GitHub</a>).</li>
+<li><strong>DVD Animation</strong>, por Matheus Alexandre de Sena e Gabriel Fernandes (<a href="https://gfernandesdev.github.io/dvdanimation/dvdanimation">WebAssembly</a>, <a href="https://github.com/gfernandesdev/dvdanimation">GitHub</a>).</li>
+<li><strong>Atividade 1</strong>, por Rafael Hajime Mori (<a href="https://hajimemori.github.io/abcg/atividade1/">WebAssembly</a>, <a href="https://github.com/hajimemori/abcg/tree/main/examples/atividade1">GitHub</a>).</li>
+<li><strong>DVD Animation</strong>, por Rafael Riciardi Barreira (<a href="https://rafaelriciardi.github.io/abcg/">WebAssembly</a>, <a href="https://github.com/rafaelriciardi/abcg/tree/main/examples/project1">GitHub</a>).</li>
+<li><strong>Wizards Game</strong>, por Renato Nagassaki de Melo (<a href="https://github.com/rNeug/wizardgame">GitHub</a>).</li>
+<li><strong>Car</strong>, por Sonny Yassuaki Rodrigues Ganiko e Matheus Silverio Oliveira (<a href="https://github.com/OMath12/CG.2023.3">GitHub</a>).</li>
+<li><strong>Formas 2D</strong>, por Tiago Cornetta Campos e Fernando Gabriel Chacon Fernandes Teruel do Prado (<a href="https://cornettawebdesigner.github.io/Projeto1ComputacaoGrafica/">WebAssembly</a>, <a href="https://github.com/cornettawebdesigner/Projeto1ComputacaoGrafica">GitHub</a>).</li>
+<li><strong>pong_ufabc</strong>, por Victor Cristiano do Nascimento Silva e Daniel Espindola da Silva (<a href="https://viccns2021.github.io/pong_ufabc/">WebAssembly</a>, <a href="https://github.com/viccns2021/pong_ufabc">GitHub</a>).</li>
+<li><strong>Breakout</strong>, por Victor Hugo Zaninette Bernardino e Guilherme Cesario Scagnolato (<a href="https://victorhugozb.github.io/">WebAssembly</a>, <a href="https://github.com/VictorHugoZB/victorhugozb.github.io">GitHub</a>).</li>
+<li><strong>Chuva de Estrelas</strong>, por William Crispim da Silva (<a href="https://williamcrispim.github.io/abcg-atividades/chuvaEstrelas/">WebAssembly</a>, <a href="https://github.com/williamcrispim/abcg-atividades">GitHub</a>).</li>
+</ul>
+</div>
+</div>
+<div id="atividade-final" class="section level3 unnumbered hasAnchor">
+<h3>Atividade final<a href="atividades.html#atividade-final" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="section-8" class="section level4 unnumbered hasAnchor">
+<h4>2022.3<a href="atividades.html#section-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>Boid Simulator</strong>, por Gabriel Jorge Menezes e Rodrigo Cabrera Castaldoni (<a href="https://gab-menezes.github.io/abcg/public/boids.html">WebAssembly</a>, <a href="https://github.com/Gab-Menezes/abcg/tree/main/examples/boids">GitHub</a>).</li>
+<li><strong>BorgCube Game</strong>, por Aline Conquista de Almeida Ferreira e Lucca Segantim Jacomassi (<a href="https://lulcca.github.io/abcg/borgcube/">WebAssembly</a>, <a href="https://github.com/lulcca/abcg/tree/main/examples/borgcube">GitHub</a>).</li>
+<li><strong>Cidade - Vista Aérea</strong>, por Sérgio Maracajá Junior e Vinícius Lacerda Gonsalez (<a href="https://maracaja.github.io/AtividadeFinal/helloworld.html">WebAssembly</a>, <a href="https://github.com/maracaja/AtividadeFinal">GitHub</a>).</li>
+<li><strong>Cube</strong>, por Lucas Guimarães Miranda (<a href="https://lucasgm22.github.io/cg/cube/">WebAssembly</a>, <a href="https://github.com/Lucasgm22/abcg/tree/main/examples/cube">GitHub</a>).</li>
+<li><strong>Earth Visualization</strong>, por Heberton Miranda Rodrigues da Silva (<a href="https://hebertonmiranda.github.io/comp_graf/Atividade_4/public/">WebAssembly</a>, <a href="https://github.com/hebertonmiranda/comp_graf/tree/master/Atividade_4">GitHub</a>).</li>
+<li><strong>Galaxy Explorer</strong>, por Gustavo Gualberto Rocha de Lemos (<a href="https://grdelemos.github.io/atividade4/">WebAssembly</a>, <a href="https://github.com/grdelemos/atividade4">GitHub</a>).</li>
+<li><strong>Golf C++</strong>, por Jairo da Silva Freitas Júnior (<a href="https://jairojuunior.github.io/wordle_project_cpp/golf/">WebAssembly</a>, <a href="https://github.com/jairojuunior/wordle_project_cpp">GitHub</a>).</li>
+<li><strong>Roll The Ball 2</strong>, por Vitor Costa de Farias (<a href="https://vitorcostaf.github.io/CompGraf2022-3/rolltheball2/">WebAssembly</a>, <a href="https://github.com/VitorCostaF/CompGraf2022-3/tree/main/examples/rolltheball2">GitHub</a>).</li>
+<li><strong>RollerCoaster</strong>, por Diego Sousa Santos (<a href="https://diego-ss.github.io/cg-2022.3-UFABC/rollercoaster/">WebAssembly</a>, <a href="https://github.com/diego-ss/cg-2022.3-UFABC">GitHub</a>).</li>
+<li><strong>Simulação de Construção Aleatória de Terreno</strong>, por Henrique Augusto Santos Batista e Paulo Henrique Eiji Hayashida (<a href="https://paulo-hayashida.github.io/a4TexTerrain3D">WebAssembly</a>, <a href="https://github.com/HenriqueASB/abcg/tree/main/examples/atividade4">GitHub</a>).</li>
+<li><strong>Simulação de jogo de plataforma em primeira pessoa</strong>, por Daniel Fusimoto Pires (<a href="https://fusidaniel.github.io/CG-Atv4/public/full_window.html">WebAssembly</a>, <a href="https://github.com/FusiDaniel/CG-Atv4">GitHub</a>).</li>
+<li><strong>Sistema Solar</strong>, por Beatriz Favini Chicaroni e Thais Amorim Souza (<a href="https://bfchicaroni.github.io/cg_atividades/sistemaSolar_v2/">WebAssembly</a>, <a href="https://github.com/bfchicaroni/solarSystem">GitHub</a>).</li>
+<li><strong>Sistema Solar</strong>, por Kaio Vinicius Souza Santos e Mateus Flosi Molero (<a href="https://mateusflosi.github.io/cg-ufabc-2022.3/pages/SystemaSolar/">WebAssembly</a>, (<a href="https://github.com/mateusflosi/cg-ufabc-2022.3">GitHub</a>).</li>
+<li><strong>Sistema Solar</strong>, por Rafael Correia de Lima e Renan Gonçalves Miranda (<a href="https://cg-2022q3.github.io/abcg/projects/atividade04/">WebAssembly</a>, <a href="https://github.com/cg-2022q3/abcg/tree/main/examples/solarsystem2">GitHub</a>).</li>
+<li><strong>Solar System Final</strong>, por Thaina Abade Siemerink (<a href="https://thainasmk.github.io/CG-UFABC-abcg/solar_system_final/">WebAssembly</a>, <a href="https://github.com/ThainaSmk/CG-UFABC-abcg">GitHub</a>).</li>
+<li><strong>Storm Cube</strong>, por Lucas Zanoni de Oliveira (<a href="https://zzanoni.github.io/computacao_grafica/atividade4/abcg/public/index.html">WebAssembly</a>, <a href="https://github.com/Zzanoni/computacao_grafica/tree/main/atividade4/abcg">GitHub</a>).</li>
+<li><strong>Taz Maluco</strong>, por Henrique Augusto de Oliveira e Jefferson Leite Rodrigues Dantas (<a href="https://hadeoliveira.github.io/Projeto4ABCG/">WebAssembly</a>, <a href="https://github.com/JeffersonRodrigues7/TazMaluco">GitHub</a>).</li>
+</ul>
+</div>
+<div id="section-9" class="section level4 unnumbered hasAnchor">
+<h4>2021.3<a href="atividades.html#section-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>ABC Wave</strong> (<a href="https://pi-etro.github.io/abc-wave/">WebAssembly</a>, <a href="https://github.com/pi-etro/abc-wave">GitHub</a>)</li>
+<li><strong>Avoid Asteroids</strong> (<a href="https://guiarqueiro.github.io/entrega3/public/index.html">WebAssembly</a>, <a href="https://github.com/guiarqueiro/entrega3">GitHub</a>)</li>
+<li><strong>Baleia!!</strong> (<a href="https://tamaracsantos.github.io/abcg-main/">WebAssembly</a>, <a href="https://github.com/tamaracsantos/abcg-main/tree/main/examples/whale">GitHub</a>)</li>
+<li><strong>Bouncing Ball</strong> (<a href="https://giancarlo-kami.github.io/abcg/bouncingball/">WebAssembly</a>, <a href="https://github.com/Giancarlo-Kami/abcg/tree/atv3">GitHub</a>)</li>
+<li><strong>Crab World</strong> (<a href="https://sergioppires.github.io/comp-graph-ufabc/apps/crab_world/">WebAssembly</a>, <a href="https://github.com/sergioppires/comp-graph-ufabc">GitHub</a>)</li>
+<li><strong>Dice 3D 2.0</strong> (<a href="https://hebercamacho.github.io/dicetrack-3D/dicetrack">WebAssembly</a>, <a href="https://github.com/hebercamacho/dicetrack-3D">GitHub</a>)</li>
+<li><strong>Dino Wants Money</strong> (<a href="https://juniormaniusis.github.io/dino_wants_money-cg3/public/">WebAssembly</a>, <a href="https://github.com/juniormaniusis/dino_wants_money-cg3/">GitHub</a>)</li>
+<li><strong>Earth</strong> (<a href="https://kleversonnascimento.github.io/abcg/earth/">WebAssembly</a>, <a href="https://github.com/KleversonNascimento/abcg/tree/main/examples/earth">GitHub</a>)</li>
+<li><strong>Earth and Moon</strong> (<a href="https://bruishida.github.io/abcg/earthandmoon/">WebAssembly</a>, <a href="https://github.com/bruishida/abcg/tree/main/examples/earthandmoon">GitHub</a>)</li>
+<li><strong>Futebol_v2</strong> (<a href="https://drive.google.com/file/d/18FlVa4BkS9JRkGb1ziTVQhdB-0wpKcbS/view?usp=sharing">Vídeo</a>, <a href="https://github.com/jacquelinemarinho/abcg">GitHub</a>)</li>
+<li><strong>Jumping Block V2</strong> (<a href="https://edumacsou.github.io/abcg/public/lookat.html">WebAssembly</a>, <a href="https://github.com/edumacsou/abcg/tree/Entrega-3">GitHub</a>)</li>
+<li><strong>Labirinto 3D</strong> (<a href="https://vinszrt.github.io/miniature-palm-tree/public/">WebAssembly</a>, <a href="https://github.com/vinszrt/miniature-palm-tree">GitHub</a>)</li>
+<li><strong>OpenGL Lo-Fi</strong> (<a href="https://lufelipe111.github.io/openGL-lofi/">WebAssembly</a>, <a href="https://github.com/lufelipe111/openGL-lofi">GitHub</a>)</li>
+<li><strong>Pines</strong> (<a href="https://tamirislira.github.io/abcg/pines2/index.html">WebAssembly</a>, <a href="https://github.com/tamirislira/abcg/tree/main/examples/pines2">GitHub</a>)</li>
+<li><strong>Sem título</strong> (<a href="https://github.com/Alexsandr0x/com_graf_abcg">GitHub</a>)</li>
+<li><strong>Solar System</strong> (<a href="https://lucasslimam.github.io/abcg/">WebAssembly</a>, <a href="https://github.com/Lucasslimam/abcg">GitHub</a>)</li>
+</ul>
+</div>
+<div id="section-10" class="section level4 unnumbered hasAnchor">
+<h4>2021.1<a href="atividades.html#section-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>AMOGUS_Selector</strong> (<a href="https://niltongmjunior.github.io/amogus/amogus.html">WebAssembly</a>, <a href="https://github.com/NiltonGMJunior/abcg/">GitHub</a>)</li>
+<li><strong>Animal’s House - Primeiros passos da língua inglesa</strong> (<a href="https://marcosvmm.github.io/abcg/animalshouse/">WebAssembly</a>, <a href="https://github.com/MarcosVMM/abcg">GitHub</a>)</li>
+<li><strong>Ball around a wolf</strong> (<a href="https://feosilva.github.io/computacao-grafica-atividade-3/public/atividade3.html">WebAssembly</a>, <a href="https://github.com/FeoSilva/computacao-grafica-atividade-3">GitHub</a>)</li>
+<li><strong>Block Tube V2</strong> (<a href="https://danieldigenova.github.io/blocktubev2/">WebAssembly</a>, <a href="https://github.com/danieldigenova/abcg/tree/main/examples/blocktubeV2">GitHub</a>)</li>
+<li><strong>Boneco de Gelo e Fogo</strong> (<a href="https://youtu.be/hiwl6sOdm-k">Vídeo</a>, <a href="https://github.com/matheusbaio95/abcg/tree/main/examples/Entrega3">GitHub</a>)</li>
+<li><strong>Boids 3D</strong> (<a href="https://patrick-oliveira.github.io/abcg/boids3d/">WebAssembly</a>, <a href="https://github.com/patrick-oliveira/abcg">GitHub</a>)</li>
+<li><strong>Bunnies</strong> (<a href="https://maru-0.github.io/Lots-of-shiny-bunnies/public">WebAssembly</a>, <a href="https://github.com/maru-0/Lots-of-shiny-bunnies">GitHub</a>)</li>
+<li><strong>Campo de futebol</strong> (<a href="https://gabrielthewalrus.github.io/CAMPODEFUTEBOL/index.html">WebAssembly</a>, <a href="https://github.com/GabrielTheWalrus/CG-2021">GitHub</a>)</li>
+<li><strong>Cube place</strong> (<a href="https://morenoyuri.github.io/">WebAssembly</a>, <a href="https://github.com/morenoyuri/abcg/">GitHub</a>)</li>
+<li><strong>Dark Maze</strong> (<a href="https://github.com/PauloRodriguesJr/abcg/tree/main/examples/v-darkmaze">GitHub</a>)</li>
+<li><strong>Deformador de objetos</strong> (<a href="https://fabioluisaf.github.io/deformador/">WebAssembly</a>, <a href="https://github.com/fabioluisaf/deformador">GitHub</a>)</li>
+<li><strong>Dragão Midas</strong> (<a href="https://vitorbonelli.github.io/comp_grafica_projeto_final/midas/">WebAssembly</a>, <a href="https://github.com/vitorbonelli/comp_grafica_projeto_final">GitHub</a>)</li>
+<li><strong>Ducket League</strong> (<a href="https://chokitus.github.io/abcg/ducketleague/index.html">WebAssembly</a>, <a href="https://github.com/Chokitus/abcg">GitHub</a>)</li>
+<li><strong>Endless Runner</strong> (<a href="https://drive.google.com/file/d/1cFJ6snGokIqa4fDut6hmCjEHcuxxul2Z/view?usp=sharing">Vídeo</a>, <a href="https://github.com/GuDuarte/CG-Proj3">GitHub</a>)</li>
+<li><strong>Estátua do vigésimo presidente americano James Garfield</strong> (<a href="https://bluheart.github.io/abcg/atividade3_web/">WebAssembly</a>, <a href="https://github.com/bluheart/abcg/tree/main/examples/atividade3">GitHub</a>)</li>
+<li><strong>Floresta 3D</strong> (<a href="https://danilobrands.github.io/abcg/public/">WebAssembly</a>, <a href="https://github.com/danilobrands/abcg/tree/gh-pages/examples/ProjetoFinal_v2">GitHub</a>)</li>
+<li><strong>Fruits!</strong> (<a href="https://lima-renan.github.io/abcg/fruits/">WebAssembly</a>, <a href="https://lima-renan.github.io/abcg/">GitHub</a>)</li>
+<li><strong>Haunted Maze 3D</strong> (<a href="https://igornerest.github.io/abcg/public/maze3d/">WebAssembly</a>, <a href="https://github.com/igornerest/abcg">GitHub</a>)</li>
+<li><strong>Karambit Viewer</strong> (<a href="https://igormeirelles.github.io/karambit/">WebAssembly</a>, <a href="https://github.com/igormeirelles/karambit">GitHub</a>)</li>
+<li><strong>Lookat - Tea Party!</strong> (<a href="https://marianagregorio.github.io/abcg/">WebAssembly</a>, <a href="https://github.com/marianagregorio/abcg">GitHub</a>)</li>
+<li><strong>Maze</strong> (<a href="https://isaiasalves.github.io/CG-ATV3/public/">WebAssembly</a>, <a href="https://github.com/isaiasalves/CG-ATV3">GitHub</a>)</li>
+<li><strong>Mini Earth</strong> (<a href="https://fiali1.github.io/cg_entrega3/miniEarth/">WebAssembly</a>, <a href="https://github.com/fiali1/cg_entrega3">GitHub</a>)</li>
+<li><strong>Mirror</strong> (<a href="https://sjneves.github.io/MirrorOpenGL/public/">WebAssembly</a>, <a href="https://github.com/sjneves/MirrorOpenGL">GitHub</a>)</li>
+<li><strong>OpenCraft</strong> (<a href="https://wxnn08.github.io/OpenCraft/live-demo/">WebAssembly</a>, <a href="https://github.com/wxnn08/OpenCraft">GitHub</a>)</li>
+<li><strong>Os patos</strong> (<a href="https://github.com/LarissaCatharine/Os-patos">GitHub</a>)</li>
+<li><strong>Planet Tour</strong> (<a href="https://o-eduardo.github.io/abcg/planettour/">WebAssembly</a>, <a href="https://github.com/o-eduardo/abcg/tree/main/examples/planettour">GitHub</a>)</li>
+<li><strong>Renderização 3D de um labirinto</strong> (<a href="https://lucaspinheirodefreitas.github.io/abcg/maze-1.0.0/index.html">WebAssembly</a>, <a href="https://github.com/lucaspinheirodefreitas/abcg/tree/desenvolvimento">GitHub</a>)</li>
+<li><strong>RUN! from UFABC</strong> (<a href="https://erickfunier.github.io/ComputerGraphics/ABCg/run-ufabc/index.html">WebAssembly</a>, <a href="https://github.com/erickfunier/abcg/tree/Atividade-3">GitHub</a>)</li>
+<li><strong>Scape Room</strong> (<a href="https://github.com/dimas-castro/CG-Project/tree/main/examples/scaperoom">GitHub</a>)</li>
+<li><strong>Screensaver: Deathstar</strong> (<a href="https://emerson-matos.github.io/projeto3.html">WebAssembly</a>, <a href="https://github.com/arthurhf/abcg/tree/main/examples/deathstar">GitHub</a>)</li>
+<li><strong>Simulação de avião</strong> (<a href="https://martinezguilherme.github.io/computacao_grafica_atividade_3">WebAssembly</a>, <a href="https://github.com/martinezguilherme/computacao_grafica_atividade_3">GitHub</a>)</li>
+<li><strong>Sistema Solar</strong> (<a href="https://eduardameirinhos.github.io/play-solar-system/solar-system/">WebAssembly</a>, <a href="https://github.com/EduardaMeirinhos/abcg/tree/main/examples/solarsystem">GitHub</a>)</li>
+<li><strong>Skull Screensaver 2</strong> (<a href="https://richardiago.github.io/abcg/screensaver2/">WebAssembly</a>, <a href="https://github.com/richardiago/abcg/tree/main/examples/screensaver2">GitHub</a>)</li>
+<li><strong>spaceTrip</strong> (<a href="https://luc4t0n1.github.io/spaceTrip.html">WebAssembly</a>, <a href="https://github.com/LUC4T0N1/spaceTrip">GitHub</a>)</li>
+<li><strong>The Tree Log Challenge</strong> (<a href="https://www.youtube.com/watch?v=wkYMRViWfk0">Vídeo</a>, <a href="https://github.com/kaiqueiwata/Atividade3">GitHub</a>)</li>
+<li><strong>Three Bodies Viewer v2</strong> (<a href="https://lucas-muniz.github.io/ComputacaoGrafica-abcgapps/threebodiesv2/">WebAssembly</a>, <a href="https://github.com/Lucas-Muniz/ComputacaoGrafica-atividades/tree/main/Atividade1">GitHub</a>)</li>
+<li><strong>Tour na neve</strong> (<a href="https://denisyudi.github.io/abcg/snow">WebAssembly</a>, <a href="https://github.com/denisyudi/abcg/tree/main/examples/snow">GitHub</a>)</li>
+<li><strong>Trenó SP</strong> (<a href="https://nanomugen.github.io/trenosp/">WebAssembly</a>, <a href="https://github.com/nanomugen/trenosp">GitHub</a>)</li>
+<li><strong>Uma sala 3D repleta de cubos com diversas texturas</strong> (<a href="https://www.youtube.com/watch?v=CCF2DYq4Da0">Vídeo</a>, <a href="https://github.com/vanessaarseli/atividade3">GitHub</a>)</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="objmodel.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toc_float": true,
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

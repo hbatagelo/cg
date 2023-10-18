@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.4 Framebuffer | MCTA008-17 Computação Gráfica</title>
+  <title>Atividade final | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.4 Framebuffer | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="Atividade final | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.4 Framebuffer | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="Atividade final | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="es.html"/>
-<link rel="next" href="sierpinski.html"/>
+<link rel="prev" href="atividade-1.html"/>
+<link rel="next" href="referências.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -319,8 +319,17 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html"><i class="fa fa-check"></i>Atividades</a>
 <ul>
-<li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html#atividade-1-aplicação-interativa-com-gráficos-2d"><i class="fa fa-check"></i>Atividade 1 (Aplicação interativa com gráficos 2D)</a></li>
-<li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html#atividade-final"><i class="fa fa-check"></i>Atividade final</a></li>
+<li class="chapter" data-level="" data-path="atividade-1.html"><a href="atividade-1.html"><i class="fa fa-check"></i>Atividade 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="atividade-1.html"><a href="atividade-1.html#turma-a-noturno-2023.3"><i class="fa fa-check"></i>Turma A noturno (2023.3)</a></li>
+<li class="chapter" data-level="" data-path="atividade-1.html"><a href="atividade-1.html#turma-b-noturno-2023.3"><i class="fa fa-check"></i>Turma B noturno (2023.3)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="atividade-final.html"><a href="atividade-final.html"><i class="fa fa-check"></i>Atividade final</a>
+<ul>
+<li class="chapter" data-level="" data-path="atividade-final.html"><a href="atividade-final.html#section-8"><i class="fa fa-check"></i>2022.3</a></li>
+<li class="chapter" data-level="" data-path="atividade-final.html"><a href="atividade-final.html#section-9"><i class="fa fa-check"></i>2021.3</a></li>
+<li class="chapter" data-level="" data-path="atividade-final.html"><a href="atividade-final.html#section-10"><i class="fa fa-check"></i>2021.1</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
@@ -346,60 +355,105 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="framebuffer" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Framebuffer<a href="framebuffer.html#framebuffer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O framebuffer é uma área contígua de memória de vídeo utilizada para armazenar a imagem que será mostrada no dispositivo de exibição. O hardware gráfico lê continuamente o conteúdo do framebuffer e atualiza o dispositivo de exibição, tipicamente a uma taxa entre 60 e 240 Hz nos monitores de LCD.</p>
-<p>Nos primeiros PCs e em sistemas gráficos mais antigos, o framebuffer fazia parte da memória do sistema que poderia ser acessada diretamente pela CPU. Nos PCs do início da década de 1990, o framebuffer podia ser acessado com um simples ponteiro para o endereço <code>0xA000</code> no chamado <a href="https://en.wikipedia.org/wiki/Mode_13h">“modo 13h”</a> do controlador VGA (um modo gráfico de cores indexadas de 8 bits com resolução de 320x200). Atualmente, o framebuffer é acessado através da GPU e, em GPUs dedicadas, está localizado na memória RAM da placa gráfica.</p>
-<p>Em hardware compatível com OpenGL (o que inclui todas as GPUs atuais), o framebuffer pode ser composto por diversos buffers. Pelo menos um deles é um <em>color buffer</em> (buffer de cor) no qual cada pixel contém uma informação de cor, geralmente no formato RGB (24 bits) ou RGBA (32 bits).</p>
-<p>Um framebuffer pode ter vários buffers de cor associados. Por exemplo, em implementações que suportam visão estereoscópica, podemos ter um buffer de cor para a tela da visão esquerda e outro para a tela da visão direita. Na técnica de <em>double buffering</em> (descrita no fim da seção), são utilizados dois buffers de cor: o <em>backbuffer</em>, que é um buffer <em>off-screen</em> no qual a imagem é renderizada antes de ser exibida na tela, e o <em>frontbuffer</em>, que recebe o conteúdo do backbuffer ao fim da renderização para exibição na tela. Em renderização estéreo, cada lado esquerdo e direito pode ter o seu backbuffer e frontbuffer (ou outros buffers mais). Cada buffer de cor do framebuffer também pode ser associado a:</p>
+<div id="atividade-final" class="section level2 unnumbered hasAnchor">
+<h2>Atividade final<a href="atividade-final.html#atividade-final" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="section-8" class="section level3 unnumbered hasAnchor">
+<h3>2022.3<a href="atividade-final.html#section-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Um <em>depth buffer</em> (buffer de profundidade), no qual cada pixel contém uma informação de profundidade utilizada no <a href="https://www.khronos.org/opengl/wiki/Depth_Test"><em>teste de profundidade</em></a>. O teste de profundidade faz parte da implementação da técnica de Z-buffering de determinação de superfícies visíveis. A informação de profundidade pode ser um inteiro ou ponto flutuante de 16, 24 ou 32 bits (geralmente 24 bits).</li>
-<li>Um <em>stencil buffer</em> (buffer de estêncil), utilizado no <a href="https://www.khronos.org/opengl/wiki/Stencil_Test"><em>teste de estêncil</em></a> para operações de mascaramento e composição de imagens. No buffer estêncil, cada pixel contém um inteiro sem sinal, de 1, 4, 8 ou 16 bits (geralmente 8 bits).</li>
+<li><strong>Boid Simulator</strong>, por Gabriel Jorge Menezes e Rodrigo Cabrera Castaldoni (<a href="https://gab-menezes.github.io/abcg/public/boids.html">WebAssembly</a>, <a href="https://github.com/Gab-Menezes/abcg/tree/main/examples/boids">GitHub</a>).</li>
+<li><strong>BorgCube Game</strong>, por Aline Conquista de Almeida Ferreira e Lucca Segantim Jacomassi (<a href="https://lulcca.github.io/abcg/borgcube/">WebAssembly</a>, <a href="https://github.com/lulcca/abcg/tree/main/examples/borgcube">GitHub</a>).</li>
+<li><strong>Cidade - Vista Aérea</strong>, por Sérgio Maracajá Junior e Vinícius Lacerda Gonsalez (<a href="https://maracaja.github.io/AtividadeFinal/helloworld.html">WebAssembly</a>, <a href="https://github.com/maracaja/AtividadeFinal">GitHub</a>).</li>
+<li><strong>Cube</strong>, por Lucas Guimarães Miranda (<a href="https://lucasgm22.github.io/cg/cube/">WebAssembly</a>, <a href="https://github.com/Lucasgm22/abcg/tree/main/examples/cube">GitHub</a>).</li>
+<li><strong>Earth Visualization</strong>, por Heberton Miranda Rodrigues da Silva (<a href="https://hebertonmiranda.github.io/comp_graf/Atividade_4/public/">WebAssembly</a>, <a href="https://github.com/hebertonmiranda/comp_graf/tree/master/Atividade_4">GitHub</a>).</li>
+<li><strong>Galaxy Explorer</strong>, por Gustavo Gualberto Rocha de Lemos (<a href="https://grdelemos.github.io/atividade4/">WebAssembly</a>, <a href="https://github.com/grdelemos/atividade4">GitHub</a>).</li>
+<li><strong>Golf C++</strong>, por Jairo da Silva Freitas Júnior (<a href="https://jairojuunior.github.io/wordle_project_cpp/golf/">WebAssembly</a>, <a href="https://github.com/jairojuunior/wordle_project_cpp">GitHub</a>).</li>
+<li><strong>Roll The Ball 2</strong>, por Vitor Costa de Farias (<a href="https://vitorcostaf.github.io/CompGraf2022-3/rolltheball2/">WebAssembly</a>, <a href="https://github.com/VitorCostaF/CompGraf2022-3/tree/main/examples/rolltheball2">GitHub</a>).</li>
+<li><strong>RollerCoaster</strong>, por Diego Sousa Santos (<a href="https://diego-ss.github.io/cg-2022.3-UFABC/rollercoaster/">WebAssembly</a>, <a href="https://github.com/diego-ss/cg-2022.3-UFABC">GitHub</a>).</li>
+<li><strong>Simulação de Construção Aleatória de Terreno</strong>, por Henrique Augusto Santos Batista e Paulo Henrique Eiji Hayashida (<a href="https://paulo-hayashida.github.io/a4TexTerrain3D">WebAssembly</a>, <a href="https://github.com/HenriqueASB/abcg/tree/main/examples/atividade4">GitHub</a>).</li>
+<li><strong>Simulação de jogo de plataforma em primeira pessoa</strong>, por Daniel Fusimoto Pires (<a href="https://fusidaniel.github.io/CG-Atv4/public/full_window.html">WebAssembly</a>, <a href="https://github.com/FusiDaniel/CG-Atv4">GitHub</a>).</li>
+<li><strong>Sistema Solar</strong>, por Beatriz Favini Chicaroni e Thais Amorim Souza (<a href="https://bfchicaroni.github.io/cg_atividades/sistemaSolar_v2/">WebAssembly</a>, <a href="https://github.com/bfchicaroni/solarSystem">GitHub</a>).</li>
+<li><strong>Sistema Solar</strong>, por Kaio Vinicius Souza Santos e Mateus Flosi Molero (<a href="https://mateusflosi.github.io/cg-ufabc-2022.3/pages/SystemaSolar/">WebAssembly</a>, (<a href="https://github.com/mateusflosi/cg-ufabc-2022.3">GitHub</a>).</li>
+<li><strong>Sistema Solar</strong>, por Rafael Correia de Lima e Renan Gonçalves Miranda (<a href="https://cg-2022q3.github.io/abcg/projects/atividade04/">WebAssembly</a>, <a href="https://github.com/cg-2022q3/abcg/tree/main/examples/solarsystem2">GitHub</a>).</li>
+<li><strong>Solar System Final</strong>, por Thaina Abade Siemerink (<a href="https://thainasmk.github.io/CG-UFABC-abcg/solar_system_final/">WebAssembly</a>, <a href="https://github.com/ThainaSmk/CG-UFABC-abcg">GitHub</a>).</li>
+<li><strong>Storm Cube</strong>, por Lucas Zanoni de Oliveira (<a href="https://zzanoni.github.io/computacao_grafica/atividade4/abcg/public/index.html">WebAssembly</a>, <a href="https://github.com/Zzanoni/computacao_grafica/tree/main/atividade4/abcg">GitHub</a>).</li>
+<li><strong>Taz Maluco</strong>, por Henrique Augusto de Oliveira e Jefferson Leite Rodrigues Dantas (<a href="https://hadeoliveira.github.io/Projeto4ABCG/">WebAssembly</a>, <a href="https://github.com/JeffersonRodrigues7/TazMaluco">GitHub</a>).</li>
 </ul>
-<div id="screen-tearing" class="section level3 unnumbered hasAnchor">
-<h3>Screen tearing<a href="framebuffer.html#screen-tearing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A taxa de atualização do dispositivo de exibição (chamada de <em>vertical refresh rate</em>) é controlada pelo hardware gráfico. Entretanto, a taxa em que a GPU atualiza o framebuffer pode ser bem maior que a taxa de atualização do dispositivo. Essa taxa é o número de quadros por segundo (FPS) que o processador gráfico é capaz de renderizar. Se o framebuffer for atualizado muito rapidamente, o hardware gráfico pode começar a atualizar o dispositivo de exibição com o conteúdo de um quadro de exibição e terminar com o conteúdo de outro, mais recente. Essa quebra entre os quadros de exibição gera um defeito na imagem conhecido como <em>screen tearing</em>, ou simplesmente <em>tearing</em> (figura <a href="framebuffer.html#fig:screentearing">3.39</a>).</p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:screentearing"></span>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Tearing_%28simulated%29.jpg/797px-Tearing_%28simulated%29.jpg" alt="Screen tearing. ([fonte](https://commons.wikimedia.org/wiki/File:Tearing_(simulated).jpg))." width="100%" />
-<p class="caption">
-Figura 3.39: Screen tearing. (<a href="https://commons.wikimedia.org/wiki/File:Tearing_(simulated).jpg">fonte</a>).
-</p>
+</div>
+<div id="section-9" class="section level3 unnumbered hasAnchor">
+<h3>2021.3<a href="atividade-final.html#section-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>ABC Wave</strong> (<a href="https://pi-etro.github.io/abc-wave/">WebAssembly</a>, <a href="https://github.com/pi-etro/abc-wave">GitHub</a>)</li>
+<li><strong>Avoid Asteroids</strong> (<a href="https://guiarqueiro.github.io/entrega3/public/index.html">WebAssembly</a>, <a href="https://github.com/guiarqueiro/entrega3">GitHub</a>)</li>
+<li><strong>Baleia!!</strong> (<a href="https://tamaracsantos.github.io/abcg-main/">WebAssembly</a>, <a href="https://github.com/tamaracsantos/abcg-main/tree/main/examples/whale">GitHub</a>)</li>
+<li><strong>Bouncing Ball</strong> (<a href="https://giancarlo-kami.github.io/abcg/bouncingball/">WebAssembly</a>, <a href="https://github.com/Giancarlo-Kami/abcg/tree/atv3">GitHub</a>)</li>
+<li><strong>Crab World</strong> (<a href="https://sergioppires.github.io/comp-graph-ufabc/apps/crab_world/">WebAssembly</a>, <a href="https://github.com/sergioppires/comp-graph-ufabc">GitHub</a>)</li>
+<li><strong>Dice 3D 2.0</strong> (<a href="https://hebercamacho.github.io/dicetrack-3D/dicetrack">WebAssembly</a>, <a href="https://github.com/hebercamacho/dicetrack-3D">GitHub</a>)</li>
+<li><strong>Dino Wants Money</strong> (<a href="https://juniormaniusis.github.io/dino_wants_money-cg3/public/">WebAssembly</a>, <a href="https://github.com/juniormaniusis/dino_wants_money-cg3/">GitHub</a>)</li>
+<li><strong>Earth</strong> (<a href="https://kleversonnascimento.github.io/abcg/earth/">WebAssembly</a>, <a href="https://github.com/KleversonNascimento/abcg/tree/main/examples/earth">GitHub</a>)</li>
+<li><strong>Earth and Moon</strong> (<a href="https://bruishida.github.io/abcg/earthandmoon/">WebAssembly</a>, <a href="https://github.com/bruishida/abcg/tree/main/examples/earthandmoon">GitHub</a>)</li>
+<li><strong>Futebol_v2</strong> (<a href="https://drive.google.com/file/d/18FlVa4BkS9JRkGb1ziTVQhdB-0wpKcbS/view?usp=sharing">Vídeo</a>, <a href="https://github.com/jacquelinemarinho/abcg">GitHub</a>)</li>
+<li><strong>Jumping Block V2</strong> (<a href="https://edumacsou.github.io/abcg/public/lookat.html">WebAssembly</a>, <a href="https://github.com/edumacsou/abcg/tree/Entrega-3">GitHub</a>)</li>
+<li><strong>Labirinto 3D</strong> (<a href="https://vinszrt.github.io/miniature-palm-tree/public/">WebAssembly</a>, <a href="https://github.com/vinszrt/miniature-palm-tree">GitHub</a>)</li>
+<li><strong>OpenGL Lo-Fi</strong> (<a href="https://lufelipe111.github.io/openGL-lofi/">WebAssembly</a>, <a href="https://github.com/lufelipe111/openGL-lofi">GitHub</a>)</li>
+<li><strong>Pines</strong> (<a href="https://tamirislira.github.io/abcg/pines2/index.html">WebAssembly</a>, <a href="https://github.com/tamirislira/abcg/tree/main/examples/pines2">GitHub</a>)</li>
+<li><strong>Sem título</strong> (<a href="https://github.com/Alexsandr0x/com_graf_abcg">GitHub</a>)</li>
+<li><strong>Solar System</strong> (<a href="https://lucasslimam.github.io/abcg/">WebAssembly</a>, <a href="https://github.com/Lucasslimam/abcg">GitHub</a>)</li>
+</ul>
+</div>
+<div id="section-10" class="section level3 unnumbered hasAnchor">
+<h3>2021.1<a href="atividade-final.html#section-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>AMOGUS_Selector</strong> (<a href="https://niltongmjunior.github.io/amogus/amogus.html">WebAssembly</a>, <a href="https://github.com/NiltonGMJunior/abcg/">GitHub</a>)</li>
+<li><strong>Animal’s House - Primeiros passos da língua inglesa</strong> (<a href="https://marcosvmm.github.io/abcg/animalshouse/">WebAssembly</a>, <a href="https://github.com/MarcosVMM/abcg">GitHub</a>)</li>
+<li><strong>Ball around a wolf</strong> (<a href="https://feosilva.github.io/computacao-grafica-atividade-3/public/atividade3.html">WebAssembly</a>, <a href="https://github.com/FeoSilva/computacao-grafica-atividade-3">GitHub</a>)</li>
+<li><strong>Block Tube V2</strong> (<a href="https://danieldigenova.github.io/blocktubev2/">WebAssembly</a>, <a href="https://github.com/danieldigenova/abcg/tree/main/examples/blocktubeV2">GitHub</a>)</li>
+<li><strong>Boneco de Gelo e Fogo</strong> (<a href="https://youtu.be/hiwl6sOdm-k">Vídeo</a>, <a href="https://github.com/matheusbaio95/abcg/tree/main/examples/Entrega3">GitHub</a>)</li>
+<li><strong>Boids 3D</strong> (<a href="https://patrick-oliveira.github.io/abcg/boids3d/">WebAssembly</a>, <a href="https://github.com/patrick-oliveira/abcg">GitHub</a>)</li>
+<li><strong>Bunnies</strong> (<a href="https://maru-0.github.io/Lots-of-shiny-bunnies/public">WebAssembly</a>, <a href="https://github.com/maru-0/Lots-of-shiny-bunnies">GitHub</a>)</li>
+<li><strong>Campo de futebol</strong> (<a href="https://gabrielthewalrus.github.io/CAMPODEFUTEBOL/index.html">WebAssembly</a>, <a href="https://github.com/GabrielTheWalrus/CG-2021">GitHub</a>)</li>
+<li><strong>Cube place</strong> (<a href="https://morenoyuri.github.io/">WebAssembly</a>, <a href="https://github.com/morenoyuri/abcg/">GitHub</a>)</li>
+<li><strong>Dark Maze</strong> (<a href="https://github.com/PauloRodriguesJr/abcg/tree/main/examples/v-darkmaze">GitHub</a>)</li>
+<li><strong>Deformador de objetos</strong> (<a href="https://fabioluisaf.github.io/deformador/">WebAssembly</a>, <a href="https://github.com/fabioluisaf/deformador">GitHub</a>)</li>
+<li><strong>Dragão Midas</strong> (<a href="https://vitorbonelli.github.io/comp_grafica_projeto_final/midas/">WebAssembly</a>, <a href="https://github.com/vitorbonelli/comp_grafica_projeto_final">GitHub</a>)</li>
+<li><strong>Ducket League</strong> (<a href="https://chokitus.github.io/abcg/ducketleague/index.html">WebAssembly</a>, <a href="https://github.com/Chokitus/abcg">GitHub</a>)</li>
+<li><strong>Endless Runner</strong> (<a href="https://drive.google.com/file/d/1cFJ6snGokIqa4fDut6hmCjEHcuxxul2Z/view?usp=sharing">Vídeo</a>, <a href="https://github.com/GuDuarte/CG-Proj3">GitHub</a>)</li>
+<li><strong>Estátua do vigésimo presidente americano James Garfield</strong> (<a href="https://bluheart.github.io/abcg/atividade3_web/">WebAssembly</a>, <a href="https://github.com/bluheart/abcg/tree/main/examples/atividade3">GitHub</a>)</li>
+<li><strong>Floresta 3D</strong> (<a href="https://danilobrands.github.io/abcg/public/">WebAssembly</a>, <a href="https://github.com/danilobrands/abcg/tree/gh-pages/examples/ProjetoFinal_v2">GitHub</a>)</li>
+<li><strong>Fruits!</strong> (<a href="https://lima-renan.github.io/abcg/fruits/">WebAssembly</a>, <a href="https://lima-renan.github.io/abcg/">GitHub</a>)</li>
+<li><strong>Haunted Maze 3D</strong> (<a href="https://igornerest.github.io/abcg/public/maze3d/">WebAssembly</a>, <a href="https://github.com/igornerest/abcg">GitHub</a>)</li>
+<li><strong>Karambit Viewer</strong> (<a href="https://igormeirelles.github.io/karambit/">WebAssembly</a>, <a href="https://github.com/igormeirelles/karambit">GitHub</a>)</li>
+<li><strong>Lookat - Tea Party!</strong> (<a href="https://marianagregorio.github.io/abcg/">WebAssembly</a>, <a href="https://github.com/marianagregorio/abcg">GitHub</a>)</li>
+<li><strong>Maze</strong> (<a href="https://isaiasalves.github.io/CG-ATV3/public/">WebAssembly</a>, <a href="https://github.com/isaiasalves/CG-ATV3">GitHub</a>)</li>
+<li><strong>Mini Earth</strong> (<a href="https://fiali1.github.io/cg_entrega3/miniEarth/">WebAssembly</a>, <a href="https://github.com/fiali1/cg_entrega3">GitHub</a>)</li>
+<li><strong>Mirror</strong> (<a href="https://sjneves.github.io/MirrorOpenGL/public/">WebAssembly</a>, <a href="https://github.com/sjneves/MirrorOpenGL">GitHub</a>)</li>
+<li><strong>OpenCraft</strong> (<a href="https://wxnn08.github.io/OpenCraft/live-demo/">WebAssembly</a>, <a href="https://github.com/wxnn08/OpenCraft">GitHub</a>)</li>
+<li><strong>Os patos</strong> (<a href="https://github.com/LarissaCatharine/Os-patos">GitHub</a>)</li>
+<li><strong>Planet Tour</strong> (<a href="https://o-eduardo.github.io/abcg/planettour/">WebAssembly</a>, <a href="https://github.com/o-eduardo/abcg/tree/main/examples/planettour">GitHub</a>)</li>
+<li><strong>Renderização 3D de um labirinto</strong> (<a href="https://lucaspinheirodefreitas.github.io/abcg/maze-1.0.0/index.html">WebAssembly</a>, <a href="https://github.com/lucaspinheirodefreitas/abcg/tree/desenvolvimento">GitHub</a>)</li>
+<li><strong>RUN! from UFABC</strong> (<a href="https://erickfunier.github.io/ComputerGraphics/ABCg/run-ufabc/index.html">WebAssembly</a>, <a href="https://github.com/erickfunier/abcg/tree/Atividade-3">GitHub</a>)</li>
+<li><strong>Scape Room</strong> (<a href="https://github.com/dimas-castro/CG-Project/tree/main/examples/scaperoom">GitHub</a>)</li>
+<li><strong>Screensaver: Deathstar</strong> (<a href="https://emerson-matos.github.io/projeto3.html">WebAssembly</a>, <a href="https://github.com/arthurhf/abcg/tree/main/examples/deathstar">GitHub</a>)</li>
+<li><strong>Simulação de avião</strong> (<a href="https://martinezguilherme.github.io/computacao_grafica_atividade_3">WebAssembly</a>, <a href="https://github.com/martinezguilherme/computacao_grafica_atividade_3">GitHub</a>)</li>
+<li><strong>Sistema Solar</strong> (<a href="https://eduardameirinhos.github.io/play-solar-system/solar-system/">WebAssembly</a>, <a href="https://github.com/EduardaMeirinhos/abcg/tree/main/examples/solarsystem">GitHub</a>)</li>
+<li><strong>Skull Screensaver 2</strong> (<a href="https://richardiago.github.io/abcg/screensaver2/">WebAssembly</a>, <a href="https://github.com/richardiago/abcg/tree/main/examples/screensaver2">GitHub</a>)</li>
+<li><strong>spaceTrip</strong> (<a href="https://luc4t0n1.github.io/spaceTrip.html">WebAssembly</a>, <a href="https://github.com/LUC4T0N1/spaceTrip">GitHub</a>)</li>
+<li><strong>The Tree Log Challenge</strong> (<a href="https://www.youtube.com/watch?v=wkYMRViWfk0">Vídeo</a>, <a href="https://github.com/kaiqueiwata/Atividade3">GitHub</a>)</li>
+<li><strong>Three Bodies Viewer v2</strong> (<a href="https://lucas-muniz.github.io/ComputacaoGrafica-abcgapps/threebodiesv2/">WebAssembly</a>, <a href="https://github.com/Lucas-Muniz/ComputacaoGrafica-atividades/tree/main/Atividade1">GitHub</a>)</li>
+<li><strong>Tour na neve</strong> (<a href="https://denisyudi.github.io/abcg/snow">WebAssembly</a>, <a href="https://github.com/denisyudi/abcg/tree/main/examples/snow">GitHub</a>)</li>
+<li><strong>Trenó SP</strong> (<a href="https://nanomugen.github.io/trenosp/">WebAssembly</a>, <a href="https://github.com/nanomugen/trenosp">GitHub</a>)</li>
+<li><strong>Uma sala 3D repleta de cubos com diversas texturas</strong> (<a href="https://www.youtube.com/watch?v=CCF2DYq4Da0">Vídeo</a>, <a href="https://github.com/vanessaarseli/atividade3">GitHub</a>)</li>
+</ul>
+
 </div>
 </div>
-<div id="vsync" class="section level3 unnumbered hasAnchor">
-<h3>Vsync<a href="framebuffer.html#vsync" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Para reduzir o problema de tearing, a GPU pode sincronizar o desenho do framebuffer com o tempo de apagamento vertical (VBI), que é o intervalo de tempo definido entre o fim da varredura de um quadro de exibição e o início da varredura do quadro seguinte. Essa sincronização efetivamente limita o número de FPS à frequência do monitor em Hz. Esse processo de sincronização é chamado de sincronização vertical ou <em>Vsync</em> (<em>vertical synchronization</em>). Em monitores mais recentes, compatíveis com as tecnologias <a href="https://www.nvidia.com/en-us/geforce/products/g-sync-monitors/">G-SYNC</a> da NVIDIA, e <a href="https://www.amd.com/en/technologies/free-sync">FreeSync</a> da AMD, é possível fazer a sincronização na direção contrária: a frequência do monitor é ajustada pela GPU de acordo com a taxa de FPS.</p>
-</div>
-<div id="multiple-buffering" class="section level3 unnumbered hasAnchor">
-<h3>Multiple buffering<a href="framebuffer.html#multiple-buffering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>O uso de <em>VSync</em> resolve o problema do tearing quando os quadros são renderizados em uma frequência mais alta que a frequência do monitor. Porém, quando a taxa de atualização do framebuffer é menor que a frequência do monitor, o conteúdo parcial do novo quadro pode ser misturado com o conteúdo do quadro anterior, gerando tearing. Uma solução para esse caso é usar a técnica de <em>double buffering</em>.</p>
-<p>Double buffering consiste em utilizar dois framebuffers: o <strong>backbuffer</strong> e o <strong>frontbuffer</strong> (figura <a href="framebuffer.html#fig:framebuffer1">3.40</a>). A GPU renderiza os gráficos apenas no backbuffer. Enquanto isso, o hardware gráfico atualiza o dispositivo de exibição com o conteúdo do frontbuffer. No próximo VBI, se a renderização no backbuffer ainda não tiver terminado, o mesmo frontbuffer é exibido novamente. Caso contrário, o backbuffer e o frontbuffer trocam de lugar, e agora o frontbuffer torna-se o backbuffer, e vice-versa. Desse modo, o hardware gráfico terá agora no frontbuffer um quadro completo para ser exibido na tela.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:framebuffer1"></span>
-<img src="images/03_framebuffer1.svg" alt="Double buffering." width="100%" />
-<p class="caption">
-Figura 3.40: Double buffering.
-</p>
-</div>
-<p>Os casos em que a GPU precisa usar o mesmo frontbuffer (porque o backbuffer ainda está sendo desenhado) não são desejáveis pois podem ser percebidos como travamentos da imagem (<em>stuttering</em>), e resultam em uma diminuição da média de quadros por segundo. Isso pode ser melhorado com a adição de mais um backbuffer, no chamado <em>triple buffering</em>. O resultado é uma espécie de fila circular de buffers chamada de <em>swapchain</em> (figura <a href="framebuffer.html#fig:framebuffer2">3.41</a>). No triple buffering, dois quadros consecutivos são desenhados nos backbuffers. No próximo intervalo de apagamento vertical, a fila avança e o backbuffer mais antigo toma o lugar do frontbuffer, que por sua vez torna-se um backbuffer. Esse princípio de uso de múltiplos backbuffers (<em>multiple buffering</em>) pode ser estendido para ainda mais buffers. Entretanto, quanto maior o número de backbuffers, maior o atraso (<em>lag</em>) entre o quadro mais novo renderizado e o quadro que está sendo exibido na tela.</p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:framebuffer2"></span>
-<img src="images/03_framebuffer2.svg" alt="Triple buffering." width="100%" />
-<p class="caption">
-Figura 3.41: Triple buffering.
-</p>
-</div>
-</div>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="es.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sierpinski.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="atividade-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
