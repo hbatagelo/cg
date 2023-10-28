@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.6 Câmera LookAt | MCTA008-17 Computação Gráfica</title>
+  <title>7.6 Câmera LookAt | MCTA008-17 Computação Gráfica</title>
   <meta name="description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.6 Câmera LookAt | MCTA008-17 Computação Gráfica" />
+  <meta property="og:title" content="7.6 Câmera LookAt | MCTA008-17 Computação Gráfica" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   <meta name="github-repo" content="hbatagelo/cgbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.6 Câmera LookAt | MCTA008-17 Computação Gráfica" />
+  <meta name="twitter:title" content="7.6 Câmera LookAt | MCTA008-17 Computação Gráfica" />
   
   <meta name="twitter:description" content="Notas de aula de MCTA008-17 Computação Gráfica da Universidade Federal do ABC" />
   
@@ -99,6 +99,28 @@ code span.pp { font-weight: bold; } /* Preprocessor */
 code span.wa { font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -116,7 +138,7 @@ code span.wa { font-style: italic; } /* Warning */
 <li><a href="./">Computação Gráfica</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> | Notas de aula</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
 <ul>
 <li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html"><i class="fa fa-check"></i>Pré-requisitos</a>
 <ul>
@@ -124,25 +146,25 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="pré-requisitos.html"><a href="pré-requisitos.html#visualizando-este-site"><i class="fa fa-check"></i>Visualizando este site</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>2</b> Configuração do ambiente</a>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuração do ambiente</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>2.1</b> Linux</a>
+<li class="chapter" data-level="1.1" data-path="linux.html"><a href="linux.html"><i class="fa fa-check"></i><b>1.1</b> Linux</a>
 <ul>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#verificando-o-opengl"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#atualizando-o-gcc"><i class="fa fa-check"></i>Atualizando o GCC</a></li>
 <li class="chapter" data-level="" data-path="linux.html"><a href="linux.html#instalando-o-emscripten"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>2.2</b> macOS</a>
+<li class="chapter" data-level="1.2" data-path="macos.html"><a href="macos.html"><i class="fa fa-check"></i><b>1.2</b> macOS</a>
 <ul>
 <li class="chapter" data-level="" data-path="macos.html"><a href="macos.html#instalando-o-emscripten-1"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>2.3</b> Windows</a>
+<li class="chapter" data-level="1.3" data-path="windows.html"><a href="windows.html"><i class="fa fa-check"></i><b>1.3</b> Windows</a>
 <ul>
 <li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#verificando-o-opengl-1"><i class="fa fa-check"></i>Verificando o OpenGL</a></li>
 <li class="chapter" data-level="" data-path="windows.html"><a href="windows.html#instalando-o-emscripten-2"><i class="fa fa-check"></i>Instalando o Emscripten</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>2.4</b> Visual Studio Code</a></li>
-<li class="chapter" data-level="2.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>2.5</b> ABCg</a>
+<li class="chapter" data-level="1.4" data-path="vscode.html"><a href="vscode.html"><i class="fa fa-check"></i><b>1.4</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.5" data-path="abcg.html"><a href="abcg.html"><i class="fa fa-check"></i><b>1.5</b> ABCg</a>
 <ul>
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#instalação"><i class="fa fa-check"></i>Instalação</a></li>
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#compilando-na-linha-de-comando"><i class="fa fa-check"></i>Compilando na linha de comando</a></li>
@@ -152,10 +174,10 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="abcg.html"><a href="abcg.html#revisão-de-c"><i class="fa fa-check"></i>Revisão de C++</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introdução</a>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introdução</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>3.1</b> Áreas correlatas</a></li>
-<li class="chapter" data-level="3.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>3.2</b> Linha do tempo</a>
+<li class="chapter" data-level="2.1" data-path="áreas-correlatas.html"><a href="áreas-correlatas.html"><i class="fa fa-check"></i><b>2.1</b> Áreas correlatas</a></li>
+<li class="chapter" data-level="2.2" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html"><i class="fa fa-check"></i><b>2.2</b> Linha do tempo</a>
 <ul>
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section"><i class="fa fa-check"></i>1950</a></li>
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-1"><i class="fa fa-check"></i>1960</a></li>
@@ -166,7 +188,7 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-6"><i class="fa fa-check"></i>2010</a></li>
 <li class="chapter" data-level="" data-path="linha-do-tempo.html"><a href="linha-do-tempo.html#section-7"><i class="fa fa-check"></i>2020</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>3.3</b> Primeiro programa</a>
+<li class="chapter" data-level="2.3" data-path="firstapp.html"><a href="firstapp.html"><i class="fa fa-check"></i><b>2.3</b> Primeiro programa</a>
 <ul>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#configuração-inicial"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#main.cpp"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -174,7 +196,7 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#window.cpp"><i class="fa fa-check"></i>window.cpp</a></li>
 <li class="chapter" data-level="" data-path="firstapp.html"><a href="firstapp.html#compilando-para-webassembly"><i class="fa fa-check"></i>Compilando para WebAssembly</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>3.4</b> Jogo da Velha</a>
+<li class="chapter" data-level="2.4" data-path="tictactoe.html"><a href="tictactoe.html"><i class="fa fa-check"></i><b>2.4</b> Jogo da Velha</a>
 <ul>
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#configuração-inicial-1"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#main.cpp-1"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -182,31 +204,31 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="tictactoe.html"><a href="tictactoe.html#window.cpp-1"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>4</b> Sistemas gráficos</a>
+<li class="chapter" data-level="3" data-path="graphicssystem.html"><a href="graphicssystem.html"><i class="fa fa-check"></i><b>3</b> Sistemas gráficos</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>4.1</b> Luz e cor</a>
+<li class="chapter" data-level="3.1" data-path="lightcolor.html"><a href="lightcolor.html"><i class="fa fa-check"></i><b>3.1</b> Luz e cor</a>
 <ul>
 <li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#visão-tricromática"><i class="fa fa-check"></i>Visão tricromática</a></li>
 <li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#modelos-de-cor"><i class="fa fa-check"></i>Modelos de cor</a></li>
 <li class="chapter" data-level="" data-path="lightcolor.html"><a href="lightcolor.html#sistema-cie-1931"><i class="fa fa-check"></i>Sistema CIE 1931</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>4.2</b> Vetorial <em>x</em> matricial</a>
+<li class="chapter" data-level="3.2" data-path="vectorxraster.html"><a href="vectorxraster.html"><i class="fa fa-check"></i><b>3.2</b> Vetorial <em>x</em> matricial</a>
 <ul>
 <li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-vetorial"><i class="fa fa-check"></i>Representação vetorial</a></li>
 <li class="chapter" data-level="" data-path="vectorxraster.html"><a href="vectorxraster.html#representação-matricial"><i class="fa fa-check"></i>Representação matricial</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>4.3</b> Dispositivos de E/S</a>
+<li class="chapter" data-level="3.3" data-path="es.html"><a href="es.html"><i class="fa fa-check"></i><b>3.3</b> Dispositivos de E/S</a>
 <ul>
 <li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-entrada"><i class="fa fa-check"></i>Dispositivos de entrada</a></li>
 <li class="chapter" data-level="" data-path="es.html"><a href="es.html#dispositivos-de-saída"><i class="fa fa-check"></i>Dispositivos de saída</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>4.4</b> Framebuffer</a>
+<li class="chapter" data-level="3.4" data-path="framebuffer.html"><a href="framebuffer.html"><i class="fa fa-check"></i><b>3.4</b> Framebuffer</a>
 <ul>
 <li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#screen-tearing"><i class="fa fa-check"></i>Screen tearing</a></li>
 <li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#vsync"><i class="fa fa-check"></i>Vsync</a></li>
 <li class="chapter" data-level="" data-path="framebuffer.html"><a href="framebuffer.html#multiple-buffering"><i class="fa fa-check"></i>Multiple buffering</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>4.5</b> Triângulo de Sierpinski</a>
+<li class="chapter" data-level="3.5" data-path="sierpinski.html"><a href="sierpinski.html"><i class="fa fa-check"></i><b>3.5</b> Triângulo de Sierpinski</a>
 <ul>
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#configuração-inicial-2"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#main.cpp-2"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -214,15 +236,15 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="sierpinski.html"><a href="sierpinski.html#window.cpp-2"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>5</b> Pipeline gráfico</a>
+<li class="chapter" data-level="4" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>4</b> Pipeline gráfico</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>5.1</b> Dados gráficos</a></li>
-<li class="chapter" data-level="5.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>5.2</b> Ray casting <em>x</em> rasterização</a>
+<li class="chapter" data-level="4.1" data-path="dados-gráficos.html"><a href="dados-gráficos.html"><i class="fa fa-check"></i><b>4.1</b> Dados gráficos</a></li>
+<li class="chapter" data-level="4.2" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html"><i class="fa fa-check"></i><b>4.2</b> Ray casting <em>x</em> rasterização</a>
 <ul>
 <li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#ray-casting"><i class="fa fa-check"></i>Ray casting</a></li>
 <li class="chapter" data-level="" data-path="ray-casting-x-rasterização.html"><a href="ray-casting-x-rasterização.html#rasterização"><i class="fa fa-check"></i>Rasterização</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>5.3</b> Pipeline do OpenGL</a>
+<li class="chapter" data-level="4.3" data-path="glpipeline.html"><a href="glpipeline.html"><i class="fa fa-check"></i><b>4.3</b> Pipeline do OpenGL</a>
 <ul>
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#aplicação"><i class="fa fa-check"></i>Aplicação</a></li>
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#vertex-shader"><i class="fa fa-check"></i>Vertex shader</a></li>
@@ -232,7 +254,7 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#fragment-shader"><i class="fa fa-check"></i>Fragment shader</a></li>
 <li class="chapter" data-level="" data-path="glpipeline.html"><a href="glpipeline.html#operações-de-fragmentos"><i class="fa fa-check"></i>Operações de fragmentos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>5.4</b> Triângulos coloridos</a>
+<li class="chapter" data-level="4.4" data-path="coloredtriangles.html"><a href="coloredtriangles.html"><i class="fa fa-check"></i><b>4.4</b> Triângulos coloridos</a>
 <ul>
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#configuração-inicial-3"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#main.cpp-3"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -241,16 +263,16 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="coloredtriangles.html"><a href="coloredtriangles.html#ajustando-a-taxa-de-atualização"><i class="fa fa-check"></i>Ajustando a taxa de atualização</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>6</b> Desenvolvendo um jogo 2D</a>
+<li class="chapter" data-level="5" data-path="game.html"><a href="game.html"><i class="fa fa-check"></i><b>5</b> Desenvolvendo um jogo 2D</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>6.1</b> Polígonos regulares</a>
+<li class="chapter" data-level="5.1" data-path="regularpolygons.html"><a href="regularpolygons.html"><i class="fa fa-check"></i><b>5.1</b> Polígonos regulares</a>
 <ul>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#configuração-inicial-4"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#main.cpp-4"><i class="fa fa-check"></i>main.cpp</a></li>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.hpp-4"><i class="fa fa-check"></i>window.hpp</a></li>
 <li class="chapter" data-level="" data-path="regularpolygons.html"><a href="regularpolygons.html#window.cpp-4"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>6.2</b> Asteroids</a>
+<li class="chapter" data-level="5.2" data-path="asteroids.html"><a href="asteroids.html"><i class="fa fa-check"></i><b>5.2</b> Asteroids</a>
 <ul>
 <li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#organização-do-projeto"><i class="fa fa-check"></i>Organização do projeto</a></li>
 <li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#configuração-inicial-5"><i class="fa fa-check"></i>Configuração inicial</a></li>
@@ -260,19 +282,19 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="asteroids.html"><a href="asteroids.html#tiros-e-colisões"><i class="fa fa-check"></i>Tiros e colisões</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>7</b> Espaços e geometria</a>
+<li class="chapter" data-level="6" data-path="geometry.html"><a href="geometry.html"><i class="fa fa-check"></i><b>6</b> Espaços e geometria</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>7.1</b> Espaço vetorial</a>
+<li class="chapter" data-level="6.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>6.1</b> Espaço vetorial</a>
 <ul>
 <li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#combinação-e-independência-linear"><i class="fa fa-check"></i>Combinação e independência linear</a></li>
 <li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#dimensão-e-base"><i class="fa fa-check"></i>Dimensão e base</a></li>
 <li class="chapter" data-level="" data-path="vector.html"><a href="vector.html#vetores-geométricos"><i class="fa fa-check"></i>Vetores geométricos</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>7.2</b> Espaço afim</a>
+<li class="chapter" data-level="6.2" data-path="affine.html"><a href="affine.html"><i class="fa fa-check"></i><b>6.2</b> Espaço afim</a>
 <ul>
 <li class="chapter" data-level="" data-path="affine.html"><a href="affine.html#combinação-afim"><i class="fa fa-check"></i>Combinação afim</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>7.3</b> Espaço euclidiano</a>
+<li class="chapter" data-level="6.3" data-path="euclidean.html"><a href="euclidean.html"><i class="fa fa-check"></i><b>6.3</b> Espaço euclidiano</a>
 <ul>
 <li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#quadro-de-referência"><i class="fa fa-check"></i>Quadro de referência</a></li>
 <li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-escalar"><i class="fa fa-check"></i>Produto escalar</a></li>
@@ -284,7 +306,7 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#produto-vetorial"><i class="fa fa-check"></i>Produto vetorial</a></li>
 <li class="chapter" data-level="" data-path="euclidean.html"><a href="euclidean.html#vetor-normal"><i class="fa fa-check"></i>Vetor normal</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>7.4</b> Lendo um modelo 3D</a>
+<li class="chapter" data-level="6.4" data-path="objmodel.html"><a href="objmodel.html"><i class="fa fa-check"></i><b>6.4</b> Lendo um modelo 3D</a>
 <ul>
 <li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#orientação-e-face-culling"><i class="fa fa-check"></i>Orientação e face culling</a></li>
 <li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#configuração-inicial-6"><i class="fa fa-check"></i>Configuração inicial</a></li>
@@ -295,9 +317,9 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="objmodel.html"><a href="objmodel.html#window.cpp-6"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>8</b> Matrizes e transformações</a>
+<li class="chapter" data-level="7" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>7</b> Matrizes e transformações</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>8.1</b> Matrizes</a>
+<li class="chapter" data-level="7.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>7.1</b> Matrizes</a>
 <ul>
 <li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-transposta"><i class="fa fa-check"></i>Matriz transposta</a></li>
 <li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#matriz-quadrada"><i class="fa fa-check"></i>Matriz quadrada</a></li>
@@ -310,30 +332,30 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#transformação-linear"><i class="fa fa-check"></i>Transformação linear</a></li>
 <li class="chapter" data-level="" data-path="matrix.html"><a href="matrix.html#mudança-de-base"><i class="fa fa-check"></i>Mudança de base</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>8.2</b> Coordenadas homogêneas</a></li>
-<li class="chapter" data-level="8.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>8.3</b> Concatenação de transformações</a></li>
-<li class="chapter" data-level="8.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>8.4</b> Transformações</a>
+<li class="chapter" data-level="7.2" data-path="homogeneous.html"><a href="homogeneous.html"><i class="fa fa-check"></i><b>7.2</b> Coordenadas homogêneas</a></li>
+<li class="chapter" data-level="7.3" data-path="concat.html"><a href="concat.html"><i class="fa fa-check"></i><b>7.3</b> Concatenação de transformações</a></li>
+<li class="chapter" data-level="7.4" data-path="transforms.html"><a href="transforms.html"><i class="fa fa-check"></i><b>7.4</b> Transformações</a>
 <ul>
 <li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#identidade"><i class="fa fa-check"></i>Identidade</a></li>
 <li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#translação"><i class="fa fa-check"></i>Translação</a></li>
 <li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#escala"><i class="fa fa-check"></i>Escala</a></li>
 <li class="chapter" data-level="" data-path="transforms.html"><a href="transforms.html#rotação"><i class="fa fa-check"></i>Rotação</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>8.5</b> Espaços do OpenGL</a>
+<li class="chapter" data-level="7.5" data-path="glspaces.html"><a href="glspaces.html"><i class="fa fa-check"></i><b>7.5</b> Espaços do OpenGL</a>
 <ul>
 <li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-objeto"><i class="fa fa-check"></i>Espaço do objeto</a></li>
 <li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-do-mundo"><i class="fa fa-check"></i>Espaço do mundo</a></li>
 <li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#espaço-da-câmera"><i class="fa fa-check"></i>Espaço da câmera</a></li>
 <li class="chapter" data-level="" data-path="glspaces.html"><a href="glspaces.html#concatenação-das-matrizes-de-modelo-e-visão"><i class="fa fa-check"></i>Concatenação das matrizes de modelo e visão</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>8.6</b> Câmera LookAt</a>
+<li class="chapter" data-level="7.6" data-path="lookat.html"><a href="lookat.html"><i class="fa fa-check"></i><b>7.6</b> Câmera LookAt</a>
 <ul>
 <li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-n"><i class="fa fa-check"></i>Construindo o vetor n</a></li>
 <li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-u"><i class="fa fa-check"></i>Construindo o vetor u</a></li>
 <li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-o-vetor-v"><i class="fa fa-check"></i>Construindo o vetor v</a></li>
 <li class="chapter" data-level="" data-path="lookat.html"><a href="lookat.html#construindo-a-matriz-de-visão"><i class="fa fa-check"></i>Construindo a matriz de visão</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>8.7</b> LookAt na prática</a>
+<li class="chapter" data-level="7.7" data-path="lookatproject.html"><a href="lookatproject.html"><i class="fa fa-check"></i><b>7.7</b> LookAt na prática</a>
 <ul>
 <li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#configuração-inicial-7"><i class="fa fa-check"></i>Configuração inicial</a></li>
 <li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#main.cpp-7"><i class="fa fa-check"></i>main.cpp</a></li>
@@ -345,6 +367,45 @@ code span.wa { font-style: italic; } /* Warning */
 <li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#window.cpp-7"><i class="fa fa-check"></i>window.cpp</a></li>
 <li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.hpp"><i class="fa fa-check"></i>ground.hpp</a></li>
 <li class="chapter" data-level="" data-path="lookatproject.html"><a href="lookatproject.html#ground.cpp"><i class="fa fa-check"></i>ground.cpp</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="projections.html"><a href="projections.html"><i class="fa fa-check"></i><b>8</b> Projeções e trackball virtual</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ortho.html"><a href="ortho.html"><i class="fa fa-check"></i><b>8.1</b> Projeção ortográfica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#translação-1"><i class="fa fa-check"></i>Translação</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#escala-e-reflexão"><i class="fa fa-check"></i>Escala e reflexão</a></li>
+<li class="chapter" data-level="" data-path="ortho.html"><a href="ortho.html#matriz-de-projeção"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="perspective.html"><a href="perspective.html"><i class="fa fa-check"></i><b>8.2</b> Projeção perspectiva</a>
+<ul>
+<li class="chapter" data-level="" data-path="perspective.html"><a href="perspective.html#matriz-de-projeção-1"><i class="fa fa-check"></i>Matriz de projeção</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vtrackball1.html"><a href="vtrackball1.html"><i class="fa fa-check"></i><b>8.3</b> Trackball virtual</a>
+<ul>
+<li class="chapter" data-level="" data-path="vtrackball1.html"><a href="vtrackball1.html#rotação-em-torno-de-um-eixo-arbitrário"><i class="fa fa-check"></i>Rotação em torno de um eixo arbitrário</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="viewer1.html"><a href="viewer1.html"><i class="fa fa-check"></i><b>8.4</b> Visualizador 3D</a>
+<ul>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#configuração-inicial-8"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#main.cpp-8"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.vert"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#depth.frag"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.hpp"><i class="fa fa-check"></i>model.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#model.cpp"><i class="fa fa-check"></i>model.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.hpp"><i class="fa fa-check"></i>trackball.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#trackball.cpp"><i class="fa fa-check"></i>trackball.cpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.hpp-8"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="viewer1.html"><a href="viewer1.html#window.cpp-8"><i class="fa fa-check"></i>window.cpp</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="starfield.html"><a href="starfield.html"><i class="fa fa-check"></i><b>8.5</b> Efeito starfield</a>
+<ul>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#configuração-inicial-9"><i class="fa fa-check"></i>Configuração inicial</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#main.cpp-9"><i class="fa fa-check"></i>main.cpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.vert-1"><i class="fa fa-check"></i>depth.vert</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#depth.frag-1"><i class="fa fa-check"></i>depth.frag</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.hpp-9"><i class="fa fa-check"></i>window.hpp</a></li>
+<li class="chapter" data-level="" data-path="starfield.html"><a href="starfield.html#window.cpp-9"><i class="fa fa-check"></i>window.cpp</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html"><i class="fa fa-check"></i>Atividades</a>
@@ -376,23 +437,23 @@ code span.wa { font-style: italic; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lookat" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> Câmera LookAt<a href="lookat.html#lookat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lookat" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Câmera LookAt<a href="lookat.html#lookat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Câmera LookAt é o nome dado ao quadro de câmera virtual <span class="math inline">\(\{P_{\textrm{eye}}, \hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span> construído a partir das seguintes informações:</p>
 <ol style="list-style-type: decimal">
 <li>Um ponto <span class="math inline">\(P_\textrm{eye}\)</span> que corresponde à <strong>posição da câmera</strong> no espaço do mundo;</li>
-<li>Um ponto <span class="math inline">\(P_\textrm{at}\)</span> que corresponde à posição <strong>aonde a câmera está olhando</strong>, também no espaço do mundo<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</li>
+<li>Um ponto <span class="math inline">\(P_\textrm{at}\)</span> que corresponde à posição <strong>aonde a câmera está olhando</strong>, também no espaço do mundo<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>.</li>
 <li>Um vetor <span class="math inline">\(\mathbf{v}_\textrm{up}\)</span> utilizado para indicar a <strong>direção “para cima” da câmera</strong>. Geralmente esse vetor é a direção <span class="math inline">\((0,1,0)\)</span>.</li>
 </ol>
-<p>A figura <a href="lookat.html#fig:lookat1">8.24</a> ilustra esses elementos, incluindo os vetores <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span> que formam a base ortonormal da câmera.</p>
+<p>A figura <a href="lookat.html#fig:lookat1">7.24</a> ilustra esses elementos, incluindo os vetores <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span> que formam a base ortonormal da câmera.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lookat1"></span>
 <img src="images/07_lookat1.png" alt="Quadro da câmera, representado em relação ao mundo."  />
 <p class="caption">
-Figura 8.24: Quadro da câmera, representado em relação ao mundo.
+Figura 7.24: Quadro da câmera, representado em relação ao mundo.
 </p>
 </div>
 <p>O sistema de coordenadas da câmera segue a regra da mão direita. Note que a câmera está olhando na direção <span class="math inline">\(-\hat{\mathbf{n}}\)</span> no espaço do mundo, que corresponde à direção do eixo <span class="math inline">\(z\)</span> negativo da câmera.</p>
-<p>Inicialmente, não temos a base ortonormal <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span>. Só temos as seguintes informações (ilustradas na figura <a href="lookat.html#fig:lookat2">8.25</a>):</p>
+<p>Inicialmente, não temos a base ortonormal <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span>. Só temos as seguintes informações (ilustradas na figura <a href="lookat.html#fig:lookat2">7.25</a>):</p>
 <ul>
 <li>A posição da câmera, <span class="math inline">\(P_\textrm{eye}\)</span>;</li>
 <li>A posição para onde a câmera deve ser direcionada, <span class="math inline">\(P_\textrm{at}\)</span>;</li>
@@ -401,49 +462,49 @@ Figura 8.24: Quadro da câmera, representado em relação ao mundo.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lookat2"></span>
 <img src="images/07_lookat2.png" alt="Parâmetros de uma câmera LookAt."  />
 <p class="caption">
-Figura 8.25: Parâmetros de uma câmera LookAt.
+Figura 7.25: Parâmetros de uma câmera LookAt.
 </p>
 </div>
 <p>Através dessas informações construiremos a base <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span>. Com a base e o ponto de referência (<span class="math inline">\(P_{\textrm{eye}}\)</span>) temos o quadro completo para criar a <strong>matriz de visão</strong> <span class="math inline">\(\mathbf{M}_{\textrm{view}}\)</span>. Como vimos anteriormente, a matriz de visão representa uma mudança de quadro: do espaço do mundo para o espaço da câmera.</p>
 <div id="construindo-o-vetor-n" class="section level3 unnumbered hasAnchor">
 <h3>Construindo o vetor n<a href="lookat.html#construindo-o-vetor-n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Para construir a base ortonormal, primeiro fazemos <span class="math inline">\(P_{\textrm{eye}}-P_{\textrm{at}}\)</span> para obter o vetor que aponta na direção contrária da direção de visão. Esse vetor é então normalizado para obter <span class="math inline">\(\hat{\mathbf{n}}\)</span> (figura <a href="lookat.html#fig:lookat3">8.26</a>):</p>
+<p>Para construir a base ortonormal, primeiro fazemos <span class="math inline">\(P_{\textrm{eye}}-P_{\textrm{at}}\)</span> para obter o vetor que aponta na direção contrária da direção de visão. Esse vetor é então normalizado para obter <span class="math inline">\(\hat{\mathbf{n}}\)</span> (figura <a href="lookat.html#fig:lookat3">7.26</a>):</p>
 <span class="math display">\[
 \hat{\mathbf{n}}=\frac{P_{\textrm{eye}}-P_{\textrm{at}}}{|P_{\textrm{eye}}-P_{\textrm{at}}|}.
 \]</span>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lookat3"></span>
 <img src="images/07_lookat3.png" alt="Construção do vetor n da câmera LookAt."  />
 <p class="caption">
-Figura 8.26: Construção do vetor n da câmera LookAt.
+Figura 7.26: Construção do vetor n da câmera LookAt.
 </p>
 </div>
 <p>Note que <span class="math inline">\(\hat{\mathbf{n}}\)</span> está sendo representado em coordenadas do espaço do mundo. Em relação à câmera, <span class="math inline">\(\hat{\mathbf{n}}\)</span> torna-se o vetor <span class="math inline">\(\hat{\mathbf{k}}=(0,0,1)\)</span>, isto é, a direção do eixo <span class="math inline">\(z\)</span> positivo da câmera (direção para trás da câmera).</p>
 </div>
 <div id="construindo-o-vetor-u" class="section level3 unnumbered hasAnchor">
 <h3>Construindo o vetor u<a href="lookat.html#construindo-o-vetor-u" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Agora que temos <span class="math inline">\(\hat{\mathbf{n}}\)</span>, o segundo passo é calcular o produto vetorial <span class="math inline">\(\mathbf{v}_{\textrm{up}} \times \hat{\mathbf{n}}\)</span> e normalizar o resultado. Com isso obtemos o vetor <span class="math inline">\(\hat{\mathbf{u}}\)</span> perpendicular ao plano formado por <span class="math inline">\(\mathbf{v}_{\textrm{up}}\)</span> e <span class="math inline">\(\hat{\mathbf{n}}\)</span> (figura <a href="lookat.html#fig:lookat4">8.27</a>):</p>
+<p>Agora que temos <span class="math inline">\(\hat{\mathbf{n}}\)</span>, o segundo passo é calcular o produto vetorial <span class="math inline">\(\mathbf{v}_{\textrm{up}} \times \hat{\mathbf{n}}\)</span> e normalizar o resultado. Com isso obtemos o vetor <span class="math inline">\(\hat{\mathbf{u}}\)</span> perpendicular ao plano formado por <span class="math inline">\(\mathbf{v}_{\textrm{up}}\)</span> e <span class="math inline">\(\hat{\mathbf{n}}\)</span> (figura <a href="lookat.html#fig:lookat4">7.27</a>):</p>
 <p><span class="math display">\[
 \hat{\mathbf{u}}=\frac{\mathbf{v}_{\textrm{up}} \times \hat{\mathbf{n}}}{|\mathbf{v}_{\textrm{up}} \times \hat{\mathbf{n}}|}.
 \]</span></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lookat4"></span>
 <img src="images/07_lookat4.png" alt="Construção do vetor u da câmera LookAt."  />
 <p class="caption">
-Figura 8.27: Construção do vetor u da câmera LookAt.
+Figura 7.27: Construção do vetor u da câmera LookAt.
 </p>
 </div>
 <p>No quadro da câmera, <span class="math inline">\(\hat{\mathbf{u}}\)</span> corresponde ao vetor <span class="math inline">\(\hat{\mathbf{i}}=(1,0,0)\)</span>, isto é, a direção do eixo <span class="math inline">\(x\)</span> da câmera (direção à direita).</p>
 </div>
 <div id="construindo-o-vetor-v" class="section level3 unnumbered hasAnchor">
 <h3>Construindo o vetor v<a href="lookat.html#construindo-o-vetor-v" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Embora <span class="math inline">\(\hat{\mathbf{u}}\)</span> seja perpendicular a <span class="math inline">\(\hat{\mathbf{n}}\)</span> e a <span class="math inline">\(\mathbf{v}_{\textrm{up}}\)</span>, ainda não temos uma base ortonormal pois <span class="math inline">\(\mathbf{v}_{\textrm{up}}\)</span> não é necessariamente perpendicular a <span class="math inline">\(\hat{\mathbf{n}}\)</span>. Na figura <a href="lookat.html#fig:lookat4">8.27</a>, <span class="math inline">\(\mathbf{v}_{\textrm{up}}\)</span> e <span class="math inline">\(\hat{\mathbf{n}}\)</span> formam um ângulo menor que <span class="math inline">\(90^{\circ}\)</span>.</p>
-<p>Para obter um vetor que seja mutuamente ortogonal a <span class="math inline">\(\hat{\mathbf{n}}\)</span> e <span class="math inline">\(\hat{\mathbf{u}}\)</span>, basta calcularmos o produto vetorial <span class="math inline">\(\hat{\mathbf{n}} \times \hat{\mathbf{u}}\)</span>. O resultado é <span class="math inline">\(\hat{\mathbf{v}}\)</span> (figura <a href="lookat.html#fig:lookat5">8.28</a>) que já está normalizado pois <span class="math inline">\(\hat{\mathbf{n}}\)</span> e <span class="math inline">\(\hat{\mathbf{u}}\)</span> também têm comprimento 1.</p>
+<p>Embora <span class="math inline">\(\hat{\mathbf{u}}\)</span> seja perpendicular a <span class="math inline">\(\hat{\mathbf{n}}\)</span> e a <span class="math inline">\(\mathbf{v}_{\textrm{up}}\)</span>, ainda não temos uma base ortonormal pois <span class="math inline">\(\mathbf{v}_{\textrm{up}}\)</span> não é necessariamente perpendicular a <span class="math inline">\(\hat{\mathbf{n}}\)</span>. Na figura <a href="lookat.html#fig:lookat4">7.27</a>, <span class="math inline">\(\mathbf{v}_{\textrm{up}}\)</span> e <span class="math inline">\(\hat{\mathbf{n}}\)</span> formam um ângulo menor que <span class="math inline">\(90^{\circ}\)</span>.</p>
+<p>Para obter um vetor que seja mutuamente ortogonal a <span class="math inline">\(\hat{\mathbf{n}}\)</span> e <span class="math inline">\(\hat{\mathbf{u}}\)</span>, basta calcularmos o produto vetorial <span class="math inline">\(\hat{\mathbf{n}} \times \hat{\mathbf{u}}\)</span>. O resultado é <span class="math inline">\(\hat{\mathbf{v}}\)</span> (figura <a href="lookat.html#fig:lookat5">7.28</a>) que já está normalizado pois <span class="math inline">\(\hat{\mathbf{n}}\)</span> e <span class="math inline">\(\hat{\mathbf{u}}\)</span> também têm comprimento 1.</p>
 <p><span class="math display">\[
 \hat{\mathbf{v}}=\hat{\mathbf{n}} \times \hat{\mathbf{u}}.
 \]</span></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lookat5"></span>
 <img src="images/07_lookat5.png" alt="Construção do vetor v da câmera LookAt."  />
 <p class="caption">
-Figura 8.28: Construção do vetor v da câmera LookAt.
+Figura 7.28: Construção do vetor v da câmera LookAt.
 </p>
 </div>
 <p>Note que, em relação à câmera, <span class="math inline">\(\hat{\mathbf{v}}\)</span> corresponde ao vetor <span class="math inline">\(\hat{\mathbf{j}}=(0,1,0)\)</span>, isto é, o eixo <span class="math inline">\(y\)</span> da câmera (direção para cima).</p>
@@ -452,8 +513,7 @@ Figura 8.28: Construção do vetor v da câmera LookAt.
 <div id="construindo-a-matriz-de-visão" class="section level3 unnumbered hasAnchor">
 <h3>Construindo a matriz de visão<a href="lookat.html#construindo-a-matriz-de-visão" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para a construção da matriz de mudança de quadro, vamos relembrar primeiro a matriz de mudança de base.</p>
-<p>A matriz com colunas formadas pelos vetores <span class="math inline">\(\{T(\mathbf{\hat{\mathbf{i}}}),T(\mathbf{\hat{\mathbf{j}}}),T(\mathbf{\hat{\mathbf{k}}})\}\)</span> representa uma mudança da base <span class="math inline">\(\{\hat{\mathbf{i}}, \hat{\mathbf{j}}, \hat{\mathbf{k}}\}\)</span> para a base transformada. A transformação <span class="math inline">\(T\)</span> é uma composição de rotações (por exemplo, <span class="math inline">\(\mathbf{R}_z\mathbf{R}_y\mathbf{R}_x\)</span>), que tem o efeito de rodar a base original para a nova.</p>
-<p>O que temos atualmente é a base <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span>. Esses vetores estão representados <strong>em relação ao espaço do mundo</strong>. Se estivessem representados em relação ao espaço da câmera, a base seria <span class="math inline">\(\{\hat{\mathbf{i}}, \hat{\mathbf{j}}, \hat{\mathbf{k}}\}\)</span>. Então, se construirmos a matriz <span class="math inline">\(\mathbf{R}\)</span> de mudança de base,</p>
+<p>A matriz com colunas formadas pelos vetores <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span> representa uma mudança de base. Se os vetores (coluna) da base padrão forem multiplicados pela matriz, estes serão transformados em <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span>, isto é, a transformação é uma rotação dos eixos da base padrão para a base <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span>. Vamos então construir a seguinte matriz de rotação:</p>
 <p><span class="math display">\[
 \mathbf{R}=
 \begin{bmatrix}
@@ -463,12 +523,12 @@ u_{31} &amp; v_{32} &amp; n_{33} &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix},
 \]</span>
-tal matriz representa a <strong>mudança do espaço da câmera para o espaço do mundo</strong>. Não é bem o que queremos. Gostaríamos da matriz que faz a transformação inversa, isto é, que converte coordenadas do mundo para a câmera. Entretanto, vamos prosseguir com <span class="math inline">\(\mathbf{R}\)</span> da forma como está. Ao final poderemos calcular a matriz inversa da transformação completa, para finalmente obter <span class="math inline">\(\mathbf{M}_{\textrm{view}}\)</span>.</p>
-<p>Com a matriz <span class="math inline">\(\mathbf{R}\)</span>, a base <span class="math inline">\(\{\hat{\mathbf{i}}, \hat{\mathbf{j}}, \hat{\mathbf{k}}\}\)</span> no espaço da câmera é transformada por rotações para resultar na base <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span> representada no espaço do mundo. Isso é ilustrado na figura <a href="lookat.html#fig:lookat6">8.29</a>.</p>
+Tal matriz pode ser interpretada como uma <strong>mudança do espaço da câmera para o espaço do mundo</strong>. Por exemplo, o vetor <span class="math inline">\(\hat{\mathbf{u}}\)</span> no mundo é o vetor <span class="math inline">\(\hat{\mathbf{i}}\)</span> do ponto de vista da câmera. Como temos <span class="math inline">\(\hat{\mathbf{u}}=\mathbf{R}\hat{\mathbf{i}}\)</span>, <span class="math inline">\(\mathbf{R}\)</span> de fato representa a mudança do espaço da câmera para o espaço do mundo. O problema é que essa transformação não é exatamente o que queremos. Gostaríamos de uma matriz que fizesse a transformação inversa, isto é, que convertesse coordenadas do mundo para a câmera. Entretanto, vamos prosseguir com <span class="math inline">\(\mathbf{R}\)</span> da forma como está. Ao final poderemos calcular a matriz inversa da transformação completa, para finalmente obter <span class="math inline">\(\mathbf{M}_{\textrm{view}}\)</span>.</p>
+<p>Com a matriz <span class="math inline">\(\mathbf{R}\)</span>, a base <span class="math inline">\(\{\hat{\mathbf{i}}, \hat{\mathbf{j}}, \hat{\mathbf{k}}\}\)</span> no espaço da câmera é transformada por rotações para resultar na base <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span> representada no espaço do mundo. Isso é ilustrado na figura <a href="lookat.html#fig:lookat6">7.29</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lookat6"></span>
 <img src="images/07_lookat6.png" alt="Rotação da base representada no espaço da câmera, para a base representada no espaço do mundo."  />
 <p class="caption">
-Figura 8.29: Rotação da base representada no espaço da câmera, para a base representada no espaço do mundo.
+Figura 7.29: Rotação da base representada no espaço da câmera, para a base representada no espaço do mundo.
 </p>
 </div>
 <p>Além da base, um quadro também precisa de um ponto de referência. Esse ponto de referência é o próprio <span class="math inline">\(P_\textrm{eye}\)</span>, que representa a origem <span class="math inline">\(O\)</span> no espaço da câmera. <span class="math inline">\(P_\textrm{eye}\)</span> é o deslocamento necessário para mover a origem do espaço da câmera para sua posição no espaço do mundo. Em outras palavras, temos uma transformação de translação que pode ser representada pela matriz</p>
@@ -500,11 +560,11 @@ u_{31} &amp; v_{32} &amp; n_{33} &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix}.
 \]</span>
-A figura <a href="lookat.html#fig:lookat7">8.30</a> ilustra como a matriz de transformação <span class="math inline">\(\mathbf{M}\)</span> converte coordenadas do espaço da câmera para o espaço do mundo, que é o equivalente a rodar a base <span class="math inline">\(\{\hat{\mathbf{i}}, \hat{\mathbf{j}}, \hat{\mathbf{k}}\}\)</span> para <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span> (matriz de rotação <span class="math inline">\(\mathbf{R}\)</span>), e então transladar a origem <span class="math inline">\(O\)</span> para <span class="math inline">\(P_{\textrm{eye}}\)</span> (matriz de translação <span class="math inline">\(\mathbf{T}\)</span>).</p>
+A figura <a href="lookat.html#fig:lookat7">7.30</a> ilustra como a matriz de transformação <span class="math inline">\(\mathbf{M}\)</span> converte coordenadas do espaço da câmera para o espaço do mundo, que é o equivalente a rodar a base <span class="math inline">\(\{\hat{\mathbf{i}}, \hat{\mathbf{j}}, \hat{\mathbf{k}}\}\)</span> para <span class="math inline">\(\{\hat{\mathbf{u}}, \hat{\mathbf{v}}, \hat{\mathbf{n}}\}\)</span> (matriz de rotação <span class="math inline">\(\mathbf{R}\)</span>), e então transladar a origem <span class="math inline">\(O\)</span> para <span class="math inline">\(P_{\textrm{eye}}\)</span> (matriz de translação <span class="math inline">\(\mathbf{T}\)</span>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lookat7"></span>
 <img src="images/07_lookat7.png" alt="Mudança do espaço da câmera para o espaço do mundo."  />
 <p class="caption">
-Figura 8.30: Mudança do espaço da câmera para o espaço do mundo.
+Figura 7.30: Mudança do espaço da câmera para o espaço do mundo.
 </p>
 </div>
 <p>Para obter <span class="math inline">\(\mathbf{M}_{\textrm{view}}\)</span>, basta calcularmos a inversa de <span class="math inline">\(\mathbf{M}\)</span>. Lembre-se que a inversa de uma matriz de rotação é a sua transposta, e a inversa da translação por <span class="math inline">\(P_{\textrm{eye}}\)</span> é a translação por <span class="math inline">\(-P_{\textrm{eye}}\)</span>. Portanto,</p>
@@ -563,32 +623,32 @@ n_{13} &amp; v_{23} &amp; n_{33} &amp; -\hat{\mathbf{n}}\cdot P_{\textrm{eye}} \
 \end{align}
 \]</span></p>
 <p>A biblioteca <a href="https://github.com/g-truc/glm">GLM</a> possui a função <code>glm::lookAt</code>, definida em cabeçalho <code>glm/gtc/matrix_transform.hpp</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="lookat.html#cb1-1" aria-hidden="true" tabindex="-1"></a>glm<span class="op">::</span>mat4 glm<span class="op">::</span>lookAt<span class="op">(</span>glm<span class="op">::</span>vec3 <span class="at">const</span><span class="op">&amp;</span> eye<span class="op">,</span> glm<span class="op">::</span>vec3 <span class="at">const</span><span class="op">&amp;</span> center<span class="op">,</span> glm<span class="op">::</span>vec3 <span class="at">const</span><span class="op">&amp;</span> up<span class="op">);</span></span>
-<span id="cb1-2"><a href="lookat.html#cb1-2" aria-hidden="true" tabindex="-1"></a>glm<span class="op">::</span>dmat4 glm<span class="op">::</span>lookAt<span class="op">(</span>glm<span class="op">::</span>dvec3 <span class="at">const</span><span class="op">&amp;</span> eye<span class="op">,</span> glm<span class="op">::</span>dvec3 <span class="at">const</span><span class="op">&amp;</span> center<span class="op">,</span> glm<span class="op">::</span>dvec3 <span class="at">const</span><span class="op">&amp;</span> up<span class="op">);</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb259-1"><a href="lookat.html#cb259-1" aria-hidden="true" tabindex="-1"></a>glm<span class="op">::</span>mat4 glm<span class="op">::</span>lookAt<span class="op">(</span>glm<span class="op">::</span>vec3 <span class="at">const</span><span class="op">&amp;</span> eye<span class="op">,</span> glm<span class="op">::</span>vec3 <span class="at">const</span><span class="op">&amp;</span> center<span class="op">,</span> glm<span class="op">::</span>vec3 <span class="at">const</span><span class="op">&amp;</span> up<span class="op">);</span></span>
+<span id="cb259-2"><a href="lookat.html#cb259-2" aria-hidden="true" tabindex="-1"></a>glm<span class="op">::</span>dmat4 glm<span class="op">::</span>lookAt<span class="op">(</span>glm<span class="op">::</span>dvec3 <span class="at">const</span><span class="op">&amp;</span> eye<span class="op">,</span> glm<span class="op">::</span>dvec3 <span class="at">const</span><span class="op">&amp;</span> center<span class="op">,</span> glm<span class="op">::</span>dvec3 <span class="at">const</span><span class="op">&amp;</span> up<span class="op">);</span></span></code></pre></div>
 <p><code>glm::lookAt</code> gera a matriz <span class="math inline">\(\mathbf{M}_{\textrm{view}}\)</span> de uma câmera LookAt, dados os parâmetros <span class="math inline">\(P_{\textrm{eye}}\)</span> (<code>eye</code>), <span class="math inline">\(P_{\textrm{at}}\)</span> (<code>center</code>) e <span class="math inline">\(\mathbf{v}_\textrm{up}\)</span> (<code>up</code>).</p>
 <p>Internamente, a função chama <code>glm::lookAtRH</code> para gerar o quadro baseado na regra da mão direita. O conteúdo dessa função é dado a seguir:</p>
-<div class="sourceCode" id="cb2" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb2-1"><a href="lookat.html#cb2-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">,</span> qualifier Q<span class="op">&gt;</span></span>
-<span id="cb2-2"><a href="lookat.html#cb2-2"></a>GLM_FUNC_QUALIFIER mat<span class="op">&lt;</span><span class="dv">4</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> lookAtRH<span class="op">(</span>vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span><span class="op">&amp;</span> eye<span class="op">,</span> vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span><span class="op">&amp;</span> center<span class="op">,</span> vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span><span class="op">&amp;</span> up<span class="op">)</span></span>
-<span id="cb2-3"><a href="lookat.html#cb2-3"></a><span class="op">{</span></span>
-<span id="cb2-4"><a href="lookat.html#cb2-4"></a>    vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span> f<span class="op">(</span>normalize<span class="op">(</span>center <span class="op">-</span> eye<span class="op">));</span></span>
-<span id="cb2-5"><a href="lookat.html#cb2-5"></a>    vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span> s<span class="op">(</span>normalize<span class="op">(</span>cross<span class="op">(</span>f<span class="op">,</span> up<span class="op">)));</span></span>
-<span id="cb2-6"><a href="lookat.html#cb2-6"></a>    vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span> u<span class="op">(</span>cross<span class="op">(</span>s<span class="op">,</span> f<span class="op">));</span></span>
-<span id="cb2-7"><a href="lookat.html#cb2-7"></a></span>
-<span id="cb2-8"><a href="lookat.html#cb2-8"></a>    mat<span class="op">&lt;</span><span class="dv">4</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> Result<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
-<span id="cb2-9"><a href="lookat.html#cb2-9"></a>    Result<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> s<span class="op">.</span>x<span class="op">;</span></span>
-<span id="cb2-10"><a href="lookat.html#cb2-10"></a>    Result<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> s<span class="op">.</span>y<span class="op">;</span></span>
-<span id="cb2-11"><a href="lookat.html#cb2-11"></a>    Result<span class="op">[</span><span class="dv">2</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> s<span class="op">.</span>z<span class="op">;</span></span>
-<span id="cb2-12"><a href="lookat.html#cb2-12"></a>    Result<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> u<span class="op">.</span>x<span class="op">;</span></span>
-<span id="cb2-13"><a href="lookat.html#cb2-13"></a>    Result<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> u<span class="op">.</span>y<span class="op">;</span></span>
-<span id="cb2-14"><a href="lookat.html#cb2-14"></a>    Result<span class="op">[</span><span class="dv">2</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> u<span class="op">.</span>z<span class="op">;</span></span>
-<span id="cb2-15"><a href="lookat.html#cb2-15"></a>    Result<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="op">=-</span>f<span class="op">.</span>x<span class="op">;</span></span>
-<span id="cb2-16"><a href="lookat.html#cb2-16"></a>    Result<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="op">=-</span>f<span class="op">.</span>y<span class="op">;</span></span>
-<span id="cb2-17"><a href="lookat.html#cb2-17"></a>    Result<span class="op">[</span><span class="dv">2</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="op">=-</span>f<span class="op">.</span>z<span class="op">;</span></span>
-<span id="cb2-18"><a href="lookat.html#cb2-18"></a>    Result<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=-</span>dot<span class="op">(</span>s<span class="op">,</span> eye<span class="op">);</span></span>
-<span id="cb2-19"><a href="lookat.html#cb2-19"></a>    Result<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=-</span>dot<span class="op">(</span>u<span class="op">,</span> eye<span class="op">);</span></span>
-<span id="cb2-20"><a href="lookat.html#cb2-20"></a>    Result<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> dot<span class="op">(</span>f<span class="op">,</span> eye<span class="op">);</span></span>
-<span id="cb2-21"><a href="lookat.html#cb2-21"></a>    <span class="cf">return</span> Result<span class="op">;</span></span>
-<span id="cb2-22"><a href="lookat.html#cb2-22"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb260" startFrom="1"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb260-1"><a href="lookat.html#cb260-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">,</span> qualifier Q<span class="op">&gt;</span></span>
+<span id="cb260-2"><a href="lookat.html#cb260-2"></a>GLM_FUNC_QUALIFIER mat<span class="op">&lt;</span><span class="dv">4</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> lookAtRH<span class="op">(</span>vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span><span class="op">&amp;</span> eye<span class="op">,</span> vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span><span class="op">&amp;</span> center<span class="op">,</span> vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span><span class="op">&amp;</span> up<span class="op">)</span></span>
+<span id="cb260-3"><a href="lookat.html#cb260-3"></a><span class="op">{</span></span>
+<span id="cb260-4"><a href="lookat.html#cb260-4"></a>    vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span> f<span class="op">(</span>normalize<span class="op">(</span>center <span class="op">-</span> eye<span class="op">));</span></span>
+<span id="cb260-5"><a href="lookat.html#cb260-5"></a>    vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span> s<span class="op">(</span>normalize<span class="op">(</span>cross<span class="op">(</span>f<span class="op">,</span> up<span class="op">)));</span></span>
+<span id="cb260-6"><a href="lookat.html#cb260-6"></a>    vec<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> <span class="at">const</span> u<span class="op">(</span>cross<span class="op">(</span>s<span class="op">,</span> f<span class="op">));</span></span>
+<span id="cb260-7"><a href="lookat.html#cb260-7"></a></span>
+<span id="cb260-8"><a href="lookat.html#cb260-8"></a>    mat<span class="op">&lt;</span><span class="dv">4</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> T<span class="op">,</span> Q<span class="op">&gt;</span> Result<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb260-9"><a href="lookat.html#cb260-9"></a>    Result<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> s<span class="op">.</span>x<span class="op">;</span></span>
+<span id="cb260-10"><a href="lookat.html#cb260-10"></a>    Result<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> s<span class="op">.</span>y<span class="op">;</span></span>
+<span id="cb260-11"><a href="lookat.html#cb260-11"></a>    Result<span class="op">[</span><span class="dv">2</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> s<span class="op">.</span>z<span class="op">;</span></span>
+<span id="cb260-12"><a href="lookat.html#cb260-12"></a>    Result<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> u<span class="op">.</span>x<span class="op">;</span></span>
+<span id="cb260-13"><a href="lookat.html#cb260-13"></a>    Result<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> u<span class="op">.</span>y<span class="op">;</span></span>
+<span id="cb260-14"><a href="lookat.html#cb260-14"></a>    Result<span class="op">[</span><span class="dv">2</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> u<span class="op">.</span>z<span class="op">;</span></span>
+<span id="cb260-15"><a href="lookat.html#cb260-15"></a>    Result<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="op">=-</span>f<span class="op">.</span>x<span class="op">;</span></span>
+<span id="cb260-16"><a href="lookat.html#cb260-16"></a>    Result<span class="op">[</span><span class="dv">1</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="op">=-</span>f<span class="op">.</span>y<span class="op">;</span></span>
+<span id="cb260-17"><a href="lookat.html#cb260-17"></a>    Result<span class="op">[</span><span class="dv">2</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="op">=-</span>f<span class="op">.</span>z<span class="op">;</span></span>
+<span id="cb260-18"><a href="lookat.html#cb260-18"></a>    Result<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=-</span>dot<span class="op">(</span>s<span class="op">,</span> eye<span class="op">);</span></span>
+<span id="cb260-19"><a href="lookat.html#cb260-19"></a>    Result<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=-</span>dot<span class="op">(</span>u<span class="op">,</span> eye<span class="op">);</span></span>
+<span id="cb260-20"><a href="lookat.html#cb260-20"></a>    Result<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> dot<span class="op">(</span>f<span class="op">,</span> eye<span class="op">);</span></span>
+<span id="cb260-21"><a href="lookat.html#cb260-21"></a>    <span class="cf">return</span> Result<span class="op">;</span></span>
+<span id="cb260-22"><a href="lookat.html#cb260-22"></a><span class="op">}</span></span></code></pre></div>
 <p>Na linha 4, <code>f</code> (vetor “forward”) é equivalente ao nosso <span class="math inline">\(-\hat{\mathbf{n}}\)</span>.</p>
 <p>Na linha 5, <code>s</code> (vetor “side”) é o nosso vetor <span class="math inline">\(\hat{\mathbf{u}}\)</span>, calculado como <span class="math inline">\(-\hat{\mathbf{n}} \times \mathbf{v}_\textrm{up}\)</span>, que é o mesmo que <span class="math inline">\(\mathbf{v}_\textrm{up} \times \hat{\mathbf{n}}\)</span>, seguido de uma normalização.</p>
 <p>Na linha 6, <code>u</code> é o nosso vetor <span class="math inline">\(\hat{\mathbf{v}}\)</span>, calculado como <span class="math inline">\(\hat{\mathbf{u}} \times -\hat{\mathbf{n}}\)</span>, que é o mesmo que <span class="math inline">\(\hat{\mathbf{n}} \times \hat{\mathbf{u}}\)</span>.</p>
@@ -608,8 +668,8 @@ n_{13} &amp; v_{23} &amp; n_{33} &amp; -\hat{\mathbf{n}}\cdot P_{\textrm{eye}} \
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>O ponto “at” também é chamado de “center” ou “target”.<a href="lookat.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<ol start="29">
+<li id="fn29"><p>O ponto “at” também é chamado de “center” ou “target”.<a href="lookat.html#fnref29" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
