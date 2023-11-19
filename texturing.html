@@ -481,7 +481,12 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="envmapping.html"><a href="envmapping.html#mapeamento-de-ambiente-na-prática"><i class="fa fa-check"></i>Mapeamento de ambiente na prática</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="trabalhos-finais.html"><a href="trabalhos-finais.html"><i class="fa fa-check"></i>Trabalhos finais</a></li>
+<li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html"><i class="fa fa-check"></i>Atividades</a>
+<ul>
+<li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html#atividade-2-aplicação-gráfica-3d-com-animações"><i class="fa fa-check"></i>Atividade 2 (Aplicação gráfica 3D com animações)</a></li>
+<li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html#atividade-1-aplicação-interativa-com-gráficos-2d"><i class="fa fa-check"></i>Atividade 1 (Aplicação interativa com gráficos 2D)</a></li>
+<li class="chapter" data-level="" data-path="atividades.html"><a href="atividades.html#atividade-final"><i class="fa fa-check"></i>Atividade final</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li>
@@ -524,7 +529,7 @@ u&amp;=\frac{\textrm{arctan2}\left(x, z\right)}{2\pi}+0.5,\\
 v&amp;=\frac{\arcsin(y)}{\pi}+0.5,
 \end{align}
 \]</span>
-onde <span class="math inline">\(\textrm{arctan2}(x, z)\)</span> é a função <a href="https://en.wikipedia.org/wiki/Atan2"><code>atan2</code></a> que corresponde ao arco tangente de <span class="math inline">\(x/z\)</span>, mas que retorna um ângulo no intervalo <span class="math inline">\([-\pi, \pi]\)</span> e usa os sinais dos argumentos para determinar o quadrante correto no plano <span class="math inline">\(zx\)</span>. O mapeamento esférico é detalhado na seção <a href="texmapping.html#texmapping">10.1</a> junto com outras formas comuns de mapeamento.</p>
+onde <span class="math inline">\(\textrm{arctan2}(x, z)\)</span> é a função <a href="https://en.wikipedia.org/wiki/Atan2"><code>atan2</code></a> que, como vimos anteriormente, corresponde ao arco tangente modificado de <span class="math inline">\(x/z\)</span> que retorna um ângulo no intervalo <span class="math inline">\([-\pi, \pi]\)</span>. O mapeamento esférico é detalhado na seção <a href="texmapping.html#texmapping">10.1</a> junto com outras formas comuns de mapeamento.</p>
 <p>A operação de determinar o valor da textura em um ponto <span class="math inline">\((u,v)\)</span> é chamada de <strong>amostragem de textura</strong>. No OpenGL é possível amostrar texturas nos shaders e configurar o comportamento do amostrador para produzir diferentes efeitos.</p>
 <p>A menor unidade de uma textura é comumente chamada de <strong>texel</strong> (<em>texture element</em>). Um texel é simplesmente um pixel do mapa da textura. Entretanto, o termo texel é usado no lugar de pixel neste contexto porque um pixel da textura (isto é, um texel) nem sempre corresponde exatamente a um pixel da tela. Durante a amostragem de textura, é comum que um texel seja mapeado para vários pixels do framebuffer, ou que muitos texels sejam mapeados para apenas um pixel. Podemos definir critérios de <strong>filtragem de textura</strong> para definir o que deve ser feito em cada caso. Os modos de filtragem de textura utilizados no OpenGL são descritos na seção <a href="texfiltering.html#texfiltering">10.3</a>.</p>
 <p>As coordenadas <span class="math inline">\((u,v)\)</span> do espaço de textura são chamadas de <strong>coordenadas de textura</strong>. No OpenGL, a origem das coordenadas do espaço de textura é o canto inferior esquerdo da textura. O canto superior direito tem coordenadas <span class="math inline">\((1,1)\)</span>. É possível amostrar uma textura em coordenadas fora do intervalo <span class="math inline">\([0,1]\)</span>, mas nesse caso o comportamento será definido de acordo com o modo de “empacotamento” de textura da API. Os diferentes comportamentos possíveis no OpenGL são descritos na seção <a href="texwrapping.html#texwrapping">10.2</a>.</p>
